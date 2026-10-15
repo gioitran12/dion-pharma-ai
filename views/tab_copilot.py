@@ -3,44 +3,52 @@ from modules.sales_copilot import generate_copilot_response
 from modules.claims_hub import get_all_products
 
 def render_tab_copilot():
-    st.header("💬 AI Sales & Product Copilot (Trợ lý bán hàng)")
+    st.markdown("## 💬 AI Sales & Product Copilot (Trợ lý bán hàng)")
     st.markdown("""
-    *Trợ lý nội bộ hỗ trợ Sales và CSKH tra cứu sản phẩm tức thì. Câu trả lời được kiểm soát bởi **Knowledge Grounding** 
-    (chỉ lấy từ Claims đã duyệt, có trích dẫn nguồn). **Tự động nhận diện câu hỏi nhạy cảm (thai kỳ, bệnh nền) để chuyển Dược sĩ**.*
+    *Trợ lý nội bộ hỗ trợ nhân viên Sales và CSKH tra cứu sản phẩm tức thì. 
+    **100% câu trả lời được kiểm soát bởi Claims đã duyệt**, tự động phát hiện câu hỏi rủi ro y tế để **chuyển Dược sĩ**.*
     """)
     
-    # Chọn ngữ cảnh sản phẩm
     products = get_all_products()
     sku_options = {"ALL": "Tất cả sản phẩm"}
     for p in products:
-        sku_options[p["sku"]] = f"{p['sku']} - {p['name']}"
+        sku_options[p["sku"]] = f"📦 {p['sku']} - {p['name']}"
         
-    selected_sku = st.selectbox("Ngữ cảnh sản phẩm:", options=list(sku_options.keys()), format_func=lambda x: sku_options[x])
-    
-    # Gợi ý các câu hỏi thử nghiệm kịch bản demo
-    st.markdown("**💡 Gợi ý câu hỏi để thử nghiệm:**")
-    col1, col2, col3 = st.columns(3)
+    c1, c2 = st.columns([1, 2])
+    with c1:
+        selected_sku = st.selectbox("Ngữ cảnh sản phẩm:", options=list(sku_options.keys()), format_func=lambda x: sku_options[x])
+        
+    # Gợi ý kịch bản thử nghiệm dạng nút bấm sinh động
+    st.markdown("##### 💡 Gợi ý câu hỏi thử nghiệm kịch bản:")
+    q_col1, q_col2, q_col3 = st.columns(3)
     sample_query = None
-    if col1.button("1. Công dụng D3 là gì?"):
+    if q_col1.button("1. 🦴 Công dụng D3 là gì?", use_container_width=True):
         sample_query = "Vitamin D3 có công dụng gì đối với xương và cơ thể?"
-    if col2.button("2. Hỏi nhạy cảm thai kỳ ⚠️"):
+    if q_col2.button("2. ⚠️ Bầu 3 tháng uống được không?", use_container_width=True):
         sample_query = "Khách hàng đang mang thai 3 tháng đầu có dùng được Vitamin D3 không?"
-    if col3.button("3. Bổ máu & Sắt hữu cơ"):
+    if q_col3.button("3. 🩸 Sắt Fero-Plus có táo bón không?", use_container_width=True):
         sample_query = "Viên sắt Fero-Plus có bị táo bón và buồn nôn không?"
         
-    # Khung nhập câu hỏi của người dùng
-    user_query = st.text_input("Nhập câu hỏi của khách hàng / nhân viên:", value=sample_query or "")
+    user_query = st.text_input("💬 Nhập câu hỏi của khách hàng / nhân viên:", value=sample_query or "", placeholder="Gõ câu hỏi tại đây rồi nhấn [Gửi câu hỏi]...")
     
-    if st.button("Gửi câu hỏi", type="primary") and user_query:
+    if st.button("🚀 Gửi câu hỏi", type="primary") and user_query:
         with st.spinner("AI Copilot đang tra cứu từ Claims Knowledge Base..."):
             res = generate_copilot_response(user_query, sku=selected_sku)
             
+            st.divider()
             if res["type"] == "ESCALATION":
-                st.error(res["badge"])
-                st.warning(res["content"])
+                st.markdown(f"""
+                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 12px; padding: 20px; margin-top: 10px;">
+                    <h4 style="color: #b91c1c; margin: 0 0 10px 0; font-weight: 800;">{res['badge']}</h4>
+                    <div style="color: #7f1d1d; font-size: 15px; white-space: pre-line;">{res['content']}</div>
+                </div>
+                """, unsafe_allow_html=True)
             else:
-                st.success(res["badge"])
-                st.markdown(res["content"])
+                st.markdown(f"""
+                <div style="background: #f0fdf4; border: 2px solid #10b981; border-radius: 12px; padding: 20px; margin-top: 10px;">
+                    <h4 style="color: #047857; margin: 0 0 10px 0; font-weight: 800;">{res['badge']}</h4>
+                    <div style="color: #064e3b; font-size: 15px; white-space: pre-line;">{res['content']}</div>
+                </div>
+                """, unsafe_allow_html=True)
                 
-                # Nút sao chép văn bản
-                st.text_area("📋 Đoạn văn mẫu đã kiểm duyệt (Copy để gửi cho khách):", value=res["content"], height=160)
+            st.text_area("📋 Đoạn trả lời đã kiểm duyệt (Sao chép để gửi khách hàng):", value=res["content"], height=160)
