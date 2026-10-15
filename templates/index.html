@@ -135,55 +135,85 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded border border-slate-200 p-3 flex flex-wrap items-center gap-3">
-                <input type="text" id="lead-kw" placeholder="Tìm theo tên nhà thuốc, tuyến đường hoặc số điện thoại..." oninput="fetchLeads()" class="flex-1 min-w-[240px] bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs outline-none focus:border-corp-700">
-                
-                <select id="lead-prov" onchange="fetchLeads()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-semibold outline-none text-slate-800">
-                    <option value="Tất cả">Tất cả tỉnh thành (Toàn quốc)</option>
-                    <option value="Hà Nội">Hà Nội (Thủ đô)</option>
-                    <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
-                    <option value="Đà Nẵng">Đà Nẵng</option>
-                    <option value="Cần Thơ">Cần Thơ</option>
-                    <option value="Hải Phòng">Hải Phòng</option>
-                    <option value="Bình Dương">Bình Dương</option>
-                </select>
+            <!-- THANH BỘ LỌC TUYẾN BÁN HÀNG THÔNG MINH (ROUTE PLANNING THEO BỆNH VIỆN & BÁN KÍNH) -->
+            <div class="bg-white rounded border border-slate-200 p-3 shadow-sm space-y-2.5">
+                <!-- Hàng 1: Tuyến địa lý & Quét bán kính quanh bệnh viện -->
+                <div class="flex flex-wrap items-center gap-2 pb-2 border-b border-slate-100">
+                    <span class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1 shrink-0">
+                        <span class="w-2 h-2 rounded-full bg-corp-700 inline-block"></span>
+                        Tuyến Bán Hàng:
+                    </span>
 
-                <select id="lead-type" onchange="fetchLeads()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-medium outline-none">
-                    <option value="Tất cả">Tất cả loại hình</option>
-                    <option value="Chuỗi nhà thuốc">Chuỗi nhà thuốc</option>
-                    <option value="Cửa hàng Mẹ & Bé">Cửa hàng Mẹ & Bé</option>
-                    <option value="Nhà thuốc tư nhân">Nhà thuốc tư nhân</option>
-                    <option value="Đại lý phân phối">Đại lý phân phối</option>
-                </select>
+                    <select id="lead-prov" onchange="onProvinceChange()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs font-semibold outline-none text-slate-800 focus:border-corp-700 min-w-[130px]">
+                        <option value="Tất cả">Tất cả tỉnh thành</option>
+                        <option value="Hà Nội" selected>Hà Nội (Thủ đô)</option>
+                        <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                        <option value="Đà Nẵng">Đà Nẵng</option>
+                        <option value="Cần Thơ">Cần Thơ</option>
+                        <option value="Hải Phòng">Hải Phòng</option>
+                        <option value="Bình Dương">Bình Dương</option>
+                    </select>
 
-                <label class="flex items-center gap-1.5 bg-amber-50 border border-amber-300 px-2.5 py-1.5 rounded cursor-pointer hover:bg-amber-100 transition">
-                    <input type="checkbox" id="lead-only-new" onchange="fetchLeads()" class="rounded text-amber-600 focus:ring-0">
-                    <span class="text-xs font-bold text-amber-900 whitespace-nowrap">Chỉ điểm bán MỚI MỞ (< 30 ngày)</span>
-                </label>
+                    <select id="lead-dist" onchange="onDistrictChange()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs font-semibold outline-none text-slate-800 focus:border-corp-700 min-w-[130px]">
+                        <option value="Tất cả">Tất cả quận/huyện</option>
+                    </select>
 
-                <span class="text-xs font-bold text-slate-600 pl-2 border-l border-slate-200">
-                    Số điểm bán: <b id="lead-total-num" class="text-corp-700">0</b>
-                </span>
+                    <select id="lead-hosp" onchange="fetchLeads()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs font-semibold outline-none text-slate-800 focus:border-corp-700 min-w-[200px]">
+                        <option value="Tất cả">Tất cả bệnh viện trọng điểm</option>
+                    </select>
 
-                <button onclick="downloadLeadsCSV()" class="px-3 py-1.5 rounded bg-corp-700 text-white font-bold text-xs hover:bg-corp-800 transition">
-                    Xuất tệp Excel/CSV
-                </button>
+                    <select id="lead-radius" onchange="fetchLeads()" class="bg-blue-50 border border-blue-300 rounded px-2.5 py-1.5 text-xs font-bold outline-none text-blue-950 focus:border-corp-700 min-w-[160px]">
+                        <option value="0">Tất cả cự ly bán kính</option>
+                        <option value="500">Bán kính vàng: Dưới 500m (Đi bộ)</option>
+                        <option value="1000">Bán kính vàng: Dưới 1km (Xe máy 3')</option>
+                        <option value="2000">Bán kính mở rộng: Dưới 2km</option>
+                        <option value="3000">Bán kính mở rộng: Dưới 3km</option>
+                    </select>
+                </div>
+
+                <!-- Hàng 2: Từ khóa, Loại hình, Điểm mới mở, Tổng số & Xuất Excel -->
+                <div class="flex flex-wrap items-center gap-2.5">
+                    <input type="text" id="lead-kw" placeholder="Tìm theo tên nhà thuốc, tuyến đường hoặc số điện thoại..." oninput="fetchLeads()" class="flex-1 min-w-[200px] bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs outline-none focus:border-corp-700">
+                    
+                    <select id="lead-type" onchange="fetchLeads()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-medium outline-none">
+                        <option value="Tất cả">Tất cả loại hình</option>
+                        <option value="Chuỗi nhà thuốc">Chuỗi nhà thuốc</option>
+                        <option value="Cửa hàng Mẹ & Bé">Cửa hàng Mẹ & Bé</option>
+                        <option value="Nhà thuốc tư nhân">Nhà thuốc tư nhân</option>
+                        <option value="Đại lý phân phối">Đại lý phân phối</option>
+                    </select>
+
+                    <label class="flex items-center gap-1.5 bg-amber-50 border border-amber-300 px-2.5 py-1.5 rounded cursor-pointer hover:bg-amber-100 transition">
+                        <input type="checkbox" id="lead-only-new" onchange="fetchLeads()" class="rounded text-amber-600 focus:ring-0">
+                        <span class="text-xs font-bold text-amber-900 whitespace-nowrap">Chỉ điểm MỚI MỞ (< 30 ngày)</span>
+                    </label>
+
+                    <span class="text-xs font-bold text-slate-600 pl-2 border-l border-slate-200 whitespace-nowrap">
+                        Điểm bán: <b id="lead-total-num" class="text-corp-700">0</b>
+                    </span>
+
+                    <button onclick="downloadLeadsCSV()" class="px-3 py-1.5 rounded bg-corp-700 text-white font-bold text-xs hover:bg-corp-800 transition whitespace-nowrap">
+                        Xuất Excel
+                    </button>
+                </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-                <div class="lg:col-span-7 bg-white rounded border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[500px]">
-                    <div class="px-4 py-2 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase">
-                        Danh sách điểm bán khảo sát
+                <div class="lg:col-span-7 bg-white rounded border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[520px]">
+                    <div class="px-4 py-2 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase flex justify-between items-center">
+                        <span>Danh sách điểm bán khảo sát</span>
+                        <span id="route-indicator-badge" class="text-[11px] font-semibold text-slate-500">Sắp xếp theo thứ tự ưu tiên thị trường</span>
                     </div>
                     <div class="overflow-y-auto flex-1">
                         <table class="w-full text-left text-xs">
                             <thead class="sticky top-0 bg-slate-50 z-10 border-b border-slate-200">
                                 <tr>
-                                    <th class="table-cell-header w-24">Mã</th>
-                                    <th class="table-cell-header">Tên đơn vị</th>
-                                    <th class="table-cell-header w-28">Khu vực</th>
-                                    <th class="table-cell-header w-24">Điểm</th>
-                                    <th class="table-cell-header w-24">Trạng thái</th>
+                                    <th class="table-cell-header w-20">Mã</th>
+                                    <th class="table-cell-header">Tên đơn vị & Địa chỉ</th>
+                                    <th class="table-cell-header w-24">Quận/Huyện</th>
+                                    <th class="table-cell-header w-32">Cự ly Bệnh viện</th>
+                                    <th class="table-cell-header w-16 text-right">Điểm</th>
+                                    <th class="table-cell-header w-20 text-center">Trạng thái</th>
                                 </tr>
                             </thead>
                             <tbody id="lead-table-body" class="divide-y divide-slate-100"></tbody>
@@ -545,39 +575,97 @@
         // --- 1. LEADS B2B ---
         let leadsArr = [];
         let curLeadId = null;
+        let hospitalsMap = {};
 
-        async function fetchLeads() {
+        async function initLeadsData() {
+            await fetchLeads(true);
+        }
+
+        function onProvinceChange() {
+            const prov = document.getElementById('lead-prov').value;
+            const distSelect = document.getElementById('lead-dist');
+            distSelect.innerHTML = '<option value="Tất cả">Tất cả quận/huyện</option>';
+
+            if (prov !== 'Tất cả' && hospitalsMap[prov]) {
+                Object.keys(hospitalsMap[prov]).forEach(d => {
+                    distSelect.innerHTML += `<option value="${d}">${d}</option>`;
+                });
+            }
+            onDistrictChange();
+        }
+
+        function onDistrictChange() {
+            const prov = document.getElementById('lead-prov').value;
+            const dist = document.getElementById('lead-dist').value;
+            const hospSelect = document.getElementById('lead-hosp');
+            hospSelect.innerHTML = '<option value="Tất cả">Tất cả bệnh viện trọng điểm</option>';
+
+            if (prov !== 'Tất cả' && dist !== 'Tất cả' && hospitalsMap[prov] && hospitalsMap[prov][dist]) {
+                hospitalsMap[prov][dist].forEach(h => {
+                    hospSelect.innerHTML += `<option value="${h}">${h}</option>`;
+                });
+            }
+            fetchLeads();
+        }
+
+        async function fetchLeads(isInit = false) {
             const kw = document.getElementById('lead-kw').value;
             const prov = document.getElementById('lead-prov').value;
+            const dist = document.getElementById('lead-dist') ? document.getElementById('lead-dist').value : 'Tất cả';
+            const hosp = document.getElementById('lead-hosp') ? document.getElementById('lead-hosp').value : 'Tất cả';
+            const radius = document.getElementById('lead-radius') ? document.getElementById('lead-radius').value : '0';
             const type = document.getElementById('lead-type').value;
             const onlyNew = document.getElementById('lead-only-new').checked;
 
-            const res = await fetch(`/api/leads?province=${encodeURIComponent(prov)}&lead_type=${encodeURIComponent(type)}&keyword=${encodeURIComponent(kw)}&only_new=${onlyNew}`);
+            const res = await fetch(`/api/leads?province=${encodeURIComponent(prov)}&district=${encodeURIComponent(dist)}&hospital=${encodeURIComponent(hosp)}&max_distance=${radius}&lead_type=${encodeURIComponent(type)}&keyword=${encodeURIComponent(kw)}&only_new=${onlyNew}`);
             const data = await res.json();
             leadsArr = data.leads;
+            if (data.hospitals_map) {
+                hospitalsMap = data.hospitals_map;
+                if (isInit) onProvinceChange();
+            }
 
             document.getElementById('lead-total-num').innerText = data.total;
 
+            const badge = document.getElementById('route-indicator-badge');
+            if (hosp !== 'Tất cả') {
+                const radTxt = radius > 0 ? (radius >= 1000 ? (radius/1000) + 'km' : radius + 'm') : 'Toàn cự ly';
+                badge.innerText = `Lộ trình tối ưu: ${hosp} (${radTxt})`;
+                badge.className = 'text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200';
+            } else if (dist !== 'Tất cả') {
+                badge.innerText = `Tuyến thị trường: ${dist}, ${prov}`;
+                badge.className = 'text-[11px] font-bold text-corp-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200';
+            } else {
+                badge.innerText = 'Sắp xếp theo thứ tự ưu tiên thị trường';
+                badge.className = 'text-[11px] font-semibold text-slate-500';
+            }
+
             const tbody = document.getElementById('lead-table-body');
             tbody.innerHTML = '';
-            leadsArr.forEach(l => {
+            leadsArr.forEach((l, idx) => {
                 const isCur = l.lead_id === curLeadId;
                 const statusLabel = l.status === 'APPROVED' ? '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Đã duyệt</span>' :
                                     (l.status === 'REJECTED' ? '<span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold">Loại</span>' :
                                     '<span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">Chưa duyệt</span>');
                 
-                const newBadge = l.is_new_opened ? '<span class="ml-1.5 px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 font-extrabold text-[10px] border border-amber-300">MỚI MỞ</span>' : '';
+                const newBadge = l.is_new_opened ? '<span class="ml-1 px-1.5 py-0.2 rounded bg-amber-100 text-amber-900 font-extrabold text-[10px] border border-amber-300">MỚI MỞ</span>' : '';
+                const orderBadge = (hosp !== 'Tất cả' || dist !== 'Tất cả') ? `<span class="inline-block w-4 h-4 rounded-full bg-slate-800 text-white text-[10px] text-center font-bold mr-1 leading-4">${idx + 1}</span>` : '';
+
+                const distBadge = l.distance_meters <= 500 ? 
+                    `<span class="px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold border border-emerald-200 text-[11px]">${l.distance_text}</span>` :
+                    `<span class="font-mono text-slate-600 text-[11px]">${l.distance_text}</span>`;
 
                 tbody.innerHTML += `
                     <tr onclick="inspectLead('${l.lead_id}')" class="cursor-pointer hover:bg-slate-50 transition ${isCur ? 'bg-blue-50/70 font-semibold' : ''}">
-                        <td class="table-cell font-mono font-bold text-corp-700">${l.lead_id}</td>
+                        <td class="table-cell font-mono font-bold text-corp-700">${orderBadge}${l.lead_id}</td>
                         <td class="table-cell font-bold text-slate-900">
                             <div>${l.name} ${newBadge}</div>
-                            <div class="text-[11px] font-normal text-slate-500">${l.nearby_facility || ''}</div>
+                            <div class="text-[11px] font-normal text-slate-500 truncate max-w-[220px]">${l.address}</div>
                         </td>
-                        <td class="table-cell text-slate-600">${l.district}, ${l.province}</td>
-                        <td class="table-cell font-extrabold text-corp-700">${l.fit_score} / 100</td>
-                        <td class="table-cell">${statusLabel}</td>
+                        <td class="table-cell text-slate-600 font-medium">${l.district}</td>
+                        <td class="table-cell">${distBadge}</td>
+                        <td class="table-cell font-extrabold text-corp-700 text-right">${l.fit_score}/100</td>
+                        <td class="table-cell text-center">${statusLabel}</td>
                     </tr>
                 `;
             });
@@ -605,7 +693,11 @@
                     <h4 class="font-extrabold text-slate-900 text-base">${l.name}</h4>
                     <p class="text-xs text-slate-600 mt-0.5">Địa chỉ: ${l.address}</p>
                     <p class="text-xs text-slate-600">SĐT: <b>${l.phone}</b> | Email: <b>${l.email}</b></p>
-                    ${l.nearby_facility ? `<p class="text-xs text-corp-700 font-semibold mt-0.5">Vị trí: ${l.nearby_facility}</p>` : ''}
+                    <div class="mt-1.5 p-2 bg-blue-50/80 rounded border border-blue-200 text-xs flex justify-between items-center">
+                        <span class="font-bold text-corp-800">Cơ sở y tế mục tiêu:</span>
+                        <span class="font-bold text-slate-900">${l.target_hospital || 'Khu vực'}</span>
+                        <span class="font-mono text-emerald-800 font-bold bg-emerald-100 px-1.5 py-0.5 rounded">${l.distance_text || ''}</span>
+                    </div>
                 </div>
 
                 ${newAlert}
@@ -1011,7 +1103,7 @@
         }
 
         window.onload = function() {
-            fetchLeads();
+            initLeadsData();
             pickAdPreset(1);
             fetchClaimsHubData();
         }

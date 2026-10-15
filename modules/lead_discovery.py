@@ -37,9 +37,18 @@ def update_lead_status(lead_id: str, new_status: str, assigned_to: Optional[str]
         return save_leads_data(leads)
     return False
 
+def load_hospitals_map() -> Dict[str, Dict[str, List[str]]]:
+    if not LEADS_PATH.exists():
+        return {}
+    with open(LEADS_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
+        return data.get("hospitals_map", {})
+
 def filter_leads(
     province: str = "Tất cả",
     district: str = "Tất cả",
+    hospital: str = "Tất cả",
+    max_distance: int = 0,
     lead_type: str = "Tất cả",
     status: str = "Tất cả",
     min_fit_score: int = 0,
@@ -53,6 +62,8 @@ def filter_leads(
     for item in leads:
         match_prov = (province == "Tất cả") or (item.get("province") == province)
         match_dist = (district == "Tất cả") or (item.get("district") == district)
+        match_hosp = (hospital == "Tất cả") or (item.get("target_hospital") == hospital) or (hospital in item.get("nearby_facility", ""))
+        match_radius = True if max_distance <= 0 else (item.get("distance_meters", 9999) <= max_distance)
         match_type = (lead_type == "Tất cả") or (item.get("type") == lead_type)
         match_status = (status == "Tất cả") or (item.get("status") == status)
         match_score = item.get("fit_score", 0) >= min_fit_score
@@ -60,12 +71,16 @@ def filter_leads(
         
         match_kw = True
         if keyword_clean:
-            searchable_text = f"{item.get('name', '')} {item.get('address', '')} {item.get('phone', '')} {' '.join(item.get('categories', []))}".lower()
+            searchable_text = f"{item.get('name', '')} {item.get('address', '')} {item.get('phone', '')} {item.get('target_hospital', '')} {' '.join(item.get('categories', []))}".lower()
             match_kw = keyword_clean in searchable_text
             
-        if match_prov and match_dist and match_type and match_status and match_score and match_kw and match_new:
+        if match_prov and match_dist and match_hosp and match_radius and match_type and match_status and match_score and match_kw and match_new:
             filtered.append(item)
             
+    # Sắp xếp lộ trình theo khoảng cách gần nhất
+    if hospital != "Tất cả" or max_distance > 0:
+        filtered.sort(key=lambda x: x.get("distance_meters", 9999))
+        
     return filtered
 
 def group_by_parent_chain(leads: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:

@@ -8,7 +8,7 @@ from fastapi.templating import Jinja2Templates
 
 from modules.claims_hub import get_all_products, get_product_by_sku, get_claims_summary, get_active_claims
 from modules.lead_discovery import (
-    filter_leads, update_lead_status, get_lead_by_id, group_by_parent_chain, generate_b2b_outreach_pitch
+    filter_leads, update_lead_status, get_lead_by_id, group_by_parent_chain, generate_b2b_outreach_pitch, load_hospitals_map
 )
 from modules.sales_copilot import generate_copilot_response
 from modules.content_generator import (
@@ -48,18 +48,34 @@ async def api_get_product_detail(sku: str):
 async def api_get_leads(
     province: str = "Tất cả",
     district: str = "Tất cả",
+    hospital: str = "Tất cả",
+    max_distance: int = 0,
     lead_type: str = "Tất cả",
     status: str = "Tất cả",
     keyword: str = "",
     only_new: bool = False
 ):
-    leads = filter_leads(province=province, district=district, lead_type=lead_type, status=status, search_keyword=keyword, only_new=only_new)
+    leads = filter_leads(
+        province=province,
+        district=district,
+        hospital=hospital,
+        max_distance=max_distance,
+        lead_type=lead_type,
+        status=status,
+        search_keyword=keyword,
+        only_new=only_new
+    )
     grouped = group_by_parent_chain(leads)
     chains_summary = []
     for parent, items in grouped.items():
         if parent != "Độc lập / Chưa gom nhóm" and len(items) > 1:
             chains_summary.append({"parent": parent, "count": len(items), "items": items})
-    return {"total": len(leads), "leads": leads, "chains": chains_summary}
+    return {
+        "total": len(leads),
+        "leads": leads,
+        "chains": chains_summary,
+        "hospitals_map": load_hospitals_map()
+    }
 
 @app.post("/api/leads/{lead_id}/action")
 async def api_lead_action(lead_id: str, action: str = Body(..., embed=True), assigned_to: Optional[str] = Body(None, embed=True)):
