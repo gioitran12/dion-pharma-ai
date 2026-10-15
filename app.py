@@ -9,300 +9,158 @@ st.set_page_config(
     page_title="DION Healthcare AI — Enterprise Workspace",
     page_icon="💊",
     layout="wide",
-    initial_sidebar_state="collapsed"  # Mặc định ẩn sidebar để có không gian web rộng rãi như ảnh mẫu
+    initial_sidebar_state="collapsed"
 )
 
-# STYLING THEO PHONG CÁCH VIBRANT SAAS ROYAL BLUE (GIỐNG THUEDO.NET)
+# THIẾT KẾ ĐỒNG BỘ: PHÔNG CHỮ RÕ RÀNG, KÍCH THƯỚC CHUẨN, BỐ CỤC MẠCH LẠC
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-    
+
+    /* 1. RESET PHÔNG CHỮ & KÍCH THƯỚC CHUẨN MỰC TOÀN BỘ TRANG */
     html, body, [class*="css"], .stApp {
-        font-family: 'Plus Jakarta Sans', -apple-system, sans-serif !important;
-        background-color: #ffffff !important;
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        background-color: #f8fafc !important;
         color: #0f172a !important;
+        font-size: 15px !important;
+        line-height: 1.6 !important;
     }
-    
-    /* 1. TOP NAVBAR TRẮNG TINH KHÔI GIỐNG THUEDO.NET */
-    .thuedo-navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: #ffffff;
-        padding: 12px 28px;
-        border-bottom: 1px solid #e2e8f0;
-        margin-top: -50px;
+
+    /* Đảm bảo toàn bộ chữ cơ bản luôn sắc nét, không bị chữ to chữ bé */
+    p, span, label, li {
+        font-size: 15px !important;
+        color: #1e293b !important;
+        line-height: 1.6 !important;
+    }
+
+    /* Tiêu đề có cấp bậc rõ ràng, không nhảy kích thước lộn xộn */
+    h1 { font-size: 24px !important; font-weight: 800 !important; color: #0f172a !important; margin: 0 0 12px 0 !important; }
+    h2 { font-size: 20px !important; font-weight: 800 !important; color: #1d4ed8 !important; margin: 20px 0 10px 0 !important; }
+    h3 { font-size: 17px !important; font-weight: 700 !important; color: #0f172a !important; margin: 16px 0 8px 0 !important; }
+    h4 { font-size: 15px !important; font-weight: 700 !important; color: #1e293b !important; }
+
+    /* 2. HERO BANNER XANH DƯƠNG CHUẨN - GỌN GÀNG, SANG TRỌNG */
+    .hero-banner {
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+        border-radius: 14px;
+        padding: 24px 28px;
+        color: #ffffff !important;
         margin-bottom: 24px;
-        position: sticky;
-        top: 0;
-        z-index: 999;
+        box-shadow: 0 4px 14px rgba(29, 78, 216, 0.2);
     }
-    .thuedo-logo {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none;
-    }
-    .thuedo-logo-icon {
-        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
-        color: white;
-        font-size: 20px;
-        font-weight: 800;
-        width: 44px;
-        height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
-    }
-    .thuedo-logo-text {
-        font-size: 20px;
-        font-weight: 800;
-        color: #1d4ed8 !important;
-        margin: 0;
-        line-height: 1.1;
-    }
-    .thuedo-logo-sub {
-        font-size: 11px;
-        color: #64748b;
-        margin: 0;
-    }
-    .thuedo-nav-links {
-        display: flex;
-        gap: 32px;
-        font-weight: 700;
-        font-size: 14px;
-    }
-    .thuedo-nav-links a {
-        color: #1e293b;
-        text-decoration: none;
-        transition: color 0.2s ease;
-    }
-    .thuedo-nav-links a:hover, .thuedo-nav-links a.active {
-        color: #1d4ed8;
-    }
-    .thuedo-login-btn {
-        background: #1d4ed8;
+    .hero-banner h1 {
         color: #ffffff !important;
-        padding: 9px 26px;
-        border-radius: 9999px;
-        font-weight: 700;
-        font-size: 14px;
-        text-decoration: none;
-        box-shadow: 0 4px 12px rgba(29, 78, 216, 0.3);
-        transition: all 0.2s ease;
+        font-size: 24px !important;
+        font-weight: 800 !important;
+        margin: 0 0 6px 0 !important;
     }
-    .thuedo-login-btn:hover {
-        background: #1e40af;
-        transform: translateY(-1px);
-    }
-
-    /* 2. HERO BANNER XANH DƯƠNG RỰC RỠ ĐẬM CHẤT THUEDO.NET */
-    .thuedo-hero {
-        background: radial-gradient(circle at 80% 50%, #3b82f6 0%, #1d4ed8 60%, #1e40af 100%);
-        border-radius: 20px;
-        padding: 44px 48px;
-        color: #ffffff;
-        margin-bottom: 36px;
-        box-shadow: 0 15px 30px -10px rgba(29, 78, 216, 0.45);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 30px;
-    }
-    .thuedo-hero-left {
-        max-width: 62%;
-    }
-    .thuedo-hero-title {
-        font-size: 32px;
-        font-weight: 800;
-        line-height: 1.25;
-        letter-spacing: -0.5px;
-        color: #ffffff !important;
-        margin-bottom: 16px;
-        text-transform: uppercase;
-    }
-    .thuedo-hero-desc {
-        font-size: 15px;
-        line-height: 1.65;
+    .hero-banner p {
         color: #e0e7ff !important;
-        margin-bottom: 26px;
-        font-weight: 400;
+        font-size: 14px !important;
+        margin: 0 0 14px 0 !important;
+        line-height: 1.5 !important;
     }
-    .thuedo-cta-btn {
-        display: inline-block;
-        background: #ffffff;
-        color: #1d4ed8 !important;
-        font-weight: 800;
-        font-size: 15px;
-        padding: 12px 30px;
-        border-radius: 9999px;
-        text-decoration: none;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        transition: all 0.2s ease;
+    .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
     }
-    .thuedo-cta-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
-    }
-    .thuedo-hero-right {
-        max-width: 35%;
-        text-align: center;
-        background: rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
+    .hero-tag {
+        background: rgba(255, 255, 255, 0.2);
+        color: #ffffff !important;
+        padding: 4px 12px;
         border-radius: 20px;
-        padding: 24px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
-    /* 3. SECTION HEADING CHUẨN XANH DƯƠNG HOA */
-    .thuedo-section-header {
-        text-align: center;
-        margin-bottom: 28px;
-    }
-    .thuedo-section-title {
-        font-size: 26px;
-        font-weight: 800;
-        color: #1d4ed8 !important;
-        text-transform: uppercase;
-        letter-spacing: -0.5px;
-        margin-bottom: 8px;
-    }
-    .thuedo-section-subtitle {
-        font-size: 15px;
-        color: #475569;
-        max-width: 700px;
-        margin: 0 auto;
-        line-height: 1.5;
-    }
-
-    /* 4. TABS PHẲNG HIỆN ĐẠI THEO PHONG CÁCH NAVBAR */
+    /* 3. THANH TABS ĐỒNG ĐỀU, DỄ ĐỌC */
     div[data-baseweb="tab-list"] {
-        justify-content: center !important;
         background: #ffffff !important;
-        border-bottom: 2px solid #e2e8f0 !important;
-        padding-bottom: 0px !important;
-        gap: 24px !important;
-        margin-bottom: 28px !important;
+        padding: 6px !important;
+        border-radius: 12px !important;
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+        gap: 6px !important;
+        margin-bottom: 20px !important;
     }
     button[data-baseweb="tab"] {
-        font-size: 15px !important;
+        font-size: 14px !important;
         font-weight: 700 !important;
-        text-transform: uppercase !important;
-        color: #64748b !important;
+        padding: 10px 18px !important;
+        color: #475569 !important;
+        border-radius: 8px !important;
         border: none !important;
-        padding: 12px 18px !important;
-        background: transparent !important;
-        border-bottom: 3px solid transparent !important;
-        border-radius: 0 !important;
-        transition: all 0.2s ease !important;
-    }
-    button[data-baseweb="tab"]:hover {
-        color: #1d4ed8 !important;
     }
     button[data-baseweb="tab"][aria-selected="true"] {
-        color: #1d4ed8 !important;
-        border-bottom: 3px solid #1d4ed8 !important;
-        background: transparent !important;
+        background: #1d4ed8 !important;
+        color: #ffffff !important;
     }
 
-    /* 5. CÁC NÚT BẤM (BUTTONS) VIÊN THUỐC BO TRÒN */
+    /* 4. METRIC SỐ LIỆU ĐỒNG BỘ */
+    div[data-testid="stMetric"] {
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 10px !important;
+        padding: 12px 16px !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+    }
+    div[data-testid="stMetricLabel"] {
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        color: #64748b !important;
+    }
+    div[data-testid="stMetricValue"] {
+        font-size: 24px !important;
+        font-weight: 800 !important;
+        color: #1d4ed8 !important;
+    }
+
+    /* 5. NÚT BẤM (BUTTONS) ĐỒNG NHẤT */
     .stButton button {
-        border-radius: 9999px !important;
-        font-weight: 700 !important;
-        padding: 10px 24px !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
         font-size: 14px !important;
-        transition: all 0.2s ease !important;
+        padding: 8px 18px !important;
     }
     .stButton button[kind="primary"] {
         background: #1d4ed8 !important;
         color: #ffffff !important;
         border: none !important;
-        box-shadow: 0 4px 14px rgba(29, 78, 216, 0.35) !important;
     }
     .stButton button[kind="primary"]:hover {
         background: #1e40af !important;
-        transform: translateY(-1px) !important;
-        box-shadow: 0 6px 18px rgba(29, 78, 216, 0.45) !important;
     }
-    
-    /* 6. THẺ CARD TRẮNG TINH TẾ CÓ BÓNG ĐỔ MỊN */
-    .white-card {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 16px;
-        padding: 24px;
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-        margin-bottom: 20px;
+
+    /* 6. Ô NHẬP LIỆU GỌN GÀNG */
+    .stTextInput input, .stSelectbox select, div[data-baseweb="select"] {
+        font-size: 14px !important;
+        border-radius: 8px !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# 1. TOP NAVBAR SANG TRỌNG GIỐNG THUEDO.NET
+# HERO BANNER XANH DƯƠNG RÕ RÀNG, KHÔNG RỐI MẮT
 st.markdown("""
-<div class="thuedo-navbar">
-    <div class="thuedo-logo">
-        <div class="thuedo-logo-icon">💊</div>
-        <div>
-            <div class="thuedo-logo-text">DION AI</div>
-            <div class="thuedo-logo-sub">https://dion.healthcare.ai</div>
-        </div>
-    </div>
-    <div class="thuedo-nav-links">
-        <a href="#" class="active">TRANG CHỦ</a>
-        <a href="#">TÍNH NĂNG</a>
-        <a href="#">KIẾN TRÚC AI</a>
-        <a href="#">PHÁP LÝ NĐ 342</a>
-        <a href="#">LIÊN HỆ</a>
-    </div>
-    <a href="#demo-workspace" class="thuedo-login-btn">Khám phá Demo</a>
-</div>
-""", unsafe_allow_html=True)
-
-# 2. HERO BANNER XANH DƯƠNG RỰC RỠ VỚI 3D PODIUM
-st.markdown("""
-<div class="thuedo-hero">
-    <div class="thuedo-hero-left">
-        <div class="thuedo-hero-title">
-            HỆ THỐNG ENTERPRISE AI DƯỢC PHẨM & TPBS SỐ 1 VIỆT NAM
-        </div>
-        <div class="thuedo-hero-desc">
-            DION Healthcare AI là nền tảng trí tuệ nhân tạo chuyên biệt cho ngành dược phẩm, thực phẩm bổ sung và chăm sóc sức khỏe. 
-            Được xây dựng phù hợp tối đa với nghiệp vụ thực tế, tập trung giải quyết các bài toán trọng yếu: tìm kiếm đối tác B2B (nhà thuốc, chuỗi mẹ & bé), 
-            quản lý vòng đời Claims pháp lý, trợ lý tư vấn sản phẩm RAG và tự động hóa truyền thông tuân thủ Nghị định 342/2025/NĐ-CP.
-        </div>
-        <a href="#demo-section" class="thuedo-cta-btn">TRẢI NGHIỆM TÍNH NĂNG NGAY</a>
-    </div>
-    <div class="thuedo-hero-right">
-        <div style="font-size: 48px; margin-bottom: 10px;">🛡️ 🔬 💊</div>
-        <div style="font-weight: 800; font-size: 17px; color: #ffffff; margin-bottom: 6px;">CHUẨN HÓA DƯỢC VỤ</div>
-        <div style="font-size: 13px; color: #dbeafe; line-height: 1.5;">
-            • 100% Căn cứ pháp lý & Nguồn trích dẫn<br/>
-            • 4 Chiều Đánh giá Lead Nhà thuốc B2B<br/>
-            • Tự động chặn từ cấm & Gắn disclaimer
-        </div>
+<div class="hero-banner">
+    <h1>💊 DION HEALTHCARE AI — ENTERPRISE WORKSPACE</h1>
+    <p>Hệ thống AI Nghiệp vụ Chuyên sâu cho Doanh nghiệp Dược phẩm & Thực phẩm Bổ sung (TPBS)</p>
+    <div class="hero-tags">
+        <span class="hero-tag">🛡️ Tuân thủ NĐ 342/2025/NĐ-CP</span>
+        <span class="hero-tag">🎯 Đánh giá Lead B2B 4 Chiều</span>
+        <span class="hero-tag">💬 Sales Copilot Trích Nguồn Claims</span>
+        <span class="hero-tag">✍️ Bộ Lọc Vi Phạm Quảng Cáo</span>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# 3. SECTION HEADING THEO PHONG CÁCH THUEDO.NET
-st.markdown("""
-<div id="demo-section" class="thuedo-section-header">
-    <div class="thuedo-section-title">GIẢI PHÁP AI CHUYÊN SÂU, ĐƠN GIẢN VÀ HIỆU QUẢ</div>
-    <div class="thuedo-section-subtitle">
-        Được thiết kế 100% cho ngành dược phẩm & thực phẩm bảo vệ sức khỏe, giúp vận hành đúng quy trình và nâng cao doanh số phân phối.
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-# 4. TABS NGHIỆP VỤ HIỆN ĐẠI
+# 4 TABS NGHIỆP VỤ RÕ RÀNG
 tab1, tab2, tab3, tab4 = st.tabs([
-    "🏛️ QUẢN LÝ CLAIMS SẢN PHẨM",
-    "🎯 TÌM KIẾM LEAD B2B",
-    "💬 TRỢ LÝ SALES COPILOT",
-    "✍️ SẢN XUẤT CONTENT MARKETING"
+    "🏛️ 1. Quản lý Claims Sản phẩm",
+    "🎯 2. Tìm kiếm Lead B2B",
+    "💬 3. Trợ lý Sales Copilot",
+    "✍️ 4. Sản xuất Content Marketing"
 ])
 
 with tab1:
