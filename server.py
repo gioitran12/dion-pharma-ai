@@ -50,9 +50,10 @@ async def api_get_leads(
     district: str = "Tất cả",
     lead_type: str = "Tất cả",
     status: str = "Tất cả",
-    keyword: str = ""
+    keyword: str = "",
+    only_new: bool = False
 ):
-    leads = filter_leads(province=province, district=district, lead_type=lead_type, status=status, search_keyword=keyword)
+    leads = filter_leads(province=province, district=district, lead_type=lead_type, status=status, search_keyword=keyword, only_new=only_new)
     grouped = group_by_parent_chain(leads)
     chains_summary = []
     for parent, items in grouped.items():

@@ -43,7 +43,8 @@ def filter_leads(
     lead_type: str = "Tất cả",
     status: str = "Tất cả",
     min_fit_score: int = 0,
-    search_keyword: str = ""
+    search_keyword: str = "",
+    only_new: bool = False
 ) -> List[Dict[str, Any]]:
     leads = load_leads_data()
     filtered = []
@@ -55,13 +56,14 @@ def filter_leads(
         match_type = (lead_type == "Tất cả") or (item.get("type") == lead_type)
         match_status = (status == "Tất cả") or (item.get("status") == status)
         match_score = item.get("fit_score", 0) >= min_fit_score
+        match_new = True if not only_new else item.get("is_new_opened", False)
         
         match_kw = True
         if keyword_clean:
             searchable_text = f"{item.get('name', '')} {item.get('address', '')} {item.get('phone', '')} {' '.join(item.get('categories', []))}".lower()
             match_kw = keyword_clean in searchable_text
             
-        if match_prov and match_dist and match_type and match_status and match_score and match_kw:
+        if match_prov and match_dist and match_type and match_status and match_score and match_kw and match_new:
             filtered.append(item)
             
     return filtered

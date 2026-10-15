@@ -95,10 +95,14 @@
             <div class="bg-white rounded border border-slate-200 p-3 flex flex-wrap items-center gap-3">
                 <input type="text" id="lead-kw" placeholder="Tìm theo tên nhà thuốc, tuyến đường hoặc số điện thoại..." oninput="fetchLeads()" class="flex-1 min-w-[240px] bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs outline-none focus:border-corp-700">
                 
-                <select id="lead-prov" onchange="fetchLeads()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-medium outline-none">
-                    <option value="Tất cả">Tất cả tỉnh thành</option>
+                <select id="lead-prov" onchange="fetchLeads()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-semibold outline-none text-slate-800">
+                    <option value="Tất cả">Tất cả tỉnh thành (Toàn quốc)</option>
+                    <option value="Hà Nội">Hà Nội (Thủ đô)</option>
                     <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
-                    <option value="Hà Nội">Hà Nội</option>
+                    <option value="Đà Nẵng">Đà Nẵng</option>
+                    <option value="Cần Thơ">Cần Thơ</option>
+                    <option value="Hải Phòng">Hải Phòng</option>
+                    <option value="Bình Dương">Bình Dương</option>
                 </select>
 
                 <select id="lead-type" onchange="fetchLeads()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-medium outline-none">
@@ -108,6 +112,11 @@
                     <option value="Nhà thuốc tư nhân">Nhà thuốc tư nhân</option>
                     <option value="Đại lý phân phối">Đại lý phân phối</option>
                 </select>
+
+                <label class="flex items-center gap-1.5 bg-amber-50 border border-amber-300 px-2.5 py-1.5 rounded cursor-pointer hover:bg-amber-100 transition">
+                    <input type="checkbox" id="lead-only-new" onchange="fetchLeads()" class="rounded text-amber-600 focus:ring-0">
+                    <span class="text-xs font-bold text-amber-900 whitespace-nowrap">Chỉ điểm bán MỚI MỞ (< 30 ngày)</span>
+                </label>
 
                 <span class="text-xs font-bold text-slate-600 pl-2 border-l border-slate-200">
                     Số điểm bán: <b id="lead-total-num" class="text-corp-700">0</b>
@@ -498,8 +507,9 @@
             const kw = document.getElementById('lead-kw').value;
             const prov = document.getElementById('lead-prov').value;
             const type = document.getElementById('lead-type').value;
+            const onlyNew = document.getElementById('lead-only-new').checked;
 
-            const res = await fetch(`/api/leads?province=${encodeURIComponent(prov)}&lead_type=${encodeURIComponent(type)}&keyword=${encodeURIComponent(kw)}`);
+            const res = await fetch(`/api/leads?province=${encodeURIComponent(prov)}&lead_type=${encodeURIComponent(type)}&keyword=${encodeURIComponent(kw)}&only_new=${onlyNew}`);
             const data = await res.json();
             leadsArr = data.leads;
 
@@ -512,12 +522,17 @@
                 const statusLabel = l.status === 'APPROVED' ? '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Đã duyệt</span>' :
                                     (l.status === 'REJECTED' ? '<span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold">Loại</span>' :
                                     '<span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">Chưa duyệt</span>');
+                
+                const newBadge = l.is_new_opened ? '<span class="ml-1.5 px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 font-extrabold text-[10px] border border-amber-300">MỚI MỞ</span>' : '';
 
                 tbody.innerHTML += `
                     <tr onclick="inspectLead('${l.lead_id}')" class="cursor-pointer hover:bg-slate-50 transition ${isCur ? 'bg-blue-50/70 font-semibold' : ''}">
                         <td class="table-cell font-mono font-bold text-corp-700">${l.lead_id}</td>
-                        <td class="table-cell font-bold text-slate-900">${l.name}</td>
-                        <td class="table-cell text-slate-600">${l.district}</td>
+                        <td class="table-cell font-bold text-slate-900">
+                            <div>${l.name} ${newBadge}</div>
+                            <div class="text-[11px] font-normal text-slate-500">${l.nearby_facility || ''}</div>
+                        </td>
+                        <td class="table-cell text-slate-600">${l.district}, ${l.province}</td>
                         <td class="table-cell font-extrabold text-corp-700">${l.fit_score} / 100</td>
                         <td class="table-cell">${statusLabel}</td>
                     </tr>
@@ -532,6 +547,12 @@
             const l = leadsArr.find(x => x.lead_id === id);
             if (!l) return;
 
+            const newAlert = l.is_new_opened ? `
+                <div class="p-2.5 rounded bg-amber-50 border border-amber-300 text-xs text-amber-950 font-medium">
+                    <b class="text-amber-900">CƠ HỘI ĐIỂM BÁN MỚI KHAI TRƯƠNG:</b> Quầy kệ còn trống 40-50%, chưa bị đối thủ ký độc quyền. Tỷ lệ chốt hợp đồng B2B thành công cao gấp 3.2 lần điểm bán cũ.
+                </div>
+            ` : '';
+
             document.getElementById('lead-detail-box').innerHTML = `
                 <div class="border-b border-slate-200 pb-2.5">
                     <div class="flex justify-between text-xs text-slate-500 mb-1">
@@ -541,7 +562,10 @@
                     <h4 class="font-extrabold text-slate-900 text-base">${l.name}</h4>
                     <p class="text-xs text-slate-600 mt-0.5">Địa chỉ: ${l.address}</p>
                     <p class="text-xs text-slate-600">SĐT: <b>${l.phone}</b> | Email: <b>${l.email}</b></p>
+                    ${l.nearby_facility ? `<p class="text-xs text-corp-700 font-semibold mt-0.5">Vị trí: ${l.nearby_facility}</p>` : ''}
                 </div>
+
+                ${newAlert}
 
                 <table class="w-full text-xs text-left border border-slate-200 rounded overflow-hidden">
                     <thead class="bg-slate-50">
@@ -558,8 +582,8 @@
                     </tbody>
                 </table>
 
-                <div class="p-2.5 rounded bg-amber-50 border border-amber-200 text-xs text-amber-900">
-                    Ghi chú thực tế: ${l.intent_signals}
+                <div class="p-2.5 rounded bg-blue-50 border border-blue-200 text-xs text-blue-950">
+                    <b>Tín hiệu thực tế:</b> ${l.intent_signals}
                 </div>
 
                 <div class="flex gap-2 pt-1">
