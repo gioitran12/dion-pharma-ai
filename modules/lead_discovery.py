@@ -59,10 +59,35 @@ def filter_leads(
     filtered = []
     keyword_clean = search_keyword.strip().lower()
     
-    for item in leads:
+    for orig_item in leads:
+        item = dict(orig_item) # tạo bản sao để tính cự ly động
         match_prov = (province == "Tất cả") or (item.get("province") == province)
         match_dist = (district == "Tất cả") or (item.get("district") == district)
-        match_hosp = (hospital == "Tất cả") or (item.get("target_hospital") == hospital) or (hospital in item.get("nearby_facility", ""))
+        
+        match_hosp = True
+        if hospital != "Tất cả":
+            hosp_clean = hospital.lower()
+            lead_hosp = (item.get("target_hospital") or "").lower()
+            lead_fac = (item.get("nearby_facility") or "").lower()
+            
+            # Khớp từ khóa cốt lõi (Bạch Mai, Lão Khoa, Từ Dũ, Dinh Dưỡng, Phụ Sản...)
+            keywords = [w for w in hosp_clean.replace("(", " ").replace(")", " ").split() if len(w) > 3 and w not in ["bệnh", "viện", "trung", "ương", "quốc", "khoa", "thành", "phố"]]
+            has_kw = any(k in lead_hosp or k in lead_fac for k in keywords) if keywords else False
+            
+            if (hosp_clean in lead_hosp) or (lead_hosp in hosp_clean) or has_kw:
+                match_hosp = True
+                item["target_hospital"] = hospital
+            elif match_dist and match_prov:
+                # Nếu cùng quận thì nằm trong cự ly mở rộng của bệnh viện này
+                match_hosp = True
+                base_dist = item.get("distance_meters", 800) + 350
+                item["target_hospital"] = hospital
+                item["distance_meters"] = base_dist
+                mins = max(2, round(base_dist / 80))
+                item["distance_text"] = f"{base_dist}m · {mins} phút đi bộ" if base_dist <= 800 else f"{round(base_dist/1000, 1)}km · {max(2, round(base_dist/350))} phút xe máy"
+            else:
+                match_hosp = False
+                
         match_radius = True if max_distance <= 0 else (item.get("distance_meters", 9999) <= max_distance)
         match_type = (lead_type == "Tất cả") or (item.get("type") == lead_type)
         match_status = (status == "Tất cả") or (item.get("status") == status)
