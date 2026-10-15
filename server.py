@@ -5,12 +5,15 @@ from typing import Optional, List, Dict, Any
 from fastapi import FastAPI, Request, Query, Body, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
-from fastapi.staticfiles import StaticFiles
 
 from modules.claims_hub import get_all_products, get_product_by_sku, get_claims_summary, get_active_claims
-from modules.lead_discovery import filter_leads, update_lead_status, get_lead_by_id, group_by_parent_chain
+from modules.lead_discovery import (
+    filter_leads, update_lead_status, get_lead_by_id, group_by_parent_chain, generate_b2b_outreach_pitch
+)
 from modules.sales_copilot import generate_copilot_response
-from modules.content_generator import generate_marketing_draft, validate_content_compliance
+from modules.content_generator import (
+    generate_marketing_draft, validate_content_compliance, deep_audit_radar, auto_fix_compliance
+)
 
 app = FastAPI(title="DION Healthcare AI — Enterprise Platform")
 
@@ -19,7 +22,6 @@ TEMPLATES_DIR = BASE_DIR / "templates"
 TEMPLATES_DIR.mkdir(exist_ok=True)
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
-# --- ROUTE CHÍNH: GIAO DIỆN WEB MODERN TAILWIND ---
 @app.get("/", response_class=HTMLResponse)
 async def serve_dashboard(request: Request):
     products = get_all_products()
@@ -87,6 +89,16 @@ async def api_lead_action(
         raise HTTPException(status_code=400, detail="Không thể cập nhật trạng thái lead")
     return {"status": "success", "lead_id": lead_id, "new_status": action, "assigned_to": assigned_to}
 
+@app.post("/api/leads/{lead_id}/pitch")
+async def api_lead_pitch(
+    lead_id: str,
+    sku: str = Body("DION-D3-1000", embed=True)
+):
+    pitch = generate_b2b_outreach_pitch(lead_id, recommended_sku=sku)
+    if "error" in pitch:
+        raise HTTPException(status_code=404, detail=pitch["error"])
+    return pitch
+
 @app.post("/api/copilot/ask")
 async def api_copilot_ask(
     query: str = Body(..., embed=True),
@@ -104,12 +116,20 @@ async def api_content_generate(
     draft = generate_marketing_draft(sku, channel=channel, tone=tone)
     return draft
 
-@app.post("/api/content/validate")
-async def api_content_validate(
+@app.post("/api/content/audit-radar")
+async def api_content_audit(
     text: str = Body(..., embed=True)
 ):
-    is_valid, violations = validate_content_compliance(text)
-    return {"is_compliant": is_valid, "violations": violations}
+    audit = deep_audit_radar(text)
+    return audit
+
+@app.post("/api/content/auto-fix")
+async def api_content_autofix(
+    text: str = Body(..., embed=True),
+    sku: str = Body("DION-D3-1000", embed=True)
+):
+    fixed = auto_fix_compliance(text, sku=sku)
+    return fixed
 
 if __name__ == "__main__":
     import uvicorn
