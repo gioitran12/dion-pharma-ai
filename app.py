@@ -9,226 +9,300 @@ st.set_page_config(
     page_title="DION Healthcare AI — Enterprise Workspace",
     page_icon="💊",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"  # Mặc định ẩn sidebar để có không gian web rộng rãi như ảnh mẫu
 )
 
-# BỘ STYLING CAO CẤP: CHUẨN MỰC SAAS Y TẾ (MEDICAL ENTERPRISE)
+# STYLING THEO PHONG CÁCH VIBRANT SAAS ROYAL BLUE (GIỐNG THUEDO.NET)
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
     
-    * {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    
-    /* 1. NỀN CHÍNH & MÀU CHỮ CHUẨN TUYỆT ĐỐI */
-    .stApp {
-        background-color: #f8fafc !important;
-    }
-    
-    /* Ép tất cả chữ, đoạn văn, danh sách, nhãn phải luôn ĐEN ĐẬM SẮC NÉT */
-    .stApp p, .stApp span, .stApp label, .stApp li, .stApp div, 
-    .stMarkdown, .stMarkdown p, .stMarkdown li, .stMarkdown span {
+    html, body, [class*="css"], .stApp {
+        font-family: 'Plus Jakarta Sans', -apple-system, sans-serif !important;
+        background-color: #ffffff !important;
         color: #0f172a !important;
     }
     
-    h1, h2, h3, h4, h5, h6 {
-        color: #0f172a !important;
-        font-weight: 800 !important;
-        letter-spacing: -0.02em !important;
-    }
-
-    /* 2. SIDEBAR DOANH NGHIỆP: NỀN XANH ĐEN SANG TRỌNG (DARK NAVY) */
-    section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%) !important;
-        border-right: 1px solid #334155 !important;
-    }
-    section[data-testid="stSidebar"] * {
-        color: #f8fafc !important;
-    }
-    section[data-testid="stSidebar"] hr {
-        border-color: #334155 !important;
-    }
-
-    /* 3. HERO BANNER XANH DƯƠNG HIỆN ĐẠI CÓ HIỆU ỨNG GLOW */
-    .hero-container {
-        background: linear-gradient(135deg, #0284c7 0%, #1d4ed8 50%, #1e40af 100%);
-        border-radius: 16px;
-        padding: 26px 32px;
+    /* 1. TOP NAVBAR TRẮNG TINH KHÔI GIỐNG THUEDO.NET */
+    .thuedo-navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #ffffff;
+        padding: 12px 28px;
+        border-bottom: 1px solid #e2e8f0;
+        margin-top: -50px;
         margin-bottom: 24px;
-        box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.35);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        position: relative;
-        overflow: hidden;
+        position: sticky;
+        top: 0;
+        z-index: 999;
     }
-    .hero-container h1 {
-        color: #ffffff !important;
-        font-size: 26px !important;
-        margin: 0 !important;
+    .thuedo-logo {
         display: flex;
         align-items: center;
         gap: 12px;
+        text-decoration: none;
     }
-    .hero-container p {
-        color: #e0f2fe !important;
-        font-size: 15px !important;
-        margin: 8px 0 16px 0 !important;
-    }
-    .badge-pill {
-        display: inline-flex;
+    .thuedo-logo-icon {
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        color: white;
+        font-size: 20px;
+        font-weight: 800;
+        width: 44px;
+        height: 44px;
+        display: flex;
         align-items: center;
-        background: rgba(255, 255, 255, 0.2);
-        color: #ffffff !important;
-        padding: 6px 14px;
-        border-radius: 9999px;
-        font-size: 13px;
-        font-weight: 600;
-        margin-right: 8px;
-        margin-bottom: 4px;
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        backdrop-filter: blur(8px);
-        transition: transform 0.2s ease;
+        justify-content: center;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
     }
-    .badge-pill:hover {
-        transform: translateY(-2px);
-        background: rgba(255, 255, 255, 0.3);
+    .thuedo-logo-text {
+        font-size: 20px;
+        font-weight: 800;
+        color: #1d4ed8 !important;
+        margin: 0;
+        line-height: 1.1;
+    }
+    .thuedo-logo-sub {
+        font-size: 11px;
+        color: #64748b;
+        margin: 0;
+    }
+    .thuedo-nav-links {
+        display: flex;
+        gap: 32px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+    .thuedo-nav-links a {
+        color: #1e293b;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    .thuedo-nav-links a:hover, .thuedo-nav-links a.active {
+        color: #1d4ed8;
+    }
+    .thuedo-login-btn {
+        background: #1d4ed8;
+        color: #ffffff !important;
+        padding: 9px 26px;
+        border-radius: 9999px;
+        font-weight: 700;
+        font-size: 14px;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(29, 78, 216, 0.3);
+        transition: all 0.2s ease;
+    }
+    .thuedo-login-btn:hover {
+        background: #1e40af;
+        transform: translateY(-1px);
     }
 
-    /* 4. THANH TABS HIỆN ĐẠI CÓ HIỆU ỨNG */
+    /* 2. HERO BANNER XANH DƯƠNG RỰC RỠ ĐẬM CHẤT THUEDO.NET */
+    .thuedo-hero {
+        background: radial-gradient(circle at 80% 50%, #3b82f6 0%, #1d4ed8 60%, #1e40af 100%);
+        border-radius: 20px;
+        padding: 44px 48px;
+        color: #ffffff;
+        margin-bottom: 36px;
+        box-shadow: 0 15px 30px -10px rgba(29, 78, 216, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+    }
+    .thuedo-hero-left {
+        max-width: 62%;
+    }
+    .thuedo-hero-title {
+        font-size: 32px;
+        font-weight: 800;
+        line-height: 1.25;
+        letter-spacing: -0.5px;
+        color: #ffffff !important;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+    }
+    .thuedo-hero-desc {
+        font-size: 15px;
+        line-height: 1.65;
+        color: #e0e7ff !important;
+        margin-bottom: 26px;
+        font-weight: 400;
+    }
+    .thuedo-cta-btn {
+        display: inline-block;
+        background: #ffffff;
+        color: #1d4ed8 !important;
+        font-weight: 800;
+        font-size: 15px;
+        padding: 12px 30px;
+        border-radius: 9999px;
+        text-decoration: none;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        transition: all 0.2s ease;
+    }
+    .thuedo-cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+    }
+    .thuedo-hero-right {
+        max-width: 35%;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 3. SECTION HEADING CHUẨN XANH DƯƠNG HOA */
+    .thuedo-section-header {
+        text-align: center;
+        margin-bottom: 28px;
+    }
+    .thuedo-section-title {
+        font-size: 26px;
+        font-weight: 800;
+        color: #1d4ed8 !important;
+        text-transform: uppercase;
+        letter-spacing: -0.5px;
+        margin-bottom: 8px;
+    }
+    .thuedo-section-subtitle {
+        font-size: 15px;
+        color: #475569;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.5;
+    }
+
+    /* 4. TABS PHẲNG HIỆN ĐẠI THEO PHONG CÁCH NAVBAR */
     div[data-baseweb="tab-list"] {
+        justify-content: center !important;
         background: #ffffff !important;
-        padding: 8px !important;
-        border-radius: 14px !important;
-        border: 1px solid #e2e8f0 !important;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.03) !important;
-        gap: 8px !important;
+        border-bottom: 2px solid #e2e8f0 !important;
+        padding-bottom: 0px !important;
+        gap: 24px !important;
+        margin-bottom: 28px !important;
     }
     button[data-baseweb="tab"] {
-        border-radius: 10px !important;
+        font-size: 15px !important;
         font-weight: 700 !important;
-        font-size: 14px !important;
-        padding: 10px 20px !important;
-        color: #475569 !important;
+        text-transform: uppercase !important;
+        color: #64748b !important;
         border: none !important;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        padding: 12px 18px !important;
+        background: transparent !important;
+        border-bottom: 3px solid transparent !important;
+        border-radius: 0 !important;
+        transition: all 0.2s ease !important;
     }
     button[data-baseweb="tab"]:hover {
-        background-color: #f1f5f9 !important;
-        color: #0284c7 !important;
+        color: #1d4ed8 !important;
     }
     button[data-baseweb="tab"][aria-selected="true"] {
-        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
-        color: #ffffff !important;
-        box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3) !important;
+        color: #1d4ed8 !important;
+        border-bottom: 3px solid #1d4ed8 !important;
+        background: transparent !important;
     }
 
-    /* 5. METRIC CARDS ĐỒNG BỘ */
-    div[data-testid="stMetric"] {
-        background: #ffffff !important;
-        border-radius: 14px !important;
-        padding: 18px 20px !important;
-        border: 1px solid #e2e8f0 !important;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04) !important;
-        transition: all 0.25s ease !important;
-    }
-    div[data-testid="stMetric"]:hover {
-        transform: translateY(-3px) !important;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08) !important;
-        border-color: #0284c7 !important;
-    }
-    div[data-testid="stMetricLabel"] {
-        font-size: 13px !important;
-        font-weight: 700 !important;
-        color: #64748b !important;
-        text-transform: uppercase !important;
-    }
-    div[data-testid="stMetricValue"] {
-        color: #0284c7 !important;
-        font-size: 32px !important;
-        font-weight: 800 !important;
-    }
-
-    /* 6. NÚT BẤM (BUTTONS) */
+    /* 5. CÁC NÚT BẤM (BUTTONS) VIÊN THUỐC BO TRÒN */
     .stButton button {
-        border-radius: 10px !important;
+        border-radius: 9999px !important;
         font-weight: 700 !important;
-        padding: 8px 18px !important;
+        padding: 10px 24px !important;
+        font-size: 14px !important;
         transition: all 0.2s ease !important;
     }
     .stButton button[kind="primary"] {
-        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+        background: #1d4ed8 !important;
         color: #ffffff !important;
         border: none !important;
-        box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3) !important;
+        box-shadow: 0 4px 14px rgba(29, 78, 216, 0.35) !important;
     }
     .stButton button[kind="primary"]:hover {
-        background: linear-gradient(135deg, #0369a1 0%, #075985 100%) !important;
-        box-shadow: 0 6px 14px rgba(2, 132, 199, 0.45) !important;
+        background: #1e40af !important;
         transform: translateY(-1px) !important;
+        box-shadow: 0 6px 18px rgba(29, 78, 216, 0.45) !important;
     }
-
-    /* 7. BẢNG DỮ LIỆU & DROPDOWN */
-    div[data-testid="stDataFrame"] {
-        border-radius: 12px !important;
-        overflow: hidden !important;
-        border: 1px solid #cbd5e1 !important;
-    }
-    .stSelectbox div[data-baseweb="select"] {
-        border-radius: 10px !important;
+    
+    /* 6. THẺ CARD TRẮNG TINH TẾ CÓ BÓNG ĐỔ MỊN */
+    .white-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# SIDEBAR: Giao diện Navy Đẳng cấp
-with st.sidebar:
-    st.markdown("""
-    <div style="text-align: center; padding: 12px 0 18px 0;">
-        <div style="font-size: 42px; margin-bottom: 6px;">💊</div>
-        <h2 style="color: #38bdf8 !important; margin: 0; font-weight: 800; font-size: 24px; letter-spacing: -0.5px;">DION AI</h2>
-        <p style="color: #94a3b8 !important; font-size: 13px; margin-top: 4px;">Enterprise Healthcare Platform</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("---")
-    
-    st.markdown("""
-    <div style="background: rgba(255,255,255,0.06); padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 16px;">
-        <div style="font-weight: 700; color: #38bdf8 !important; font-size: 13px; margin-bottom: 8px;">📌 THÔNG TIN HỆ THỐNG</div>
-        <div style="font-size: 12px; color: #cbd5e1 !important; line-height: 1.6;">
-            • <b>Đơn vị:</b> Digital Innovation (DION)<br/>
-            • <b>Thị trường:</b> Dược & TPBS Việt Nam<br/>
-            • <b>Phiên bản:</b> Enterprise PoC v2.0
+# 1. TOP NAVBAR SANG TRỌNG GIỐNG THUEDO.NET
+st.markdown("""
+<div class="thuedo-navbar">
+    <div class="thuedo-logo">
+        <div class="thuedo-logo-icon">💊</div>
+        <div>
+            <div class="thuedo-logo-text">DION AI</div>
+            <div class="thuedo-logo-sub">https://dion.healthcare.ai</div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("""
-    <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); padding: 12px; border-radius: 10px;">
-        <span style="color: #34d399 !important; font-weight: 700; font-size: 13px;">🟢 TRẠNG THÁI: ONLINE</span><br/>
-        <span style="color: #a7f3d0 !important; font-size: 12px;">Đã nạp quy chuẩn NĐ 342/2025</span>
+    <div class="thuedo-nav-links">
+        <a href="#" class="active">TRANG CHỦ</a>
+        <a href="#">TÍNH NĂNG</a>
+        <a href="#">KIẾN TRÚC AI</a>
+        <a href="#">PHÁP LÝ NĐ 342</a>
+        <a href="#">LIÊN HỆ</a>
     </div>
-    """, unsafe_allow_html=True)
+    <a href="#demo-workspace" class="thuedo-login-btn">Khám phá Demo</a>
+</div>
+""", unsafe_allow_html=True)
 
-# HERO BANNER XANH DƯƠNG DOANH NGHIỆP
+# 2. HERO BANNER XANH DƯƠNG RỰC RỠ VỚI 3D PODIUM
 st.markdown("""
-<div class="hero-container">
-    <h1>💊 DION HEALTHCARE AI — ENTERPRISE WORKSPACE</h1>
-    <p>Giải pháp Trí tuệ Nhân tạo Nghiệp vụ Doanh nghiệp chuyên sâu cho Dược phẩm, Vitamin & Thực phẩm Bổ sung</p>
-    <div>
-        <span class="badge-pill">🛡️ Tuân thủ NĐ 342/2025/NĐ-CP</span>
-        <span class="badge-pill">🎯 B2B Lead Scoring 4 Chiều</span>
-        <span class="badge-pill">💬 Sales Copilot Trích Nguồn</span>
-        <span class="badge-pill">✍️ AI Content & Compliance Guard</span>
+<div class="thuedo-hero">
+    <div class="thuedo-hero-left">
+        <div class="thuedo-hero-title">
+            HỆ THỐNG ENTERPRISE AI DƯỢC PHẨM & TPBS SỐ 1 VIỆT NAM
+        </div>
+        <div class="thuedo-hero-desc">
+            DION Healthcare AI là nền tảng trí tuệ nhân tạo chuyên biệt cho ngành dược phẩm, thực phẩm bổ sung và chăm sóc sức khỏe. 
+            Được xây dựng phù hợp tối đa với nghiệp vụ thực tế, tập trung giải quyết các bài toán trọng yếu: tìm kiếm đối tác B2B (nhà thuốc, chuỗi mẹ & bé), 
+            quản lý vòng đời Claims pháp lý, trợ lý tư vấn sản phẩm RAG và tự động hóa truyền thông tuân thủ Nghị định 342/2025/NĐ-CP.
+        </div>
+        <a href="#demo-section" class="thuedo-cta-btn">TRẢI NGHIỆM TÍNH NĂNG NGAY</a>
+    </div>
+    <div class="thuedo-hero-right">
+        <div style="font-size: 48px; margin-bottom: 10px;">🛡️ 🔬 💊</div>
+        <div style="font-weight: 800; font-size: 17px; color: #ffffff; margin-bottom: 6px;">CHUẨN HÓA DƯỢC VỤ</div>
+        <div style="font-size: 13px; color: #dbeafe; line-height: 1.5;">
+            • 100% Căn cứ pháp lý & Nguồn trích dẫn<br/>
+            • 4 Chiều Đánh giá Lead Nhà thuốc B2B<br/>
+            • Tự động chặn từ cấm & Gắn disclaimer
+        </div>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# 4 TABS CHUYÊN NGHIỆP
+# 3. SECTION HEADING THEO PHONG CÁCH THUEDO.NET
+st.markdown("""
+<div id="demo-section" class="thuedo-section-header">
+    <div class="thuedo-section-title">GIẢI PHÁP AI CHUYÊN SÂU, ĐƠN GIẢN VÀ HIỆU QUẢ</div>
+    <div class="thuedo-section-subtitle">
+        Được thiết kế 100% cho ngành dược phẩm & thực phẩm bảo vệ sức khỏe, giúp vận hành đúng quy trình và nâng cao doanh số phân phối.
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# 4. TABS NGHIỆP VỤ HIỆN ĐẠI
 tab1, tab2, tab3, tab4 = st.tabs([
-    "🏛️ 1. Quản lý Claims Sản phẩm",
-    "🎯 2. Tìm kiếm Lead B2B",
-    "💬 3. Trợ lý Sales Copilot",
-    "✍️ 4. Sản xuất Content Marketing"
+    "🏛️ QUẢN LÝ CLAIMS SẢN PHẨM",
+    "🎯 TÌM KIẾM LEAD B2B",
+    "💬 TRỢ LÝ SALES COPILOT",
+    "✍️ SẢN XUẤT CONTENT MARKETING"
 ])
 
 with tab1:
