@@ -1,0 +1,106 @@
+{
+  "products": [
+    {
+      "sku": "DION-D3-1000",
+      "name": "Vitamin D3 1000IU Drops",
+      "category": "Vitamin & Khoáng chất",
+      "regulatory_class": "Thực phẩm bảo vệ sức khỏe (TPBVSK)",
+      "target_users": ["Người lớn thiếu hụt Vitamin D", "Người cần tăng cường hấp thu Canxi"],
+      "mandatory_disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+      "claims": [
+        {
+          "claim_id": "CLM-D3-01",
+          "claim_text": "Hỗ trợ tăng cường hấp thu Canxi và Photpho tại ruột non, giúp duy trì nồng độ Canxi máu ổn định.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2027-12-31",
+          "approved_by": "DS. Nguyễn Văn An (Trưởng ban Dược vụ)",
+          "evidence_source": "Hồ sơ công bố sản phẩm số 4521/2025/ĐKSP - Cục ATTP"
+        },
+        {
+          "claim_id": "CLM-D3-02",
+          "claim_text": "Hỗ trợ phát triển và duy trì hệ xương, răng chắc khỏe.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2027-12-31",
+          "approved_by": "DS. Nguyễn Văn An",
+          "evidence_source": "Hồ sơ công bố sản phẩm số 4521/2025/ĐKSP"
+        },
+        {
+          "claim_id": "CLM-D3-03",
+          "claim_text": "Hỗ trợ tăng cường sức đề kháng và chức năng hệ miễn dịch tự nhiên.",
+          "status": "EXPIRED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2025-12-31",
+          "approved_by": "DS. Lê Thị Bích",
+          "evidence_source": "Đã hết hạn theo quy chuẩn định kỳ năm 2025"
+        },
+        {
+          "claim_id": "CLM-D3-04",
+          "claim_text": "Cơ chế phân tử: Kích thích thụ thể VDR trên tế bào biểu mô ruột làm tăng biểu hiện Calbindin-D9k.",
+          "status": "APPROVED",
+          "zone": "INTERNAL_EXPERT",
+          "effective_until": "2028-12-31",
+          "approved_by": "Hội đồng Khoa học DION",
+          "evidence_source": "Tài liệu cơ chế tác dụng chuyên sâu nội bộ"
+        }
+      ]
+    },
+    {
+      "sku": "DION-CAL-MOM",
+      "name": "Canxi Hữu Cơ DION Cal-Mom Plus",
+      "category": "Khoáng chất cho mẹ bầu",
+      "regulatory_class": "Thực phẩm bảo vệ sức khỏe (TPBVSK)",
+      "target_users": ["Phụ nữ chuẩn bị mang thai", "Phụ nữ có thai", "Phụ nữ đang cho con bú"],
+      "mandatory_disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+      "claims": [
+        {
+          "claim_id": "CLM-CAL-01",
+          "claim_text": "Bổ sung Canxi sinh học từ tảo biển đỏ Lithothamnion và Vitamin K2 (MK-7) giúp hấp thu canxi tối ưu vào xương.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2027-10-15",
+          "approved_by": "DS. Nguyễn Văn An",
+          "evidence_source": "Hồ sơ công bố số 8892/2025/ĐKSP"
+        },
+        {
+          "claim_id": "CLM-CAL-02",
+          "claim_text": "Hỗ trợ giảm nguy cơ thiếu hụt canxi trong giai đoạn thai kỳ và cho con bú; giảm tình trạng chuột rút, đau lưng.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2027-10-15",
+          "approved_by": "DS. Nguyễn Văn An",
+          "evidence_source": "Hồ sơ công bố số 8892/2025/ĐKSP"
+        }
+      ]
+    },
+    {
+      "sku": "DION-FE-FOLIC",
+      "name": "Viên Sắt Hữu Cơ & Acid Folic DION Fero-Plus",
+      "category": "Bổ máu vi chất",
+      "regulatory_class": "Thực phẩm bảo vệ sức khỏe (TPBVSK)",
+      "target_users": ["Người thiếu máu do thiếu sắt", "Phụ nữ độ tuổi sinh sản", "Thai phụ"],
+      "mandatory_disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+      "claims": [
+        {
+          "claim_id": "CLM-FE-01",
+          "claim_text": "Bổ sung Sắt hữu cơ Bisglycinate và Acid Folic (Vitamin B9) hỗ trợ quá trình tạo máu.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2027-08-20",
+          "approved_by": "DS. Lê Thị Bích",
+          "evidence_source": "Hồ sơ công bố số 6120/2025/ĐKSP"
+        },
+        {
+          "claim_id": "CLM-FE-02",
+          "claim_text": "Dạng sắt hữu cơ êm dịu dạ dày, hỗ trợ giảm nguy cơ táo bón và buồn nôn thường gặp khi bổ sung sắt.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2027-08-20",
+          "approved_by": "DS. Lê Thị Bích",
+          "evidence_source": "Thử nghiệm lâm sàng của nhà sản xuất nguyên liệu Quali-Bio"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+# Python & Virtual Env
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Environment Variables (BẢO MẬT: KHÔNG COMMIT KEY)
+.env
+.env.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data & Export files
+exports/
+*.csv
+*.xlsx
+.DS_Store
+
+# Streamlit
+.streamlit/secrets.toml

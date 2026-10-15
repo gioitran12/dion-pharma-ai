@@ -1,0 +1,35 @@
+{
+  "prohibited_phrases": [
+    {
+      "term": "chữa bệnh",
+      "reason": "TPBVSK không được tuyên truyền hoặc dùng từ ngữ gây hiểu nhầm là thuốc chữa bệnh (Khoản 2 Điều 5 NĐ 342/2025/NĐ-CP)",
+      "suggestion": "hỗ trợ cải thiện / hỗ trợ tăng cường"
+    },
+    {
+      "term": "khỏi hẳn",
+      "reason": "Nghiêm cấm cam kết hoặc khẳng định chữa khỏi dứt điểm",
+      "suggestion": "giảm nguy cơ / hỗ trợ phục hồi"
+    },
+    {
+      "term": "cam kết hiệu quả",
+      "reason": "Không được cam kết hiệu quả 100% hoặc bảo đảm tác dụng tuyệt đối",
+      "suggestion": "kết quả có thể thay đổi tùy theo cơ địa"
+    },
+    {
+      "term": "thay thế thuốc",
+      "reason": "Vi phạm nghiêm trọng định nghĩa thực phẩm bổ sung/bảo vệ sức khỏe",
+      "suggestion": "dùng kết hợp bổ sung dinh dưỡng theo chỉ dẫn"
+    },
+    {
+      "term": "điều trị dứt điểm",
+      "reason": "Thuộc nhóm thuật ngữ chỉ định dành riêng cho thuốc kê đơn",
+      "suggestion": "hỗ trợ kiểm soát"
+    },
+    {
+      "term": "thần dược",
+      "reason": "Quảng cáo mang tính phóng đại, lừa dối người tiêu dùng",
+      "suggestion": "dưỡng chất tự nhiên"
+    }
+  ],
+  "mandatory_disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
+}
