@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Quản Trị Y Dược Doanh Nghiệp — DION Healthcare</title>
+    <title>Hệ Thống Giải Pháp Enterprise AI Y Dược — DION Healthcare</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
                 extend: {
                     fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
                     colors: {
-                        corporate: {
+                        corp: {
                             50: '#f0f6fe',
                             100: '#e1edfe',
                             600: '#1e64d4',
@@ -28,159 +28,80 @@
         }
     </script>
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; font-size: 14px; color: #0f172a; }
-        .table-cell-header { font-weight: 700; color: #475569; text-transform: uppercase; font-size: 12px; letter-spacing: 0.05em; background-color: #f8fafc; border-bottom: 2px solid #e2e8f0; padding: 10px 14px; }
-        .table-cell { padding: 12px 14px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
-        .tab-btn-active { border-bottom: 2px solid #1552b8 !important; color: #1552b8 !important; font-weight: 700 !important; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; font-size: 13px; color: #0f172a; }
+        .table-cell-header { font-weight: 700; color: #475569; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; background-color: #f8fafc; border-bottom: 2px solid #e2e8f0; padding: 8px 12px; }
+        .table-cell { padding: 10px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+        .tab-btn-active { border-bottom: 2px solid #1552b8 !important; color: #1552b8 !important; font-weight: 700 !important; background-color: #f0f6fe; }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
 
-    <!-- 1. THANH TIÊU ĐỀ DOANH NGHIỆP (KHÔNG DÙNG ICON EMOJI, 100% TIẾNG VIỆT) -->
+    <!-- 1. THANH TIÊU ĐỀ DOANH NGHIỆP CHUẨN MỰC -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <!-- Logo Doanh Nghiệp Chuẩn Mực -->
+        <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded bg-corporate-700 flex items-center justify-center text-white font-extrabold text-sm">
+                <div class="w-7 h-7 rounded bg-corp-700 flex items-center justify-center text-white font-extrabold text-xs">
                     DH
                 </div>
                 <div>
-                    <span class="text-base font-extrabold text-slate-900 tracking-tight">DION HEALTHCARE</span>
-                    <span class="text-xs text-slate-500 font-medium ml-2 pl-2 border-l border-slate-300">Hệ Thống Trí Tuệ Nhân Tạo Quản Trị Y Dược</span>
+                    <span class="text-sm font-extrabold text-slate-900 tracking-tight">DION HEALTHCARE AI</span>
+                    <span class="text-[11px] text-slate-500 ml-2 pl-2 border-l border-slate-300">Nền Tảng Trí Tuệ Nhân Tạo Doanh Nghiệp Ngành Y Dược</span>
                 </div>
             </div>
 
-            <!-- Khung Định Danh Pháp Lý -->
-            <div class="flex items-center gap-4 text-xs font-semibold text-slate-600">
-                <span class="px-3 py-1 rounded bg-slate-100 border border-slate-200">
-                    Căn cứ pháp lý: Nghị định 342/2025/NĐ-CP
+            <div class="flex items-center gap-3 text-[11px] font-semibold text-slate-600">
+                <span class="px-2.5 py-0.5 rounded bg-slate-100 border border-slate-200">
+                    Tuân thủ Nghị định 342/2025/NĐ-CP
                 </span>
-                <span class="px-3 py-1 rounded bg-slate-100 border border-slate-200">
-                    Bảo vệ dữ liệu: Luật 91/2025/QH15
+                <span class="px-2.5 py-0.5 rounded bg-slate-100 border border-slate-200">
+                    Bảo vệ dữ liệu Luật 91/2025/QH15
                 </span>
             </div>
         </div>
 
-        <!-- Thanh Điều Hướng 4 Phân Hệ Nghiệp Vụ Chính (Thẳng Hàng, Chữ Thuần Việt) -->
-        <div class="max-w-7xl mx-auto px-6 flex border-t border-slate-100 gap-8">
-            <button onclick="changeTab('claims')" id="nav-claims" class="tab-btn py-3 text-xs font-semibold text-slate-500 border-b-2 border-transparent hover:text-corporate-700 transition tab-btn-active">
-                1. DANH MỤC CÔNG DỤNG SẢN PHẨM
+        <!-- Thanh Điều Hướng Đủ 6 Giải Pháp Đồng Bộ Với Báo Cáo Tư Vấn -->
+        <div class="max-w-7xl mx-auto px-6 flex border-t border-slate-100 overflow-x-auto">
+            <button onclick="setTab('leads')" id="btn-leads" class="tab-item py-2.5 px-3 text-xs font-semibold text-slate-600 border-b-2 border-transparent hover:text-corp-700 whitespace-nowrap tab-btn-active">
+                1. ĐỐI TÁC B2B
             </button>
-            <button onclick="changeTab('leads')" id="nav-leads" class="tab-btn py-3 text-xs font-semibold text-slate-500 border-b-2 border-transparent hover:text-corporate-700 transition">
-                2. TÌM KIẾM ĐIỂM BÁN & NHÀ THUỐC
+            <button onclick="setTab('content')" id="btn-content" class="tab-item py-2.5 px-3 text-xs font-semibold text-slate-600 border-b-2 border-transparent hover:text-corp-700 whitespace-nowrap">
+                2. NỘI DUNG QUẢNG CÁO
             </button>
-            <button onclick="changeTab('copilot')" id="nav-copilot" class="tab-btn py-3 text-xs font-semibold text-slate-500 border-b-2 border-transparent hover:text-corporate-700 transition">
-                3. TRỢ LÝ TƯ VẤN BÁN HÀNG
+            <button onclick="setTab('market')" id="btn-market" class="tab-item py-2.5 px-3 text-xs font-semibold text-slate-600 border-b-2 border-transparent hover:text-corp-700 whitespace-nowrap">
+                3. THỊ TRƯỜNG & ĐỐI THỦ
             </button>
-            <button onclick="changeTab('compliance')" id="nav-compliance" class="tab-btn py-3 text-xs font-semibold text-slate-500 border-b-2 border-transparent hover:text-corporate-700 transition">
-                4. KIỂM DUYỆT BÀI QUẢNG CÁO
+            <button onclick="setTab('copilot')" id="btn-copilot" class="tab-item py-2.5 px-3 text-xs font-semibold text-slate-600 border-b-2 border-transparent hover:text-corp-700 whitespace-nowrap">
+                4. TRỢ LÝ BÁN HÀNG
+            </button>
+            <button onclick="setTab('care')" id="btn-care" class="tab-item py-2.5 px-3 text-xs font-semibold text-slate-600 border-b-2 border-transparent hover:text-corp-700 whitespace-nowrap">
+                5. CHĂM SÓC KHÁCH HÀNG
+            </button>
+            <button onclick="setTab('research')" id="btn-research" class="tab-item py-2.5 px-3 text-xs font-semibold text-slate-600 border-b-2 border-transparent hover:text-corp-700 whitespace-nowrap">
+                6. NGHIÊN CỨU PUBMED
+            </button>
+            <button onclick="setTab('claims')" id="btn-claims" class="tab-item py-2.5 px-3 text-xs font-semibold text-slate-600 border-b-2 border-transparent hover:text-corp-700 whitespace-nowrap">
+                KHO DỮ LIỆU CÔNG BỐ
             </button>
         </div>
     </header>
 
-    <!-- 2. KHÔNG GIAN DỮ LIỆU CHÍNH (KẺ BẢNG NGAY NGẮN, THẲNG HÀNG) -->
-    <main class="max-w-7xl mx-auto px-6 py-6 flex-1 w-full space-y-6">
+    <!-- 2. KHÔNG GIAN DỮ LIỆU 6 GIẢI PHÁP -->
+    <main class="max-w-7xl mx-auto px-6 py-5 flex-1 w-full space-y-4">
 
         <!-- =================================================================== -->
-        <!-- PHÂN HỆ 1: DANH MỤC CÔNG DỤNG SẢN PHẨM                              -->
+        <!-- GIẢI PHÁP 1: TÌM KIẾM & ĐÁNH GIÁ ĐỐI TÁC THÔNG MINH (LEAD DISCOVERY)-->
         <!-- =================================================================== -->
-        <div id="section-claims" class="module-section space-y-4">
-            
-            <!-- Hàng 1: Bộ Lọc Sản Phẩm & Thống Kê 3 Phân Vùng -->
-            <div class="bg-white rounded-lg border border-slate-200 p-4 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div class="flex items-center gap-3">
-                    <label class="text-xs font-bold text-slate-700 uppercase whitespace-nowrap">Chọn sản phẩm tra cứu:</label>
-                    <select id="claims-sku-select" onchange="loadProductDetails()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-semibold text-slate-900 outline-none focus:border-corporate-700 w-80">
-                        {% for p in products %}
-                        <option value="{{ p.sku }}">{{ p.sku }} — {{ p.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <!-- 3 Trạng Thái Dữ Liệu Rõ Ràng Thẳng Hàng -->
-                <div class="flex items-center gap-3">
-                    <div class="px-3 py-1.5 rounded bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs font-bold" id="stat-comm">
-                        Đang tải...
-                    </div>
-                    <div class="px-3 py-1.5 rounded bg-blue-50 border border-blue-300 text-blue-900 text-xs font-bold" id="stat-inter">
-                        Đang tải...
-                    </div>
-                    <div class="px-3 py-1.5 rounded bg-rose-50 border border-rose-300 text-rose-900 text-xs font-bold" id="stat-exp">
-                        Đang tải...
-                    </div>
-                </div>
-            </div>
-
-            <!-- Hàng 2: Bảng Thông Tin Đăng Ký Sản Phẩm (Thẳng Hàng 100%) -->
-            <div class="bg-white rounded-lg border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-4 py-2.5 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase">
-                    Hồ sơ đăng ký lưu hành sản phẩm
-                </div>
-                <table class="w-full text-left text-xs">
-                    <tbody>
-                        <tr class="border-b border-slate-100">
-                            <td class="table-cell font-semibold text-slate-500 w-44 bg-slate-50/50">Mã sản phẩm</td>
-                            <td class="table-cell font-bold text-slate-900" id="prod-sku">—</td>
-                            <td class="table-cell font-semibold text-slate-500 w-44 bg-slate-50/50">Phân loại pháp lý</td>
-                            <td class="table-cell font-bold text-corporate-700" id="prod-reg">—</td>
-                        </tr>
-                        <tr class="border-b border-slate-100">
-                            <td class="table-cell font-semibold text-slate-500 bg-slate-50/50">Tên thương mại</td>
-                            <td class="table-cell font-bold text-slate-900" id="prod-name">—</td>
-                            <td class="table-cell font-semibold text-slate-500 bg-slate-50/50">Ngành hàng</td>
-                            <td class="table-cell font-medium text-slate-800" id="prod-cat">—</td>
-                        </tr>
-                        <tr class="border-b border-slate-100">
-                            <td class="table-cell font-semibold text-slate-500 bg-slate-50/50">Đối tượng sử dụng</td>
-                            <td class="table-cell font-medium text-slate-800" colspan="3" id="prod-users">—</td>
-                        </tr>
-                        <tr>
-                            <td class="table-cell font-semibold text-amber-900 bg-amber-50">Cảnh báo bắt buộc (NĐ 342)</td>
-                            <td class="table-cell font-bold text-amber-900 bg-amber-50/50" colspan="3" id="prod-disclaimer">—</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Hàng 3: Bảng Danh Sách Công Dụng Được Phê Duyệt -->
-            <div class="bg-white rounded-lg border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-4 py-2.5 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase">
-                    Danh mục phát biểu công dụng (Căn cứ hồ sơ công bố)
-                </div>
-                <table class="w-full text-left text-xs">
-                    <thead>
-                        <tr>
-                            <th class="table-cell-header w-28">Mã hồ sơ</th>
-                            <th class="table-cell-header">Nội dung công dụng đã được thẩm định</th>
-                            <th class="table-cell-header w-36">Phân vùng sử dụng</th>
-                            <th class="table-cell-header w-32">Trạng thái pháp lý</th>
-                            <th class="table-cell-header w-28">Ngày hết hạn</th>
-                            <th class="table-cell-header w-48">Người phê duyệt</th>
-                        </tr>
-                    </thead>
-                    <tbody id="claims-table-tbody" class="divide-y divide-slate-100">
-                        <!-- Render danh sách công dụng -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- =================================================================== -->
-        <!-- PHÂN HỆ 2: TÌM KIẾM ĐIỂM BÁN & NHÀ THUỐC                            -->
-        <!-- =================================================================== -->
-        <div id="section-leads" class="module-section hidden space-y-4">
-            
-            <!-- Hàng Lọc Dữ Liệu -->
-            <div class="bg-white rounded-lg border border-slate-200 p-3 shadow-sm flex flex-wrap items-center gap-3">
-                <input type="text" id="lead-search-kw" placeholder="Nhập tên nhà thuốc, tuyến đường hoặc số điện thoại..." oninput="loadLeadsTable()" class="flex-1 min-w-[240px] bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs outline-none focus:border-corporate-700">
+        <div id="view-leads" class="solution-view space-y-4">
+            <div class="bg-white rounded border border-slate-200 p-3 flex flex-wrap items-center gap-3">
+                <input type="text" id="lead-kw" placeholder="Tìm theo tên nhà thuốc, tuyến đường hoặc số điện thoại..." oninput="fetchLeads()" class="flex-1 min-w-[240px] bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs outline-none focus:border-corp-700">
                 
-                <select id="lead-search-prov" onchange="loadLeadsTable()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-medium outline-none">
+                <select id="lead-prov" onchange="fetchLeads()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-medium outline-none">
                     <option value="Tất cả">Tất cả tỉnh thành</option>
                     <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
                     <option value="Hà Nội">Hà Nội</option>
                 </select>
 
-                <select id="lead-search-type" onchange="loadLeadsTable()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-medium outline-none">
+                <select id="lead-type" onchange="fetchLeads()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-medium outline-none">
                     <option value="Tất cả">Tất cả loại hình</option>
                     <option value="Chuỗi nhà thuốc">Chuỗi nhà thuốc</option>
                     <option value="Cửa hàng Mẹ & Bé">Cửa hàng Mẹ & Bé</option>
@@ -188,22 +109,19 @@
                     <option value="Đại lý phân phối">Đại lý phân phối</option>
                 </select>
 
-                <div class="text-xs font-bold text-slate-600 pl-2 border-l border-slate-200">
-                    Số lượng: <b id="leads-total-count" class="text-corporate-700">0</b>
-                </div>
+                <span class="text-xs font-bold text-slate-600 pl-2 border-l border-slate-200">
+                    Số điểm bán: <b id="lead-total-num" class="text-corp-700">0</b>
+                </span>
 
-                <button onclick="exportLeadsCSV()" class="px-3.5 py-1.5 rounded bg-corporate-700 text-white font-bold text-xs hover:bg-corporate-800 transition">
+                <button onclick="downloadLeadsCSV()" class="px-3 py-1.5 rounded bg-corp-700 text-white font-bold text-xs hover:bg-corp-800 transition">
                     Xuất tệp Excel/CSV
                 </button>
             </div>
 
-            <!-- Bố Cục 2 Cột Thẳng Hàng: Danh Sách Điểm Bán & Bảng Đánh Giá -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-                
-                <!-- Bảng Điểm Bán (7 phần) -->
-                <div class="lg:col-span-7 bg-white rounded-lg border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[540px]">
-                    <div class="px-4 py-2.5 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase">
-                        Danh sách điểm bán tiềm năng
+                <div class="lg:col-span-7 bg-white rounded border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[500px]">
+                    <div class="px-4 py-2 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase">
+                        Danh sách điểm bán khảo sát
                     </div>
                     <div class="overflow-y-auto flex-1">
                         <table class="w-full text-left text-xs">
@@ -213,21 +131,18 @@
                                     <th class="table-cell-header">Tên đơn vị</th>
                                     <th class="table-cell-header w-28">Khu vực</th>
                                     <th class="table-cell-header w-24">Điểm</th>
-                                    <th class="table-cell-header w-28">Trạng thái</th>
+                                    <th class="table-cell-header w-24">Trạng thái</th>
                                 </tr>
                             </thead>
-                            <tbody id="leads-table-rows" class="divide-y divide-slate-100">
-                                <!-- Render danh sách -->
-                            </tbody>
+                            <tbody id="lead-table-body" class="divide-y divide-slate-100"></tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- Bảng Chi Tiết Hồ Sơ & Tạo Thư Chào Hàng (5 phần) -->
-                <div class="lg:col-span-5 bg-white rounded-lg border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[540px] overflow-y-auto">
-                    <div id="lead-inspect-panel" class="space-y-3">
+                <div class="lg:col-span-5 bg-white rounded border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[500px] overflow-y-auto">
+                    <div id="lead-detail-box" class="space-y-3">
                         <div class="text-center py-24 text-slate-400">
-                            Vui lòng chọn 1 điểm bán trong bảng bên trái để xem hồ sơ và tạo thư chào hàng.
+                            Chọn 1 điểm bán trong bảng bên trái để xem chi tiết hồ sơ năng lực.
                         </div>
                     </div>
                 </div>
@@ -235,343 +150,434 @@
         </div>
 
         <!-- =================================================================== -->
-        <!-- PHÂN HỆ 3: TRỢ LÝ TƯ VẤN BÁN HÀNG                                   -->
+        <!-- GIẢI PHÁP 2: SẢN XUẤT NỘI DUNG CÓ KIỂM SOÁT (CONTENT ENGINE)         -->
         <!-- =================================================================== -->
-        <div id="section-copilot" class="module-section hidden space-y-4 max-w-4xl mx-auto">
-            <div class="bg-white rounded-lg border border-slate-200 p-5 shadow-sm space-y-4">
-                <div>
-                    <h3 class="text-sm font-bold text-slate-900 uppercase">Trợ lý tra cứu thông tin sản phẩm và kiểm soát rủi ro</h3>
-                    <p class="text-xs text-slate-500 mt-0.5">Tất cả câu trả lời đều dựa trên hồ sơ pháp lý đã duyệt. Tự động chuyển dược sĩ đối với câu hỏi về thai kỳ và bệnh nền.</p>
-                </div>
-
-                <!-- Hàng Các Tình Huống Mẫu -->
-                <div>
-                    <span class="text-xs font-bold text-slate-500 block mb-1.5 uppercase">Tình huống thực tế thường gặp:</span>
-                    <div class="flex flex-wrap gap-2">
-                        <button onclick="fillCopilotInput('Khách hàng đang mang thai 3 tháng đầu có dùng được Vitamin D3 không?')" class="px-3 py-1.5 rounded bg-rose-50 text-rose-800 border border-rose-200 text-xs font-semibold hover:bg-rose-100 transition">
-                            Tình huống 1: Khách hàng đang mang thai (Nhóm nhạy cảm)
-                        </button>
-                        <button onclick="fillCopilotInput('Viên sắt Fero-Plus có gây táo bón hoặc buồn nôn khi uống không?')" class="px-3 py-1.5 rounded bg-slate-100 text-slate-800 border border-slate-200 text-xs font-semibold hover:bg-slate-200 transition">
-                            Tình huống 2: Tác dụng phụ của viên sắt Fero-Plus
-                        </button>
-                        <button onclick="fillCopilotInput('Vitamin D3 1000IU có công dụng gì đối với việc hấp thu canxi?')" class="px-3 py-1.5 rounded bg-slate-100 text-slate-800 border border-slate-200 text-xs font-semibold hover:bg-slate-200 transition">
-                            Tình huống 3: Cơ chế hấp thu canxi của Vitamin D3
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Ô Nhập Câu Hỏi -->
-                <div class="flex gap-2">
-                    <input type="text" id="copilot-input-field" placeholder="Nhập câu hỏi của khách hàng hoặc nhân viên tư vấn..." class="flex-1 bg-slate-50 border border-slate-300 rounded px-3 py-2 text-xs outline-none focus:border-corporate-700">
-                    <button onclick="submitCopilotQuery()" class="px-5 py-2 bg-corporate-700 hover:bg-corporate-800 text-white font-bold rounded text-xs transition">
-                        Gửi câu hỏi
-                    </button>
-                </div>
-
-                <!-- Khung Hiển Thị Kết Quả Thẳng Hàng -->
-                <div id="copilot-output-container" class="hidden space-y-3 pt-2">
-                    <div id="copilot-badge-view" class="font-bold text-xs p-3 rounded border"></div>
-                    <div class="bg-slate-50 border border-slate-200 rounded p-4 text-xs leading-relaxed text-slate-800 whitespace-pre-line" id="copilot-answer-text"></div>
-                    <div class="text-right">
-                        <button onclick="copyCopilotResult()" class="text-xs font-bold text-corporate-700 hover:underline">
-                            Sao chép câu trả lời vào bộ nhớ tạm
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- =================================================================== -->
-        <!-- PHÂN HỆ 4: KIỂM DUYỆT BÀI QUẢNG CÁO (THEO NGHỊ ĐỊNH 342)            -->
-        <!-- =================================================================== -->
-        <div id="section-compliance" class="module-section hidden space-y-4">
-            
-            <!-- Nút Tình Huống Vi Phạm Mẫu -->
-            <div class="bg-white rounded-lg border border-slate-200 p-3 shadow-sm flex flex-wrap items-center justify-between gap-2">
+        <div id="view-content" class="solution-view hidden space-y-4">
+            <div class="bg-white rounded border border-slate-200 p-3 shadow-sm flex flex-wrap items-center justify-between gap-2">
                 <div class="flex items-center gap-2">
-                    <span class="text-xs font-bold text-slate-600 uppercase">Tình huống kiểm tra:</span>
-                    <button onclick="loadSampleAd(1)" class="px-2.5 py-1 rounded bg-rose-50 text-rose-800 border border-rose-200 text-xs font-semibold hover:bg-rose-100">
-                        Bài viết vi phạm: Cam kết chữa khỏi bệnh
+                    <span class="text-xs font-bold text-slate-600 uppercase">Thử nghiệm tình huống:</span>
+                    <button onclick="pickAdPreset(1)" class="px-2.5 py-1 rounded bg-rose-50 text-rose-800 border border-rose-200 text-xs font-semibold hover:bg-rose-100">
+                        Vi phạm: Cam kết chữa khỏi 100%
                     </button>
-                    <button onclick="loadSampleAd(2)" class="px-2.5 py-1 rounded bg-rose-50 text-rose-800 border border-rose-200 text-xs font-semibold hover:bg-rose-100">
-                        Bài viết vi phạm: Thần dược, thiếu cảnh báo
+                    <button onclick="pickAdPreset(2)" class="px-2.5 py-1 rounded bg-rose-50 text-rose-800 border border-rose-200 text-xs font-semibold hover:bg-rose-100">
+                        Vi phạm: Thần dược, thiếu Disclaimer
                     </button>
-                    <button onclick="loadSampleAd(3)" class="px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold hover:bg-emerald-100">
+                    <button onclick="pickAdPreset(3)" class="px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold hover:bg-emerald-100">
                         Bài viết đạt chuẩn Nghị định 342
                     </button>
                 </div>
-                <span class="text-xs text-slate-500">Căn cứ: Khoản 2 Điều 5 Nghị định 342/2025/NĐ-CP</span>
+                <span class="text-xs text-slate-500">Căn cứ: Nghị định 342/2025/NĐ-CP</span>
             </div>
 
-            <!-- Bố Cục 2 Cột: Soạn Thảo & Thẩm Định Chi Tiết -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-                
-                <!-- Cột Nhập Bài Viết (6 phần) -->
-                <div class="lg:col-span-6 bg-white rounded-lg border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[520px]">
+                <div class="lg:col-span-6 bg-white rounded border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[500px]">
                     <div>
-                        <div class="font-bold text-xs text-slate-700 uppercase mb-2">Nội dung bài viết quảng cáo cần kiểm tra:</div>
-                        <textarea id="ad-text-editor" rows="13" oninput="executeAdAudit()" class="w-full bg-slate-50 border border-slate-300 rounded p-3 text-xs leading-relaxed outline-none focus:border-corporate-700" placeholder="Dán nội dung bài đăng hoặc kịch bản quảng cáo vào đây..."></textarea>
+                        <div class="font-bold text-xs text-slate-700 uppercase mb-2">Soạn thảo / Dán nội dung quảng cáo:</div>
+                        <textarea id="ad-content-box" rows="12" oninput="runAdAudit()" class="w-full bg-slate-50 border border-slate-300 rounded p-3 text-xs leading-relaxed outline-none focus:border-corp-700 font-medium"></textarea>
                     </div>
-                    
                     <div class="flex gap-2 pt-2">
-                        <button onclick="executeAdAudit()" class="flex-1 py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs transition">
-                            Kiểm tra tính tuân thủ pháp lý
+                        <button onclick="runAdAudit()" class="flex-1 py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs transition">
+                            Thẩm định tính tuân thủ pháp lý
                         </button>
-                        <button onclick="executeAutoFix()" class="flex-1 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs transition">
-                            Tự động sửa lỗi theo luật
+                        <button onclick="runAdAutoFix()" class="flex-1 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs transition">
+                            Tự động sửa lỗi theo luật định
                         </button>
                     </div>
                 </div>
 
-                <!-- Cột Bảng Thẩm Định 4 Tiêu Chí (6 phần) -->
-                <div class="lg:col-span-6 bg-white rounded-lg border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[520px] overflow-y-auto">
+                <div class="lg:col-span-6 bg-white rounded border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[500px] overflow-y-auto">
                     <div class="space-y-4">
-                        <div class="flex items-center justify-between p-3 rounded border" id="audit-score-card">
+                        <div class="flex items-center justify-between p-3 rounded border" id="audit-score-wrap">
                             <div>
-                                <span class="text-[11px] font-bold uppercase text-slate-500">Điểm đánh giá tuân thủ:</span>
-                                <div class="text-2xl font-extrabold" id="audit-score-num">0 / 100</div>
+                                <span class="text-[11px] font-bold uppercase text-slate-500">Điểm số tuân thủ:</span>
+                                <div class="text-2xl font-extrabold" id="audit-score-display">0 / 100</div>
                             </div>
-                            <span class="px-3 py-1 rounded text-xs font-bold uppercase" id="audit-badge-tag">Chưa kiểm tra</span>
+                            <span class="px-3 py-1 rounded text-xs font-bold uppercase" id="audit-badge-display">Chưa kiểm tra</span>
                         </div>
 
-                        <!-- Bảng 4 Tiêu Chí Thẳng Hàng -->
                         <table class="w-full text-left text-xs border border-slate-200 rounded overflow-hidden">
                             <thead class="bg-slate-50">
                                 <tr>
-                                    <th class="table-cell-header">Tiêu chí kiểm định theo luật</th>
-                                    <th class="table-cell-header w-32 text-right">Kết quả</th>
+                                    <th class="table-cell-header">Tiêu chuẩn thẩm định</th>
+                                    <th class="table-cell-header w-32 text-right">Đánh giá</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="border-b border-slate-100">
-                                    <td class="table-cell">1. Từ ngữ cấm (chữa bệnh, khỏi hẳn, điều trị)</td>
-                                    <td class="table-cell text-right font-bold" id="res-layer-prohibited">—</td>
+                                    <td class="table-cell">1. Từ ngữ cấm y dược (chữa bệnh, khỏi hẳn)</td>
+                                    <td class="table-cell text-right font-bold" id="res-prohibited">—</td>
                                 </tr>
                                 <tr class="border-b border-slate-100">
-                                    <td class="table-cell">2. Cam kết quá đà (100%, tuyệt đối, thần dược)</td>
-                                    <td class="table-cell text-right font-bold" id="res-layer-exaggeration">—</td>
+                                    <td class="table-cell">2. Cam kết quá mức (100%, tuyệt đối)</td>
+                                    <td class="table-cell text-right font-bold" id="res-exaggeration">—</td>
                                 </tr>
                                 <tr class="border-b border-slate-100">
-                                    <td class="table-cell">3. Câu cảnh báo bắt buộc (Nghị định 342/2025)</td>
-                                    <td class="table-cell text-right font-bold" id="res-layer-disclaimer">—</td>
+                                    <td class="table-cell">3. Câu cảnh báo bắt buộc (NĐ 342)</td>
+                                    <td class="table-cell text-right font-bold" id="res-disclaimer">—</td>
                                 </tr>
                                 <tr>
-                                    <td class="table-cell">4. Giới hạn phạm vi công dụng (hỗ trợ bổ sung)</td>
-                                    <td class="table-cell text-right font-bold" id="res-layer-boundary">—</td>
+                                    <td class="table-cell">4. Giới hạn phạm vi công dụng TPBVSK</td>
+                                    <td class="table-cell text-right font-bold" id="res-boundary">—</td>
                                 </tr>
                             </tbody>
                         </table>
 
-                        <!-- Chi Tiết Lỗi Hoặc Thay Đổi -->
-                        <div id="audit-details-list" class="text-xs p-3 rounded bg-slate-50 border border-slate-200">
-                            <!-- Render chi tiết -->
-                        </div>
+                        <div id="audit-msg-box" class="text-xs p-3 rounded bg-slate-50 border border-slate-200"></div>
                     </div>
-
                     <div class="pt-2 border-t border-slate-200 text-right">
-                        <button onclick="copyAdText()" class="text-xs font-bold text-corporate-700 hover:underline">
-                            Sao chép bài viết sau chỉnh sửa
+                        <button onclick="copyAdContent()" class="text-xs font-bold text-corp-700 hover:underline">Sao chép bài viết</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- GIẢI PHÁP 3: THEO DÕI THỊ TRƯỜNG & ĐỐI THỦ (MARKET INTELLIGENCE)     -->
+        <!-- =================================================================== -->
+        <div id="view-market" class="solution-view hidden space-y-4">
+            
+            <!-- Bảng Xu Hướng Ngành Hàng -->
+            <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
+                <div class="px-4 py-2.5 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase flex justify-between items-center">
+                    <span>Xu hướng chuyển dịch nhu cầu dinh dưỡng & Hoạt chất mới (Năm 2026)</span>
+                    <span class="text-corp-700 font-semibold text-[11px]">Dữ liệu thị trường tổng hợp</span>
+                </div>
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr>
+                            <th class="table-cell-header w-40">Ngành hàng</th>
+                            <th class="table-cell-header w-72">Xu hướng nổi bật</th>
+                            <th class="table-cell-header w-36">Tăng trưởng</th>
+                            <th class="table-cell-header">Phân tích hành vi người mua</th>
+                            <th class="table-cell-header">Cơ hội kinh doanh cho DION</th>
+                        </tr>
+                    </thead>
+                    <tbody id="market-trends-tbody" class="divide-y divide-slate-100"></tbody>
+                </table>
+            </div>
+
+            <!-- Bảng Đối Thủ Cạnh Tranh & Lợi Thế DION -->
+            <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
+                <div class="px-4 py-2.5 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase">
+                    Phân tích đối thủ cạnh tranh trực tiếp trên quầy kệ
+                </div>
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr>
+                            <th class="table-cell-header w-44">Đối thủ cạnh tranh</th>
+                            <th class="table-cell-header w-36">Sản phẩm</th>
+                            <th class="table-cell-header w-32">Giá bán lẻ TB</th>
+                            <th class="table-cell-header w-52">Kênh phân phối chính</th>
+                            <th class="table-cell-header w-48">Điểm hạn chế</th>
+                            <th class="table-cell-header">Lợi thế cạnh tranh của DION</th>
+                        </tr>
+                    </thead>
+                    <tbody id="competitors-tbody" class="divide-y divide-slate-100"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- GIẢI PHÁP 4: TRỢ LÝ BÁN HÀNG THÔNG MINH (SALES COPILOT)             -->
+        <!-- =================================================================== -->
+        <div id="view-copilot" class="solution-view hidden space-y-4 max-w-4xl mx-auto">
+            <div class="bg-white rounded border border-slate-200 p-5 shadow-sm space-y-4">
+                <div>
+                    <h3 class="text-sm font-bold text-slate-900 uppercase">Trợ lý tra cứu công dụng & Kiểm soát an toàn tư vấn</h3>
+                    <p class="text-xs text-slate-500 mt-0.5">Dựa trên phát biểu công dụng đã duyệt. Tự động nhận diện rủi ro đối tượng thai kỳ và bệnh nền.</p>
+                </div>
+
+                <div>
+                    <span class="text-xs font-bold text-slate-500 block mb-1.5 uppercase">Tình huống khách hàng thường hỏi:</span>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="copilotAskPreset('Khách hàng đang mang thai 3 tháng đầu có dùng được Vitamin D3 không?')" class="px-3 py-1.5 rounded bg-rose-50 text-rose-800 border border-rose-200 text-xs font-semibold hover:bg-rose-100">
+                            Ca nhạy cảm: Khách hàng mang thai 3 tháng đầu
+                        </button>
+                        <button onclick="copilotAskPreset('Viên sắt Fero-Plus có gây táo bón hoặc buồn nôn không?')" class="px-3 py-1.5 rounded bg-slate-100 text-slate-800 border border-slate-200 text-xs font-semibold hover:bg-slate-200">
+                            Tác dụng phụ: Khách hỏi về táo bón khi bổ sung sắt
+                        </button>
+                        <button onclick="copilotAskPreset('Sản phẩm Canxi Cal-Mom có nguồn gốc từ đâu và uống lúc nào tốt nhất?')" class="px-3 py-1.5 rounded bg-slate-100 text-slate-800 border border-slate-200 text-xs font-semibold hover:bg-slate-200">
+                            Công dụng & Cách dùng: Canxi sinh học Cal-Mom
                         </button>
                     </div>
                 </div>
+
+                <div class="flex gap-2">
+                    <input type="text" id="copilot-input-box" placeholder="Nhập câu hỏi của nhân viên bán hàng hoặc khách hàng..." class="flex-1 bg-slate-50 border border-slate-300 rounded px-3 py-2 text-xs outline-none focus:border-corp-700">
+                    <button onclick="execCopilot()" class="px-5 py-2 bg-corp-700 hover:bg-corp-800 text-white font-bold rounded text-xs transition">
+                        Gửi câu hỏi
+                    </button>
+                </div>
+
+                <div id="copilot-answer-wrap" class="hidden space-y-3 pt-2">
+                    <div id="copilot-flag-box" class="font-bold text-xs p-3 rounded border"></div>
+                    <div class="bg-slate-50 border border-slate-200 rounded p-4 text-xs leading-relaxed text-slate-800 whitespace-pre-line" id="copilot-response-text"></div>
+                    <div class="text-right">
+                        <button onclick="copyCopilotScriptText()" class="text-xs font-bold text-corp-700 hover:underline">Sao chép câu trả lời</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- GIẢI PHÁP 5: TỰ ĐỘNG CHĂM SÓC KHÁCH HÀNG & QUYỀN RIÊNG TƯ (CUSTOMER CARE)-->
+        <!-- =================================================================== -->
+        <div id="view-care" class="solution-view hidden space-y-4">
+            
+            <!-- Quy Định Quyền Riêng Tư & Chặn Vi Phạm -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white rounded border border-slate-200 p-4 shadow-sm">
+                    <div class="font-bold text-xs text-corp-700 uppercase mb-1">Cơ chế bảo vệ dữ liệu (Luật 91/2025/QH15)</div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Hệ thống tự động kiểm tra trạng thái đồng ý nhận tin (Consent Management). Khi khách hàng bấm <b>Từ chối nhận tin (Opt-out)</b>, hệ thống kích hoạt lệnh khóa vĩnh viễn quyền gửi tin tiếp thị tự động trên mọi kênh Zalo OA / SMS.
+                    </p>
+                </div>
+                <div class="bg-white rounded border border-slate-200 p-4 shadow-sm">
+                    <div class="font-bold text-xs text-rose-700 uppercase mb-1">Cơ chế khóa khiếu nại (Incident Lockout)</div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Khi khách hàng phát sinh khiếu nại chất lượng hoặc tác dụng phụ chưa xử lý xong, hệ thống <b>khóa lập tức toàn bộ chiến dịch bán thêm (upsell/cross-sell)</b> để tránh phản cảm và nguy cơ pháp lý.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Bảng Khách Hàng & Trạng Thái Chăm Sóc Vòng Đời -->
+            <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
+                <div class="px-4 py-2.5 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase">
+                    Quản lý chu kỳ sử dụng & Trạng thái quyền riêng tư của khách hàng
+                </div>
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr>
+                            <th class="table-cell-header w-24">Mã KH</th>
+                            <th class="table-cell-header w-36">Họ và tên</th>
+                            <th class="table-cell-header w-44">Sản phẩm đang dùng</th>
+                            <th class="table-cell-header w-28">Ngày mua</th>
+                            <th class="table-cell-header w-28">Chu kỳ ngày</th>
+                            <th class="table-cell-header w-48">Trạng thái chăm sóc</th>
+                            <th class="table-cell-header">Tin nhắn / Thao tác đề xuất của AI</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customers-care-tbody" class="divide-y divide-slate-100"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- GIẢI PHÁP 6: NGHIÊN CỨU & BẰNG CHỨNG PUBMED (RESEARCH INTELLIGENCE)  -->
+        <!-- =================================================================== -->
+        <div id="view-research" class="solution-view hidden space-y-4">
+            
+            <div class="bg-white rounded border border-slate-200 p-4 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <label class="text-xs font-bold text-slate-700 uppercase whitespace-nowrap">Tra cứu hoạt chất lâm sàng:</label>
+                    <select id="research-ingredient-select" onchange="fetchResearchEvidence()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-semibold text-slate-900 outline-none w-72">
+                        <option value="Lithothamnion">Tảo đỏ vôi hóa Lithothamnion (Canxi sinh học)</option>
+                        <option value="Vitamin D3">Vitamin D3 & Thụ thể VDR ruột non</option>
+                        <option value="Sắt Bisglycinate">Sắt Chelate hữu cơ Bisglycinate</option>
+                    </select>
+                </div>
+                <span class="text-xs text-slate-500 font-medium">Nguồn: Cơ sở dữ liệu Thư viện Y khoa Quốc gia Hoa Kỳ (NCBI / PubMed)</span>
+            </div>
+
+            <!-- Tóm Tắt Khoa Học -->
+            <div class="p-3 bg-blue-50/70 border border-blue-200 rounded text-xs text-blue-950 font-medium" id="research-summary-text">
+                Đang tải tóm tắt tổng quan y khoa...
+            </div>
+
+            <!-- Bảng Bằng Chứng Lâm Sàng Trích Xuất (Structure Evidence Table) -->
+            <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
+                <div class="px-4 py-2.5 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase">
+                    Bảng đối chiếu bằng chứng nghiên cứu lâm sàng
+                </div>
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr>
+                            <th class="table-cell-header w-32">Mã nghiên cứu</th>
+                            <th class="table-cell-header w-64">Thiết kế nghiên cứu</th>
+                            <th class="table-cell-header w-44">Cỡ mẫu đối tượng (N)</th>
+                            <th class="table-cell-header w-48">Liều dùng thử nghiệm</th>
+                            <th class="table-cell-header">Kết quả chính được ghi nhận</th>
+                            <th class="table-cell-header w-40">Mức độ bằng chứng</th>
+                        </tr>
+                    </thead>
+                    <tbody id="research-evidence-tbody" class="divide-y divide-slate-100"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- KHO DỮ LIỆU CÔNG BỐ SẢN PHẨM & CLAIMS (FOUNDATION HUB)               -->
+        <!-- =================================================================== -->
+        <div id="view-claims" class="solution-view hidden space-y-4">
+            <div class="bg-white rounded border border-slate-200 p-4 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <label class="text-xs font-bold text-slate-700 uppercase whitespace-nowrap">Chọn SKU kiểm tra:</label>
+                    <select id="claims-hub-sku" onchange="fetchClaimsHubData()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-semibold text-slate-900 outline-none w-80">
+                        {% for p in products %}
+                        <option value="{{ p.sku }}">{{ p.sku }} — {{ p.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="px-2.5 py-1 rounded bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs font-bold" id="hub-stat-comm">0 Hợp lệ</span>
+                    <span class="px-2.5 py-1 rounded bg-blue-50 border border-blue-300 text-blue-900 text-xs font-bold" id="hub-stat-inter">0 Nội bộ</span>
+                    <span class="px-2.5 py-1 rounded bg-rose-50 border border-rose-300 text-rose-900 text-xs font-bold" id="hub-stat-exp">0 Hết hạn</span>
+                </div>
+            </div>
+
+            <!-- Bảng Thông Tin Đăng Ký -->
+            <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
+                <div class="px-4 py-2 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase">Hồ sơ pháp lý sản phẩm</div>
+                <table class="w-full text-left text-xs">
+                    <tbody>
+                        <tr class="border-b border-slate-100">
+                            <td class="table-cell font-semibold text-slate-500 w-44 bg-slate-50/50">Mã sản phẩm</td>
+                            <td class="table-cell font-bold text-slate-900" id="hub-sku">—</td>
+                            <td class="table-cell font-semibold text-slate-500 w-44 bg-slate-50/50">Phân loại pháp lý</td>
+                            <td class="table-cell font-bold text-corp-700" id="hub-reg">—</td>
+                        </tr>
+                        <tr class="border-b border-slate-100">
+                            <td class="table-cell font-semibold text-slate-500 bg-slate-50/50">Tên thương mại</td>
+                            <td class="table-cell font-bold text-slate-900" id="hub-name">—</td>
+                            <td class="table-cell font-semibold text-slate-500 bg-slate-50/50">Ngành hàng</td>
+                            <td class="table-cell font-medium text-slate-800" id="hub-cat">—</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell font-semibold text-amber-900 bg-amber-50">Cảnh báo luật định (NĐ 342)</td>
+                            <td class="table-cell font-bold text-amber-900 bg-amber-50/50" colspan="3" id="hub-disclaimer">—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bảng Công Dụng Chi Tiết -->
+            <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
+                <div class="px-4 py-2 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase">Danh mục phát biểu công dụng</div>
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr>
+                            <th class="table-cell-header w-28">Mã hồ sơ</th>
+                            <th class="table-cell-header">Nội dung công dụng được thẩm định</th>
+                            <th class="table-cell-header w-36">Phân vùng sử dụng</th>
+                            <th class="table-cell-header w-32">Trạng thái pháp lý</th>
+                            <th class="table-cell-header w-28">Ngày hết hạn</th>
+                            <th class="table-cell-header w-48">Người phê duyệt</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hub-claims-tbody" class="divide-y divide-slate-100"></tbody>
+                </table>
             </div>
         </div>
 
     </main>
 
-    <!-- 3. CHÂN TRANG GỌN GÀNG -->
-    <footer class="bg-white border-t border-slate-200 py-3 text-center text-xs text-slate-500">
-        DION HEALTHCARE PLATFORM — BẢN QUYỀN THUỘC DIGITAL INNOVATION (DION) · TUÂN THỦ NGHỊ ĐỊNH 342/2025/NĐ-CP
+    <!-- FOOTER CHUẨN MỰC -->
+    <footer class="bg-white border-t border-slate-200 py-3 text-center text-xs text-slate-500 mt-auto">
+        DION HEALTHCARE ENTERPRISE AI · ĐỦ 6 GIẢI PHÁP TƯ VẤN DOANH NGHIỆP · TUÂN THỦ NGHỊ ĐỊNH 342/2025/NĐ-CP & LUẬT 91/2025/QH15
     </footer>
 
-    <!-- SCRIPT ĐIỀU HÀNH 100% TIẾNG VIỆT, XỬ LÝ MẠCH LẠC -->
+    <!-- SCRIPT ĐIỀU HÀNH TOÀN BỘ 6 GIẢI PHÁP -->
     <script>
-        // 1. Chuyển Phân Hệ
-        function changeTab(tabName) {
-            document.querySelectorAll('.module-section').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-btn-active'));
+        function setTab(tabId) {
+            document.querySelectorAll('.solution-view').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-item').forEach(btn => btn.classList.remove('tab-btn-active'));
 
-            document.getElementById('section-' + tabName).classList.remove('hidden');
-            document.getElementById('nav-' + tabName).classList.add('tab-btn-active');
+            document.getElementById('view-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('tab-btn-active');
+
+            if (tabId === 'market') fetchMarketIntelligence();
+            if (tabId === 'care') fetchCustomerCare();
+            if (tabId === 'research') fetchResearchEvidence();
         }
 
-        // =====================================================================
-        // PHÂN HỆ 1: DANH MỤC CÔNG DỤNG SẢN PHẨM
-        // =====================================================================
-        async function loadProductDetails() {
-            const sku = document.getElementById('claims-sku-select').value;
-            const res = await fetch('/api/products/' + sku);
-            const data = await res.json();
-            const prod = data.product;
-            const summary = data.summary;
+        // --- 1. LEADS B2B ---
+        let leadsArr = [];
+        let curLeadId = null;
 
-            // Thống kê phân vùng
-            document.getElementById('stat-comm').innerText = summary.active_commercial + ' công dụng hợp lệ kinh doanh';
-            document.getElementById('stat-inter').innerText = summary.internal + ' công dụng sử dụng nội bộ';
-            document.getElementById('stat-exp').innerText = summary.expired + ' công dụng đã hết hiệu lực';
-
-            // Thông tin chi tiết sản phẩm
-            document.getElementById('prod-sku').innerText = prod.sku;
-            document.getElementById('prod-name').innerText = prod.name;
-            document.getElementById('prod-reg').innerText = prod.regulatory_class;
-            document.getElementById('prod-cat').innerText = prod.category;
-            document.getElementById('prod-users').innerText = prod.target_users.join(', ');
-            document.getElementById('prod-disclaimer').innerText = '"' + prod.mandatory_disclaimer + '"';
-
-            // Bảng danh mục công dụng
-            const tbody = document.getElementById('claims-table-tbody');
-            tbody.innerHTML = '';
-            prod.claims.forEach(c => {
-                let statusLabel = '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Hợp lệ</span>';
-                let zoneLabel = '<span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">Thương mại</span>';
-
-                if (c.status === 'EXPIRED') {
-                    statusLabel = '<span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold">Hết hạn (Khóa)</span>';
-                }
-                if (c.zone === 'INTERNAL_EXPERT') {
-                    zoneLabel = '<span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-medium">Nội bộ</span>';
-                }
-
-                tbody.innerHTML += `
-                    <tr>
-                        <td class="table-cell font-mono font-bold text-corporate-700">${c.claim_id}</td>
-                        <td class="table-cell font-medium text-slate-900">${c.claim_text}</td>
-                        <td class="table-cell">${zoneLabel}</td>
-                        <td class="table-cell">${statusLabel}</td>
-                        <td class="table-cell font-mono text-slate-600">${c.effective_until}</td>
-                        <td class="table-cell text-slate-600">${c.approved_by}</td>
-                    </tr>
-                `;
-            });
-        }
-
-        // =====================================================================
-        // PHÂN HỆ 2: TÌM KIẾM ĐIỂM BÁN & NHÀ THUỐC
-        // =====================================================================
-        let leadsList = [];
-        let currentLeadId = null;
-
-        async function loadLeadsTable() {
-            const kw = document.getElementById('lead-search-kw').value;
-            const prov = document.getElementById('lead-search-prov').value;
-            const type = document.getElementById('lead-search-type').value;
+        async function fetchLeads() {
+            const kw = document.getElementById('lead-kw').value;
+            const prov = document.getElementById('lead-prov').value;
+            const type = document.getElementById('lead-type').value;
 
             const res = await fetch(`/api/leads?province=${encodeURIComponent(prov)}&lead_type=${encodeURIComponent(type)}&keyword=${encodeURIComponent(kw)}`);
             const data = await res.json();
-            leadsList = data.leads;
+            leadsArr = data.leads;
 
-            document.getElementById('leads-total-count').innerText = data.total;
+            document.getElementById('lead-total-num').innerText = data.total;
 
-            const tbody = document.getElementById('leads-table-rows');
+            const tbody = document.getElementById('lead-table-body');
             tbody.innerHTML = '';
-            leadsList.forEach(l => {
-                const isSelected = l.lead_id === currentLeadId;
-                const statusTag = l.status === 'APPROVED' ? '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Đã duyệt</span>' :
-                                  (l.status === 'REJECTED' ? '<span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold">Loại bỏ</span>' :
-                                  '<span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">Chưa duyệt</span>');
+            leadsArr.forEach(l => {
+                const isCur = l.lead_id === curLeadId;
+                const statusLabel = l.status === 'APPROVED' ? '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Đã duyệt</span>' :
+                                    (l.status === 'REJECTED' ? '<span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold">Loại</span>' :
+                                    '<span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">Chưa duyệt</span>');
 
                 tbody.innerHTML += `
-                    <tr onclick="displayLeadDetails('${l.lead_id}')" class="cursor-pointer hover:bg-slate-50 transition ${isSelected ? 'bg-blue-50/70 font-semibold' : ''}">
-                        <td class="table-cell font-mono font-bold text-corporate-700">${l.lead_id}</td>
+                    <tr onclick="inspectLead('${l.lead_id}')" class="cursor-pointer hover:bg-slate-50 transition ${isCur ? 'bg-blue-50/70 font-semibold' : ''}">
+                        <td class="table-cell font-mono font-bold text-corp-700">${l.lead_id}</td>
                         <td class="table-cell font-bold text-slate-900">${l.name}</td>
                         <td class="table-cell text-slate-600">${l.district}</td>
-                        <td class="table-cell font-extrabold text-corporate-700">${l.fit_score} / 100</td>
-                        <td class="table-cell">${statusTag}</td>
+                        <td class="table-cell font-extrabold text-corp-700">${l.fit_score} / 100</td>
+                        <td class="table-cell">${statusLabel}</td>
                     </tr>
                 `;
             });
 
-            if (leadsList.length > 0 && !currentLeadId) {
-                displayLeadDetails(leadsList[0].lead_id);
-            }
+            if (leadsArr.length > 0 && !curLeadId) inspectLead(leadsArr[0].lead_id);
         }
 
-        async function displayLeadDetails(leadId) {
-            currentLeadId = leadId;
-            const lead = leadsList.find(l => l.lead_id === leadId);
-            if (!lead) return;
+        function inspectLead(id) {
+            curLeadId = id;
+            const l = leadsArr.find(x => x.lead_id === id);
+            if (!l) return;
 
-            loadLeadsSelectionState();
-
-            const panel = document.getElementById('lead-inspect-panel');
-            panel.innerHTML = `
-                <div class="border-b border-slate-200 pb-3">
-                    <div class="flex justify-between items-center text-xs text-slate-500 mb-1">
-                        <span>Mã đơn vị: <b class="text-corporate-700 font-mono">${lead.lead_id}</b></span>
-                        <span class="font-bold">${lead.type}</span>
+            document.getElementById('lead-detail-box').innerHTML = `
+                <div class="border-b border-slate-200 pb-2.5">
+                    <div class="flex justify-between text-xs text-slate-500 mb-1">
+                        <span>Mã đơn vị: <b class="text-corp-700 font-mono">${l.lead_id}</b></span>
+                        <span class="font-bold">${l.type}</span>
                     </div>
-                    <h4 class="font-extrabold text-slate-900 text-base">${lead.name}</h4>
-                    <p class="text-xs text-slate-600 mt-0.5">Địa chỉ: ${lead.address}</p>
-                    <p class="text-xs text-slate-600">Số điện thoại: <b>${lead.phone}</b> | Email: <b>${lead.email}</b></p>
+                    <h4 class="font-extrabold text-slate-900 text-base">${l.name}</h4>
+                    <p class="text-xs text-slate-600 mt-0.5">Địa chỉ: ${l.address}</p>
+                    <p class="text-xs text-slate-600">SĐT: <b>${l.phone}</b> | Email: <b>${l.email}</b></p>
                 </div>
 
-                <!-- Bảng Điểm 4 Tiêu Chí Thẳng Hàng -->
-                <div class="border border-slate-200 rounded overflow-hidden">
-                    <table class="w-full text-xs text-left">
-                        <thead class="bg-slate-50">
-                            <tr>
-                                <th class="table-cell-header">Tiêu chí đánh giá</th>
-                                <th class="table-cell-header w-24 text-right">Điểm số</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b border-slate-100">
-                                <td class="table-cell">1. Mức độ phù hợp ngành hàng</td>
-                                <td class="table-cell text-right font-bold text-corporate-700">${lead.fit_score} / 100 (Hạng ${lead.fit_grade})</td>
-                            </tr>
-                            <tr class="border-b border-slate-100">
-                                <td class="table-cell">2. Độ tin cậy dữ liệu (MST, GPP)</td>
-                                <td class="table-cell text-right font-bold text-slate-800">${lead.trust_score} / 100</td>
-                            </tr>
-                            <tr class="border-b border-slate-100">
-                                <td class="table-cell">3. Khả năng liên hệ trực tiếp</td>
-                                <td class="table-cell text-right font-bold text-slate-800">${lead.contact_score} / 100</td>
-                            </tr>
-                            <tr>
-                                <td class="table-cell">4. Tín hiệu nhu cầu nhập hàng</td>
-                                <td class="table-cell text-right font-bold text-emerald-700">${lead.intent_score} / 100</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <table class="w-full text-xs text-left border border-slate-200 rounded overflow-hidden">
+                    <thead class="bg-slate-50">
+                        <tr>
+                            <th class="table-cell-header">Tiêu chí đánh giá</th>
+                            <th class="table-cell-header w-24 text-right">Điểm số</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-slate-100"><td class="table-cell">Mức độ phù hợp ngành hàng</td><td class="table-cell text-right font-bold text-corp-700">${l.fit_score}/100</td></tr>
+                        <tr class="border-b border-slate-100"><td class="table-cell">Độ tin cậy dữ liệu (GPP)</td><td class="table-cell text-right font-bold">${l.trust_score}/100</td></tr>
+                        <tr class="border-b border-slate-100"><td class="table-cell">Khả năng liên hệ trực tiếp</td><td class="table-cell text-right font-bold">${l.contact_score}/100</td></tr>
+                        <tr><td class="table-cell">Tín hiệu nhu cầu nhập hàng</td><td class="table-cell text-right font-bold text-emerald-700">${l.intent_score}/100</td></tr>
+                    </tbody>
+                </table>
 
                 <div class="p-2.5 rounded bg-amber-50 border border-amber-200 text-xs text-amber-900">
-                    Ghi chú thực địa: ${lead.intent_signals}
+                    Ghi chú thực tế: ${l.intent_signals}
                 </div>
 
-                <!-- Nút Hành Động -->
-                <div class="flex gap-2 pt-2">
-                    <button onclick="createOutreachEmail('${lead.lead_id}')" class="flex-1 py-2 bg-corporate-700 hover:bg-corporate-800 text-white font-bold rounded text-xs transition">
+                <div class="flex gap-2 pt-1">
+                    <button onclick="genPitchLetter('${l.lead_id}')" class="flex-1 py-2 bg-corp-700 hover:bg-corp-800 text-white font-bold rounded text-xs transition">
                         Tạo thư chào hàng tự động
                     </button>
-                    <button onclick="updateLeadApproval('${lead.lead_id}', 'APPROVED')" class="px-3 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs transition">
+                    <button onclick="approveLeadAction('${l.lead_id}', 'APPROVED')" class="px-3 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs transition">
                         Duyệt
-                    </button>
-                    <button onclick="updateLeadApproval('${lead.lead_id}', 'REJECTED')" class="px-3 py-2 bg-slate-200 hover:bg-rose-100 text-slate-700 hover:text-rose-700 font-bold rounded text-xs transition">
-                        Từ chối
                     </button>
                 </div>
 
-                <div id="email-pitch-container" class="space-y-2 pt-2"></div>
+                <div id="pitch-output-area" class="space-y-2 pt-2"></div>
             `;
         }
 
-        function loadLeadsSelectionState() {
-            const rows = document.querySelectorAll('#leads-table-rows tr');
-            leadsList.forEach((l, idx) => {
-                if (rows[idx]) {
-                    if (l.lead_id === currentLeadId) {
-                        rows[idx].classList.add('bg-blue-50/70', 'font-semibold');
-                    } else {
-                        rows[idx].classList.remove('bg-blue-50/70', 'font-semibold');
-                    }
-                }
-            });
-        }
-
-        async function createOutreachEmail(leadId) {
-            const container = document.getElementById('email-pitch-container');
-            container.innerHTML = '<div class="text-xs text-corporate-700 font-bold p-3 text-center bg-slate-50 border border-slate-200 rounded">Đang biên soạn thư chào hàng tự động phù hợp với điểm bán này...</div>';
+        async function genPitchLetter(leadId) {
+            const out = document.getElementById('pitch-output-area');
+            out.innerHTML = '<div class="text-xs text-corp-700 font-bold p-2 text-center bg-slate-50 border rounded">Đang biên soạn thư chào hàng tự động...</div>';
 
             const res = await fetch(`/api/leads/${leadId}/pitch`, {
                 method: 'POST',
@@ -580,115 +586,65 @@
             });
             const data = await res.json();
 
-            container.innerHTML = `
-                <div class="p-3 bg-slate-50 border border-slate-200 rounded text-xs space-y-2">
+            out.innerHTML = `
+                <div class="p-2.5 bg-slate-50 border border-slate-200 rounded text-xs space-y-2">
+                    <div><span class="font-bold text-slate-700">Chiến lược:</span> <div class="text-slate-800">${data.strategy}</div></div>
+                    <div><span class="font-bold text-slate-700">Phòng ban gửi đến:</span> <b class="text-corp-700">${data.target_department}</b></div>
                     <div>
-                        <span class="font-bold text-slate-700">Chiến lược đề xuất:</span>
-                        <div class="text-slate-800 font-medium">${data.strategy}</div>
-                    </div>
-                    <div>
-                        <span class="font-bold text-slate-700">Gửi đến bộ phận:</span>
-                        <div class="text-corporate-700 font-bold">${data.target_department}</div>
-                    </div>
-                    <div>
-                        <span class="font-bold text-slate-700">Tiêu đề email:</span>
-                        <input type="text" id="email-subject-val" value="${data.subject}" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1 text-xs font-semibold text-slate-900 mt-1">
+                        <span class="font-bold text-slate-700">Tiêu đề:</span>
+                        <input type="text" id="p-sub" value="${data.subject}" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-xs font-semibold mt-0.5">
                     </div>
                     <div>
                         <div class="flex justify-between items-center mb-1">
-                            <span class="font-bold text-slate-700">Nội dung thư chào hàng:</span>
-                            <button onclick="copyOutreachEmail()" class="text-corporate-700 font-bold hover:underline">Sao chép thư</button>
+                            <span class="font-bold text-slate-700">Nội dung thư:</span>
+                            <button onclick="copyPitchLetter()" class="text-corp-700 font-bold hover:underline">Sao chép</button>
                         </div>
-                        <textarea id="email-body-val" rows="8" class="w-full bg-white border border-slate-300 rounded p-2.5 text-xs font-mono leading-relaxed text-slate-900">${data.pitch_body}</textarea>
+                        <textarea id="p-body" rows="7" class="w-full bg-white border border-slate-300 rounded p-2 text-xs font-mono">${data.pitch_body}</textarea>
                     </div>
                 </div>
             `;
         }
 
-        async function updateLeadApproval(leadId, st) {
-            await fetch(`/api/leads/${leadId}/action`, {
+        function copyPitchLetter() {
+            navigator.clipboard.writeText(document.getElementById('p-body').value);
+            alert("Đã sao chép thư chào hàng!");
+        }
+
+        async function approveLeadAction(id, st) {
+            await fetch(`/api/leads/${id}/action`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({action: st})
             });
-            loadLeadsTable();
+            fetchLeads();
         }
 
-        function copyOutreachEmail() {
-            const body = document.getElementById('email-body-val').value;
-            navigator.clipboard.writeText(body);
-            alert("Đã sao chép thư chào hàng!");
-        }
-
-        function exportLeadsCSV() {
+        function downloadLeadsCSV() {
             let csv = "Mã,Tên đơn vị,Địa chỉ,Điện thoại,Điểm phù hợp,Trạng thái\n";
-            leadsList.forEach(l => {
+            leadsArr.forEach(l => {
                 csv += `"${l.lead_id}","${l.name}","${l.address}","${l.phone}","${l.fit_score}","${l.status}"\n`;
             });
             const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.download = "danh_sach_diem_ban.csv";
+            link.download = "danh_sach_nha_thuoc_b2b.csv";
             link.click();
         }
 
-        // =====================================================================
-        // PHÂN HỆ 3: TRỢ LÝ TƯ VẤN BÁN HÀNG
-        // =====================================================================
-        function fillCopilotInput(text) {
-            document.getElementById('copilot-input-field').value = text;
-            submitCopilotQuery();
-        }
-
-        async function submitCopilotQuery() {
-            const q = document.getElementById('copilot-input-field').value;
-            if (!q) return;
-
-            const res = await fetch('/api/copilot/ask', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({query: q, sku: 'ALL'})
-            });
-            const data = await res.json();
-
-            const container = document.getElementById('copilot-output-container');
-            const badge = document.getElementById('copilot-badge-view');
-            const answer = document.getElementById('copilot-answer-text');
-
-            container.classList.remove('hidden');
-
-            if (data.type === 'ESCALATION') {
-                badge.className = 'font-bold text-xs p-3 rounded border bg-rose-50 border-rose-300 text-rose-900';
-                badge.innerHTML = 'CẢNH BÁO: ĐỐI TƯỢNG NHẠY CẢM (THAI KỲ / BỆNH NỀN) — TỰ ĐỘNG CHUYỂN DƯỢC SĨ PHỤ TRÁCH';
-            } else {
-                badge.className = 'font-bold text-xs p-3 rounded border bg-emerald-50 border-emerald-300 text-emerald-900';
-                badge.innerHTML = 'THÔNG TIN ĐÃ XÁC THỰC TỪ HỒ SƠ PHÁP LÝ ĐƯỢC DUYỆT';
-            }
-            answer.innerText = data.content;
-        }
-
-        function copyCopilotResult() {
-            const t = document.getElementById('copilot-answer-text').innerText;
-            navigator.clipboard.writeText(t);
-            alert("Đã sao chép nội dung tư vấn!");
-        }
-
-        // =====================================================================
-        // PHÂN HỆ 4: KIỂM DUYỆT BÀI QUẢNG CÁO THEO NĐ 342
-        // =====================================================================
-        const SAMPLE_ADS = {
+        // --- 2. CONTENT ENGINE ---
+        const PRESETS = {
             1: "Sản phẩm Vitamin D3 1000IU cam kết chữa bệnh loãng xương và khỏi hẳn đau nhức khớp sau 2 tuần sử dụng! Hiệu quả 100% không tái phát.\nNhắn tin ngay để được bác sĩ tư vấn liều dùng điều trị dứt điểm!",
             2: "Thần dược bổ máu DION Fero-Plus uống vào là khỏi hẳn thiếu máu, da dẻ hồng hào tuyệt đối. Sản phẩm số 1 thay thế hoàn toàn các loại thuốc bổ máu trên thị trường.\nĐặt mua ngay hôm nay!",
             3: "Thực Phẩm Bảo Vệ Sức Khỏe Vitamin D3 1000IU hỗ trợ tăng cường hấp thu Canxi và Photpho, hỗ trợ duy trì xương răng chắc khỏe mỗi ngày.\nThích hợp cho người lớn có nhu cầu bổ sung vi chất dinh dưỡng.\n---\nThực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
         };
 
-        function loadSampleAd(idx) {
-            document.getElementById('ad-text-editor').value = SAMPLE_ADS[idx];
-            executeAdAudit();
+        function pickAdPreset(idx) {
+            document.getElementById('ad-content-box').value = PRESETS[idx];
+            runAdAudit();
         }
 
-        async function executeAdAudit() {
-            const text = document.getElementById('ad-text-editor').value;
+        async function runAdAudit() {
+            const text = document.getElementById('ad-content-box').value;
             if (!text.trim()) return;
 
             const res = await fetch('/api/content/audit-radar', {
@@ -698,56 +654,46 @@
             });
             const audit = await res.json();
 
-            // Hiển thị điểm số
-            document.getElementById('audit-score-num').innerText = audit.total_score + ' / 100';
-            const badgeTag = document.getElementById('audit-badge-tag');
-            const card = document.getElementById('audit-score-card');
+            document.getElementById('audit-score-display').innerText = audit.total_score + ' / 100';
+            const badge = document.getElementById('audit-badge-display');
+            const wrap = document.getElementById('audit-score-wrap');
 
             if (audit.is_compliant) {
-                card.className = 'flex items-center justify-between p-3 rounded border bg-emerald-50 border-emerald-300 text-emerald-900';
-                badgeTag.className = 'px-3 py-1 rounded text-xs font-bold uppercase bg-emerald-700 text-white';
-                badgeTag.innerText = 'ĐẠT CHUẨN NGHỊ ĐỊNH 342';
+                wrap.className = 'flex items-center justify-between p-3 rounded border bg-emerald-50 border-emerald-300 text-emerald-900';
+                badge.className = 'px-3 py-1 rounded text-xs font-bold uppercase bg-emerald-700 text-white';
+                badge.innerText = 'ĐẠT CHUẨN NGHỊ ĐỊNH 342';
             } else {
-                card.className = 'flex items-center justify-between p-3 rounded border bg-rose-50 border-rose-300 text-rose-900';
-                badgeTag.className = 'px-3 py-1 rounded text-xs font-bold uppercase bg-rose-700 text-white';
-                badgeTag.innerText = 'VI PHẠM QUY ĐỊNH';
+                wrap.className = 'flex items-center justify-between p-3 rounded border bg-rose-50 border-rose-300 text-rose-900';
+                badge.className = 'px-3 py-1 rounded text-xs font-bold uppercase bg-rose-700 text-white';
+                badge.innerText = 'VI PHẠM QUY ĐỊNH';
             }
 
-            // 4 Tiêu chí
-            document.getElementById('res-layer-prohibited').innerHTML = audit.layers.prohibited.score === 25 ?
-                '<span class="text-emerald-700 font-bold">Không có vi phạm</span>' :
-                `<span class="text-rose-700 font-bold">Có ${audit.layers.prohibited.violations.length} từ cấm</span>`;
+            document.getElementById('res-prohibited').innerHTML = audit.layers.prohibited.score === 25 ?
+                '<span class="text-emerald-700">Không có vi phạm</span>' : `<span class="text-rose-700">Có ${audit.layers.prohibited.violations.length} từ cấm</span>`;
+            document.getElementById('res-exaggeration').innerHTML = audit.layers.exaggeration.score === 25 ?
+                '<span class="text-emerald-700">Đạt chuẩn mực</span>' : '<span class="text-rose-700">Cam kết quá mức</span>';
+            document.getElementById('res-disclaimer').innerHTML = audit.layers.disclaimer.present ?
+                '<span class="text-emerald-700">Đầy đủ cảnh báo</span>' : '<span class="text-rose-700">Thiếu cảnh báo luật</span>';
+            document.getElementById('res-boundary').innerHTML = audit.layers.boundary.valid_wording ?
+                '<span class="text-emerald-700">Đúng chuẩn TPBVSK</span>' : '<span class="text-amber-700">Cần chuẩn hóa</span>';
 
-            document.getElementById('res-layer-exaggeration').innerHTML = audit.layers.exaggeration.score === 25 ?
-                '<span class="text-emerald-700 font-bold">Đạt chuẩn mực</span>' :
-                '<span class="text-rose-700 font-bold">Cam kết quá mức</span>';
-
-            document.getElementById('res-layer-disclaimer').innerHTML = audit.layers.disclaimer.present ?
-                '<span class="text-emerald-700 font-bold">Đầy đủ cảnh báo</span>' :
-                '<span class="text-rose-700 font-bold">Thiếu cảnh báo luật</span>';
-
-            document.getElementById('res-layer-boundary').innerHTML = audit.layers.boundary.valid_wording ?
-                '<span class="text-emerald-700 font-bold">Đúng phạm vi TPBVSK</span>' :
-                '<span class="text-amber-700 font-bold">Cần chuẩn hóa từ ngữ</span>';
-
-            // Chi tiết lỗi
-            const detailsBox = document.getElementById('audit-details-list');
+            const msgBox = document.getElementById('audit-msg-box');
             if (audit.violations_detail.length > 0) {
-                let html = '<div class="font-bold text-rose-900 mb-1">Các từ ngữ bị cấm phát hiện trong bài viết:</div><ul class="space-y-1 text-rose-800">';
+                let html = '<div class="font-bold text-rose-900 mb-1">Các từ ngữ cấm phát hiện:</div><ul class="space-y-0.5 text-rose-800">';
                 audit.violations_detail.forEach(v => {
-                    html += `<li>• Từ cấm <b>"${v.term}"</b>: ${v.reason} (Đề xuất thay bằng: <i>${v.suggestion}</i>)</li>`;
+                    html += `<li>• Từ cấm <b>"${v.term}"</b>: ${v.reason} (Đề xuất: <i>${v.suggestion}</i>)</li>`;
                 });
                 html += '</ul>';
-                detailsBox.innerHTML = html;
+                msgBox.innerHTML = html;
             } else if (!audit.layers.disclaimer.present) {
-                detailsBox.innerHTML = '<div class="text-rose-800 font-semibold">Bài viết bắt buộc phải đính kèm câu: "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."</div>';
+                msgBox.innerHTML = '<div class="text-rose-800 font-semibold">Bắt buộc thêm câu cảnh báo: "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."</div>';
             } else {
-                detailsBox.innerHTML = '<div class="text-emerald-800 font-bold">Nội dung hoàn toàn đạt chuẩn quy định quảng cáo theo Nghị định 342/2025/NĐ-CP.</div>';
+                msgBox.innerHTML = '<div class="text-emerald-800 font-bold">Nội dung đạt chuẩn quy định quảng cáo theo Nghị định 342/2025/NĐ-CP.</div>';
             }
         }
 
-        async function executeAutoFix() {
-            const text = document.getElementById('ad-text-editor').value;
+        async function runAdAutoFix() {
+            const text = document.getElementById('ad-content-box').value;
             if (!text.trim()) return;
 
             const res = await fetch('/api/content/auto-fix', {
@@ -756,30 +702,190 @@
                 body: JSON.stringify({text: text, sku: 'DION-D3-1000'})
             });
             const data = await res.json();
+            document.getElementById('ad-content-box').value = data.fixed_text;
+            runAdAudit();
 
-            document.getElementById('ad-text-editor').value = data.fixed_text;
-            executeAdAudit();
-
-            const detailsBox = document.getElementById('audit-details-list');
-            let fixHtml = '<div class="font-bold text-emerald-900 mb-1">Các chỉnh sửa hệ thống đã tự động thực hiện:</div><ul class="space-y-0.5 text-emerald-800">';
-            data.changes_made.forEach(c => {
-                fixHtml += `<li>✓ ${c}</li>`;
-            });
-            fixHtml += '</ul>';
-            detailsBox.innerHTML = fixHtml;
+            const msgBox = document.getElementById('audit-msg-box');
+            let h = '<div class="font-bold text-emerald-900 mb-1">Các sửa đổi tự động đã thực hiện:</div><ul class="space-y-0.5 text-emerald-800">';
+            data.changes_made.forEach(c => { h += `<li>✓ ${c}</li>`; });
+            h += '</ul>';
+            msgBox.innerHTML = h;
         }
 
-        function copyAdText() {
-            const text = document.getElementById('ad-text-editor').value;
-            navigator.clipboard.writeText(text);
+        function copyAdContent() {
+            navigator.clipboard.writeText(document.getElementById('ad-content-box').value);
             alert("Đã sao chép nội dung bài viết!");
         }
 
-        // Khởi động
+        // --- 3. MARKET INTELLIGENCE ---
+        async function fetchMarketIntelligence() {
+            const res = await fetch('/api/market-intelligence');
+            const data = await res.json();
+
+            const trendsBody = document.getElementById('market-trends-tbody');
+            trendsBody.innerHTML = '';
+            data.trends.forEach(t => {
+                trendsBody.innerHTML += `
+                    <tr>
+                        <td class="table-cell font-bold text-slate-900">${t.category}</td>
+                        <td class="table-cell font-semibold text-corp-700">${t.trend_name}</td>
+                        <td class="table-cell font-bold text-emerald-700">${t.growth}</td>
+                        <td class="table-cell text-slate-600">${t.insight}</td>
+                        <td class="table-cell font-medium text-slate-900">${t.opportunity}</td>
+                    </tr>
+                `;
+            });
+
+            const compBody = document.getElementById('competitors-tbody');
+            compBody.innerHTML = '';
+            data.competitors.forEach(c => {
+                compBody.innerHTML += `
+                    <tr>
+                        <td class="table-cell font-bold text-slate-900">${c.name}</td>
+                        <td class="table-cell font-semibold text-slate-700">${c.product}</td>
+                        <td class="table-cell font-mono font-bold text-slate-800">${c.avg_price}</td>
+                        <td class="table-cell text-slate-600">${c.channels}</td>
+                        <td class="table-cell text-rose-700 font-medium">${c.weaknesses}</td>
+                        <td class="table-cell font-bold text-emerald-800">${c.dion_advantage}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        // --- 4. SALES COPILOT ---
+        function copilotAskPreset(q) {
+            document.getElementById('copilot-input-box').value = q;
+            execCopilot();
+        }
+
+        async function execCopilot() {
+            const q = document.getElementById('copilot-input-box').value;
+            if (!q) return;
+
+            const res = await fetch('/api/copilot/ask', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({query: q, sku: 'ALL'})
+            });
+            const data = await res.json();
+
+            const wrap = document.getElementById('copilot-answer-wrap');
+            const flag = document.getElementById('copilot-flag-box');
+            const txt = document.getElementById('copilot-response-text');
+
+            wrap.classList.remove('hidden');
+            if (data.type === 'ESCALATION') {
+                flag.className = 'font-bold text-xs p-3 rounded border bg-rose-50 border-rose-300 text-rose-900';
+                flag.innerText = 'CẢNH BÁO AN TOÀN Y TẾ: ĐỐI TƯỢNG NHẠY CẢM (THAI KỲ / BỆNH NỀN) — TỰ ĐỘNG CHUYỂN DƯỢC SĨ';
+            } else {
+                flag.className = 'font-bold text-xs p-3 rounded border bg-emerald-50 border-emerald-300 text-emerald-900';
+                flag.innerText = 'THÔNG TIN ĐÃ XÁC THỰC TỪ HỒ SƠ PHÁP LÝ ĐƯỢC DUYỆT';
+            }
+            txt.innerText = data.content;
+        }
+
+        function copyCopilotScriptText() {
+            navigator.clipboard.writeText(document.getElementById('copilot-response-text').innerText);
+            alert("Đã sao chép nội dung tư vấn!");
+        }
+
+        // --- 5. CUSTOMER CARE ---
+        async function fetchCustomerCare() {
+            const res = await fetch('/api/customer-care');
+            const data = await res.json();
+
+            const tbody = document.getElementById('customers-care-tbody');
+            tbody.innerHTML = '';
+            data.sample_customers.forEach(k => {
+                let statusBadge = '<span class="px-2 py-0.5 rounded bg-blue-100 text-blue-900 font-bold">' + k.status + '</span>';
+                if (k.status.includes('KHÓA')) {
+                    statusBadge = '<span class="px-2 py-0.5 rounded bg-rose-100 text-rose-900 font-bold">' + k.status + '</span>';
+                } else if (k.status.includes('TÁI MUA')) {
+                    statusBadge = '<span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-bold">' + k.status + '</span>';
+                }
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="table-cell font-mono font-bold text-corp-700">${k.id}</td>
+                        <td class="table-cell font-bold text-slate-900">${k.name}</td>
+                        <td class="table-cell text-slate-700">${k.sku_bought}</td>
+                        <td class="table-cell font-mono text-slate-600">${k.purchase_date}</td>
+                        <td class="table-cell font-bold">Ngày thứ ${k.day_in_cycle}</td>
+                        <td class="table-cell">${statusBadge}</td>
+                        <td class="table-cell font-medium text-slate-800">${k.suggested_message}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        // --- 6. RESEARCH INTELLIGENCE (PUBMED) ---
+        async function fetchResearchEvidence() {
+            const ing = document.getElementById('research-ingredient-select').value;
+            const res = await fetch(`/api/research-intelligence?ingredient=${encodeURIComponent(ing)}`);
+            const data = await res.json();
+
+            document.getElementById('research-summary-text').innerText = 'Tổng quan y văn: ' + data.scientific_summary;
+
+            const tbody = document.getElementById('research-evidence-tbody');
+            tbody.innerHTML = '';
+            data.evidence_table.forEach(e => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="table-cell font-mono font-bold text-corp-700">${e.pmid}</td>
+                        <td class="table-cell font-semibold text-slate-900">${e.study_type}</td>
+                        <td class="table-cell text-slate-600 font-medium">${e.sample_size}</td>
+                        <td class="table-cell text-slate-700 font-mono">${e.dosage}</td>
+                        <td class="table-cell text-slate-900 font-medium">${e.key_findings}</td>
+                        <td class="table-cell font-bold text-emerald-800">${e.evidence_grade}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        // --- KHO DỮ LIỆU CÔNG BỐ (CLAIMS HUB) ---
+        async function fetchClaimsHubData() {
+            const sku = document.getElementById('claims-hub-sku').value;
+            const res = await fetch('/api/products/' + sku);
+            const data = await res.json();
+            const prod = data.product;
+            const summary = data.summary;
+
+            document.getElementById('hub-stat-comm').innerText = summary.active_commercial + ' Hợp lệ';
+            document.getElementById('hub-stat-inter').innerText = summary.internal + ' Nội bộ';
+            document.getElementById('hub-stat-exp').innerText = summary.expired + ' Hết hạn';
+
+            document.getElementById('hub-sku').innerText = prod.sku;
+            document.getElementById('hub-name').innerText = prod.name;
+            document.getElementById('hub-reg').innerText = prod.regulatory_class;
+            document.getElementById('hub-cat').innerText = prod.category;
+            document.getElementById('hub-disclaimer').innerText = '"' + prod.mandatory_disclaimer + '"';
+
+            const tbody = document.getElementById('hub-claims-tbody');
+            tbody.innerHTML = '';
+            prod.claims.forEach(c => {
+                let sBadge = '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Hợp lệ</span>';
+                let zBadge = '<span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">Thương mại</span>';
+
+                if (c.status === 'EXPIRED') sBadge = '<span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold">Hết hạn (Khóa)</span>';
+                if (c.zone === 'INTERNAL_EXPERT') zBadge = '<span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-medium">Nội bộ</span>';
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="table-cell font-mono font-bold text-corp-700">${c.claim_id}</td>
+                        <td class="table-cell font-medium text-slate-900">${c.claim_text}</td>
+                        <td class="table-cell">${zBadge}</td>
+                        <td class="table-cell">${sBadge}</td>
+                        <td class="table-cell font-mono text-slate-600">${c.effective_until}</td>
+                        <td class="table-cell text-slate-600">${c.approved_by}</td>
+                    </tr>
+                `;
+            });
+        }
+
         window.onload = function() {
-            loadProductDetails();
-            loadLeadsTable();
-            loadSampleAd(1);
+            fetchLeads();
+            pickAdPreset(1);
+            fetchClaimsHubData();
         }
     </script>
 </body>
