@@ -1687,6 +1687,2874 @@
         "signal_detail": "Đăng tin tuyển dụng gấp ngày 05/02/2026. Quầy kệ còn trống 40-50%, chủ quầy chưa chốt đơn vị phân phối độc quyền.",
         "detection_date": "Tháng 02/2026"
       }
+    },
+    {
+      "lead_id": "LD-HN-012",
+      "name": "Nhà Thuốc GPP Thanh Xuân",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Hoàn Kiếm",
+      "address": "119 Hàng Bông, P. Hàng, Hoàn Kiếm, Hà Nội",
+      "phone": "0998105803",
+      "email": "lienhe.nhàthuốcgppthanhxuân26@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 88,
+      "fit_grade": "A+",
+      "trust_score": 85,
+      "trust_level": "GPP Sở Y tế Hà Nội (09/2024)",
+      "contact_score": 95,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 88,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Việt Đức ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-012-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Hoàn Kiếm",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Việt Đức & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-012-2024",
+        "issue_date": "10/09/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.06584, 105.84993",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Việt Đức ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0104848006",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Việt Đức ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-013",
+      "name": "Nhà Thuốc Sức Khỏe Việt",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Hoàn Kiếm",
+      "address": "242 Phan Chu Trinh, P. Phan, Hoàn Kiếm, Hà Nội",
+      "phone": "0998521092",
+      "email": "lienhe.nhàthuốcsứckhỏeviệt52@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 91,
+      "fit_grade": "A+",
+      "trust_score": 94,
+      "trust_level": "GPP Sở Y tế Hà Nội (05/2024)",
+      "contact_score": 97,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 94,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Quân Y 108 ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-013-2024",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên khu vực Hoàn Kiếm",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Quân Y 108 & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-013-2024",
+        "issue_date": "10/05/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.04645, 105.8768",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Quân Y 108 ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0105573068",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Quân Y 108 ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-014",
+      "name": "Nhà Thuốc Phúc An Khang (Mới khai trương)",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Hoàn Kiếm",
+      "address": "267 Lý Thường Kiệt, P. Lý, Hoàn Kiếm, Hà Nội",
+      "phone": "0982863435",
+      "email": "lienhe.nhàthuốcphúcankhang65@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 93,
+      "fit_grade": "A+",
+      "trust_score": 94,
+      "trust_level": "GPP Sở Y tế Hà Nội (02/2026)",
+      "contact_score": 88,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 90,
+      "intent_signals": "Mới mở 15-20 ngày gần BV Quân Y 108, quầy kệ còn 45% chỗ trống, đang tìm kiếm nhãn hàng có chính sách chiết khấu tốt.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-014-2026",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên khu vực Hoàn Kiếm",
+      "is_new_opened": true,
+      "nearby_facility": "Gần BV Quân Y 108 & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-014-2026",
+        "issue_date": "10/02/2026",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.03059, 105.81803",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Quân Y 108 ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0109682558",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển 02 Dược sĩ đứng quầy (Mới mở)",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Mới mở 15-20 ngày gần BV Quân Y 108, quầy kệ còn 45% chỗ trống, đang tìm kiếm nhãn hàng có chính sách chiết khấu tốt.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-015",
+      "name": "Nhà Thuốc Thăng Long",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Đống Đa",
+      "address": "190 Đê La Thành, P. Đê, Đống Đa, Hà Nội",
+      "phone": "0983228331",
+      "email": "lienhe.nhàthuốcthănglong10@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 89,
+      "fit_grade": "A+",
+      "trust_score": 94,
+      "trust_level": "GPP Sở Y tế Hà Nội (01/2024)",
+      "contact_score": 89,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 92,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Nhi Trung Ương ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-015-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Đống Đa",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Nhi Trung Ương & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-015-2024",
+        "issue_date": "10/01/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.02919, 105.84872",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Nhi Trung Ương ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0101192242",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Nhi Trung Ương ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-016",
+      "name": "Hiệu Thuốc Tư Nhân Phúc An Khang (Mới khai trương)",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Đống Đa",
+      "address": "92 Tôn Thất Tùng, P. Tôn, Đống Đa, Hà Nội",
+      "phone": "0976937563",
+      "email": "lienhe.hiệuthuốctưnhânphúcankhang83@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 97,
+      "fit_grade": "A+",
+      "trust_score": 91,
+      "trust_level": "GPP Sở Y tế Hà Nội (02/2026)",
+      "contact_score": 94,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 93,
+      "intent_signals": "Mới mở 15-20 ngày gần BV Bạch Mai, quầy kệ còn 45% chỗ trống, đang tìm kiếm nhãn hàng có chính sách chiết khấu tốt.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-016-2026",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên khu vực Đống Đa",
+      "is_new_opened": true,
+      "nearby_facility": "Gần BV Bạch Mai & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-016-2026",
+        "issue_date": "10/02/2026",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.03867, 105.86128",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Bạch Mai ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0101065727",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển 02 Dược sĩ đứng quầy (Mới mở)",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Mới mở 15-20 ngày gần BV Bạch Mai, quầy kệ còn 45% chỗ trống, đang tìm kiếm nhãn hàng có chính sách chiết khấu tốt.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-017",
+      "name": "Hiệu Thuốc Tư Nhân An Tâm",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Đống Đa",
+      "address": "202 Thái Hà, P. Thái, Đống Đa, Hà Nội",
+      "phone": "0998185741",
+      "email": "lienhe.hiệuthuốctưnhânantâm25@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 91,
+      "fit_grade": "A+",
+      "trust_score": 88,
+      "trust_level": "GPP Sở Y tế Hà Nội (05/2024)",
+      "contact_score": 95,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 94,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Tai Mũi Họng TW ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-017-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Đống Đa",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Tai Mũi Họng TW & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-017-2024",
+        "issue_date": "10/05/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.02831, 105.81475",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Tai Mũi Họng TW ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0102723800",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Tai Mũi Họng TW ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-018",
+      "name": "Nhà Thuốc GPP Hòa Bình",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Cầu Giấy",
+      "address": "290 Xuân Thủy, P. Xuân, Cầu Giấy, Hà Nội",
+      "phone": "0991182337",
+      "email": "lienhe.nhàthuốcgpphòabình29@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 89,
+      "fit_grade": "A+",
+      "trust_score": 93,
+      "trust_level": "GPP Sở Y tế Hà Nội (04/2024)",
+      "contact_score": 88,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 97,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV E Hà Nội ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-018-2024",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên khu vực Cầu Giấy",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV E Hà Nội & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-018-2024",
+        "issue_date": "10/04/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.04675, 105.83409",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV E Hà Nội ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0105133066",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV E Hà Nội ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-019",
+      "name": "Nhà Thuốc Hồng Ngọc",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Cầu Giấy",
+      "address": "336 Xuân Thủy, P. Xuân, Cầu Giấy, Hà Nội",
+      "phone": "0998325142",
+      "email": "lienhe.nhàthuốchồngngọc64@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 98,
+      "fit_grade": "A+",
+      "trust_score": 86,
+      "trust_level": "GPP Sở Y tế Hà Nội (08/2024)",
+      "contact_score": 90,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 99,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV E Hà Nội ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-019-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Cầu Giấy",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV E Hà Nội & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-019-2024",
+        "issue_date": "10/08/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.03212, 105.87479",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV E Hà Nội ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0109352151",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV E Hà Nội ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-020",
+      "name": "Hệ Thống Nhà Thuốc Hải Đăng",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Cầu Giấy",
+      "address": "135 Xuân Thủy, P. Xuân, Cầu Giấy, Hà Nội",
+      "phone": "0982372824",
+      "email": "lienhe.hệthốngnhàthuốchảiđăng86@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 97,
+      "fit_grade": "A+",
+      "trust_score": 92,
+      "trust_level": "GPP Sở Y tế Hà Nội (04/2024)",
+      "contact_score": 88,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 89,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV E Hà Nội ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-020-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Cầu Giấy",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV E Hà Nội & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-020-2024",
+        "issue_date": "10/04/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.03126, 105.86402",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV E Hà Nội ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0105199935",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV E Hà Nội ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-021",
+      "name": "Hệ Thống Nhà Thuốc Hòa Bình",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Hai Bà Trưng",
+      "address": "144 Phố Huế, P. Phố, Hai Bà Trưng, Hà Nội",
+      "phone": "0998956505",
+      "email": "lienhe.hệthốngnhàthuốchòabình70@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 86,
+      "fit_grade": "A+",
+      "trust_score": 95,
+      "trust_level": "GPP Sở Y tế Hà Nội (09/2024)",
+      "contact_score": 96,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 95,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Thanh Nhàn ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-021-2024",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên khu vực Hai Bà Trưng",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Thanh Nhàn & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-021-2024",
+        "issue_date": "10/09/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.0316, 105.85319",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Thanh Nhàn ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0102262508",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Thanh Nhàn ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-022",
+      "name": "Quầy Thuốc Đạt Chuẩn GPP Xuân Thủy",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Hai Bà Trưng",
+      "address": "207 Đại Cồ Việt, P. Đại, Hai Bà Trưng, Hà Nội",
+      "phone": "0991298061",
+      "email": "lienhe.quầythuốcđạtchuẩngppxuânthủy77@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 97,
+      "fit_grade": "A+",
+      "trust_score": 89,
+      "trust_level": "GPP Sở Y tế Hà Nội (01/2024)",
+      "contact_score": 98,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 92,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Dệt May ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-022-2024",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên khu vực Hai Bà Trưng",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Dệt May & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-022-2024",
+        "issue_date": "10/01/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.03511, 105.87063",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Dệt May ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0102289262",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Dệt May ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-023",
+      "name": "Quầy Thuốc Đạt Chuẩn GPP Hải Đăng (Mới khai trương)",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Hai Bà Trưng",
+      "address": "372 Đại Cồ Việt, P. Đại, Hai Bà Trưng, Hà Nội",
+      "phone": "0976887233",
+      "email": "lienhe.quầythuốcđạtchuẩngpphảiđăng86@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 93,
+      "fit_grade": "A+",
+      "trust_score": 88,
+      "trust_level": "GPP Sở Y tế Hà Nội (02/2026)",
+      "contact_score": 88,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 91,
+      "intent_signals": "Mới mở 15-20 ngày gần BV Phổi TW, quầy kệ còn 45% chỗ trống, đang tìm kiếm nhãn hàng có chính sách chiết khấu tốt.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-023-2026",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Hai Bà Trưng",
+      "is_new_opened": true,
+      "nearby_facility": "Gần BV Phổi TW & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-023-2026",
+        "issue_date": "10/02/2026",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.06191, 105.8247",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Phổi TW ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0104409151",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển 02 Dược sĩ đứng quầy (Mới mở)",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Mới mở 15-20 ngày gần BV Phổi TW, quầy kệ còn 45% chỗ trống, đang tìm kiếm nhãn hàng có chính sách chiết khấu tốt.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-024",
+      "name": "Quầy Thuốc Đạt Chuẩn GPP Bạch Mai",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Ba Đình",
+      "address": "184 Kim Mã, P. Kim, Ba Đình, Hà Nội",
+      "phone": "0976354923",
+      "email": "lienhe.quầythuốcđạtchuẩngppbạchmai48@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 86,
+      "fit_grade": "A+",
+      "trust_score": 92,
+      "trust_level": "GPP Sở Y tế Hà Nội (04/2024)",
+      "contact_score": 97,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 92,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Quân Y 354 ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-024-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Ba Đình",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Quân Y 354 & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-024-2024",
+        "issue_date": "10/04/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.04263, 105.84249",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Quân Y 354 ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0108200864",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Quân Y 354 ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-025",
+      "name": "Nhà Thuốc Sức Khỏe Việt",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Ba Đình",
+      "address": "106 Liễu Giai, P. Liễu, Ba Đình, Hà Nội",
+      "phone": "0912784906",
+      "email": "lienhe.nhàthuốcsứckhỏeviệt59@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 88,
+      "fit_grade": "A+",
+      "trust_score": 85,
+      "trust_level": "GPP Sở Y tế Hà Nội (06/2024)",
+      "contact_score": 89,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 93,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Phụ Sản Hà Nội (Đê La Thành) ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-025-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Ba Đình",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Phụ Sản Hà Nội (Đê La Thành) & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-025-2024",
+        "issue_date": "10/06/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.02709, 105.866",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Phụ Sản Hà Nội (Đê La Thành) ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0109644742",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Phụ Sản Hà Nội (Đê La Thành) ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-026",
+      "name": "Quầy Thuốc Đạt Chuẩn GPP Đại Nam",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Ba Đình",
+      "address": "209 Đội Cấn, P. Đội, Ba Đình, Hà Nội",
+      "phone": "0976866103",
+      "email": "lienhe.quầythuốcđạtchuẩngppđạinam20@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 89,
+      "fit_grade": "A+",
+      "trust_score": 96,
+      "trust_level": "GPP Sở Y tế Hà Nội (02/2024)",
+      "contact_score": 95,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 87,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Đa Khoa Xanh Pôn ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-026-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Ba Đình",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Đa Khoa Xanh Pôn & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-026-2024",
+        "issue_date": "10/02/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.05287, 105.86705",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Đa Khoa Xanh Pôn ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0103233886",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Đa Khoa Xanh Pôn ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-027",
+      "name": "Hệ Thống Nhà Thuốc Hải Đăng",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Hà Đông",
+      "address": "74 Phùng Hưng, P. Phùng, Hà Đông, Hà Nội",
+      "phone": "0912831192",
+      "email": "lienhe.hệthốngnhàthuốchảiđăng49@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 94,
+      "fit_grade": "A+",
+      "trust_score": 96,
+      "trust_level": "GPP Sở Y tế Hà Nội (08/2024)",
+      "contact_score": 93,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 96,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Đa Khoa Hà Đông ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-027-2024",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên khu vực Hà Đông",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Đa Khoa Hà Đông & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-027-2024",
+        "issue_date": "10/08/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.07822, 105.86743",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Đa Khoa Hà Đông ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0101737415",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Đa Khoa Hà Đông ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-028",
+      "name": "Hệ Thống Nhà Thuốc Sức Khỏe Việt",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Hà Đông",
+      "address": "143 Phùng Hưng, P. Phùng, Hà Đông, Hà Nội",
+      "phone": "0982241231",
+      "email": "lienhe.hệthốngnhàthuốcsứckhỏeviệt14@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 90,
+      "fit_grade": "A+",
+      "trust_score": 93,
+      "trust_level": "GPP Sở Y tế Hà Nội (07/2024)",
+      "contact_score": 95,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 93,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Quân Y 103 ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-028-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Hà Đông",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Quân Y 103 & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-028-2024",
+        "issue_date": "10/07/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.06486, 105.85292",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Quân Y 103 ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0106031464",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Quân Y 103 ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-029",
+      "name": "Nhà Thuốc GPP Phương Nam",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Hà Đông",
+      "address": "15 Phùng Hưng, P. Phùng, Hà Đông, Hà Nội",
+      "phone": "0991102923",
+      "email": "lienhe.nhàthuốcgppphươngnam29@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 90,
+      "fit_grade": "A+",
+      "trust_score": 87,
+      "trust_level": "GPP Sở Y tế Hà Nội (06/2024)",
+      "contact_score": 91,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 98,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Đa Khoa Hà Đông ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-029-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Hà Đông",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Đa Khoa Hà Đông & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-029-2024",
+        "issue_date": "10/06/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.04562, 105.82338",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Đa Khoa Hà Đông ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0106176936",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Đa Khoa Hà Đông ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-030",
+      "name": "Nhà Thuốc Việt Pháp",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Thanh Xuân",
+      "address": "331 Hoàng Đạo Thúy, P. Hoàng, Thanh Xuân, Hà Nội",
+      "phone": "0998383015",
+      "email": "lienhe.nhàthuốcviệtpháp80@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 91,
+      "fit_grade": "A+",
+      "trust_score": 85,
+      "trust_level": "GPP Sở Y tế Hà Nội (02/2024)",
+      "contact_score": 94,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 87,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Phục Hồi Chức Năng Hà Nội ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-030-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Thanh Xuân",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Phục Hồi Chức Năng Hà Nội & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-030-2024",
+        "issue_date": "10/02/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.01506, 105.8501",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Phục Hồi Chức Năng Hà Nội ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0108663329",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Phục Hồi Chức Năng Hà Nội ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-031",
+      "name": "Hiệu Thuốc Tư Nhân Gia Hưng (Mới khai trương)",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Thanh Xuân",
+      "address": "364 Nguyễn Trãi, P. Nguyễn, Thanh Xuân, Hà Nội",
+      "phone": "0998533028",
+      "email": "lienhe.hiệuthuốctưnhângiahưng16@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 96,
+      "fit_grade": "A+",
+      "trust_score": 93,
+      "trust_level": "GPP Sở Y tế Hà Nội (02/2026)",
+      "contact_score": 98,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 98,
+      "intent_signals": "Mới mở 15-20 ngày gần BV Phục Hồi Chức Năng Hà Nội, quầy kệ còn 45% chỗ trống, đang tìm kiếm nhãn hàng có chính sách chiết khấu tốt.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-031-2026",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên khu vực Thanh Xuân",
+      "is_new_opened": true,
+      "nearby_facility": "Gần BV Phục Hồi Chức Năng Hà Nội & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-031-2026",
+        "issue_date": "10/02/2026",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.0434, 105.82488",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Phục Hồi Chức Năng Hà Nội ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0105146745",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển 02 Dược sĩ đứng quầy (Mới mở)",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Mới mở 15-20 ngày gần BV Phục Hồi Chức Năng Hà Nội, quầy kệ còn 45% chỗ trống, đang tìm kiếm nhãn hàng có chính sách chiết khấu tốt.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-032",
+      "name": "Nhà Thuốc GPP Bảo An",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Thanh Xuân",
+      "address": "364 Lê Văn Lương, P. Lê, Thanh Xuân, Hà Nội",
+      "phone": "0998519410",
+      "email": "lienhe.nhàthuốcgppbảoan40@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 89,
+      "fit_grade": "A+",
+      "trust_score": 94,
+      "trust_level": "GPP Sở Y tế Hà Nội (02/2024)",
+      "contact_score": 91,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 95,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Xây Dựng ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-032-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Thanh Xuân",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Xây Dựng & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-032-2024",
+        "issue_date": "10/02/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.0325, 105.8599",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Xây Dựng ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0105022314",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Xây Dựng ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-033",
+      "name": "Hiệu Thuốc Tư Nhân An Nhiên",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Nam Từ Liêm",
+      "address": "198 Lê Đức Thọ, P. Lê, Nam Từ Liêm, Hà Nội",
+      "phone": "0912393247",
+      "email": "lienhe.hiệuthuốctưnhânannhiên47@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 92,
+      "fit_grade": "A+",
+      "trust_score": 96,
+      "trust_level": "GPP Sở Y tế Hà Nội (05/2024)",
+      "contact_score": 92,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 88,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Đa Khoa Hồng Ngọc Phúc Trường Minh ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-033-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Nam Từ Liêm",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Đa Khoa Hồng Ngọc Phúc Trường Minh & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-033-2024",
+        "issue_date": "10/05/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.04695, 105.81123",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Đa Khoa Hồng Ngọc Phúc Trường Minh ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0106059660",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Đa Khoa Hồng Ngọc Phúc Trường Minh ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-034",
+      "name": "Nhà Thuốc Bảo An",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Nam Từ Liêm",
+      "address": "97 Mễ Trì, P. Mễ, Nam Từ Liêm, Hà Nội",
+      "phone": "0912340616",
+      "email": "lienhe.nhàthuốcbảoan62@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 98,
+      "fit_grade": "A+",
+      "trust_score": 96,
+      "trust_level": "GPP Sở Y tế Hà Nội (06/2024)",
+      "contact_score": 93,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 92,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Thể Thao Việt Nam ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-034-2024",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên khu vực Nam Từ Liêm",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Thể Thao Việt Nam & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-034-2024",
+        "issue_date": "10/06/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.01858, 105.84633",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Thể Thao Việt Nam ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0101157949",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Thể Thao Việt Nam ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-035",
+      "name": "Hiệu Thuốc Tư Nhân An Nhiên",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Nam Từ Liêm",
+      "address": "85 Châu Văn Liêm, P. Châu, Nam Từ Liêm, Hà Nội",
+      "phone": "0983984459",
+      "email": "lienhe.hiệuthuốctưnhânannhiên31@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 94,
+      "fit_grade": "A+",
+      "trust_score": 95,
+      "trust_level": "GPP Sở Y tế Hà Nội (04/2024)",
+      "contact_score": 93,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 93,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Thể Thao Việt Nam ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-035-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Nam Từ Liêm",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Thể Thao Việt Nam & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-035-2024",
+        "issue_date": "10/04/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.03608, 105.86559",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Thể Thao Việt Nam ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0103193105",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Thể Thao Việt Nam ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-036",
+      "name": "Hệ Thống Nhà Thuốc Phương Nam",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Tây Hồ",
+      "address": "112 Yên Phụ, P. Yên, Tây Hồ, Hà Nội",
+      "phone": "0976815685",
+      "email": "lienhe.hệthốngnhàthuốcphươngnam88@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 87,
+      "fit_grade": "A+",
+      "trust_score": 94,
+      "trust_level": "GPP Sở Y tế Hà Nội (06/2024)",
+      "contact_score": 97,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 91,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Tim Hà Nội cơ sở 2 ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-036-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Tây Hồ",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Tim Hà Nội cơ sở 2 & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-036-2024",
+        "issue_date": "10/06/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.03623, 105.85947",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Tim Hà Nội cơ sở 2 ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0105829707",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Tim Hà Nội cơ sở 2 ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-037",
+      "name": "Nhà Thuốc Kim Mã (Mới khai trương)",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Tây Hồ",
+      "address": "379 Lạc Long Quân, P. Lạc, Tây Hồ, Hà Nội",
+      "phone": "0912992538",
+      "email": "lienhe.nhàthuốckimmã15@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 92,
+      "fit_grade": "A+",
+      "trust_score": 89,
+      "trust_level": "GPP Sở Y tế Hà Nội (02/2026)",
+      "contact_score": 91,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 97,
+      "intent_signals": "Mới mở 15-20 ngày gần BV Tim Hà Nội cơ sở 2, quầy kệ còn 45% chỗ trống, đang tìm kiếm nhãn hàng có chính sách chiết khấu tốt.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-037-2026",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên khu vực Tây Hồ",
+      "is_new_opened": true,
+      "nearby_facility": "Gần BV Tim Hà Nội cơ sở 2 & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-037-2026",
+        "issue_date": "10/02/2026",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.04365, 105.83893",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Tim Hà Nội cơ sở 2 ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0109505326",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển 02 Dược sĩ đứng quầy (Mới mở)",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Mới mở 15-20 ngày gần BV Tim Hà Nội cơ sở 2, quầy kệ còn 45% chỗ trống, đang tìm kiếm nhãn hàng có chính sách chiết khấu tốt.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-038",
+      "name": "Hệ Thống Nhà Thuốc Ngọc Khánh (Mới khai trương)",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Tây Hồ",
+      "address": "359 Yên Phụ, P. Yên, Tây Hồ, Hà Nội",
+      "phone": "0982473810",
+      "email": "lienhe.hệthốngnhàthuốcngọckhánh34@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 94,
+      "fit_grade": "A+",
+      "trust_score": 88,
+      "trust_level": "GPP Sở Y tế Hà Nội (02/2026)",
+      "contact_score": 98,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 95,
+      "intent_signals": "Mới mở 15-20 ngày gần BV Tim Hà Nội cơ sở 2, quầy kệ còn 45% chỗ trống, đang tìm kiếm nhãn hàng có chính sách chiết khấu tốt.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-038-2026",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên khu vực Tây Hồ",
+      "is_new_opened": true,
+      "nearby_facility": "Gần BV Tim Hà Nội cơ sở 2 & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-038-2026",
+        "issue_date": "10/02/2026",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.07082, 105.86439",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Tim Hà Nội cơ sở 2 ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0106826822",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển 02 Dược sĩ đứng quầy (Mới mở)",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Mới mở 15-20 ngày gần BV Tim Hà Nội cơ sở 2, quầy kệ còn 45% chỗ trống, đang tìm kiếm nhãn hàng có chính sách chiết khấu tốt.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-039",
+      "name": "Hệ Thống Nhà Thuốc Hưng Thịnh",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Long Biên",
+      "address": "21 Nguyễn Văn Cừ, P. Nguyễn, Long Biên, Hà Nội",
+      "phone": "0912322690",
+      "email": "lienhe.hệthốngnhàthuốchưngthịnh74@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 94,
+      "fit_grade": "A+",
+      "trust_score": 93,
+      "trust_level": "GPP Sở Y tế Hà Nội (01/2024)",
+      "contact_score": 91,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 92,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Đa Khoa Đức Giang ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-039-2024",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên khu vực Long Biên",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Đa Khoa Đức Giang & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-039-2024",
+        "issue_date": "10/01/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.04213, 105.8667",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Đa Khoa Đức Giang ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0102512404",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Đa Khoa Đức Giang ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-040",
+      "name": "Nhà Thuốc Ngọc Khánh (Mới khai trương)",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Long Biên",
+      "address": "33 Ngọc Lâm, P. Ngọc, Long Biên, Hà Nội",
+      "phone": "0991384239",
+      "email": "lienhe.nhàthuốcngọckhánh97@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 90,
+      "fit_grade": "A+",
+      "trust_score": 95,
+      "trust_level": "GPP Sở Y tế Hà Nội (02/2026)",
+      "contact_score": 88,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 92,
+      "intent_signals": "Mới mở 15-20 ngày gần BV Đa Khoa Tâm Anh Hà Nội, quầy kệ còn 45% chỗ trống, đang tìm kiếm nhãn hàng có chính sách chiết khấu tốt.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-040-2026",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên khu vực Long Biên",
+      "is_new_opened": true,
+      "nearby_facility": "Gần BV Đa Khoa Tâm Anh Hà Nội & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-040-2026",
+        "issue_date": "10/02/2026",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.01754, 105.81649",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Đa Khoa Tâm Anh Hà Nội ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0106403453",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển 02 Dược sĩ đứng quầy (Mới mở)",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Mới mở 15-20 ngày gần BV Đa Khoa Tâm Anh Hà Nội, quầy kệ còn 45% chỗ trống, đang tìm kiếm nhãn hàng có chính sách chiết khấu tốt.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HN-041",
+      "name": "Nhà Thuốc Bình Minh",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "Hà Nội",
+      "district": "Long Biên",
+      "address": "366 Ngô Gia Tự, P. Ngô, Long Biên, Hà Nội",
+      "phone": "0982704024",
+      "email": "lienhe.nhàthuốcbìnhminh75@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc tây",
+        "TPBVSK",
+        "Vitamin & Khoáng chất",
+        "Chăm sóc Mẹ & Bé"
+      ],
+      "fit_score": 90,
+      "fit_grade": "A+",
+      "trust_score": 88,
+      "trust_level": "GPP Sở Y tế Hà Nội (08/2024)",
+      "contact_score": 98,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 93,
+      "intent_signals": "Điểm bán lâu năm uy tín cách BV Đa Khoa Tâm Anh Hà Nội ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HN-041-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên khu vực Long Biên",
+      "is_new_opened": false,
+      "nearby_facility": "Gần BV Đa Khoa Tâm Anh Hà Nội & Khu dân cư sầm uất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế Hà Nội",
+        "license_no": "GPP-HN-041-2024",
+        "issue_date": "10/08/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API & OpenStreetMap",
+        "coordinates": "21.02316, 105.84306",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Đa Khoa Tâm Anh Hà Nội ~150-300m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0103766850",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Tuyển Dụng Dược Sĩ & Nhà Thuốc GPP Hà Nội",
+        "job_title": "Tuyển Dược sĩ tư vấn tăng ca",
+        "platform": "Nhóm Dược Sĩ Hà Nội (Facebook / Zalo)",
+        "signal_detail": "Điểm bán lâu năm uy tín cách BV Đa Khoa Tâm Anh Hà Nội ~200m, lưu lượng khách tìm kiếm vi chất bổ sung cho mẹ & bé rất cao.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-008",
+      "name": "Nhà Thuốc GPP Khánh An",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "Quận 5",
+      "address": "324 Trần Hưng Đạo, Quận 5, TP.HCM",
+      "phone": "028 38686793",
+      "email": "info.nhàthuốcgppkhánhan39@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 90,
+      "fit_grade": "A+",
+      "trust_score": 88,
+      "trust_level": "GPP Sở Y tế TP.HCM (09/2024)",
+      "contact_score": 95,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 96,
+      "intent_signals": "Điểm bán doanh số cao gần BV Chợ Rẫy & BV Đại học Y Dược TP.HCM, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-008-2024",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên Quận 5",
+      "is_new_opened": false,
+      "nearby_facility": "Sát cạnh BV Chợ Rẫy & BV Đại học Y Dược TP.HCM",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-008-2024",
+        "issue_date": "12/09/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.80582, 106.70841",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Chợ Rẫy & BV Đại học Y Dược TP.HCM ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0319123287",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Dược sĩ tư vấn ca sáng",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Điểm bán doanh số cao gần BV Chợ Rẫy & BV Đại học Y Dược TP.HCM, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-009",
+      "name": "Nhà Thuốc GPP Tâm An",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "Quận 5",
+      "address": "357 Nguyễn Chí Thanh, Quận 5, TP.HCM",
+      "phone": "028 38772108",
+      "email": "info.nhàthuốcgpptâman44@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 88,
+      "fit_grade": "A+",
+      "trust_score": 92,
+      "trust_level": "GPP Sở Y tế TP.HCM (09/2024)",
+      "contact_score": 94,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 95,
+      "intent_signals": "Điểm bán doanh số cao gần BV Chợ Rẫy & BV Đại học Y Dược TP.HCM, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-009-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên Quận 5",
+      "is_new_opened": false,
+      "nearby_facility": "Sát cạnh BV Chợ Rẫy & BV Đại học Y Dược TP.HCM",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-009-2024",
+        "issue_date": "12/09/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.80198, 106.67813",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Chợ Rẫy & BV Đại học Y Dược TP.HCM ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0313984626",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Dược sĩ tư vấn ca sáng",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Điểm bán doanh số cao gần BV Chợ Rẫy & BV Đại học Y Dược TP.HCM, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-010",
+      "name": "Nhà Thuốc GPP Minh Châu",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "Quận 10",
+      "address": "34 Ba Tháng Hai, Quận 10, TP.HCM",
+      "phone": "028 38355306",
+      "email": "info.nhàthuốcgppminhchâu72@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 96,
+      "fit_grade": "A+",
+      "trust_score": 98,
+      "trust_level": "GPP Sở Y tế TP.HCM (09/2024)",
+      "contact_score": 89,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 97,
+      "intent_signals": "Điểm bán doanh số cao gần BV Nhi Đồng 1 & BV 115, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-010-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên Quận 10",
+      "is_new_opened": false,
+      "nearby_facility": "Sát cạnh BV Nhi Đồng 1 & BV 115",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-010-2024",
+        "issue_date": "12/09/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.81828, 106.68869",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Nhi Đồng 1 & BV 115 ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0314204629",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Dược sĩ tư vấn ca sáng",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Điểm bán doanh số cao gần BV Nhi Đồng 1 & BV 115, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-011",
+      "name": "Nhà Thuốc GPP Vạn Hạnh",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "Quận 10",
+      "address": "106 Ba Tháng Hai, Quận 10, TP.HCM",
+      "phone": "028 39500561",
+      "email": "info.nhàthuốcgppvạnhạnh24@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 96,
+      "fit_grade": "A+",
+      "trust_score": 98,
+      "trust_level": "GPP Sở Y tế TP.HCM (09/2024)",
+      "contact_score": 96,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 98,
+      "intent_signals": "Điểm bán doanh số cao gần BV Nhi Đồng 1 & BV 115, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-011-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên Quận 10",
+      "is_new_opened": false,
+      "nearby_facility": "Sát cạnh BV Nhi Đồng 1 & BV 115",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-011-2024",
+        "issue_date": "12/09/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.78987, 106.66325",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Nhi Đồng 1 & BV 115 ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0316006679",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Dược sĩ tư vấn ca sáng",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Điểm bán doanh số cao gần BV Nhi Đồng 1 & BV 115, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-012",
+      "name": "Nhà Thuốc GPP Minh Châu",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "Quận 1",
+      "address": "207 Nguyễn Thị Minh Khai, Quận 1, TP.HCM",
+      "phone": "028 39101956",
+      "email": "info.nhàthuốcgppminhchâu20@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 90,
+      "fit_grade": "A+",
+      "trust_score": 96,
+      "trust_level": "GPP Sở Y tế TP.HCM (09/2024)",
+      "contact_score": 92,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 88,
+      "intent_signals": "Điểm bán doanh số cao gần BV Từ Dũ & BV Phụ Sản Quốc Tế, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-012-2024",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên Quận 1",
+      "is_new_opened": false,
+      "nearby_facility": "Sát cạnh BV Từ Dũ & BV Phụ Sản Quốc Tế",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-012-2024",
+        "issue_date": "12/09/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.76804, 106.72184",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Từ Dũ & BV Phụ Sản Quốc Tế ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0316173541",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Dược sĩ tư vấn ca sáng",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Điểm bán doanh số cao gần BV Từ Dũ & BV Phụ Sản Quốc Tế, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-013",
+      "name": "Nhà Thuốc GPP Minh Châu",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "Quận 1",
+      "address": "113 Nguyễn Thị Minh Khai, Quận 1, TP.HCM",
+      "phone": "028 39322727",
+      "email": "info.nhàthuốcgppminhchâu37@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 91,
+      "fit_grade": "A+",
+      "trust_score": 98,
+      "trust_level": "GPP Sở Y tế TP.HCM (09/2024)",
+      "contact_score": 89,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 91,
+      "intent_signals": "Điểm bán doanh số cao gần BV Từ Dũ & BV Phụ Sản Quốc Tế, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-013-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên Quận 1",
+      "is_new_opened": false,
+      "nearby_facility": "Sát cạnh BV Từ Dũ & BV Phụ Sản Quốc Tế",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-013-2024",
+        "issue_date": "12/09/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.8117, 106.68774",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Từ Dũ & BV Phụ Sản Quốc Tế ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0318054607",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Dược sĩ tư vấn ca sáng",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Điểm bán doanh số cao gần BV Từ Dũ & BV Phụ Sản Quốc Tế, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-014",
+      "name": "Nhà Thuốc GPP Vạn Hạnh (Mới khai trương)",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "Quận 3",
+      "address": "42 Cách Mạng Tháng Tám, Quận 3, TP.HCM",
+      "phone": "028 39519526",
+      "email": "info.nhàthuốcgppvạnhạnh(mớikhaitrương)40@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 95,
+      "fit_grade": "A+",
+      "trust_score": 95,
+      "trust_level": "GPP Sở Y tế TP.HCM (02/2026)",
+      "contact_score": 96,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 94,
+      "intent_signals": "Mới khai trương 2 tuần cách BV Da Liễu & BV Mắt TP.HCM ~100m, quầy kệ còn 40% chỗ trống, chủ quầy tìm nguồn hàng TPBVSK có chiết khấu tốt.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-014-2026",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên Quận 3",
+      "is_new_opened": true,
+      "nearby_facility": "Sát cạnh BV Da Liễu & BV Mắt TP.HCM",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-014-2026",
+        "issue_date": "12/02/2026",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.81465, 106.69498",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Da Liễu & BV Mắt TP.HCM ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0314175932",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Tuyển Dược sĩ đứng quầy",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Mới khai trương 2 tuần cách BV Da Liễu & BV Mắt TP.HCM ~100m, quầy kệ còn 40% chỗ trống, chủ quầy tìm nguồn hàng TPBVSK có chiết khấu tốt.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-015",
+      "name": "Nhà Thuốc GPP Khánh An (Mới khai trương)",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "Quận 3",
+      "address": "31 Cách Mạng Tháng Tám, Quận 3, TP.HCM",
+      "phone": "028 39569036",
+      "email": "info.nhàthuốcgppkhánhan(mớikhaitrương)77@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 96,
+      "fit_grade": "A+",
+      "trust_score": 88,
+      "trust_level": "GPP Sở Y tế TP.HCM (02/2026)",
+      "contact_score": 90,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 89,
+      "intent_signals": "Mới khai trương 2 tuần cách BV Da Liễu & BV Mắt TP.HCM ~100m, quầy kệ còn 40% chỗ trống, chủ quầy tìm nguồn hàng TPBVSK có chiết khấu tốt.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-015-2026",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên Quận 3",
+      "is_new_opened": true,
+      "nearby_facility": "Sát cạnh BV Da Liễu & BV Mắt TP.HCM",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-015-2026",
+        "issue_date": "12/02/2026",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.82068, 106.70511",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Da Liễu & BV Mắt TP.HCM ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0317770350",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Tuyển Dược sĩ đứng quầy",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Mới khai trương 2 tuần cách BV Da Liễu & BV Mắt TP.HCM ~100m, quầy kệ còn 40% chỗ trống, chủ quầy tìm nguồn hàng TPBVSK có chiết khấu tốt.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-016",
+      "name": "Nhà Thuốc GPP Vạn Hạnh (Mới khai trương)",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "Bình Thạnh",
+      "address": "431 Nơ Trang Long, Bình Thạnh, TP.HCM",
+      "phone": "028 38995471",
+      "email": "info.nhàthuốcgppvạnhạnh(mớikhaitrương)34@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 90,
+      "fit_grade": "A+",
+      "trust_score": 91,
+      "trust_level": "GPP Sở Y tế TP.HCM (02/2026)",
+      "contact_score": 91,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 97,
+      "intent_signals": "Mới khai trương 2 tuần cách BV Ung Bướu & BV Nhân Dân Gia Định ~100m, quầy kệ còn 40% chỗ trống, chủ quầy tìm nguồn hàng TPBVSK có chiết khấu tốt.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-016-2026",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên Bình Thạnh",
+      "is_new_opened": true,
+      "nearby_facility": "Sát cạnh BV Ung Bướu & BV Nhân Dân Gia Định",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-016-2026",
+        "issue_date": "12/02/2026",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.77945, 106.70658",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Ung Bướu & BV Nhân Dân Gia Định ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0316736492",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Tuyển Dược sĩ đứng quầy",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Mới khai trương 2 tuần cách BV Ung Bướu & BV Nhân Dân Gia Định ~100m, quầy kệ còn 40% chỗ trống, chủ quầy tìm nguồn hàng TPBVSK có chiết khấu tốt.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-017",
+      "name": "Nhà Thuốc GPP Tâm An (Mới khai trương)",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "Bình Thạnh",
+      "address": "174 Nơ Trang Long, Bình Thạnh, TP.HCM",
+      "phone": "028 38952820",
+      "email": "info.nhàthuốcgpptâman(mớikhaitrương)10@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 94,
+      "fit_grade": "A+",
+      "trust_score": 88,
+      "trust_level": "GPP Sở Y tế TP.HCM (02/2026)",
+      "contact_score": 91,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 97,
+      "intent_signals": "Mới khai trương 2 tuần cách BV Ung Bướu & BV Nhân Dân Gia Định ~100m, quầy kệ còn 40% chỗ trống, chủ quầy tìm nguồn hàng TPBVSK có chiết khấu tốt.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-017-2026",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên Bình Thạnh",
+      "is_new_opened": true,
+      "nearby_facility": "Sát cạnh BV Ung Bướu & BV Nhân Dân Gia Định",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-017-2026",
+        "issue_date": "12/02/2026",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.76099, 106.69792",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Ung Bướu & BV Nhân Dân Gia Định ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0313170550",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Tuyển Dược sĩ đứng quầy",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Mới khai trương 2 tuần cách BV Ung Bướu & BV Nhân Dân Gia Định ~100m, quầy kệ còn 40% chỗ trống, chủ quầy tìm nguồn hàng TPBVSK có chiết khấu tốt.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-018",
+      "name": "Nhà Thuốc GPP Vạn Hạnh (Mới khai trương)",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "Gò Vấp",
+      "address": "180 Quang Trung, Gò Vấp, TP.HCM",
+      "phone": "028 39636224",
+      "email": "info.nhàthuốcgppvạnhạnh(mớikhaitrương)54@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 96,
+      "fit_grade": "A+",
+      "trust_score": 89,
+      "trust_level": "GPP Sở Y tế TP.HCM (02/2026)",
+      "contact_score": 90,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 90,
+      "intent_signals": "Mới khai trương 2 tuần cách BV Quân Y 175 ~100m, quầy kệ còn 40% chỗ trống, chủ quầy tìm nguồn hàng TPBVSK có chiết khấu tốt.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-018-2026",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên Gò Vấp",
+      "is_new_opened": true,
+      "nearby_facility": "Sát cạnh BV Quân Y 175",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-018-2026",
+        "issue_date": "12/02/2026",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.77998, 106.66408",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Quân Y 175 ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0317083405",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Tuyển Dược sĩ đứng quầy",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Mới khai trương 2 tuần cách BV Quân Y 175 ~100m, quầy kệ còn 40% chỗ trống, chủ quầy tìm nguồn hàng TPBVSK có chiết khấu tốt.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-019",
+      "name": "Nhà Thuốc GPP Tâm An (Mới khai trương)",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "Gò Vấp",
+      "address": "231 Phan Văn Trị, Gò Vấp, TP.HCM",
+      "phone": "028 39751457",
+      "email": "info.nhàthuốcgpptâman(mớikhaitrương)29@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 88,
+      "fit_grade": "A+",
+      "trust_score": 96,
+      "trust_level": "GPP Sở Y tế TP.HCM (02/2026)",
+      "contact_score": 94,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 92,
+      "intent_signals": "Mới khai trương 2 tuần cách BV Quân Y 175 ~100m, quầy kệ còn 40% chỗ trống, chủ quầy tìm nguồn hàng TPBVSK có chiết khấu tốt.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-019-2026",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên Gò Vấp",
+      "is_new_opened": true,
+      "nearby_facility": "Sát cạnh BV Quân Y 175",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-019-2026",
+        "issue_date": "12/02/2026",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.8239, 106.68735",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Quân Y 175 ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0317616386",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Tuyển Dược sĩ đứng quầy",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Mới khai trương 2 tuần cách BV Quân Y 175 ~100m, quầy kệ còn 40% chỗ trống, chủ quầy tìm nguồn hàng TPBVSK có chiết khấu tốt.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-020",
+      "name": "Nhà Thuốc GPP Vạn Hạnh (Mới khai trương)",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "Tân Bình",
+      "address": "196 Cộng Hòa, Tân Bình, TP.HCM",
+      "phone": "028 38470425",
+      "email": "info.nhàthuốcgppvạnhạnh(mớikhaitrương)93@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 96,
+      "fit_grade": "A+",
+      "trust_score": 93,
+      "trust_level": "GPP Sở Y tế TP.HCM (02/2026)",
+      "contact_score": 89,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 94,
+      "intent_signals": "Mới khai trương 2 tuần cách BV Phụ Sản Mekong & BV Thống Nhất ~100m, quầy kệ còn 40% chỗ trống, chủ quầy tìm nguồn hàng TPBVSK có chiết khấu tốt.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-020-2026",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên Tân Bình",
+      "is_new_opened": true,
+      "nearby_facility": "Sát cạnh BV Phụ Sản Mekong & BV Thống Nhất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-020-2026",
+        "issue_date": "12/02/2026",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.81681, 106.72119",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Phụ Sản Mekong & BV Thống Nhất ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0318590038",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Tuyển Dược sĩ đứng quầy",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Mới khai trương 2 tuần cách BV Phụ Sản Mekong & BV Thống Nhất ~100m, quầy kệ còn 40% chỗ trống, chủ quầy tìm nguồn hàng TPBVSK có chiết khấu tốt.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-021",
+      "name": "Nhà Thuốc GPP Khánh An",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "Tân Bình",
+      "address": "252 Lý Thường Kiệt, Tân Bình, TP.HCM",
+      "phone": "028 38673672",
+      "email": "info.nhàthuốcgppkhánhan43@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 94,
+      "fit_grade": "A+",
+      "trust_score": 90,
+      "trust_level": "GPP Sở Y tế TP.HCM (09/2024)",
+      "contact_score": 93,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 93,
+      "intent_signals": "Điểm bán doanh số cao gần BV Phụ Sản Mekong & BV Thống Nhất, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-021-2024",
+      "status": "APPROVED",
+      "assigned_to": "Trình dược viên Tân Bình",
+      "is_new_opened": false,
+      "nearby_facility": "Sát cạnh BV Phụ Sản Mekong & BV Thống Nhất",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-021-2024",
+        "issue_date": "12/09/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.80024, 106.68114",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Phụ Sản Mekong & BV Thống Nhất ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0316635721",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Dược sĩ tư vấn ca sáng",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Điểm bán doanh số cao gần BV Phụ Sản Mekong & BV Thống Nhất, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-022",
+      "name": "Nhà Thuốc GPP Sài Gòn",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "TP. Thủ Đức",
+      "address": "241 Võ Văn Ngân, TP. Thủ Đức, TP.HCM",
+      "phone": "028 38396830",
+      "email": "info.nhàthuốcgppsàigòn34@gmail.com",
+      "has_website": false,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 97,
+      "fit_grade": "A+",
+      "trust_score": 90,
+      "trust_level": "GPP Sở Y tế TP.HCM (09/2024)",
+      "contact_score": 93,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 90,
+      "intent_signals": "Điểm bán doanh số cao gần BV Ung Bướu CS2 & BV TP Thủ Đức, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-022-2024",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên TP. Thủ Đức",
+      "is_new_opened": false,
+      "nearby_facility": "Sát cạnh BV Ung Bướu CS2 & BV TP Thủ Đức",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-022-2024",
+        "issue_date": "12/09/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.78379, 106.70407",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Ung Bướu CS2 & BV TP Thủ Đức ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0316553072",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Dược sĩ tư vấn ca sáng",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Điểm bán doanh số cao gần BV Ung Bướu CS2 & BV TP Thủ Đức, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+        "detection_date": "Tháng 02/2026"
+      }
+    },
+    {
+      "lead_id": "LD-HCM-023",
+      "name": "Nhà Thuốc GPP Phúc Lộc",
+      "type": "Nhà thuốc tư nhân",
+      "parent_chain": null,
+      "province": "TP. Hồ Chí Minh",
+      "district": "TP. Thủ Đức",
+      "address": "294 Lê Văn Việt, TP. Thủ Đức, TP.HCM",
+      "phone": "028 39477912",
+      "email": "info.nhàthuốcgppphúclộc38@gmail.com",
+      "has_website": true,
+      "categories": [
+        "Thuốc kê đơn",
+        "TPBVSK",
+        "Canxi hữu cơ",
+        "Vitamin D3",
+        "Dược mỹ phẩm"
+      ],
+      "fit_score": 89,
+      "fit_grade": "A+",
+      "trust_score": 92,
+      "trust_level": "GPP Sở Y tế TP.HCM (09/2024)",
+      "contact_score": 90,
+      "contact_channels": [
+        "Hotline Dược sĩ",
+        "Zalo Chủ quầy"
+      ],
+      "intent_score": 88,
+      "intent_signals": "Điểm bán doanh số cao gần BV Ung Bướu CS2 & BV TP Thủ Đức, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+      "source_url": "https://duocquocgia.com.vn/co-so-gpp/GPP-HCM-023-2024",
+      "status": "PENDING",
+      "assigned_to": "Trình dược viên TP. Thủ Đức",
+      "is_new_opened": false,
+      "nearby_facility": "Sát cạnh BV Ung Bướu CS2 & BV TP Thủ Đức",
+      "gpp_info": {
+        "source": "Cổng Thông Tin Dược Quốc Gia & Sở Y tế TP.HCM",
+        "license_no": "GPP-HCM-023-2024",
+        "issue_date": "12/09/2024",
+        "status": "Đạt chuẩn GPP (Đã thẩm định)",
+        "scope": "Bán lẻ thuốc & Thực phẩm bảo vệ sức khỏe"
+      },
+      "maps_info": {
+        "source": "Google Maps Places API",
+        "coordinates": "10.80594, 106.72078",
+        "place_status": "Place ID Verified",
+        "nearby_benchmark": "Cách BV Ung Bướu CS2 & BV TP Thủ Đức ~100m",
+        "storefront_verified": true
+      },
+      "tax_info": {
+        "source": "Tổng cục Thuế & Cổng ĐKKD Quốc Gia",
+        "tax_code": "0317677355",
+        "industry_code": "4772 — Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm và TPBVSK",
+        "legal_status": "Đang hoạt động, thuế kê khai hợp lệ",
+        "tax_compliance": "Hóa đơn điện tử đầy đủ"
+      },
+      "recruitment_info": {
+        "source": "Hội Dược Sĩ & Nhà Thuốc TP.HCM (Zalo / Facebook)",
+        "job_title": "Dược sĩ tư vấn ca sáng",
+        "platform": "Hội Dược Sĩ TP.HCM",
+        "signal_detail": "Điểm bán doanh số cao gần BV Ung Bướu CS2 & BV TP Thủ Đức, khách hàng tin tưởng tư vấn bổ sung vi chất cho bà bầu và trẻ nhỏ.",
+        "detection_date": "Tháng 02/2026"
+      }
     }
   ]
 }
