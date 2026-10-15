@@ -4,373 +4,297 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DION Healthcare AI — Enterprise Workspace</title>
-    <!-- Google Font: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
                     colors: {
-                        brand: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            800: '#1e40af',
-                            900: '#1e3a8a',
-                        }
+                        brand: { 50: '#eff6ff', 100: '#dbeafe', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af' }
                     }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
-        .hero-gradient { background: radial-gradient(circle at 85% 50%, #3b82f6 0%, #1d4ed8 60%, #1e40af 100%); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; font-size: 14px; }
+        .table-row-hover:hover { background-color: #f1f5f9; }
     </style>
 </head>
-<body class="text-slate-800 antialiased">
+<body class="text-slate-800 antialiased min-h-screen flex flex-col">
 
-    <!-- 1. TOP NAVBAR SANG TRỌNG GIỐNG THUEDO.NET -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Logo -->
+    <!-- 1. HEADER TINH GỌN CHUẨN SAAS (TẤT CẢ TRÊN 1 DÒNG, KHÔNG RƯỜM RÀ) -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 px-6 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Logo & Brand -->
             <div class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white text-2xl font-bold shadow-md shadow-brand-500/30">
+                <div class="w-9 h-9 rounded-lg bg-brand-700 flex items-center justify-center text-white text-lg font-bold shadow-sm">
                     💊
                 </div>
                 <div>
-                    <div class="text-xl font-extrabold text-brand-700 tracking-tight leading-none">DION AI</div>
-                    <div class="text-xs text-slate-400 font-medium tracking-wide">https://dion.healthcare.ai</div>
+                    <span class="text-base font-extrabold text-brand-700 tracking-tight">DION AI</span>
+                    <span class="text-xs text-slate-400 ml-1.5 hidden sm:inline">Enterprise Healthcare Hub</span>
                 </div>
             </div>
 
-            <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-bold tracking-wide">
-                <a href="#workspace" class="text-brand-700 border-b-2 border-brand-700 pb-1">TRANG CHỦ</a>
-                <a href="#workspace" onclick="switchTab('claims')" class="text-slate-600 hover:text-brand-700 transition">QUẢN LÝ CLAIMS</a>
-                <a href="#workspace" onclick="switchTab('leads')" class="text-slate-600 hover:text-brand-700 transition">TÌM KIẾM LEAD B2B</a>
-                <a href="#workspace" onclick="switchTab('copilot')" class="text-slate-600 hover:text-brand-700 transition">SALES COPILOT</a>
-                <a href="#workspace" onclick="switchTab('content')" class="text-slate-600 hover:text-brand-700 transition">CONTENT PHÁP LÝ</a>
+            <!-- Tab Navigation Ngay Trên Header -->
+            <nav class="flex items-center gap-1 sm:gap-2 bg-slate-100 p-1 rounded-xl">
+                <button onclick="switchTab('claims')" id="btn-claims" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-white text-brand-700 shadow-sm">
+                    🏛️ Claims Sản Phẩm
+                </button>
+                <button onclick="switchTab('leads')" id="btn-leads" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-brand-700">
+                    🎯 Tìm Lead B2B
+                </button>
+                <button onclick="switchTab('copilot')" id="btn-copilot" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-brand-700">
+                    💬 Sales Copilot
+                </button>
+                <button onclick="switchTab('content')" id="btn-content" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-brand-700">
+                    ✍️ Content NĐ 342
+                </button>
             </nav>
 
-            <!-- Action Button -->
-            <div>
-                <a href="#workspace" class="inline-flex items-center px-6 py-2.5 rounded-full text-sm font-bold text-white bg-brand-700 hover:bg-brand-800 shadow-lg shadow-brand-700/30 transition-all hover:-translate-y-0.5">
-                    Khám phá Demo
-                </a>
+            <!-- Status Indicator -->
+            <div class="hidden md:flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Chuẩn NĐ 342/2025</span>
             </div>
         </div>
     </header>
 
-    <!-- 2. HERO BANNER XANH DƯƠNG RỰC RỠ GIỐNG THUEDO.NET -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12">
-        <div class="hero-gradient rounded-3xl p-8 md:p-12 text-white shadow-2xl shadow-brand-700/30 flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div class="lg:max-w-2xl">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold mb-4 border border-white/20">
-                    <span>🛡️ CHUẨN NGHỊ ĐỊNH 342/2025/NĐ-CP</span>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-extrabold uppercase tracking-tight leading-tight mb-4">
-                    HỆ THỐNG ENTERPRISE AI DƯỢC PHẨM & TPBS SỐ 1 VIỆT NAM
-                </h1>
-                <p class="text-blue-100 text-sm md:text-base leading-relaxed mb-8">
-                    Nền tảng trí tuệ nhân tạo chuyên sâu giải quyết trọn vẹn 3 bài toán sống còn của doanh nghiệp: 
-                    tự động hóa tìm kiếm đối tác phân phối B2B (nhà thuốc, mẹ & bé), kiểm soát chặt chẽ Claims pháp lý sản phẩm, 
-                    và trợ lý bán hàng Sales Copilot có nguồn chứng cứ minh bạch.
-                </p>
-                <div class="flex flex-wrap items-center gap-4">
-                    <a href="#workspace" class="px-8 py-3.5 rounded-full bg-white text-brand-700 font-extrabold text-sm shadow-xl hover:shadow-2xl hover:bg-slate-50 transition-all hover:-translate-y-0.5">
-                        DÙNG THỬ BẢN DEMO NGAY
-                    </a>
-                    <span class="text-xs text-blue-200">✨ Dữ liệu kiểm chứng thực tế tại TP.HCM & Hà Nội</span>
-                </div>
-            </div>
+    <!-- 2. KHÔNG GIAN DỮ LIỆU CHÍNH (GỌN GÀNG, BAO QUÁT TOÀN DIỆN) -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-1 w-full">
 
-            <!-- Right Visual 3D Card -->
-            <div class="w-full lg:w-80 bg-white/10 backdrop-blur-xl border border-white/25 rounded-2xl p-6 text-center shadow-xl">
-                <div class="text-5xl mb-3">🛡️ 💊 📊</div>
-                <div class="font-extrabold text-base text-white uppercase tracking-wider mb-2">CHUẨN HÓA Y DƯỢC</div>
-                <div class="space-y-2 text-xs text-blue-100 text-left">
-                    <div class="flex items-center gap-2">
-                        <span class="text-emerald-400">✓</span> <span>100% Claims có trích dẫn pháp lý</span>
+        <!-- ==================== TAB 1: QUẢN LÝ CLAIMS SẢN PHẨM ==================== -->
+        <div id="tab-claims" class="tab-view space-y-4">
+            
+            <!-- Thanh Điều Khiển & Chỉ Số KPI Nhanh (1 Dòng duy nhất) -->
+            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <span class="text-xs font-bold text-slate-500 uppercase whitespace-nowrap">Chọn SKU:</span>
+                    <select id="claims-sku-select" onchange="loadProductClaims()" class="bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-800 outline-none focus:ring-2 focus:ring-brand-700">
+                        {% for p in products %}
+                        <option value="{{ p.sku }}">{{ p.sku }} — {{ p.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <!-- 3 Chỉ Số Rút Gọn (Chỉ giữ số liệu và badge, bỏ chữ rườm rà) -->
+                <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+                    <div class="flex items-center gap-2 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-lg">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        <span class="text-xs font-bold text-emerald-800" id="stat-commercial">2 Thương mại</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-emerald-400">✓</span> <span>4 Chiều Đánh Giá Lead Nhà Thuốc</span>
+                    <div class="flex items-center gap-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-lg">
+                        <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                        <span class="text-xs font-bold text-brand-800" id="stat-internal">1 Nội bộ</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-emerald-400">✓</span> <span>Tự động phát hiện vi phạm từ cấm</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-emerald-400">✓</span> <span>Tự động định tuyến ca nhạy cảm</span>
+                    <div class="flex items-center gap-2 bg-rose-50 border border-rose-200 px-3 py-1 rounded-lg">
+                        <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                        <span class="text-xs font-bold text-rose-800" id="stat-expired">1 Hết hạn</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- 3. SECTION HEADING CHUẨN XANH DƯƠNG -->
-    <div id="workspace" class="text-center max-w-3xl mx-auto px-4 mb-8">
-        <h2 class="text-2xl md:text-3xl font-extrabold text-brand-700 uppercase tracking-tight mb-2">
-            GIẢI PHÁP QUẢN LÝ CHUYÊN SÂU, ĐƠN GIẢN VÀ HIỆU QUẢ
-        </h2>
-        <p class="text-sm md:text-base text-slate-500">
-            Được thiết kế riêng cho ngành Dược phẩm & Thực phẩm Bảo vệ Sức khỏe, giúp vận hành đúng quy trình và mở rộng kênh bán thần tốc.
-        </p>
-    </div>
-
-    <!-- 4. WORKSPACE TABS CONTAINER -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        
-        <!-- Tabs Navigation -->
-        <div class="flex justify-center border-b border-slate-200 mb-8 overflow-x-auto">
-            <div class="flex gap-2 sm:gap-6">
-                <button onclick="switchTab('claims')" id="tab-btn-claims" class="tab-btn py-3 px-4 sm:px-6 font-bold text-xs sm:text-sm uppercase tracking-wider border-b-2 border-brand-700 text-brand-700 flex items-center gap-2">
-                    <span>🏛️</span> Quản lý Claims Sản phẩm
-                </button>
-                <button onclick="switchTab('leads')" id="tab-btn-leads" class="tab-btn py-3 px-4 sm:px-6 font-bold text-xs sm:text-sm uppercase tracking-wider border-b-2 border-transparent text-slate-500 hover:text-brand-700 flex items-center gap-2">
-                    <span>🎯</span> Tìm kiếm Lead B2B
-                </button>
-                <button onclick="switchTab('copilot')" id="tab-btn-copilot" class="tab-btn py-3 px-4 sm:px-6 font-bold text-xs sm:text-sm uppercase tracking-wider border-b-2 border-transparent text-slate-500 hover:text-brand-700 flex items-center gap-2">
-                    <span>💬</span> Trợ lý Sales Copilot
-                </button>
-                <button onclick="switchTab('content')" id="tab-btn-content" class="tab-btn py-3 px-4 sm:px-6 font-bold text-xs sm:text-sm uppercase tracking-wider border-b-2 border-transparent text-slate-500 hover:text-brand-700 flex items-center gap-2">
-                    <span>✍️</span> Content & Pháp lý
-                </button>
-            </div>
-        </div>
-
-        <!-- =================== TAB 1: CLAIMS HUB =================== -->
-        <div id="tab-content-claims" class="tab-pane">
-            <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm mb-6">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+            <!-- Dải Thông Tin Sản Phẩm & Disclaimer Thu Gọn -->
+            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs mb-3">
+                    <div><span class="text-slate-400 uppercase font-semibold">Phân loại:</span> <b class="text-brand-700" id="prod-reg">TPBVSK</b></div>
+                    <div><span class="text-slate-400 uppercase font-semibold">Ngành hàng:</span> <b class="text-slate-700" id="prod-cat">Vitamin</b></div>
+                    <div class="col-span-2"><span class="text-slate-400 uppercase font-semibold">Đối tượng:</span> <b class="text-slate-700" id="prod-users">Người lớn</b></div>
+                </div>
+                <div class="bg-amber-50/80 border-l-4 border-amber-500 p-2.5 rounded-r text-xs text-amber-900 flex items-center justify-between">
                     <div>
-                        <h3 class="text-lg font-extrabold text-slate-900 uppercase">Trung Tâm Quản Lý Tri Thức Sản Phẩm</h3>
-                        <p class="text-xs sm:text-sm text-slate-500">Phân tách 3 vùng tri thức và tự động vô hiệu hóa các Claims hết hạn theo NĐ 342/2025.</p>
+                        <span class="font-bold">⚠️ Cảnh báo bắt buộc (NĐ 342):</span> 
+                        <span id="prod-disclaimer" class="font-medium">"Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."</span>
                     </div>
-                    <div class="w-full md:w-80">
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Chọn sản phẩm tra cứu:</label>
-                        <select id="claims-sku-select" onchange="loadProductClaims()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-brand-700 outline-none">
+                    <span class="px-2 py-0.5 rounded bg-amber-200 text-amber-900 text-[11px] font-bold uppercase shrink-0 ml-2">Luật định</span>
+                </div>
+            </div>
+
+            <!-- Bảng Danh Sách Claims (Dạng Bảng Gọn Gàng Thay Vì Xếp Thẻ Dài Dòng) -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                <table class="w-full text-left text-xs">
+                    <thead class="bg-slate-50 text-slate-500 font-bold uppercase border-b border-slate-200">
+                        <tr>
+                            <th class="p-3 w-28">Mã Claim</th>
+                            <th class="p-3">Nội Dung Công Dụng Được Phê Duyệt</th>
+                            <th class="p-3 w-36">Vùng Dữ Liệu</th>
+                            <th class="p-3 w-32">Trạng Thái</th>
+                            <th class="p-3 w-28">Hạn Dùng</th>
+                            <th class="p-3 w-36">Người Duyệt</th>
+                        </tr>
+                    </thead>
+                    <tbody id="claims-table-body" class="divide-y divide-slate-100">
+                        <!-- Render Động -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 2: TÌM KIẾM LEAD B2B ==================== -->
+        <div id="tab-leads" class="tab-view hidden space-y-4">
+            
+            <!-- Bộ Lọc Nhanh Gọn 1 Dòng -->
+            <div class="bg-white rounded-xl border border-slate-200 p-3 shadow-sm flex flex-wrap items-center gap-3">
+                <input type="text" id="lead-keyword" placeholder="🔍 Tìm tên, địa chỉ, SĐT..." oninput="loadLeads()" class="flex-1 min-w-[200px] bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-xs outline-none focus:ring-2 focus:ring-brand-700">
+                
+                <select id="lead-province" onchange="loadLeads()" class="bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-xs outline-none focus:ring-2 focus:ring-brand-700 font-medium">
+                    <option value="Tất cả">Tất cả tỉnh thành</option>
+                    <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                    <option value="Hà Nội">Hà Nội</option>
+                </select>
+
+                <select id="lead-type" onchange="loadLeads()" class="bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-xs outline-none focus:ring-2 focus:ring-brand-700 font-medium">
+                    <option value="Tất cả">Tất cả loại hình</option>
+                    <option value="Nhà thuốc tư nhân">Nhà thuốc tư nhân</option>
+                    <option value="Chuỗi nhà thuốc">Chuỗi nhà thuốc</option>
+                    <option value="Cửa hàng Mẹ & Bé">Cửa hàng Mẹ & Bé</option>
+                    <option value="Đại lý phân phối">Đại lý phân phối</option>
+                </select>
+
+                <div class="flex items-center gap-2 pl-2 border-l border-slate-200">
+                    <span class="text-xs text-slate-500 font-bold">Tìm thấy: <b id="leads-count" class="text-brand-700">0</b></span>
+                    <button onclick="exportCSV()" class="px-3 py-1.5 rounded-lg bg-brand-700 text-white font-bold text-xs hover:bg-brand-800 transition shadow-sm">
+                        📥 Xuất CSV
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bố Cục Chia Đôi: Trái là Bảng Leads, Phải là Chi Tiết 4 Chiều (Bao quát toàn diện mà không cần cuộn trang) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                
+                <!-- Cột Bảng Lead (7 phần) -->
+                <div class="lg:col-span-7 bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[520px]">
+                    <div class="overflow-y-auto flex-1">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-slate-50 text-slate-500 font-bold uppercase sticky top-0 border-b border-slate-200 z-10">
+                                <tr>
+                                    <th class="p-2.5">Tên Đơn Vị</th>
+                                    <th class="p-2.5">Khu Vực</th>
+                                    <th class="p-2.5">Điểm Fit</th>
+                                    <th class="p-2.5">Trạng Thái</th>
+                                    <th class="p-2.5 text-right">Xem</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leads-compact-tbody" class="divide-y divide-slate-100">
+                                <!-- Render danh sách rút gọn -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Cột Chi Tiết Đánh Giá 4 Chiều & Thao Tác (5 phần) -->
+                <div class="lg:col-span-5 bg-white rounded-xl border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[520px]">
+                    <div id="lead-detail-panel" class="space-y-3 overflow-y-auto pr-1">
+                        <!-- Render động hồ sơ lead đang chọn -->
+                        <div class="text-center py-20 text-slate-400">
+                            <span>👈 Chọn 1 đối tác trong danh sách để xem hồ sơ năng lực 4 chiều.</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Nút Thao Tác Cố Định Dưới Cùng -->
+                    <div id="lead-actions-panel" class="pt-3 border-t border-slate-200 hidden flex items-center justify-between gap-2">
+                        <button onclick="changeCurrentLeadStatus('APPROVED')" class="flex-1 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition">
+                            ✅ Duyệt Tiếp Cận
+                        </button>
+                        <button onclick="changeCurrentLeadStatus('REJECTED')" class="px-4 py-2 rounded-lg bg-slate-100 hover:bg-rose-50 text-slate-600 hover:text-rose-700 font-bold text-xs border border-slate-200 transition">
+                            ❌ Loại Bỏ
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gom Cụm Chuỗi Chi Nhánh (Dạng Hộp Gọn Gàng) -->
+            <div id="chains-summary-box" class="bg-blue-50/70 border border-blue-200 rounded-xl p-3 text-xs flex flex-wrap items-center justify-between gap-2">
+                <!-- Render động -->
+            </div>
+        </div>
+
+        <!-- ==================== TAB 3: SALES COPILOT ==================== -->
+        <div id="tab-copilot" class="tab-view hidden max-w-4xl mx-auto space-y-4">
+            <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-bold text-slate-500 uppercase">Trợ lý hỏi đáp sản phẩm theo Claims đã duyệt:</span>
+                    <span class="text-xs text-brand-700 font-semibold">Tự động nhận diện rủi ro thai kỳ / bệnh nền</span>
+                </div>
+
+                <!-- Chips Gợi Ý Câu Hỏi Mẫu -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <button onclick="setCopilotQuery('Vitamin D3 có công dụng gì đối với xương và cơ thể?')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-brand-700 text-xs font-semibold text-slate-700 border border-slate-200 transition">
+                        🦴 1. Công dụng Vitamin D3
+                    </button>
+                    <button onclick="setCopilotQuery('Khách hàng đang mang thai 3 tháng đầu có dùng được Vitamin D3 không?')" class="px-3 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-xs font-bold text-rose-700 border border-rose-200 transition">
+                        ⚠️ 2. Hỏi dùng cho thai kỳ (Ca nhạy cảm)
+                    </button>
+                    <button onclick="setCopilotQuery('Viên sắt Fero-Plus có bị táo bón và buồn nôn không?')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-brand-700 text-xs font-semibold text-slate-700 border border-slate-200 transition">
+                        🩸 3. Hỏi tác dụng phụ Sắt Fero-Plus
+                    </button>
+                </div>
+
+                <!-- Input Chat -->
+                <div class="flex gap-2 mb-4">
+                    <input type="text" id="copilot-input" placeholder="Nhập câu hỏi tra cứu sản phẩm..." class="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-4 py-2 text-xs outline-none focus:ring-2 focus:ring-brand-700">
+                    <button onclick="sendCopilotQuery()" class="px-5 py-2 bg-brand-700 hover:bg-brand-800 text-white font-bold rounded-lg text-xs transition">
+                        Gửi Câu Hỏi
+                    </button>
+                </div>
+
+                <!-- Kết Quả Trả Về -->
+                <div id="copilot-result-container" class="hidden">
+                    <div id="copilot-badge" class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-2"></div>
+                    <div id="copilot-text" class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs leading-relaxed text-slate-800 whitespace-pre-line mb-2"></div>
+                    <button onclick="copyCopilotAnswer()" class="text-xs font-bold text-brand-700 hover:underline">📋 Sao chép câu trả lời</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 4: CONTENT GENERATOR ==================== -->
+        <div id="tab-content" class="tab-view hidden space-y-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <!-- Cột Trái Cấu Hình (4 phần) -->
+                <div class="lg:col-span-4 bg-white rounded-xl border border-slate-200 p-4 shadow-sm space-y-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sản phẩm viết bài:</label>
+                        <select id="content-sku" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-xs font-medium outline-none">
                             {% for p in products %}
                             <option value="{{ p.sku }}">{{ p.sku }} - {{ p.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
-                </div>
-
-                <!-- 3 Vùng Tri Thức Metrics -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
-                    <div class="bg-emerald-50/60 border border-emerald-200 rounded-2xl p-5">
-                        <div class="text-xs font-extrabold text-emerald-800 uppercase tracking-wider">🟢 Vùng Thương Mại Đã Duyệt</div>
-                        <div class="text-3xl font-extrabold text-emerald-700 mt-2" id="metric-commercial">2 Claims</div>
-                        <div class="text-xs text-emerald-600 mt-1">Được phép sử dụng cho Chatbot & Marketing công khai</div>
-                    </div>
-                    <div class="bg-blue-50/60 border border-blue-200 rounded-2xl p-5">
-                        <div class="text-xs font-extrabold text-brand-800 uppercase tracking-wider">🔵 Vùng Chuyên Môn Nội Bộ</div>
-                        <div class="text-3xl font-extrabold text-brand-700 mt-2" id="metric-internal">1 Claims</div>
-                        <div class="text-xs text-brand-600 mt-1">Cơ chế phân tử & hồ sơ kỹ thuật — Không đưa ra ngoài</div>
-                    </div>
-                    <div class="bg-rose-50/60 border border-rose-200 rounded-2xl p-5">
-                        <div class="text-xs font-extrabold text-rose-800 uppercase tracking-wider">🔴 Claims Đã Hết Hạn</div>
-                        <div class="text-3xl font-extrabold text-rose-700 mt-2" id="metric-expired">1 Claims</div>
-                        <div class="text-xs text-rose-600 mt-1">Tự động khóa — AI bị chặn tuyệt đối không cho phép dùng</div>
-                    </div>
-                </div>
-
-                <!-- Chi tiết sản phẩm & Disclaimer -->
-                <div class="bg-slate-50 rounded-xl p-5 border border-slate-200 mb-6" id="product-info-box">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-xs sm:text-sm">
-                        <div><span class="text-slate-400 font-bold block uppercase text-xs">Mã SKU:</span> <b class="text-slate-800" id="info-sku">DION-D3-1000</b></div>
-                        <div><span class="text-slate-400 font-bold block uppercase text-xs">Phân loại:</span> <b class="text-brand-700" id="info-reg">TPBVSK</b></div>
-                        <div><span class="text-slate-400 font-bold block uppercase text-xs">Ngành hàng:</span> <b class="text-slate-800" id="info-cat">Vitamin & Khoáng chất</b></div>
-                        <div><span class="text-slate-400 font-bold block uppercase text-xs">Đối tượng:</span> <b class="text-slate-800" id="info-users">Người lớn, thiếu Canxi</b></div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-slate-200">
-                        <div class="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r-lg text-xs sm:text-sm text-amber-900 font-medium">
-                            <b class="text-amber-800">⚠️ Câu Disclaimer bắt buộc theo NĐ 342/2025:</b>
-                            <span id="info-disclaimer" class="block mt-1">"Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Danh sách Claims Cards -->
-                <div class="space-y-4" id="claims-list-container">
-                    <!-- Sẽ render động từ API -->
-                </div>
-            </div>
-        </div>
-
-        <!-- =================== TAB 2: LEAD DISCOVERY =================== -->
-        <div id="tab-content-leads" class="tab-pane hidden">
-            <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm mb-6">
-                <div class="mb-6">
-                    <h3 class="text-lg font-extrabold text-slate-900 uppercase">B2B Partner Discovery & Lead Workspace</h3>
-                    <p class="text-xs sm:text-sm text-slate-500">Tìm kiếm và xếp hạng đối tác B2B (Nhà thuốc, Shop Mẹ & Bé, Đại lý) theo Mô hình 4 Chiều định lượng.</p>
-                </div>
-
-                <!-- Bộ Lọc -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                    <div class="md:col-span-2">
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tìm kiếm nhanh:</label>
-                        <input type="text" id="lead-keyword" placeholder="Nhập tên, đường, số điện thoại..." oninput="loadLeads()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-brand-700">
-                    </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tỉnh / Thành:</label>
-                        <select id="lead-province" onchange="loadLeads()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-brand-700">
-                            <option value="Tất cả">Tất cả tỉnh thành</option>
-                            <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
-                            <option value="Hà Nội">Hà Nội</option>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Kênh xuất bản:</label>
+                        <select id="content-channel" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-xs outline-none">
+                            <option value="Facebook Post">Facebook Post</option>
+                            <option value="Email Giới thiệu Đối tác">Email B2B</option>
+                            <option value="Zalo OA Broadcast">Zalo OA</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Loại hình đối tác:</label>
-                        <select id="lead-type" onchange="loadLeads()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-brand-700">
-                            <option value="Tất cả">Tất cả loại hình</option>
-                            <option value="Nhà thuốc tư nhân">Nhà thuốc tư nhân</option>
-                            <option value="Chuỗi nhà thuốc">Chuỗi nhà thuốc</option>
-                            <option value="Cửa hàng Mẹ & Bé">Cửa hàng Mẹ & Bé</option>
-                            <option value="Đại lý phân phối">Đại lý phân phối</option>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Văn phong:</label>
+                        <select id="content-tone" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-xs outline-none">
+                            <option value="Khoa học & Chuyên môn">Khoa học & Chuyên môn</option>
+                            <option value="Truyền cảm hứng & Thân thiện">Thân thiện & Đời sống</option>
                         </select>
                     </div>
-                </div>
-
-                <!-- Thống kê chiến dịch -->
-                <div class="bg-gradient-to-r from-brand-700 to-brand-600 rounded-xl p-4 text-white flex flex-wrap items-center justify-between gap-4 mb-6">
-                    <div class="flex items-center gap-6">
-                        <div><span class="text-xs text-blue-200 uppercase block">Tổng Lead</span> <b class="text-2xl font-extrabold" id="leads-total">0</b></div>
-                        <div><span class="text-xs text-blue-200 uppercase block">Ưu tiên Hạng A+</span> <b class="text-2xl font-extrabold text-emerald-300" id="leads-grade-a">0</b></div>
-                        <div><span class="text-xs text-blue-200 uppercase block">Đã Phê Duyệt</span> <b class="text-2xl font-extrabold text-cyan-300" id="leads-approved">0</b></div>
-                    </div>
-                    <button onclick="exportCSV()" class="px-5 py-2 rounded-full bg-white text-brand-700 font-bold text-xs shadow hover:bg-slate-100 transition">
-                        📥 Xuất File CSV / Excel
+                    <button onclick="generateContent()" class="w-full py-2.5 bg-brand-700 hover:bg-brand-800 text-white font-bold rounded-lg text-xs shadow-sm transition">
+                        ✨ Tạo Bản Nháp Ngay
                     </button>
                 </div>
 
-                <!-- Bảng Danh Sách Lead -->
-                <div class="overflow-x-auto rounded-xl border border-slate-200 mb-8">
-                    <table class="w-full text-left text-xs sm:text-sm">
-                        <thead class="bg-slate-100 text-slate-600 font-bold uppercase border-b border-slate-200">
-                            <tr>
-                                <th class="p-3">Mã</th>
-                                <th class="p-3">Tên Đơn Vị</th>
-                                <th class="p-3">Loại Hình</th>
-                                <th class="p-3">Địa Chỉ</th>
-                                <th class="p-3">Điện Thoại</th>
-                                <th class="p-3">Điểm Phù Hợp</th>
-                                <th class="p-3">Trạng Thái</th>
-                                <th class="p-3 text-right">Thao Tác</th>
-                            </tr>
-                        </thead>
-                        <tbody id="leads-table-body" class="divide-y divide-slate-200">
-                            <!-- Dữ liệu render động -->
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Gom Cụm Chuỗi Nhận Diện (Deduplication) -->
-                <div id="chains-container" class="space-y-3">
-                    <!-- Render động các chuỗi -->
-                </div>
-            </div>
-        </div>
-
-        <!-- =================== TAB 3: SALES COPILOT =================== -->
-        <div id="tab-content-copilot" class="tab-pane hidden">
-            <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm mb-6 max-w-4xl mx-auto">
-                <div class="mb-6">
-                    <h3 class="text-lg font-extrabold text-slate-900 uppercase">Trợ Lý Bán Hàng & Tư Vấn Y Dược (Sales Copilot)</h3>
-                    <p class="text-xs sm:text-sm text-slate-500">100% câu trả lời được kiểm soát từ Claims đã duyệt, tự động cảnh báo câu hỏi thai kỳ/bệnh nền để chuyển Dược sĩ.</p>
-                </div>
-
-                <!-- Gợi ý câu hỏi -->
-                <div class="mb-4">
-                    <span class="text-xs font-bold text-slate-400 uppercase block mb-2">Thử nghiệm các tình huống kịch bản:</span>
-                    <div class="flex flex-wrap gap-2">
-                        <button onclick="setQuery('Vitamin D3 có công dụng gì đối với xương và cơ thể?')" class="px-4 py-2 rounded-full bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-xs font-bold text-slate-700 transition border border-slate-200">
-                            🦴 1. Công dụng D3 là gì?
-                        </button>
-                        <button onclick="setQuery('Khách hàng đang mang thai 3 tháng đầu có dùng được Vitamin D3 không?')" class="px-4 py-2 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold transition border border-rose-200">
-                            ⚠️ 2. Bầu 3 tháng uống được không?
-                        </button>
-                        <button onclick="setQuery('Viên sắt Fero-Plus có bị táo bón và buồn nôn không?')" class="px-4 py-2 rounded-full bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-xs font-bold text-slate-700 transition border border-slate-200">
-                            🩸 3. Sắt Fero-Plus có táo bón không?
-                        </button>
+                <!-- Cột Phải Soạn Thảo & Thẩm Định (8 phần) -->
+                <div class="lg:col-span-8 bg-white rounded-xl border border-slate-200 p-4 shadow-sm space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-slate-500 uppercase">Khung soạn thảo bài viết:</span>
+                        <span class="text-[11px] text-slate-400">Gõ thử các từ cấm ('chữa bệnh', 'khỏi hẳn') để xem cảnh báo</span>
                     </div>
-                </div>
-
-                <!-- Khung Chat -->
-                <div class="flex gap-2 mb-6">
-                    <input type="text" id="copilot-input" placeholder="Nhập câu hỏi của khách hàng / nhân viên tại đây..." class="flex-1 bg-slate-50 border border-slate-300 rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-700">
-                    <button onclick="sendCopilotQuery()" class="px-8 py-3 bg-brand-700 hover:bg-brand-800 text-white font-extrabold rounded-full text-sm shadow-md transition">
-                        Gửi Câu Hỏi
-                    </button>
-                </div>
-
-                <!-- Kết Quả Trả Lời -->
-                <div id="copilot-response-box" class="hidden">
-                    <div id="copilot-badge" class="inline-block px-3 py-1 rounded-full text-xs font-extrabold uppercase mb-3"></div>
-                    <div id="copilot-content" class="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-sm leading-relaxed text-slate-800 mb-3 whitespace-pre-line"></div>
-                    <button onclick="copyCopilotAnswer()" class="text-xs font-bold text-brand-700 hover:underline">📋 Sao chép câu trả lời để gửi khách</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- =================== TAB 4: CONTENT GENERATOR =================== -->
-        <div id="tab-content-content" class="tab-pane hidden">
-            <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm mb-6">
-                <div class="mb-6">
-                    <h3 class="text-lg font-extrabold text-slate-900 uppercase">Sản Xuất Nội Dung & Bộ Lọc Pháp Lý NĐ 342</h3>
-                    <p class="text-xs sm:text-sm text-slate-500">Tạo bản nháp truyền thông từ Claim hợp lệ và quét phát hiện vi phạm từ cấm thời gian thực.</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Cột Trái: Cấu Hình -->
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Chọn sản phẩm:</label>
-                            <select id="content-sku" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm font-semibold outline-none focus:ring-2 focus:ring-brand-700">
-                                {% for p in products %}
-                                <option value="{{ p.sku }}">{{ p.sku }} - {{ p.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Kênh xuất bản:</label>
-                            <select id="content-channel" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-brand-700">
-                                <option value="Facebook Post">Facebook Post</option>
-                                <option value="Email Giới thiệu Đối tác">Email Giới thiệu B2B</option>
-                                <option value="Zalo OA Broadcast">Zalo OA Broadcast</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Văn phong:</label>
-                            <select id="content-tone" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-brand-700">
-                                <option value="Khoa học & Chuyên môn">Khoa học & Chuyên môn</option>
-                                <option value="Truyền cảm hứng & Thân thiện">Truyền cảm hứng & Thân thiện</option>
-                                <option value="Tập trung B2B Đối tác">Tập trung B2B Đối tác</option>
-                            </select>
-                        </div>
-                        <button onclick="generateContent()" class="w-full py-3.5 bg-brand-700 hover:bg-brand-800 text-white font-extrabold rounded-full text-sm shadow-md transition">
-                            ✨ Tạo Bản Nháp Marketing
-                        </button>
-                    </div>
-
-                    <!-- Cột Phải: Bản Soạn Thảo & Thẩm Định -->
-                    <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Khung soạn thảo (Thử gõ từ 'chữa bệnh', 'khỏi hẳn' để xem cảnh báo):</label>
-                        <textarea id="content-editor" rows="10" oninput="validateContent()" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-4 text-xs sm:text-sm font-medium leading-relaxed outline-none focus:ring-2 focus:ring-brand-700"></textarea>
-                        
-                        <!-- Box Thẩm Định Pháp Lý -->
-                        <div id="compliance-result-box" class="mt-4 p-4 rounded-xl border">
-                            <!-- Render động kết quả thẩm định -->
-                        </div>
+                    <textarea id="content-editor" rows="8" oninput="validateContent()" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-xs leading-relaxed outline-none focus:ring-2 focus:ring-brand-700 font-medium"></textarea>
+                    
+                    <div id="compliance-box" class="p-3 rounded-lg border text-xs">
+                        <!-- Render trạng thái tuân thủ -->
                     </div>
                 </div>
             </div>
@@ -378,31 +302,28 @@
 
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-white border-t border-slate-200 py-8 text-center text-xs text-slate-400">
-        <div class="max-w-7xl mx-auto px-4">
-            <p class="font-bold text-slate-600">DION HEALTHCARE AI — ENTERPRISE CONSULTING SOLUTION</p>
-            <p class="mt-1">Phát triển bởi Digital Innovation (DION) · Tuân thủ Luật Quảng cáo & NĐ 342/2025/NĐ-CP</p>
-        </div>
+    <!-- FOOTER GỌN NHẸ -->
+    <footer class="bg-white border-t border-slate-200 py-3 text-center text-xs text-slate-400 mt-auto">
+        <span>DION AI Platform · Chuẩn Nghị Định 342/2025/NĐ-CP & Luật 91/2025/QH15</span>
     </footer>
 
-    <!-- JAVASCRIPT XỬ LÝ TƯƠNG TÁC SIÊU MƯỢT -->
+    <!-- SCRIPT XỬ LÝ GỌN NHẸ & TỐC ĐỘ CAO -->
     <script>
-        // 1. Chuyển Tab Mượt Mà
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('border-brand-700', 'text-brand-700');
-                btn.classList.add('border-transparent', 'text-slate-500');
+        // 1. Chuyển Tab
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-view').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('bg-white', 'text-brand-700', 'shadow-sm');
+                b.classList.add('text-slate-600');
             });
 
-            document.getElementById('tab-content-' + tabName).classList.remove('hidden');
-            const activeBtn = document.getElementById('tab-btn-' + tabName);
-            activeBtn.classList.remove('border-transparent', 'text-slate-500');
-            activeBtn.classList.add('border-brand-700', 'text-brand-700');
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('text-slate-600');
+            activeBtn.classList.add('bg-white', 'text-brand-700', 'shadow-sm');
         }
 
-        // 2. Load Dữ liệu Claims Sản Phẩm
+        // 2. Tab Claims
         async function loadProductClaims() {
             const sku = document.getElementById('claims-sku-select').value;
             const res = await fetch('/api/products/' + sku);
@@ -410,55 +331,45 @@
             const prod = data.product;
             const summary = data.summary;
 
-            // Update Metrics
-            document.getElementById('metric-commercial').innerText = summary.active_commercial + ' Claims';
-            document.getElementById('metric-internal').innerText = summary.internal + ' Claims';
-            document.getElementById('metric-expired').innerText = summary.expired + ' Claims';
+            document.getElementById('stat-commercial').innerText = summary.active_commercial + ' Thương mại';
+            document.getElementById('stat-internal').innerText = summary.internal + ' Nội bộ';
+            document.getElementById('stat-expired').innerText = summary.expired + ' Hết hạn';
 
-            // Update Info
-            document.getElementById('info-sku').innerText = prod.sku;
-            document.getElementById('info-reg').innerText = prod.regulatory_class;
-            document.getElementById('info-cat').innerText = prod.category;
-            document.getElementById('info-users').innerText = prod.target_users.join(', ');
-            document.getElementById('info-disclaimer').innerText = '"' + prod.mandatory_disclaimer + '"';
+            document.getElementById('prod-reg').innerText = prod.regulatory_class;
+            document.getElementById('prod-cat').innerText = prod.category;
+            document.getElementById('prod-users').innerText = prod.target_users.join(', ');
+            document.getElementById('prod-disclaimer').innerText = '"' + prod.mandatory_disclaimer + '"';
 
-            // Render Claims List
-            const container = document.getElementById('claims-list-container');
-            container.innerHTML = '';
+            const tbody = document.getElementById('claims-table-body');
+            tbody.innerHTML = '';
             prod.claims.forEach(c => {
-                let badgeClass = 'bg-emerald-100 text-emerald-800 border-emerald-300';
-                let badgeText = '✅ HỢP LỆ — ĐƯỢC PHÉP DÙNG';
-                let borderClass = 'border-l-4 border-l-emerald-500';
+                let badge = '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[11px]">Hợp Lệ</span>';
+                let zoneBadge = '<span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[11px]">Thương Mại</span>';
 
                 if (c.status === 'EXPIRED') {
-                    badgeClass = 'bg-rose-100 text-rose-800 border-rose-300';
-                    badgeText = '❌ ĐÃ HẾT HẠN — KHÓA TỰ ĐỘNG';
-                    borderClass = 'border-l-4 border-l-rose-500';
-                } else if (c.zone === 'INTERNAL_EXPERT') {
-                    badgeClass = 'bg-blue-100 text-blue-800 border-blue-300';
-                    badgeText = '🔒 CHUYÊN MÔN NỘI BỘ';
-                    borderClass = 'border-l-4 border-l-brand-600';
+                    badge = '<span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold text-[11px]">Hết Hạn (Khóa)</span>';
+                }
+                if (c.zone === 'INTERNAL_EXPERT') {
+                    zoneBadge = '<span class="px-2 py-0.5 rounded bg-blue-100 text-brand-800 text-[11px]">Chuyên Môn</span>';
                 }
 
-                container.innerHTML += `
-                    <div class="bg-white border border-slate-200 ${borderClass} rounded-xl p-4 shadow-sm">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-bold text-slate-800 text-sm">Mã Claim: <code class="bg-slate-100 px-2 py-0.5 rounded text-brand-700">${c.claim_id}</code></span>
-                            <span class="px-3 py-1 rounded-full text-xs font-bold border ${badgeClass}">${badgeText}</span>
-                        </div>
-                        <div class="text-sm font-semibold text-slate-800 mb-2 leading-relaxed">"${c.claim_text}"</div>
-                        <div class="text-xs text-slate-400">
-                            👤 Người duyệt: <b class="text-slate-600">${c.approved_by}</b> &nbsp;|&nbsp; 
-                            📅 Hiệu lực: <b class="text-slate-600">${c.effective_until}</b> &nbsp;|&nbsp; 
-                            📚 Nguồn: ${c.evidence_source}
-                        </div>
-                    </div>
+                tbody.innerHTML += `
+                    <tr class="table-row-hover">
+                        <td class="p-3 font-mono font-bold text-brand-700">${c.claim_id}</td>
+                        <td class="p-3 font-semibold text-slate-800">${c.claim_text}</td>
+                        <td class="p-3">${zoneBadge}</td>
+                        <td class="p-3">${badge}</td>
+                        <td class="p-3 text-slate-500">${c.effective_until}</td>
+                        <td class="p-3 text-slate-500">${c.approved_by}</td>
+                    </tr>
                 `;
             });
         }
 
-        // 3. Load Dữ liệu Lead B2B
-        let currentLeads = [];
+        // 3. Tab Leads Master-Detail View
+        let leadsData = [];
+        let selectedLeadId = null;
+
         async function loadLeads() {
             const keyword = document.getElementById('lead-keyword').value;
             const province = document.getElementById('lead-province').value;
@@ -466,75 +377,114 @@
 
             const res = await fetch(`/api/leads?province=${encodeURIComponent(province)}&lead_type=${encodeURIComponent(type)}&keyword=${encodeURIComponent(keyword)}`);
             const data = await res.json();
-            currentLeads = data.leads;
+            leadsData = data.leads;
 
-            // Update Metrics
-            document.getElementById('leads-total').innerText = data.total;
-            const gradeACount = currentLeads.filter(l => l.fit_score >= 90).length;
-            const approvedCount = currentLeads.filter(l => l.status === 'APPROVED').length;
-            document.getElementById('leads-grade-a').innerText = gradeACount;
-            document.getElementById('leads-approved').innerText = approvedCount;
+            document.getElementById('leads-count').innerText = data.total;
 
-            // Render Table
-            const tbody = document.getElementById('leads-table-body');
+            const tbody = document.getElementById('leads-compact-tbody');
             tbody.innerHTML = '';
-            currentLeads.forEach(l => {
-                let statusBadge = l.status === 'APPROVED' ? '<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs">Đã Duyệt</span>' :
-                                  (l.status === 'REJECTED' ? '<span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 font-bold text-xs">Loại bỏ</span>' :
-                                  '<span class="px-2.5 py-1 rounded-full bg-blue-100 text-brand-800 font-bold text-xs">Mới</span>');
+            leadsData.forEach(l => {
+                const isSelected = l.lead_id === selectedLeadId;
+                const statusTag = l.status === 'APPROVED' ? '<span class="text-emerald-700 font-bold">✓ Đã duyệt</span>' :
+                                  (l.status === 'REJECTED' ? '<span class="text-rose-600 font-bold">✗ Loại</span>' : '<span class="text-blue-600">Mới</span>');
 
                 tbody.innerHTML += `
-                    <tr class="hover:bg-slate-50 transition">
-                        <td class="p-3 font-mono text-xs font-bold text-brand-700">${l.lead_id}</td>
-                        <td class="p-3 font-bold text-slate-900">${l.name}</td>
-                        <td class="p-3 text-slate-600">${l.type}</td>
-                        <td class="p-3 text-slate-600">${l.address}</td>
-                        <td class="p-3 font-mono text-slate-700">${l.phone}</td>
-                        <td class="p-3"><b class="text-brand-700 font-extrabold">${l.fit_score}/100</b> <span class="text-xs bg-slate-100 px-1.5 py-0.5 rounded font-bold">Hạng ${l.fit_grade}</span></td>
-                        <td class="p-3">${statusBadge}</td>
-                        <td class="p-3 text-right">
-                            <button onclick="approveLead('${l.lead_id}')" class="px-3 py-1 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm">Duyệt</button>
-                        </td>
+                    <tr onclick="selectLead('${l.lead_id}')" class="table-row-hover cursor-pointer ${isSelected ? 'bg-blue-50 font-semibold' : ''}">
+                        <td class="p-2.5 font-bold text-slate-900">${l.name}</td>
+                        <td class="p-2.5 text-slate-500">${l.district}</td>
+                        <td class="p-2.5"><span class="font-extrabold text-brand-700">${l.fit_score}đ</span> (${l.fit_grade})</td>
+                        <td class="p-2.5 text-[11px]">${statusTag}</td>
+                        <td class="p-2.5 text-right"><span class="text-brand-700 text-xs">Chi tiết →</span></td>
                     </tr>
                 `;
             });
 
-            // Render Chains
-            const chainsContainer = document.getElementById('chains-container');
-            chainsContainer.innerHTML = '';
-            data.chains.forEach(c => {
-                chainsContainer.innerHTML += `
-                    <div class="bg-blue-50/70 border border-blue-200 rounded-xl p-4">
-                        <b class="text-brand-800 text-sm">📦 Chuỗi ${c.parent} — Phát hiện ${c.count} chi nhánh cùng hệ thống</b>
-                        <p class="text-xs text-brand-600 mt-0.5">Khuyến nghị AI: Đàm phán tập trung qua Phòng Mua Hàng tổng công ty của ${c.parent}.</p>
+            // Chọn lead đầu tiên nếu chưa chọn
+            if (leadsData.length > 0 && !selectedLeadId) {
+                selectLead(leadsData[0].lead_id);
+            }
+
+            // Chains Summary
+            const chainBox = document.getElementById('chains-summary-box');
+            chainBox.innerHTML = `<span>🔗 <b>Phát hiện chuỗi đối tác:</b> Tìm thấy ${data.chains.length} chuỗi lớn có nhiều chi nhánh (Long Châu, Con Cưng, Pharmacity...). Khuyến nghị đàm phán cung ứng tập trung.</span>`;
+        }
+
+        function selectLead(leadId) {
+            selectedLeadId = leadId;
+            const lead = leadsData.find(l => l.lead_id === leadId);
+            if (!lead) return;
+
+            const panel = document.getElementById('lead-detail-panel');
+            const actions = document.getElementById('lead-actions-panel');
+            actions.classList.remove('hidden');
+
+            panel.innerHTML = `
+                <div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-mono text-brand-700 font-bold">${lead.lead_id} · ${lead.type}</span>
+                        <span class="px-2 py-0.5 rounded text-[11px] font-bold ${lead.status === 'APPROVED' ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-700'}">${lead.status}</span>
                     </div>
-                `;
+                    <h4 class="font-extrabold text-slate-900 text-base">${lead.name}</h4>
+                    <p class="text-xs text-slate-500 mt-0.5">${lead.address}</p>
+                    <p class="text-xs text-slate-600 mt-1">📞 <b>SĐT:</b> ${lead.phone} | ✉️ <b>Email:</b> ${lead.email}</p>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-2 text-xs">
+                    <div class="font-bold text-slate-700 uppercase text-[11px]">Đánh giá 4 chiều:</div>
+                    <div class="flex justify-between"><span>1. Phù hợp danh mục:</span> <b class="text-brand-700">${lead.fit_score}/100 (${lead.fit_grade})</b></div>
+                    <div class="flex justify-between"><span>2. Độ tin cậy dữ liệu:</span> <b>${lead.trust_score}/100</b></div>
+                    <div class="flex justify-between"><span>3. Kênh tiếp cận:</span> <b>${lead.contact_score}/100</b></div>
+                    <div class="flex justify-between"><span>4. Tín hiệu nhu cầu:</span> <b class="text-emerald-700">${lead.intent_score}/100</b></div>
+                </div>
+
+                <div class="text-xs bg-amber-50 p-2.5 rounded border border-amber-200 text-amber-900">
+                    💡 <b>Tín hiệu thực tế:</b> ${lead.intent_signals}
+                </div>
+
+                <div class="text-[11px] text-slate-400">
+                    🔗 Nguồn xác minh: <a href="${lead.source_url}" target="_blank" class="text-brand-700 hover:underline">Link dữ liệu công khai</a>
+                </div>
+            `;
+            loadLeadsSelectionUI();
+        }
+
+        function loadLeadsSelectionUI() {
+            const rows = document.querySelectorAll('#leads-compact-tbody tr');
+            leadsData.forEach((l, idx) => {
+                if (rows[idx]) {
+                    if (l.lead_id === selectedLeadId) {
+                        rows[idx].classList.add('bg-blue-50');
+                    } else {
+                        rows[idx].classList.remove('bg-blue-50');
+                    }
+                }
             });
         }
 
-        async function approveLead(leadId) {
-            await fetch(`/api/leads/${leadId}/action`, {
+        async function changeCurrentLeadStatus(newStatus) {
+            if (!selectedLeadId) return;
+            await fetch(`/api/leads/${selectedLeadId}/action`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({action: 'APPROVED'})
+                body: JSON.stringify({action: newStatus})
             });
             loadLeads();
         }
 
         function exportCSV() {
-            let csv = "Mã,Tên đơn vị,Loại hình,Địa chỉ,Điện thoại,Điểm phù hợp,Trạng thái\n";
-            currentLeads.forEach(l => {
-                csv += `"${l.lead_id}","${l.name}","${l.type}","${l.address}","${l.phone}","${l.fit_score}","${l.status}"\n`;
+            let csv = "Mã,Tên đơn vị,Địa chỉ,Điện thoại,Điểm phù hợp,Trạng thái\n";
+            leadsData.forEach(l => {
+                csv += `"${l.lead_id}","${l.name}","${l.address}","${l.phone}","${l.fit_score}","${l.status}"\n`;
             });
             const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.download = "dion_leads_export.csv";
+            link.download = "leads_export.csv";
             link.click();
         }
 
         // 4. Copilot
-        function setQuery(q) {
+        function setCopilotQuery(q) {
             document.getElementById('copilot-input').value = q;
         }
 
@@ -549,27 +499,27 @@
             });
             const data = await res.json();
 
-            const box = document.getElementById('copilot-response-box');
+            const container = document.getElementById('copilot-result-container');
             const badge = document.getElementById('copilot-badge');
-            const content = document.getElementById('copilot-content');
+            const text = document.getElementById('copilot-text');
 
-            box.classList.remove('hidden');
+            container.classList.remove('hidden');
             if (data.type === 'ESCALATION') {
-                badge.className = 'inline-block px-3 py-1 rounded-full text-xs font-extrabold uppercase mb-3 bg-rose-100 text-rose-800 border border-rose-300';
+                badge.className = 'inline-block px-2.5 py-1 rounded text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300';
             } else {
-                badge.className = 'inline-block px-3 py-1 rounded-full text-xs font-extrabold uppercase mb-3 bg-emerald-100 text-emerald-800 border border-emerald-300';
+                badge.className = 'inline-block px-2.5 py-1 rounded text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300';
             }
             badge.innerText = data.badge;
-            content.innerText = data.content;
+            text.innerText = data.content;
         }
 
         function copyCopilotAnswer() {
-            const text = document.getElementById('copilot-content').innerText;
+            const text = document.getElementById('copilot-text').innerText;
             navigator.clipboard.writeText(text);
-            alert("Đã sao chép nội dung vào bộ nhớ tạm!");
+            alert("Đã sao chép câu trả lời!");
         }
 
-        // 5. Content Generator
+        // 5. Content
         async function generateContent() {
             const sku = document.getElementById('content-sku').value;
             const channel = document.getElementById('content-channel').value;
@@ -594,22 +544,22 @@
             });
             const data = await res.json();
 
-            const box = document.getElementById('compliance-result-box');
+            const box = document.getElementById('compliance-box');
             if (data.is_compliant) {
-                box.className = 'mt-4 p-4 rounded-xl border bg-emerald-50 border-emerald-200 text-emerald-800';
-                box.innerHTML = '<b class="text-emerald-800">✅ NỘI DUNG ĐẠT CHUẨN PHÁP LÝ</b><p class="text-xs text-emerald-700 mt-1">Không phát hiện từ cấm theo Nghị định 342/2025/NĐ-CP.</p>';
+                box.className = 'p-3 rounded-lg border bg-emerald-50 border-emerald-200 text-emerald-800 text-xs font-semibold';
+                box.innerHTML = '✅ <b>Nội dung đạt chuẩn:</b> Không phát hiện từ cấm theo Nghị định 342/2025/NĐ-CP.';
             } else {
-                box.className = 'mt-4 p-4 rounded-xl border bg-rose-50 border-rose-200 text-rose-800';
-                let errHtml = `<b class="text-rose-800">❌ PHÁT HIỆN ${data.violations.length} VI PHẠM TỪ CẤM:</b><ul class="text-xs text-rose-700 mt-1 space-y-1">`;
+                box.className = 'p-3 rounded-lg border bg-rose-50 border-rose-200 text-rose-800 text-xs';
+                let errHtml = `<b>❌ Phát hiện ${data.violations.length} lỗi vi phạm từ cấm:</b><ul class="mt-1 space-y-0.5">`;
                 data.violations.forEach(v => {
-                    errHtml += `<li>• Từ cấm <b>"${v.term}"</b>: ${v.reason} (Gợi ý: <i>${v.suggestion}</i>)</li>`;
+                    errHtml += `<li>• Từ cấm <b>"${v.term}"</b>: ${v.reason} (Nên đổi: <i>${v.suggestion}</i>)</li>`;
                 });
                 errHtml += '</ul>';
                 box.innerHTML = errHtml;
             }
         }
 
-        // Khởi động trang lần đầu
+        // Khởi động
         window.onload = function() {
             loadProductClaims();
             loadLeads();
