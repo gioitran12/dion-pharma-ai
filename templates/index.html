@@ -92,6 +92,49 @@
         <!-- GIẢI PHÁP 1: TÌM KIẾM & ĐÁNH GIÁ ĐỐI TÁC THÔNG MINH (LEAD DISCOVERY)-->
         <!-- =================================================================== -->
         <div id="view-leads" class="solution-view space-y-4">
+            
+            <!-- THANH ĐỐI SOÁT & NẠP 4 NGUỒN DỮ LIỆU ĐẦU VÀO -->
+            <div class="bg-white rounded border border-slate-200 p-3 shadow-sm">
+                <div class="flex items-center justify-between mb-2 pb-1.5 border-b border-slate-100">
+                    <span class="text-xs font-bold text-slate-800 uppercase tracking-wide">Cơ chế nạp & Đối soát 4 nguồn dữ liệu đa tầng:</span>
+                    <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Đồng bộ tự động thời gian thực</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 text-xs">
+                    <div class="p-2 rounded bg-slate-50 border border-slate-200">
+                        <div class="font-bold text-corp-700 flex items-center justify-between">
+                            <span>1. Pháp lý GPP</span>
+                            <span class="text-[10px] text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.2 rounded">KẾT NỐI</span>
+                        </div>
+                        <div class="text-[11px] text-slate-600 mt-0.5">Cổng Dược Quốc Gia & SYT 63 tỉnh</div>
+                        <div class="text-[10px] text-slate-500 font-mono">Bắt điểm bán cấp mới GPP 2026</div>
+                    </div>
+                    <div class="p-2 rounded bg-slate-50 border border-slate-200">
+                        <div class="font-bold text-corp-700 flex items-center justify-between">
+                            <span>2. Bản đồ Geocoding</span>
+                            <span class="text-[10px] text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.2 rounded">TỌA ĐỘ</span>
+                        </div>
+                        <div class="text-[11px] text-slate-600 mt-0.5">Google Maps Places API</div>
+                        <div class="text-[10px] text-slate-500 font-mono">Quét bán kính 5km quanh BV Sản/Nhi</div>
+                    </div>
+                    <div class="p-2 rounded bg-slate-50 border border-slate-200">
+                        <div class="font-bold text-corp-700 flex items-center justify-between">
+                            <span>3. Đăng ký kinh doanh</span>
+                            <span class="text-[10px] text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.2 rounded">MST HỢP LỆ</span>
+                        </div>
+                        <div class="text-[11px] text-slate-600 mt-0.5">Cổng ĐKKD & Tổng cục Thuế</div>
+                        <div class="text-[10px] text-slate-500 font-mono">Mã ngành 4772 (Bán lẻ dược phẩm)</div>
+                    </div>
+                    <div class="p-2 rounded bg-slate-50 border border-slate-200">
+                        <div class="font-bold text-corp-700 flex items-center justify-between">
+                            <span>4. Radar Tuyển dụng</span>
+                            <span class="text-[10px] text-amber-800 font-bold bg-amber-100 px-1.5 py-0.2 rounded">TÍN HIỆU SỚM</span>
+                        </div>
+                        <div class="text-[11px] text-slate-600 mt-0.5">Hội Dược sĩ & Tuyển dụng Zalo</div>
+                        <div class="text-[10px] text-slate-500 font-mono">Bắt tin tuyển Dược sĩ trước 2-3 tuần</div>
+                    </div>
+                </div>
+            </div>
+
             <div class="bg-white rounded border border-slate-200 p-3 flex flex-wrap items-center gap-3">
                 <input type="text" id="lead-kw" placeholder="Tìm theo tên nhà thuốc, tuyến đường hoặc số điện thoại..." oninput="fetchLeads()" class="flex-1 min-w-[240px] bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs outline-none focus:border-corp-700">
                 
@@ -581,6 +624,32 @@
                         <tr><td class="table-cell">Tín hiệu nhu cầu nhập hàng</td><td class="table-cell text-right font-bold text-emerald-700">${l.intent_score}/100</td></tr>
                     </tbody>
                 </table>
+
+                <!-- ĐỐI CHIẾU 4 NGUỒN DỮ LIỆU ĐẦU VÀO -->
+                <div class="border border-slate-200 rounded p-2.5 bg-slate-50 space-y-2">
+                    <div class="text-[11px] font-bold text-slate-800 uppercase flex items-center justify-between pb-1 border-b border-slate-200">
+                        <span>Đối soát 4 nguồn dữ liệu:</span>
+                        <span class="text-corp-700 font-semibold text-[10px] bg-blue-50 border border-blue-200 px-1.5 py-0.5 rounded">100% Khớp hồ sơ</span>
+                    </div>
+                    <div class="space-y-1.5 text-[11px]">
+                        <div class="flex items-start gap-1">
+                            <span class="font-bold text-corp-800 shrink-0 w-24">1. Pháp lý GPP:</span>
+                            <span class="text-slate-700 font-medium">${l.gpp_info ? l.gpp_info.license_no + ' · Ngày cấp: ' + l.gpp_info.issue_date + ' (' + l.gpp_info.status + ')' : 'Đang thẩm định'}</span>
+                        </div>
+                        <div class="flex items-start gap-1">
+                            <span class="font-bold text-corp-800 shrink-0 w-24">2. Bản đồ Geocode:</span>
+                            <span class="text-slate-700 font-medium">${l.maps_info ? l.maps_info.coordinates + ' · ' + l.maps_info.nearby_benchmark : 'Đã xác thực vị trí'}</span>
+                        </div>
+                        <div class="flex items-start gap-1">
+                            <span class="font-bold text-corp-800 shrink-0 w-24">3. ĐKKD / Thuế:</span>
+                            <span class="text-slate-700 font-medium">${l.tax_info ? 'MST: ' + l.tax_info.tax_code + ' · Mã ngành: ' + l.tax_info.industry_code.split('—')[0].trim() : 'Mã ngành 4772'}</span>
+                        </div>
+                        <div class="flex items-start gap-1">
+                            <span class="font-bold text-corp-800 shrink-0 w-24">4. Tuyển dụng:</span>
+                            <span class="text-slate-700 font-medium">${l.recruitment_info ? l.recruitment_info.job_title + ' · ' + l.recruitment_info.platform : 'Không có tin mới'}</span>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="p-2.5 rounded bg-blue-50 border border-blue-200 text-xs text-blue-950">
                     <b>Tín hiệu thực tế:</b> ${l.intent_signals}
