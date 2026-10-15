@@ -655,9 +655,19 @@
                     <b>Tín hiệu thực tế:</b> ${l.intent_signals}
                 </div>
 
+                <div class="flex items-center gap-2 pt-1">
+                    <label class="text-[11px] font-bold text-slate-700 whitespace-nowrap">Trọng tâm tiếp thị:</label>
+                    <select id="pitch-sku-select" class="flex-1 bg-slate-50 border border-slate-300 rounded px-2 py-1 text-xs outline-none font-semibold text-slate-800">
+                        <option value="DION-CAL-MOM">Sản phẩm mũi nhọn: Canxi Tảo Đỏ Cal-Mom (Hero SKU)</option>
+                        <option value="DION-D3-1000">Sản phẩm mũi nhọn: Vitamin D3 1000IU Nhỏ Giọt</option>
+                        <option value="DION-FE-PLUS">Sản phẩm mũi nhọn: Sắt Hữu Cơ Fero-Plus</option>
+                        <option value="COMPANY_PORTFOLIO">Hồ sơ Năng lực Công ty & Toàn bộ Danh mục DION</option>
+                    </select>
+                </div>
+
                 <div class="flex gap-2 pt-1">
                     <button onclick="genPitchLetter('${l.lead_id}')" class="flex-1 py-2 bg-corp-700 hover:bg-corp-800 text-white font-bold rounded text-xs transition">
-                        Tạo thư chào hàng tự động
+                        AI Soạn thư chào hàng tự động
                     </button>
                     <button onclick="approveLeadAction('${l.lead_id}', 'APPROVED')" class="px-3 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs transition">
                         Duyệt
@@ -670,21 +680,27 @@
 
         async function genPitchLetter(leadId) {
             const out = document.getElementById('pitch-output-area');
+            const skuSelect = document.getElementById('pitch-sku-select');
+            const sku = skuSelect ? skuSelect.value : 'DION-D3-1000';
+            const l = leadsArr.find(x => x.lead_id === leadId);
+            const targetEmail = l && l.email ? l.email : 'lienhe@nhathuoc.vn';
+            const targetPhone = l && l.phone ? l.phone : '';
+
             out.innerHTML = '<div class="text-xs text-corp-700 font-bold p-2 text-center bg-slate-50 border rounded">Đang biên soạn thư chào hàng tự động...</div>';
 
             const res = await fetch(`/api/leads/${leadId}/pitch`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({sku: 'DION-D3-1000'})
+                body: JSON.stringify({sku: sku})
             });
             const data = await res.json();
 
             out.innerHTML = `
                 <div class="p-2.5 bg-slate-50 border border-slate-200 rounded text-xs space-y-2">
-                    <div><span class="font-bold text-slate-700">Chiến lược:</span> <div class="text-slate-800">${data.strategy}</div></div>
-                    <div><span class="font-bold text-slate-700">Phòng ban gửi đến:</span> <b class="text-corp-700">${data.target_department}</b></div>
+                    <div><span class="font-bold text-slate-700">Chiến lược tiếp cận:</span> <div class="text-slate-800">${data.strategy}</div></div>
+                    <div><span class="font-bold text-slate-700">Đối tượng nhận thư:</span> <b class="text-corp-700">${data.target_department}</b></div>
                     <div>
-                        <span class="font-bold text-slate-700">Tiêu đề:</span>
+                        <span class="font-bold text-slate-700">Tiêu đề đề xuất:</span>
                         <input type="text" id="p-sub" value="${data.subject}" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-xs font-semibold mt-0.5">
                     </div>
                     <div>
@@ -694,13 +710,32 @@
                         </div>
                         <textarea id="p-body" rows="7" class="w-full bg-white border border-slate-300 rounded p-2 text-xs font-mono">${data.pitch_body}</textarea>
                     </div>
+
+                    <div class="pt-1 flex flex-wrap gap-2">
+                        <button onclick="openMailClient('${targetEmail}')" class="flex-1 py-1.5 px-2 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded text-xs transition">
+                            Mở ứng dụng gửi Email (Gmail/Outlook)
+                        </button>
+                        <button onclick="copyPitchLetter()" class="flex-1 py-1.5 px-2 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs transition">
+                            Sao chép gửi Zalo
+                        </button>
+                    </div>
+
+                    <div class="text-[10px] text-slate-500 italic pt-1 border-t border-slate-200">
+                        * Kiểm soát con người (Human-in-the-loop): AI chỉ soạn thảo bản nháp. Nhân viên kinh doanh duyệt lại trước khi gửi để tránh vi phạm chính sách chống SPAM và bảo vệ danh tiếng thương hiệu.
+                    </div>
                 </div>
             `;
         }
 
+        function openMailClient(email) {
+            const sub = encodeURIComponent(document.getElementById('p-sub').value);
+            const body = encodeURIComponent(document.getElementById('p-body').value);
+            window.location.href = `mailto:${email}?subject=${sub}&body=${body}`;
+        }
+
         function copyPitchLetter() {
             navigator.clipboard.writeText(document.getElementById('p-body').value);
-            alert("Đã sao chép thư chào hàng!");
+            alert("Đã sao chép thư chào hàng! Bạn có thể dán vào Zalo hoặc hòm thư để gửi.");
         }
 
         async function approveLeadAction(id, st) {

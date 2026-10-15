@@ -96,9 +96,12 @@ def generate_b2b_outreach_pitch(lead_id: str, recommended_sku: str = "DION-D3-10
     if not lead:
         return {"error": "Không tìm thấy thông tin đối tác"}
         
-    prod = get_product_by_sku(recommended_sku)
-    if not prod:
-        prod = {"name": "Danh mục Thực phẩm Bảo vệ Sức khỏe DION", "sku": recommended_sku}
+    if recommended_sku == "COMPANY_PORTFOLIO":
+        prod = {"name": "Hồ sơ Năng lực Doanh nghiệp & Toàn bộ Danh mục TPBVSK DION Healthcare", "sku": "DION-PORTFOLIO-2026"}
+    else:
+        prod = get_product_by_sku(recommended_sku)
+        if not prod:
+            prod = {"name": "Danh mục Thực phẩm Bảo vệ Sức khỏe DION", "sku": recommended_sku}
         
     lead_name = lead["name"]
     lead_type = lead["type"]
