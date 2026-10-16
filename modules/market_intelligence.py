@@ -415,13 +415,15 @@ QUY TẮC BẮT BUỘC VỀ DƯỢC LÝ & Y ĐỨC (KHÁCH QUAN, KHOA HỌC, CH�
 1. TUYỆT ĐỐI TRUNG THỰC, KHÁCH QUAN VÀ CHUẨN DƯỢC LÝ:
    - CÔNG NHẬN ĐẦY ĐỦ ƯU ĐIỂM CÔNG NGHỆ CỦA ĐỐI THỦ:
      * Nhóm Canxi Hydroxyapatite vi tinh thể (MCHA): Bắt buộc công nhận độ tương thích sinh học cao và tỷ lệ Canxi:Photpho tự nhiên (2:1).
+     * Nhóm Canxi Citrate: Bắt buộc công nhận ưu điểm vượt trội là hấp thu tốt cả khi bụng đói và ít phụ thuộc vào nồng độ axit dạ dày (thích hợp cho người tiêu hóa kém hoặc dùng thuốc giảm tiết axit dạ dày).
      * Nhóm Canxi Bisglycinate Chelate: Bắt buộc công nhận sinh khả dụng cao, hấp thu nguyên vẹn qua kênh dipeptide (PepT1), êm dịu niêm mạc dạ dày, không táo bón.
      * Nhóm Canxi Carbonate: Công nhận hàm lượng canxi nguyên tố cao vượt trội (40%) và chi phí kinh tế.
    - TRÁNH VƠ ĐŨA CẢ NẮM VÀ TRÁNH DÌM HÀNG LỘ LIỄU:
-     * Không được nói "tất cả sản phẩm Hydroxyapatite/Bisglycinate đều thiếu K2" vì hiện nay một số dòng thế hệ mới đã có tích hợp. Phải nói chính xác là: "nhiều công thức truyền thống trên thị trường vẫn là đơn chất hoặc chưa tích hợp K2 MK-7 và Magie hữu cơ đồng vận".
+     * Không được nói "tất cả sản phẩm Hydroxyapatite/Citrate/Bisglycinate đều thiếu K2" vì hiện nay một số dòng thế hệ mới đã có tích hợp. Phải nói chính xác là: "nhiều công thức truyền thống trên thị trường vẫn là dạng đơn chất hoặc chưa tích hợp K2 MK-7 và Magie hữu cơ đồng vận".
      * Không được quy chụp "chỉ chiết khấu 15-20% cho nhà thuốc" vì mức này chủ yếu rơi vào các sản phẩm biệt dược kê đơn ETC hoặc hàng chuỗi lớn phủ sóng mạnh; các dòng OTC/TPCN tự doanh vẫn có thể đạt mức chiết khấu cao hơn.
-   - PHÂN TÍCH HẠN CHẾ DỰA TRÊN KHOA HỌC ĐÍCH THỰC:
-     * Về liều canxi nguyên tố: MCHA (chỉ ~20-25%), Bisglycinate (chỉ ~18-20%) -> Mẹ bầu cần 1000-1200mg/ngày nên phải uống nhiều viên (2-4 viên/ngày) hoặc viên nén rất lớn khó nuốt.
+   - PHÂN TÍCH HẠN CHẾ DỰA TRÊN KHOA HỌC DINH DƯỠNG LÂM SÀNG CHUẨN XÁC:
+     * Về nhu cầu thực tế: Tổng nhu cầu canxi thai kỳ là 1.000 - 1.200mg/ngày, nhưng khẩu phần ăn uống hàng ngày của người Việt đã cung cấp khoảng 400 - 600mg. Do đó, liều viên uống bổ sung chuẩn y khoa thường chỉ cần 500 - 600mg canxi nguyên tố/ngày. TUYỆT ĐỐI KHÔNG ngụy biện rằng "phải uống viên thuốc bù đủ 1.200mg".
+     * Về liều nguyên tố & tuân thủ điều trị: Với các gốc có tỷ lệ nguyên tố thấp (MCHA ~20-25%, Citrate ~21%, Bisglycinate ~18-20%), để đạt 500-600mg nguyên tố cần uống 2-3 viên/ngày hoặc viên nén khá to (cần ~2.400mg muối citrate/bisglycinate), có thể gây trở ngại cho thai phụ lúc ốm nghén.
      * Về tính toàn diện của DION Cal-Mom: Canxi sinh học từ tảo đỏ Lithothamnion mang cấu trúc tổ ong xốp vi thể dễ hấp thu, đặc biệt cung cấp hệ phức hợp 72 khoáng chất vi lượng tương đồng huyết tương; công thức hiệp đồng đủ bộ D3 + K2 MK-7 tinh khiết và Magie Bisglycinate; chiết khấu đại lý 30-35% và pháp lý chuẩn Cục ATTP.
 2. Xuất kết quả dưới định dạng JSON duy nhất với 4 trường:
    - "assessment": (string) Đánh giá khách quan, khoa học về bản chất hoạt chất, ưu điểm sinh học và cơ chế hấp thu của đối thủ (khoa học, văn minh, công nhận ưu điểm).
@@ -473,13 +475,31 @@ Chỉ trả về JSON hợp lệ, không giải thích thêm."""
             "dion_product": p_name,
             "analyzed_competitor": competitor_name,
             "assessment": f"Về mặt dược lý, {competitor_name} là dạng khoáng hữu cơ Chelate liên kết với 2 phân tử Glycine (axit amin). Đây là dòng hoạt chất thế hệ mới có sinh khả dụng cao, hấp thu qua kênh peptide (PepT1) ở ruột non, hoàn toàn không bị ion hóa ở dạ dày nên rất êm dịu, không gây táo bón và không kích ứng niêm mạc.",
-            "weakness_identified": "Hạn chế thực tế của dòng Chelate Bisglycinate trên thị trường: (1) Tỷ lệ nguyên tố thấp (chỉ ~18-20%), để đạt đủ liều 500-600mg canxi nguyên tố cho bà bầu thì viên uống rất to hoặc phải uống 3-4 viên/ngày; (2) Đa số là chế phẩm đơn chất hoặc thiếu bộ dẫn truyền đồng vận K2 MK-7 + D3 chuẩn y khoa để định hướng canxi vào xương; (3) Giá thành nguyên liệu đắt dẫn đến giá bán cao nhưng biên lợi nhuận cho nhà thuốc mỏng (chỉ 15-20%); (4) Thiếu hụt 72 khoáng chất vi lượng tự nhiên có trong tảo đỏ Lithothamnion.",
+            "weakness_identified": "Hạn chế thực tế của dòng Chelate Bisglycinate trên thị trường: (1) Tỷ lệ nguyên tố thấp (chỉ ~18-20%), để đạt đủ liều bổ sung 500-600mg canxi nguyên tố cho bà bầu thì viên uống khá to hoặc cần chia uống 2-3 viên/ngày; (2) Đa số là chế phẩm đơn chất hoặc thiếu bộ dẫn truyền đồng vận K2 MK-7 + D3 chuẩn y khoa để định hướng canxi vào xương; (3) Giá thành nguyên liệu đắt dẫn đến giá bán cao nhưng biên lợi nhuận cho nhà thuốc mỏng (chỉ 15-20%); (4) Thiếu hụt 72 khoáng chất vi lượng tự nhiên có trong tảo đỏ Lithothamnion.",
             "actionable_tactics": [
                 "Đồng thuận chuyên môn: Công nhận Canxi Bisglycinate là dạng chelate êm bụng, sau đó nâng cấp bài toán 'Hấp thu vào máu là chưa đủ, phải có K2 MK-7 để dẫn canxi vào xương thai nhi'.",
                 "Phân tích liều nguyên tố: Tảo đỏ Lithothamnion của DION Cal-Mom chứa 32% canxi nguyên tố tự nhiên kèm 72 vi khoáng, viên nang nhỏ gọn hơn nhiều so với viên Bisglycinate liều cao.",
                 "Đòn bẩy thương mại: So sánh chiết khấu 30-35% của DION Cal-Mom (gấp gần 2 lần mức 15-20% của dòng Bisglycinate nhập khẩu) giúp tối ưu hóa lợi nhuận điểm bán."
             ],
             "dion_counter_pitch": f"Kính thưa Quý Dược sĩ, em hoàn toàn đồng tình với chuyên môn của Dược sĩ: Canxi Bisglycinate là dạng chelate hữu cơ rất ưu việt về sinh khả dụng và tính êm dịu dạ dày. Tuy nhiên, đứng ở góc độ dược lý phối hợp cho mẹ bầu, canxi sau khi hấp thu vào máu bắt buộc phải có Vitamin K2 MK-7 tinh khiết để kích hoạt Osteocalcin dẫn truyền thẳng vào mô xương thai nhi, tránh lắng đọng bánh nhau. Đa phần các dòng Bisglycinate trên thị trường hiện nay là dạng đơn khoáng và tỷ lệ canxi nguyên tố thấp (chỉ ~18%) nên mẹ bầu phải uống số lượng viên khá nhiều. DION Cal-Mom Plus bên em giải quyết trọn vẹn bài toán này: Sử dụng Canxi sinh học từ tảo đỏ Lithothamnion giàu 72 khoáng chất, tích hợp sẵn K2 MK-7 tinh khiết, D3 và bổ sung chính Magie Bisglycinate đồng vận. Sản phẩm có số công bố Cục ATTP {reg_num} và chiết khấu quầy 30-35%, giúp nhà thuốc vừa tự tin về chuyên môn vừa đảm bảo hiệu quả kinh doanh tối ưu ạ.",
+            "engine_source": "Hệ Tri thức Dược lý Lâm sàng Chuyên sâu"
+        }
+
+    # TRƯỜNG HỢP 1.5: CANXI CITRATE
+    elif any(k in comp_lower for k in ["citrate", "xitrat"]):
+        return {
+            "status": "success",
+            "dion_sku": sku,
+            "dion_product": p_name,
+            "analyzed_competitor": competitor_name,
+            "assessment": f"Về mặt dược động học, {competitor_name} sử dụng Canxi Citrate. Dạng muối này có ưu thế vượt trội là độ hòa tan cao, hấp thu tốt kể cả khi bụng đói và ít phụ thuộc vào nồng độ axit dạ dày (rất thích hợp cho người có dịch vị kém hoặc dùng thuốc kháng acid/giảm tiết axit dạ dày).",
+            "weakness_identified": "Hạn chế thực tế: (1) Tỷ lệ canxi nguyên tố đạt khoảng 21%, để cung cấp liều bổ sung thông thường (500-600mg canxi nguyên tố/ngày bù đắp cùng khẩu phần ăn uống), người dùng cần uống 2 viên/ngày với kích thước viên nén khá lớn; (2) Nhiều công thức truyền thống là dạng đơn chất hoặc chỉ có D3, chưa tích hợp Vitamin K2 MK-7 và Magie hữu cơ đồng vận; (3) Hàng thương hiệu quen thuộc thường bị cạnh tranh phá giá trên các sàn TMĐT khiến biên lợi nhuận nhà thuốc mỏng (10-18%).",
+            "actionable_tactics": [
+                "Công nhận ưu thế dược động học: Đánh giá cao tính hòa tan không phụ thuộc axit dạ dày của Canxi Citrate.",
+                "Phân tích tính toàn diện của công thức: DION Cal-Mom cung cấp canxi sinh học từ tảo đỏ Lithothamnion kèm 72 vi khoáng tự nhiên, tích hợp sẵn K2 MK-7 và Magie Bisglycinate giúp định hướng canxi vào xương.",
+                "Bảo hộ lợi nhuận đại lý: Chính sách chiết khấu 30-35% và bảo hộ vùng của DION giúp nhà thuốc tránh cuộc chiến phá giá của các dòng Citrate đại trà."
+            ],
+            "dion_counter_pitch": f"Dạ em chào Dược sĩ ạ! Em hoàn toàn nhất trí với chuyên môn của Dược sĩ rằng Canxi Citrate như {competitor_name} có ưu thế hấp thu rất tốt và không phụ thuộc axit dạ dày. Tuy nhiên, với hàm lượng nguyên tố khoảng 21%, để đạt liều bổ sung 500-600mg cho mẹ bầu thì thường cần uống 2 viên kích thước khá lớn, và nhiều công thức vẫn là đơn chất chưa có K2 MK-7 dẫn truyền vào xương. DION Cal-Mom bên em kết hợp canxi tảo đỏ tự nhiên giàu 72 vi khoáng, có sẵn K2 MK-7 tinh khiết và Magie Bisglycinate, vừa tiện lợi dễ uống, vừa định hướng canxi trúng đích và bảo đảm chiết khấu 30-35% cho quầy mình ạ.",
             "engine_source": "Hệ Tri thức Dược lý Lâm sàng Chuyên sâu"
         }
     
