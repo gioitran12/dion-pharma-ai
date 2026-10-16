@@ -2143,13 +2143,21 @@
                             <span class="text-slate-400 font-normal">với</span>
                             <span class="text-emerald-800">${data.dion_product}</span>
                         </span>
-                        <span class="text-[10px] bg-slate-200 text-slate-800 font-bold px-2 py-0.5 rounded">Tự động đối chiếu</span>
+                        <span class="text-[10px] bg-indigo-50 text-indigo-900 font-bold px-2 py-0.5 rounded border border-indigo-200">${data.engine_source || 'AI Market Engine'}</span>
                     </div>
+
+                    ${data.assessment ? `
+                    <div class="bg-blue-50/70 p-3 rounded-lg border border-blue-200 text-slate-800 text-xs leading-relaxed">
+                        <b class="text-blue-900 block mb-0.5 text-[11px] uppercase tracking-wide">Đánh giá Dược lý Lâm sàng Khách quan:</b>
+                        ${highlightKeywords(data.assessment, 'advantage')}
+                    </div>
+                    ` : ''}
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
                         <div class="bg-rose-50/70 p-3.5 rounded-lg border border-rose-200 space-y-1">
                             <span class="font-bold text-rose-900 block text-[11px] uppercase tracking-wide flex items-center gap-1.5">
                                 <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-                                Hạn chế của sản phẩm cạnh tranh:
+                                Hạn chế thực tế của sản phẩm cạnh tranh:
                             </span>
                             <div class="text-slate-800 leading-relaxed text-[11.5px]">${highlightKeywords(data.weakness_identified, 'weakness')}</div>
                         </div>
