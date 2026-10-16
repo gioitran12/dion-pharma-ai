@@ -41,33 +41,33 @@ MARKET_BENCHMARK_DATABASE = {
         "competitors": [
             {
                 "id": "COMP-CAL-01",
-                "brand": "Bio-Island (Australia)",
-                "product_name": "Bio-Island Extra Strength Milk Calcium",
-                "origin": "Úc (Australia)",
-                "active_form": "Canxi Hydroxyapatite từ sữa bò (150mg canxi nguyên tố/viên)",
+                "brand": "Bio-Island / Nhóm Canxi Hydroxyapatite (MCHA)",
+                "product_name": "Bio-Island Extra Strength Milk Calcium & Nhóm MCHA",
+                "origin": "Úc (Australia) & Nhập khẩu",
+                "active_form": "Canxi Hydroxyapatite vi tinh thể (MCHA) từ sữa/xương bò (150-200mg canxi nguyên tố/viên)",
                 "retail_price": "460.000 đ / lọ 90 viên",
-                "cost_per_day": "10.200 đ / ngày (uống 2 viên)",
+                "cost_per_day": "10.200 đ / ngày (uống 2-3 viên)",
                 "channels": "Long Châu, Pharmacity, Cửa hàng Mẹ & Bé, Hàng xách tay",
-                "pharmacy_margin": "12% - 15% (Biên lợi nhuận quầy thuốc thấp)",
-                "strengths": "Thương hiệu ngoại nhập lâu năm, độ nhận diện cao đối với người tiêu dùng.",
-                "weaknesses": "Hàm lượng canxi nguyên tố thấp (cần dùng 2-3 viên/ngày); nguồn gốc sữa bò tiềm ẩn nguy cơ dị ứng đạm sữa; tồn tại nhiều hàng xách tay không có hóa đơn VAT.",
-                "dion_advantage": "DION Cal-Mom chiết xuất 100% từ tảo đỏ Lithothamnion không gây dị ứng, bổ sung đầy đủ bộ D3 + K2 MK-7 + Magie, chiết khấu đại lý 32% (gấp hơn 2 lần Bio-Island).",
-                "counter_pitch": "Kính thưa Quý Dược sĩ, Bio-Island là sản phẩm ngoại quen thuộc nhưng hiện tại biên lợi nhuận của quầy chỉ ở mức 12-14% và thị trường hàng xách tay rất phức tạp. DION Cal-Mom sử dụng canxi sinh học tảo đỏ tự nhiên, sinh khả dụng cao hơn 2.4 lần so với canxi thông thường và có nghiên cứu lâm sàng kiểm chứng giảm tỷ lệ táo bón thai kỳ. Đồng thời, DION bảo đảm chiết khấu 32% cho quầy, hỗ trợ đổi trả và xuất đầy đủ hóa đơn VAT chuẩn ngạch."
+                "pharmacy_margin": "12% - 15% (Kênh chuỗi/hàng thương hiệu mạnh) đến 25% (kênh OTC)",
+                "strengths": "Ưu điểm lớn về độ tương thích sinh học cao và tỷ lệ Canxi:Photpho tự nhiên (2:1). Thương hiệu ngoại nhập lâu năm, độ nhận diện cao đối với người tiêu dùng.",
+                "weaknesses": "Hàm lượng canxi nguyên tố trong MCHA chỉ đạt khoảng 20-25%, khiến người dùng cần uống số lượng viên nhiều hơn (2-3 viên/ngày) để đạt đủ nhu cầu thai kỳ (1000-1200mg); nhiều công thức truyền thống chưa tích hợp đồng thời Vitamin K2 (MK-7) và Magie hữu cơ, đòi hỏi chuyên gia y tế phải theo dõi và phối hợp thêm; hàng xách tay trôi nổi nhiều rủi ro thiếu hóa đơn VAT.",
+                "dion_advantage": "DION Cal-Mom chiết xuất từ tảo đỏ Lithothamnion hữu cơ giàu 72 vi khoáng tự nhiên, tích hợp sẵn K2 MK-7 tinh khiết và Magie Bisglycinate trong liều dùng tiện lợi, chính sách chiết khấu 30-35% bảo hộ vùng bán lẻ.",
+                "counter_pitch": "Kính thưa Quý Dược sĩ, các dòng Canxi Hydroxyapatite (MCHA) như Bio-Island có ưu điểm rất lớn về độ tương thích sinh học và tỷ lệ Canxi:Photpho 2:1. Tuy nhiên, ở góc độ phối hợp lâm sàng cho mẹ bầu, hàm lượng nguyên tố của MCHA khoảng 20-25% nên mẹ bầu cần uống 2-3 viên mỗi ngày, và các công thức truyền thống thường thiếu vắng Vitamin K2 MK-7 để kích hoạt Osteocalcin dẫn truyền canxi vào xương. DION Cal-Mom bên em cung cấp canxi sinh học từ tảo đỏ Lithothamnion với 72 vi khoáng, tích hợp sẵn K2 MK-7 tinh khiết và Magie Bisglycinate đồng vận. Đồng thời, DION bảo đảm chiết khấu 30-35% và xuất đầy đủ hóa đơn VAT chuẩn Cục ATTP, giúp nhà thuốc vừa tự tin về chuyên môn vừa đảm bảo hiệu quả kinh doanh tối ưu ạ."
             },
             {
                 "id": "COMP-CAL-02",
                 "brand": "Ostelin (Sanofi)",
                 "product_name": "Ostelin Calcium & Vitamin D3",
                 "origin": "Úc (Australia)",
-                "active_form": "Canxi Carbonate (vô cơ) 600mg + Vitamin D3 500IU",
+                "active_form": "Canxi Carbonate 600mg (hàm lượng nguyên tố 40%) + Vitamin D3 500IU",
                 "retail_price": "390.000 đ / lọ 130 viên",
-                "cost_per_day": "6.000 đ / ngày",
-                "channels": "Nhà thuốc chuỗi lớn, TMĐT",
-                "pharmacy_margin": "15% - 18%",
-                "strengths": "Giá thành theo ngày kinh tế, thuộc tập đoàn dược phẩm đa quốc gia Sanofi.",
-                "weaknesses": "Sử dụng gốc Canxi Carbonate vô cơ, tỷ lệ ghi nhận tác dụng phụ đường tiêu hóa (táo bón thai kỳ, đầy bụng, ợ chua) cao; công thức thiếu Vitamin K2 (MK-7) để định hướng canxi vào xương.",
-                "dion_advantage": "DION Cal-Mom là canxi sinh học cấu trúc xốp vi thể không lắng cặn, tích hợp sẵn K2 MK-7 và Magie, khắc phục triệt để nhược điểm gây táo bón của các dòng canxi vô cơ truyền thống.",
-                "counter_pitch": "Ostelin có lợi thế về giá nhưng sử dụng canxi carbonate vô cơ nên tỷ lệ mẹ bầu phản hồi nóng trong và táo bón khá phổ biến. Khi khách hàng phản hồi các triệu chứng này, Quý Dược sĩ có thể tư vấn nâng cấp lên dòng DION Cal-Mom tảo đỏ hữu cơ, êm dịu dạ dày và bổ sung sẵn K2 MK-7 giúp canxi hấp thu trúng đích vào mô xương, giúp quầy duy trì sự hài lòng và tỷ lệ khách hàng quay lại mua định kỳ rất cao."
+                "cost_per_day": "6.000 đ / ngày (uống 1-2 viên)",
+                "channels": "Nhà thuốc chuỗi lớn, TMĐT, Kênh OTC",
+                "pharmacy_margin": "15% - 18% (Chuỗi/kê đơn) đến 22% (OTC)",
+                "strengths": "Hàm lượng canxi nguyên tố cao (40%), giá thành theo ngày kinh tế, thuộc tập đoàn dược phẩm đa quốc gia uy tín Sanofi.",
+                "weaknesses": "Sử dụng gốc Canxi Carbonate vô cơ đòi hỏi môi trường axit dạ dày cao để phân ly, tỷ lệ ghi nhận tác dụng phụ đường tiêu hóa (nóng trong, táo bón thai kỳ, ợ chua) cao hơn dạng hữu cơ sinh học; công thức thiếu Vitamin K2 (MK-7) định hướng xương.",
+                "dion_advantage": "DION Cal-Mom sử dụng canxi sinh học từ tảo biển đỏ Lithothamnion cấu trúc tổ ong xốp xơ vi thể, êm dịu cho dạ dày thai kỳ, tích hợp sẵn K2 MK-7 và Magie Bisglycinate giúp hấp thu trúng đích mà không lo táo bón.",
+                "counter_pitch": "Ostelin là sản phẩm có ưu thế về hàm lượng canxi nguyên tố cao và giá thành kinh tế của Sanofi. Tuy nhiên, do dùng canxi carbonate nên mẹ bầu có cơ địa nhạy cảm thường phản hồi tình trạng táo bón và nóng trong. Khi gặp những ca này, Quý Dược sĩ có thể tư vấn giải pháp DION Cal-Mom tảo đỏ sinh học: vừa êm dịu đường tiêu hóa, vừa tích hợp sẵn Vitamin K2 MK-7 dẫn truyền canxi trực tiếp vào xương thai nhi, giúp nhà thuốc giữ trọn niềm tin và sự hài lòng dài hạn của khách hàng."
             },
             {
                 "id": "COMP-CAL-03",
@@ -79,10 +79,10 @@ MARKET_BENCHMARK_DATABASE = {
                 "cost_per_day": "5.500 đ / ngày",
                 "channels": "Nhà thuốc tư nhân, đại lý cấp 2, chợ sỉ",
                 "pharmacy_margin": "35% - 40%",
-                "strengths": "Mức giá phổ thông, chiết khấu đại lý cao, dễ tiếp cận nhóm khách hàng thu nhập trung bình.",
-                "weaknesses": "Bản chất thành phần vẫn là muối canxi carbonate nghiền mịn, thiếu nghiên cứu thử nghiệm lâm sàng RCTs độc lập; bao bì bình dân, khó thuyết phục phân khúc khách hàng đô thị cao cấp.",
+                "strengths": "Mức giá phổ thông, chiết khấu đại lý cao, đã bổ sung D3 và K2, dễ tiếp cận nhóm khách hàng thu nhập trung bình.",
+                "weaknesses": "Bản chất thành phần vẫn là muối canxi carbonate nghiền mịn công nghệ nano, thiếu các nghiên cứu thử nghiệm lâm sàng RCTs độc lập trên tạp chí quốc tế; quy cách bao bì bình dân, khó tiếp cận phân khúc mẹ bầu kỹ tính.",
                 "dion_advantage": "DION Cal-Mom định vị phân khúc chuẩn y khoa với nguyên liệu Organic Châu Âu, đầy đủ nghiên cứu quốc tế PubMed, bao bì đạt chuẩn giúp nâng cao hình ảnh tư vấn chuyên nghiệp của nhà thuốc.",
-                "counter_pitch": "Các dòng canxi nano giá rẻ dễ tiếp cận ở phân khúc phổ thông nhưng khó tạo dựng sự gắn kết với đối tượng khách hàng kỹ tính hoặc mẹ bầu hiện đại. DION Cal-Mom mang đến giải pháp dinh dưỡng chuẩn y khoa với nguyên liệu hữu cơ nhập khẩu, chứng minh lâm sàng rõ ràng, giúp nhà thuốc nâng tầm uy tín tư vấn chuyên môn và tối ưu giá trị đơn hàng với biên lợi nhuận ổn định trên 30%."
+                "counter_pitch": "Các dòng canxi nano phân khúc phổ thông có ưu thế về giá và chiết khấu tốt cho quầy. Tuy nhiên, đối với nhóm khách hàng mẹ bầu hiện đại chú trọng nguồn gốc hữu cơ và an toàn dài hạn, DION Cal-Mom với nguyên liệu tảo đỏ Lithothamnion đạt chuẩn Organic Châu Âu và bằng chứng lâm sàng PubMed sẽ là sản phẩm chủ lực giúp nhà thuốc xây dựng uy tín chuyên môn và tối ưu giá trị đơn hàng bền vững."
             }
         ]
     },
@@ -411,17 +411,23 @@ Nhiệm vụ của bạn là phân tích đối chiếu chuyên sâu, trung th�
 - Sản phẩm/Hoạt chất cạnh tranh mới: '{competitor_name}'
   + Thông tin bổ sung: '{competitor_info}'
 
-QUY TẮC BẮT BUỘC VỀ DƯỢC LÝ & KHOA HỌC:
-1. TUYỆT ĐỐI TRUNG THỰC VÀ CHUẨN DƯỢC LÝ:
-   - Nếu đối thủ là hoạt chất cao cấp (ví dụ: Canxi Bisglycinate, Sắt Bisglycinate chelate, Folic thế hệ 4 Quatrefolic, Liposomal...): BẮT BUỘC PHẢI CÔNG NHẬN ƯU ĐIỂM DƯỢC LÝ CỦA HỌ (sinh khả dụng cao, êm dịu dạ dày, không táo bón). TUYỆT ĐỐI KHÔNG quy chụp là "muối vô cơ đại trà gây kích ứng hay táo bón".
-   - Phân tích sự khác biệt thật sự:
-     * DION Cal-Mom: Canxi sinh học từ tảo đỏ Lithothamnion mang cấu trúc tổ ong xốp tự nhiên, sinh khả dụng cao và đặc biệt cung cấp hệ phức hợp 72 khoáng chất vi lượng (Magie, Kẽm, Selen...) tương đồng huyết tương; công thức hiệp đồng đủ bộ D3 + K2 MK-7 tinh khiết và Magie Bisglycinate để định hướng canxi vào xương thai nhi.
-     * Canxi Bisglycinate đơn lẻ: Tỷ lệ canxi nguyên tố thấp (~18-20%), để đạt đủ 500-600mg canxi nguyên tố cần viên to hoặc uống 3-4 viên; thường là đơn khoáng thiếu vắng hệ đồng vận K2/D3; chi phí nguyên liệu đắt dẫn đến giá thành cao hoặc chiết khấu quầy thuốc thấp (15-20%).
+QUY TẮC BẮT BUỘC VỀ DƯỢC LÝ & Y ĐỨC (KHÁCH QUAN, KHOA HỌC, CHỐNG DÌM HÀNG):
+1. TUYỆT ĐỐI TRUNG THỰC, KHÁCH QUAN VÀ CHUẨN DƯỢC LÝ:
+   - CÔNG NHẬN ĐẦY ĐỦ ƯU ĐIỂM CÔNG NGHỆ CỦA ĐỐI THỦ:
+     * Nhóm Canxi Hydroxyapatite vi tinh thể (MCHA): Bắt buộc công nhận độ tương thích sinh học cao và tỷ lệ Canxi:Photpho tự nhiên (2:1).
+     * Nhóm Canxi Bisglycinate Chelate: Bắt buộc công nhận sinh khả dụng cao, hấp thu nguyên vẹn qua kênh dipeptide (PepT1), êm dịu niêm mạc dạ dày, không táo bón.
+     * Nhóm Canxi Carbonate: Công nhận hàm lượng canxi nguyên tố cao vượt trội (40%) và chi phí kinh tế.
+   - TRÁNH VƠ ĐŨA CẢ NẮM VÀ TRÁNH DÌM HÀNG LỘ LIỄU:
+     * Không được nói "tất cả sản phẩm Hydroxyapatite/Bisglycinate đều thiếu K2" vì hiện nay một số dòng thế hệ mới đã có tích hợp. Phải nói chính xác là: "nhiều công thức truyền thống trên thị trường vẫn là đơn chất hoặc chưa tích hợp K2 MK-7 và Magie hữu cơ đồng vận".
+     * Không được quy chụp "chỉ chiết khấu 15-20% cho nhà thuốc" vì mức này chủ yếu rơi vào các sản phẩm biệt dược kê đơn ETC hoặc hàng chuỗi lớn phủ sóng mạnh; các dòng OTC/TPCN tự doanh vẫn có thể đạt mức chiết khấu cao hơn.
+   - PHÂN TÍCH HẠN CHẾ DỰA TRÊN KHOA HỌC ĐÍCH THỰC:
+     * Về liều canxi nguyên tố: MCHA (chỉ ~20-25%), Bisglycinate (chỉ ~18-20%) -> Mẹ bầu cần 1000-1200mg/ngày nên phải uống nhiều viên (2-4 viên/ngày) hoặc viên nén rất lớn khó nuốt.
+     * Về tính toàn diện của DION Cal-Mom: Canxi sinh học từ tảo đỏ Lithothamnion mang cấu trúc tổ ong xốp vi thể dễ hấp thu, đặc biệt cung cấp hệ phức hợp 72 khoáng chất vi lượng tương đồng huyết tương; công thức hiệp đồng đủ bộ D3 + K2 MK-7 tinh khiết và Magie Bisglycinate; chiết khấu đại lý 30-35% và pháp lý chuẩn Cục ATTP.
 2. Xuất kết quả dưới định dạng JSON duy nhất với 4 trường:
-   - "assessment": (string) Đánh giá khách quan, khoa học về bản chất hoạt chất và cơ chế hấp thu của đối thủ.
-   - "weakness_identified": (string) Các hạn chế THỰC TẾ của sản phẩm cạnh tranh (về tính đồng vận công thức, liều nguyên tố, độ phủ hoặc bài toán kinh tế cho nhà thuốc).
-   - "actionable_tactics": (list of 3 strings) 3 luận điểm tư vấn chuyên môn sắc bén, tôn trọng đối thủ nhưng chứng minh giải pháp DION toàn diện hơn.
-   - "dion_counter_pitch": (string) Lời thoại mẫu của Trình dược viên khi đối thoại với Dược sĩ quầy thuốc (văn phong lịch thiệp, tôn trọng chuyên môn của Dược sĩ, phân tích khoa học và đưa ra bài toán lợi nhuận hấp dẫn).
+   - "assessment": (string) Đánh giá khách quan, khoa học về bản chất hoạt chất, ưu điểm sinh học và cơ chế hấp thu của đối thủ (khoa học, văn minh, công nhận ưu điểm).
+   - "weakness_identified": (string) Các hạn chế THỰC TẾ và chuẩn xác (về liều nguyên tố, kích thước viên, tính đồng vận công thức truyền thống, hoặc tính pháp lý hóa đơn chứng từ).
+   - "actionable_tactics": (list of 3 strings) 3 luận điểm tư vấn chuyên môn sâu sắc, tôn trọng đối thủ nhưng chứng minh giải pháp DION toàn diện hơn.
+   - "dion_counter_pitch": (string) Lời thoại mẫu của Trình dược viên khi đối thoại với Dược sĩ chủ quầy (văn phong lịch thiệp, tôn trọng chuyên môn của Dược sĩ, phân tích y khoa chuẩn mực, đưa ra bài toán lợi nhuận và giải pháp tối ưu cho thai phụ).
 Chỉ trả về JSON hợp lệ, không giải thích thêm."""
 
             gemini_models = ["gemini-flash-lite-latest", "gemini-3.8-flash", "gemini-flash-latest"]
