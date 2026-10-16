@@ -338,28 +338,48 @@
                 <div class="lg:col-span-6 bg-white rounded border border-slate-200 p-4 shadow-sm flex flex-col justify-between min-h-[580px]">
                     <div>
                         <!-- Header chuyển đổi chế độ xem Soạn thảo vs Tô đỏ -->
-                        <div class="flex justify-between items-center mb-2.5 pb-2 border-b border-slate-100">
+                        <div class="flex flex-wrap justify-between items-center mb-2.5 pb-2 border-b border-slate-100 gap-2">
                             <div class="flex items-center gap-1.5">
-                                <button id="btn-editor-edit-mode" onclick="switchEditorMode('EDIT')" class="px-2.5 py-1 rounded bg-slate-800 text-white font-bold text-xs shadow-xs transition">
-                                    ✏️ Soạn thảo Text
+                                <button id="btn-editor-edit-mode" onclick="switchEditorMode('EDIT')" class="px-3 py-1.5 rounded bg-slate-900 text-white font-bold text-xs shadow-xs transition flex items-center gap-1.5">
+                                    <span>✏️ Nhập liệu & Tự viết</span>
                                 </button>
-                                <button id="btn-editor-highlight-mode" onclick="switchEditorMode('HIGHLIGHT')" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition flex items-center gap-1.5">
-                                    🔴 Đối chiếu Tô đỏ Trực quan
+                                <button id="btn-editor-highlight-mode" onclick="switchEditorMode('HIGHLIGHT')" class="px-3 py-1.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition flex items-center gap-1.5">
+                                    <span>🔴 Kết quả Tô đỏ Lỗi</span>
                                     <span id="editor-violation-badge" class="px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-slate-200 text-slate-700">0 lỗi</span>
                                 </button>
                             </div>
-                            <span class="text-[11px] text-slate-500 font-medium italic" id="editor-mode-hint">Bấm vào từ tô đỏ để thay thế 1-click</span>
+                            <div class="flex items-center gap-2">
+                                <button onclick="clearAdContentForNewPost()" class="px-2.5 py-1 rounded text-slate-600 hover:text-rose-700 hover:bg-rose-50 text-[11px] font-bold transition flex items-center gap-1 border border-slate-200 shadow-xs" title="Xóa nội dung cũ để tự gõ bài mới">
+                                    <span>🗑️ Xóa để tự viết bài mới</span>
+                                </button>
+                                <span class="text-[11px] text-slate-500 font-medium italic hidden md:inline" id="editor-mode-hint">Gõ bài viết rồi nhấn Thẩm định</span>
+                            </div>
                         </div>
 
                         <!-- Khung soạn thảo thuần (Textarea Edit Mode) -->
                         <div id="editor-edit-wrap">
-                            <textarea id="ad-content-box" rows="13" oninput="onAdContentInput()" placeholder="Nhập hoặc dán nội dung bài viết quảng cáo tại đây để đối chiếu với hồ sơ sản phẩm..." class="w-full bg-slate-50 border border-slate-300 rounded p-3 text-xs leading-relaxed outline-none focus:border-corp-700 font-medium font-mono"></textarea>
+                            <div class="relative">
+                                <textarea id="ad-content-box" rows="13" oninput="onAdContentInput()" placeholder="Nhập hoặc dán nội dung bài viết quảng cáo tại đây để đối chiếu với hồ sơ sản phẩm (Bạn có thể tự gõ từ đầu)..." class="w-full bg-slate-50 border border-slate-300 rounded p-3 text-xs leading-relaxed outline-none focus:border-corp-700 focus:bg-white font-medium font-mono transition shadow-inner"></textarea>
+                                <div class="text-[11px] text-slate-500 mt-1.5 flex justify-between items-center bg-slate-50 px-2.5 py-1 rounded border border-slate-200">
+                                    <span>💡 <b>Chế độ Nhập liệu:</b> Bạn hãy tự gõ hoặc copy bài viết vào ô trên, sau đó nhấn <b>⚡ Thẩm định Radar NĐ 342</b> hoặc <b>🤖 AI Agent</b> bên dưới.</span>
+                                    <span id="ad-word-count" class="font-mono font-bold text-slate-700">0 ký tự</span>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Khung đối chiếu tô đỏ trực tiếp trên trình soạn thảo (Visual Highlighting Mode) -->
                         <div id="editor-highlight-wrap" class="hidden">
-                            <div id="ad-editor-highlights" class="w-full bg-white border border-rose-300 rounded p-3 text-xs leading-relaxed font-mono min-h-[290px] max-h-[340px] overflow-y-auto">
-                                <div class="text-slate-400 italic text-center pt-16">Chưa có kết quả thẩm định. Hãy bấm 'Thẩm định' bên dưới để AI quét và tô đỏ trực tiếp các vi phạm.</div>
+                            <!-- Thanh chuyển nhanh về gõ bài -->
+                            <div class="flex items-center justify-between bg-amber-50 border border-amber-300 px-3 py-1.5 rounded mb-2 text-xs text-amber-950 font-medium shadow-xs">
+                                <div class="flex items-center gap-1.5">
+                                    <span>🔍 Đang xem kết quả tô đỏ vi phạm. <b>Click vào từ tô đỏ</b> để xem lý do & sửa 1-click.</span>
+                                </div>
+                                <button onclick="switchEditorMode('EDIT')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs transition flex items-center gap-1 shadow-xs whitespace-nowrap">
+                                    <span>✏️ Chuyển sang gõ / sửa bài</span>
+                                </button>
+                            </div>
+                            <div id="ad-editor-highlights" ondblclick="switchEditorMode('EDIT')" title="Nhấp đúp chuột vào đây để chuyển sang gõ / sửa bài viết" class="w-full bg-white border border-rose-300 rounded p-3 text-xs leading-relaxed font-mono min-h-[290px] max-h-[340px] overflow-y-auto cursor-text">
+                                <div class="text-slate-400 italic text-center pt-16">Chưa có kết quả thẩm định. Hãy nhập bài viết và bấm 'Thẩm định' bên dưới để AI quét và tô đỏ trực tiếp các vi phạm.</div>
                             </div>
                         </div>
 
@@ -1256,16 +1276,37 @@
             if (mode === 'EDIT') {
                 editWrap.classList.remove('hidden');
                 highlightWrap.classList.add('hidden');
-                btnEdit.className = 'px-2.5 py-1 rounded bg-slate-800 text-white font-bold text-xs shadow-xs transition';
-                btnHighlight.className = 'px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition flex items-center gap-1.5';
-                document.getElementById('editor-mode-hint').innerText = 'Chế độ chỉnh sửa tự do bằng tay';
+                btnEdit.className = 'px-3 py-1.5 rounded bg-slate-900 text-white font-bold text-xs shadow-xs transition flex items-center gap-1.5';
+                btnHighlight.className = 'px-3 py-1.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition flex items-center gap-1.5';
+                document.getElementById('editor-mode-hint').innerText = 'Chế độ nhập liệu & tự gõ bài';
+                setTimeout(() => {
+                    const box = document.getElementById('ad-content-box');
+                    if (box) box.focus();
+                }, 50);
             } else {
                 editWrap.classList.add('hidden');
                 highlightWrap.classList.remove('hidden');
-                btnHighlight.className = 'px-2.5 py-1 rounded bg-rose-700 text-white font-bold text-xs shadow-xs transition flex items-center gap-1.5';
-                btnEdit.className = 'px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition';
-                document.getElementById('editor-mode-hint').innerText = 'Bấm vào từ tô đỏ để xem lý do & thay thế 1-click';
+                btnHighlight.className = 'px-3 py-1.5 rounded bg-rose-800 text-white font-bold text-xs shadow-xs transition flex items-center gap-1.5';
+                btnEdit.className = 'px-3 py-1.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition flex items-center gap-1.5';
+                document.getElementById('editor-mode-hint').innerText = 'Click từ tô đỏ để sửa 1-click';
             }
+        }
+
+        function clearAdContentForNewPost() {
+            document.getElementById('ad-content-box').value = '';
+            onAdContentInput();
+            switchEditorMode('EDIT');
+            closeHighlightFixCard();
+            
+            // Đặt lại các chỉ số
+            document.getElementById('editor-violation-badge').innerText = '0 lỗi';
+            document.getElementById('editor-violation-badge').className = 'px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-slate-200 text-slate-700';
+            document.getElementById('audit-score-display').innerText = '0 / 100';
+            document.getElementById('audit-badge-display').innerText = 'Chưa kiểm tra';
+            document.getElementById('audit-badge-display').className = 'px-3 py-1 rounded text-xs font-bold uppercase text-center bg-slate-200 text-slate-700';
+            document.getElementById('audit-score-wrap').className = 'flex items-center justify-between p-3 rounded border bg-slate-50 border-slate-200';
+            document.getElementById('audit-msg-box').innerHTML = '<div class="text-slate-400 italic text-center py-2">Hãy nhập nội dung bài viết vào ô bên trái rồi nhấn nút Thẩm định bên dưới.</div>';
+            document.getElementById('ad-editor-highlights').innerHTML = '<div class="text-slate-400 italic text-center pt-16">Chưa có kết quả thẩm định. Hãy nhập bài viết và bấm \'Thẩm định\' bên dưới để AI quét và tô đỏ trực tiếp các vi phạm.</div>';
         }
 
         function onHighlightClick(el) {
@@ -1308,6 +1349,7 @@
             }
 
             closeHighlightFixCard();
+            onAdContentInput();
 
             if (currentEngineMode === 'AI_AGENT') {
                 runAIAgentAudit();
@@ -1325,6 +1367,7 @@
             } else {
                 textEl.value = textEl.value.trim() + '\n\n📦 ' + textToAdd;
             }
+            onAdContentInput();
             if (currentEngineMode === 'AI_AGENT') {
                 runAIAgentAudit();
             } else {
@@ -1344,30 +1387,31 @@
                 btnAi.className = 'px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 transition flex items-center gap-1';
                 radarPanel.classList.remove('hidden');
                 aiPanel.classList.add('hidden');
-                runAdAudit();
             } else {
                 btnAi.className = 'px-2.5 py-1 rounded bg-indigo-700 text-white font-bold shadow-sm transition flex items-center gap-1';
                 btnRadar.className = 'px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 transition';
                 radarPanel.classList.add('hidden');
                 aiPanel.classList.remove('hidden');
-                runAIAgentAudit();
             }
         }
 
         function pickAdPreset(idx) {
             const sku = document.getElementById('ad-sku-select').value;
             const p = PRODUCTS_DOSSIER[sku] || PRODUCTS_DOSSIER["DION-CAL-MOM"];
-            document.getElementById('ad-content-box').value = p.presets[idx] || PRESETS[idx] || "";
+            const text = p.presets[idx] || PRESETS[idx] || "";
+            document.getElementById('ad-content-box').value = text;
+            onAdContentInput();
             closeHighlightFixCard();
-            if (currentEngineMode === 'AI_AGENT') {
-                runAIAgentAudit();
-            } else {
-                runAdAudit();
-            }
+            
+            // LUÔN Ở CHẾ ĐỘ SOẠN THẢO (EDIT MODE) để người dùng thấy rõ văn bản và tự do gõ / chỉnh sửa
+            switchEditorMode('EDIT');
+            document.getElementById('editor-mode-hint').innerText = 'Đã tải mẫu Ca ' + idx + '. Bạn có thể tự gõ sửa thêm, rồi bấm Thẩm định bên dưới.';
         }
 
         function onAdContentInput() {
-            // Cho phép người dùng chỉnh sửa tự do
+            const text = document.getElementById('ad-content-box').value;
+            const countEl = document.getElementById('ad-word-count');
+            if (countEl) countEl.innerText = text.length + ' ký tự';
         }
 
         function toggleKeyConfigModal() {
@@ -1398,7 +1442,12 @@
         async function runAdAudit() {
             const text = document.getElementById('ad-content-box').value;
             const sku = document.getElementById('ad-sku-select').value;
-            if (!text.trim()) return;
+            if (!text.trim()) {
+                alert("Vui lòng nhập hoặc dán nội dung bài viết quảng cáo vào ô trước khi bấm Thẩm định!");
+                switchEditorMode('EDIT');
+                document.getElementById('ad-content-box').focus();
+                return;
+            }
 
             document.getElementById('audit-engine-source-label').innerText = 'Động cơ: Radar Luật định NĐ 342';
             document.getElementById('radar-results-panel').classList.remove('hidden');
@@ -1517,7 +1566,12 @@
         async function runAIAgentAudit() {
             const text = document.getElementById('ad-content-box').value;
             const sku = document.getElementById('ad-sku-select').value;
-            if (!text.trim()) return;
+            if (!text.trim()) {
+                alert("Vui lòng nhập hoặc dán nội dung bài viết quảng cáo vào ô trước khi chạy AI Agent!");
+                switchEditorMode('EDIT');
+                document.getElementById('ad-content-box').focus();
+                return;
+            }
 
             document.getElementById('radar-results-panel').classList.add('hidden');
             document.getElementById('ai-agent-results-panel').classList.remove('hidden');
@@ -1642,7 +1696,12 @@
         async function runAdAutoFix() {
             const text = document.getElementById('ad-content-box').value;
             const sku = document.getElementById('ad-sku-select').value;
-            if (!text.trim()) return;
+            if (!text.trim()) {
+                alert("Vui lòng nhập hoặc dán nội dung bài viết quảng cáo vào ô trước khi bấm Tự động sửa!");
+                switchEditorMode('EDIT');
+                document.getElementById('ad-content-box').focus();
+                return;
+            }
 
             const res = await fetch('/api/content/auto-fix', {
                 method: 'POST',
@@ -2063,7 +2122,9 @@
 
         window.onload = function() {
             initLeadsData();
+            // Nạp mẫu Ca 1 vào ô soạn thảo nhưng luôn giữ ở chế độ Soạn thảo (EDIT) để người dùng tự do nhập liệu
             pickAdPreset(1);
+            switchEditorMode('EDIT');
             fetchClaimsHubData();
         }
     </script>
