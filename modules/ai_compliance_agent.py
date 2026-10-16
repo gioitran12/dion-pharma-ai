@@ -118,26 +118,35 @@ Trả về DUY NHẤT một chuỗi JSON hợp lệ không có markdown code blo
   "rewritten_draft": "<bài viết hoàn chỉnh đã được AI viết lại đạt chuẩn 100/100>"
 }}
 """
-    # Thử Gemini
-    if HAS_GOOGLE_GENAI and (api_key.startswith("AIza") or "gemini" in provider.lower()):
-        try:
-            client = genai.Client(api_key=api_key)
-            response = client.models.generate_content(
-                model='gemini-2.5-flash',
-                contents=prompt,
-                config=genai_types.GenerateContentConfig(
-                    response_mime_type="application/json",
-                    temperature=0.2
-                )
-            )
-            data = json.loads(response.text)
-            data["agent_mode"] = "CLOUD_LLM"
-            data["model_name"] = "Google Gemini 2.5 Flash"
-            data["violations_count"] = len(data.get("semantic_violations", []))
-            data["critical_count"] = sum(1 for v in data.get("semantic_violations", []) if v.get("severity") == "CRITICAL")
-            return data
-        except Exception:
-            pass
+    # Thử Gemini (chấp nhận key bắt đầu bằng AQ., AIza, hoặc khi provider là gemini/auto)
+    if not api_key.startswith("sk-"):
+        import requests
+        gemini_models = ["gemini-flash-lite-latest", "gemini-flash-latest", "gemini-pro-latest"]
+        for model in gemini_models:
+            try:
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+                payload = {
+                    "contents": [{"parts": [{"text": prompt}]}],
+                    "generationConfig": {
+                        "responseMimeType": "application/json",
+                        "temperature": 0.2
+                    }
+                }
+                r = requests.post(url, json=payload, timeout=25)
+                if r.status_code == 200:
+                    raw_text = r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+                    # Loại bỏ markdown fences nếu có
+                    if raw_text.startswith("```"):
+                        raw_text = re.sub(r"^```(?:json)?\s*", "", raw_text)
+                        raw_text = re.sub(r"\s*```$", "", raw_text)
+                    data = json.loads(raw_text)
+                    data["agent_mode"] = "CLOUD_LLM"
+                    data["model_name"] = f"Google Gemini ({model})"
+                    data["violations_count"] = len(data.get("semantic_violations", []))
+                    data["critical_count"] = sum(1 for v in data.get("semantic_violations", []) if v.get("severity") == "CRITICAL")
+                    return data
+            except Exception:
+                continue
 
     # Thử OpenAI
     if HAS_OPENAI and (api_key.startswith("sk-") or "openai" in provider.lower()):
