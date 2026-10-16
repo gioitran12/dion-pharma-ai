@@ -545,27 +545,58 @@
                 </div>
             </div>
 
-            <!-- 4 THẺ CHỈ SỐ THỊ TRƯỜNG TỔNG THỂ -->
+            <!-- 4 THẺ CHỈ SỐ THỊ TRƯỜNG TỔNG THỂ VỚI ĐIỂM NHẤN MÀU SẮC -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
-                <div class="bg-white rounded border border-slate-200 p-3.5 shadow-xs">
-                    <div class="text-[11px] font-bold uppercase text-slate-500">Sản phẩm kho DION</div>
-                    <div class="text-xl font-extrabold text-corp-800 mt-1" id="mkt-stat-skus">3 SKU Chủ Lực</div>
-                    <div class="text-[10px] text-emerald-700 font-semibold mt-0.5">Tự động liên kết hồ sơ Cục ATTP</div>
+                <div class="bg-white rounded-lg border border-slate-200 border-l-4 border-l-blue-600 p-3.5 shadow-xs transition hover:shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-bold uppercase text-slate-500">Sản phẩm kho DION</span>
+                        <span class="p-1 rounded bg-blue-50 text-blue-700">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                        </span>
+                    </div>
+                    <div class="text-xl font-extrabold text-blue-900 mt-1" id="mkt-stat-skus">3 SKU Chủ Lực</div>
+                    <div class="text-[10px] text-blue-700 font-semibold mt-1 flex items-center gap-1">
+                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-blue-600"></span> Đồng bộ Hồ sơ Cục ATTP
+                    </div>
                 </div>
-                <div class="bg-white rounded border border-slate-200 p-3.5 shadow-xs">
-                    <div class="text-[11px] font-bold uppercase text-slate-500">Sản phẩm cạnh tranh giám sát</div>
-                    <div class="text-xl font-extrabold text-slate-900 mt-1" id="mkt-stat-competitors">7 Thương hiệu</div>
-                    <div class="text-[10px] text-slate-600 font-medium mt-0.5">Khảo sát chuỗi Long Châu, Pharmacity & OTC</div>
+
+                <div class="bg-white rounded-lg border border-slate-200 border-l-4 border-l-purple-600 p-3.5 shadow-xs transition hover:shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-bold uppercase text-slate-500">Đối thủ giám sát</span>
+                        <span class="p-1 rounded bg-purple-50 text-purple-700">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        </span>
+                    </div>
+                    <div class="text-xl font-extrabold text-purple-950 mt-1" id="mkt-stat-competitors">7 Thương hiệu</div>
+                    <div class="text-[10px] text-purple-700 font-semibold mt-1 flex items-center gap-1">
+                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-purple-600"></span> Khảo sát Long Châu, Pharmacity & OTC
+                    </div>
                 </div>
-                <div class="bg-white rounded border border-slate-200 p-3.5 shadow-xs">
-                    <div class="text-[11px] font-bold uppercase text-slate-500">Biên lợi nhuận quầy thuốc DION</div>
+
+                <div class="bg-white rounded-lg border border-slate-200 border-l-4 border-l-emerald-600 p-3.5 shadow-xs transition hover:shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-bold uppercase text-slate-500">Biên lợi nhuận quầy DION</span>
+                        <span class="p-1 rounded bg-emerald-50 text-emerald-700">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </span>
+                    </div>
                     <div class="text-xl font-extrabold text-emerald-700 mt-1" id="mkt-stat-margin">30% - 35%</div>
-                    <div class="text-[10px] text-emerald-800 font-semibold mt-0.5">Cao hơn trung bình thị trường (12% - 15%)</div>
+                    <div class="text-[10px] text-emerald-800 font-bold mt-1 flex items-center gap-1">
+                        <span class="inline-block px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-900 font-extrabold">Cao gấp >2 lần</span> Hàng ngoại (12-15%)
+                    </div>
                 </div>
-                <div class="bg-white rounded border border-slate-200 p-3.5 shadow-xs">
-                    <div class="text-[11px] font-bold uppercase text-slate-500">Định vị ưu thế công thức</div>
-                    <div class="text-xs font-extrabold text-indigo-900 mt-1 line-clamp-2" id="mkt-stat-advantage">Hữu cơ sinh học + Bằng chứng RCTs độc lập</div>
-                    <div class="text-[10px] text-indigo-700 font-medium mt-0.5">Cơ chế hấp thu trúng đích, êm dịu dạ dày</div>
+
+                <div class="bg-white rounded-lg border border-slate-200 border-l-4 border-l-amber-500 p-3.5 shadow-xs transition hover:shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-bold uppercase text-slate-500">Định vị ưu thế công thức</span>
+                        <span class="p-1 rounded bg-amber-50 text-amber-700">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </span>
+                    </div>
+                    <div class="text-xs font-extrabold text-amber-950 mt-1 line-clamp-2" id="mkt-stat-advantage">Hữu cơ sinh học + Bằng chứng RCTs độc lập</div>
+                    <div class="text-[10px] text-amber-800 font-semibold mt-1 flex items-center gap-1">
+                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-amber-500"></span> Hấp thu trúng đích, êm dịu dạ dày
+                    </div>
                 </div>
             </div>
 
@@ -1848,6 +1879,60 @@
         // --- 3. PHÂN TÍCH THỊ TRƯỜNG & SẢN PHẨM CẠNH TRANH TOÀN KHO ---
         window.currentMarketCompetitors = [];
 
+        // HÀM TÔ MÀU & HIGHLIGHT NỔI BẬT NỘI DUNG CHUYÊN MÔN
+        function highlightKeywords(text, type) {
+            if (!text) return '';
+            let res = text;
+            if (type === 'weakness') {
+                const terms = [
+                    'táo bón thai kỳ', 'táo bón', 'kích ứng dạ dày', 'kích ứng niêm mạc', 'kích ứng đường tiêu hóa', 'kích ứng',
+                    'lắng cặn', 'sỏi thận', 'vôi hóa sớm', 'vôi hóa', 'dị ứng đạm sữa', 'dị ứng',
+                    'hàng xách tay không có hóa đơn', 'hàng xách tay', 'hàng tiểu ngạch', 'thiếu hóa đơn VAT', 'thiếu hóa đơn',
+                    'chưa có hồ sơ công bố', 'không có hồ sơ công bố', 'không có Số ĐKSP', 'không rõ nguồn gốc', 'rủi ro pháp lý',
+                    'chiết khấu quầy thuốc thấp', 'chiết khấu đại lý thấp', 'chiết khấu điểm bán thấp', 'chiết khấu quầy thấp', 'chiết khấu thấp',
+                    'Canxi Carbonate vô cơ', 'canxi carbonate vô cơ', 'canxi carbonate', 'canxi vô cơ', 'muối vô cơ', 'đá vôi',
+                    'thiếu Vitamin K2 (MK-7)', 'thiếu Vitamin K2', 'thiếu K2', 'chưa có dữ liệu lâm sàng', 'thiếu kiểm nghiệm lâm sàng', 'thiếu nghiên cứu',
+                    'vị tanh kim loại', 'dư vị kim loại', 'mùi kim loại', 'vị tanh', 'phân đen', 'buồn nôn', 'nôn trớ', 'cồn cào', 'ốm nghén',
+                    'chứa cồn (ethanol)', 'chứa cồn', 'tá dược bảo quản', 'chất bảo quản', 'mùi hồi', 'ngọt gắt', 'ngọt đậm', 'ống bẻ cồng kềnh'
+                ];
+                terms.forEach(t => {
+                    const re = new RegExp(`(${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                    res = res.replace(re, '<span class="bg-rose-100 text-rose-950 font-bold px-1.5 py-0.5 rounded border border-rose-200 inline-block my-0.5">$1</span>');
+                });
+            } else if (type === 'advantage') {
+                const terms = [
+                    'tảo đỏ Lithothamnion', 'tảo biển đỏ Lithothamnion', 'tảo biển đỏ', 'tảo đỏ', 'canxi sinh học', 'hữu cơ sinh học', 'chuẩn hữu cơ Châu Âu', 'Organic Châu Âu',
+                    'Vitamin K2 (MK-7)', 'Vitamin K2', 'K2 MK-7', 'K2', 'Vitamin D3 1000IU', 'Vitamin D3', 'D3 + K2', 'Magie Bisglycinate',
+                    'Sắt Bisglycinate', 'Bisglycinate Chelate', 'Bisglycinate', 'Quatrefolic', 'Folic thế hệ 4',
+                    'không gây dị ứng', 'không táo bón', 'không lắng cặn', 'không tanh', 'không mùi không vị', 'êm dịu niêm mạc', 'êm dịu dạ dày', 'êm dịu',
+                    'sinh khả dụng cao hơn 2.4 lần', 'hấp thu nhanh hơn gấp 3.7 lần', 'giảm 94% táo bón', 'giảm tỷ lệ táo bón thai kỳ',
+                    'chiết khấu đại lý 32%', 'chiết khấu đại lý 30-35%', 'chiết khấu nhà thuốc 30% - 35%', 'chiết khấu quầy thuốc đạt 30-35%', 'chiết khấu 30-35%', 'chiết khấu 30% - 35%', 'chiết khấu 32%', 'chiết khấu 30%', 'chiết khấu 35%',
+                    'PubMed độc lập', 'PubMed', 'nghiên cứu lâm sàng', 'RCTs quốc tế', 'RCTs độc lập', 'RCTs', 'Cục ATTP', 'Số ĐKSP', 'hóa đơn VAT', 'hóa đơn GTGT', 'chuẩn ngạch'
+                ];
+                terms.forEach(t => {
+                    const re = new RegExp(`(${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                    res = res.replace(re, '<span class="bg-emerald-100 text-emerald-950 font-bold px-1.5 py-0.5 rounded border border-emerald-300 inline-block my-0.5">$1</span>');
+                });
+            } else if (type === 'pitch') {
+                const terms = [
+                    'chiết khấu cho quầy chỉ tầm 12-14%', 'chiết khấu của quầy chỉ ở mức 12-14%', 'chiết khấu của quầy chỉ đạt 12-15%', 'chiết khấu 10-12%', 'chiết khấu 8% - 10%',
+                    'thị trường hàng xách tay rất phức tạp', 'hàng xách tay không có hóa đơn', 'rủi ro thanh kiểm tra',
+                    'canxi sinh học tảo đỏ tự nhiên', 'canxi sinh học tảo đỏ hữu cơ', 'tảo đỏ Lithothamnion', 'tảo đỏ hữu cơ',
+                    'sinh khả dụng cao hơn 2.4 lần', 'giảm 94% táo bón', 'giảm tỷ lệ táo bón thai kỳ',
+                    'chiết khấu 30-35%', 'chiết khấu 32%', 'chiết khấu 30%', 'chiết khấu 35%', 'biên lợi nhuận trên 30%', 'biên lợi nhuận cho quầy đạt 32%', 'đảm bảo trên 30%',
+                    'hóa đơn VAT chuẩn ngạch', 'hóa đơn GTGT', 'hồ sơ công bố minh bạch 100%', 'Số ĐKSP Cục ATTP',
+                    'K2 MK-7', 'Magie Bisglycinate', 'canxi hấp thu trúng đích',
+                    'sắt Bisglycinate chelate', 'Quatrefolic', 'không phân ly tại dạ dày', 'không tanh', 'không kích ứng niêm mạc',
+                    'dầu thực vật tự nhiên tinh khiết', 'hoàn toàn không mùi, không vị', 'không chứa cồn', 'dễ uống', 'không gây nóng trong'
+                ];
+                terms.forEach(t => {
+                    const re = new RegExp(`(${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                    res = res.replace(re, '<span class="bg-amber-100 text-amber-950 font-bold px-1.5 py-0.5 rounded border border-amber-300 inline-block my-0.5 shadow-2xs">$1</span>');
+                });
+            }
+            return res;
+        }
+
         function renderCompetitorCards(competitors) {
             const cardsContainer = document.getElementById('market-battlecards-container');
             const badge = document.getElementById('battlecards-count-badge');
@@ -1860,50 +1945,67 @@
                 competitors.forEach(c => {
                     const safePitch = (c.counter_pitch || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
                     cardsContainer.innerHTML += `
-                        <div class="bg-white rounded border border-slate-200 p-4 shadow-xs space-y-3">
+                        <div class="bg-white rounded-lg border border-slate-200 hover:border-slate-300 p-4 shadow-xs space-y-3 transition">
                             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2.5">
                                 <div class="flex items-center gap-2">
-                                    <span class="px-2.5 py-0.5 rounded font-bold text-xs bg-slate-800 text-white">${c.brand}</span>
-                                    <span class="font-bold text-sm text-slate-900">${c.product_name || c.product}</span>
-                                    <span class="text-[11px] font-mono text-slate-500">(${c.origin || 'Thị trường'})</span>
+                                    <span class="px-2.5 py-0.5 rounded font-extrabold text-xs bg-slate-900 text-white shadow-xs">${c.brand}</span>
+                                    <span class="font-extrabold text-sm text-slate-900">${c.product_name || c.product}</span>
+                                    <span class="px-2 py-0.5 rounded font-bold text-[11px] bg-blue-50 text-blue-800 border border-blue-200">${c.origin || 'Thị trường'}</span>
                                 </div>
                                 <div class="flex items-center gap-2">
-                                    <span class="text-xs text-slate-600">Giá bán lẻ: <b class="text-slate-900 font-mono">${c.retail_price || c.avg_price}</b></span>
-                                    <span class="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-slate-100 text-slate-800 border border-slate-200">~${c.cost_per_day || 'N/A'}</span>
+                                    <span class="text-xs text-slate-600">Giá bán lẻ: <b class="text-slate-900 font-mono bg-slate-100 px-2 py-0.5 rounded border border-slate-200">${c.retail_price || c.avg_price}</b></span>
+                                    <span class="px-2 py-0.5 rounded text-[11px] font-mono font-black bg-amber-100 text-amber-950 border border-amber-300">~${c.cost_per_day || 'N/A'}</span>
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
-                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200 space-y-1">
-                                    <span class="font-bold text-slate-600 block uppercase text-[10px]">Dạng hoạt chất & Công thức</span>
-                                    <div class="font-medium text-slate-800">${c.active_form || 'Đang cập nhật'}</div>
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-200 space-y-1.5">
+                                    <span class="font-bold text-blue-900 block uppercase text-[10px] tracking-wide flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                                        Dạng hoạt chất & Công thức
+                                    </span>
+                                    <div class="font-medium text-slate-800 leading-relaxed">${c.active_form || 'Đang cập nhật'}</div>
                                 </div>
-                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200 space-y-1">
-                                    <span class="font-bold text-slate-600 block uppercase text-[10px]">Kênh phân phối & Chiết khấu</span>
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1.5">
+                                    <span class="font-bold text-slate-700 block uppercase text-[10px] tracking-wide flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                        Kênh phân phối & Chiết khấu
+                                    </span>
                                     <div class="font-medium text-slate-800">${c.channels}</div>
-                                    <div class="text-[11px] font-bold text-slate-700">Chiết khấu: ${c.pharmacy_margin || '12% - 15%'}</div>
+                                    <div class="mt-1">
+                                        <span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-900 border border-rose-300">
+                                            Chiết khấu đối thủ: ${c.pharmacy_margin || '12% - 15%'}
+                                        </span>
+                                    </div>
                                 </div>
-                                <div class="bg-amber-50/60 p-2.5 rounded border border-amber-200 space-y-1">
-                                    <span class="font-bold text-amber-900 block uppercase text-[10px]">Hạn chế của sản phẩm</span>
-                                    <div class="font-medium text-amber-950">${c.weaknesses}</div>
+                                <div class="bg-rose-50/60 p-3 rounded-lg border border-rose-200 space-y-1.5">
+                                    <span class="font-bold text-rose-900 block uppercase text-[10px] tracking-wide flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-rose-600"></span>
+                                        Hạn chế của sản phẩm
+                                    </span>
+                                    <div class="font-normal text-slate-900 leading-relaxed">${highlightKeywords(c.weaknesses, 'weakness')}</div>
                                 </div>
-                                <div class="bg-emerald-50/60 p-2.5 rounded border border-emerald-200 space-y-1">
-                                    <span class="font-bold text-emerald-900 block uppercase text-[10px]">Ưu thế vượt trội của DION</span>
-                                    <div class="font-medium text-emerald-950 font-semibold">${c.dion_advantage}</div>
+                                <div class="bg-emerald-50/60 p-3 rounded-lg border border-emerald-300 space-y-1.5">
+                                    <span class="font-bold text-emerald-950 block uppercase text-[10px] tracking-wide flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                                        Ưu thế vượt trội của DION
+                                    </span>
+                                    <div class="font-normal text-slate-900 leading-relaxed">${highlightKeywords(c.dion_advantage, 'advantage')}</div>
                                 </div>
                             </div>
                             ${c.counter_pitch ? `
-                            <div class="p-3 bg-slate-50 border border-slate-200 rounded text-xs space-y-1.5">
+                            <div class="p-3.5 bg-gradient-to-r from-teal-50 via-emerald-50 to-cyan-50 border-l-4 border-l-corp-700 border-t border-r border-b border-teal-200 rounded-r-lg text-xs space-y-2">
                                 <div class="flex items-center justify-between">
-                                    <span class="font-bold text-slate-800 uppercase text-[11px]">
-                                        Kịch bản tư vấn khi nhà thuốc đề cập đến ${c.brand}:
+                                    <span class="font-extrabold text-corp-950 uppercase text-[11px] flex items-center gap-2">
+                                        <span class="px-2 py-0.5 rounded bg-corp-800 text-white font-bold text-[10px]">LUẬN ĐIỂM TƯ VẤN</span>
+                                        Khi nhà thuốc đề cập đến <b class="underline decoration-corp-600 text-corp-900">${c.brand}</b>:
                                     </span>
-                                    <button onclick="navigator.clipboard.writeText('${safePitch}'); alert('Đã sao chép kịch bản tư vấn!');" class="text-[10px] text-corp-800 font-bold hover:underline bg-white px-2.5 py-1 rounded border border-slate-300 shadow-xs flex items-center gap-1">
-                                        <svg class="w-3 h-3 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg>
+                                    <button onclick="navigator.clipboard.writeText('${safePitch}'); alert('Đã sao chép kịch bản tư vấn!');" class="text-[11px] text-corp-800 font-bold hover:bg-white bg-white/90 px-3 py-1 rounded border border-teal-300 shadow-2xs flex items-center gap-1.5 transition">
+                                        <svg class="w-3.5 h-3.5 text-corp-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg>
                                         <span>Sao chép kịch bản</span>
                                     </button>
                                 </div>
-                                <div class="text-slate-800 italic leading-relaxed bg-white p-2.5 rounded border border-slate-200">
-                                    "${c.counter_pitch}"
+                                <div class="text-slate-900 leading-relaxed bg-white/95 p-3 rounded border border-teal-100 shadow-xs font-serif text-[12.5px] italic">
+                                    "${highlightKeywords(c.counter_pitch, 'pitch')}"
                                 </div>
                             </div>
                             ` : ''}
@@ -1947,37 +2049,49 @@
             window.currentMarketCompetitors = data.competitors || [];
             renderCompetitorCards(window.currentMarketCompetitors);
 
-            // 2. Render Bảng Đối thủ Chi tiết
+            // 2. Render Bảng Đối thủ Chi tiết với Highlight màu sắc
             const compBody = document.getElementById('competitors-tbody');
             if (compBody) {
                 compBody.innerHTML = '';
                 (data.competitors || []).forEach(c => {
                     compBody.innerHTML += `
-                        <tr>
-                            <td class="table-cell font-bold text-slate-900">${c.brand || c.name}</td>
-                            <td class="table-cell font-semibold text-slate-700">${c.product_name || c.product}</td>
-                            <td class="table-cell font-mono font-bold text-slate-800">${c.retail_price || c.avg_price}</td>
-                            <td class="table-cell font-mono text-slate-800 font-semibold">${c.cost_per_day || 'N/A'}</td>
-                            <td class="table-cell text-slate-600">${c.channels}</td>
-                            <td class="table-cell text-slate-700 font-bold">${c.pharmacy_margin || '12-15%'}</td>
-                            <td class="table-cell text-amber-900 font-medium">${c.weaknesses}</td>
-                            <td class="table-cell font-bold text-emerald-800">${c.dion_advantage}</td>
+                        <tr class="hover:bg-slate-50/80 transition">
+                            <td class="table-cell font-bold text-slate-900 whitespace-nowrap">
+                                <span class="px-2 py-0.5 rounded bg-slate-100 font-extrabold text-slate-900 border border-slate-300 text-[11px]">${c.brand || c.name}</span>
+                            </td>
+                            <td class="table-cell font-bold text-slate-800">${c.product_name || c.product}</td>
+                            <td class="table-cell font-mono font-bold text-slate-900 whitespace-nowrap">${c.retail_price || c.avg_price}</td>
+                            <td class="table-cell whitespace-nowrap">
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-amber-100 text-amber-950 border border-amber-300">~${c.cost_per_day || 'N/A'}</span>
+                            </td>
+                            <td class="table-cell text-slate-600 text-[11px]">${c.channels}</td>
+                            <td class="table-cell whitespace-nowrap">
+                                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-900 border border-rose-300">${c.pharmacy_margin || '12-15%'}</span>
+                            </td>
+                            <td class="table-cell text-slate-900 text-[11px] leading-relaxed max-w-xs">${highlightKeywords(c.weaknesses, 'weakness')}</td>
+                            <td class="table-cell text-slate-900 text-[11px] leading-relaxed max-w-xs">${highlightKeywords(c.dion_advantage, 'advantage')}</td>
                         </tr>
                     `;
                 });
             }
 
-            // 3. Render Bảng Xu Hướng
+            // 3. Render Bảng Xu Hướng với Highlight màu sắc
             const trendsBody = document.getElementById('market-trends-tbody');
             if (trendsBody) {
                 trendsBody.innerHTML = '';
                 (data.trends || []).forEach(t => {
                     trendsBody.innerHTML += `
-                        <tr>
-                            <td class="table-cell font-semibold text-corp-700">${t.trend_name}</td>
-                            <td class="table-cell font-bold text-emerald-700">${t.growth}</td>
-                            <td class="table-cell text-slate-600">${t.insight}</td>
-                            <td class="table-cell font-medium text-slate-900">${t.dion_opportunity || t.opportunity}</td>
+                        <tr class="hover:bg-slate-50/80 transition">
+                            <td class="table-cell font-bold text-corp-800">${t.trend_name}</td>
+                            <td class="table-cell whitespace-nowrap">
+                                <span class="px-2.5 py-1 rounded-full text-xs font-black bg-emerald-100 text-emerald-950 border border-emerald-300">${t.growth}</span>
+                            </td>
+                            <td class="table-cell text-slate-700 text-[11px] leading-relaxed">${t.insight}</td>
+                            <td class="table-cell text-slate-900 text-[11px] leading-relaxed">
+                                <div class="bg-emerald-50/60 p-2 rounded border border-emerald-200">
+                                    ${highlightKeywords(t.dion_opportunity || t.opportunity, 'advantage')}
+                                </div>
+                            </td>
                         </tr>
                     `;
                 });
@@ -2022,32 +2136,46 @@
                 const box = document.getElementById('custom-competitor-result');
                 box.classList.remove('hidden');
                 box.innerHTML = `
-                    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
-                        <span class="font-bold text-slate-900 uppercase">
-                            KẾT QUẢ ĐỐI CHIẾU SẢN PHẨM: ${data.analyzed_competitor} VÀ ${data.dion_product}
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-2.5">
+                        <span class="font-extrabold text-slate-900 uppercase text-xs flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-corp-800 text-white font-bold text-[10px]">KẾT QUẢ ĐỐI CHIẾU</span>
+                            <span class="text-rose-800">${data.analyzed_competitor}</span>
+                            <span class="text-slate-400 font-normal">với</span>
+                            <span class="text-emerald-800">${data.dion_product}</span>
                         </span>
-                        <span class="text-[10px] bg-slate-200 text-slate-800 font-bold px-2 py-0.5 rounded">Phân tích tự động</span>
+                        <span class="text-[10px] bg-slate-200 text-slate-800 font-bold px-2 py-0.5 rounded">Tự động đối chiếu</span>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-                        <div class="bg-white p-3 rounded border border-slate-200">
-                            <span class="font-bold text-amber-900 block text-[11px] mb-1">Hạn chế của sản phẩm cạnh tranh:</span>
-                            <p class="text-slate-700 leading-relaxed">${data.weakness_identified}</p>
+                        <div class="bg-rose-50/70 p-3.5 rounded-lg border border-rose-200 space-y-1">
+                            <span class="font-bold text-rose-900 block text-[11px] uppercase tracking-wide flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                                Hạn chế của sản phẩm cạnh tranh:
+                            </span>
+                            <div class="text-slate-800 leading-relaxed text-[11.5px]">${highlightKeywords(data.weakness_identified, 'weakness')}</div>
                         </div>
-                        <div class="bg-white p-3 rounded border border-slate-200">
-                            <span class="font-bold text-emerald-900 block text-[11px] mb-1">Định hướng tư vấn tại điểm bán:</span>
-                            <ul class="space-y-1 text-slate-700">
-                                ${(data.actionable_tactics || []).map(t => `<li>• ${t}</li>`).join('')}
+                        <div class="bg-emerald-50/70 p-3.5 rounded-lg border border-emerald-300 space-y-1">
+                            <span class="font-bold text-emerald-950 block text-[11px] uppercase tracking-wide flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                                Định hướng tư vấn tại điểm bán:
+                            </span>
+                            <ul class="space-y-1 text-slate-800 text-[11.5px]">
+                                ${(data.actionable_tactics || []).map(t => `<li class="flex items-start gap-1.5"><span class="text-emerald-700 font-bold">✓</span> <span>${t}</span></li>`).join('')}
                             </ul>
                         </div>
                     </div>
-                    <div class="p-3 bg-white rounded border border-slate-200 space-y-1 mt-2">
+                    <div class="p-3.5 bg-gradient-to-r from-teal-50 via-emerald-50 to-cyan-50 rounded-lg border border-teal-200 space-y-1.5 mt-2 shadow-xs">
                         <div class="flex items-center justify-between">
-                            <span class="font-bold text-slate-800 block text-[11px]">Kịch bản tư vấn xử lý từ chối (Objection Handling):</span>
-                            <button onclick="navigator.clipboard.writeText('${(data.dion_counter_pitch || '').replace(/'/g, "\\'")}'); alert('Đã sao chép kịch bản!');" class="text-[10px] text-corp-800 font-bold hover:underline bg-slate-50 px-2 py-0.5 rounded border border-slate-200">
+                            <span class="font-bold text-corp-950 block text-[11px] uppercase flex items-center gap-1.5">
+                                <span class="px-2 py-0.5 rounded bg-corp-800 text-white font-bold text-[10px]">KỊCH BẢN TƯ VẤN XỬ LÝ TỪ CHỐI</span>
+                                (Objection Handling):
+                            </span>
+                            <button onclick="navigator.clipboard.writeText('${(data.dion_counter_pitch || '').replace(/'/g, "\\'")}'); alert('Đã sao chép kịch bản!');" class="text-[10px] text-corp-800 font-bold hover:bg-white bg-white px-2.5 py-1 rounded border border-teal-300 shadow-2xs">
                                 Sao chép kịch bản
                             </button>
                         </div>
-                        <p class="text-slate-800 italic leading-relaxed">"${data.dion_counter_pitch}"</p>
+                        <div class="text-slate-900 italic leading-relaxed bg-white/95 p-3 rounded border border-teal-100 font-serif text-[12.5px]">
+                            "${highlightKeywords(data.dion_counter_pitch, 'pitch')}"
+                        </div>
                     </div>
                 `;
             } catch (err) {
