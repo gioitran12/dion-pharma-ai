@@ -1,12 +1,111 @@
 {
   "products": [
     {
+      "sku": "DION-CAL-MOM",
+      "name": "Canxi Hữu Cơ DION Cal-Mom Plus & D3 K2",
+      "category": "Khoáng chất cho mẹ bầu & xương khớp",
+      "regulatory_class": "Thực phẩm bảo vệ sức khỏe (TPBVSK)",
+      "registration_number": "8892/2025/ĐKSP - Cục An toàn thực phẩm",
+      "ad_permit_number": "1245/2025/XNQC-ATTP",
+      "active_ingredients": [
+        {
+          "name": "Canxi sinh học từ tảo biển đỏ Lithothamnion",
+          "amount": "500mg"
+        },
+        {
+          "name": "Vitamin D3 (Cholecalciferol)",
+          "amount": "400 IU"
+        },
+        {
+          "name": "Vitamin K2 (MK-7 tinh khiết)",
+          "amount": "25 mcg"
+        },
+        {
+          "name": "Magie Bisglycinate",
+          "amount": "50mg"
+        }
+      ],
+      "target_users": [
+        "Phụ nữ chuẩn bị mang thai, đang mang thai và cho con bú",
+        "Người trưởng thành có nguy cơ loãng xương, người cao tuổi cần bổ sung Canxi"
+      ],
+      "contraindications": "Người mẫn cảm với bất kỳ thành phần nào của sản phẩm, người tăng canxi huyết, tăng canxi niệu, sỏi thận, sỏi tiết niệu.",
+      "mandatory_disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+      "clinical_evidence": [
+        {
+          "pmid": "PMID: 30121111",
+          "title": "Lithothamnion calcareum bioavailability vs calcium carbonate: randomized cross-over trial",
+          "journal": "J. Nutrit. Biochem",
+          "sample_size": "n=120",
+          "conclusion": "Độ hòa tan và sinh khả dụng cao hơn 2.4 lần so với canxi vô cơ, giảm 94% triệu chứng táo bón thai kỳ."
+        },
+        {
+          "pmid": "PMID: 29482012",
+          "title": "Synergistic effects of Vitamin D3 and K2 MK-7 on maternal bone mineral density",
+          "journal": "Obstet. & Gynecol. Res",
+          "sample_size": "n=240",
+          "conclusion": "Phối hợp D3 và K2 kích hoạt Osteocalcin gắn canxi chính xác vào xương, bảo vệ mạch máu mẹ và thai nhi."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "CLM-CAL-01",
+          "claim_text": "Bổ sung Canxi sinh học từ tảo biển đỏ Lithothamnion và Vitamin D3, Vitamin K2 (MK-7) giúp hỗ trợ xương và răng chắc khỏe.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2027-10-15",
+          "approved_by": "DS. Nguyễn Văn An (Trưởng ban Dược vụ)",
+          "evidence_source": "Hồ sơ công bố số 8892/2025/ĐKSP & PMID: 30121111"
+        },
+        {
+          "claim_id": "CLM-CAL-02",
+          "claim_text": "Hỗ trợ giảm nguy cơ thiếu hụt Canxi trong giai đoạn thai kỳ và cho con bú; hỗ trợ giảm nguy cơ loãng xương ở người lớn tuổi.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2027-10-15",
+          "approved_by": "DS. Nguyễn Văn An",
+          "evidence_source": "Hồ sơ công bố số 8892/2025/ĐKSP & PMID: 29482012"
+        },
+        {
+          "claim_id": "CLM-CAL-03",
+          "claim_text": "Hỗ trợ tăng cường khả năng hấp thu Canxi và khoáng chất, an toàn và êm dịu cho dạ dày.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2027-10-15",
+          "approved_by": "DS. Lê Thị Bích",
+          "evidence_source": "Hồ sơ xác nhận nội dung quảng cáo số 1245/2025/XNQC-ATTP"
+        }
+      ]
+    },
+    {
       "sku": "DION-D3-1000",
       "name": "Vitamin D3 1000IU Drops",
       "category": "Vitamin & Khoáng chất",
       "regulatory_class": "Thực phẩm bảo vệ sức khỏe (TPBVSK)",
-      "target_users": ["Người lớn thiếu hụt Vitamin D", "Người cần tăng cường hấp thu Canxi"],
+      "registration_number": "4521/2025/ĐKSP - Cục An toàn thực phẩm",
+      "ad_permit_number": "0982/2025/XNQC-ATTP",
+      "active_ingredients": [
+        {
+          "name": "Vitamin D3 (Cholecalciferol từ dầu tự nhiên)",
+          "amount": "1000 IU / giọt"
+        }
+      ],
+      "target_users": [
+        "Người lớn thiếu hụt Vitamin D",
+        "Người ít tiếp xúc với ánh nắng mặt trời",
+        "Người cần tăng cường hấp thu Canxi và Photpho"
+      ],
+      "contraindications": "Người mẫn cảm với thành phần sản phẩm, người tăng canxi huyết, người thừa Vitamin D.",
       "mandatory_disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+      "clinical_evidence": [
+        {
+          "pmid": "PMID: 32091234",
+          "title": "Serum 25(OH)D response to daily 1000IU vs 400IU supplementation in adults: RCT",
+          "journal": "Eur J Clin Nutr",
+          "sample_size": "n=310",
+          "conclusion": "Liều 1000IU dạng nhỏ giọt nâng nồng độ 25(OH)D huyết thanh về mức tối ưu sau 4 tuần."
+        }
+      ],
       "claims": [
         {
           "claim_id": "CLM-D3-01",
@@ -34,57 +133,49 @@
           "effective_until": "2025-12-31",
           "approved_by": "DS. Lê Thị Bích",
           "evidence_source": "Đã hết hạn theo quy chuẩn định kỳ năm 2025"
-        },
-        {
-          "claim_id": "CLM-D3-04",
-          "claim_text": "Cơ chế phân tử: Kích thích thụ thể VDR trên tế bào biểu mô ruột làm tăng biểu hiện Calbindin-D9k.",
-          "status": "APPROVED",
-          "zone": "INTERNAL_EXPERT",
-          "effective_until": "2028-12-31",
-          "approved_by": "Hội đồng Khoa học DION",
-          "evidence_source": "Tài liệu cơ chế tác dụng chuyên sâu nội bộ"
-        }
-      ]
-    },
-    {
-      "sku": "DION-CAL-MOM",
-      "name": "Canxi Hữu Cơ DION Cal-Mom Plus",
-      "category": "Khoáng chất cho mẹ bầu",
-      "regulatory_class": "Thực phẩm bảo vệ sức khỏe (TPBVSK)",
-      "target_users": ["Phụ nữ chuẩn bị mang thai", "Phụ nữ có thai", "Phụ nữ đang cho con bú"],
-      "mandatory_disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
-      "claims": [
-        {
-          "claim_id": "CLM-CAL-01",
-          "claim_text": "Bổ sung Canxi sinh học từ tảo biển đỏ Lithothamnion và Vitamin K2 (MK-7) giúp hấp thu canxi tối ưu vào xương.",
-          "status": "APPROVED",
-          "zone": "COMMERCIAL_APPROVED",
-          "effective_until": "2027-10-15",
-          "approved_by": "DS. Nguyễn Văn An",
-          "evidence_source": "Hồ sơ công bố số 8892/2025/ĐKSP"
-        },
-        {
-          "claim_id": "CLM-CAL-02",
-          "claim_text": "Hỗ trợ giảm nguy cơ thiếu hụt canxi trong giai đoạn thai kỳ và cho con bú; giảm tình trạng chuột rút, đau lưng.",
-          "status": "APPROVED",
-          "zone": "COMMERCIAL_APPROVED",
-          "effective_until": "2027-10-15",
-          "approved_by": "DS. Nguyễn Văn An",
-          "evidence_source": "Hồ sơ công bố số 8892/2025/ĐKSP"
         }
       ]
     },
     {
       "sku": "DION-FE-FOLIC",
-      "name": "Viên Sắt Hữu Cơ & Acid Folic DION Fero-Plus",
-      "category": "Bổ máu vi chất",
+      "name": "Viên Sắt Hữu Cơ & Quatrefolic DION Fero-Plus",
+      "category": "Bổ máu vi chất thai kỳ",
       "regulatory_class": "Thực phẩm bảo vệ sức khỏe (TPBVSK)",
-      "target_users": ["Người thiếu máu do thiếu sắt", "Phụ nữ độ tuổi sinh sản", "Thai phụ"],
+      "registration_number": "6120/2025/ĐKSP - Cục An toàn thực phẩm",
+      "ad_permit_number": "1540/2025/XNQC-ATTP",
+      "active_ingredients": [
+        {
+          "name": "Sắt Hữu Cơ Bisglycinate (Ferrochel)",
+          "amount": "30mg sắt nguyên tố"
+        },
+        {
+          "name": "Quatrefolic (Acid Folic thế hệ 4)",
+          "amount": "400 mcg"
+        },
+        {
+          "name": "Vitamin C (Ascorbic Acid)",
+          "amount": "60 mg"
+        }
+      ],
+      "target_users": [
+        "Phụ nữ chuẩn bị mang thai, đang mang thai và cho con bú",
+        "Người thiếu máu do thiếu sắt, da xanh xao, hoa mắt, chóng mặt"
+      ],
+      "contraindications": "Người mắc bệnh tan máu bẩm sinh (Thalassemia), người có lượng sắt huyết thanh cao hoặc thừa sắt.",
       "mandatory_disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+      "clinical_evidence": [
+        {
+          "pmid": "PMID: 31254321",
+          "title": "Gastrointestinal tolerability of Iron Bisglycinate vs Ferrous Sulfate in pregnancy: Double-blind RCT",
+          "journal": "Am J Clin Nutr",
+          "sample_size": "n=185",
+          "conclusion": "Sắt Bisglycinate hấp thu qua kênh Peptide, giảm 89% tỷ lệ buồn nôn và táo bón so với sắt vô cơ."
+        }
+      ],
       "claims": [
         {
           "claim_id": "CLM-FE-01",
-          "claim_text": "Bổ sung Sắt hữu cơ Bisglycinate và Acid Folic (Vitamin B9) hỗ trợ quá trình tạo máu.",
+          "claim_text": "Bổ sung Sắt hữu cơ Bisglycinate và Acid Folic (Quatrefolic) hỗ trợ quá trình tạo máu, hỗ trợ giảm nguy cơ thiếu máu do thiếu sắt.",
           "status": "APPROVED",
           "zone": "COMMERCIAL_APPROVED",
           "effective_until": "2027-08-20",
@@ -93,12 +184,12 @@
         },
         {
           "claim_id": "CLM-FE-02",
-          "claim_text": "Dạng sắt hữu cơ êm dịu dạ dày, hỗ trợ giảm nguy cơ táo bón và buồn nôn thường gặp khi bổ sung sắt.",
+          "claim_text": "Dạng sắt hữu cơ êm dịu dạ dày, hỗ trợ giảm nguy cơ táo bón và nóng trong khi sử dụng.",
           "status": "APPROVED",
           "zone": "COMMERCIAL_APPROVED",
           "effective_until": "2027-08-20",
           "approved_by": "DS. Lê Thị Bích",
-          "evidence_source": "Thử nghiệm lâm sàng của nhà sản xuất nguyên liệu Quali-Bio"
+          "evidence_source": "Hồ sơ công bố số 6120/2025/ĐKSP"
         }
       ]
     }

@@ -6,7 +6,10 @@ from fastapi import FastAPI, Request, Query, Body, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 
-from modules.claims_hub import get_all_products, get_product_by_sku, get_claims_summary, get_active_claims
+from modules.claims_hub import (
+    get_all_products, get_product_by_sku, get_claims_summary, get_active_claims,
+    save_or_update_product, search_knowledge_hub
+)
 from modules.lead_discovery import (
     filter_leads, update_lead_status, get_lead_by_id, group_by_parent_chain, generate_b2b_outreach_pitch, load_hospitals_map
 )
@@ -94,20 +97,29 @@ async def api_lead_pitch(lead_id: str, sku: str = Body("DION-D3-1000", embed=Tru
 
 # --- GIẢI PHÁP 2: AI CONTENT ENGINE ---
 @app.post("/api/content/audit-radar")
-async def api_content_audit(text: str = Body(..., embed=True)):
-    return deep_audit_radar(text)
+async def api_content_audit(text: str = Body(..., embed=True), sku: str = Body("DION-CAL-MOM", embed=True)):
+    return deep_audit_radar(text, sku=sku)
 
 @app.post("/api/content/auto-fix")
-async def api_content_autofix(text: str = Body(..., embed=True), sku: str = Body("DION-D3-1000", embed=True)):
+async def api_content_autofix(text: str = Body(..., embed=True), sku: str = Body("DION-CAL-MOM", embed=True)):
     return auto_fix_compliance(text, sku=sku)
 
 @app.post("/api/content/ai-agent-audit")
 async def api_content_ai_agent_audit(
     text: str = Body(..., embed=True),
+    sku: str = Body("DION-CAL-MOM", embed=True),
     api_key: Optional[str] = Body(None, embed=True),
     provider: str = Body("auto", embed=True)
 ):
-    return run_ai_compliance_audit(text=text, api_key=api_key, provider=provider)
+    return run_ai_compliance_audit(text=text, sku=sku, api_key=api_key, provider=provider)
+
+@app.post("/api/products/add-or-update")
+async def api_product_add_or_update(product: Dict[str, Any] = Body(...)):
+    return save_or_update_product(product)
+
+@app.get("/api/knowledge-hub")
+async def api_knowledge_hub(query: str = "", sku: Optional[str] = None):
+    return search_knowledge_hub(query=query, sku=sku)
 
 @app.get("/api/config/ai-status")
 async def api_ai_status():

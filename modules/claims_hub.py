@@ -73,3 +73,70 @@ def get_claims_summary(sku: str) -> Dict[str, Any]:
         "internal": internal,
         "disclaimer": product.get("mandatory_disclaimer")
     }
+
+def save_or_update_product(product_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Lưu hoặc cập nhật một sản phẩm nghiên cứu/công bố vào Kho Dữ liệu AI tập trung"""
+    sku = product_data.get("sku")
+    if not sku:
+        raise ValueError("Mã SKU sản phẩm là bắt buộc")
+        
+    data = load_products_data()
+    products = data.get("products", [])
+    
+    found_idx = -1
+    for i, p in enumerate(products):
+        if p.get("sku") == sku:
+            found_idx = i
+            break
+            
+    if found_idx >= 0:
+        products[found_idx] = product_data
+        action = "UPDATED"
+    else:
+        products.append(product_data)
+        action = "CREATED"
+        
+    data["products"] = products
+    with open(DATA_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+        
+    return {"status": "success", "action": action, "sku": sku, "product": product_data}
+
+def search_knowledge_hub(query: str, sku: Optional[str] = None) -> List[Dict[str, Any]]:
+    """Tìm kiếm trong Kho Dữ liệu AI theo từ khóa (hoạt chất, công dụng, bằng chứng lâm sàng, đối tượng)"""
+    products = get_all_products()
+    results = []
+    q_lower = query.lower().strip()
+    
+    for p in products:
+        if sku and sku != "ALL" and p.get("sku") != sku:
+            continue
+            
+        p_name = p.get("name", "").lower()
+        p_category = p.get("category", "").lower()
+        ingredients = " ".join([i.get("name", "").lower() for i in p.get("active_ingredients", [])])
+        targets = " ".join([t.lower() for t in p.get("target_users", [])])
+        claims_text = " ".join([c.get("claim_text", "").lower() for c in p.get("claims", [])])
+        evidence_text = " ".join([e.get("title", "").lower() + " " + e.get("conclusion", "").lower() for e in p.get("clinical_evidence", [])])
+        
+        all_text = f"{p_name} {p_category} {ingredients} {targets} {claims_text} {evidence_text}"
+        
+        relevance = 0
+        if q_lower in p_name:
+            relevance += 50
+        if q_lower in ingredients:
+            relevance += 30
+        if any(word in all_text for word in q_lower.split() if len(word) > 2):
+            relevance += 20
+            
+        if relevance > 0 or not q_lower:
+            results.append({
+                "product": p,
+                "relevance": relevance,
+                "matched_claims": [c for c in p.get("claims", []) if q_lower in c.get("claim_text", "").lower() or not q_lower],
+                "matched_evidence": [e for e in p.get("clinical_evidence", []) if q_lower in e.get("title", "").lower() or q_lower in e.get("conclusion", "").lower() or not q_lower]
+            })
+            
+    results.sort(key=lambda x: x["relevance"], reverse=True)
+    return results
+
