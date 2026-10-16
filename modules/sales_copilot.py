@@ -44,9 +44,9 @@ def generate_copilot_response(query: str, sku: str = "ALL") -> Dict[str, Any]:
     if is_critical:
         return {
             "type": "ESCALATION",
-            "badge": "⚠️ CHUYỂN DƯỢC VỤ & BÁC SĨ THẨM ĐỊNH",
+            "badge": "CHUYỂN DƯỢC VỤ & BÁC SĨ THẨM ĐỊNH",
             "content": f"{critical_reason}\n\n"
-                       f"📋 Hướng dẫn xử lý cho Nhân viên Sales / CSKH:\n"
+                       f"Hướng dẫn xử lý cho Nhân viên Sales / CSKH:\n"
                        f"1. Tuyệt đối KHÔNG tự ý tư vấn liều dùng hoặc khẳng định sản phẩm có thể dùng chung với thuốc điều trị bệnh lý này.\n"
                        f"2. Thu thập đầy đủ hồ sơ bệnh án hoặc đơn thuốc hiện tại của khách hàng.\n"
                        f"3. Phản hồi chuẩn mực: 'Dạ trường hợp của mình có bệnh nền đặc thù, em xin phép chuyển thông tin cho Dược sĩ chuyên môn của Dion Healthcare liên hệ tư vấn trực tiếp cho mình trong vòng 15 phút ạ'.\n"
@@ -66,7 +66,7 @@ def generate_copilot_response(query: str, sku: str = "ALL") -> Dict[str, Any]:
     if not product:
         return {
             "type": "NORMAL",
-            "badge": "⚠️ CHƯA CÓ DỮ LIỆU",
+            "badge": "CHƯA CÓ DỮ LIỆU",
             "content": "Không tìm thấy hồ sơ sản phẩm trong Kho Dữ liệu AI. Vui lòng kiểm tra lại mã SKU.",
             "citations": [],
             "source_claims": []
@@ -103,7 +103,7 @@ def generate_copilot_response(query: str, sku: str = "ALL") -> Dict[str, Any]:
         ev_items = []
         for e in evidence_list:
             ev_items.append(
-                f"  🔬 **{e.get('pmid')}** — *{e.get('title')}* ({e.get('journal')}, {e.get('sample_size')}):\n"
+                f"  • **PMID: {e.get('pmid')}** — *{e.get('title')}* ({e.get('journal')}, {e.get('sample_size')}):\n"
                 f"     ➔ Kết luận: {e.get('conclusion')}"
             )
         evidence_rendered = "\n\n".join(ev_items)
@@ -119,26 +119,26 @@ def generate_copilot_response(query: str, sku: str = "ALL") -> Dict[str, Any]:
         f"4. **Căn cứ pháp lý khi khách hỏi chứng nhận**: Trích dẫn Giấy tiếp nhận công bố số `{reg_no}` và Giấy xác nhận nội dung quảng cáo số `{ad_no}`."
     )
 
-    full_reply = f"""### 📘 CỐ VẤN CHUYÊN MÔN & ĐÀO TẠO NHÂN VIÊN: {p_name.upper()}
+    full_reply = f"""### TÀI LIỆU CỐ VẤN CHUYÊN MÔN & ĐÀO TẠO NHÂN VIÊN: {p_name.upper()}
 
-#### 1. 🏛️ Hồ sơ Pháp chế & Đăng ký Cục An toàn thực phẩm:
+#### 1. Hồ sơ Pháp chế & Đăng ký Cục An toàn thực phẩm:
 - **Số ĐKSP**: `{reg_no}`
 - **Số XNQC**: `{ad_no}`
 - **Hoạt chất chính**: {ing_text}
 - **Đối tượng sử dụng được phê duyệt**:
 {target_text}
 
-#### 2. 📑 Công dụng Thương mại đã được phê duyệt (Claims Hub):
+#### 2. Công dụng Thương mại đã được phê duyệt (Claims Hub):
 {claims_rendered}
 
-#### 3. 🧪 Bằng chứng Nghiên cứu Lâm sàng Quốc tế (PubMed RCTs):
+#### 3. Bằng chứng Nghiên cứu Lâm sàng Quốc tế (PubMed RCTs):
 {evidence_rendered}
 
-#### 4. 💬 Kịch bản Tư vấn Chuẩn cho Dược sĩ & Trình dược viên:
+#### 4. Kịch bản Tư vấn Chuẩn cho Dược sĩ & Trình dược viên:
 {sales_script}
 
 ---
-⚠️ **LƯU Ý PHÁP CHẾ & CHỐNG CHỈ ĐỊNH BẮT BUỘC:**
+**LƯU Ý PHÁP CHẾ & CHỐNG CHỈ ĐỊNH BẮT BUỘC:**
 - **Chống chỉ định**: {contra}
 - **Cụm từ CẤM NÓI khi bán hàng**: Tuyệt đối không dùng các từ *'chữa khỏi hẳn'*, *'đặc trị dứt điểm'*, *'cam kết 100%'*, hoặc xúi giục khách hàng bỏ thuốc kê đơn của bác sĩ.
 - **Disclaimer bắt buộc**: *'Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.'*

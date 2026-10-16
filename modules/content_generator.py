@@ -309,14 +309,14 @@ def auto_fix_compliance(text: str, sku: str = "DION-CAL-MOM") -> Dict[str, Any]:
     # Kiểm tra đối tượng phụ nữ mang thai đối với sản phẩm dòng MOM
     is_mom = product and ("mom" in product.get("sku", "").lower() or "mom" in product.get("name", "").lower())
     if is_mom and not any(k in fixed_text.lower() for k in ["mang thai", "mẹ bầu", "cho con bú"]):
-        fixed_text = fixed_text.strip() + "\n\n📦 Thích hợp cho: Phụ nữ chuẩn bị mang thai, đang mang thai và cho con bú; người lớn tuổi, người có nguy cơ loãng xương."
+        fixed_text = fixed_text.strip() + "\n\nĐỐI TƯỢNG SỬ DỤNG PHÙ HỢP: Phụ nữ chuẩn bị mang thai, đang mang thai và cho con bú; người lớn tuổi, người có nguy cơ loãng xương."
         changes_made.append("Bổ sung đối tượng cốt lõi: Phụ nữ mang thai, cho con bú & người lớn tuổi theo hồ sơ 8892/2025/ĐKSP")
             
     # Bổ sung câu Disclaimer nếu chưa có
     disclaimer = product.get("mandatory_disclaimer") if product else "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
     
     if "thực phẩm này không phải là thuốc" not in fixed_text.lower():
-        fixed_text = fixed_text.strip() + f"\n\n---\n⚠️ {disclaimer}"
+        fixed_text = fixed_text.strip() + f"\n\n---\nKHUYẾN CÁO: {disclaimer}"
         changes_made.append("Tự động đính kèm câu Disclaimer bắt buộc theo NĐ 342/2025")
         
     audit_after = deep_audit_radar(fixed_text, sku=sku)
@@ -341,19 +341,19 @@ def generate_marketing_draft(sku: str, channel: str = "Facebook Post", tone: str
     bullets = "\n".join([f"• {c['claim_text']}" for c in claims])
     disclaimer = product.get("mandatory_disclaimer", "")
     
-    draft = f"""🌿 GIẢI PHÁP CHĂM SÓC SỨC KHỎE CHỦ ĐỘNG TỪ {product['name'].upper()}
+    draft = f"""GIẢI PHÁP BỔ SUNG VI CHẤT TỪ {product['name'].upper()}
 
-Bổ sung vi chất đúng cách là chìa khóa vàng giúp duy trì thể trạng dẻo dai và nâng cao chất lượng cuộc sống.
+Bổ sung vi chất đúng cách là chìa khóa giúp duy trì thể trạng dẻo dai và nâng cao chất lượng cuộc sống.
 
-💡 CÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO:
+CÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO (XNQC):
 {bullets}
 
-🔬 Sản xuất tại nhà máy đạt chuẩn GMP quốc tế.
-📦 Thích hợp cho: {', '.join(product.get('target_users', []))}.
+Tiêu chuẩn: Sản xuất tại cơ sở đạt chứng nhận GMP.
+ĐỐI TƯỢNG SỬ DỤNG: {', '.join(product.get('target_users', []))}.
 
-👉 Liên hệ ngay để nhận tư vấn lộ trình sử dụng từ chuyên gia!
+KHUYẾN NGHỊ: Tham khảo tư vấn từ cán bộ y tế trước khi bổ sung để đảm bảo liều lượng phù hợp.
 ---
-⚠️ {disclaimer}
+KHUYẾN CÁO BẮT BUỘC: {disclaimer}
 """
     audit = deep_audit_radar(draft)
     

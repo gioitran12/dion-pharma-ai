@@ -170,7 +170,7 @@ Lời đầu tiên, DION Healthcare xin gửi lời chào trân trọng và lờ
 Qua quá trình nghiên cứu địa bàn và danh mục sản phẩm của {lead_name} tại {lead.get('address')}, chúng tôi nhận thấy Quý đơn vị có thế mạnh vượt trội trong nhóm khách hàng chăm sóc sức khỏe chủ động và vi chất dinh dưỡng.
 
 DION trân trọng đề xuất phương án hợp tác phân phối dòng sản phẩm:
-👉 {prod['name']} (Mã SKU: {prod.get('sku')})
+• Sản phẩm: {prod['name']} (Mã SKU: {prod.get('sku')})
 • Đặc điểm nổi bật: {angle}.
 • Hồ sơ pháp lý: Đã được Cục An Toàn Thực Phẩm cấp Giấy tiếp nhận đăng ký bản công bố sản phẩm, đạt chuẩn GMP.
 

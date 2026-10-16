@@ -86,7 +86,7 @@
     </header>
 
     <!-- 2. KHÔNG GIAN DỮ LIỆU 6 GIẢI PHÁP -->
-    <main class="max-w-7xl mx-auto px-6 py-5 flex-1 w-full space-y-4">
+    <main class="max-w-7xl mx-auto px-6 py-5 pb-16 flex-1 w-full space-y-4">
 
         <!-- =================================================================== -->
         <!-- GIẢI PHÁP 1: TÌM KIẾM & ĐÁNH GIÁ ĐỐI TÁC THÔNG MINH (LEAD DISCOVERY)-->
@@ -337,10 +337,10 @@
             <!-- VÙNG LÀM VIỆC KÉP: WORKSPACE SOẠN THẢO & TRUNG TÂM PHÂN TÍCH PHÁP CHẾ -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
                 
-                <!-- CỘT TRÁI: WORKSPACE TRÌNH SOẠN THẢO (FULL HEIGHT 660px, KHÔNG CÒN KHOẢNG TRỐNG) -->
-                <div class="lg:col-span-6 bg-white rounded-lg border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[660px]">
+                <!-- CỘT TRÁI: WORKSPACE TRÌNH SOẠN THẢO (MIN HEIGHT 680px, TỰ ĐỘNG MỞ RỘNG KHI CẦN) -->
+                <div class="lg:col-span-6 bg-white rounded-lg border border-slate-200 p-4 shadow-sm flex flex-col justify-between min-h-[680px]">
                     <!-- Header chuyển đổi chế độ xem Soạn thảo vs Tô đỏ -->
-                    <div class="flex flex-wrap justify-between items-center pb-2.5 border-b border-slate-100 gap-2">
+                    <div class="flex flex-wrap justify-between items-center pb-2.5 border-b border-slate-100 gap-2 flex-shrink-0">
                         <div class="flex items-center gap-1.5">
                             <button id="btn-editor-edit-mode" onclick="switchEditorMode('EDIT')" class="px-3 py-1.5 rounded-md bg-slate-900 text-white font-bold text-xs shadow-xs transition flex items-center gap-1.5">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
@@ -363,8 +363,8 @@
 
                     <!-- Khung soạn thảo thuần (Textarea Edit Mode) -->
                     <div id="editor-edit-wrap" class="flex-1 flex flex-col py-2.5">
-                        <textarea id="ad-content-box" oninput="onAdContentInput()" placeholder="Nhập hoặc dán nội dung bài viết quảng cáo tại đây để đối chiếu với hồ sơ sản phẩm (Bạn có thể tự do gõ và chỉnh sửa)..." class="w-full flex-1 bg-slate-50 border border-slate-300 rounded-lg p-3.5 text-sm leading-relaxed text-slate-900 outline-none focus:border-corp-800 focus:bg-white focus:ring-1 focus:ring-corp-800 font-sans transition shadow-inner resize-none"></textarea>
-                        <div class="text-xs text-slate-500 mt-2 flex items-center justify-between bg-slate-50 px-3 py-1.5 rounded border border-slate-200">
+                        <textarea id="ad-content-box" oninput="onAdContentInput()" placeholder="Nhập hoặc dán nội dung bài viết quảng cáo tại đây để đối chiếu với hồ sơ sản phẩm (Bạn có thể tự do gõ và chỉnh sửa)..." class="w-full flex-1 min-h-[360px] bg-slate-50 border border-slate-300 rounded-lg p-3.5 text-sm leading-relaxed text-slate-900 outline-none focus:border-corp-800 focus:bg-white focus:ring-1 focus:ring-corp-800 font-sans transition shadow-inner resize-none"></textarea>
+                        <div class="text-xs text-slate-500 mt-2 flex items-center justify-between bg-slate-50 px-3 py-1.5 rounded border border-slate-200 flex-shrink-0">
                             <span class="flex items-center gap-1.5">
                                 <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
                                 <span><b>Chế độ nhập liệu tự do:</b> Gõ hoặc dán nội dung, sau đó chọn nút Thẩm định bên dưới để kiểm duyệt.</span>
@@ -374,8 +374,8 @@
                     </div>
 
                     <!-- Khung đối chiếu tô đỏ trực tiếp (Visual Highlighting Mode) -->
-                    <div id="editor-highlight-wrap" class="hidden flex-1 flex flex-col py-2.5">
-                        <div class="flex items-center justify-between bg-amber-50 border border-amber-300 px-3 py-1.5 rounded-md mb-2 text-xs text-amber-950 font-medium shadow-xs">
+                    <div id="editor-highlight-wrap" class="hidden flex-1 min-h-0 flex flex-col py-2.5">
+                        <div class="flex items-center justify-between bg-amber-50 border border-amber-300 px-3 py-1.5 rounded-md mb-2 text-xs text-amber-950 font-medium shadow-xs flex-shrink-0">
                             <span class="flex items-center gap-1.5">
                                 <svg class="w-3.5 h-3.5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                 <span><b>Chế độ rà soát trực quan:</b> Click vào cụm từ tô đỏ để xem phân tích y khoa & thay thế 1-click.</span>
@@ -384,13 +384,13 @@
                                 <span>Quay lại gõ bài</span>
                             </button>
                         </div>
-                        <div id="ad-editor-highlights" ondblclick="switchEditorMode('EDIT')" title="Nhấp đúp chuột vào đây để chuyển sang gõ / sửa bài viết" class="w-full flex-1 bg-white border border-rose-300 rounded-lg p-3.5 text-sm leading-relaxed font-sans overflow-y-auto cursor-text shadow-inner">
+                        <div id="ad-editor-highlights" ondblclick="switchEditorMode('EDIT')" title="Nhấp đúp chuột vào đây để chuyển sang gõ / sửa bài viết" class="w-full flex-1 min-h-[200px] max-h-[360px] bg-white border border-rose-300 rounded-lg p-3.5 text-sm leading-relaxed font-sans overflow-y-auto cursor-text shadow-inner">
                             <div class="text-slate-400 italic text-center pt-24">Chưa có kết quả thẩm định. Hãy nhập bài viết và bấm 'Thẩm định' bên dưới để AI quét và tô đỏ trực tiếp các vi phạm.</div>
                         </div>
                     </div>
 
                     <!-- Thẻ Popover tương tác khi bấm vào từ tô đỏ (Interactive 1-Click Fix Popover) -->
-                    <div id="highlight-fix-card" class="hidden mb-2.5 p-3 rounded-md bg-rose-50 border border-rose-300 shadow-md text-xs space-y-1.5">
+                    <div id="highlight-fix-card" class="hidden mb-2.5 p-3 rounded-md bg-rose-50 border border-rose-300 shadow-md text-xs space-y-1.5 flex-shrink-0">
                         <div class="flex justify-between items-center">
                             <span class="font-extrabold text-rose-950 uppercase flex items-center gap-1.5" id="fix-card-title">
                                 Cảnh báo vi phạm quy chuẩn y dược
@@ -412,7 +412,7 @@
                     </div>
 
                     <!-- Thanh nút hành động chính ngay dưới ô soạn thảo -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-2 border-t border-slate-100">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-2 border-t border-slate-100 flex-shrink-0">
                         <button onclick="runAIAgentAudit()" class="py-2.5 px-3 bg-corp-800 hover:bg-corp-900 text-white font-bold rounded-md text-xs transition flex items-center justify-center gap-1.5 shadow-sm">
                             <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
                             <span>AI Agent Đối Chiếu Hồ Sơ</span>
@@ -428,8 +428,8 @@
                     </div>
                 </div>
 
-                <!-- CỘT PHẢI: TRUNG TÂM PHÂN TÍCH PHÁP CHẾ & BÁO CÁO THẨM ĐỊNH (FULL HEIGHT 660px) -->
-                <div class="lg:col-span-6 bg-white rounded-lg border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[660px]">
+                <!-- CỘT PHẢI: TRUNG TÂM PHÂN TÍCH PHÁP CHẾ & BÁO CÁO THẨM ĐỊNH (MIN HEIGHT 680px) -->
+                <div class="lg:col-span-6 bg-white rounded-lg border border-slate-200 p-4 shadow-sm flex flex-col justify-between min-h-[680px]">
                     <div class="space-y-3 flex-1 flex flex-col overflow-hidden">
                         <!-- Khung điểm số tuân thủ & Huy hiệu trạng thái -->
                         <div class="flex items-center justify-between p-3.5 rounded-lg border transition shadow-xs" id="audit-score-wrap">
@@ -773,10 +773,10 @@
                     <div class="flex items-center gap-2">
                         <label class="text-xs font-bold text-slate-700 uppercase">Sản phẩm:</label>
                         <select id="copilot-sku-select" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1 text-xs font-bold text-corp-800 outline-none focus:border-corp-700">
-                            <option value="DION-CAL-MOM" selected>🌿 DION Cal-Mom Plus & D3 K2 (Hero SKU)</option>
-                            <option value="DION-D3-1000">💧 DION Vitamin D3 1000IU Drops</option>
-                            <option value="DION-FE-FOLIC">🩸 DION Fero-Plus (Sắt Hữu Cơ & Quatrefolic)</option>
-                            <option value="ALL">🌐 Toàn bộ Danh mục Sản phẩm</option>
+                            <option value="DION-CAL-MOM" selected>DION Cal-Mom Plus & D3 K2 (Hero SKU)</option>
+                            <option value="DION-D3-1000">DION Vitamin D3 1000IU Drops</option>
+                            <option value="DION-FE-FOLIC">DION Fero-Plus (Sắt Hữu Cơ & Quatrefolic)</option>
+                            <option value="ALL">Toàn bộ Danh mục Sản phẩm</option>
                         </select>
                     </div>
                 </div>
@@ -785,16 +785,16 @@
                     <span class="text-xs font-bold text-slate-600 block mb-1.5 uppercase">Tình huống đào tạo & tư vấn thực tế:</span>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <button onclick="copilotAskPreset('Tư vấn Canxi Cal-Mom cho mẹ bầu mang thai 3 tháng đầu & phụ nữ cho con bú')" class="text-left p-2 rounded bg-blue-50/70 text-corp-900 border border-blue-200 text-xs font-semibold hover:bg-blue-100 transition">
-                            🌿 <b>Đào tạo Dược sĩ:</b> Tư vấn Canxi Cal-Mom cho mẹ bầu & cho con bú
+                            <b>Đào tạo Dược sĩ:</b> Tư vấn Canxi Cal-Mom cho mẹ bầu & cho con bú
                         </button>
                         <button onclick="copilotAskPreset('Bằng chứng lâm sàng PubMed chứng minh Canxi tảo đỏ Lithothamnion hơn Canxi Carbonate vô cơ')" class="text-left p-2 rounded bg-emerald-50/70 text-emerald-950 border border-emerald-200 text-xs font-semibold hover:bg-emerald-100 transition">
-                            🔬 <b>Bằng chứng PubMed:</b> Canxi tảo Lithothamnion vs Canxi Carbonate (PMID: 30121111)
+                            <b>Bằng chứng PubMed:</b> Canxi tảo Lithothamnion vs Canxi Carbonate (PMID: 30121111)
                         </button>
                         <button onclick="copilotAskPreset('Khách hàng có tiền sử sỏi thận hoặc tăng canxi huyết có uống được Cal-Mom không?')" class="text-left p-2 rounded bg-amber-50/70 text-amber-950 border border-amber-200 text-xs font-semibold hover:bg-amber-100 transition">
-                            ⚠️ <b>Chống chỉ định:</b> Khách hàng sỏi thận / tăng canxi huyết có dùng được không?
+                            <b>Chống chỉ định:</b> Khách hàng sỏi thận / tăng canxi huyết có dùng được không?
                         </button>
                         <button onclick="copilotAskPreset('Viên sắt Fero-Plus có gây táo bón hoặc nóng trong như sắt Sulfate thông thường không?')" class="text-left p-2 rounded bg-purple-50/70 text-purple-950 border border-purple-200 text-xs font-semibold hover:bg-purple-100 transition">
-                            🩸 <b>Dược lý lâm sàng:</b> Sắt Bisglycinate & Quatrefolic không gây táo bón thai kỳ
+                            <b>Dược lý lâm sàng:</b> Sắt Bisglycinate & Quatrefolic không gây táo bón thai kỳ
                         </button>
                     </div>
                 </div>
@@ -1095,7 +1095,7 @@
     </main>
 
     <!-- FOOTER CHUẨN MỰC -->
-    <footer class="bg-white border-t border-slate-200 py-3 text-center text-xs text-slate-500 mt-auto">
+    <footer class="bg-white border-t border-slate-200 py-3.5 text-center text-xs text-slate-500 mt-10 relative z-10 shadow-xs">
         DION HEALTHCARE ENTERPRISE AI · ĐỦ 6 GIẢI PHÁP TƯ VẤN DOANH NGHIỆP · TUÂN THỦ NGHỊ ĐỊNH 342/2025/NĐ-CP & LUẬT 91/2025/QH15
     </footer>
 
@@ -1518,7 +1518,7 @@
             currentActiveHighlight = { quote, suggestion: sug, el };
 
             const card = document.getElementById('highlight-fix-card');
-            document.getElementById('fix-card-title').innerText = `⚠️ Cảnh báo vi phạm [${sev}]: ${cat}`;
+            document.getElementById('fix-card-title').innerHTML = `<span class="inline-block w-2 h-2 rounded-full bg-rose-600 mr-1.5"></span>CẢNH BÁO VI PHẠM [${sev}]: ${cat}`;
             document.getElementById('fix-card-quote').innerText = `"${quote}"`;
             document.getElementById('fix-card-explanation').innerText = exp;
             document.getElementById('fix-card-legal').innerText = `Căn cứ pháp lý: ${legal}`;
