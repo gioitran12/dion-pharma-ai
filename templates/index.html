@@ -515,47 +515,159 @@
         <!-- =================================================================== -->
         <!-- GIẢI PHÁP 3: THEO DÕI THỊ TRƯỜNG & ĐỐI THỦ (MARKET INTELLIGENCE)     -->
         <!-- =================================================================== -->
+        <!-- =================================================================== -->
+        <!-- GIẢI PHÁP 3: THEO DÕI THỊ TRƯỜNG & ĐỐI THỦ (MARKET INTELLIGENCE)     -->
+        <!-- TỰ ĐỘNG BÓC TÁCH TOÀN BỘ SẢN PHẨM TRONG KHO DION & TẠO BATTLECARDS  -->
+        <!-- =================================================================== -->
         <div id="view-market" class="solution-view hidden space-y-4">
             
-            <!-- Bảng Xu Hướng Ngành Hàng -->
+            <!-- THANH ĐIỀU KHIỂN & BỘ LỌC BÓC TÁCH KHO SẢN PHẨM -->
+            <div class="bg-white rounded border border-slate-200 p-4 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h3 class="text-sm font-bold text-slate-900 uppercase flex items-center gap-2">
+                        <span>📊 Tình Báo Thị Trường & Bóc Tách Đối Thủ Toàn Kho Sản Phẩm</span>
+                        <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Tự Động Bóc Tách 100%</span>
+                    </h3>
+                    <p class="text-[11px] text-slate-500 mt-0.5">
+                        Hệ thống tự động liên kết kho hồ sơ công bố ĐKSP, bóc tách tử huyệt đối thủ & sinh kịch bản phản đòn cho Trình dược viên
+                    </p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2.5">
+                    <div class="flex items-center gap-2">
+                        <label class="text-xs font-bold text-slate-700 uppercase whitespace-nowrap">Phạm vi bóc tách:</label>
+                        <select id="market-sku-select" onchange="fetchMarketIntelligence()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-semibold text-slate-900 outline-none w-72">
+                            <option value="ALL">📦 Toàn bộ Sản phẩm trong kho (Quét tự động)</option>
+                            {% for p in products %}
+                            <option value="{{ p.sku }}">{{ p.sku }} — {{ p.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button onclick="rescanAllWarehouseMarket()" id="btn-rescan-market" class="px-3 py-1.5 rounded bg-corp-800 hover:bg-corp-900 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-sm">
+                        <span>⚡ Quét & Cập nhật lại</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4 THẺ CHỈ SỐ THỊ TRƯỜNG TỔNG THỂ CỦA KHO SẢN PHẨM -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                <div class="bg-white rounded border border-slate-200 p-3.5 shadow-xs">
+                    <div class="text-[11px] font-bold uppercase text-slate-500">Sản phẩm kho DION</div>
+                    <div class="text-xl font-extrabold text-corp-800 mt-1" id="mkt-stat-skus">3 SKU Chủ Lực</div>
+                    <div class="text-[10px] text-emerald-700 font-semibold mt-0.5">✓ Tự động đồng bộ với Hồ sơ Cục ATTP</div>
+                </div>
+                <div class="bg-white rounded border border-slate-200 p-3.5 shadow-xs">
+                    <div class="text-[11px] font-bold uppercase text-slate-500">Đối thủ cạnh tranh trực diện</div>
+                    <div class="text-xl font-extrabold text-slate-900 mt-1" id="mkt-stat-competitors">7 Thương hiệu</div>
+                    <div class="text-[10px] text-slate-600 font-medium mt-0.5">Quét tại Long Châu, Pharmacity & Xách tay</div>
+                </div>
+                <div class="bg-white rounded border border-slate-200 p-3.5 shadow-xs">
+                    <div class="text-[11px] font-bold uppercase text-slate-500">Biên lợi nhuận quầy thuốc DION</div>
+                    <div class="text-xl font-extrabold text-emerald-700 mt-1" id="mkt-stat-margin">30% - 35%</div>
+                    <div class="text-[10px] text-emerald-800 font-semibold mt-0.5">Gấp hơn 2 lần hàng ngoại xách tay (12-15%)</div>
+                </div>
+                <div class="bg-white rounded border border-slate-200 p-3.5 shadow-xs">
+                    <div class="text-[11px] font-bold uppercase text-slate-500">Lợi thế cạnh tranh mấu chốt</div>
+                    <div class="text-xs font-extrabold text-indigo-900 mt-1 line-clamp-2" id="mkt-stat-advantage">Canxi sinh học + Sắt không tanh + Giọt D3 tinh khiết</div>
+                    <div class="text-[10px] text-indigo-700 font-medium mt-0.5">Có bằng chứng RCTs PubMed độc lập</div>
+                </div>
+            </div>
+
+            <!-- PHÂN HỆ 1: MA TRẬN VŨ KHÍ CẠNH TRANH (BATTLECARDS) & KỊCH BẢN PHẢN ĐÒN CHO SALES REP -->
+            <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
+                <div class="px-4 py-3 bg-slate-50 border-b border-slate-200 flex flex-wrap justify-between items-center gap-2">
+                    <div>
+                        <span class="font-bold text-xs text-slate-800 uppercase flex items-center gap-1.5">
+                            <span>⚔️ Ma Trận Vũ Khí Cạnh Tranh (Battlecards) & Kịch Bản Phản Đòn Cho Trình Dược Viên</span>
+                        </span>
+                        <p class="text-[11px] text-slate-500">Bóc tách tử huyệt của từng đối thủ và cung cấp lời thoại mẫu thực tế khi chào hàng tại quầy thuốc</p>
+                    </div>
+                    <span class="text-[11px] font-mono bg-blue-50 text-blue-800 px-2.5 py-0.5 rounded border border-blue-200 font-bold" id="battlecards-count-badge">7 Battlecards đối đầu</span>
+                </div>
+                <div id="market-battlecards-container" class="p-4 space-y-4 bg-slate-50/40">
+                    <!-- Dynamic Battlecards Rendered by JS -->
+                </div>
+            </div>
+
+            <!-- PHÂN HỆ 2: BẢNG GIÁ & KÊNH PHÂN PHỐI CHI TIẾT (PRICE & CHANNEL RADAR) -->
             <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
                 <div class="px-4 py-2.5 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase flex justify-between items-center">
-                    <span>Xu hướng chuyển dịch nhu cầu dinh dưỡng & Hoạt chất mới (Năm 2026)</span>
-                    <span class="text-corp-700 font-semibold text-[11px]">Dữ liệu thị trường tổng hợp</span>
+                    <span>📋 Radar So Sánh Mức Giá & Kênh Phân Phối Chi Tiết</span>
+                    <span class="text-slate-500 text-[11px]">Khảo sát chuỗi bán lẻ & quầy thuốc tư nhân 2026</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead>
+                            <tr>
+                                <th class="table-cell-header w-44">Đối thủ cạnh tranh</th>
+                                <th class="table-cell-header w-44">Sản phẩm đối đầu</th>
+                                <th class="table-cell-header w-32">Giá bán lẻ TB</th>
+                                <th class="table-cell-header w-28">Giá / ngày dùng</th>
+                                <th class="table-cell-header w-44">Kênh phân phối</th>
+                                <th class="table-cell-header w-28">Chiết khấu quầy</th>
+                                <th class="table-cell-header">Tử huyệt đối thủ</th>
+                                <th class="table-cell-header">Lợi thế áp đảo của DION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="competitors-tbody" class="divide-y divide-slate-100"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PHÂN HỆ 3: XU HƯỚNG TIÊU DÙNG & TÍN HIỆU THỊ TRƯỜNG -->
+            <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
+                <div class="px-4 py-2.5 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase flex justify-between items-center">
+                    <span>📈 Xu hướng chuyển dịch nhu cầu dinh dưỡng & Hoạt chất mới (Năm 2026)</span>
+                    <span class="text-corp-700 font-semibold text-[11px]">Tự động tổng hợp theo ngành hàng trong kho</span>
                 </div>
                 <table class="w-full text-left text-xs">
                     <thead>
                         <tr>
-                            <th class="table-cell-header w-40">Ngành hàng</th>
-                            <th class="table-cell-header w-72">Xu hướng nổi bật</th>
+                            <th class="table-cell-header w-64">Xu hướng nổi bật</th>
                             <th class="table-cell-header w-36">Tăng trưởng</th>
                             <th class="table-cell-header">Phân tích hành vi người mua</th>
-                            <th class="table-cell-header">Cơ hội kinh doanh cho DION</th>
+                            <th class="table-cell-header">Cơ hội bứt phá cho DION</th>
                         </tr>
                     </thead>
                     <tbody id="market-trends-tbody" class="divide-y divide-slate-100"></tbody>
                 </table>
             </div>
 
-            <!-- Bảng Đối Thủ Cạnh Tranh & Lợi Thế DION -->
-            <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-4 py-2.5 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase">
-                    Phân tích đối thủ cạnh tranh trực tiếp trên quầy kệ
+            <!-- PHÂN HỆ 4: CÔNG CỤ AI TƯƠNG TÁC: "PHÂN TÍCH ĐỐI THỦ MỚI NỔI NGOÀI THỊ TRƯỜNG" -->
+            <div class="bg-white rounded border border-slate-200 shadow-sm p-4 space-y-3">
+                <div class="border-b border-slate-100 pb-2 flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-xs text-slate-900 uppercase flex items-center gap-1.5">
+                            <span>🤖 AI Agent Bóc Tách Đối Thủ Bất Kỳ Ngoài Thị Trường</span>
+                        </h4>
+                        <p class="text-[11px] text-slate-500">Phát hiện sản phẩm mới lạ tại quầy? Nhập tên sản phẩm để AI bóc tách tử huyệt và sinh kịch bản phản đòn ngay lập tức.</p>
+                    </div>
                 </div>
-                <table class="w-full text-left text-xs">
-                    <thead>
-                        <tr>
-                            <th class="table-cell-header w-44">Đối thủ cạnh tranh</th>
-                            <th class="table-cell-header w-36">Sản phẩm</th>
-                            <th class="table-cell-header w-32">Giá bán lẻ TB</th>
-                            <th class="table-cell-header w-52">Kênh phân phối chính</th>
-                            <th class="table-cell-header w-48">Điểm hạn chế</th>
-                            <th class="table-cell-header">Lợi thế cạnh tranh của DION</th>
-                        </tr>
-                    </thead>
-                    <tbody id="competitors-tbody" class="divide-y divide-slate-100"></tbody>
-                </table>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-3 text-xs">
+                    <div class="md:col-span-4">
+                        <label class="block font-bold text-slate-700 mb-1">Chọn sản phẩm DION để đối đầu:</label>
+                        <select id="custom-comp-dion-sku" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 font-bold text-slate-900 outline-none">
+                            {% for p in products %}
+                            <option value="{{ p.sku }}">{{ p.sku }} — {{ p.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="md:col-span-5">
+                        <label class="block font-bold text-slate-700 mb-1">Tên thương hiệu / Sản phẩm đối thủ:</label>
+                        <input id="custom-comp-name" type="text" placeholder="VD: Canxi Chela-Calcium D3 Ba Lan, Sắt hữu cơ Blackmores Úc..." class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-900 outline-none font-medium focus:border-corp-600">
+                    </div>
+                    <div class="md:col-span-3 flex items-end">
+                        <button onclick="runCustomCompetitorAnalysis()" id="btn-custom-comp" class="w-full py-1.5 bg-indigo-700 hover:bg-indigo-800 text-white font-bold rounded text-xs transition flex items-center justify-center gap-1.5 shadow-sm">
+                            <span>Bóc tách & Sinh Kịch bản</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Khung kết quả phân tích đối thủ tức thì -->
+                <div id="custom-competitor-result" class="hidden mt-3 p-3.5 bg-indigo-50/70 border border-indigo-200 rounded-lg space-y-2 text-xs">
+                    <!-- Dynamic analysis -->
+                </div>
             </div>
+
         </div>
 
         <!-- =================================================================== -->
@@ -1730,39 +1842,192 @@
             alert("Đã sao chép nội dung bài viết!");
         }
 
-        // --- 3. MARKET INTELLIGENCE ---
+        // --- 3. MARKET INTELLIGENCE & WAREHOUSE COMPETITOR DISSECTION ---
         async function fetchMarketIntelligence() {
-            const res = await fetch('/api/market-intelligence');
+            const skuSelect = document.getElementById('market-sku-select');
+            const sku = skuSelect ? skuSelect.value : 'ALL';
+            
+            const res = await fetch('/api/market-intelligence?sku=' + encodeURIComponent(sku));
             const data = await res.json();
 
-            const trendsBody = document.getElementById('market-trends-tbody');
-            trendsBody.innerHTML = '';
-            data.trends.forEach(t => {
-                trendsBody.innerHTML += `
-                    <tr>
-                        <td class="table-cell font-bold text-slate-900">${t.category}</td>
-                        <td class="table-cell font-semibold text-corp-700">${t.trend_name}</td>
-                        <td class="table-cell font-bold text-emerald-700">${t.growth}</td>
-                        <td class="table-cell text-slate-600">${t.insight}</td>
-                        <td class="table-cell font-medium text-slate-900">${t.opportunity}</td>
-                    </tr>
-                `;
-            });
+            // Cập nhật 4 thẻ chỉ số
+            if (data.summary) {
+                document.getElementById('mkt-stat-skus').innerText = data.summary.total_warehouse_skus + ' SKU Kho DION';
+                document.getElementById('mkt-stat-competitors').innerText = data.summary.active_competitors_tracked + ' Thương hiệu';
+                document.getElementById('mkt-stat-margin').innerText = data.summary.avg_dion_margin;
+                document.getElementById('mkt-stat-advantage').innerText = data.summary.market_advantage;
+            }
 
+            // Cập nhật số lượng Battlecards
+            const badge = document.getElementById('battlecards-count-badge');
+            if (badge) badge.innerText = `${data.competitors.length} Battlecards đối đầu`;
+
+            // 1. Render Battlecards (Vũ khí cho Trình dược viên)
+            const cardsContainer = document.getElementById('market-battlecards-container');
+            if (cardsContainer) {
+                cardsContainer.innerHTML = '';
+                if (data.competitors && data.competitors.length > 0) {
+                    data.competitors.forEach(c => {
+                        const safePitch = (c.counter_pitch || '').replace(/'/g, "\\'");
+                        cardsContainer.innerHTML += `
+                            <div class="bg-white rounded-lg border border-slate-200 p-4 shadow-xs space-y-3">
+                                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2.5">
+                                    <div class="flex items-center gap-2">
+                                        <span class="px-2.5 py-0.5 rounded font-extrabold text-xs bg-slate-900 text-white">${c.brand}</span>
+                                        <span class="font-extrabold text-sm text-slate-900">${c.product_name || c.product}</span>
+                                        <span class="text-[11px] font-mono text-slate-500">(${c.origin || 'Thị trường'})</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-xs text-slate-600">Giá bán lẻ: <b class="text-slate-900 font-mono">${c.retail_price || c.avg_price}</b></span>
+                                        <span class="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-amber-50 text-amber-900 border border-amber-200">~${c.cost_per_day || 'N/A'}</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+                                    <div class="bg-slate-50 p-2.5 rounded border border-slate-100 space-y-1">
+                                        <span class="font-bold text-slate-500 block uppercase text-[10px]">Dạng hoạt chất</span>
+                                        <div class="font-medium text-slate-800">${c.active_form || 'Đang cập nhật'}</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-2.5 rounded border border-slate-100 space-y-1">
+                                        <span class="font-bold text-slate-500 block uppercase text-[10px]">Kênh & Chiết khấu</span>
+                                        <div class="font-medium text-slate-800">${c.channels}</div>
+                                        <div class="text-[11px] font-bold text-rose-700">${c.pharmacy_margin || '12% - 15%'}</div>
+                                    </div>
+                                    <div class="bg-rose-50/50 p-2.5 rounded border border-rose-200 space-y-1">
+                                        <span class="font-bold text-rose-800 block uppercase text-[10px]">⚠️ Tử huyệt đối thủ</span>
+                                        <div class="font-medium text-rose-950">${c.weaknesses}</div>
+                                    </div>
+                                    <div class="bg-emerald-50/50 p-2.5 rounded border border-emerald-200 space-y-1">
+                                        <span class="font-bold text-emerald-800 block uppercase text-[10px]">✨ Lợi thế DION</span>
+                                        <div class="font-medium text-emerald-950 font-semibold">${c.dion_advantage}</div>
+                                    </div>
+                                </div>
+                                ${c.counter_pitch ? `
+                                <div class="p-3 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-300 rounded-md text-xs space-y-1.5">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-bold text-emerald-950 uppercase text-[11px] flex items-center gap-1.5">
+                                            <span>💬 Kịch bản Trình Dược Viên phản đòn khi quầy nhắc đến ${c.brand}:</span>
+                                        </span>
+                                        <button onclick="navigator.clipboard.writeText('${safePitch}'); alert('Đã sao chép kịch bản!');" class="text-[10px] text-emerald-800 font-bold hover:underline bg-white px-2 py-0.5 rounded border border-emerald-200 shadow-xs">
+                                            Sao chép kịch bản 📋
+                                        </button>
+                                    </div>
+                                    <div class="text-slate-800 italic leading-relaxed bg-white/80 p-2.5 rounded border border-emerald-100">
+                                        "${c.counter_pitch}"
+                                    </div>
+                                </div>
+                                ` : ''}
+                            </div>
+                        `;
+                    });
+                } else {
+                    cardsContainer.innerHTML = '<div class="text-xs text-slate-500 italic text-center p-6 bg-white rounded">Chưa có dữ liệu đối thủ cho sản phẩm này.</div>';
+                }
+            }
+
+            // 2. Render Bảng Đối thủ Chi tiết
             const compBody = document.getElementById('competitors-tbody');
-            compBody.innerHTML = '';
-            data.competitors.forEach(c => {
-                compBody.innerHTML += `
-                    <tr>
-                        <td class="table-cell font-bold text-slate-900">${c.name}</td>
-                        <td class="table-cell font-semibold text-slate-700">${c.product}</td>
-                        <td class="table-cell font-mono font-bold text-slate-800">${c.avg_price}</td>
-                        <td class="table-cell text-slate-600">${c.channels}</td>
-                        <td class="table-cell text-rose-700 font-medium">${c.weaknesses}</td>
-                        <td class="table-cell font-bold text-emerald-800">${c.dion_advantage}</td>
-                    </tr>
+            if (compBody) {
+                compBody.innerHTML = '';
+                data.competitors.forEach(c => {
+                    compBody.innerHTML += `
+                        <tr>
+                            <td class="table-cell font-bold text-slate-900">${c.brand || c.name}</td>
+                            <td class="table-cell font-semibold text-slate-700">${c.product_name || c.product}</td>
+                            <td class="table-cell font-mono font-bold text-slate-800">${c.retail_price || c.avg_price}</td>
+                            <td class="table-cell font-mono text-emerald-800 font-semibold">${c.cost_per_day || 'N/A'}</td>
+                            <td class="table-cell text-slate-600">${c.channels}</td>
+                            <td class="table-cell text-rose-700 font-bold">${c.pharmacy_margin || '12-15%'}</td>
+                            <td class="table-cell text-rose-800 font-medium">${c.weaknesses}</td>
+                            <td class="table-cell font-bold text-emerald-800">${c.dion_advantage}</td>
+                        </tr>
+                    `;
+                });
+            }
+
+            // 3. Render Bảng Xu Hướng
+            const trendsBody = document.getElementById('market-trends-tbody');
+            if (trendsBody) {
+                trendsBody.innerHTML = '';
+                data.trends.forEach(t => {
+                    trendsBody.innerHTML += `
+                        <tr>
+                            <td class="table-cell font-semibold text-corp-700">${t.trend_name}</td>
+                            <td class="table-cell font-bold text-emerald-700">${t.growth}</td>
+                            <td class="table-cell text-slate-600">${t.insight}</td>
+                            <td class="table-cell font-medium text-slate-900">${t.dion_opportunity || t.opportunity}</td>
+                        </tr>
+                    `;
+                });
+            }
+        }
+
+        async function rescanAllWarehouseMarket() {
+            const btn = document.getElementById('btn-rescan-market');
+            const orig = btn.innerHTML;
+            btn.innerHTML = '<span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping mr-1"></span> Đang bóc tách toàn kho...';
+            btn.disabled = true;
+
+            await fetchMarketIntelligence();
+            setTimeout(() => {
+                btn.innerHTML = orig;
+                btn.disabled = false;
+                alert('Đã hoàn tất AI bóc tách toàn bộ sản phẩm trong kho DION & cập nhật Ma trận Battlecards đối thủ!');
+            }, 600);
+        }
+
+        async function runCustomCompetitorAnalysis() {
+            const sku = document.getElementById('custom-comp-dion-sku').value;
+            const compName = document.getElementById('custom-comp-name').value.trim();
+            if (!compName) {
+                alert('Vui lòng nhập tên sản phẩm đối thủ cần phân tích.');
+                return;
+            }
+
+            const btn = document.getElementById('btn-custom-comp');
+            const orig = btn.innerHTML;
+            btn.innerText = 'AI đang bóc tách...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('/api/market-intelligence/analyze-competitor', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({sku: sku, competitor_name: compName})
+                });
+                const data = await res.json();
+
+                const box = document.getElementById('custom-competitor-result');
+                box.classList.remove('hidden');
+                box.innerHTML = `
+                    <div class="flex items-center justify-between border-b border-indigo-200 pb-2">
+                        <span class="font-extrabold text-indigo-950 uppercase flex items-center gap-1.5">
+                            <span>⚔️ KẾT QUẢ BÓC TÁCH ĐỐI THỦ: ${data.analyzed_competitor} VS ${data.dion_product}</span>
+                        </span>
+                        <span class="text-[10px] bg-indigo-200 text-indigo-900 font-bold px-2 py-0.5 rounded">Tạo bởi AI Market Engine</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+                        <div class="bg-white p-2.5 rounded border border-indigo-100">
+                            <span class="font-bold text-rose-800 block text-[11px] mb-1">⚠️ Tử huyệt & Yếu điểm bóc tách:</span>
+                            <p class="text-slate-700 leading-relaxed">${data.weakness_identified}</p>
+                        </div>
+                        <div class="bg-white p-2.5 rounded border border-indigo-100">
+                            <span class="font-bold text-emerald-800 block text-[11px] mb-1">🎯 Chiến thuật đánh bại tại quầy thuốc:</span>
+                            <ul class="space-y-1 text-slate-700">
+                                ${(data.actionable_tactics || []).map(t => `<li>• ${t}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-white rounded border border-emerald-300 space-y-1 mt-2">
+                        <span class="font-bold text-emerald-900 block text-[11px]">💬 Kịch bản Trình dược viên phản đòn thực tế:</span>
+                        <p class="text-slate-800 italic leading-relaxed">"${data.dion_counter_pitch}"</p>
+                    </div>
                 `;
-            });
+            } catch (err) {
+                alert('Lỗi khi phân tích đối thủ: ' + err.message);
+            } finally {
+                btn.innerHTML = orig;
+                btn.disabled = false;
+            }
         }
 
         // --- 4. SALES COPILOT & PHARMACIST ADVISOR ---
@@ -2100,7 +2365,7 @@
         }
 
         function updateAllProductDropdowns(newSku, newName) {
-            const selectors = ['claims-hub-sku', 'ad-sku-selector', 'copilot-sku-selector'];
+            const selectors = ['claims-hub-sku', 'ad-sku-select', 'ad-sku-selector', 'copilot-sku-select', 'copilot-sku-selector', 'market-sku-select', 'custom-comp-dion-sku'];
             selectors.forEach(id => {
                 const el = document.getElementById(id);
                 if (!el) return;

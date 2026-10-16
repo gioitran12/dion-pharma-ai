@@ -20,6 +20,9 @@ from modules.content_generator import (
 from modules.ai_compliance_agent import (
     run_ai_compliance_audit, set_runtime_ai_key, get_runtime_ai_status
 )
+from modules.market_intelligence import (
+    get_warehouse_market_intelligence, analyze_custom_competitor
+)
 
 app = FastAPI(title="DION Healthcare AI — Enterprise Platform")
 
@@ -134,52 +137,16 @@ async def api_ai_set_key(
 
 # --- GIẢI PHÁP 3: AI MARKET INTELLIGENCE (THEO DÕI THỊ TRƯỜNG & ĐỐI THỦ) ---
 @app.get("/api/market-intelligence")
-async def api_market_intelligence():
-    return {
-        "trends": [
-            {
-                "category": "Canxi cho bà bầu",
-                "trend_name": "Chuyển dịch sang Canxi sinh học từ tảo Lithothamnion",
-                "growth": "+42% lượng tìm kiếm",
-                "insight": "Khách hàng tránh Canxi Carbonate vô cơ vì sợ táo bón và lắng cặn thận.",
-                "opportunity": "Đẩy mạnh dòng Canxi Cal-Mom hữu cơ vào chuỗi Mẹ & Bé."
-            },
-            {
-                "category": "Vitamin D3",
-                "trend_name": "D3 nhỏ giọt kết hợp K2 (MK-7) chuẩn tinh khiết",
-                "growth": "+35% doanh số kênh quầy thuốc",
-                "insight": "Nhu cầu cao ở các gia đình trẻ khu đô thị, phụ huynh chuộng dạng nhỏ giọt chuẩn liều.",
-                "opportunity": "Thiết kế gói phân phối độc quyền cho chuỗi Long Châu."
-            },
-            {
-                "category": "Sắt & Bổ máu",
-                "trend_name": "Sắt Bisglycinate hữu cơ không gây kích ứng dạ dày",
-                "growth": "+28% phản hồi tích cực",
-                "insight": "Thai phụ phản hồi 85% trường hợp giảm hẳn buồn nôn so với sắt Sulfate truyền thống.",
-                "opportunity": "Chào hàng trực tiếp cho phòng khám sản và nhà thuốc phụ sản."
-            }
-        ],
-        "competitors": [
-            {
-                "name": "Thương hiệu A (Nhập khẩu Úc)",
-                "product": "Bio-Calcium D3",
-                "avg_price": "450.000 đ / hộp",
-                "channels": "Nhà thuốc chuỗi lớn (Long Châu, Pharmacity)",
-                "strengths": "Thương hiệu lâu năm, bao bì đẹp",
-                "weaknesses": "Giá cao, chiết khấu đại lý thấp (15-18%)",
-                "dion_advantage": "DION chiết khấu 30-35%, hỗ trợ đào tạo Dược sĩ và POSM điểm bán."
-            },
-            {
-                "name": "Thương hiệu B (Nội địa)",
-                "product": "Calci-Nano Plus",
-                "avg_price": "180.000 đ / hộp",
-                "channels": "Nhà thuốc lẻ vùng ven, chợ thuốc",
-                "strengths": "Giá rẻ, dễ tiếp cận số đông",
-                "weaknesses": "Dạng nano vô cơ, phản hồi nóng trong người",
-                "dion_advantage": "DION dùng nguồn tảo Lithothamnion tự nhiên chuẩn organic."
-            }
-        ]
-    }
+async def api_market_intelligence(sku: str = "ALL"):
+    return get_warehouse_market_intelligence(selected_sku=sku)
+
+@app.post("/api/market-intelligence/analyze-competitor")
+async def api_analyze_competitor(
+    sku: str = Body("DION-CAL-MOM", embed=True),
+    competitor_name: str = Body(..., embed=True),
+    competitor_info: str = Body("", embed=True)
+):
+    return analyze_custom_competitor(sku=sku, competitor_name=competitor_name, competitor_info=competitor_info)
 
 # --- GIẢI PHÁP 4: AI SALES COPILOT ---
 @app.post("/api/copilot/ask")
