@@ -32,6 +32,16 @@
         .table-cell-header { font-weight: 700; color: #475569; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; background-color: #f8fafc; border-bottom: 2px solid #e2e8f0; padding: 8px 12px; }
         .table-cell { padding: 10px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
         .tab-btn-active { border-bottom: 2px solid #1552b8 !important; color: #1552b8 !important; font-weight: 700 !important; background-color: #f0f6fe; }
+        
+        /* Sleek modern enterprise scrollbar */
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; height: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .custom-scrollbar { scrollbar-width: thin; scrollbar-color: #cbd5e1 #f1f5f9; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
@@ -337,24 +347,24 @@
             <!-- VÙNG LÀM VIỆC KÉP: WORKSPACE SOẠN THẢO & TRUNG TÂM PHÂN TÍCH PHÁP CHẾ -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
                 
-                <!-- CỘT TRÁI: WORKSPACE TRÌNH SOẠN THẢO (MIN HEIGHT 680px, TỰ ĐỘNG MỞ RỘNG KHI CẦN) -->
-                <div class="lg:col-span-6 bg-white rounded-lg border border-slate-200 p-4 shadow-sm flex flex-col justify-between min-h-[680px]">
+                <!-- CỘT TRÁI: WORKSPACE TRÌNH SOẠN THẢO (CỐ ĐỊNH 700px, KHÔNG BAO GIỜ BỊ TRỐNG TRẮNG) -->
+                <div class="lg:col-span-6 bg-white rounded-lg border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[700px] max-h-[700px] overflow-hidden">
                     <!-- Header chuyển đổi chế độ xem Soạn thảo vs Tô đỏ -->
                     <div class="flex flex-wrap justify-between items-center pb-2.5 border-b border-slate-100 gap-2 flex-shrink-0">
                         <div class="flex items-center gap-1.5">
-                            <button id="btn-editor-edit-mode" onclick="switchEditorMode('EDIT')" class="px-3 py-1.5 rounded-md bg-slate-900 text-white font-bold text-xs shadow-xs transition flex items-center gap-1.5">
+                            <button id="btn-editor-edit-mode" onclick="switchEditorMode('EDIT')" class="px-3 py-1.5 rounded-md bg-slate-900 text-white font-bold text-xs shadow-xs transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
-                                <span>Soạn thảo trực tiếp</span>
+                                <span>Soạn thảo</span>
                             </button>
-                            <button id="btn-editor-highlight-mode" onclick="switchEditorMode('HIGHLIGHT')" class="px-3 py-1.5 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition flex items-center gap-1.5">
+                            <button id="btn-editor-highlight-mode" onclick="switchEditorMode('HIGHLIGHT')" class="px-3 py-1.5 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
                                 <svg class="w-3.5 h-3.5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-                                <span>Kết quả tô đỏ vi phạm</span>
+                                <span>Tô đỏ vi phạm</span>
                                 <span id="editor-violation-badge" class="px-2 py-0.5 rounded-full text-xs font-extrabold bg-slate-200 text-slate-700">0 lỗi</span>
                             </button>
                         </div>
                         <div class="flex items-center gap-2">
-                            <span id="ad-word-count" class="text-xs font-mono font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded border border-slate-200">0 ký tự</span>
-                            <button onclick="clearAdContentForNewPost()" class="px-2.5 py-1 rounded-md text-slate-600 hover:text-rose-700 hover:bg-rose-50 text-xs font-semibold transition flex items-center gap-1 border border-slate-200 shadow-2xs" title="Xóa nội dung cũ để gõ bài mới">
+                            <span id="ad-word-count" class="text-xs font-mono font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded border border-slate-200 whitespace-nowrap">0 ký tự</span>
+                            <button onclick="clearAdContentForNewPost()" class="px-2.5 py-1 rounded-md text-slate-600 hover:text-rose-700 hover:bg-rose-50 text-xs font-semibold transition flex items-center gap-1 border border-slate-200 shadow-2xs whitespace-nowrap flex-shrink-0" title="Xóa nội dung cũ để gõ bài mới">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                                 <span>Làm mới</span>
                             </button>
@@ -362,35 +372,35 @@
                     </div>
 
                     <!-- Khung soạn thảo thuần (Textarea Edit Mode) -->
-                    <div id="editor-edit-wrap" class="flex-1 flex flex-col py-2.5">
-                        <textarea id="ad-content-box" oninput="onAdContentInput()" placeholder="Nhập hoặc dán nội dung bài viết quảng cáo tại đây để đối chiếu với hồ sơ sản phẩm (Bạn có thể tự do gõ và chỉnh sửa)..." class="w-full flex-1 min-h-[360px] bg-slate-50 border border-slate-300 rounded-lg p-3.5 text-sm leading-relaxed text-slate-900 outline-none focus:border-corp-800 focus:bg-white focus:ring-1 focus:ring-corp-800 font-sans transition shadow-inner resize-none"></textarea>
+                    <div id="editor-edit-wrap" class="flex-1 min-h-0 flex flex-col py-2.5 overflow-hidden">
+                        <textarea id="ad-content-box" oninput="onAdContentInput()" placeholder="Nhập hoặc dán nội dung bài viết quảng cáo tại đây để đối chiếu với hồ sơ sản phẩm (Bạn có thể tự do gõ và chỉnh sửa)..." class="w-full flex-1 min-h-0 bg-slate-50 border border-slate-300 rounded-lg p-3.5 text-sm leading-relaxed text-slate-900 outline-none focus:border-corp-800 focus:bg-white focus:ring-1 focus:ring-corp-800 font-sans transition shadow-inner resize-none custom-scrollbar"></textarea>
                         <div class="text-xs text-slate-500 mt-2 flex items-center justify-between bg-slate-50 px-3 py-1.5 rounded border border-slate-200 flex-shrink-0">
                             <span class="flex items-center gap-1.5">
                                 <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                                <span><b>Chế độ nhập liệu tự do:</b> Gõ hoặc dán nội dung, sau đó chọn nút Thẩm định bên dưới để kiểm duyệt.</span>
+                                <span><b>Chế độ nhập liệu:</b> Gõ hoặc dán nội dung, sau đó chọn nút Thẩm định bên dưới để kiểm duyệt.</span>
                             </span>
-                            <span class="text-slate-400 italic" id="editor-mode-hint">Đã sẵn sàng</span>
+                            <span class="text-slate-400 italic whitespace-nowrap" id="editor-mode-hint">Đã sẵn sàng</span>
                         </div>
                     </div>
 
                     <!-- Khung đối chiếu tô đỏ trực tiếp (Visual Highlighting Mode) -->
-                    <div id="editor-highlight-wrap" class="hidden flex-1 min-h-0 flex flex-col py-2.5">
+                    <div id="editor-highlight-wrap" class="hidden flex-1 min-h-0 flex flex-col py-2.5 overflow-hidden">
                         <div class="flex items-center justify-between bg-amber-50 border border-amber-300 px-3 py-1.5 rounded-md mb-2 text-xs text-amber-950 font-medium shadow-xs flex-shrink-0">
                             <span class="flex items-center gap-1.5">
                                 <svg class="w-3.5 h-3.5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <span><b>Chế độ rà soát trực quan:</b> Click vào cụm từ tô đỏ để xem phân tích y khoa & thay thế 1-click.</span>
+                                <span><b>Chế độ rà soát:</b> Bấm cụm từ tô đỏ để xem phân tích y khoa & thay thế 1-click.</span>
                             </span>
-                            <button onclick="switchEditorMode('EDIT')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs transition flex items-center gap-1 shadow-xs">
+                            <button onclick="switchEditorMode('EDIT')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs transition flex items-center gap-1 shadow-xs whitespace-nowrap flex-shrink-0">
                                 <span>Quay lại gõ bài</span>
                             </button>
                         </div>
-                        <div id="ad-editor-highlights" ondblclick="switchEditorMode('EDIT')" title="Nhấp đúp chuột vào đây để chuyển sang gõ / sửa bài viết" class="w-full flex-1 min-h-[200px] max-h-[360px] bg-white border border-rose-300 rounded-lg p-3.5 text-sm leading-relaxed font-sans overflow-y-auto cursor-text shadow-inner">
+                        <div id="ad-editor-highlights" ondblclick="switchEditorMode('EDIT')" title="Nhấp đúp chuột vào đây để chuyển sang gõ / sửa bài viết" class="w-full flex-1 min-h-0 bg-white border border-rose-300 rounded-lg p-3.5 text-sm leading-relaxed font-sans overflow-y-auto cursor-text shadow-inner custom-scrollbar">
                             <div class="text-slate-400 italic text-center pt-24">Chưa có kết quả thẩm định. Hãy nhập bài viết và bấm 'Thẩm định' bên dưới để AI quét và tô đỏ trực tiếp các vi phạm.</div>
                         </div>
                     </div>
 
                     <!-- Thẻ Popover tương tác khi bấm vào từ tô đỏ (Interactive 1-Click Fix Popover) -->
-                    <div id="highlight-fix-card" class="hidden mb-2.5 p-3 rounded-md bg-rose-50 border border-rose-300 shadow-md text-xs space-y-1.5 flex-shrink-0">
+                    <div id="highlight-fix-card" class="hidden mb-2.5 p-3 rounded-md bg-rose-50 border border-rose-300 shadow-md text-xs space-y-1.5 flex-shrink-0 max-h-[220px] overflow-y-auto custom-scrollbar">
                         <div class="flex justify-between items-center">
                             <span class="font-extrabold text-rose-950 uppercase flex items-center gap-1.5" id="fix-card-title">
                                 Cảnh báo vi phạm quy chuẩn y dược
@@ -400,68 +410,68 @@
                         <div class="text-xs text-slate-800"><span class="font-semibold text-slate-500">Cụm từ vi phạm:</span> <b class="bg-rose-200 text-rose-950 px-1.5 py-0.5 rounded font-mono" id="fix-card-quote"></b></div>
                         <div class="text-xs text-slate-700 leading-relaxed" id="fix-card-explanation"></div>
                         <div class="text-xs text-indigo-900 font-bold font-mono" id="fix-card-legal"></div>
-                        <div class="p-2.5 bg-emerald-50 border border-emerald-300 rounded-md text-emerald-950 text-xs flex items-center justify-between mt-1">
-                            <div class="pr-2">
-                                <span class="font-bold text-xs text-emerald-800 uppercase block mb-0.5">Đề xuất chuẩn hóa y tế:</span>
-                                <span class="font-semibold italic text-emerald-950 text-sm" id="fix-card-suggestion"></span>
+                        <div class="p-2 bg-emerald-50 border border-emerald-300 rounded-md text-emerald-950 text-xs flex items-center justify-between mt-1 gap-2">
+                            <div class="flex-1 pr-1">
+                                <span class="font-bold text-xs text-emerald-800 uppercase block mb-0.5">Đề xuất chuẩn hóa:</span>
+                                <span class="font-semibold italic text-emerald-950 text-xs leading-snug" id="fix-card-suggestion"></span>
                             </div>
-                            <button onclick="applySingleFixFromCard()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-md text-xs transition shadow-xs whitespace-nowrap">
+                            <button onclick="applySingleFixFromCard()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-md text-xs transition shadow-xs whitespace-nowrap flex-shrink-0">
                                 Áp dụng thay thế
                             </button>
                         </div>
                     </div>
 
-                    <!-- Thanh nút hành động chính ngay dưới ô soạn thảo -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-2 border-t border-slate-100 flex-shrink-0">
-                        <button onclick="runAIAgentAudit()" class="py-2.5 px-3 bg-corp-800 hover:bg-corp-900 text-white font-bold rounded-md text-xs transition flex items-center justify-center gap-1.5 shadow-sm">
+                    <!-- Thanh nút hành động chính ngay dưới ô soạn thảo (ĐỒNG BỘ 1 DÒNG, KHÔNG XUỐNG DÒNG) -->
+                    <div class="flex items-center gap-2 pt-2.5 border-t border-slate-100 flex-shrink-0">
+                        <button onclick="runAIAgentAudit()" class="flex-1 py-2.5 px-2 bg-corp-800 hover:bg-corp-900 text-white font-bold rounded-md text-xs transition flex items-center justify-center gap-1.5 shadow-sm whitespace-nowrap flex-shrink-0">
                             <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                            <span>AI Agent Đối Chiếu Hồ Sơ</span>
+                            <span>AI Agent Đối Chiếu</span>
                         </button>
-                        <button onclick="runAdAudit()" class="py-2.5 px-3 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-md text-xs transition flex items-center justify-center gap-1.5 shadow-sm">
+                        <button onclick="runAdAudit()" class="flex-1 py-2.5 px-2 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-md text-xs transition flex items-center justify-center gap-1.5 shadow-sm whitespace-nowrap flex-shrink-0">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                            <span>Thẩm Định Radar NĐ 342</span>
+                            <span>Thẩm Định Radar 342</span>
                         </button>
-                        <button onclick="runAdAutoFix()" class="py-2.5 px-3 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-md text-xs transition flex items-center justify-center gap-1.5 shadow-sm whitespace-nowrap">
+                        <button onclick="runAdAutoFix()" class="flex-1 py-2.5 px-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-md text-xs transition flex items-center justify-center gap-1.5 shadow-sm whitespace-nowrap flex-shrink-0">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span>1-Click Chuẩn Hóa 100/100</span>
+                            <span>Chuẩn Hóa 100/100</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- CỘT PHẢI: TRUNG TÂM PHÂN TÍCH PHÁP CHẾ & BÁO CÁO THẨM ĐỊNH (MIN HEIGHT 680px) -->
-                <div class="lg:col-span-6 bg-white rounded-lg border border-slate-200 p-4 shadow-sm flex flex-col justify-between min-h-[680px]">
-                    <div class="space-y-3 flex-1 flex flex-col overflow-hidden">
+                <!-- CỘT PHẢI: TRUNG TÂM PHÂN TÍCH PHÁP CHẾ & BÁO CÁO THẨM ĐỊNH (CỐ ĐỊNH 700px CÓ THANH CUỘN NỘI BỘ) -->
+                <div class="lg:col-span-6 bg-white rounded-lg border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[700px] max-h-[700px] overflow-hidden">
+                    <div class="space-y-3 flex-1 min-h-0 flex flex-col overflow-hidden">
                         <!-- Khung điểm số tuân thủ & Huy hiệu trạng thái -->
-                        <div class="flex items-center justify-between p-3.5 rounded-lg border transition shadow-xs" id="audit-score-wrap">
+                        <div class="flex items-center justify-between p-3.5 rounded-lg border transition shadow-xs flex-shrink-0" id="audit-score-wrap">
                             <div>
                                 <div class="flex items-center gap-2">
                                     <span class="text-xs font-bold uppercase text-slate-500 tracking-wide">Điểm số tuân thủ:</span>
-                                    <span id="audit-engine-source-label" class="text-xs font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700">Động cơ: Chưa chạy</span>
+                                    <span id="audit-engine-source-label" class="text-xs font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700 whitespace-nowrap">Động cơ: Chưa chạy</span>
                                 </div>
                                 <div class="text-3xl font-black mt-0.5 text-slate-900" id="audit-score-display">0 / 100</div>
                             </div>
-                            <span class="px-3.5 py-1.5 rounded-md text-xs font-extrabold uppercase tracking-wide text-center bg-slate-200 text-slate-700" id="audit-badge-display">Chưa kiểm tra</span>
+                            <span class="px-3 py-1.5 rounded-md text-xs font-extrabold uppercase tracking-wide text-center bg-slate-200 text-slate-700 whitespace-nowrap flex-shrink-0" id="audit-badge-display">Chưa kiểm tra</span>
                         </div>
 
-                        <!-- Thanh điều hướng Tab kết quả phân tích -->
-                        <div class="flex items-center gap-1.5 border-b border-slate-200 pb-2 overflow-x-auto text-xs">
-                            <button id="btn-tab-res-violations" onclick="switchAuditResultTab('violations')" class="px-3 py-1.5 text-xs font-bold rounded-md bg-slate-900 text-white shadow-xs transition flex items-center gap-1.5">
+                        <!-- Thanh điều hướng Tab kết quả phân tích (TẤT CẢ KHÔNG BAO GIỜ XUỐNG DÒNG) -->
+                        <div class="flex items-center gap-1.5 border-b border-slate-200 pb-2 overflow-x-auto no-scrollbar flex-shrink-0 text-xs">
+                            <button id="btn-tab-res-violations" onclick="switchAuditResultTab('violations')" class="px-3 py-1.5 text-xs font-bold rounded-md bg-slate-900 text-white shadow-xs transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
                                 <span>Danh Sách Vi Phạm</span>
                                 <span id="tab-badge-violations" class="px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-rose-200 text-rose-950">0</span>
                             </button>
-                            <button id="btn-tab-res-rewrite" onclick="switchAuditResultTab('rewrite')" class="px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-1.5">
-                                <span>Bản Thảo Chuẩn Hóa 100%</span>
+                            <button id="btn-tab-res-rewrite" onclick="switchAuditResultTab('rewrite')" class="px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+                                <span>Bản Thảo Đạt Chuẩn 100%</span>
                             </button>
-                            <button id="btn-tab-res-cot" onclick="switchAuditResultTab('cot')" class="px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-1.5">
-                                <span>Chuỗi Thẩm Định Pháp Chế</span>
+                            <button id="btn-tab-res-cot" onclick="switchAuditResultTab('cot')" class="px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+                                <span>Chuỗi Thẩm Định</span>
                             </button>
-                            <button id="btn-tab-res-radar" onclick="switchAuditResultTab('radar')" class="px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-1.5">
+                            <button id="btn-tab-res-radar" onclick="switchAuditResultTab('radar')" class="px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
                                 <span>Radar 4 Lớp NĐ 342</span>
                             </button>
                         </div>
 
-                        <!-- Khối nội dung kết quả phân tích (Scrollable area) -->
-                        <div class="flex-1 overflow-y-auto pr-1 space-y-3">
+                        <!-- Khối nội dung kết quả phân tích CÓ THANH KÉO TRƯỢT NỘI BỘ (Scrollable area) -->
+                        <div class="flex-1 min-h-0 overflow-y-auto custom-scrollbar pr-1.5 space-y-3">
                             <!-- Tab Panel 1: Danh sách vi phạm -->
                             <div id="panel-res-violations" class="space-y-2">
                                 <div id="audit-msg-box" class="space-y-2">
@@ -1814,18 +1824,18 @@
 
             scoreDisplay.innerText = data.total_score + ' / 100';
 
-            if (data.risk_level === 'COMPLIANT') {
-                wrap.className = 'flex items-center justify-between p-3.5 rounded-lg border bg-emerald-50 border-emerald-300 text-emerald-900';
-                badge.className = 'px-3.5 py-1.5 rounded-md text-xs font-bold uppercase bg-emerald-700 text-white';
+            if (data.risk_level === 'COMPLIANT' || data.total_score === 100) {
+                wrap.className = 'flex items-center justify-between p-3.5 rounded-lg border bg-emerald-50 border-emerald-300 text-emerald-900 flex-shrink-0';
+                badge.className = 'px-3.5 py-1.5 rounded-md text-xs font-extrabold uppercase bg-emerald-700 text-white whitespace-nowrap flex-shrink-0';
                 badge.innerText = 'ĐẠT CHUẨN NGHỊ ĐỊNH 342';
-            } else if (data.risk_level === 'CRITICAL_HAZARD') {
-                wrap.className = 'flex items-center justify-between p-3.5 rounded-lg border bg-rose-100 border-rose-400 text-rose-950 animate-pulse';
-                badge.className = 'px-3.5 py-1.5 rounded-md text-xs font-extrabold uppercase bg-rose-800 text-white tracking-wider';
-                badge.innerText = data.verdict_title || 'BÁO ĐỘNG ĐỎ PHÁP LÝ';
+            } else if (data.risk_level === 'CRITICAL_HAZARD' || data.total_score === 0) {
+                wrap.className = 'flex items-center justify-between p-3.5 rounded-lg border bg-rose-100 border-rose-400 text-rose-950 animate-pulse flex-shrink-0';
+                badge.className = 'px-3.5 py-1.5 rounded-md text-xs font-extrabold uppercase bg-rose-800 text-white tracking-wider whitespace-nowrap flex-shrink-0';
+                badge.innerText = 'VI PHẠM NGHIÊM TRỌNG';
             } else {
-                wrap.className = 'flex items-center justify-between p-3.5 rounded-lg border bg-amber-50 border-amber-300 text-amber-950';
-                badge.className = 'px-3.5 py-1.5 rounded-md text-xs font-bold uppercase bg-amber-700 text-white';
-                badge.innerText = data.verdict_title || 'CẦN CHUẨN HÓA';
+                wrap.className = 'flex items-center justify-between p-3.5 rounded-lg border bg-amber-50 border-amber-300 text-amber-950 flex-shrink-0';
+                badge.className = 'px-3.5 py-1.5 rounded-md text-xs font-bold uppercase bg-amber-700 text-white whitespace-nowrap flex-shrink-0';
+                badge.innerText = 'CẦN CHUẨN HÓA';
             }
 
             // Cập nhật HTML tô đỏ trực quan trên trình soạn thảo
@@ -1842,41 +1852,41 @@
             if (tabBadge) tabBadge.innerText = count;
 
             if (count > 0) {
-                violationBadge.className = 'px-2 py-0.5 rounded-full text-xs font-extrabold bg-rose-200 text-rose-950 animate-pulse';
+                violationBadge.className = 'px-2 py-0.5 rounded-full text-xs font-extrabold bg-rose-200 text-rose-950 animate-pulse whitespace-nowrap flex-shrink-0';
                 switchEditorMode('HIGHLIGHT');
                 switchAuditResultTab('violations');
             } else {
-                violationBadge.className = 'px-2 py-0.5 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-800';
+                violationBadge.className = 'px-2 py-0.5 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-800 whitespace-nowrap flex-shrink-0';
                 switchAuditResultTab('rewrite');
             }
 
             // Render danh sách vi phạm chi tiết (Cỡ chữ 14px, không icon vớ vẩn)
-            let html = `<div class="font-bold text-slate-900 mb-2.5 text-xs flex justify-between items-center">
+            let html = `<div class="font-bold text-slate-900 mb-2.5 text-xs flex justify-between items-center flex-shrink-0">
                 <span>Phát hiện ${count} điểm vi phạm so với Hồ sơ công bố & NĐ 342:</span>
-                <span class="text-xs text-slate-500 font-semibold">Căn cứ: NĐ 15/2018 & NĐ 342/2025</span>
+                <span class="text-xs text-slate-500 font-semibold whitespace-nowrap">Căn cứ: NĐ 15/2018 & NĐ 342/2025</span>
             </div>`;
 
             if (data.semantic_violations && data.semantic_violations.length > 0) {
                 html += '<div class="space-y-2.5">';
                 data.semantic_violations.forEach(v => {
                     const sevBadge = v.severity === 'CRITICAL' ?
-                        '<span class="px-2 py-0.5 bg-rose-700 text-white font-bold rounded text-xs uppercase">NGHIÊM TRỌNG</span>' :
-                        '<span class="px-2 py-0.5 bg-amber-600 text-white font-bold rounded text-xs uppercase">CẢNH BÁO</span>';
+                        '<span class="px-2 py-0.5 bg-rose-700 text-white font-bold rounded text-xs uppercase whitespace-nowrap flex-shrink-0">NGHIÊM TRỌNG</span>' :
+                        '<span class="px-2 py-0.5 bg-amber-600 text-white font-bold rounded text-xs uppercase whitespace-nowrap flex-shrink-0">CẢNH BÁO</span>';
 
                     html += `
                         <div class="p-3 rounded-lg bg-white border border-slate-200 text-sm space-y-1.5 shadow-xs">
-                            <div class="flex justify-between items-center">
+                            <div class="flex flex-wrap justify-between items-center gap-1.5">
                                 <span class="font-bold text-slate-900 flex items-center gap-2">
                                     ${sevBadge}
                                     <span class="text-rose-900 font-bold">${v.category}</span>
                                 </span>
-                                <span class="text-xs font-bold text-indigo-800 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">${v.legal_basis}</span>
+                                <span class="text-xs font-bold text-indigo-800 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200 whitespace-nowrap">${v.legal_basis}</span>
                             </div>
                             <div class="text-sm text-slate-800"><span class="text-slate-500 font-semibold">Đoạn trích vi phạm:</span> <b class="bg-rose-100 text-rose-950 px-1.5 py-0.5 rounded font-sans">"${v.quote}"</b></div>
                             <div class="text-sm text-slate-700 leading-relaxed"><span class="text-slate-500 font-semibold">Phân tích vi phạm:</span> ${v.explanation}</div>
-                            <div class="text-sm text-emerald-950 bg-emerald-50/80 p-2.5 rounded-md border border-emerald-200 flex items-center justify-between mt-1">
-                                <div><span class="font-bold text-emerald-800">Đề xuất chuẩn y tế:</span> "${v.compliant_suggestion}"</div>
-                                <button onclick="insertMissingText('${v.compliant_suggestion.replace(/'/g, "\\'")}')" class="ml-2 px-3 py-1 bg-emerald-700 text-white font-bold rounded text-xs whitespace-nowrap hover:bg-emerald-800 shadow-2xs">Áp dụng chuẩn y tế</button>
+                            <div class="text-sm text-emerald-950 bg-emerald-50/80 p-2.5 rounded-md border border-emerald-200 flex items-center justify-between mt-1 gap-2">
+                                <div class="flex-1 pr-1"><span class="font-bold text-emerald-800">Đề xuất chuẩn y tế:</span> "${v.compliant_suggestion}"</div>
+                                <button onclick="insertMissingText('${v.compliant_suggestion.replace(/'/g, "\\'")}')" class="px-3 py-1.5 bg-emerald-700 text-white font-bold rounded-md text-xs whitespace-nowrap hover:bg-emerald-800 shadow-2xs flex-shrink-0">Áp dụng</button>
                             </div>
                         </div>
                     `;
