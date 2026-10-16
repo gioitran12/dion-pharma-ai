@@ -238,73 +238,76 @@
             <div class="bg-white rounded border border-slate-200 p-3 shadow-sm flex flex-wrap items-center justify-between gap-2">
                 <div class="flex items-center gap-2">
                     <span class="text-xs font-bold text-slate-600 uppercase">Thử nghiệm tình huống:</span>
-                    <button onclick="pickAdPreset(1)" class="px-2.5 py-1 rounded bg-rose-50 text-rose-800 border border-rose-200 text-xs font-semibold hover:bg-rose-100">
-                        Vi phạm: Cam kết chữa khỏi 100%
+                    <button onclick="pickAdPreset(1)" class="px-2.5 py-1 rounded bg-amber-50 text-amber-900 border border-amber-200 text-xs font-semibold hover:bg-amber-100">
+                        Ca 1: Cam kết chữa khỏi 100%
                     </button>
-                    <button onclick="pickAdPreset(2)" class="px-2.5 py-1 rounded bg-rose-50 text-rose-800 border border-rose-200 text-xs font-semibold hover:bg-rose-100">
-                        Vi phạm: Thần dược, thiếu Disclaimer
+                    <button onclick="pickAdPreset(2)" class="px-2.5 py-1 rounded bg-rose-100 text-rose-900 border border-rose-300 text-xs font-bold hover:bg-rose-200">
+                        Ca 2: Thần thánh hóa, Lượng tử, Vứt bỏ thuốc (Bài test vi phạm nghiêm trọng)
                     </button>
                     <button onclick="pickAdPreset(3)" class="px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold hover:bg-emerald-100">
-                        Bài viết đạt chuẩn Nghị định 342
+                        Ca 3: Bài viết đạt chuẩn Nghị định 342
                     </button>
                 </div>
-                <span class="text-xs text-slate-500">Căn cứ: Nghị định 342/2025/NĐ-CP</span>
+                <span class="text-xs text-slate-500 font-semibold">Căn cứ: Nghị định 342/2025/NĐ-CP & Luật Dược</span>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-                <div class="lg:col-span-6 bg-white rounded border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[500px]">
+                <div class="lg:col-span-6 bg-white rounded border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[520px]">
                     <div>
-                        <div class="font-bold text-xs text-slate-700 uppercase mb-2">Soạn thảo / Dán nội dung quảng cáo:</div>
-                        <textarea id="ad-content-box" rows="12" oninput="runAdAudit()" class="w-full bg-slate-50 border border-slate-300 rounded p-3 text-xs leading-relaxed outline-none focus:border-corp-700 font-medium"></textarea>
+                        <div class="flex justify-between items-center mb-2">
+                            <div class="font-bold text-xs text-slate-700 uppercase">Soạn thảo / Dán nội dung quảng cáo:</div>
+                            <span class="text-[11px] text-slate-400">Tự động bóc tách câu Disclaimer độc lập</span>
+                        </div>
+                        <textarea id="ad-content-box" rows="13" oninput="runAdAudit()" class="w-full bg-slate-50 border border-slate-300 rounded p-3 text-xs leading-relaxed outline-none focus:border-corp-700 font-medium"></textarea>
                     </div>
                     <div class="flex gap-2 pt-2">
                         <button onclick="runAdAudit()" class="flex-1 py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs transition">
                             Thẩm định tính tuân thủ pháp lý
                         </button>
                         <button onclick="runAdAutoFix()" class="flex-1 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs transition">
-                            Tự động sửa lỗi theo luật định
+                            Tự động sửa lỗi theo luật định (1-Click)
                         </button>
                     </div>
                 </div>
 
-                <div class="lg:col-span-6 bg-white rounded border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[500px] overflow-y-auto">
-                    <div class="space-y-4">
+                <div class="lg:col-span-6 bg-white rounded border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[520px] overflow-y-auto">
+                    <div class="space-y-3">
                         <div class="flex items-center justify-between p-3 rounded border" id="audit-score-wrap">
                             <div>
                                 <span class="text-[11px] font-bold uppercase text-slate-500">Điểm số tuân thủ:</span>
                                 <div class="text-2xl font-extrabold" id="audit-score-display">0 / 100</div>
                             </div>
-                            <span class="px-3 py-1 rounded text-xs font-bold uppercase" id="audit-badge-display">Chưa kiểm tra</span>
+                            <span class="px-3 py-1 rounded text-xs font-bold uppercase text-center" id="audit-badge-display">Chưa kiểm tra</span>
                         </div>
 
                         <table class="w-full text-left text-xs border border-slate-200 rounded overflow-hidden">
                             <thead class="bg-slate-50">
                                 <tr>
-                                    <th class="table-cell-header">Tiêu chuẩn thẩm định</th>
-                                    <th class="table-cell-header w-32 text-right">Đánh giá</th>
+                                    <th class="table-cell-header">Lớp thẩm định (Nghị định 342/2025/NĐ-CP)</th>
+                                    <th class="table-cell-header w-44 text-right">Đánh giá</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="border-b border-slate-100">
-                                    <td class="table-cell">1. Từ ngữ cấm y dược (chữa bệnh, khỏi hẳn)</td>
+                                    <td class="table-cell">1. Từ cấm y dược & Khẳng định trị bệnh</td>
                                     <td class="table-cell text-right font-bold" id="res-prohibited">—</td>
                                 </tr>
                                 <tr class="border-b border-slate-100">
-                                    <td class="table-cell">2. Cam kết quá mức (100%, tuyệt đối)</td>
-                                    <td class="table-cell text-right font-bold" id="res-exaggeration">—</td>
+                                    <td class="table-cell">2. Thần thánh hóa & Khoa học giả tưởng</td>
+                                    <td class="table-cell text-right font-bold" id="res-miracle">—</td>
                                 </tr>
                                 <tr class="border-b border-slate-100">
-                                    <td class="table-cell">3. Câu cảnh báo bắt buộc (NĐ 342)</td>
-                                    <td class="table-cell text-right font-bold" id="res-disclaimer">—</td>
+                                    <td class="table-cell">3. Hạ thấp thuốc Tây & Cam kết quá mức</td>
+                                    <td class="table-cell text-right font-bold" id="res-exaggeration">—</td>
                                 </tr>
                                 <tr>
-                                    <td class="table-cell">4. Giới hạn phạm vi công dụng TPBVSK</td>
-                                    <td class="table-cell text-right font-bold" id="res-boundary">—</td>
+                                    <td class="table-cell">4. Cảnh báo bắt buộc NĐ 342 & Phạm vi TPBVSK</td>
+                                    <td class="table-cell text-right font-bold" id="res-disclaimer">—</td>
                                 </tr>
                             </tbody>
                         </table>
 
-                        <div id="audit-msg-box" class="text-xs p-3 rounded bg-slate-50 border border-slate-200"></div>
+                        <div id="audit-msg-box" class="text-xs p-3 rounded bg-slate-50 border border-slate-200 max-h-56 overflow-y-auto"></div>
                     </div>
                     <div class="pt-2 border-t border-slate-200 text-right">
                         <button onclick="copyAdContent()" class="text-xs font-bold text-corp-700 hover:underline">Sao chép bài viết</button>
@@ -854,8 +857,8 @@
         // --- 2. CONTENT ENGINE ---
         const PRESETS = {
             1: "Sản phẩm Vitamin D3 1000IU cam kết chữa bệnh loãng xương và khỏi hẳn đau nhức khớp sau 2 tuần sử dụng! Hiệu quả 100% không tái phát.\nNhắn tin ngay để được bác sĩ tư vấn liều dùng điều trị dứt điểm!",
-            2: "Thần dược bổ máu DION Fero-Plus uống vào là khỏi hẳn thiếu máu, da dẻ hồng hào tuyệt đối. Sản phẩm số 1 thay thế hoàn toàn các loại thuốc bổ máu trên thị trường.\nĐặt mua ngay hôm nay!",
-            3: "Thực Phẩm Bảo Vệ Sức Khỏe Vitamin D3 1000IU hỗ trợ tăng cường hấp thu Canxi và Photpho, hỗ trợ duy trì xương răng chắc khỏe mỗi ngày.\nThích hợp cho người lớn có nhu cầu bổ sung vi chất dinh dưỡng.\n---\nThực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
+            2: "Đột phá y học thế kỷ 21: dưỡng chất tự nhiên trường thọ - Quét sạch bách bệnh chỉ sau đúng 7 ngày!\n\nBạn đang mệt mỏi vì tiểu đường, xương khớp, huyết áp hay suy giảm sinh lực? Đừng lo, viên uống Nano Diệu Dược chiết xuất hiệu quả rõ rệt từ thảo mộc ngàn năm trên đỉnh Fansipan sẽ giải quyết tận gốc rễ mọi căn bệnh mãn tính. Công nghệ bẻ khóa tế bào lượng tử giúp thẩm thấu nhanh gấp 10.000 lần thuốc Tây thông thường, được kiểm chứng kiểm soát tốt hoàn toàn hiệu quả rõ rệt, không tái phát, không tác dụng phụ! Hàng triệu bệnh nhân khắp thế giới đã vứt bỏ thuốc men nhờ siêu phẩm này. Duy nhất hôm nay: Uống 1 liệu trình, trẻ hóa 10 tuổi, thọ thêm 20 năm, xóa sổ vĩnh viễn mầm mống bệnh tật!\n\n---\n⚠️ Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+            3: "Thực Phẩm Bảo Vệ Sức Khỏe Vitamin D3 1000IU hỗ trợ tăng cường hấp thu Canxi và Photpho, hỗ trợ duy trì xương răng chắc khỏe mỗi ngày.\nThích hợp cho người lớn có nhu cầu bổ sung vi chất dinh dưỡng.\n---\n⚠️ Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
         };
 
         function pickAdPreset(idx) {
@@ -878,37 +881,83 @@
             const badge = document.getElementById('audit-badge-display');
             const wrap = document.getElementById('audit-score-wrap');
 
-            if (audit.is_compliant) {
+            if (audit.badge_type === 'COMPLIANT') {
                 wrap.className = 'flex items-center justify-between p-3 rounded border bg-emerald-50 border-emerald-300 text-emerald-900';
                 badge.className = 'px-3 py-1 rounded text-xs font-bold uppercase bg-emerald-700 text-white';
                 badge.innerText = 'ĐẠT CHUẨN NGHỊ ĐỊNH 342';
+            } else if (audit.badge_type === 'CRITICAL_HAZARD') {
+                wrap.className = 'flex items-center justify-between p-3 rounded border bg-rose-100 border-rose-400 text-rose-950 animate-pulse';
+                badge.className = 'px-3 py-1 rounded text-[11px] font-extrabold uppercase bg-rose-800 text-white tracking-wider';
+                badge.innerText = 'VI PHẠM ĐẶC BIỆT NGHIÊM TRỌNG';
             } else {
                 wrap.className = 'flex items-center justify-between p-3 rounded border bg-rose-50 border-rose-300 text-rose-900';
                 badge.className = 'px-3 py-1 rounded text-xs font-bold uppercase bg-rose-700 text-white';
-                badge.innerText = 'VI PHẠM QUY ĐỊNH';
+                badge.innerText = 'VI PHẠM QUY ĐỊNH QUẢNG CÁO';
             }
 
             document.getElementById('res-prohibited').innerHTML = audit.layers.prohibited.score === 25 ?
-                '<span class="text-emerald-700">Không có vi phạm</span>' : `<span class="text-rose-700">Có ${audit.layers.prohibited.violations.length} từ cấm</span>`;
+                '<span class="text-emerald-700 font-semibold">Không có từ cấm</span>' : `<span class="text-rose-700 font-extrabold">Có ${audit.layers.prohibited.count} từ cấm</span>`;
+            
+            document.getElementById('res-miracle').innerHTML = audit.layers.miracle.score === 25 ?
+                '<span class="text-emerald-700 font-semibold">Đạt chuẩn mực</span>' : `<span class="text-rose-700 font-extrabold">Có ${audit.layers.miracle.count} từ giả khoa học</span>`;
+            
             document.getElementById('res-exaggeration').innerHTML = audit.layers.exaggeration.score === 25 ?
-                '<span class="text-emerald-700">Đạt chuẩn mực</span>' : '<span class="text-rose-700">Cam kết quá mức</span>';
+                '<span class="text-emerald-700 font-semibold">Đạt chuẩn mực</span>' : `<span class="text-rose-700 font-extrabold">Có ${audit.layers.exaggeration.count} cam kết sai lệch</span>`;
+            
             document.getElementById('res-disclaimer').innerHTML = audit.layers.disclaimer.present ?
-                '<span class="text-emerald-700">Đầy đủ cảnh báo</span>' : '<span class="text-rose-700">Thiếu cảnh báo luật</span>';
-            document.getElementById('res-boundary').innerHTML = audit.layers.boundary.valid_wording ?
-                '<span class="text-emerald-700">Đúng chuẩn TPBVSK</span>' : '<span class="text-amber-700">Cần chuẩn hóa</span>';
+                '<span class="text-emerald-700 font-semibold">Đầy đủ câu cảnh báo</span>' : '<span class="text-rose-700 font-extrabold">Thiếu cảnh báo bắt buộc</span>';
 
             const msgBox = document.getElementById('audit-msg-box');
-            if (audit.violations_detail.length > 0) {
-                let html = '<div class="font-bold text-rose-900 mb-1">Các từ ngữ cấm phát hiện:</div><ul class="space-y-0.5 text-rose-800">';
-                audit.violations_detail.forEach(v => {
-                    html += `<li>• Từ cấm <b>"${v.term}"</b>: ${v.reason} (Đề xuất: <i>${v.suggestion}</i>)</li>`;
-                });
-                html += '</ul>';
-                msgBox.innerHTML = html;
+            let contentHtml = '';
+
+            if (audit.is_severe_hazard) {
+                contentHtml += `
+                    <div class="p-2.5 mb-2.5 rounded bg-rose-200 border border-rose-400 text-rose-950 font-bold text-xs space-y-1">
+                        <div class="flex items-center gap-1.5 text-rose-900 uppercase tracking-wide">
+                            <span class="inline-block w-2 h-2 rounded-full bg-rose-700"></span>
+                            BÁO ĐỘNG ĐỎ PHÁP LÝ (NGUY CƠ TƯỚC GPQC & XỬ PHẠT KỊCH KHUNG):
+                        </div>
+                        <div class="font-normal text-[11px] leading-relaxed">${audit.hazard_reason}</div>
+                        <div class="text-[10px] text-rose-800 font-semibold mt-1">
+                            Căn cứ Khoản 2 Điều 5 Nghị định 342/2025/NĐ-CP & Luật Quảng cáo: Nghiêm cấm tuyệt đối việc xúi giục từ bỏ phác đồ điều trị, hạ thấp tân dược hoặc dùng thuật ngữ khoa học giả tưởng (lượng tử, bẻ khóa tế bào).
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (audit.violations_detail && audit.violations_detail.length > 0) {
+                contentHtml += `<div class="font-bold text-rose-950 mb-1.5 text-xs">Chi tiết ${audit.violations_detail.length} vi phạm được bóc tách:</div><div class="space-y-2">`;
+                
+                if (audit.med_violations && audit.med_violations.length > 0) {
+                    contentHtml += `<div><span class="font-bold text-rose-900 text-[11px] uppercase tracking-wide block mb-0.5">• Nhóm 1: Từ cấm y dược & Khẳng định trị bệnh (${audit.med_violations.length} lỗi):</span><ul class="space-y-1 pl-2">`;
+                    audit.med_violations.forEach(v => {
+                        contentHtml += `<li class="text-[11px] text-rose-900">• Từ cấm <b>"${v.term}"</b>: ${v.reason} <span class="text-slate-600 block pl-2 font-serif italic">➔ Đề xuất sửa: "${v.suggestion}"</span></li>`;
+                    });
+                    contentHtml += `</ul></div>`;
+                }
+
+                if (audit.miracle_violations && audit.miracle_violations.length > 0) {
+                    contentHtml += `<div><span class="font-bold text-rose-900 text-[11px] uppercase tracking-wide block mb-0.5">• Nhóm 2: Thần thánh hóa & Khoa học giả tưởng (${audit.miracle_violations.length} lỗi):</span><ul class="space-y-1 pl-2">`;
+                    audit.miracle_violations.forEach(v => {
+                        contentHtml += `<li class="text-[11px] text-rose-900">• Thuật ngữ <b>"${v.term}"</b>: ${v.reason} <span class="text-slate-600 block pl-2 font-serif italic">➔ Đề xuất sửa: "${v.suggestion}"</span></li>`;
+                    });
+                    contentHtml += `</ul></div>`;
+                }
+
+                if (audit.exaggeration_violations && audit.exaggeration_violations.length > 0) {
+                    contentHtml += `<div><span class="font-bold text-rose-900 text-[11px] uppercase tracking-wide block mb-0.5">• Nhóm 3: Hạ thấp tân dược & Cam kết quá mức (${audit.exaggeration_violations.length} lỗi):</span><ul class="space-y-1 pl-2">`;
+                    audit.exaggeration_violations.forEach(v => {
+                        contentHtml += `<li class="text-[11px] text-rose-900">• Hành vi <b>"${v.term}"</b>: ${v.reason} <span class="text-slate-600 block pl-2 font-serif italic">➔ Đề xuất sửa: "${v.suggestion}"</span></li>`;
+                    });
+                    contentHtml += `</ul></div>`;
+                }
+
+                contentHtml += `</div>`;
+                msgBox.innerHTML = contentHtml;
             } else if (!audit.layers.disclaimer.present) {
-                msgBox.innerHTML = '<div class="text-rose-800 font-semibold">Bắt buộc thêm câu cảnh báo: "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."</div>';
+                msgBox.innerHTML = '<div class="text-rose-800 font-semibold text-xs">Bắt buộc thêm câu cảnh báo: "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."</div>';
             } else {
-                msgBox.innerHTML = '<div class="text-emerald-800 font-bold">Nội dung đạt chuẩn quy định quảng cáo theo Nghị định 342/2025/NĐ-CP.</div>';
+                msgBox.innerHTML = '<div class="text-emerald-800 font-bold text-xs p-2 bg-emerald-50 rounded border border-emerald-200">Nội dung đạt chuẩn quy định quảng cáo theo Nghị định 342/2025/NĐ-CP và Luật Dược. Đã có đầy đủ câu Disclaimer bắt buộc.</div>';
             }
         }
 
@@ -926,7 +975,7 @@
             runAdAudit();
 
             const msgBox = document.getElementById('audit-msg-box');
-            let h = '<div class="font-bold text-emerald-900 mb-1">Các sửa đổi tự động đã thực hiện:</div><ul class="space-y-0.5 text-emerald-800">';
+            let h = '<div class="font-bold text-emerald-950 mb-1 text-xs">Các sửa đổi tự động đã thực hiện theo quy chuẩn NĐ 342:</div><ul class="space-y-0.5 text-emerald-900 text-xs">';
             data.changes_made.forEach(c => { h += `<li>✓ ${c}</li>`; });
             h += '</ul>';
             msgBox.innerHTML = h;

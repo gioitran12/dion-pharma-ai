@@ -1,34 +1,291 @@
 {
   "prohibited_phrases": [
     {
+      "term": "quét sạch bách bệnh",
+      "category": "MEDICAL_TREATMENT",
+      "severity": "CRITICAL",
+      "reason": "Khẳng định điều trị dứt điểm nhiều bệnh lý, vi phạm nghiêm trọng Điều 5 Nghị định 342/2025/NĐ-CP",
+      "suggestion": "hỗ trợ nâng cao sức đề kháng toàn diện"
+    },
+    {
+      "term": "bách bệnh",
+      "category": "MEDICAL_TREATMENT",
+      "severity": "CRITICAL",
+      "reason": "Tuyên truyền sai lệch về phạm vi công dụng của TPBVSK",
+      "suggestion": "nhiều nhóm đối tượng cần bổ sung vi chất"
+    },
+    {
       "term": "chữa bệnh",
+      "category": "MEDICAL_TREATMENT",
+      "severity": "CRITICAL",
       "reason": "TPBVSK không được tuyên truyền hoặc dùng từ ngữ gây hiểu nhầm là thuốc chữa bệnh (Khoản 2 Điều 5 NĐ 342/2025/NĐ-CP)",
       "suggestion": "hỗ trợ cải thiện / hỗ trợ tăng cường"
     },
     {
+      "term": "điều trị",
+      "category": "MEDICAL_TREATMENT",
+      "severity": "CRITICAL",
+      "reason": "Thuật ngữ 'điều trị' thuộc phạm vi của thuốc kê đơn và phác đồ y khoa",
+      "suggestion": "hỗ trợ chăm sóc sức khỏe"
+    },
+    {
+      "term": "đặc trị",
+      "category": "MEDICAL_TREATMENT",
+      "severity": "CRITICAL",
+      "reason": "Nghiêm cấm dùng từ 'đặc trị' đối với thực phẩm chức năng / bảo vệ sức khỏe",
+      "suggestion": "hỗ trợ chuyên biệt"
+    },
+    {
       "term": "khỏi hẳn",
+      "category": "MEDICAL_TREATMENT",
+      "severity": "CRITICAL",
       "reason": "Nghiêm cấm cam kết hoặc khẳng định chữa khỏi dứt điểm",
       "suggestion": "giảm nguy cơ / hỗ trợ phục hồi"
     },
     {
-      "term": "cam kết hiệu quả",
-      "reason": "Không được cam kết hiệu quả 100% hoặc bảo đảm tác dụng tuyệt đối",
-      "suggestion": "kết quả có thể thay đổi tùy theo cơ địa"
+      "term": "dứt điểm",
+      "category": "MEDICAL_TREATMENT",
+      "severity": "CRITICAL",
+      "reason": "Cam kết chữa dứt điểm là hành vi quảng cáo gian dối theo Luật Dược",
+      "suggestion": "hỗ trợ kiểm soát tốt"
     },
     {
-      "term": "thay thế thuốc",
-      "reason": "Vi phạm nghiêm trọng định nghĩa thực phẩm bổ sung/bảo vệ sức khỏe",
-      "suggestion": "dùng kết hợp bổ sung dinh dưỡng theo chỉ dẫn"
+      "term": "tận gốc rễ",
+      "category": "MEDICAL_TREATMENT",
+      "severity": "CRITICAL",
+      "reason": "Khẳng định giải quyết tận gốc nguyên nhân bệnh lý",
+      "suggestion": "hỗ trợ bồi bổ cơ thể từ bên trong"
     },
     {
-      "term": "điều trị dứt điểm",
-      "reason": "Thuộc nhóm thuật ngữ chỉ định dành riêng cho thuốc kê đơn",
-      "suggestion": "hỗ trợ kiểm soát"
+      "term": "tận gốc",
+      "category": "MEDICAL_TREATMENT",
+      "severity": "CRITICAL",
+      "reason": "Dùng từ ngữ phóng đại hiệu quả điều trị y khoa",
+      "suggestion": "hỗ trợ cải thiện bền vững"
+    },
+    {
+      "term": "xóa sổ vĩnh viễn",
+      "category": "MEDICAL_TREATMENT",
+      "severity": "CRITICAL",
+      "reason": "Tuyên bố xóa sổ bệnh tật vĩnh viễn mang tính chất lừa dối người bệnh",
+      "suggestion": "giảm thiểu nguy cơ tái phát"
+    },
+    {
+      "term": "xóa sổ",
+      "category": "MEDICAL_TREATMENT",
+      "severity": "HIGH",
+      "reason": "Từ ngữ mang tính tuyệt đối hóa công dụng y tế",
+      "suggestion": "hạn chế nguy cơ phát triển"
+    },
+    {
+      "term": "không tái phát",
+      "category": "MEDICAL_TREATMENT",
+      "severity": "CRITICAL",
+      "reason": "Cam kết bệnh mãn tính không tái phát là vi phạm quy định về quảng cáo y tế",
+      "suggestion": "hỗ trợ duy trì hiệu quả bền vững"
+    },
+    {
+      "term": "mầm mống bệnh tật",
+      "category": "MEDICAL_TREATMENT",
+      "severity": "HIGH",
+      "reason": "Dùng từ ngữ hù dọa và phóng đại khả năng can thiệp bệnh học",
+      "suggestion": "các gốc tự do và tác nhân oxy hóa"
     },
     {
       "term": "thần dược",
-      "reason": "Quảng cáo mang tính phóng đại, lừa dối người tiêu dùng",
-      "suggestion": "dưỡng chất tự nhiên"
+      "category": "PSEUDOSCIENCE_MIRACLE",
+      "severity": "CRITICAL",
+      "reason": "Quảng cáo mang tính mê tín, phóng đại, lừa dối người tiêu dùng",
+      "suggestion": "giải pháp bổ sung dinh dưỡng"
+    },
+    {
+      "term": "diệu dược",
+      "category": "PSEUDOSCIENCE_MIRACLE",
+      "severity": "CRITICAL",
+      "reason": "Thần thánh hóa sản phẩm như thuốc thần kỳ",
+      "suggestion": "công thức vi chất chuyên sâu"
+    },
+    {
+      "term": "tiên dược",
+      "category": "PSEUDOSCIENCE_MIRACLE",
+      "severity": "CRITICAL",
+      "reason": "Từ ngữ mê tín dị đoan trong quảng cáo chăm sóc sức khỏe",
+      "suggestion": "dưỡng chất thiên nhiên"
+    },
+    {
+      "term": "siêu phẩm",
+      "category": "PSEUDOSCIENCE_MIRACLE",
+      "severity": "HIGH",
+      "reason": "Từ ngữ cường điệu thương mại không phù hợp quy chuẩn dược phẩm",
+      "suggestion": "sản phẩm chất lượng cao"
+    },
+    {
+      "term": "đột phá y học thế kỷ",
+      "category": "PSEUDOSCIENCE_MIRACLE",
+      "severity": "HIGH",
+      "reason": "Phóng đại thành tựu nghiên cứu khoa học chưa được kiểm chứng lâm sàng quốc tế",
+      "suggestion": "ứng dụng tiến bộ dinh dưỡng hiện đại"
+    },
+    {
+      "term": "bẻ khóa tế bào lượng tử",
+      "category": "PSEUDOSCIENCE_MIRACLE",
+      "severity": "CRITICAL",
+      "reason": "Thuật ngữ khoa học giả tưởng (Pseudoscience) nhằm đánh lừa người bệnh",
+      "suggestion": "công nghệ sinh học vi bao định hướng"
+    },
+    {
+      "term": "bẻ khóa tế bào",
+      "category": "PSEUDOSCIENCE_MIRACLE",
+      "severity": "HIGH",
+      "reason": "Mô tả cơ chế sai lệch bản chất sinh học cơ thể",
+      "suggestion": "tối ưu hấp thu tế bào"
+    },
+    {
+      "term": "lượng tử",
+      "category": "PSEUDOSCIENCE_MIRACLE",
+      "severity": "HIGH",
+      "reason": "Lạm dụng thuật ngữ vật lý lượng tử để gán ghép cho thực phẩm bổ sung",
+      "suggestion": "công nghệ vi phân tử"
+    },
+    {
+      "term": "thảo mộc ngàn năm",
+      "category": "PSEUDOSCIENCE_MIRACLE",
+      "severity": "HIGH",
+      "reason": "Cường điệu nguồn gốc thảo dược mang màu sắc huyền thoại hóa",
+      "suggestion": "chiết xuất thảo mộc chuẩn hóa"
+    },
+    {
+      "term": "gấp 10.000 lần",
+      "category": "DENIGRATING_MEDICINE",
+      "severity": "CRITICAL",
+      "reason": "So sánh phóng đại vô căn cứ và hạ thấp thuốc tân dược, vi phạm Điều 8 Luật Quảng cáo",
+      "suggestion": "tối ưu sinh khả dụng so với dạng thông thường"
+    },
+    {
+      "term": "gấp hàng ngàn lần",
+      "category": "DENIGRATING_MEDICINE",
+      "severity": "CRITICAL",
+      "reason": "Số liệu bịa đặt không có thử nghiệm lâm sàng đối chứng",
+      "suggestion": "hấp thu vượt trội"
+    },
+    {
+      "term": "vứt bỏ thuốc men",
+      "category": "DENIGRATING_MEDICINE",
+      "severity": "CRITICAL",
+      "reason": "Xúi giục bệnh nhân ngừng thuốc điều trị của bác sĩ — HÀNH VI CỰC KỲ NGUY HIỂM TÍNH MẠNG",
+      "suggestion": "kết hợp cùng phác đồ của bác sĩ chuyên khoa"
+    },
+    {
+      "term": "vứt bỏ thuốc",
+      "category": "DENIGRATING_MEDICINE",
+      "severity": "CRITICAL",
+      "reason": "Kêu gọi bệnh nhân bỏ thuốc tân dược",
+      "suggestion": "đồng hành cùng liệu trình chăm sóc y tế"
+    },
+    {
+      "term": "bỏ thuốc tây",
+      "category": "DENIGRATING_MEDICINE",
+      "severity": "CRITICAL",
+      "reason": "Xúi giục từ bỏ thuốc điều trị theo toa",
+      "suggestion": "bổ sung tăng cường dinh dưỡng"
+    },
+    {
+      "term": "thay thế thuốc",
+      "category": "DENIGRATING_MEDICINE",
+      "severity": "CRITICAL",
+      "reason": "Vi phạm nghiêm trọng bản chất của thực phẩm chức năng (không được thay thế thuốc)",
+      "suggestion": "hỗ trợ nâng cao thể trạng"
+    },
+    {
+      "term": "không tác dụng phụ",
+      "category": "EXAGGERATION_ABSOLUTE",
+      "severity": "CRITICAL",
+      "reason": "Cam kết tuyệt đối không có căn cứ, bất kỳ chế phẩm nào cũng có chỉ định chống chỉ định",
+      "suggestion": "lành tính và an toàn khi dùng đúng liều lượng"
+    },
+    {
+      "term": "trẻ hóa 10 tuổi",
+      "category": "EXAGGERATION_ABSOLUTE",
+      "severity": "CRITICAL",
+      "reason": "Hứa hẹn hiệu quả sinh học phi thực tế, lừa dối người tiêu dùng",
+      "suggestion": "hỗ trợ chống lão hóa da và cơ thể"
+    },
+    {
+      "term": "thọ thêm 20 năm",
+      "category": "EXAGGERATION_ABSOLUTE",
+      "severity": "CRITICAL",
+      "reason": "Cam kết kéo dài tuổi thọ cụ thể bằng số năm là bị cấm tuyệt đối",
+      "suggestion": "nâng cao chất lượng cuộc sống khỏe mạnh"
+    },
+    {
+      "term": "trường thọ",
+      "category": "EXAGGERATION_ABSOLUTE",
+      "severity": "HIGH",
+      "reason": "Hứa hẹn cải lão hoàn đồng / sống lâu vô căn cứ",
+      "suggestion": "duy trì cơ thể dẻo dai"
+    },
+    {
+      "term": "chỉ sau đúng 7 ngày",
+      "category": "EXAGGERATION_ABSOLUTE",
+      "severity": "CRITICAL",
+      "reason": "Cam kết thời gian điều trị thần tốc, tạo ảo tưởng cho người bệnh",
+      "suggestion": "sau khi duy trì đều đặn theo liệu trình"
+    },
+    {
+      "term": "sau đúng 7 ngày",
+      "category": "EXAGGERATION_ABSOLUTE",
+      "severity": "CRITICAL",
+      "reason": "Cam kết thời gian cố định không phù hợp với cơ chế thực phẩm bảo vệ sức khỏe",
+      "suggestion": "kết hợp cùng chế độ sinh hoạt hợp lý"
+    },
+    {
+      "term": "sau 7 ngày",
+      "category": "EXAGGERATION_ABSOLUTE",
+      "severity": "HIGH",
+      "reason": "Khẳng định mốc thời gian chuyển biến bệnh học",
+      "suggestion": "trong quá trình chăm sóc phục hồi"
+    },
+    {
+      "term": "100%",
+      "category": "EXAGGERATION_ABSOLUTE",
+      "severity": "HIGH",
+      "reason": "Tuyệt đối hóa tỷ lệ hiệu quả, không được phép trong quảng cáo y tế",
+      "suggestion": "hiệu quả rõ rệt đã được kiểm chứng"
+    },
+    {
+      "term": "tuyệt đối",
+      "category": "EXAGGERATION_ABSOLUTE",
+      "severity": "HIGH",
+      "reason": "Sử dụng từ ngữ khẳng định tuyệt đối không có sai số",
+      "suggestion": "tối ưu"
+    },
+    {
+      "term": "cam kết hiệu quả",
+      "category": "EXAGGERATION_ABSOLUTE",
+      "severity": "HIGH",
+      "reason": "Bảo đảm tác dụng chắc chắn mà không phụ thuộc cơ địa",
+      "suggestion": "kết quả tích cực qua theo dõi"
+    },
+    {
+      "term": "cam kết",
+      "category": "EXAGGERATION_ABSOLUTE",
+      "severity": "MEDIUM",
+      "reason": "Tránh dùng từ 'cam kết' trong mô tả công dụng sinh học",
+      "suggestion": "được kiểm chứng"
+    },
+    {
+      "term": "nhanh nhất",
+      "category": "EXAGGERATION_ABSOLUTE",
+      "severity": "HIGH",
+      "reason": "Sử dụng từ so sánh nhất khi chưa có tài liệu chứng minh theo quy định",
+      "suggestion": "hấp thu thuận lợi"
+    },
+    {
+      "term": "số 1",
+      "category": "EXAGGERATION_ABSOLUTE",
+      "severity": "HIGH",
+      "reason": "Vi phạm quy định quảng cáo về việc tự phong vị trí số 1",
+      "suggestion": "được tin dùng rộng rãi"
     }
   ],
   "mandatory_disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
