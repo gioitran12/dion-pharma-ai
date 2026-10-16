@@ -97,6 +97,11 @@ Yêu cầu phân tích:
 6. Kiểm tra câu cảnh báo bắt buộc Disclaimer.
 7. Viết lại toàn bộ bài viết thành một bản nháp thương mại chuyên nghiệp, hấp dẫn nhưng 100% tuân thủ pháp luật.
 
+QUY TẮC PHÁP CHẾ & THƯƠNG MẠI BẮT BUỘC KHI VIẾT BẢN NHÁP (rewritten_draft):
+- QUY TẮC 1: TUYỆT ĐỐI KHÔNG viết "Được Cục An toàn thực phẩm chứng nhận" (vì cơ quan nhà nước không chứng nhận công dụng, chỉ cấp Giấy xác nhận nội dung quảng cáo). Bắt buộc ghi: "CÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO:" hoặc "CÔNG DỤNG NỔI BẬT:".
+- QUY TẮC 2: Đối với sản phẩm có chữ "MOM" (như Cal-Mom), mục Đối tượng bắt buộc phải mở rộng đến: "Phụ nữ chuẩn bị mang thai, đang mang thai và cho con bú; người lớn tuổi, người có nguy cơ loãng xương" để không bỏ sót tệp khách hàng cốt lõi.
+- QUY TẮC 3: Mọi phát biểu về khả năng hấp thu khoáng chất hoặc cơ chế phải có từ "Hỗ trợ" đứng trước (Ví dụ: "Hỗ trợ tăng cường khả năng hấp thu Canxi và khoáng chất"), không dùng từ đơn độc "Tối ưu hóa khả năng hấp thu" để tránh bị coi là khẳng định tuyệt đối cơ chế dược lý.
+
 Trả về DUY NHẤT một chuỗi JSON hợp lệ không có markdown code block theo định dạng:
 {{
   "agent_mode": "CLOUD_LLM",
@@ -382,15 +387,15 @@ def _run_local_expert_agent(text: str) -> Dict[str, Any]:
 
     # 11. TỔNG HỢP BÀI VIẾT VIẾT LẠI HOÀN TOÀN TỪ AI AGENT (REWRITTEN DRAFT)
     rewritten_draft = (
-        "🌿 GIẢI PHÁP CHĂM SÓC SỨC KHỎE XƯƠNG KHỚP CHỦ ĐỘNG TỪ TPBVSK DION CAL-MOM & D3\n\n"
-        "Vận động linh hoạt và duy trì hệ xương khớp dẻo dai là nền tảng quan trọng giúp nâng cao chất lượng cuộc sống cho người trung niên và cao tuổi.\n\n"
-        "💡 CÔNG DỤNG HỢP CHUẨN ĐƯỢC CỤC AN TOÀN THỰC PHẨM CHỨNG NHẬN:\n"
+        "🌿 GIẢI PHÁP CHĂM SÓC SỨC KHỎE XƯƠNG RĂNG & VI CHẤT TOÀN DIỆN TỪ TPBVSK DION CAL-MOM & D3\n\n"
+        "Bổ sung vi chất đúng cách và duy trì hệ xương dẻo dai là nền tảng quan trọng giúp bảo vệ sức khỏe cho cả mẹ bầu và người lớn tuổi.\n\n"
+        "💡 CÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO:\n"
         "• Hỗ trợ bổ sung Canxi sinh học từ tảo biển đỏ Lithothamnion và Vitamin D3 K2 MK-7 chất lượng cao.\n"
-        "• Hỗ trợ tăng cường sức khỏe xương răng, hỗ trợ giảm nguy cơ loãng xương ở người lớn tuổi.\n"
-        "• Tối ưu hóa khả năng hấp thu khoáng chất, an toàn và lành tính cho dạ dày khi sử dụng đều đặn.\n\n"
+        "• Hỗ trợ tăng cường sức khỏe xương răng, hỗ trợ giảm nguy cơ loãng xương ở người lớn và hỗ trợ đáp ứng nhu cầu Canxi tăng cao cho phụ nữ mang thai.\n"
+        "• Hỗ trợ tăng cường khả năng hấp thu Canxi và khoáng chất, an toàn và lành tính cho dạ dày khi sử dụng đều đặn.\n\n"
         "🔬 ĐƯỢC SẢN XUẤT TẠI NHÀ MÁY ĐẠT CHUẨN GMP QUỐC TẾ:\n"
         "Sản phẩm ứng dụng công nghệ vi bao hiện đại, được kiểm soát chất lượng nghiêm ngặt theo tiêu chuẩn ISO 22000.\n\n"
-        "📦 Thích hợp cho: Người trưởng thành có nguy cơ loãng xương, người thường xuyên vận động hoặc cần bổ sung vi chất dinh dưỡng.\n\n"
+        "📦 Thích hợp cho: Phụ nữ chuẩn bị mang thai, đang mang thai và cho con bú; người lớn tuổi, người có nguy cơ loãng xương hoặc người có nhu cầu bổ sung Canxi.\n\n"
         "👉 Liên hệ ngay đội ngũ Dược sĩ tư vấn để xây dựng lộ trình chăm sóc sức khỏe khoa học phù hợp với thể trạng của bạn!\n"
         "---\n"
         "⚠️ Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."

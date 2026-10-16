@@ -284,7 +284,7 @@ def generate_marketing_draft(sku: str, channel: str = "Facebook Post", tone: str
 
 Bổ sung vi chất đúng cách là chìa khóa vàng giúp duy trì thể trạng dẻo dai và nâng cao chất lượng cuộc sống.
 
-💡 CÔNG DỤNG ĐÃ ĐƯỢC CỤC AN TOÀN THỰC PHẨM CÔNG NHẬN:
+💡 CÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO:
 {bullets}
 
 🔬 Sản xuất tại nhà máy đạt chuẩn GMP quốc tế.
