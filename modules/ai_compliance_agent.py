@@ -4,6 +4,12 @@ import json
 from typing import Dict, Any, List, Optional
 from pathlib import Path
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except Exception:
+    pass
+
 # Thử import các thư viện AI nếu có
 try:
     from google import genai
@@ -28,7 +34,7 @@ def set_runtime_ai_key(key: str, provider: str = "auto") -> Dict[str, Any]:
     """Cập nhật API Key trong runtime"""
     _RUNTIME_AI_CONFIG["api_key"] = key.strip()
     _RUNTIME_AI_CONFIG["provider"] = provider
-    if key.startswith("AIza"):
+    if key.startswith("AIza") or key.startswith("AQ."):
         os.environ["GEMINI_API_KEY"] = key.strip()
     elif key.startswith("sk-"):
         os.environ["OPENAI_API_KEY"] = key.strip()
