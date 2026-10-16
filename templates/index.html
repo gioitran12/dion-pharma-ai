@@ -238,275 +238,327 @@
         <!-- GIẢI PHÁP 2: SẢN XUẤT NỘI DUNG CÓ KIỂM SOÁT (CONTENT ENGINE)         -->
         <!-- =================================================================== -->
         <div id="view-content" class="solution-view hidden space-y-4">
-            <!-- Thanh điều khiển: Chọn Sản phẩm Grounding & Cấu hình Động cơ AI -->
-            <div class="bg-white rounded border border-slate-200 p-3 shadow-sm space-y-2.5">
-                <!-- Hàng 1: Chọn Sản Phẩm Grounding & Động cơ Thẩm định -->
-                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-2.5">
+            <!-- THANH ĐIỀU KHIỂN TRUNG TÂM: CHỌN SẢN PHẨM & CẤU HÌNH ĐỘNG CƠ PHÁP CHẾ -->
+            <div class="bg-white rounded-lg border border-slate-200 p-3.5 shadow-xs space-y-3">
+                <!-- Hàng 1: Dropdown Sản Phẩm & Chuyển Đổi Động Cơ -->
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
                     <div class="flex flex-wrap items-center gap-3">
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-xs font-bold text-slate-700 uppercase">Sản phẩm đối chiếu:</span>
-                            <select id="ad-sku-select" onchange="onAdProductChange()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1 text-xs font-bold text-corp-800 outline-none focus:border-corp-700">
-                                <option value="DION-CAL-MOM" selected>🌿 DION Cal-Mom Plus & D3 K2 (Hero SKU — Canxi Tảo Đỏ)</option>
-                                <option value="DION-D3-1000">💧 DION Vitamin D3 1000IU Drops (Nhỏ Giọt)</option>
-                                <option value="DION-FE-FOLIC">🩸 DION Fero-Plus (Sắt Hữu Cơ & Quatrefolic)</option>
+                        <div class="flex items-center gap-2">
+                            <label class="text-xs font-bold text-slate-700 uppercase tracking-wide">Sản phẩm đối chiếu:</label>
+                            <select id="ad-sku-select" onchange="onAdProductChange()" class="bg-slate-50 border border-slate-300 rounded-md px-3 py-1.5 text-xs font-bold text-corp-900 outline-none focus:border-corp-800 focus:ring-1 focus:ring-corp-800">
+                                <option value="DION-CAL-MOM" selected>DION Cal-Mom Plus & D3 K2 (Canxi Tảo Đỏ)</option>
+                                <option value="DION-D3-1000">DION Vitamin D3 1000IU Drops (Nhỏ Giọt)</option>
+                                <option value="DION-FE-FOLIC">DION Fero-Plus (Sắt Hữu Cơ & Quatrefolic)</option>
                             </select>
                         </div>
 
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-xs font-bold text-slate-500 uppercase">Động cơ:</span>
-                            <div class="inline-flex rounded border border-slate-300 p-0.5 bg-slate-100 text-xs font-semibold">
-                                <button id="btn-mode-radar" onclick="switchAuditEngine('RADAR')" class="px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 transition">
-                                    ⚡ Radar Quy chuẩn NĐ 342
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Phương thức rà soát:</span>
+                            <div class="inline-flex rounded-md border border-slate-300 p-0.5 bg-slate-100 text-xs font-semibold">
+                                <button id="btn-mode-radar" onclick="switchAuditEngine('RADAR')" class="px-3 py-1.5 rounded text-slate-600 hover:text-slate-900 transition flex items-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                                    <span>Radar Nghị Định 342</span>
                                 </button>
-                                <button id="btn-mode-ai" onclick="switchAuditEngine('AI_AGENT')" class="px-2.5 py-1 rounded bg-indigo-700 text-white font-bold shadow-sm transition flex items-center gap-1">
+                                <button id="btn-mode-ai" onclick="switchAuditEngine('AI_AGENT')" class="px-3 py-1.5 rounded bg-corp-800 text-white font-bold shadow-xs transition flex items-center gap-1.5">
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                    🤖 AI Agent Pháp chế Chuyên sâu
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                    <span>AI Agent Pháp Chế Chuyên Sâu</span>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-2">
-                        <span id="ai-active-status-badge" class="text-[11px] font-semibold text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-200">
-                            Động cơ: AI Agent Nội bộ (Không cần API Key)
+                    <div class="flex items-center gap-2.5">
+                        <span id="ai-active-status-badge" class="text-xs font-semibold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">
+                            Động cơ: Google Gemini (gemini-flash-lite-latest)
                         </span>
-                        <button onclick="toggleKeyConfigModal()" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold border border-slate-300 transition">
-                            ⚙️ Cấu hình API Key
+                        <button onclick="toggleKeyConfigModal()" class="px-3 py-1.5 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold border border-slate-300 transition flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <span>Cấu hình API Key</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Hàng 2: Thẻ Hồ Sơ Công Bố Chính Thức của Sản Phẩm (Product Truth Dossier Card) -->
-                <div id="ad-product-truth-card" class="p-2.5 rounded bg-blue-50/80 border border-blue-200 text-xs space-y-1">
+                <!-- Hàng 2: Thẻ Hồ Sơ Công Bố Chính Thức của Sản Phẩm (Dossier Strip) -->
+                <div id="ad-product-truth-card" class="p-3 rounded-md bg-slate-50 border border-slate-200 text-xs space-y-1.5">
                     <div class="flex flex-wrap items-center justify-between gap-2">
-                        <div class="font-extrabold text-corp-800 text-xs uppercase flex items-center gap-1.5">
-                            <span class="inline-block w-2 h-2 rounded-full bg-corp-700"></span>
-                            <span id="truth-card-name">Canxi Hữu Cơ DION Cal-Mom Plus & D3 K2</span>
-                            <span id="truth-card-class" class="text-[10px] font-semibold bg-blue-100 text-corp-900 px-1.5 py-0.2 rounded border border-blue-300">TPBVSK</span>
+                        <div class="font-extrabold text-corp-900 text-xs uppercase flex items-center gap-2">
+                            <span class="inline-block w-2.5 h-2.5 rounded-full bg-corp-800"></span>
+                            <span id="truth-card-name" class="tracking-wide">Canxi Hữu Cơ DION Cal-Mom Plus & D3 K2</span>
+                            <span id="truth-card-class" class="text-xs font-bold bg-blue-100 text-blue-900 px-2 py-0.5 rounded border border-blue-200">TPBVSK</span>
                         </div>
-                        <div class="flex items-center gap-2 text-[11px]">
-                            <span class="bg-white px-2 py-0.5 rounded border border-blue-200 text-corp-800 font-bold" id="truth-card-reg">Số ĐKSP: 8892/2025/ĐKSP</span>
-                            <span class="bg-white px-2 py-0.5 rounded border border-blue-200 text-emerald-800 font-bold" id="truth-card-ad">Số XNQC: 1245/2025/XNQC-ATTP</span>
+                        <div class="flex items-center gap-2 text-xs">
+                            <span class="bg-white px-2.5 py-1 rounded border border-slate-200 text-slate-800 font-bold" id="truth-card-reg">Số ĐKSP: 8892/2025/ĐKSP</span>
+                            <span class="bg-white px-2.5 py-1 rounded border border-emerald-200 text-emerald-800 font-bold" id="truth-card-ad">Số XNQC: 1245/2025/XNQC-ATTP</span>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-1 text-[11px] text-slate-700">
-                        <div><span class="font-bold text-slate-900">Hoạt chất:</span> <span id="truth-card-ing">Canxi sinh học Lithothamnion (500mg), D3 400IU, K2 MK-7 25mcg, Magie 50mg</span></div>
-                        <div><span class="font-bold text-slate-900">Đối tượng phê duyệt:</span> <span id="truth-card-target" class="text-blue-900 font-medium">Mẹ chuẩn bị mang thai, đang mang thai, cho con bú; người lớn tuổi nguy cơ loãng xương</span></div>
-                        <div><span class="font-bold text-slate-900">Nghiên cứu lâm sàng:</span> <span id="truth-card-rct" class="text-emerald-900 font-medium">PMID: 30121111 (RCT n=120, sinh khả dụng x2.4 lần, giảm 94% táo bón)</span></div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 pt-1 text-xs text-slate-700">
+                        <div><span class="font-bold text-slate-900">Hoạt chất chính:</span> <span id="truth-card-ing">Canxi sinh học Lithothamnion (500mg), D3 400IU, K2 MK-7 25mcg, Magie 50mg</span></div>
+                        <div><span class="font-bold text-slate-900">Đối tượng phê duyệt:</span> <span id="truth-card-target" class="text-blue-900 font-semibold">Mẹ chuẩn bị mang thai, đang mang thai, cho con bú; người lớn tuổi nguy cơ loãng xương</span></div>
+                        <div><span class="font-bold text-slate-900">Nghiên cứu lâm sàng:</span> <span id="truth-card-rct" class="text-emerald-900 font-semibold">PMID: 30121111 (RCT n=120, sinh khả dụng x2.4 lần, giảm 94% táo bón)</span></div>
                     </div>
                 </div>
 
-                <!-- Hàng 3: Các tình huống thử nghiệm thực tế -->
-                <div class="flex flex-wrap items-center gap-1.5 pt-0.5">
-                    <span class="text-xs font-bold text-slate-600 uppercase mr-1">Tình huống thử nghiệm:</span>
-                    <button onclick="pickAdPreset(1)" class="px-2.5 py-1 rounded bg-rose-50 text-rose-900 border border-rose-300 text-xs font-bold hover:bg-rose-100">
-                        Ca 1: Lạm dụng Cục ATTP, Bỏ quên mẹ bầu & Thổi phồng 10.000 lần
+                <!-- Hàng 3: Tình huống rà soát mẫu thực tế -->
+                <div class="flex flex-wrap items-center gap-2 pt-0.5">
+                    <span class="text-xs font-bold text-slate-600 uppercase tracking-wide mr-1">Tình huống rà soát nhanh:</span>
+                    <button onclick="pickAdPreset(1)" class="px-3 py-1.5 rounded bg-rose-50 text-rose-900 border border-rose-200 text-xs font-bold hover:bg-rose-100 transition shadow-2xs">
+                        Ca 1: Lạm dụng Cục ATTP & Cam kết quá mức
                     </button>
-                    <button onclick="pickAdPreset(2)" class="px-2.5 py-1 rounded bg-purple-50 text-purple-900 border border-purple-300 text-xs font-bold hover:bg-purple-100">
-                        Ca 2: Lương y 3 đời, Bác sĩ Viện Quân Y, Chú Ba suýt liệt giường
+                    <button onclick="pickAdPreset(2)" class="px-3 py-1.5 rounded bg-purple-50 text-purple-900 border border-purple-200 text-xs font-bold hover:bg-purple-100 transition shadow-2xs">
+                        Ca 2: Lương y gia truyền & Bác sĩ Viện Quân Y
                     </button>
-                    <button onclick="pickAdPreset(3)" class="px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-300 text-xs font-bold hover:bg-emerald-100">
-                        Ca 3: Bản thảo Chuẩn 100/100 (Đầy đủ đối tượng, có từ Hỗ trợ)
+                    <button onclick="pickAdPreset(3)" class="px-3 py-1.5 rounded bg-emerald-50 text-emerald-900 border border-emerald-200 text-xs font-bold hover:bg-emerald-100 transition shadow-2xs">
+                        Ca 3: Bản thảo Đạt chuẩn 100/100
                     </button>
-                    <button onclick="pickAdPreset(4)" class="px-2.5 py-1 rounded bg-amber-50 text-amber-900 border border-amber-200 text-xs font-medium hover:bg-amber-100">
-                        Ca 4: Vitamin D3 (Cam kết 100% trị dứt điểm loãng xương)
+                    <button onclick="pickAdPreset(4)" class="px-3 py-1.5 rounded bg-amber-50 text-amber-900 border border-amber-200 text-xs font-bold hover:bg-amber-100 transition shadow-2xs">
+                        Ca 4: Trị dứt điểm loãng xương sau 2 tuần
                     </button>
                 </div>
 
                 <!-- Modal Cấu hình API Key (Ẩn mặc định) -->
-                <div id="api-key-config-panel" class="hidden p-3 rounded bg-slate-50 border border-slate-300 space-y-2 text-xs">
+                <div id="api-key-config-panel" class="hidden p-3.5 rounded-lg bg-slate-50 border border-slate-300 space-y-2 text-xs">
                     <div class="flex justify-between items-center">
-                        <span class="font-bold text-slate-800 uppercase">Cấu hình Khóa API Cloud LLM (Gemini / OpenAI)</span>
-                        <button onclick="toggleKeyConfigModal()" class="text-slate-400 hover:text-slate-700 font-bold">✕</button>
+                        <span class="font-bold text-slate-900 uppercase">Cấu hình Khóa API Cloud LLM (Gemini / OpenAI)</span>
+                        <button onclick="toggleKeyConfigModal()" class="text-slate-400 hover:text-slate-700 font-bold text-sm">✕</button>
                     </div>
-                    <p class="text-slate-600 text-[11px] leading-relaxed">
-                        Hệ thống tự động kích hoạt <b>Google Gemini Flash</b> khi có Key trong phiên làm việc. Nếu chưa có Key, hệ thống sử dụng <b>Động cơ AI Agent Pháp chế Chuyên sâu Nội bộ</b> chạy offline 100%.
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        Hệ thống tự động kích hoạt <b>Google Gemini</b> khi có Key trong phiên làm việc. Nếu chưa có Key, hệ thống sử dụng <b>Động cơ AI Agent Pháp chế Chuyên sâu Nội bộ</b> chạy offline 100%.
                     </p>
                     <div class="flex gap-2">
-                        <input type="password" id="custom-ai-key-input" placeholder="Nhập GEMINI_API_KEY (AIza... hoặc AQ....) hoặc OPENAI_API_KEY (sk-...)" class="flex-1 bg-white border border-slate-300 rounded px-3 py-1.5 text-xs outline-none focus:border-corp-700">
-                        <button onclick="saveCustomApiKey()" class="px-4 py-1.5 bg-corp-700 hover:bg-corp-800 text-white font-bold rounded text-xs transition">
+                        <input type="password" id="custom-ai-key-input" placeholder="Nhập GEMINI_API_KEY (AIza... hoặc AQ....) hoặc OPENAI_API_KEY (sk-...)" class="flex-1 bg-white border border-slate-300 rounded px-3 py-1.5 text-xs outline-none focus:border-corp-800">
+                        <button onclick="saveCustomApiKey()" class="px-4 py-1.5 bg-corp-800 hover:bg-corp-900 text-white font-bold rounded text-xs transition">
                             Lưu cấu hình
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Vùng làm việc kép: Trình soạn thảo & Bộ thẩm định -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+            <!-- VÙNG LÀM VIỆC KÉP: WORKSPACE SOẠN THẢO & TRUNG TÂM PHÂN TÍCH PHÁP CHẾ -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
                 
-                <!-- CỘT TRÁI: WORKSPACE TRÌNH SOẠN THẢO (CHẾ ĐỘ SOẠN THẢO & ĐỐI CHIẾU TÔ ĐỎ TRỰC QUAN) -->
-                <div class="lg:col-span-6 bg-white rounded border border-slate-200 p-4 shadow-sm flex flex-col justify-between min-h-[580px]">
-                    <div>
-                        <!-- Header chuyển đổi chế độ xem Soạn thảo vs Tô đỏ -->
-                        <div class="flex flex-wrap justify-between items-center mb-2.5 pb-2 border-b border-slate-100 gap-2">
-                            <div class="flex items-center gap-1.5">
-                                <button id="btn-editor-edit-mode" onclick="switchEditorMode('EDIT')" class="px-3 py-1.5 rounded bg-slate-900 text-white font-bold text-xs shadow-xs transition flex items-center gap-1.5">
-                                    <span>✏️ Nhập liệu & Tự viết</span>
-                                </button>
-                                <button id="btn-editor-highlight-mode" onclick="switchEditorMode('HIGHLIGHT')" class="px-3 py-1.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition flex items-center gap-1.5">
-                                    <span>🔴 Kết quả Tô đỏ Lỗi</span>
-                                    <span id="editor-violation-badge" class="px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-slate-200 text-slate-700">0 lỗi</span>
-                                </button>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <button onclick="clearAdContentForNewPost()" class="px-2.5 py-1 rounded text-slate-600 hover:text-rose-700 hover:bg-rose-50 text-[11px] font-bold transition flex items-center gap-1 border border-slate-200 shadow-xs" title="Xóa nội dung cũ để tự gõ bài mới">
-                                    <span>🗑️ Xóa để tự viết bài mới</span>
-                                </button>
-                                <span class="text-[11px] text-slate-500 font-medium italic hidden md:inline" id="editor-mode-hint">Gõ bài viết rồi nhấn Thẩm định</span>
-                            </div>
+                <!-- CỘT TRÁI: WORKSPACE TRÌNH SOẠN THẢO (FULL HEIGHT 660px, KHÔNG CÒN KHOẢNG TRỐNG) -->
+                <div class="lg:col-span-6 bg-white rounded-lg border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[660px]">
+                    <!-- Header chuyển đổi chế độ xem Soạn thảo vs Tô đỏ -->
+                    <div class="flex flex-wrap justify-between items-center pb-2.5 border-b border-slate-100 gap-2">
+                        <div class="flex items-center gap-1.5">
+                            <button id="btn-editor-edit-mode" onclick="switchEditorMode('EDIT')" class="px-3 py-1.5 rounded-md bg-slate-900 text-white font-bold text-xs shadow-xs transition flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                                <span>Soạn thảo trực tiếp</span>
+                            </button>
+                            <button id="btn-editor-highlight-mode" onclick="switchEditorMode('HIGHLIGHT')" class="px-3 py-1.5 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                <span>Kết quả tô đỏ vi phạm</span>
+                                <span id="editor-violation-badge" class="px-2 py-0.5 rounded-full text-xs font-extrabold bg-slate-200 text-slate-700">0 lỗi</span>
+                            </button>
                         </div>
-
-                        <!-- Khung soạn thảo thuần (Textarea Edit Mode) -->
-                        <div id="editor-edit-wrap">
-                            <div class="relative">
-                                <textarea id="ad-content-box" rows="13" oninput="onAdContentInput()" placeholder="Nhập hoặc dán nội dung bài viết quảng cáo tại đây để đối chiếu với hồ sơ sản phẩm (Bạn có thể tự gõ từ đầu)..." class="w-full bg-slate-50 border border-slate-300 rounded p-3 text-xs leading-relaxed outline-none focus:border-corp-700 focus:bg-white font-medium font-mono transition shadow-inner"></textarea>
-                                <div class="text-[11px] text-slate-500 mt-1.5 flex justify-between items-center bg-slate-50 px-2.5 py-1 rounded border border-slate-200">
-                                    <span>💡 <b>Chế độ Nhập liệu:</b> Bạn hãy tự gõ hoặc copy bài viết vào ô trên, sau đó nhấn <b>⚡ Thẩm định Radar NĐ 342</b> hoặc <b>🤖 AI Agent</b> bên dưới.</span>
-                                    <span id="ad-word-count" class="font-mono font-bold text-slate-700">0 ký tự</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Khung đối chiếu tô đỏ trực tiếp trên trình soạn thảo (Visual Highlighting Mode) -->
-                        <div id="editor-highlight-wrap" class="hidden">
-                            <!-- Thanh chuyển nhanh về gõ bài -->
-                            <div class="flex items-center justify-between bg-amber-50 border border-amber-300 px-3 py-1.5 rounded mb-2 text-xs text-amber-950 font-medium shadow-xs">
-                                <div class="flex items-center gap-1.5">
-                                    <span>🔍 Đang xem kết quả tô đỏ vi phạm. <b>Click vào từ tô đỏ</b> để xem lý do & sửa 1-click.</span>
-                                </div>
-                                <button onclick="switchEditorMode('EDIT')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs transition flex items-center gap-1 shadow-xs whitespace-nowrap">
-                                    <span>✏️ Chuyển sang gõ / sửa bài</span>
-                                </button>
-                            </div>
-                            <div id="ad-editor-highlights" ondblclick="switchEditorMode('EDIT')" title="Nhấp đúp chuột vào đây để chuyển sang gõ / sửa bài viết" class="w-full bg-white border border-rose-300 rounded p-3 text-xs leading-relaxed font-mono min-h-[290px] max-h-[340px] overflow-y-auto cursor-text">
-                                <div class="text-slate-400 italic text-center pt-16">Chưa có kết quả thẩm định. Hãy nhập bài viết và bấm 'Thẩm định' bên dưới để AI quét và tô đỏ trực tiếp các vi phạm.</div>
-                            </div>
-                        </div>
-
-                        <!-- Thẻ Popover tương tác khi bấm vào từ tô đỏ (Interactive 1-Click Fix Popover) -->
-                        <div id="highlight-fix-card" class="hidden mt-2 p-3 rounded bg-rose-50 border border-rose-300 shadow-md text-xs space-y-1.5">
-                            <div class="flex justify-between items-center">
-                                <span class="font-extrabold text-rose-950 uppercase flex items-center gap-1.5" id="fix-card-title">
-                                    ⚠️ Vi phạm Quy chuẩn Dược phẩm
-                                </span>
-                                <button onclick="closeHighlightFixCard()" class="text-slate-400 hover:text-slate-700 font-bold text-sm">✕</button>
-                            </div>
-                            <div class="text-[11px] text-slate-800"><span class="font-semibold text-slate-500">Cụm từ vi phạm:</span> <b class="bg-rose-200 text-rose-950 px-1 rounded" id="fix-card-quote"></b></div>
-                            <div class="text-[11px] text-slate-700 leading-relaxed" id="fix-card-explanation"></div>
-                            <div class="text-[10px] text-indigo-800 font-semibold font-mono" id="fix-card-legal"></div>
-                            <div class="p-2 bg-emerald-50 border border-emerald-300 rounded text-emerald-950 text-xs flex items-center justify-between">
-                                <div class="pr-2">
-                                    <span class="font-bold text-[10px] text-emerald-800 uppercase block">Đề xuất chuẩn hóa y tế:</span>
-                                    <span class="font-semibold italic text-emerald-900" id="fix-card-suggestion"></span>
-                                </div>
-                                <button onclick="applySingleFixFromCard()" class="px-3 py-1 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs transition shadow-xs whitespace-nowrap">
-                                    ⚡ 1-Click Thay thế
-                                </button>
-                            </div>
+                        <div class="flex items-center gap-2">
+                            <span id="ad-word-count" class="text-xs font-mono font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded border border-slate-200">0 ký tự</span>
+                            <button onclick="clearAdContentForNewPost()" class="px-2.5 py-1 rounded-md text-slate-600 hover:text-rose-700 hover:bg-rose-50 text-xs font-semibold transition flex items-center gap-1 border border-slate-200 shadow-2xs" title="Xóa nội dung cũ để gõ bài mới">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                <span>Làm mới</span>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Thanh nút hành động -->
-                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-100 mt-2">
-                        <button onclick="runAdAudit()" class="flex-1 py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs transition">
-                            ⚡ Thẩm định Radar NĐ 342
-                        </button>
-                        <button onclick="runAIAgentAudit()" class="flex-1 py-2 bg-indigo-700 hover:bg-indigo-800 text-white font-bold rounded text-xs transition flex items-center justify-center gap-1.5 shadow-sm">
+                    <!-- Khung soạn thảo thuần (Textarea Edit Mode) -->
+                    <div id="editor-edit-wrap" class="flex-1 flex flex-col py-2.5">
+                        <textarea id="ad-content-box" oninput="onAdContentInput()" placeholder="Nhập hoặc dán nội dung bài viết quảng cáo tại đây để đối chiếu với hồ sơ sản phẩm (Bạn có thể tự do gõ và chỉnh sửa)..." class="w-full flex-1 bg-slate-50 border border-slate-300 rounded-lg p-3.5 text-sm leading-relaxed text-slate-900 outline-none focus:border-corp-800 focus:bg-white focus:ring-1 focus:ring-corp-800 font-sans transition shadow-inner resize-none"></textarea>
+                        <div class="text-xs text-slate-500 mt-2 flex items-center justify-between bg-slate-50 px-3 py-1.5 rounded border border-slate-200">
+                            <span class="flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                                <span><b>Chế độ nhập liệu tự do:</b> Gõ hoặc dán nội dung, sau đó chọn nút Thẩm định bên dưới để kiểm duyệt.</span>
+                            </span>
+                            <span class="text-slate-400 italic" id="editor-mode-hint">Đã sẵn sàng</span>
+                        </div>
+                    </div>
+
+                    <!-- Khung đối chiếu tô đỏ trực tiếp (Visual Highlighting Mode) -->
+                    <div id="editor-highlight-wrap" class="hidden flex-1 flex flex-col py-2.5">
+                        <div class="flex items-center justify-between bg-amber-50 border border-amber-300 px-3 py-1.5 rounded-md mb-2 text-xs text-amber-950 font-medium shadow-xs">
+                            <span class="flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span><b>Chế độ rà soát trực quan:</b> Click vào cụm từ tô đỏ để xem phân tích y khoa & thay thế 1-click.</span>
+                            </span>
+                            <button onclick="switchEditorMode('EDIT')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs transition flex items-center gap-1 shadow-xs">
+                                <span>Quay lại gõ bài</span>
+                            </button>
+                        </div>
+                        <div id="ad-editor-highlights" ondblclick="switchEditorMode('EDIT')" title="Nhấp đúp chuột vào đây để chuyển sang gõ / sửa bài viết" class="w-full flex-1 bg-white border border-rose-300 rounded-lg p-3.5 text-sm leading-relaxed font-sans overflow-y-auto cursor-text shadow-inner">
+                            <div class="text-slate-400 italic text-center pt-24">Chưa có kết quả thẩm định. Hãy nhập bài viết và bấm 'Thẩm định' bên dưới để AI quét và tô đỏ trực tiếp các vi phạm.</div>
+                        </div>
+                    </div>
+
+                    <!-- Thẻ Popover tương tác khi bấm vào từ tô đỏ (Interactive 1-Click Fix Popover) -->
+                    <div id="highlight-fix-card" class="hidden mb-2.5 p-3 rounded-md bg-rose-50 border border-rose-300 shadow-md text-xs space-y-1.5">
+                        <div class="flex justify-between items-center">
+                            <span class="font-extrabold text-rose-950 uppercase flex items-center gap-1.5" id="fix-card-title">
+                                Cảnh báo vi phạm quy chuẩn y dược
+                            </span>
+                            <button onclick="closeHighlightFixCard()" class="text-slate-400 hover:text-slate-700 font-bold text-sm">✕</button>
+                        </div>
+                        <div class="text-xs text-slate-800"><span class="font-semibold text-slate-500">Cụm từ vi phạm:</span> <b class="bg-rose-200 text-rose-950 px-1.5 py-0.5 rounded font-mono" id="fix-card-quote"></b></div>
+                        <div class="text-xs text-slate-700 leading-relaxed" id="fix-card-explanation"></div>
+                        <div class="text-xs text-indigo-900 font-bold font-mono" id="fix-card-legal"></div>
+                        <div class="p-2.5 bg-emerald-50 border border-emerald-300 rounded-md text-emerald-950 text-xs flex items-center justify-between mt-1">
+                            <div class="pr-2">
+                                <span class="font-bold text-xs text-emerald-800 uppercase block mb-0.5">Đề xuất chuẩn hóa y tế:</span>
+                                <span class="font-semibold italic text-emerald-950 text-sm" id="fix-card-suggestion"></span>
+                            </div>
+                            <button onclick="applySingleFixFromCard()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-md text-xs transition shadow-xs whitespace-nowrap">
+                                Áp dụng thay thế
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Thanh nút hành động chính ngay dưới ô soạn thảo -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-2 border-t border-slate-100">
+                        <button onclick="runAIAgentAudit()" class="py-2.5 px-3 bg-corp-800 hover:bg-corp-900 text-white font-bold rounded-md text-xs transition flex items-center justify-center gap-1.5 shadow-sm">
                             <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                            🤖 AI Agent Đối chiếu Hồ sơ & Tô đỏ
+                            <span>AI Agent Đối Chiếu Hồ Sơ</span>
                         </button>
-                        <button onclick="runAdAutoFix()" class="px-3 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs transition whitespace-nowrap shadow-sm">
-                            ✨ 1-Click Sửa toàn bộ
+                        <button onclick="runAdAudit()" class="py-2.5 px-3 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-md text-xs transition flex items-center justify-center gap-1.5 shadow-sm">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                            <span>Thẩm Định Radar NĐ 342</span>
+                        </button>
+                        <button onclick="runAdAutoFix()" class="py-2.5 px-3 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-md text-xs transition flex items-center justify-center gap-1.5 shadow-sm whitespace-nowrap">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>1-Click Chuẩn Hóa 100/100</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- CỘT PHẢI: BÁO CÁO PHÂN TÍCH, CHAIN-OF-THOUGHT & ĐIỂM SỐ -->
-                <div class="lg:col-span-6 bg-white rounded border border-slate-200 p-4 shadow-sm flex flex-col justify-between min-h-[580px] overflow-y-auto">
-                    <div class="space-y-3">
-                        <!-- Khung điểm số & huy hiệu -->
-                        <div class="flex items-center justify-between p-3 rounded border" id="audit-score-wrap">
+                <!-- CỘT PHẢI: TRUNG TÂM PHÂN TÍCH PHÁP CHẾ & BÁO CÁO THẨM ĐỊNH (FULL HEIGHT 660px) -->
+                <div class="lg:col-span-6 bg-white rounded-lg border border-slate-200 p-4 shadow-sm flex flex-col justify-between h-[660px]">
+                    <div class="space-y-3 flex-1 flex flex-col overflow-hidden">
+                        <!-- Khung điểm số tuân thủ & Huy hiệu trạng thái -->
+                        <div class="flex items-center justify-between p-3.5 rounded-lg border transition shadow-xs" id="audit-score-wrap">
                             <div>
                                 <div class="flex items-center gap-2">
-                                    <span class="text-[11px] font-bold uppercase text-slate-500">Điểm số tuân thủ:</span>
-                                    <span id="audit-engine-source-label" class="text-[10px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-600">Động cơ: Chưa chạy</span>
+                                    <span class="text-xs font-bold uppercase text-slate-500 tracking-wide">Điểm số tuân thủ:</span>
+                                    <span id="audit-engine-source-label" class="text-xs font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700">Động cơ: Chưa chạy</span>
                                 </div>
-                                <div class="text-2xl font-extrabold" id="audit-score-display">0 / 100</div>
+                                <div class="text-3xl font-black mt-0.5 text-slate-900" id="audit-score-display">0 / 100</div>
                             </div>
-                            <span class="px-3 py-1 rounded text-xs font-bold uppercase text-center" id="audit-badge-display">Chưa kiểm tra</span>
+                            <span class="px-3.5 py-1.5 rounded-md text-xs font-extrabold uppercase tracking-wide text-center bg-slate-200 text-slate-700" id="audit-badge-display">Chưa kiểm tra</span>
                         </div>
 
-                        <!-- Bảng kết quả Radar (Hiển thị khi ở chế độ Radar) -->
-                        <div id="radar-results-panel">
-                            <table class="w-full text-left text-xs border border-slate-200 rounded overflow-hidden">
-                                <thead class="bg-slate-50">
-                                    <tr>
-                                        <th class="table-cell-header">Lớp thẩm định (Nghị định 342/2025/NĐ-CP)</th>
-                                        <th class="table-cell-header w-44 text-right">Đánh giá</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="table-cell">1. Từ cấm y dược & Khẳng định trị bệnh</td>
-                                        <td class="table-cell text-right font-bold" id="res-prohibited">—</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="table-cell">2. Thần thánh hóa & Khoa học giả tưởng</td>
-                                        <td class="table-cell text-right font-bold" id="res-miracle">—</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="table-cell">3. Hạ thấp thuốc Tây & Cam kết quá mức</td>
-                                        <td class="table-cell text-right font-bold" id="res-exaggeration">—</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-cell">4. Cảnh báo bắt buộc NĐ 342 & Phạm vi TPBVSK</td>
-                                        <td class="table-cell text-right font-bold" id="res-disclaimer">—</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <!-- Thanh điều hướng Tab kết quả phân tích -->
+                        <div class="flex items-center gap-1.5 border-b border-slate-200 pb-2 overflow-x-auto text-xs">
+                            <button id="btn-tab-res-violations" onclick="switchAuditResultTab('violations')" class="px-3 py-1.5 text-xs font-bold rounded-md bg-slate-900 text-white shadow-xs transition flex items-center gap-1.5">
+                                <span>Danh Sách Vi Phạm</span>
+                                <span id="tab-badge-violations" class="px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-rose-200 text-rose-950">0</span>
+                            </button>
+                            <button id="btn-tab-res-rewrite" onclick="switchAuditResultTab('rewrite')" class="px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-1.5">
+                                <span>Bản Thảo Chuẩn Hóa 100%</span>
+                            </button>
+                            <button id="btn-tab-res-cot" onclick="switchAuditResultTab('cot')" class="px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-1.5">
+                                <span>Chuỗi Thẩm Định Pháp Chế</span>
+                            </button>
+                            <button id="btn-tab-res-radar" onclick="switchAuditResultTab('radar')" class="px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-1.5">
+                                <span>Radar 4 Lớp NĐ 342</span>
+                            </button>
                         </div>
 
-                        <!-- Khung kết quả của AI Compliance Agent (Hiển thị khi chạy AI Agent) -->
-                        <div id="ai-agent-results-panel" class="hidden space-y-3">
-                            <!-- Báo cáo tổng quan của AI -->
-                            <div class="p-3 rounded bg-indigo-50 border border-indigo-200 space-y-1.5">
-                                <div class="flex items-center justify-between">
-                                    <span class="font-extrabold text-indigo-950 text-xs uppercase flex items-center gap-1.5">
-                                        <span class="inline-block w-2 h-2 rounded-full bg-indigo-600"></span>
-                                        Báo cáo Thẩm định Ngữ nghĩa & Đối chiếu Hồ sơ
-                                    </span>
-                                    <span id="ai-model-tag" class="text-[10px] bg-indigo-200 text-indigo-900 font-bold px-1.5 py-0.5 rounded">Model: DION Agent</span>
+                        <!-- Khối nội dung kết quả phân tích (Scrollable area) -->
+                        <div class="flex-1 overflow-y-auto pr-1 space-y-3">
+                            <!-- Tab Panel 1: Danh sách vi phạm -->
+                            <div id="panel-res-violations" class="space-y-2">
+                                <div id="audit-msg-box" class="space-y-2">
+                                    <div class="text-slate-400 italic text-center py-20 text-sm">
+                                        Hãy nhập nội dung bài viết vào ô bên trái rồi nhấn một trong các nút Thẩm định để xem phân tích chi tiết.
+                                    </div>
                                 </div>
-                                <div id="ai-summary-text" class="text-xs text-indigo-900 leading-relaxed font-medium"></div>
                             </div>
 
-                            <!-- Chuỗi tư duy / Lý giải của AI Agent (Chain of Thought) -->
-                            <div class="p-3 rounded bg-slate-50 border border-slate-200 space-y-1.5">
-                                <div class="font-bold text-slate-800 text-xs uppercase tracking-wide flex items-center gap-1">
-                                    <span>🧠 Chuỗi suy luận & Bóc tách ý đồ (Chain-of-Thought):</span>
+                            <!-- Tab Panel 2: Bản thảo chuẩn hóa 100/100 -->
+                            <div id="panel-res-rewrite" class="hidden space-y-2">
+                                <div id="ai-rewrite-box" class="space-y-2">
+                                    <div class="flex items-center justify-between pb-1">
+                                        <span class="font-extrabold text-emerald-950 text-xs uppercase tracking-wide flex items-center gap-1.5">
+                                            <span class="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span>
+                                            Bản thảo đề xuất đạt chuẩn 100/100 (Đã thẩm định):
+                                        </span>
+                                        <div class="flex items-center gap-1.5">
+                                            <button onclick="applyAiRewrittenDraft()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-md text-xs transition shadow-2xs">
+                                                Áp dụng vào ô soạn thảo
+                                            </button>
+                                            <button onclick="navigator.clipboard.writeText(lastAiRewrittenText); alert('Đã sao chép bản thảo!');" class="px-3 py-1.5 bg-white hover:bg-slate-50 text-slate-800 font-bold rounded-md text-xs border border-slate-300 transition shadow-2xs">
+                                                Sao chép
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div id="ai-rewritten-content" class="text-sm text-slate-900 bg-emerald-50/40 p-4 rounded-lg border border-emerald-200 font-sans leading-relaxed whitespace-pre-line min-h-[300px]">
+                                        Chưa có bản thảo viết lại. Hãy chạy thẩm định AI Agent để tự động tạo bản thảo chuẩn hóa.
+                                    </div>
                                 </div>
-                                <div id="ai-cot-steps" class="space-y-1 text-slate-700 text-[11px] leading-relaxed"></div>
                             </div>
-                        </div>
 
-                        <!-- Vùng hiển thị chi tiết vi phạm / thông điệp -->
-                        <div id="audit-msg-box" class="text-xs p-3 rounded bg-slate-50 border border-slate-200 max-h-56 overflow-y-auto"></div>
+                            <!-- Tab Panel 3: Chuỗi suy luận & Báo cáo tổng quan -->
+                            <div id="panel-res-cot" class="hidden space-y-3">
+                                <div id="ai-agent-results-panel" class="space-y-3">
+                                    <div class="p-3.5 rounded-lg bg-indigo-50 border border-indigo-200 space-y-1.5">
+                                        <div class="flex items-center justify-between">
+                                            <span class="font-extrabold text-indigo-950 text-xs uppercase flex items-center gap-2">
+                                                <span class="inline-block w-2.5 h-2.5 rounded-full bg-indigo-700"></span>
+                                                Báo cáo Thẩm định Ngữ nghĩa & Đối chiếu Hồ sơ
+                                            </span>
+                                            <span id="ai-model-tag" class="text-xs bg-indigo-200 text-indigo-900 font-bold px-2 py-0.5 rounded">Model: DION Agent</span>
+                                        </div>
+                                        <div id="ai-summary-text" class="text-sm text-indigo-950 leading-relaxed font-medium">Chưa có dữ liệu thẩm định.</div>
+                                    </div>
 
-                        <!-- Vùng đề xuất bản nháp AI viết lại (AI Rewrite) -->
-                        <div id="ai-rewrite-box" class="hidden p-3 rounded bg-emerald-50 border border-emerald-300 space-y-2">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-emerald-950 text-xs uppercase">✨ Bản thảo AI Viết lại Đạt chuẩn 100/100:</span>
-                                <button onclick="applyAiRewrittenDraft()" class="px-2.5 py-1 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs transition">
-                                    Áp dụng vào ô soạn thảo
-                                </button>
+                                    <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 space-y-2">
+                                        <div class="font-bold text-slate-900 text-xs uppercase tracking-wide">
+                                            Chuỗi thẩm định pháp lý & căn cứ đối chiếu:
+                                        </div>
+                                        <div id="ai-cot-steps" class="space-y-2 text-slate-800 text-sm leading-relaxed">
+                                            <div class="text-slate-400 italic text-center py-6 text-sm">Chưa có chuỗi thẩm định.</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="ai-rewritten-content" class="text-[11px] text-emerald-900 bg-white p-2 rounded border border-emerald-200 font-mono whitespace-pre-line max-h-36 overflow-y-auto"></div>
+
+                            <!-- Tab Panel 4: Radar 4 lớp NĐ 342 -->
+                            <div id="panel-res-radar" class="hidden space-y-2">
+                                <div id="radar-results-panel">
+                                    <table class="w-full text-left text-sm border border-slate-200 rounded-lg overflow-hidden">
+                                        <thead class="bg-slate-50">
+                                            <tr>
+                                                <th class="table-cell-header text-xs">Lớp thẩm định (Nghị định 342/2025/NĐ-CP)</th>
+                                                <th class="table-cell-header w-44 text-right text-xs">Đánh giá</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="border-b border-slate-100">
+                                                <td class="table-cell font-medium">1. Từ cấm y dược & Khẳng định trị bệnh</td>
+                                                <td class="table-cell text-right font-bold text-sm" id="res-prohibited">—</td>
+                                            </tr>
+                                            <tr class="border-b border-slate-100">
+                                                <td class="table-cell font-medium">2. Thần thánh hóa & Thuật ngữ khoa học giả tưởng</td>
+                                                <td class="table-cell text-right font-bold text-sm" id="res-miracle">—</td>
+                                            </tr>
+                                            <tr class="border-b border-slate-100">
+                                                <td class="table-cell font-medium">3. Hạ thấp thuốc Tây & Cam kết quá mức</td>
+                                                <td class="table-cell text-right font-bold text-sm" id="res-exaggeration">—</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table-cell font-medium">4. Cảnh báo bắt buộc NĐ 342 & Phạm vi TPBVSK</td>
+                                                <td class="table-cell text-right font-bold text-sm" id="res-disclaimer">—</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="pt-2 border-t border-slate-200 flex justify-between items-center">
-                        <span class="text-[11px] text-slate-400">Kiểm soát kép: Hồ sơ ĐKSP + Luật định NĐ 342 + Trí tuệ AI Pháp chế</span>
-                        <button onclick="copyAdContent()" class="text-xs font-bold text-corp-700 hover:underline">Sao chép bài viết</button>
+                    <div class="pt-2.5 border-t border-slate-200 flex justify-between items-center text-xs">
+                        <span class="text-slate-500 font-medium">Kiểm soát kép: Hồ sơ ĐKSP + Nghị định 15/2018 + Nghị định 342/2025 + Trí tuệ AI Pháp chế</span>
+                        <button onclick="copyAdContent()" class="font-bold text-corp-800 hover:text-corp-900 hover:underline flex items-center gap-1">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10a2 2 0 00-2 2v3a2 2 0 002 2h8a2 2 0 002-2v-3a2 2 0 00-2-2z"/></svg>
+                            <span>Sao chép bài viết</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1358,9 +1410,9 @@
                 target_users: "Phụ nữ chuẩn bị mang thai, đang mang thai, cho con bú; người lớn tuổi nguy cơ loãng xương",
                 rct: "PMID: 30121111 (RCT n=120, sinh khả dụng x2.4 lần, giảm 94% táo bón thai kỳ)",
                 presets: {
-                    1: "Được Cục An toàn thực phẩm chứng nhận: Canxi Tảo Đỏ Cal-Mom đánh tan sỏi thận và điều trị thoái hóa cột sống chỉ sau 7 ngày!\n\nTối ưu hóa khả năng hấp thu gấp 10.000 lần canxi thông thường, không tác dụng phụ, không đỡ hoàn tiền 100%. Nhắn tin ngay để được bác sĩ viện quân y tư vấn phác đồ điều trị dứt điểm!\n\n---\n⚠️ Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+                    1: "Được Cục An toàn thực phẩm chứng nhận: Canxi Tảo Đỏ Cal-Mom đánh tan sỏi thận và điều trị thoái hóa cột sống chỉ sau 7 ngày!\n\nTối ưu hóa khả năng hấp thu gấp 10.000 lần canxi thông thường, không tác dụng phụ, không đỡ hoàn tiền 100%. Nhắn tin ngay để được bác sĩ viện quân y tư vấn phác đồ điều trị dứt điểm!\n\n---\nThực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
                     2: "Chia tay nỗi lo thoái hóa khớp cùng Canxi Cal-Mom từ lương y 3 đời!\n\nBác sĩ đầu ngành Viện Quân Y cũng phải ngạc nhiên trước khả năng hồi sinh sụn khớp của sản phẩm này. Chú Ba (62 tuổi, Đống Đa) từng suýt liệt giường vì đau nhức, nay sau 2 tuần uống đã leo cầu thang thoăn thoắt. Đừng để biến chứng teo cơ, tàn phế gõ cửa rồi mới lo chữa! Uống là thấy khác, không đỡ xin hoàn tiền 100%!",
-                    3: "🌿 GIẢI PHÁP CHĂM SÓC SỨC KHỎE XƯƠNG RĂNG & VI CHẤT TOÀN DIỆN TỪ TPBVSK DION CAL-MOM PLUS & D3 K2\n\nBổ sung vi chất đúng cách là chìa khóa duy trì thể trạng dẻo dai và nâng cao chất lượng cuộc sống cho cả gia đình.\n\n💡 CÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO:\n• Hỗ trợ bổ sung Canxi sinh học từ tảo biển đỏ Lithothamnion và Vitamin D3 K2 MK-7 chất lượng cao.\n• Hỗ trợ tăng cường sức khỏe xương răng, hỗ trợ giảm nguy cơ loãng xương ở người lớn và hỗ trợ đáp ứng nhu cầu Canxi tăng cao cho phụ nữ mang thai.\n• Hỗ trợ tăng cường khả năng hấp thu Canxi và khoáng chất, an toàn và lành tính cho dạ dày khi sử dụng đều đặn.\n\n🔬 Sản xuất tại nhà máy đạt chuẩn GMP quốc tế.\n📦 Thích hợp cho: Phụ nữ chuẩn bị mang thai, đang mang thai và cho con bú; người lớn tuổi, người có nguy cơ loãng xương.\n\n👉 Liên hệ ngay để nhận tư vấn lộ trình sử dụng từ chuyên gia!\n---\n⚠️ Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+                    3: "GIẢI PHÁP CHĂM SÓC SỨC KHỎE XƯƠNG RĂNG & VI CHẤT DINH DƯỠNG TỪ TPBVSK DION CAL-MOM PLUS & D3 K2\n\nBổ sung vi chất đúng cách là chìa khóa duy trì thể trạng dẻo dai và nâng cao chất lượng cuộc sống cho cả gia đình.\n\nCÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO (XNQC):\n• Hỗ trợ bổ sung Canxi sinh học từ tảo biển đỏ Lithothamnion và Vitamin D3 K2 MK-7 chất lượng cao.\n• Hỗ trợ tăng cường sức khỏe xương răng, hỗ trợ giảm nguy cơ loãng xương ở người lớn và hỗ trợ đáp ứng nhu cầu Canxi tăng cao cho phụ nữ mang thai.\n• Hỗ trợ tăng cường khả năng hấp thu Canxi và khoáng chất, an toàn và lành tính cho dạ dày khi sử dụng đều đặn.\n\nTIÊU CHUẨN SẢN XUẤT ĐẠT CHUẨN GMP QUỐC TẾ:\nSản phẩm ứng dụng công nghệ vi bao hiện đại, được kiểm soát chất lượng nghiêm ngặt theo tiêu chuẩn ISO 22000.\n\nĐỐI TƯỢNG SỬ DỤNG:\nPhụ nữ chuẩn bị mang thai, đang mang thai và cho con bú; người lớn tuổi, người có nguy cơ loãng xương theo khuyến nghị.\n\nLiên hệ đội ngũ Dược sĩ tư vấn chuyên môn để được hướng dẫn sử dụng khoa học!\n---\nKhuyến cáo: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
                     4: "Sản phẩm Vitamin D3 1000IU cam kết chữa bệnh loãng xương và khỏi hẳn đau nhức khớp sau 2 tuần sử dụng! Hiệu quả 100% không tái phát.\nNhắn tin ngay để được bác sĩ tư vấn liều dùng điều trị dứt điểm!"
                 }
             },
@@ -1374,9 +1426,9 @@
                 target_users: "Người lớn thiếu hụt Vitamin D, ít tiếp xúc ánh nắng, cần tăng cường hấp thu Canxi",
                 rct: "PMID: 32091234 (RCT n=310, nồng độ 25(OH)D về mức tối ưu sau 4 tuần)",
                 presets: {
-                    1: "Thực phẩm này cam kết chữa khỏi bệnh loãng xương và bách bệnh chỉ sau 7 ngày!\nBác sĩ viện quân y khuyên dùng thay thế hoàn toàn thuốc tây.\n---\n⚠️ Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+                    1: "Thực phẩm này cam kết chữa khỏi bệnh loãng xương và bách bệnh chỉ sau 7 ngày!\nBác sĩ viện quân y khuyên dùng thay thế hoàn toàn thuốc tây.\n---\nThực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
                     2: "Chia tay nỗi lo thoái hóa khớp cùng Vitamin D3 nhỏ giọt từ lương y gia truyền!\nKhông đỡ xin hoàn tiền 100%!",
-                    3: "Thực Phẩm Bảo Vệ Sức Khỏe Vitamin D3 1000IU hỗ trợ tăng cường hấp thu Canxi và Photpho, hỗ trợ duy trì xương răng chắc khỏe mỗi ngày.\nThích hợp cho người lớn có nhu cầu bổ sung vi chất dinh dưỡng.\n---\n⚠️ Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+                    3: "Thực Phẩm Bảo Vệ Sức Khỏe Vitamin D3 1000IU hỗ trợ tăng cường hấp thu Canxi và Photpho, hỗ trợ duy trì xương răng chắc khỏe mỗi ngày.\nThích hợp cho người lớn có nhu cầu bổ sung vi chất dinh dưỡng.\n---\nThực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
                     4: "Sản phẩm Vitamin D3 1000IU cam kết chữa bệnh loãng xương và khỏi hẳn đau nhức khớp sau 2 tuần sử dụng! Hiệu quả 100% không tái phát.\nNhắn tin ngay để được bác sĩ tư vấn liều dùng điều trị dứt điểm!"
                 }
             },
@@ -1392,7 +1444,7 @@
                 presets: {
                     1: "Được Cục An toàn thực phẩm chứng nhận: Sắt Fero-Plus xóa sổ vĩnh viễn bệnh thiếu máu chỉ sau 3 ngày! Cam kết 100% không táo bón, không đỡ hoàn tiền ngay!",
                     2: "Chị Lan (32 tuổi, mang thai tháng thứ 5) từng hoa mắt suýt ngất xỉu, uống Fero-Plus là khỏi hẳn! Bác sĩ trưởng khoa huyết học chỉ định dùng.",
-                    3: "🌿 TPBVSK DION FERO-PLUS: HỖ TRỢ TẠO MÁU VÀ GIẢM NGUY CƠ THIẾU MÁU DO THIẾU SẮT\n\n💡 CÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO:\n• Bổ sung Sắt hữu cơ Bisglycinate và Acid Folic (Quatrefolic) hỗ trợ quá trình tạo máu, hỗ trợ giảm nguy cơ thiếu máu do thiếu sắt.\n• Dạng sắt hữu cơ êm dịu dạ dày, hỗ trợ giảm nguy cơ táo bón và nóng trong khi sử dụng.\n\n📦 Thích hợp cho: Phụ nữ chuẩn bị mang thai, đang mang thai và cho con bú; người thiếu máu do thiếu sắt.\n---\n⚠️ Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+                    3: "TPBVSK DION FERO-PLUS: HỖ TRỢ TẠO MÁU VÀ GIẢM NGUY CƠ THIẾU MÁU DO THIẾU SẮT\n\nCÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO (XNQC):\n• Bổ sung Sắt hữu cơ Bisglycinate và Acid Folic (Quatrefolic) hỗ trợ quá trình tạo máu, hỗ trợ giảm nguy cơ thiếu máu do thiếu sắt.\n• Dạng sắt hữu cơ êm dịu dạ dày, hỗ trợ giảm nguy cơ táo bón và nóng trong khi sử dụng.\n\nĐỐI TƯỢNG SỬ DỤNG:\nPhụ nữ chuẩn bị mang thai, đang mang thai và cho con bú; người thiếu máu do thiếu sắt theo chỉ định.\n---\nKhuyến cáo: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
                     4: "Sắt Fero-Plus cam kết chữa khỏi hẳn bệnh thiếu máu cho người lớn tuổi, không cần dùng thuốc tây."
                 }
             }
@@ -1504,14 +1556,30 @@
             }
         }
 
+        function switchAuditResultTab(tabName) {
+            const tabs = ['violations', 'rewrite', 'cot', 'radar'];
+            tabs.forEach(t => {
+                const btn = document.getElementById('btn-tab-res-' + t);
+                const panel = document.getElementById('panel-res-' + t);
+                if (!btn || !panel) return;
+                if (t === tabName) {
+                    btn.className = 'px-3 py-1.5 text-xs font-bold rounded-md bg-slate-900 text-white shadow-xs transition flex items-center gap-1.5';
+                    panel.classList.remove('hidden');
+                } else {
+                    btn.className = 'px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-1.5';
+                    panel.classList.add('hidden');
+                }
+            });
+        }
+
         function insertMissingText(textToAdd) {
             const textEl = document.getElementById('ad-content-box');
             if (textToAdd.includes('Thực phẩm này không phải là thuốc')) {
                 if (!textEl.value.toLowerCase().includes('thực phẩm này không phải là thuốc')) {
-                    textEl.value = textEl.value.trim() + '\n\n---\n⚠️ Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.';
+                    textEl.value = textEl.value.trim() + '\n\n---\nKhuyến cáo: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.';
                 }
             } else {
-                textEl.value = textEl.value.trim() + '\n\n📦 ' + textToAdd;
+                textEl.value = textEl.value.trim() + '\n\n' + textToAdd;
             }
             onAdContentInput();
             if (currentEngineMode === 'AI_AGENT') {
@@ -1525,19 +1593,15 @@
             currentEngineMode = mode;
             const btnRadar = document.getElementById('btn-mode-radar');
             const btnAi = document.getElementById('btn-mode-ai');
-            const radarPanel = document.getElementById('radar-results-panel');
-            const aiPanel = document.getElementById('ai-agent-results-panel');
 
             if (mode === 'RADAR') {
-                btnRadar.className = 'px-2.5 py-1 rounded bg-white text-corp-700 font-bold shadow-sm transition';
-                btnAi.className = 'px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 transition flex items-center gap-1';
-                radarPanel.classList.remove('hidden');
-                aiPanel.classList.add('hidden');
+                btnRadar.className = 'px-3 py-1.5 rounded bg-slate-900 text-white font-bold shadow-xs transition flex items-center gap-1.5';
+                btnAi.className = 'px-3 py-1.5 rounded text-slate-600 hover:text-slate-900 transition flex items-center gap-1.5';
+                switchAuditResultTab('radar');
             } else {
-                btnAi.className = 'px-2.5 py-1 rounded bg-indigo-700 text-white font-bold shadow-sm transition flex items-center gap-1';
-                btnRadar.className = 'px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 transition';
-                radarPanel.classList.add('hidden');
-                aiPanel.classList.remove('hidden');
+                btnAi.className = 'px-3 py-1.5 rounded bg-corp-800 text-white font-bold shadow-xs transition flex items-center gap-1.5';
+                btnRadar.className = 'px-3 py-1.5 rounded text-slate-600 hover:text-slate-900 transition flex items-center gap-1.5';
+                switchAuditResultTab('violations');
             }
         }
 
@@ -1596,9 +1660,7 @@
             }
 
             document.getElementById('audit-engine-source-label').innerText = 'Động cơ: Radar Luật định NĐ 342';
-            document.getElementById('radar-results-panel').classList.remove('hidden');
-            document.getElementById('ai-agent-results-panel').classList.add('hidden');
-            document.getElementById('ai-rewrite-box').classList.add('hidden');
+            switchAuditResultTab('radar');
 
             const res = await fetch('/api/content/audit-radar', {
                 method: 'POST',
@@ -1612,16 +1674,16 @@
             const wrap = document.getElementById('audit-score-wrap');
 
             if (audit.badge_type === 'COMPLIANT') {
-                wrap.className = 'flex items-center justify-between p-3 rounded border bg-emerald-50 border-emerald-300 text-emerald-900';
-                badge.className = 'px-3 py-1 rounded text-xs font-bold uppercase bg-emerald-700 text-white';
+                wrap.className = 'flex items-center justify-between p-3.5 rounded-lg border bg-emerald-50 border-emerald-300 text-emerald-900';
+                badge.className = 'px-3.5 py-1.5 rounded-md text-xs font-extrabold uppercase bg-emerald-700 text-white';
                 badge.innerText = 'ĐẠT CHUẨN NGHỊ ĐỊNH 342';
             } else if (audit.badge_type === 'CRITICAL_HAZARD') {
-                wrap.className = 'flex items-center justify-between p-3 rounded border bg-rose-100 border-rose-400 text-rose-950 animate-pulse';
-                badge.className = 'px-3 py-1 rounded text-[11px] font-extrabold uppercase bg-rose-800 text-white tracking-wider';
+                wrap.className = 'flex items-center justify-between p-3.5 rounded-lg border bg-rose-100 border-rose-400 text-rose-950 animate-pulse';
+                badge.className = 'px-3.5 py-1.5 rounded-md text-xs font-extrabold uppercase bg-rose-800 text-white tracking-wider';
                 badge.innerText = 'VI PHẠM ĐẶC BIỆT NGHIÊM TRỌNG';
             } else {
-                wrap.className = 'flex items-center justify-between p-3 rounded border bg-rose-50 border-rose-300 text-rose-900';
-                badge.className = 'px-3 py-1 rounded text-xs font-bold uppercase bg-rose-700 text-white';
+                wrap.className = 'flex items-center justify-between p-3.5 rounded-lg border bg-rose-50 border-rose-300 text-rose-900';
+                badge.className = 'px-3.5 py-1.5 rounded-md text-xs font-extrabold uppercase bg-rose-700 text-white';
                 badge.innerText = 'VI PHẠM QUY ĐỊNH QUẢNG CÁO';
             }
 
@@ -1648,11 +1710,10 @@
 
             violationBadge.innerText = count + ' lỗi tô đỏ';
             if (count > 0) {
-                violationBadge.className = 'px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-rose-200 text-rose-950 animate-pulse';
-                // Tự động chuyển sang chế độ tô đỏ trực quan để người dùng nhìn thấy ngay
+                violationBadge.className = 'px-2 py-0.5 rounded-full text-xs font-extrabold bg-rose-200 text-rose-950 animate-pulse';
                 switchEditorMode('HIGHLIGHT');
             } else {
-                violationBadge.className = 'px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800';
+                violationBadge.className = 'px-2 py-0.5 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-800';
             }
 
             const msgBox = document.getElementById('audit-msg-box');
@@ -1660,13 +1721,13 @@
 
             if (audit.is_severe_hazard) {
                 contentHtml += `
-                    <div class="p-2.5 mb-2.5 rounded bg-rose-200 border border-rose-400 text-rose-950 font-bold text-xs space-y-1">
-                        <div class="flex items-center gap-1.5 text-rose-900 uppercase tracking-wide">
-                            <span class="inline-block w-2 h-2 rounded-full bg-rose-700"></span>
+                    <div class="p-3 mb-2.5 rounded-lg bg-rose-100 border border-rose-300 text-rose-950 font-bold text-xs space-y-1">
+                        <div class="flex items-center gap-2 text-rose-900 uppercase tracking-wide">
+                            <span class="inline-block w-2.5 h-2.5 rounded-full bg-rose-700"></span>
                             BÁO ĐỘNG ĐỎ PHÁP LÝ (NGUY CƠ TƯỚC GPQC & XỬ PHẠT KỊCH KHUNG):
                         </div>
-                        <div class="font-normal text-[11px] leading-relaxed">${audit.hazard_reason}</div>
-                        <div class="text-[10px] text-rose-800 font-semibold mt-1">
+                        <div class="font-normal text-xs leading-relaxed text-slate-800">${audit.hazard_reason}</div>
+                        <div class="text-xs text-rose-900 font-semibold mt-1">
                             Căn cứ Khoản 2 Điều 5 Nghị định 342/2025/NĐ-CP & Luật Quảng cáo: Nghiêm cấm tuyệt đối việc xúi giục từ bỏ phác đồ điều trị, hạ thấp tân dược hoặc dùng thuật ngữ khoa học giả tưởng (lượng tử, bẻ khóa tế bào).
                         </div>
                     </div>
@@ -1674,28 +1735,28 @@
             }
 
             if (audit.violations_detail && audit.violations_detail.length > 0) {
-                contentHtml += `<div class="font-bold text-rose-950 mb-1.5 text-xs">Chi tiết ${audit.violations_detail.length} điểm vi phạm được phát hiện:</div><div class="space-y-2">`;
+                contentHtml += `<div class="font-bold text-slate-900 mb-2 text-xs">Chi tiết ${audit.violations_detail.length} điểm vi phạm được phát hiện:</div><div class="space-y-2">`;
                 
                 if (audit.med_violations && audit.med_violations.length > 0) {
-                    contentHtml += `<div><span class="font-bold text-rose-900 text-[11px] uppercase tracking-wide block mb-0.5">• Nhóm 1: Từ cấm y dược & Khẳng định trị bệnh (${audit.med_violations.length} lỗi):</span><ul class="space-y-1 pl-2">`;
+                    contentHtml += `<div><span class="font-bold text-rose-900 text-xs uppercase tracking-wide block mb-1">• Nhóm 1: Từ cấm y dược & Khẳng định trị bệnh (${audit.med_violations.length} lỗi):</span><ul class="space-y-1.5 pl-2">`;
                     audit.med_violations.forEach(v => {
-                        contentHtml += `<li class="text-[11px] text-rose-900">• Từ cấm <b>"${v.term}"</b>: ${v.reason} <span class="text-slate-600 block pl-2 font-serif italic">➔ Đề xuất sửa: "${v.suggestion}"</span></li>`;
+                        contentHtml += `<li class="text-sm text-slate-800">• Từ cấm <b class="bg-rose-100 text-rose-950 px-1.5 py-0.5 rounded">"${v.term}"</b>: ${v.reason} <span class="text-emerald-900 block pl-2 font-medium">➔ Đề xuất sửa: "${v.suggestion}"</span></li>`;
                     });
                     contentHtml += `</ul></div>`;
                 }
 
                 if (audit.miracle_violations && audit.miracle_violations.length > 0) {
-                    contentHtml += `<div><span class="font-bold text-rose-900 text-[11px] uppercase tracking-wide block mb-0.5">• Nhóm 2: Thần thánh hóa & Khoa học giả tưởng (${audit.miracle_violations.length} lỗi):</span><ul class="space-y-1 pl-2">`;
+                    contentHtml += `<div><span class="font-bold text-rose-900 text-xs uppercase tracking-wide block mb-1">• Nhóm 2: Thần thánh hóa & Khoa học giả tưởng (${audit.miracle_violations.length} lỗi):</span><ul class="space-y-1.5 pl-2">`;
                     audit.miracle_violations.forEach(v => {
-                        contentHtml += `<li class="text-[11px] text-rose-900">• Thuật ngữ <b>"${v.term}"</b>: ${v.reason} <span class="text-slate-600 block pl-2 font-serif italic">➔ Đề xuất sửa: "${v.suggestion}"</span></li>`;
+                        contentHtml += `<li class="text-sm text-slate-800">• Thuật ngữ <b class="bg-rose-100 text-rose-950 px-1.5 py-0.5 rounded">"${v.term}"</b>: ${v.reason} <span class="text-emerald-900 block pl-2 font-medium">➔ Đề xuất sửa: "${v.suggestion}"</span></li>`;
                     });
                     contentHtml += `</ul></div>`;
                 }
 
                 if (audit.exaggeration_violations && audit.exaggeration_violations.length > 0) {
-                    contentHtml += `<div><span class="font-bold text-rose-900 text-[11px] uppercase tracking-wide block mb-0.5">• Nhóm 3: Hạ thấp tân dược & Cam kết quá mức (${audit.exaggeration_violations.length} lỗi):</span><ul class="space-y-1 pl-2">`;
+                    contentHtml += `<div><span class="font-bold text-rose-900 text-xs uppercase tracking-wide block mb-1">• Nhóm 3: Hạ thấp tân dược & Cam kết quá mức (${audit.exaggeration_violations.length} lỗi):</span><ul class="space-y-1.5 pl-2">`;
                     audit.exaggeration_violations.forEach(v => {
-                        contentHtml += `<li class="text-[11px] text-rose-900">• Hành vi <b>"${v.term}"</b>: ${v.reason} <span class="text-slate-600 block pl-2 font-serif italic">➔ Đề xuất sửa: "${v.suggestion}"</span></li>`;
+                        contentHtml += `<li class="text-sm text-slate-800">• Hành vi <b class="bg-rose-100 text-rose-950 px-1.5 py-0.5 rounded">"${v.term}"</b>: ${v.reason} <span class="text-emerald-900 block pl-2 font-medium">➔ Đề xuất sửa: "${v.suggestion}"</span></li>`;
                     });
                     contentHtml += `</ul></div>`;
                 }
@@ -1703,9 +1764,9 @@
                 contentHtml += `</div>`;
                 msgBox.innerHTML = contentHtml;
             } else if (!audit.layers.disclaimer.present) {
-                msgBox.innerHTML = '<div class="text-rose-800 font-semibold text-xs">Bắt buộc thêm câu cảnh báo: "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."</div>';
+                msgBox.innerHTML = '<div class="text-rose-800 font-semibold text-sm p-3 bg-rose-50 rounded border border-rose-200">Bắt buộc thêm câu cảnh báo: "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."</div>';
             } else {
-                msgBox.innerHTML = '<div class="text-emerald-800 font-bold text-xs p-2 bg-emerald-50 rounded border border-emerald-200">Nội dung đạt chuẩn quy định quảng cáo theo Nghị định 342/2025/NĐ-CP và Luật Dược. Đã có đầy đủ câu Disclaimer bắt buộc.</div>';
+                msgBox.innerHTML = '<div class="text-emerald-800 font-bold text-sm p-3 bg-emerald-50 rounded border border-emerald-200">Nội dung đạt chuẩn quy định quảng cáo theo Nghị định 342/2025/NĐ-CP và Luật Dược. Đã có đầy đủ câu Disclaimer bắt buộc.</div>';
             }
         }
 
@@ -1719,21 +1780,17 @@
                 return;
             }
 
-            document.getElementById('radar-results-panel').classList.add('hidden');
-            document.getElementById('ai-agent-results-panel').classList.remove('hidden');
-
             const scoreDisplay = document.getElementById('audit-score-display');
             const badge = document.getElementById('audit-badge-display');
             const wrap = document.getElementById('audit-score-wrap');
             const msgBox = document.getElementById('audit-msg-box');
-            const rewriteBox = document.getElementById('ai-rewrite-box');
 
             scoreDisplay.innerText = 'Đang quét...';
-            badge.className = 'px-3 py-1 rounded text-xs font-bold uppercase bg-indigo-700 text-white animate-pulse';
+            badge.className = 'px-3.5 py-1.5 rounded-md text-xs font-bold uppercase bg-corp-800 text-white animate-pulse';
             badge.innerText = 'AI AGENT ĐANG THẨM ĐỊNH';
-            wrap.className = 'flex items-center justify-between p-3 rounded border bg-indigo-50 border-indigo-300 text-indigo-950';
+            wrap.className = 'flex items-center justify-between p-3.5 rounded-lg border bg-indigo-50 border-indigo-300 text-indigo-950';
 
-            msgBox.innerHTML = '<div class="text-xs text-indigo-900 font-medium p-3 text-center">🤖 AI Compliance Agent đang đối chiếu với Hồ sơ công bố sản phẩm, rà soát 7 tầng pháp lý & xây dựng chuỗi suy luận (Chain-of-Thought)...</div>';
+            msgBox.innerHTML = '<div class="text-sm text-indigo-950 font-medium p-8 text-center">AI Compliance Agent đang đối chiếu với Hồ sơ công bố sản phẩm, rà soát pháp lý & xây dựng chuỗi thẩm định...</div>';
 
             const res = await fetch('/api/content/ai-agent-audit', {
                 method: 'POST',
@@ -1746,28 +1803,28 @@
             document.getElementById('ai-model-tag').innerText = data.model_name;
             document.getElementById('ai-summary-text').innerText = data.executive_summary;
 
-            // Render Chain of Thought
+            // Render Chain of Thought với kích thước chữ 14px dễ đọc
             const cotBox = document.getElementById('ai-cot-steps');
             cotBox.innerHTML = '';
             if (data.chain_of_thought) {
                 data.chain_of_thought.forEach(step => {
-                    cotBox.innerHTML += `<div class="p-1.5 rounded bg-white border border-slate-200 text-slate-800 font-mono text-[10px] leading-relaxed">• ${step}</div>`;
+                    cotBox.innerHTML += `<div class="p-2.5 rounded-md bg-white border border-slate-200 text-slate-800 font-sans text-sm leading-relaxed">${step}</div>`;
                 });
             }
 
             scoreDisplay.innerText = data.total_score + ' / 100';
 
             if (data.risk_level === 'COMPLIANT') {
-                wrap.className = 'flex items-center justify-between p-3 rounded border bg-emerald-50 border-emerald-300 text-emerald-900';
-                badge.className = 'px-3 py-1 rounded text-xs font-bold uppercase bg-emerald-700 text-white';
+                wrap.className = 'flex items-center justify-between p-3.5 rounded-lg border bg-emerald-50 border-emerald-300 text-emerald-900';
+                badge.className = 'px-3.5 py-1.5 rounded-md text-xs font-bold uppercase bg-emerald-700 text-white';
                 badge.innerText = 'ĐẠT CHUẨN NGHỊ ĐỊNH 342';
             } else if (data.risk_level === 'CRITICAL_HAZARD') {
-                wrap.className = 'flex items-center justify-between p-3 rounded border bg-rose-100 border-rose-400 text-rose-950 animate-pulse';
-                badge.className = 'px-3 py-1 rounded text-[11px] font-extrabold uppercase bg-rose-800 text-white tracking-wider';
+                wrap.className = 'flex items-center justify-between p-3.5 rounded-lg border bg-rose-100 border-rose-400 text-rose-950 animate-pulse';
+                badge.className = 'px-3.5 py-1.5 rounded-md text-xs font-extrabold uppercase bg-rose-800 text-white tracking-wider';
                 badge.innerText = data.verdict_title || 'BÁO ĐỘNG ĐỎ PHÁP LÝ';
             } else {
-                wrap.className = 'flex items-center justify-between p-3 rounded border bg-amber-50 border-amber-300 text-amber-950';
-                badge.className = 'px-3 py-1 rounded text-xs font-bold uppercase bg-amber-700 text-white';
+                wrap.className = 'flex items-center justify-between p-3.5 rounded-lg border bg-amber-50 border-amber-300 text-amber-950';
+                badge.className = 'px-3.5 py-1.5 rounded-md text-xs font-bold uppercase bg-amber-700 text-white';
                 badge.innerText = data.verdict_title || 'CẦN CHUẨN HÓA';
             }
 
@@ -1781,54 +1838,58 @@
             }
 
             violationBadge.innerText = count + ' lỗi tô đỏ';
+            const tabBadge = document.getElementById('tab-badge-violations');
+            if (tabBadge) tabBadge.innerText = count;
+
             if (count > 0) {
-                violationBadge.className = 'px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-rose-200 text-rose-950 animate-pulse';
+                violationBadge.className = 'px-2 py-0.5 rounded-full text-xs font-extrabold bg-rose-200 text-rose-950 animate-pulse';
                 switchEditorMode('HIGHLIGHT');
+                switchAuditResultTab('violations');
             } else {
-                violationBadge.className = 'px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800';
+                violationBadge.className = 'px-2 py-0.5 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-800';
+                switchAuditResultTab('rewrite');
             }
 
-            // Render danh sách vi phạm chi tiết
-            let html = `<div class="font-bold text-slate-900 mb-2 text-xs flex justify-between items-center">
-                <span>🎯 Phát hiện ${count} điểm vi phạm so với Hồ sơ công bố & NĐ 342:</span>
-                <span class="text-[10px] text-slate-500 font-normal">Căn cứ: NĐ 15/2018 & NĐ 342/2025</span>
+            // Render danh sách vi phạm chi tiết (Cỡ chữ 14px, không icon vớ vẩn)
+            let html = `<div class="font-bold text-slate-900 mb-2.5 text-xs flex justify-between items-center">
+                <span>Phát hiện ${count} điểm vi phạm so với Hồ sơ công bố & NĐ 342:</span>
+                <span class="text-xs text-slate-500 font-semibold">Căn cứ: NĐ 15/2018 & NĐ 342/2025</span>
             </div>`;
 
             if (data.semantic_violations && data.semantic_violations.length > 0) {
-                html += '<div class="space-y-2">';
+                html += '<div class="space-y-2.5">';
                 data.semantic_violations.forEach(v => {
                     const sevBadge = v.severity === 'CRITICAL' ?
-                        '<span class="px-1.5 py-0.2 bg-rose-700 text-white font-bold rounded text-[9px]">CRITICAL</span>' :
-                        '<span class="px-1.5 py-0.2 bg-amber-600 text-white font-bold rounded text-[9px]">HIGH</span>';
+                        '<span class="px-2 py-0.5 bg-rose-700 text-white font-bold rounded text-xs uppercase">NGHIÊM TRỌNG</span>' :
+                        '<span class="px-2 py-0.5 bg-amber-600 text-white font-bold rounded text-xs uppercase">CẢNH BÁO</span>';
 
                     html += `
-                        <div class="p-2.5 rounded bg-white border border-slate-200 text-xs space-y-1 shadow-xs">
+                        <div class="p-3 rounded-lg bg-white border border-slate-200 text-sm space-y-1.5 shadow-xs">
                             <div class="flex justify-between items-center">
-                                <span class="font-bold text-slate-900 flex items-center gap-1.5">
+                                <span class="font-bold text-slate-900 flex items-center gap-2">
                                     ${sevBadge}
-                                    <span class="text-rose-900">${v.category}</span>
+                                    <span class="text-rose-900 font-bold">${v.category}</span>
                                 </span>
-                                <span class="text-[10px] font-bold text-indigo-700 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200">${v.legal_basis}</span>
+                                <span class="text-xs font-bold text-indigo-800 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">${v.legal_basis}</span>
                             </div>
-                            <div class="text-[11px] text-slate-800"><span class="text-slate-500 font-semibold">Đoạn trích:</span> <b class="bg-rose-50 text-rose-950 px-1 rounded">"${v.quote}"</b></div>
-                            <div class="text-[11px] text-slate-700 leading-relaxed"><span class="text-slate-500 font-semibold">Phân tích vi phạm:</span> ${v.explanation}</div>
-                            <div class="text-[11px] text-emerald-900 bg-emerald-50/70 p-1.5 rounded font-serif italic flex items-center justify-between">
-                                <div><span class="font-bold not-italic font-sans text-emerald-800">➔ Đề xuất chuẩn y tế:</span> "${v.compliant_suggestion}"</div>
-                                <button onclick="insertMissingText('${v.compliant_suggestion.replace(/'/g, "\\'")}')" class="ml-2 px-2 py-0.5 bg-emerald-700 text-white font-bold rounded text-[10px] not-italic font-sans whitespace-nowrap hover:bg-emerald-800">Thay thế</button>
+                            <div class="text-sm text-slate-800"><span class="text-slate-500 font-semibold">Đoạn trích vi phạm:</span> <b class="bg-rose-100 text-rose-950 px-1.5 py-0.5 rounded font-sans">"${v.quote}"</b></div>
+                            <div class="text-sm text-slate-700 leading-relaxed"><span class="text-slate-500 font-semibold">Phân tích vi phạm:</span> ${v.explanation}</div>
+                            <div class="text-sm text-emerald-950 bg-emerald-50/80 p-2.5 rounded-md border border-emerald-200 flex items-center justify-between mt-1">
+                                <div><span class="font-bold text-emerald-800">Đề xuất chuẩn y tế:</span> "${v.compliant_suggestion}"</div>
+                                <button onclick="insertMissingText('${v.compliant_suggestion.replace(/'/g, "\\'")}')" class="ml-2 px-3 py-1 bg-emerald-700 text-white font-bold rounded text-xs whitespace-nowrap hover:bg-emerald-800 shadow-2xs">Áp dụng chuẩn y tế</button>
                             </div>
                         </div>
                     `;
                 });
                 html += '</div>';
             } else {
-                html += '<div class="p-3 bg-emerald-50 rounded border border-emerald-200 text-emerald-900 font-bold text-xs">AI Agent xác nhận bài viết không chứa bất kỳ sai lệch nào so với Hồ sơ công bố sản phẩm và đạt chuẩn Nghị định 342/2025/NĐ-CP.</div>';
+                html += '<div class="p-4 bg-emerald-50 rounded-lg border border-emerald-200 text-emerald-950 font-bold text-sm">AI Agent xác nhận bài viết không chứa bất kỳ sai lệch nào so với Hồ sơ công bố sản phẩm và đạt chuẩn Nghị định 342/2025/NĐ-CP.</div>';
             }
             msgBox.innerHTML = html;
 
             // Render rewritten draft
             if (data.rewritten_draft) {
                 lastAiRewrittenText = data.rewritten_draft;
-                rewriteBox.classList.remove('hidden');
                 document.getElementById('ai-rewritten-content').innerText = data.rewritten_draft;
             }
         }

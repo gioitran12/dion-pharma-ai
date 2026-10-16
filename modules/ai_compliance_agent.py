@@ -148,9 +148,9 @@ def generate_inline_highlighted_html(text: str, violations: List[Dict[str, Any]]
             mw_exp = html.escape(mw.get("explanation", ""))
             mw_sug = html.escape(mw.get("compliant_suggestion", ""))
             html_parts.append(
-                f'<div class="p-2 bg-rose-100/95 border border-rose-400 rounded text-rose-950 text-xs font-semibold flex items-center justify-between shadow-xs">'
-                f'<div>⚠️ <b>{mw_cat}:</b> {mw_exp}</div>'
-                f'<button onclick="insertMissingText(\'{mw_sug}\')" class="ml-2 px-2.5 py-1 bg-rose-700 text-white rounded text-[11px] font-bold hover:bg-rose-800 whitespace-nowrap shadow-xs">Thêm vào bài</button>'
+                f'<div class="p-2.5 bg-rose-50 border border-rose-300 rounded text-rose-950 text-xs font-semibold flex items-center justify-between shadow-xs">'
+                f'<div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-rose-600 inline-block"></span> <b>{mw_cat}:</b> {mw_exp}</div>'
+                f'<button onclick="insertMissingText(\'{mw_sug}\')" class="ml-2 px-3 py-1 bg-rose-700 text-white rounded text-xs font-bold hover:bg-rose-800 whitespace-nowrap shadow-xs">Thêm vào bài</button>'
                 f'</div>'
             )
         html_parts.append('</div>')
@@ -608,18 +608,19 @@ def _run_local_expert_agent(text: str, product: Optional[Dict[str, Any]] = None)
 
     # 12. TỔNG HỢP BÀI VIẾT VIẾT LẠI HOÀN TOÀN TỪ AI AGENT (REWRITTEN DRAFT)
     rewritten_draft = (
-        f"🌿 GIẢI PHÁP CHĂM SÓC SỨC KHỎE XƯƠNG RĂNG & VI CHẤT TOÀN DIỆN TỪ TPBVSK {p_name.upper()}\n\n"
+        f"GIẢI PHÁP BỔ SUNG VI CHẤT DINH DƯỠNG & CHĂM SÓC HỆ XƯƠNG RĂNG TỪ TPBVSK {p_name.upper()}\n\n"
         "Bổ sung vi chất đúng cách và duy trì hệ xương dẻo dai là nền tảng quan trọng giúp bảo vệ sức khỏe cho cả mẹ bầu và người lớn tuổi.\n\n"
-        "💡 CÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO:\n"
+        "CÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO (XNQC):\n"
         "• Hỗ trợ bổ sung Canxi sinh học từ tảo biển đỏ Lithothamnion và Vitamin D3 K2 MK-7 chất lượng cao.\n"
         "• Hỗ trợ tăng cường sức khỏe xương răng, hỗ trợ giảm nguy cơ loãng xương ở người lớn và hỗ trợ đáp ứng nhu cầu Canxi tăng cao cho phụ nữ mang thai.\n"
         "• Hỗ trợ tăng cường khả năng hấp thu Canxi và khoáng chất, an toàn và lành tính cho dạ dày khi sử dụng đều đặn.\n\n"
-        "🔬 ĐƯỢC SẢN XUẤT TẠI NHÀ MÁY ĐẠT CHUẨN GMP QUỐC TẾ:\n"
+        "TIÊU CHUẨN SẢN XUẤT ĐẠT CHUẨN GMP QUỐC TẾ:\n"
         "Sản phẩm ứng dụng công nghệ vi bao hiện đại, được kiểm soát chất lượng nghiêm ngặt theo tiêu chuẩn ISO 22000.\n\n"
-        "📦 Thích hợp cho: Phụ nữ chuẩn bị mang thai, đang mang thai và cho con bú; người lớn tuổi, người có nguy cơ loãng xương hoặc người có nhu cầu bổ sung Canxi.\n\n"
-        "👉 Liên hệ ngay đội ngũ Dược sĩ tư vấn để xây dựng lộ trình chăm sóc sức khỏe khoa học phù hợp với thể trạng của bạn!\n"
+        "ĐỐI TƯỢNG SỬ DỤNG:\n"
+        "Phụ nữ chuẩn bị mang thai, đang mang thai và cho con bú; người lớn tuổi, người có nguy cơ loãng xương hoặc người có nhu cầu bổ sung Canxi theo khuyến nghị.\n\n"
+        "Liên hệ đội ngũ Dược sĩ chuyên môn để được tư vấn lộ trình sử dụng khoa học và phù hợp với thể trạng.\n"
         "---\n"
-        "⚠️ Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
+        "KHUYẾN CÁO: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
     )
 
     return {
