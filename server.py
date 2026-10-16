@@ -14,6 +14,9 @@ from modules.sales_copilot import generate_copilot_response
 from modules.content_generator import (
     generate_marketing_draft, validate_content_compliance, deep_audit_radar, auto_fix_compliance
 )
+from modules.ai_compliance_agent import (
+    run_ai_compliance_audit, set_runtime_ai_key, get_runtime_ai_status
+)
 
 app = FastAPI(title="DION Healthcare AI — Enterprise Platform")
 
@@ -97,6 +100,25 @@ async def api_content_audit(text: str = Body(..., embed=True)):
 @app.post("/api/content/auto-fix")
 async def api_content_autofix(text: str = Body(..., embed=True), sku: str = Body("DION-D3-1000", embed=True)):
     return auto_fix_compliance(text, sku=sku)
+
+@app.post("/api/content/ai-agent-audit")
+async def api_content_ai_agent_audit(
+    text: str = Body(..., embed=True),
+    api_key: Optional[str] = Body(None, embed=True),
+    provider: str = Body("auto", embed=True)
+):
+    return run_ai_compliance_audit(text=text, api_key=api_key, provider=provider)
+
+@app.get("/api/config/ai-status")
+async def api_ai_status():
+    return get_runtime_ai_status()
+
+@app.post("/api/config/ai-key")
+async def api_ai_set_key(
+    api_key: str = Body(..., embed=True),
+    provider: str = Body("auto", embed=True)
+):
+    return set_runtime_ai_key(key=api_key, provider=provider)
 
 # --- GIẢI PHÁP 3: AI MARKET INTELLIGENCE (THEO DÕI THỊ TRƯỜNG & ĐỐI THỦ) ---
 @app.get("/api/market-intelligence")
