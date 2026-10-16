@@ -5,37 +5,37 @@ from typing import Dict, Any, List, Optional
 from modules.claims_hub import get_all_products, get_product_by_sku
 
 # ==============================================================================
-# CƠ SỞ DỮ LIỆU TÌNH BÁO THỊ TRƯỜNG & ĐỐI THỦ CHUẨN MỰC TẠI VIỆT NAM (2026)
+# CƠ SỞ DỮ LIỆU PHÂN TÍCH THỊ TRƯỜNG & SẢN PHẨM CẠNH TRANH DƯỢC PHẨM VIỆT NAM (2026)
 # ==============================================================================
 
-# Dữ liệu đối thủ thực tế được khảo sát tại chuỗi Long Châu, Pharmacity, An Khang, và Shopee Mall
+# Dữ liệu khảo sát thực tế tại các chuỗi nhà thuốc lớn (Long Châu, Pharmacity, An Khang) và kênh TMĐT
 MARKET_BENCHMARK_DATABASE = {
     "DION-CAL-MOM": {
         "category_title": "Canxi Cho Mẹ Bầu & Phòng Ngừa Loãng Xương",
-        "market_share_overview": "Quy mô thị trường Canxi thai sản tại Việt Nam ước đạt 1.850 tỷ VNĐ/năm, tăng trưởng 14.5% năm 2026.",
+        "market_share_overview": "Quy mô thị trường bổ sung Canxi thai sản tại Việt Nam ước đạt 1.850 tỷ VNĐ/năm, tốc độ tăng trưởng bình quân 14.5% năm 2026.",
         "consumer_pain_points": [
-            "Khách hàng sợ nhất táo bón, đầy bụng, nóng trong khi uống canxi vô cơ.",
-            "Lo ngại lắng cặn canxi tại bánh rau (vôi hóa nhau thai sớm) và sỏi thận.",
-            "Tâm lý sính ngoại chuộng hàng Úc/Mỹ nhưng gặp nhiều hàng xách tay trôi nổi, không rõ nguồn gốc."
+            "Người dùng lo ngại tình trạng táo bón, kích ứng dạ dày và nóng trong khi sử dụng canxi vô cơ.",
+            "Nguy cơ lắng cặn vôi hóa sớm bánh rau hoặc hình thành sỏi thận khi hấp thu kém.",
+            "Tâm lý chuộng hàng ngoại nhập nhưng đối mặt với rủi ro hàng xách tay trôi nổi, thiếu hóa đơn chứng từ."
         ],
         "market_trends": [
             {
-                "trend_name": "Chuyển dịch sang Canxi sinh học từ tảo biển đỏ Lithothamnion",
-                "growth": "+42% lượt tìm kiếm & đơn thuốc",
-                "insight": "Dược sĩ và bác sĩ sản khoa ưu tiên kê canxi hữu cơ sinh học để giảm 94% táo bón thai kỳ.",
-                "dion_opportunity": "Cal-Mom sở hữu nguồn tảo đỏ Lithothamnion chuẩn hữu cơ Châu Âu, đánh trúng tâm lý an toàn tuyệt đối."
+                "trend_name": "Chuyển dịch sang Canxi hữu cơ sinh học từ tảo biển đỏ Lithothamnion",
+                "growth": "+42% lượt tìm kiếm & chỉ định",
+                "insight": "Dược sĩ và chuyên gia dinh dưỡng ưu tiên canxi hữu cơ sinh học có cấu trúc tổ ong xốp giúp hấp thu tự nhiên và giảm tỷ lệ táo bón.",
+                "dion_opportunity": "Cal-Mom sử dụng nguồn tảo đỏ Lithothamnion đạt chuẩn hữu cơ Châu Âu, đáp ứng toàn diện tiêu chí an toàn cho thai kỳ."
             },
             {
                 "trend_name": "Công thức phức hợp chuẩn D3 + K2 (MK-7) định hướng xương",
                 "growth": "+38% doanh số kênh chuỗi",
-                "insight": "Người tiêu dùng hiểu rằng thiếu K2 thì canxi sẽ lắng đọng vào mạch máu thay vì vào xương thai nhi.",
-                "dion_opportunity": "DION Cal-Mom tích hợp sẵn K2 MK-7 tinh khiết và Magie Bisglycinate, tạo combo hoàn chỉnh không cần mua thêm."
+                "insight": "Người tiêu dùng ngày càng hiểu rõ vai trò của Vitamin K2 trong việc kích hoạt Osteocalcin, dẫn truyền canxi trực tiếp vào mô xương.",
+                "dion_opportunity": "DION Cal-Mom tích hợp sẵn K2 MK-7 tinh khiết và Magie Bisglycinate, tạo công thức đồng vận hoàn chỉnh không cần mua bổ sung."
             }
         ],
         "competitors": [
             {
                 "id": "COMP-CAL-01",
-                "brand": "Bio-Island (Nhập khẩu Úc)",
+                "brand": "Bio-Island (Australia)",
                 "product_name": "Bio-Island Extra Strength Milk Calcium",
                 "origin": "Úc (Australia)",
                 "active_form": "Canxi Hydroxyapatite từ sữa bò (150mg canxi nguyên tố/viên)",
@@ -43,14 +43,14 @@ MARKET_BENCHMARK_DATABASE = {
                 "cost_per_day": "10.200 đ / ngày (uống 2 viên)",
                 "channels": "Long Châu, Pharmacity, Cửa hàng Mẹ & Bé, Hàng xách tay",
                 "pharmacy_margin": "12% - 15% (Biên lợi nhuận quầy thuốc thấp)",
-                "strengths": "Thương hiệu ngoại nhập nổi tiếng, tâm lý người dùng tin tưởng hàng Úc.",
-                "weaknesses": "Hàm lượng canxi nguyên tố thấp (phải uống 2-3 viên/ngày), nguồn gốc sữa bò dễ gây dị ứng đạm sữa ở một số mẹ bầu, hàng xách tay giả mạo nhiều trên sàn TMĐT.",
-                "dion_advantage": "DION Cal-Mom chiết xuất 100% từ tảo đỏ Lithothamnion không gây dị ứng, bổ sung đủ bộ D3+K2+Magie, chiết khấu đại lý 32% (gấp hơn 2 lần Bio-Island).",
-                "counter_pitch": "Dạ thưa Dược sĩ, Bio-Island là hàng ngoại quen thuộc nhưng chiết khấu cho quầy chỉ tầm 12-14% và thị trường hàng giả rất phức tạp. DION Cal-Mom bên em dùng canxi sinh học tảo đỏ hữu cơ, sinh khả dụng cao hơn 2.4 lần, có nghiên cứu PubMed giảm 94% táo bón. Quan trọng là biên lợi nhuận cho quầy đạt 32%, công ty bảo hộ giá và hỗ trợ đổi trả 100% nếu cận date ạ."
+                "strengths": "Thương hiệu ngoại nhập lâu năm, độ nhận diện cao đối với người tiêu dùng.",
+                "weaknesses": "Hàm lượng canxi nguyên tố thấp (cần dùng 2-3 viên/ngày); nguồn gốc sữa bò tiềm ẩn nguy cơ dị ứng đạm sữa; tồn tại nhiều hàng xách tay không có hóa đơn VAT.",
+                "dion_advantage": "DION Cal-Mom chiết xuất 100% từ tảo đỏ Lithothamnion không gây dị ứng, bổ sung đầy đủ bộ D3 + K2 MK-7 + Magie, chiết khấu đại lý 32% (gấp hơn 2 lần Bio-Island).",
+                "counter_pitch": "Kính thưa Quý Dược sĩ, Bio-Island là sản phẩm ngoại quen thuộc nhưng hiện tại biên lợi nhuận của quầy chỉ ở mức 12-14% và thị trường hàng xách tay rất phức tạp. DION Cal-Mom sử dụng canxi sinh học tảo đỏ tự nhiên, sinh khả dụng cao hơn 2.4 lần so với canxi thông thường và có nghiên cứu lâm sàng kiểm chứng giảm tỷ lệ táo bón thai kỳ. Đồng thời, DION bảo đảm chiết khấu 32% cho quầy, hỗ trợ đổi trả và xuất đầy đủ hóa đơn VAT chuẩn ngạch."
             },
             {
                 "id": "COMP-CAL-02",
-                "brand": "Ostelin (Sanofi Úc)",
+                "brand": "Ostelin (Sanofi)",
                 "product_name": "Ostelin Calcium & Vitamin D3",
                 "origin": "Úc (Australia)",
                 "active_form": "Canxi Carbonate (vô cơ) 600mg + Vitamin D3 500IU",
@@ -58,59 +58,59 @@ MARKET_BENCHMARK_DATABASE = {
                 "cost_per_day": "6.000 đ / ngày",
                 "channels": "Nhà thuốc chuỗi lớn, TMĐT",
                 "pharmacy_margin": "15% - 18%",
-                "strengths": "Giá theo ngày rẻ, thương hiệu lớn thuộc tập đoàn Sanofi.",
-                "weaknesses": "Dùng gốc Canxi Carbonate vô cơ (đá vôi), tỷ lệ gây táo bón, ợ chua và đầy bụng rất cao; không có Vitamin K2 (MK-7) để định hướng canxi vào xương.",
-                "dion_advantage": "DION Cal-Mom là canxi sinh học cấu trúc xốp tổ ong không lắng cặn, tích hợp sẵn K2 MK-7 định hướng canxi chính xác, khắc phục 100% nhược điểm táo bón của Ostelin.",
-                "counter_pitch": "Ostelin giá tốt nhưng dùng gốc Canxi Carbonate vô cơ, các mẹ bầu uống vào khoảng 60% phản hồi bị táo bón và nóng ruột. Khi khách quay lại phàn nàn táo bón, quầy mình tư vấn nâng cấp lên dòng DION Cal-Mom tảo đỏ hữu cơ, khách uống êm bụng sẽ gắn bó và quay lại quầy mua đều đặn suốt 9 tháng thai kỳ ạ."
+                "strengths": "Giá thành theo ngày kinh tế, thuộc tập đoàn dược phẩm đa quốc gia Sanofi.",
+                "weaknesses": "Sử dụng gốc Canxi Carbonate vô cơ, tỷ lệ ghi nhận tác dụng phụ đường tiêu hóa (táo bón thai kỳ, đầy bụng, ợ chua) cao; công thức thiếu Vitamin K2 (MK-7) để định hướng canxi vào xương.",
+                "dion_advantage": "DION Cal-Mom là canxi sinh học cấu trúc xốp vi thể không lắng cặn, tích hợp sẵn K2 MK-7 và Magie, khắc phục triệt để nhược điểm gây táo bón của các dòng canxi vô cơ truyền thống.",
+                "counter_pitch": "Ostelin có lợi thế về giá nhưng sử dụng canxi carbonate vô cơ nên tỷ lệ mẹ bầu phản hồi nóng trong và táo bón khá phổ biến. Khi khách hàng phản hồi các triệu chứng này, Quý Dược sĩ có thể tư vấn nâng cấp lên dòng DION Cal-Mom tảo đỏ hữu cơ, êm dịu dạ dày và bổ sung sẵn K2 MK-7 giúp canxi hấp thu trúng đích vào mô xương, giúp quầy duy trì sự hài lòng và tỷ lệ khách hàng quay lại mua định kỳ rất cao."
             },
             {
                 "id": "COMP-CAL-03",
-                "brand": "Thương hiệu Nội địa X",
+                "brand": "Thương hiệu Phổ thông X",
                 "product_name": "Calci-Nano Plus D3 K2",
                 "origin": "Việt Nam (Gia công nội địa)",
                 "active_form": "Canxi Nano Carbonate + D3 + K2",
                 "retail_price": "165.000 đ / hộp 30 viên",
                 "cost_per_day": "5.500 đ / ngày",
-                "channels": "Nhà thuốc lẻ vùng ven, đại lý cấp 2, chợ sỉ",
+                "channels": "Nhà thuốc tư nhân, đại lý cấp 2, chợ sỉ",
                 "pharmacy_margin": "35% - 40%",
-                "strengths": "Giá rẻ, chiết khấu quầy thuốc cao, dễ bán cho khách thu nhập thấp.",
-                "weaknesses": "Bản chất vẫn là canxi carbonate nghiền nano, thiếu kiểm nghiệm lâm sàng PubMed độc lập, bao bì bình dân, khách hàng trẻ đô thị ít tin tưởng.",
-                "dion_advantage": "DION Cal-Mom định vị phân khúc trung-cao cấp với nguồn nguyên liệu chuẩn Organic Châu Âu, đầy đủ nghiên cứu RCTs quốc tế, hình ảnh sang trọng giúp nâng tầm uy tín nhà thuốc.",
-                "counter_pitch": "Dòng Calci-Nano giá rẻ dễ bán nhưng quầy khó giữ chân khách hàng kỹ tính hoặc mẹ bầu đô thị. DION Cal-Mom là giải pháp phân khúc chuẩn y khoa giúp nhà thuốc gia tăng giá trị đơn hàng, biên lợi nhuận vẫn đảm bảo trên 30% mà khách dùng êm bụng, uy tín quầy được nâng cao ạ."
+                "strengths": "Mức giá phổ thông, chiết khấu đại lý cao, dễ tiếp cận nhóm khách hàng thu nhập trung bình.",
+                "weaknesses": "Bản chất thành phần vẫn là muối canxi carbonate nghiền mịn, thiếu nghiên cứu thử nghiệm lâm sàng RCTs độc lập; bao bì bình dân, khó thuyết phục phân khúc khách hàng đô thị cao cấp.",
+                "dion_advantage": "DION Cal-Mom định vị phân khúc chuẩn y khoa với nguyên liệu Organic Châu Âu, đầy đủ nghiên cứu quốc tế PubMed, bao bì đạt chuẩn giúp nâng cao hình ảnh tư vấn chuyên nghiệp của nhà thuốc.",
+                "counter_pitch": "Các dòng canxi nano giá rẻ dễ tiếp cận ở phân khúc phổ thông nhưng khó tạo dựng sự gắn kết với đối tượng khách hàng kỹ tính hoặc mẹ bầu hiện đại. DION Cal-Mom mang đến giải pháp dinh dưỡng chuẩn y khoa với nguyên liệu hữu cơ nhập khẩu, chứng minh lâm sàng rõ ràng, giúp nhà thuốc nâng tầm uy tín tư vấn chuyên môn và tối ưu giá trị đơn hàng với biên lợi nhuận ổn định trên 30%."
             }
         ]
     },
     "DION-D3-1000": {
         "category_title": "Vitamin D3 & D3 K2 Chuẩn Tinh Khiết Cho Gia Đình",
-        "market_share_overview": "Phân khúc Vitamin D3 dạng giọt tại Việt Nam tăng trưởng vượt bậc 24% hàng năm do nhận thức phòng ngừa còi xương và tăng đề kháng sau dịch bệnh.",
+        "market_share_overview": "Phân khúc Vitamin D3 dạng giọt tại Việt Nam tăng trưởng 24% hàng năm do nhận thức phòng ngừa còi xương và tăng cường miễn dịch chủ động ngày càng được chú trọng.",
         "consumer_pain_points": [
-            "Khó đong đếm liều lượng chính xác, sợ quá liều Vitamin D ở trẻ nhỏ và người cao tuổi.",
-            "Dung môi dầu kém chất lượng dễ bị oxy hóa, hôi dầu hoặc chứa chất bảo quản nhân tạo.",
-            "Sản phẩm nhập khẩu Đức/Pháp giá quá cao và thường xuyên đứt hàng phân phối chính ngạch."
+            "Khó phân liều chính xác đối với trẻ sơ sinh và trẻ nhỏ, lo ngại nguy cơ quá liều Vitamin D.",
+            "Dung môi dầu kém chất lượng dễ bị ôi hóa hoặc chứa tá dược bảo quản nhân tạo.",
+            "Sản phẩm nhập khẩu châu Âu giá thành cao và thường xuyên gián đoạn nguồn cung chính ngạch."
         ],
         "market_trends": [
             {
-                "trend_name": "D3 nhỏ giọt chuẩn liều kết hợp chất dẫn MCT hữu cơ",
+                "trend_name": "D3 nhỏ giọt chuẩn liều kết hợp chất dẫn dầu hạt tự nhiên",
                 "growth": "+35% doanh số kênh quầy thuốc",
-                "insight": "Phụ huynh chuộng dạng nhỏ giọt phân liều chuẩn xác 1000IU, dầu nền MCT dừa không mùi dễ uống.",
-                "dion_opportunity": "DION D3 1000IU Drops thiết kế đầu nhỏ giọt chuẩn y tế, dung môi dầu hạt tự nhiên tinh khiết."
+                "insight": "Phụ huynh ưu tiên dạng nhỏ giọt phân liều chính xác 1000IU, dầu nền hữu cơ trung tính không mùi vị giúp trẻ hợp tác uống.",
+                "dion_opportunity": "DION D3 1000IU Drops thiết kế đầu nhỏ giọt chuẩn y tế, dung môi dầu tự nhiên tinh khiết, dễ sử dụng."
             }
         ],
         "competitors": [
             {
                 "id": "COMP-D3-01",
-                "brand": "Sunday Natural (Nhập khẩu Đức)",
+                "brand": "Sunday Natural (Đức)",
                 "product_name": "Vitamin D3 K2 MK7 200IE + 15µg",
                 "origin": "Đức (Germany)",
-                "active_form": "D3 thuần thực vật từ địa y + K2 MK-7 trong dầu dừa MCT",
+                "active_form": "D3 thực vật từ địa y + K2 MK-7 trong dầu dừa MCT",
                 "retail_price": "380.000 đ / lọ 20ml",
                 "cost_per_day": "3.500 đ / ngày",
                 "channels": "Hàng xách tay, Shop Mẹ & Bé, TMĐT (Chưa có phân phối độc quyền chính thức)",
                 "pharmacy_margin": "10% - 12% (Rất thấp do qua nhiều trung gian)",
-                "strengths": "Nổi tiếng trên mạng xã hội, hội nhóm bỉm sữa truyền tai nhau nhiều.",
-                "weaknesses": "Không có hồ sơ công bố chính thức tại Việt Nam (hàng xách tay trôi nổi), rủi ro pháp lý cao cho nhà thuốc nếu Đội Quản lý thị trường kiểm tra tem nhãn phụ.",
-                "dion_advantage": "DION D3 1000IU có đầy đủ Số ĐKSP Cục ATTP `4521/2025/ĐKSP`, hóa đơn VAT minh bạch, bảo vệ an toàn 100% cho nhà thuốc khi thanh kiểm tra.",
-                "counter_pitch": "Sunday Natural bán chạy trên mạng nhưng gần 80% là hàng xách tay không có hóa đơn chứng từ, nhà thuốc nhập vào rủi ro bị quản lý thị trường xử phạt rất nặng. DION D3 bên em nhập khẩu chuẩn ngạch, đầy đủ hóa đơn đỏ, chiết khấu 30% và pháp lý Cục ATTP tuyệt đối an toàn cho quầy ạ."
+                "strengths": "Mức độ lan tỏa cao trên các cộng đồng mạng xã hội và hội nhóm mẹ và bé.",
+                "weaknesses": "Chưa có hồ sơ công bố chính thức tại Việt Nam (chủ yếu là hàng tiểu ngạch), rủi ro pháp lý về hóa đơn chứng từ và tem nhãn phụ khi cơ quan quản lý kiểm tra.",
+                "dion_advantage": "DION D3 1000IU có đầy đủ Số tiếp nhận bản công bố của Cục ATTP `4521/2025/ĐKSP`, hóa đơn VAT minh bạch, bảo đảm an toàn pháp lý tuyệt đối cho nhà thuốc.",
+                "counter_pitch": "Sunday Natural có độ nhận diện trên mạng xã hội nhưng đa số lưu hành qua đường xách tay không có hóa đơn chứng từ hợp lệ, tiềm ẩn rủi ro khi cơ quan chức năng kiểm tra. DION D3 1000IU có đầy đủ Số ĐKSP Cục ATTP cấp, hóa đơn GTGT xuất trực tiếp, chính sách chiết khấu 30% và đảm bảo tính pháp lý an toàn tuyệt đối cho nhà thuốc khi kinh doanh."
             },
             {
                 "id": "COMP-D3-02",
@@ -120,46 +120,46 @@ MARKET_BENCHMARK_DATABASE = {
                 "active_form": "Cholecalciferol dạng dung dịch nước",
                 "retail_price": "95.000 đ / lọ 10ml",
                 "cost_per_day": "1.500 đ / ngày",
-                "channels": "Hầu hết các bệnh viện và nhà thuốc toàn quốc (Kênh ETC/OTC)",
+                "channels": "Hệ thống bệnh viện và quầy thuốc toàn quốc (Kênh ETC/OTC)",
                 "pharmacy_margin": "8% - 10%",
-                "strengths": "Thuốc lâu năm, bác sĩ nhi khoa quen kê đơn, giá rẻ.",
-                "weaknesses": "Có mùi hồi hắc khó uống, chứa cồn (ethanol) và chất bảo quản, nhiều trẻ nhỏ và người lớn nhạy cảm dễ bị nôn trớ.",
-                "dion_advantage": "DION D3 dạng dầu tự nhiên không mùi, không chứa cồn, êm dịu hoàn toàn và dễ uống gấp nhiều lần Aquadetrim.",
-                "counter_pitch": "Aquadetrim là dòng thuốc quen thuộc nhưng vị cay hắc mùi hoa hồi và có cồn nên nhiều bé uống vào bị nhè hoặc trớ ra. DION D3 dạng dầu dừa tự nhiên không mùi, giọt êm, dễ nhỏ vào cháo sữa hoặc uống trực tiếp, khách dùng thử 1 lần là đổi hẳn sang dòng này ạ."
+                "strengths": "Chế phẩm lâu năm, quen thuộc trong đơn thuốc nhi khoa, giá thành thấp.",
+                "weaknesses": "Dung dịch có mùi hồi đặc trưng, chứa cồn (ethanol) và tá dược bảo quản; ghi nhận tỷ lệ trẻ nhỏ và người dùng nhạy cảm bị nôn trớ sau khi sử dụng.",
+                "dion_advantage": "DION D3 bào chế dạng dầu hạt tự nhiên không mùi vị, hoàn toàn không chứa cồn, êm dịu và dễ uống hơn nhiều lần so với các dung dịch truyền thống.",
+                "counter_pitch": "Aquadetrim là chế phẩm quen thuộc nhưng nhược điểm lớn nhất là có cồn và mùi tinh dầu hồi cay nồng khiến nhiều bé nhè hoặc nôn trớ. DION D3 Drops sử dụng hệ dầu thực vật tự nhiên tinh khiết, hoàn toàn không mùi, không vị, nhỏ êm dịu trực tiếp vào miệng hoặc sữa mà bé không hề nhận ra, rất thuận tiện cho phụ huynh."
             }
         ]
     },
     "DION-FE-FOLIC": {
-        "category_title": "Sắt Hữu Cơ & Axit Folic Chống Thiếu Máu Không Táo Bón",
-        "market_share_overview": "Thị trường chế phẩm bổ sung sắt tại Việt Nam đạt hơn 1.400 tỷ VNĐ. Tỷ lệ phụ nữ mang thai thiếu máu do thiếu sắt tại Việt Nam vẫn ở mức cao (khoảng 32%).",
+        "category_title": "Sắt Hữu Cơ & Axit Folic Chống Thiếu Máu Không Gây Táo Bón",
+        "market_share_overview": "Quy mô thị trường chế phẩm bổ sung sắt tại Việt Nam đạt trên 1.400 tỷ VNĐ. Tỷ lệ phụ nữ mang thai thiếu máu do thiếu sắt vẫn ở mức xấp xỉ 32%.",
         "consumer_pain_points": [
-            "Vị tanh kim loại nồng nặc gây buồn nôn, cồn cào ruột gan.",
-            "Táo bón nặng, phân đen, nổi mụn bọc khi uống sắt vô cơ Sulfate.",
-            "Cơ thể hấp thu kém nếu không phối hợp cùng Axit Folic và Vitamin C."
+            "Vị tanh kim loại nồng gây cảm giác buồn nôn, cồn cào niêm mạc dạ dày.",
+            "Tác dụng phụ táo bón kéo dài, phân đen và nóng trong khi sử dụng muối sắt vô cơ thông thường.",
+            "Hiệu suất hấp thu kém nếu không phối hợp cùng Axit Folic thế hệ mới và Vitamin C."
         ],
         "market_trends": [
             {
                 "trend_name": "Sắt Bisglycinate Chelate thế hệ mới (Hấp thu qua kênh Peptide)",
-                "growth": "+45% đề xuất của chuyên gia dinh dưỡng",
-                "insight": "Sắt chelate hữu cơ không bị ion hóa ở dạ dày, hấp thu nguyên vẹn qua ruột non, không gây kích ứng.",
-                "dion_opportunity": "Fero-Plus kết hợp Sắt Bisglycinate và Quatrefolic (Folic thế hệ 4), không tanh, không nóng trong."
+                "growth": "+45% khuyến nghị từ chuyên gia dinh dưỡng",
+                "insight": "Dạng sắt chelate hữu cơ không bị ion hóa tại dạ dày, bảo toàn cấu trúc đến ruột non giúp hấp thu tối ưu và giảm kích ứng niêm mạc.",
+                "dion_opportunity": "Fero-Plus kết hợp Sắt Bisglycinate và Quatrefolic (Folic thế hệ 4), không tanh, không gây nóng trong."
             }
         ],
         "competitors": [
             {
                 "id": "COMP-FE-01",
-                "brand": "Vitabiotics (Nhập khẩu Anh Quốc)",
+                "brand": "Vitabiotics (Anh Quốc)",
                 "product_name": "Feroglobin B12 Capsules",
-                "origin": "Anh (United Kingdom)",
+                "origin": "Anh Quốc (United Kingdom)",
                 "active_form": "Sắt Fumarate 24mg + Vitamin B6, B12, Kẽm, Đồng",
                 "retail_price": "360.000 đ / hộp 30 viên",
                 "cost_per_day": "12.000 đ / ngày",
                 "channels": "Long Châu, An Khang, Pharmacity",
                 "pharmacy_margin": "14% - 16%",
-                "strengths": "Thương hiệu Vitabiotics số 1 Anh Quốc, công thức đa vi chất.",
-                "weaknesses": "Vẫn dùng gốc sắt Fumarate (muối hữu cơ đời cũ), khả năng hấp thu vẫn phụ thuộc pH dạ dày và khoảng 25% người dùng vẫn than phiền về phân đen, ợ tanh.",
-                "dion_advantage": "DION Fero-Plus dùng Sắt Bisglycinate (Chelate 2 phân tử Glycine) hấp thu nhanh hơn gấp 3.7 lần sắt thường, có Quatrefolic sinh khả dụng cao hơn axit folic thông thường.",
-                "counter_pitch": "Feroglobin tốt nhưng gốc muối Fumarate vẫn gây cảm giác cồn cào ở một số mẹ bầu có dạ dày yếu. DION Fero-Plus dùng sắt Bisglycinate chelate vi bao hoàn toàn, không phân hủy tại dạ dày nên không tanh, không kích ứng niêm mạc. Chiết khấu quầy lên tới 35% giúp tối ưu lợi nhuận kinh doanh ạ."
+                "strengths": "Thương hiệu uy tín từ Anh Quốc, công thức phối hợp đa vi chất phong phú.",
+                "weaknesses": "Vẫn sử dụng muối Sắt Fumarate thế hệ cũ, độ hòa tan và hấp thu phụ thuộc vào môi trường axit dạ dày; khoảng 25% người dùng phản hồi triệu chứng phân đen và cồn cào.",
+                "dion_advantage": "DION Fero-Plus sử dụng Sắt Bisglycinate (Chelate 2 phân tử Glycine) cho sinh khả dụng cao hơn gấp 3.7 lần sắt thông thường, kết hợp Quatrefolic có độ hấp thu cao hơn axit folic thông thường.",
+                "counter_pitch": "Feroglobin là thương hiệu uy tín từ Anh nhưng gốc sắt Fumarate vẫn gây cảm giác cồn cào ở người có tiền sử dạ dày nhạy cảm. DION Fero-Plus ứng dụng sắt Bisglycinate chelate hữu cơ vi bao, không phân ly tại dạ dày nên triệt tiêu hoàn toàn vị tanh và không gây kích ứng niêm mạc. Chính sách chiết khấu 30-35% giúp nhà thuốc đảm bảo hiệu quả kinh doanh tối ưu."
             },
             {
                 "id": "COMP-FE-02",
@@ -171,25 +171,25 @@ MARKET_BENCHMARK_DATABASE = {
                 "cost_per_day": "8.750 đ / ngày",
                 "channels": "Nhà thuốc bệnh viện, quầy thuốc bán lẻ toàn quốc",
                 "pharmacy_margin": "20% - 22%",
-                "strengths": "Dạng nước dễ hấp thu, phổ biến ở các bệnh viện sản khoa.",
-                "weaknesses": "Vị ngọt gắt và mùi kim loại đặc trưng khó uống với mẹ bầu đang nghén nặng; dạng ống bẻ thủy tinh/nhựa cồng kềnh, không tiện mang theo khi đi làm.",
-                "dion_advantage": "DION Fero-Plus dạng viên nang mềm tiện lợi, không mùi không vị, tích hợp sẵn Acid Folic Quatrefolic và Vitamin C tối ưu hấp thu trong 1 lần uống.",
-                "counter_pitch": "Fogyma dạng nước dễ bán nhưng nhiều mẹ bầu ốm nghén ngửi mùi ngọt sắt là buồn nôn không uống nổi. DION Fero-Plus dạng viên nang mềm không mùi, nuốt cái trôi ngay, kết hợp sẵn Folic thế hệ mới và Vitamin C giúp mẹ bầu không cần uống thêm viên bổ máu nào khác ạ."
+                "strengths": "Dạng dung dịch nước dễ hấp thu, độ phủ rộng rãi tại các bệnh viện sản khoa.",
+                "weaknesses": "Vị ngọt đậm và dư vị kim loại đặc trưng gây khó chịu cho phụ nữ trong giai đoạn ốm nghén; dạng ống bẻ cồng kềnh, bất tiện khi mang theo làm việc.",
+                "dion_advantage": "DION Fero-Plus được bào chế dưới dạng viên nang mềm tiện lợi, không mùi không vị, tích hợp sẵn Acid Folic Quatrefolic và Vitamin C tối ưu hấp thu trong 1 lần sử dụng.",
+                "counter_pitch": "Fogyma dạng dung dịch nước khá quen thuộc nhưng vị ngọt đậm và mùi tanh kim loại khiến phụ nữ trong giai đoạn ốm nghén rất khó dung nạp. DION Fero-Plus được bào chế dưới dạng viên nang mềm không mùi vị, dễ uống, tích hợp sẵn Acid Folic Quatrefolic thế hệ mới và Vitamin C giúp khách hàng sử dụng tiện lợi chỉ trong 1 lần uống mỗi ngày."
             }
         ]
     }
 }
 
 # ==============================================================================
-# ĐỘNG CƠ BÓC TÁCH TỰ ĐỘNG THỊ TRƯỜNG & ĐỐI THỦ CHO MỌI SẢN PHẨM TRONG KHO
+# HỆ THỐNG PHÂN TÍCH TỰ ĐỘNG THỊ TRƯỜNG & SẢN PHẨM CẠNH TRANH TOÀN KHO
 # ==============================================================================
 
 def dissect_product_competitors(product: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Tự động bóc tách thị trường, phân tích đối thủ cạnh tranh và tạo Battlecard cho một sản phẩm:
-    - Nếu SKU có trong cơ sở dữ liệu thị trường benchmark -> Lấy phân tích thực nghiệm sâu.
-    - Nếu là sản phẩm mới được người dùng đưa vào kho -> AI tự động bóc tách dựa trên hoạt chất,
-      phân khúc giá, nhóm đối tượng và bằng chứng công bố.
+    Tự động phân tích thị trường, so sánh sản phẩm cạnh tranh và chuẩn hóa luận điểm tư vấn B2B:
+    - Nếu SKU có trong cơ sở dữ liệu thị trường chuẩn hóa -> Trả về phân tích chuyên sâu.
+    - Nếu là sản phẩm mới cập nhật vào kho -> Hệ thống tự động phân tích dựa trên hoạt chất,
+      phân khúc giá, nhóm đối tượng và bằng chứng hồ sơ công bố.
     """
     sku = product.get("sku", "")
     p_name = product.get("name", "")
@@ -198,7 +198,7 @@ def dissect_product_competitors(product: Dict[str, Any]) -> Dict[str, Any]:
     claims = product.get("claims", [])
     evidence = product.get("clinical_evidence", [])
     
-    # 1. Kiểm tra nếu có dữ liệu thị trường sẵn
+    # 1. Kiểm tra dữ liệu thị trường chuẩn hóa có sẵn
     if sku in MARKET_BENCHMARK_DATABASE:
         data = MARKET_BENCHMARK_DATABASE[sku]
         return {
@@ -215,10 +215,9 @@ def dissect_product_competitors(product: Dict[str, Any]) -> Dict[str, Any]:
             "evidence_count": len(evidence)
         }
     
-    # 2. Xử lý sản phẩm mới (Dynamic AI Dissection Engine)
+    # 2. Xử lý sản phẩm mới (Tự động suy luận dựa trên cấu trúc hoạt chất & hồ sơ)
     ing_text = " ".join([i.get("name", "") for i in ingredients]).lower()
     
-    # Suy luận phân khúc đối thủ từ hoạt chất
     predicted_competitors = []
     trends = []
     pain_points = []
@@ -227,42 +226,42 @@ def dissect_product_competitors(product: Dict[str, Any]) -> Dict[str, Any]:
     if any(k in ing_text for k in ["canxi", "calcium", "tảo biển", "lithothamnion"]):
         cat_title = "Dinh Dưỡng Khoáng Chất Xương Khớp & Thai Sản"
         pain_points = [
-            "Người dùng lo ngại tác dụng phụ táo bón, sỏi thận khi dùng canxi vô cơ.",
-            "Khách hàng tìm kiếm sản phẩm kết hợp D3 và K2 để tăng hiệu quả gắn xương."
+            "Người dùng lo ngại tác dụng không mong muốn như táo bón, khó tiêu khi dùng canxi vô cơ.",
+            "Khách hàng tìm kiếm công thức phối hợp đồng vận D3 và K2 để tăng hiệu quả gắn canxi vào xương."
         ]
         trends = [
-            {"trend_name": "Chuyển dịch sang canxi hữu cơ nguồn gốc sinh học tự nhiên", "growth": "+36% nhu cầu", "insight": "Ưu tiên độ hòa tan cao và tính êm dịu dạ dày.", "dion_opportunity": f"{p_name} đáp ứng chuẩn công thức hữu cơ."}
+            {"trend_name": "Chuyển dịch sang canxi hữu cơ nguồn gốc sinh học tự nhiên", "growth": "+36% nhu cầu", "insight": "Ưu tiên độ hòa tan cao và tính êm dịu niêm mạc dạ dày.", "dion_opportunity": f"{p_name} đáp ứng trọn vẹn tiêu chuẩn công thức hữu cơ sinh học."}
         ]
         predicted_competitors = [
             {
                 "id": f"COMP-GEN-{sku}-01",
                 "brand": "Thương hiệu Nhập khẩu Phổ thông",
-                "product_name": "Dòng Canxi Nhập khẩu Úc/Mỹ cùng phân khúc",
+                "product_name": "Canxi Vô cơ / Nano cùng phân khúc",
                 "origin": "Nhập khẩu ngoại",
-                "active_form": "Canxi Vô cơ / Nano",
+                "active_form": "Canxi Vô cơ / Nano Carbonate",
                 "retail_price": "380.000 đ - 450.000 đ",
                 "cost_per_day": "8.000 đ - 12.000 đ / ngày",
                 "channels": "Nhà thuốc chuỗi & TMĐT",
                 "pharmacy_margin": "12% - 15%",
-                "strengths": "Tên tuổi ngoại nhập được truyền miệng.",
-                "weaknesses": "Giá thành cao, chiết khấu đại lý thấp, nguy cơ táo bón.",
-                "dion_advantage": f"{p_name} kiểm chứng lâm sàng hấp thu tối ưu, chiết khấu quầy 30-35%.",
-                "counter_pitch": f"Dạ thưa Dược sĩ, sản phẩm {p_name} của DION bên em sở hữu hồ sơ ĐKSP chính thức {product.get('registration_number', 'Cục ATTP')}, biên lợi nhuận đại lý đạt trên 30% và đảm bảo khách dùng không bị nóng trong hay táo bón ạ."
+                "strengths": "Tên tuổi ngoại nhập quen thuộc.",
+                "weaknesses": "Giá thành cao, chiết khấu điểm bán thấp, nguy cơ gây táo bón và khó tiêu cao.",
+                "dion_advantage": f"{p_name} kiểm chứng lâm sàng hấp thu tối ưu, chiết khấu quầy thuốc đạt 30-35%.",
+                "counter_pitch": f"Kính thưa Quý Dược sĩ, sản phẩm {p_name} của DION sở hữu hồ sơ ĐKSP chính thức {product.get('registration_number', 'Cục ATTP cấp')}, biên lợi nhuận đại lý đạt trên 30% và đảm bảo khách hàng sử dụng êm dịu, không gặp tình trạng nóng trong hay táo bón."
             }
         ]
     elif any(k in ing_text for k in ["sắt", "iron", "folic", "hồng cầu", "bổ máu"]):
         cat_title = "Dinh Dưỡng Tạo Máu & Ngừa Thiếu Máu Vi Chất"
         pain_points = [
-            "Người dùng khó chịu với vị tanh kim loại và cảm giác buồn nôn sau uống.",
-            "Tác dụng phụ táo bón và phân đen gây phiền toái."
+            "Người dùng khó chịu với vị tanh kim loại và cảm giác buồn nôn sau khi uống.",
+            "Triệu chứng táo bón kéo dài và phân đen gây phiền toái cho người bệnh."
         ]
         trends = [
-            {"trend_name": "Sắt hữu cơ thế hệ mới không kích ứng dạ dày", "growth": "+40% phản hồi tích cực", "insight": "Khách hàng sẵn sàng trả giá cao hơn để đổi lấy sản phẩm không tanh.", "dion_opportunity": f"{p_name} tạo lợi thế vượt trội nhờ công thức êm dịu."}
+            {"trend_name": "Sắt hữu cơ thế hệ mới không kích ứng niêm mạc dạ dày", "growth": "+40% phản hồi tích cực", "insight": "Khách hàng sẵn sàng chi trả mức giá phù hợp để sử dụng sản phẩm không tanh, êm dịu dạ dày.", "dion_opportunity": f"{p_name} tạo ưu thế vượt trội nhờ công thức sắt chelate êm dịu."}
         ]
         predicted_competitors = [
             {
                 "id": f"COMP-GEN-{sku}-01",
-                "brand": "Sắt Tây Truyền Thống",
+                "brand": "Chế phẩm Sắt Truyền thống",
                 "product_name": "Sắt Sulfate / Fumarate vô cơ",
                 "origin": "Nội địa & Nhập khẩu",
                 "active_form": "Muối sắt vô cơ",
@@ -270,36 +269,36 @@ def dissect_product_competitors(product: Dict[str, Any]) -> Dict[str, Any]:
                 "cost_per_day": "5.000 đ - 9.000 đ / ngày",
                 "channels": "Bệnh viện & Quầy thuốc",
                 "pharmacy_margin": "15% - 20%",
-                "strengths": "Phổ biến, giá rẻ.",
-                "weaknesses": "Vị tanh nồng, tỷ lệ táo bón và kích ứng dạ dày cao.",
-                "dion_advantage": f"{p_name} êm dịu niêm mạc, không mùi tanh, hấp thu nhanh qua ruột non.",
-                "counter_pitch": f"Dạ đối với người bệnh sợ uống sắt bị táo bón hoặc ợ tanh thì {p_name} là lựa chọn số 1. Quầy tư vấn dòng này khách rất hài lòng và tỷ lệ quay lại mua đạt trên 85% ạ."
+                "strengths": "Phổ biến lâu năm, mức giá bình dân.",
+                "weaknesses": "Vị tanh nồng kim loại, tỷ lệ ghi nhận táo bón và kích ứng dạ dày cao.",
+                "dion_advantage": f"{p_name} êm dịu niêm mạc, không mùi tanh, hấp thu nhanh qua ruột non theo cơ chế peptide.",
+                "counter_pitch": f"Đối với khách hàng có cơ địa nhạy cảm hoặc phụ nữ ốm nghén sợ uống sắt bị táo bón hay buồn nôn thì {p_name} là giải pháp phù hợp hàng đầu. Quầy tư vấn dòng này khách hàng rất hài lòng và tỷ lệ quay lại mua định kỳ rất cao."
             }
         ]
     else:
         cat_title = cat or "Thực phẩm Chức năng & Bảo vệ Sức khỏe"
         pain_points = [
-            "Người tiêu dùng tìm kiếm sản phẩm nguồn gốc minh bạch và có chứng nhận an toàn.",
-            "Cần sự tư vấn chuyên môn rõ ràng từ Dược sĩ đứng quầy."
+            "Người tiêu dùng tìm kiếm sản phẩm nguồn gốc minh bạch và có chứng nhận an toàn pháp lý.",
+            "Cần sự tư vấn chuyên môn rõ ràng và đồng hành từ Dược sĩ điểm bán."
         ]
         trends = [
-            {"trend_name": "Xu hướng dùng sản phẩm dinh dưỡng chuẩn hóa pháp lý Nghị định 342", "growth": "+30% niềm tin", "insight": "Khách hàng tẩy chay quảng cáo thổi phồng bách bệnh.", "dion_opportunity": f"{p_name} công bố pháp lý minh bạch 100%."}
+            {"trend_name": "Xu hướng dùng sản phẩm dinh dưỡng chuẩn hóa pháp lý Nghị định 342", "growth": "+30% niềm tin", "insight": "Khách hàng chủ động chọn sản phẩm có hồ sơ công bố minh bạch và nghiên cứu rõ ràng.", "dion_opportunity": f"{p_name} công bố hồ sơ pháp lý minh bạch 100%."}
         ]
         predicted_competitors = [
             {
                 "id": f"COMP-GEN-{sku}-01",
-                "brand": "Đối thủ Cùng Ngành Hàng",
+                "brand": "Sản phẩm Cùng Nhóm Hoạt Chất",
                 "product_name": "Sản phẩm tương đương trên thị trường",
                 "origin": "Thị trường chung",
-                "active_form": "Công thức đại trà",
+                "active_form": "Công thức phổ thông",
                 "retail_price": "250.000 đ - 350.000 đ",
                 "cost_per_day": "7.000 đ - 10.000 đ / ngày",
                 "channels": "Nhà thuốc & Sàn TMĐT",
                 "pharmacy_margin": "15% - 20%",
                 "strengths": "Độ nhận diện thương hiệu nhất định.",
-                "weaknesses": "Chính sách giá thiếu ổn định, chiết khấu cho quầy không hấp dẫn.",
-                "dion_advantage": f"{p_name} bảo hộ vùng bán lẻ, chiết khấu đại lý 30-35%, hỗ trợ đào tạo Dược sĩ chuyên sâu.",
-                "counter_pitch": f"Dạ thưa Dược sĩ, với sản phẩm {p_name}, công ty Dion cam kết bảo hộ địa bàn điểm bán, cung cấp đầy đủ tài liệu lâm sàng và chính sách chiết khấu tốt nhất thị trường để quầy tối ưu doanh thu ạ."
+                "weaknesses": "Chính sách giá thiếu ổn định, chiết khấu đại lý thấp và thiếu sự hỗ trợ tư vấn chuyên môn.",
+                "dion_advantage": f"{p_name} cam kết bảo hộ địa bàn điểm bán, chiết khấu đại lý 30-35%, hỗ trợ tài liệu lâm sàng cho Dược sĩ.",
+                "counter_pitch": f"Kính thưa Quý Dược sĩ, với sản phẩm {p_name}, công ty DION cam kết bảo hộ địa bàn điểm bán, cung cấp đầy đủ tài liệu lâm sàng và chính sách chiết khấu tốt nhất thị trường để quầy tối ưu doanh thu bán lẻ."
             }
         ]
         
@@ -308,7 +307,7 @@ def dissect_product_competitors(product: Dict[str, Any]) -> Dict[str, Any]:
         "product_name": p_name,
         "category": cat,
         "category_title": cat_title,
-        "market_share_overview": f"Ngành hàng {cat_title} đang trong giai đoạn tăng trưởng ổn định tại các kênh quầy thuốc hiện đại.",
+        "market_share_overview": f"Ngành hàng {cat_title} đang trong giai đoạn tăng trưởng ổn định tại các hệ thống quầy thuốc chuyên nghiệp.",
         "consumer_pain_points": pain_points,
         "market_trends": trends,
         "competitors": predicted_competitors,
@@ -319,10 +318,10 @@ def dissect_product_competitors(product: Dict[str, Any]) -> Dict[str, Any]:
 
 def get_warehouse_market_intelligence(selected_sku: str = "ALL") -> Dict[str, Any]:
     """
-    BÓC TÁCH TOÀN BỘ SẢN PHẨM TRONG KHO SẢN PHẨM CÔNG TY:
+    PHÂN TÍCH THỊ TRƯỜNG TOÀN DIỆN CHO DANH MỤC KHO SẢN PHẨM CÔNG TY:
     - Quét toàn bộ SKU có trong data/products_claims.json.
-    - Phân tích đối thủ cạnh tranh, lợi thế cạnh tranh và kịch bản phản đòn cho từng sản phẩm.
-    - Xuất bức tranh tổng thể cho Ban Giám đốc và Đội ngũ Trình Dược Viên.
+    - Phân tích sản phẩm cạnh tranh, ưu thế khác biệt và kịch bản tư vấn chuẩn hóa cho từng sản phẩm.
+    - Xuất báo cáo thị trường chi tiết phục vụ Ban Giám đốc và Đội ngũ Trình Dược Viên.
     """
     products = get_all_products()
     dissected_products = []
@@ -353,7 +352,7 @@ def get_warehouse_market_intelligence(selected_sku: str = "ALL") -> Dict[str, An
                     "active_competitors_tracked": target["total_competitors"],
                     "avg_dion_margin": avg_dion_margin,
                     "avg_competitor_margin": avg_competitor_margin,
-                    "market_advantage": "Hữu cơ sinh học + Chiết khấu đại lý x2 lần"
+                    "market_advantage": "Hữu cơ sinh học + Chiết khấu đại lý 30-35%"
                 },
                 "dissected_products": [target],
                 "trends": target["market_trends"],
@@ -369,7 +368,7 @@ def get_warehouse_market_intelligence(selected_sku: str = "ALL") -> Dict[str, An
             "active_competitors_tracked": total_competitors_monitored,
             "avg_dion_margin": avg_dion_margin,
             "avg_competitor_margin": avg_competitor_margin,
-            "market_advantage": "100% Hoạt chất chuẩn y khoa + Nghiên cứu lâm sàng độc lập"
+            "market_advantage": "Hoạt chất chuẩn y khoa + Nghiên cứu lâm sàng độc lập"
         },
         "dissected_products": dissected_products,
         "trends": all_trends,
@@ -379,9 +378,9 @@ def get_warehouse_market_intelligence(selected_sku: str = "ALL") -> Dict[str, An
 
 def analyze_custom_competitor(sku: str, competitor_name: str, competitor_info: str = "") -> Dict[str, Any]:
     """
-    Tính năng Phân tích Đối thủ Mới Nổi theo yêu cầu:
-    - Nhập tên đối thủ hoặc thông tin sản phẩm mới ngoài thị trường.
-    - AI đối chiếu với SKU được chọn trong kho DION và xuất Battlecard phản đòn ngay lập tức.
+    Tính năng Phân tích Sản phẩm Cạnh tranh Mới:
+    - Nhập tên sản phẩm đối thủ xuất hiện trên thị trường.
+    - Hệ thống đối chiếu trực tiếp với SKU được chọn trong kho DION và xuất bảng so sánh cùng kịch bản tư vấn chuẩn hóa.
     """
     prod = get_product_by_sku(sku) or get_product_by_sku("DION-CAL-MOM")
     p_name = prod.get("name", "Sản phẩm DION")
@@ -392,12 +391,12 @@ def analyze_custom_competitor(sku: str, competitor_name: str, competitor_info: s
         "dion_sku": prod.get("sku"),
         "dion_product": p_name,
         "analyzed_competitor": competitor_name,
-        "assessment": f"Đối thủ '{competitor_name}' cạnh tranh trực tiếp với {p_name} ở phân khúc nhà thuốc bán lẻ.",
-        "weakness_identified": "Thường sử dụng dạng muối khoáng đại trà hoặc hàng xách tay không có hóa đơn chứng từ đầy đủ, chiết khấu quầy thuốc thấp (dưới 18%).",
-        "dion_counter_pitch": f"Dạ khi khách hàng hoặc Dược sĩ nhắc đến {competitor_name}, nhân viên tư vấn nên nhấn mạnh: '{competitor_name} là sản phẩm quen thuộc nhưng {p_name} của DION bên em vượt trội ở nguồn hoạt chất ({', '.join(ingredients[:2])}), có nghiên cứu lâm sàng PubMed độc lập và chính sách chiết khấu 30-35% giúp tối đa hóa lợi nhuận cho quầy ạ.'",
+        "assessment": f"Sản phẩm '{competitor_name}' cạnh tranh trực tiếp với {p_name} tại phân khúc quầy thuốc và cơ sở y tế tư nhân.",
+        "weakness_identified": "Thường sử dụng dạng muối khoáng đại trà có tỷ lệ ghi nhận kích ứng đường tiêu hóa đáng kể, hoặc phân phối qua đường xách tay thiếu hóa đơn GTGT; chính sách chiết khấu điểm bán thấp (thường dưới 18%).",
+        "dion_counter_pitch": f"Kính thưa Quý Dược sĩ, khi khách hàng đề cập đến {competitor_name}, nhân viên tư vấn có thể chia sẻ luận điểm: '{competitor_name} là sản phẩm quen thuộc trên thị trường, tuy nhiên {p_name} của DION vượt trội về nguồn hoạt chất ({', '.join(ingredients[:2]) if ingredients else 'nguồn gốc chuẩn hóa'}) sinh học, có nghiên cứu lâm sàng PubMed độc lập, chính sách chiết khấu 30-35% và hồ sơ công bố minh bạch giúp quầy vừa tối ưu doanh thu vừa bảo đảm an toàn pháp lý tuyệt đối.'",
         "actionable_tactics": [
-            "Tặng tài liệu tóm tắt nghiên cứu lâm sàng (Clinical Summary) cho Dược sĩ quầy.",
-            "Cung cấp gói dùng thử hoặc bảo hành đổi trả 100% để quầy an tâm nhập lô đầu tiên.",
-            "Đẩy mạnh biển bảng POSM và quà tặng cho mẹ bầu tại điểm bán."
+            "Cung cấp tài liệu tóm tắt nghiên cứu lâm sàng (Clinical Summary) cho Dược sĩ đứng quầy.",
+            "Áp dụng chính sách hỗ trợ trưng bày điểm bán (POSM) và bảo hành chất lượng sản phẩm 100%.",
+            "Tư vấn so sánh trực tiếp cơ chế hấp thu và tính êm dịu niêm mạc đường tiêu hóa."
         ]
     }
