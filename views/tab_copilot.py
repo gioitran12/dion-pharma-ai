@@ -34,8 +34,17 @@ def render_tab_copilot():
             if res["type"] == "ESCALATION":
                 st.error(f"### {res['badge']}")
                 st.warning(res["content"])
+            elif res["type"] == "INSUFFICIENT_EVIDENCE":
+                st.warning(f"### {res['badge']}")
+                st.info(res["content"])
             else:
-                st.success(f"### {res['badge']}")
+                st.success(f"### 📝 {res['badge']} — BẢN NHÁP ĐỀ XUẤT")
+                st.info("ℹ️ **Lưu ý kiểm duyệt:** Câu trả lời dưới đây là bản nháp do AI đề xuất dựa trên các Claims đã duyệt. Nhân viên cần duyệt lại trước khi gửi khách hàng.")
                 st.markdown(res["content"])
+                
+            if res.get("citations"):
+                with st.expander("📚 Nguồn Claims đối soát từ Knowledge Hub", expanded=True):
+                    for cit in res["citations"]:
+                        st.markdown(f"- {cit}")
                 
             st.text_area("📋 Đoạn trả lời đã kiểm duyệt (Sao chép để gửi khách hàng):", value=res["content"], height=160)

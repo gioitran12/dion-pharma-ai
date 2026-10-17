@@ -1,0 +1,173 @@
+[
+  {
+    "id": "KH-8821",
+    "name": "Nguyễn Thị Hương",
+    "phone": "0982***821",
+    "consent_status": "Đã đồng ý nhận tin Zalo",
+    "is_opt_out_marketing": false,
+    "active_complaint": null,
+    "complaint_status": "Bình thường",
+    "complaint_history": [],
+    "assigned_staff": "Chuyên viên Thảo",
+    "purchases": [
+      {
+        "order_id": "DH-2026-8821",
+        "sku": "DION-CAL-MOM",
+        "product_name": "Canxi Hữu Cơ DION Cal-Mom Plus & D3 K2",
+        "delivery_date": "2026-09-21",
+        "cycle_days": 30,
+        "quantity": 1
+      }
+    ],
+    "interactions": [
+      {
+        "id": "INT-b3a8d48e",
+        "timestamp": "2026-10-16 18:58:43",
+        "channel": "ZALO",
+        "action_type": "RESOLVED",
+        "performed_by": "Chuyên viên Thảo",
+        "notes": "Khách hàng xác nhận hài lòng và đồng ý đặt tiếp hộp thứ hai"
+      },
+      {
+        "id": "INT-fb308777",
+        "timestamp": "2026-10-16 19:00:56",
+        "channel": "ZALO",
+        "action_type": "RESOLVED",
+        "performed_by": "Chuyên viên Thảo",
+        "notes": "Khách hàng xác nhận hài lòng và đồng ý đặt tiếp hộp thứ hai"
+      },
+      {
+        "id": "INT-510ed21f",
+        "timestamp": "2026-10-16 19:54:19",
+        "channel": "ZALO",
+        "action_type": "RESOLVED",
+        "performed_by": "Chuyên viên Thảo",
+        "notes": "Khách hàng xác nhận hài lòng và đồng ý đặt tiếp hộp thứ hai"
+      },
+      {
+        "id": "INT-646e109a",
+        "timestamp": "2026-10-16 19:56:23",
+        "channel": "ZALO",
+        "action_type": "RESOLVED",
+        "performed_by": "Chuyên viên Thảo",
+        "notes": "Khách hàng xác nhận hài lòng và đồng ý đặt tiếp hộp thứ hai"
+      }
+    ],
+    "is_demo": true,
+    "callback_requested": false
+  },
+  {
+    "id": "KH-9042",
+    "name": "Lê Văn Tuấn",
+    "phone": "0915***042",
+    "consent_status": "Đã đồng ý nhận SMS",
+    "is_opt_out_marketing": false,
+    "active_complaint": "Tôi uống vào thấy bị cồn cào và buồn nôn khó chịu lắm shop ơi!",
+    "complaint_status": "Đang có khiếu nại chất lượng / ADR",
+    "complaint_history": [],
+    "assigned_staff": "Chuyên viên Nam",
+    "purchases": [
+      {
+        "order_id": "DH-2026-9042",
+        "sku": "DION-D3-1000",
+        "product_name": "Vitamin D3 1000IU Drops",
+        "delivery_date": "2026-10-09",
+        "cycle_days": 60,
+        "quantity": 1
+      }
+    ],
+    "interactions": [],
+    "is_demo": true,
+    "callback_requested": false
+  },
+  {
+    "id": "KH-7119",
+    "name": "Trần Thu Hà",
+    "phone": "0903***119",
+    "consent_status": "Khách hàng đã Opt-out",
+    "is_opt_out_marketing": true,
+    "active_complaint": "Khách phản ánh bị đầy hơi và xót dạ dày khi uống viên sắt",
+    "complaint_status": "Đang có khiếu nại tiêu hóa",
+    "complaint_history": [],
+    "assigned_staff": "Dược sĩ Trần Mai",
+    "purchases": [
+      {
+        "order_id": "DH-2026-7119",
+        "sku": "DION-FE-FOLIC",
+        "product_name": "Viên Sắt Hữu Cơ & Quatrefolic DION Fero-Plus",
+        "delivery_date": "2026-10-02",
+        "cycle_days": 30,
+        "quantity": 1
+      }
+    ],
+    "interactions": [
+      {
+        "id": "INT-243a382b",
+        "timestamp": "2026-10-16 23:18:51",
+        "channel": "ZALO",
+        "action_type": "CONTACTED",
+        "performed_by": "Dược sĩ Trần Mai",
+        "notes": "Đã liên hệ tư vấn ADR"
+      }
+    ],
+    "is_demo": true,
+    "callback_requested": false,
+    "callback_reason": null,
+    "callback_preferred_date": null,
+    "callback_sku": null,
+    "callback_product_name": null
+  },
+  {
+    "id": "KH-6502",
+    "name": "Phạm Hoàng Nam",
+    "phone": "0977***502",
+    "consent_status": "Khách hàng đã Opt-out",
+    "is_opt_out_marketing": true,
+    "active_complaint": null,
+    "complaint_status": "Bình thường",
+    "complaint_history": [],
+    "assigned_staff": "Dược sĩ Trần Mai",
+    "purchases": [
+      {
+        "order_id": "DH-2026-6502",
+        "sku": "DION-CAL-MOM",
+        "product_name": "Canxi Hữu Cơ DION Cal-Mom Plus & D3 K2",
+        "delivery_date": "2026-09-11",
+        "cycle_days": 30,
+        "quantity": 2
+      }
+    ],
+    "interactions": [],
+    "is_demo": true,
+    "callback_requested": true,
+    "callback_reason": "Kh?ch h?ng ?? y?u c?u g?i l?i v?o h?m nay ?? ???c D??c s? t? v?n chuy?n s?u v? l? tr?nh k?t h?p vi ch?t.",
+    "callback_sku": "DION-CAL-MOM",
+    "callback_product_name": "Canxi H?u C? DION Cal-Mom Plus & D3 K2"
+  },
+  {
+    "id": "KH-9043",
+    "name": "Vũ Hoàng Quân",
+    "phone": "0977112233",
+    "customer_type": "INDIVIDUAL",
+    "email": "",
+    "acquisition_source": "Hotline",
+    "external_source_id": null,
+    "consent_status": "Đã đồng ý nhận tin Zalo",
+    "is_opt_out_marketing": false,
+    "active_complaint": null,
+    "complaint_status": "Bình thường",
+    "complaint_history": [],
+    "assigned_staff": "Chuyên viên CSKH",
+    "purchases": [],
+    "interactions": [],
+    "support_requests": [],
+    "callback_requests": [],
+    "is_demo": true,
+    "callback_requested": false,
+    "callback_reason": null,
+    "callback_preferred_date": null,
+    "callback_preferred_time": null,
+    "callback_sku": null,
+    "callback_product_name": null
+  }
+]

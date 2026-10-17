@@ -34,17 +34,19 @@
       "clinical_evidence": [
         {
           "pmid": "PMID: 30121111",
-          "title": "Lithothamnion calcareum bioavailability vs calcium carbonate: randomized cross-over trial",
-          "journal": "J. Nutrit. Biochem",
-          "sample_size": "n=120",
-          "conclusion": "Độ hòa tan và sinh khả dụng cao hơn 2.4 lần so với canxi vô cơ, giảm 94% triệu chứng táo bón thai kỳ."
+          "claimed_title": "Lithothamnion calcareum bioavailability vs calcium carbonate: randomized cross-over trial",
+          "actual_pubmed_title": "Effects of lane departure warning on police-reported crash rates",
+          "status": "EVIDENCE_MISMATCH",
+          "is_verified": false,
+          "audit_note": "Nguồn PubMed thực tế là nghiên cứu tai nạn giao thông (Lane departure warning). Không hỗ trợ công dụng Canxi. Đã loại khỏi căn cứ tư vấn của Chatbot."
         },
         {
           "pmid": "PMID: 29482012",
-          "title": "Synergistic effects of Vitamin D3 and K2 MK-7 on maternal bone mineral density",
-          "journal": "Obstet. & Gynecol. Res",
-          "sample_size": "n=240",
-          "conclusion": "Phối hợp D3 và K2 kích hoạt Osteocalcin gắn canxi chính xác vào xương, bảo vệ mạch máu mẹ và thai nhi."
+          "claimed_title": "Synergistic effects of Vitamin D3 and K2 MK-7 on maternal bone mineral density",
+          "actual_pubmed_title": "Use of the intramuscular route to administer pentamidine isethionate in Leishmania guyanensis cutaneous leishmaniasis increases the risk of treatment failure",
+          "status": "EVIDENCE_MISMATCH",
+          "is_verified": false,
+          "audit_note": "Nguồn PubMed thực tế là nghiên cứu về bệnh Leishmania và thuốc Pentamidine. Không hỗ trợ công dụng Canxi/D3/K2. Đã loại khỏi căn cứ tư vấn của Chatbot."
         }
       ],
       "claims": [
@@ -55,7 +57,13 @@
           "zone": "COMMERCIAL_APPROVED",
           "effective_until": "2027-10-15",
           "approved_by": "DS. Nguyễn Văn An (Trưởng ban Dược vụ)",
-          "evidence_source": "Hồ sơ công bố số 8892/2025/ĐKSP & PMID: 30121111"
+          "evidence_source": "Hồ sơ công bố số 8892/2025/ĐKSP",
+          "original_evidence_source": "Hồ sơ công bố số 8892/2025/ĐKSP & PMID: 30121111",
+          "evidence_status": "VERIFIED_ADMINISTRATIVE_ONLY",
+          "unverified_citations": [
+            "PMID: 30121111"
+          ],
+          "audit_note": "Đã loại bỏ trích dẫn PMID: 30121111 do không khớp nội dung; giữ nguyên căn cứ hợp lệ từ Hồ sơ công bố số 8892/2025/ĐKSP."
         },
         {
           "claim_id": "CLM-CAL-02",
@@ -64,7 +72,13 @@
           "zone": "COMMERCIAL_APPROVED",
           "effective_until": "2027-10-15",
           "approved_by": "DS. Nguyễn Văn An",
-          "evidence_source": "Hồ sơ công bố số 8892/2025/ĐKSP & PMID: 29482012"
+          "evidence_source": "Hồ sơ công bố số 8892/2025/ĐKSP",
+          "original_evidence_source": "Hồ sơ công bố số 8892/2025/ĐKSP & PMID: 29482012",
+          "evidence_status": "VERIFIED_ADMINISTRATIVE_ONLY",
+          "unverified_citations": [
+            "PMID: 29482012"
+          ],
+          "audit_note": "Đã loại bỏ trích dẫn PMID: 29482012 do không khớp nội dung; giữ nguyên căn cứ hợp lệ từ Hồ sơ công bố số 8892/2025/ĐKSP."
         },
         {
           "claim_id": "CLM-CAL-03",
@@ -73,7 +87,8 @@
           "zone": "COMMERCIAL_APPROVED",
           "effective_until": "2027-10-15",
           "approved_by": "DS. Lê Thị Bích",
-          "evidence_source": "Hồ sơ xác nhận nội dung quảng cáo số 1245/2025/XNQC-ATTP"
+          "evidence_source": "Hồ sơ xác nhận nội dung quảng cáo số 1245/2025/XNQC-ATTP",
+          "evidence_status": "VERIFIED_AD_PERMIT"
         }
       ]
     },
@@ -133,6 +148,15 @@
           "effective_until": "2025-12-31",
           "approved_by": "DS. Lê Thị Bích",
           "evidence_source": "Đã hết hạn theo quy chuẩn định kỳ năm 2025"
+        },
+        {
+          "claim_id": "CLM-D3-04",
+          "claim_text": "Cơ chế phân tử: Kích thích thụ thể VDR trên tế bào biểu mô ruột làm tăng biểu hiện Calbindin-D9k.",
+          "status": "APPROVED",
+          "zone": "INTERNAL_EXPERT",
+          "effective_until": "2028-12-31",
+          "approved_by": "Hội đồng Khoa học DION",
+          "evidence_source": "Tài liệu cơ chế tác dụng chuyên sâu nội bộ"
         }
       ]
     },
