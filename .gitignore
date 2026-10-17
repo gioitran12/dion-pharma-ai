@@ -26,3 +26,6 @@ exports/
 
 # Streamlit
 .streamlit/secrets.toml
+
+backup_*/
+.pytest_cache/

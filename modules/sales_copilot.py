@@ -1,165 +1,169 @@
 import os
 import json
-import re
 from pathlib import Path
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Dict, Any, Tuple, List, Optional
 from modules.claims_hub import get_active_claims, get_all_products, get_product_by_sku
 
-# Danh sách bệnh lý nghiêm trọng bắt buộc chuyển Dược sĩ / Bác sĩ thẩm định
-CRITICAL_MEDICAL_CONDITIONS = [
-    "suy gan", "suy thận", "ung thư", "đang xạ trị", "hóa trị",
-    "tiểu đường nặng", "dị ứng sốc phản vệ", "uống cùng thuốc tim đặc trị",
-    "tai biến", "đột quỵ cấp"
+# Danh sách từ khóa câu hỏi nhạy cảm y tế bắt buộc phải chuyển Dược sĩ / Bác sĩ
+SENSITIVE_KEYWORDS = [
+    "bầu", "mang thai", "thai kỳ", "cho con bú", "sơ sinh",
+    "suy gan", "suy thận", "ung thư", "đang uống thuốc", "tiểu đường nặng",
+    "bệnh nền", "dị ứng nặng", "uống cùng thuốc", "thuốc điều trị", "thuốc tim",
+    "kháng sinh", "tương tác thuốc"
 ]
 
-def check_critical_sensitivity(query: str) -> Tuple[bool, str]:
-    """Kiểm tra bệnh lý nan y hoặc tương tác thuốc nguy hiểm cần hội đồng y khoa"""
-    query_lower = query.lower()
-    for kw in CRITICAL_MEDICAL_CONDITIONS:
-        if kw in query_lower:
-            return True, f"Câu hỏi liên quan đến bệnh lý nghiêm trọng hoặc tương tác thuốc đặc trị ({kw.upper()}). Bắt buộc chuyển Dược sĩ chuyên môn thẩm định."
-    return False, ""
+# Danh sách từ dừng cơ bản trong tiếng Việt để tránh khớp nhầm claim ngẫu nhiên
+STOP_WORDS = {
+    "có", "không", "cho", "của", "và", "các", "những", "được", "này",
+    "sản", "phẩm", "uống", "dùng", "gì", "thế", "nào", "làm", "sao",
+    "bao", "nhiêu", "hỏi", "với", "trong", "khi", "là", "bị", "hay",
+    "tôi", "mình", "bạn", "khách", "hàng", "ạ", "dạ", "ơi", "giúp",
+    "tốt", "cần", "nên", "phải", "nữa", "rất", "quá", "lắm", "đến",
+    "đối", "về", "như", "theo", "đã", "đang", "sẽ", "nhất", "cũng"
+}
 
-def detect_sku_from_query(query: str, default_sku: str = "ALL") -> str:
-    """Tự động nhận diện SKU sản phẩm từ nội dung câu hỏi nếu người dùng không chọn cụ thể"""
-    if default_sku != "ALL":
-        return default_sku
-    q = query.lower()
-    if any(k in q for k in ["cal-mom", "calmom", "canxi", "tảo đỏ", "lithothamnion", "xương", "bầu"]):
-        return "DION-CAL-MOM"
-    elif any(k in q for k in ["d3", "d3 1000", "nhỏ giọt", "drops", "photpho"]):
-        return "DION-D3-1000"
-    elif any(k in q for k in ["sắt", "fero", "folic", "quatrefolic", "thiếu máu", "bổ máu"]):
-        return "DION-FE-FOLIC"
-    return "DION-CAL-MOM"
+def check_sensitivity(query: str) -> Tuple[bool, str]:
+    """Kiểm tra xem câu hỏi có thuộc nhóm nhạy cảm y tế cần chuyển chuyên gia không"""
+    query_lower = query.lower()
+    for kw in SENSITIVE_KEYWORDS:
+        if kw in query_lower:
+            return True, f"Câu hỏi liên quan đến nhóm nhạy cảm y tế ({kw.upper()}). Cần tuân thủ quy tắc an toàn y tế nghiêm ngặt."
+    return False, ""
 
 def generate_copilot_response(query: str, sku: str = "ALL") -> Dict[str, Any]:
     """
-    Sinh câu trả lời cố vấn chuyên môn & đào tạo nhân viên (Medical Rep & Pharmacist Advisor):
-    - Grounding 100% trên Kho Dữ liệu Công bố & Bằng chứng Lâm sàng PubMed (data/products_claims.json).
-    - Cung cấp: Hồ sơ công bố Cục ATTP, Bằng chứng lâm sàng RCTs, Kịch bản tư vấn chuẩn cho Dược sĩ,
-      và Lưu ý chống chỉ định / Cụm từ cấm kỵ.
+    Sinh câu trả lời từ RAG Knowledge Grounding:
+    - Nếu câu hỏi nhạy cảm -> Yêu cầu chuyển Dược sĩ thẩm định (Không tạo Ticket giả).
+    - Nếu bình thường -> Tra cứu chính xác Claims của đúng SKU được yêu cầu.
+    - Tuyệt đối KHÔNG fallback sang Claim của sản phẩm khác khi không tìm thấy.
     """
-    is_critical, critical_reason = check_critical_sensitivity(query)
-    if is_critical:
+    is_sensitive, reason = check_sensitivity(query)
+    
+    # 1. Xử lý trường hợp nhạy cảm y tế (Escalation / Handoff)
+    if is_sensitive:
         return {
             "type": "ESCALATION",
-            "badge": "CHUYỂN DƯỢC VỤ & BÁC SĨ THẨM ĐỊNH",
-            "content": f"{critical_reason}\n\n"
-                       f"Hướng dẫn xử lý cho Nhân viên Sales / CSKH:\n"
-                       f"1. Tuyệt đối KHÔNG tự ý tư vấn liều dùng hoặc khẳng định sản phẩm có thể dùng chung với thuốc điều trị bệnh lý này.\n"
-                       f"2. Thu thập đầy đủ hồ sơ bệnh án hoặc đơn thuốc hiện tại của khách hàng.\n"
-                       f"3. Phản hồi chuẩn mực: 'Dạ trường hợp của mình có bệnh nền đặc thù, em xin phép chuyển thông tin cho Dược sĩ chuyên môn của Dion Healthcare liên hệ tư vấn trực tiếp cho mình trong vòng 15 phút ạ'.\n"
-                       f"4. Hệ thống đã tự động mở Ticket y khoa cấp độ đỏ.",
+            "badge": "⚠️ YÊU CẦU CHUYỂN DƯỢC SĨ TƯ VẤN CHUYÊN MÔN",
+            "content": (
+                f"{reason}\n\n"
+                "📋 Hướng dẫn xử lý quy trình an toàn y tế:\n"
+                "1. Trường hợp này cần được dược sĩ hoặc người có chuyên môn xem xét. Vui lòng chuyển yêu cầu tới bộ phận phụ trách.\n"
+                "2. Tuyệt đối KHÔNG tự ý khẳng định an toàn hoặc tư vấn liều lượng cho trường hợp này.\n"
+                "3. Ghi nhận đầy đủ câu hỏi và thông tin liên hệ của khách hàng để chuyển giao chuyên gia liên hệ lại."
+            ),
             "citations": [],
             "source_claims": [],
-            "clinical_evidence": [],
-            "product_dossier": None
+            "handoff_required": True
         }
-
-    target_sku = detect_sku_from_query(query, sku)
-    product = get_product_by_sku(target_sku)
-    if not product:
-        products = get_all_products()
-        product = products[0] if products else None
-
-    if not product:
-        return {
-            "type": "NORMAL",
-            "badge": "CHƯA CÓ DỮ LIỆU",
-            "content": "Không tìm thấy hồ sơ sản phẩm trong Kho Dữ liệu AI. Vui lòng kiểm tra lại mã SKU.",
-            "citations": [],
-            "source_claims": []
-        }
-
-    # Bóc tách dữ liệu hồ sơ
-    p_name = product.get("name", "")
-    reg_no = product.get("registration_number", "Đang cập nhật")
-    ad_no = product.get("ad_permit_number", "Đang cập nhật")
-    ingredients = product.get("active_ingredients", [])
-    target_users = product.get("target_users", [])
-    contra = product.get("contraindications", "Không có")
-    evidence_list = product.get("clinical_evidence", [])
-    claims_list = product.get("claims", [])
-
-    # Chuẩn bị văn bản phản hồi đào tạo & tư vấn nhân viên
-    ing_text = ", ".join([f"{i['name']} ({i['amount']})" for i in ingredients])
-    target_text = "\n".join([f"  • {t}" for t in target_users])
     
-    # Lọc claims phù hợp
-    matched_claims = []
-    q_words = [w for w in query.lower().split() if len(w) > 2]
-    for c in claims_list:
-        if c.get("status") == "APPROVED":
-            c_text = c.get("claim_text", "").lower()
-            if any(w in c_text for w in q_words) or len(matched_claims) < 2:
-                matched_claims.append(c)
-
-    claims_rendered = "\n".join([f"  • [{c['claim_id']}] {c['claim_text']}" for c in matched_claims[:3]])
-
-    # Lọc bằng chứng lâm sàng PubMed
-    evidence_rendered = ""
-    if evidence_list:
-        ev_items = []
-        for e in evidence_list:
-            ev_items.append(
-                f"  • **PMID: {e.get('pmid')}** — *{e.get('title')}* ({e.get('journal')}, {e.get('sample_size')}):\n"
-                f"     ➔ Kết luận: {e.get('conclusion')}"
-            )
-        evidence_rendered = "\n\n".join(ev_items)
+    # 2. Xác định phạm vi sản phẩm cần tra cứu
+    if sku != "ALL":
+        target_prod = get_product_by_sku(sku)
+        if not target_prod:
+            # SKU yêu cầu không tồn tại -> Không tự lấy Claim của sản phẩm khác!
+            return {
+                "type": "INSUFFICIENT_EVIDENCE",
+                "badge": "⚠️ KHÔNG TÌM THẤY SẢN PHẨM",
+                "content": (
+                    f"Hiện tại không tìm thấy thông tin cho mã sản phẩm '{sku}'. "
+                    "Hệ thống không thể cung cấp câu trả lời khi thiếu dữ liệu sản phẩm đã xác thực."
+                ),
+                "citations": [],
+                "source_claims": [],
+                "handoff_required": False
+            }
+        products_to_search = [target_prod]
     else:
-        evidence_rendered = "  Đang tổng hợp thử nghiệm lâm sàng đối chứng RCT trên hệ thống PubMed."
-
-    # Xây dựng kịch bản tư vấn cho Dược sĩ / Sales Rep
-    sales_script = (
-        f"1. **Mở lời & Đồng cảm**: Lắng nghe nhu cầu của khách hàng (giai đoạn thai kỳ, tình trạng sức khỏe xương khớp, hoặc tiền sử dùng canxi/sắt bị nóng).\n"
-        f"2. **Điểm bán hàng độc nhất (USP Khoa học)**: Nhấn mạnh nguồn nguyên liệu {ingredients[0]['name'] if ingredients else 'hữu cơ chuẩn hóa'}, "
-        f"hấp thu êm dịu, giảm tối đa triệu chứng táo bón, nóng trong hay lắng cặn.\n"
-        f"3. **Liều dùng & Thời điểm uống chuẩn**: Uống sau bữa ăn sáng/trưa 30-45 phút cùng 1 ly nước đầy. Không uống sau 15h chiều.\n"
-        f"4. **Căn cứ pháp lý khi khách hỏi chứng nhận**: Trích dẫn Giấy tiếp nhận công bố số `{reg_no}` và Giấy xác nhận nội dung quảng cáo số `{ad_no}`."
+        products_to_search = get_all_products()
+    
+    # 3. Lọc từ khóa có nghĩa từ câu hỏi (loại bỏ stop words)
+    query_lower = query.lower()
+    cleaned_query = "".join(ch if ch.isalnum() or ch.isspace() else " " for ch in query_lower)
+    meaningful_tokens = [
+        w for w in cleaned_query.split()
+        if len(w) >= 2 and w not in STOP_WORDS
+    ]
+    
+    if not meaningful_tokens:
+        return {
+            "type": "INSUFFICIENT_EVIDENCE",
+            "badge": "⚠️ CHƯA ĐỦ CĂN CỨ XÁC MINH",
+            "content": (
+                "Hiện tại hệ thống chưa có đủ thông tin sản phẩm được xác minh để trả lời chính xác câu hỏi này. "
+                "Vui lòng kiểm tra lại sản phẩm hoặc chuyển nhân viên phụ trách hỗ trợ."
+            ),
+            "citations": [],
+            "source_claims": [],
+            "handoff_required": False
+        }
+    
+    # 4. Tìm kiếm claims hợp lệ trong Vùng thương mại (COMMERCIAL_APPROVED) và còn hiệu lực
+    matched_claims = []
+    for p in products_to_search:
+        # get_active_claims tự động lọc: zone="COMMERCIAL_APPROVED", status="APPROVED", effective_until >= today
+        active_claims = get_active_claims(p["sku"], zone="COMMERCIAL_APPROVED")
+        p_name_lower = p.get("name", "").lower()
+        p_name_words = set("".join(ch if ch.isalnum() or ch.isspace() else " " for ch in p_name_lower).split())
+        
+        for c in active_claims:
+            c_text_lower = c.get("claim_text", "").lower()
+            c_words = set("".join(ch if ch.isalnum() or ch.isspace() else " " for ch in c_text_lower).split())
+            
+            # Đếm số từ khóa có nghĩa khớp chính xác với Claim này
+            matched_words = [w for w in meaningful_tokens if w in c_words]
+            
+            # Nếu tên sản phẩm khớp với từ khóa trong query, cộng thêm điểm
+            name_matches = [w for w in meaningful_tokens if w in p_name_words]
+            
+            if matched_words:
+                score = len(matched_words) * 2 + len(name_matches)
+                matched_claims.append({
+                    "sku": p["sku"],
+                    "product_name": p["name"],
+                    "claim_id": c["claim_id"],
+                    "claim_text": c["claim_text"],
+                    "evidence": c.get("evidence_source", "Hồ sơ công bố sản phẩm"),
+                    "score": score
+                })
+    
+    # 5. Xử lý trường hợp không tìm thấy Claim phù hợp
+    # TUYỆT ĐỐI KHÔNG FALLBACK LẤY CLAIM CỦA SẢN PHẨM KHÁC!
+    if not matched_claims:
+        return {
+            "type": "INSUFFICIENT_EVIDENCE",
+            "badge": "⚠️ CHƯA ĐỦ CĂN CỨ XÁC MINH",
+            "content": (
+                "Hiện tại hệ thống chưa có đủ thông tin sản phẩm được xác minh để trả lời chính xác câu hỏi này. "
+                "Vui lòng kiểm tra lại sản phẩm hoặc chuyển nhân viên phụ trách hỗ trợ."
+            ),
+            "citations": [],
+            "source_claims": [],
+            "handoff_required": False
+        }
+    
+    # Sắp xếp theo điểm khớp cao nhất
+    matched_claims.sort(key=lambda x: x["score"], reverse=True)
+    primary = matched_claims[0]
+    
+    # Lấy các claims cùng sản phẩm của primary để trích dẫn
+    same_prod_claims = [c for c in matched_claims if c["sku"] == primary["sku"]]
+    
+    # 6. Trả về kết quả xác thực từ Claim hợp lệ
+    reply = (
+        f"Dựa trên tài liệu công bố chính thức của sản phẩm **{primary['product_name']}**:\n\n"
+        f"✅ **Công dụng được phép tư vấn:**\n"
+        f"- {primary['claim_text']}\n\n"
+        f"📌 **Căn cứ pháp lý & Nguồn trích dẫn:**\n"
+        f"- Mã Claim: `{primary['claim_id']}`\n"
+        f"- Nguồn: {primary['evidence']}\n\n"
+        f"💡 *Lưu ý: Bắt buộc đính kèm disclaimer khi gửi văn bản cho khách hàng: 'Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh'.*"
     )
-
-    full_reply = f"""### TÀI LIỆU CỐ VẤN CHUYÊN MÔN & ĐÀO TẠO NHÂN VIÊN: {p_name.upper()}
-
-#### 1. Hồ sơ Pháp chế & Đăng ký Cục An toàn thực phẩm:
-- **Số ĐKSP**: `{reg_no}`
-- **Số XNQC**: `{ad_no}`
-- **Hoạt chất chính**: {ing_text}
-- **Đối tượng sử dụng được phê duyệt**:
-{target_text}
-
-#### 2. Công dụng Thương mại đã được phê duyệt (Claims Hub):
-{claims_rendered}
-
-#### 3. Bằng chứng Nghiên cứu Lâm sàng Quốc tế (PubMed RCTs):
-{evidence_rendered}
-
-#### 4. Kịch bản Tư vấn Chuẩn cho Dược sĩ & Trình dược viên:
-{sales_script}
-
----
-**LƯU Ý PHÁP CHẾ & CHỐNG CHỈ ĐỊNH BẮT BUỘC:**
-- **Chống chỉ định**: {contra}
-- **Cụm từ CẤM NÓI khi bán hàng**: Tuyệt đối không dùng các từ *'chữa khỏi hẳn'*, *'đặc trị dứt điểm'*, *'cam kết 100%'*, hoặc xúi giục khách hàng bỏ thuốc kê đơn của bác sĩ.
-- **Disclaimer bắt buộc**: *'Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.'*
-"""
-
+    
     return {
         "type": "NORMAL",
-        "badge": "✅ HỒ SƠ PHÁP CHẾ & PUBMED ĐÃ XÁC THỰC",
-        "sku": target_sku,
-        "product_name": p_name,
-        "content": full_reply,
-        "citations": [c.get("claim_id") for c in matched_claims],
-        "source_claims": matched_claims,
-        "clinical_evidence": evidence_list,
-        "product_dossier": {
-            "sku": target_sku,
-            "name": p_name,
-            "registration_number": reg_no,
-            "ad_permit_number": ad_no,
-            "active_ingredients": ingredients,
-            "target_users": target_users,
-            "contraindications": contra
-        }
+        "badge": "✅ ĐÃ XÁC THỰC TỪ CLAIMS ĐƯỢC DUYỆT",
+        "content": reply,
+        "citations": [c["claim_id"] for c in same_prod_claims],
+        "source_claims": same_prod_claims,
+        "handoff_required": False
     }

@@ -1,0 +1,468 @@
+[
+  {
+    "task_id": "TASK-KH-7119-COMPLAINT",
+    "customer_id": "KH-7119",
+    "customer_name": "Trần Thu Hà",
+    "task_type": "COMPLAINT_RESOLUTION",
+    "title": "Xử lý khiếu nại chất lượng / ADR: Trần Thu Hà",
+    "reason": "Khách hàng phát sinh sự cố: Khách phản ánh bị đầy hơi và xót dạ dày khi uống viên sắt. Bắt buộc ngắt toàn bộ kịch bản bán thêm (Incident Lockout) và chuyển Dược sĩ liên hệ.",
+    "sku": "DION-FE-FOLIC",
+    "product_name": "Viên Sắt Hữu Cơ & Quatrefolic DION Fero-Plus",
+    "priority": "HIGH",
+    "due_date": "2026-10-16",
+    "assignee": "Dược sĩ Trần Mai",
+    "status": "IN_PROGRESS",
+    "created_at": "2026-10-16 18:58:37",
+    "updated_at": "2026-10-16 21:45:02",
+    "is_overdue": true,
+    "is_due_today": false,
+    "is_blocked": false,
+    "block_reason": null,
+    "logs": [
+      {
+        "timestamp": "2026-10-16 18:58:37",
+        "action": "TASK_CREATED",
+        "notes": "Hệ thống tự động kích hoạt Incident Lockout"
+      },
+      {
+        "timestamp": "2026-10-16 21:45:02",
+        "action": "ASSIGNED",
+        "notes": "Giao xử lý cho Dược sĩ Trần Mai"
+      },
+      {
+        "timestamp": "2026-10-16 23:18:51",
+        "action": "CONTACTED",
+        "performed_by": "Dược sĩ Trần Mai",
+        "notes": "Đã liên hệ tư vấn ADR"
+      }
+    ],
+    "is_demo": true,
+    "trigger_event_type": null,
+    "source_reference_id": null,
+    "rule_id": null,
+    "rule_version": "v1.2",
+    "acquisition_source": "Nhập thủ công",
+    "interaction_channel": "Zalo OA",
+    "purchase_channel": "Cửa hàng trực tiếp",
+    "recording_source": "Nhân viên ghi nhận",
+    "evidence_summary": "",
+    "purpose": "SUPPORT"
+  },
+  {
+    "task_id": "TASK-KH-6502-CALLBACK",
+    "customer_id": "KH-6502",
+    "customer_name": "Phạm Hoàng Nam",
+    "task_type": "SCHEDULED_CALLBACK",
+    "title": "Lịch hẹn gọi lại tư vấn: Phạm Hoàng Nam",
+    "reason": "Khách hàng đã yêu cầu gọi lại vào hôm nay để được Dược sĩ tư vấn chuyên sâu về lộ trình kết hợp vi chất.",
+    "sku": "DION-CAL-MOM",
+    "product_name": "Canxi Hữu Cơ DION Cal-Mom Plus & D3 K2",
+    "priority": "HIGH",
+    "due_date": "2026-10-16",
+    "assignee": "Dược sĩ Trần Mai",
+    "status": "PENDING",
+    "created_at": "2026-10-16 18:58:37",
+    "updated_at": "2026-10-16 18:58:37",
+    "is_overdue": true,
+    "is_due_today": false,
+    "is_blocked": false,
+    "block_reason": null,
+    "logs": [
+      {
+        "timestamp": "2026-10-16 18:58:37",
+        "action": "TASK_CREATED",
+        "notes": "Tạo lịch hẹn gọi lại theo yêu cầu của khách"
+      },
+      {
+        "timestamp": "2026-10-16 22:14:27",
+        "action": "DRAFT_CREATED",
+        "channel": "Cuộc gọi thoại",
+        "notes": "Hệ thống AI đã sinh bản nháp tư vấn"
+      }
+    ],
+    "is_demo": true,
+    "trigger_event_type": null,
+    "source_reference_id": null,
+    "rule_id": null,
+    "rule_version": "v1.2",
+    "acquisition_source": "Nhập thủ công",
+    "interaction_channel": "Zalo OA",
+    "purchase_channel": "Cửa hàng trực tiếp",
+    "recording_source": "Nhân viên ghi nhận",
+    "evidence_summary": "",
+    "purpose": "SUPPORT"
+  },
+  {
+    "task_id": "TASK-KH-9042-COMPLAINT",
+    "customer_id": "KH-9042",
+    "customer_name": "Lê Văn Tuấn",
+    "task_type": "COMPLAINT_RESOLUTION",
+    "title": "Xử lý khiếu nại chất lượng / ADR: Lê Văn Tuấn",
+    "reason": "Khách hàng phản ánh: 'Tôi uống vào thấy bị cồn cào và buồn nôn khó chịu lắm shop ơi!'. Tự động kích hoạt Incident Lockout, chuyển Dược sĩ liên hệ.",
+    "sku": "DION-D3-1000",
+    "product_name": "Vitamin D3 1000IU Drops",
+    "priority": "HIGH",
+    "due_date": "2026-10-16",
+    "assignee": "Dược sĩ Trần Mai",
+    "status": "PENDING",
+    "created_at": "2026-10-16 19:56:23",
+    "updated_at": "2026-10-16 19:56:23",
+    "is_overdue": true,
+    "is_due_today": false,
+    "is_blocked": false,
+    "block_reason": null,
+    "logs": [
+      {
+        "timestamp": "2026-10-16 19:56:23",
+        "action": "INCIDENT_TRIGGERED",
+        "notes": "Nội dung phản ánh: Tôi uống vào thấy bị cồn cào và buồn nôn khó chịu lắm shop ơi!"
+      }
+    ],
+    "is_demo": true,
+    "trigger_event_type": null,
+    "source_reference_id": null,
+    "rule_id": null,
+    "rule_version": "v1.2",
+    "acquisition_source": "Nhập thủ công",
+    "interaction_channel": "Zalo OA",
+    "purchase_channel": "Cửa hàng trực tiếp",
+    "recording_source": "Nhân viên ghi nhận",
+    "evidence_summary": "",
+    "purpose": "SUPPORT"
+  },
+  {
+    "task_id": "TASK-KH-9042-DAY7",
+    "customer_id": "KH-9042",
+    "customer_name": "Lê Văn Tuấn",
+    "task_type": "DELIVERY_FOLLOWUP_DAY_7",
+    "title": "Hỏi thăm cảm nhận sau 7 ngày: Lê Văn Tuấn",
+    "reason": "Đã qua 7 ngày kể từ khi giao hàng thành công (2026-10-09). Cần khảo sát cảm nhận dung nạp và hướng dẫn thời điểm uống tối ưu.",
+    "sku": "DION-D3-1000",
+    "product_name": "Vitamin D3 1000IU Drops",
+    "priority": "MEDIUM",
+    "due_date": "2026-10-16",
+    "assignee": "Chuyên viên Nam",
+    "status": "PENDING",
+    "created_at": "2026-10-16 18:58:37",
+    "updated_at": "2026-10-16 18:58:37",
+    "is_overdue": true,
+    "is_due_today": false,
+    "is_blocked": false,
+    "block_reason": null,
+    "logs": [
+      {
+        "timestamp": "2026-10-16 18:58:37",
+        "action": "TASK_CREATED",
+        "notes": "Sinh tự động theo chu kỳ ngày thứ 7"
+      }
+    ],
+    "is_demo": true,
+    "trigger_event_type": null,
+    "source_reference_id": null,
+    "rule_id": null,
+    "rule_version": "v1.2",
+    "acquisition_source": "Nhập thủ công",
+    "interaction_channel": "Zalo OA",
+    "purchase_channel": "Cửa hàng trực tiếp",
+    "recording_source": "Nhân viên ghi nhận",
+    "evidence_summary": "",
+    "purpose": "SUPPORT"
+  },
+  {
+    "task_id": "TASK-KH-6502-DAY25",
+    "customer_id": "KH-6502",
+    "customer_name": "Phạm Hoàng Nam",
+    "task_type": "REORDER_CHECK_DAY_25",
+    "title": "Kiểm tra nhu cầu bổ sung chu kỳ tiếp: Phạm Hoàng Nam",
+    "reason": "Khách hàng ở ngày thứ 25 trong chu kỳ tham chiếu 30 ngày. Đề xuất xác nhận nhu cầu chuẩn bị hộp tiếp theo để vi chất không bị ngắt quãng (Lưu ý: Không khẳng định khách đã uống hết).",
+    "sku": "DION-CAL-MOM",
+    "product_name": "Canxi Hữu Cơ DION Cal-Mom Plus & D3 K2",
+    "priority": "MEDIUM",
+    "due_date": "2026-10-16",
+    "assignee": "Dược sĩ Trần Mai",
+    "status": "BLOCKED",
+    "created_at": "2026-10-16 18:58:37",
+    "updated_at": "2026-10-16 18:58:37",
+    "is_overdue": false,
+    "is_due_today": false,
+    "is_blocked": true,
+    "block_reason": "Khách hàng đã từ chối nhận tin tiếp thị (Opt-out) / Consent chưa rõ",
+    "logs": [
+      {
+        "timestamp": "2026-10-16 18:58:37",
+        "action": "TASK_CREATED",
+        "notes": "Sinh tự động theo chu kỳ ngày thứ 25"
+      },
+      {
+        "timestamp": "2026-10-16 22:08:15",
+        "action": "BLOCKED_BY_POLICY",
+        "notes": "Hệ thống tự động tạm ngưng nhiệm vụ tiếp thị do trạng thái quyền riêng tư (Opt-out)"
+      }
+    ],
+    "is_demo": true,
+    "trigger_event_type": null,
+    "source_reference_id": null,
+    "rule_id": null,
+    "rule_version": "v1.2",
+    "acquisition_source": "Nhập thủ công",
+    "interaction_channel": "Zalo OA",
+    "purchase_channel": "Cửa hàng trực tiếp",
+    "recording_source": "Nhân viên ghi nhận",
+    "evidence_summary": "",
+    "purpose": "SUPPORT"
+  },
+  {
+    "task_id": "TASK-KH-8821-DAY25",
+    "customer_id": "KH-8821",
+    "customer_name": "Nguyễn Thị Hương",
+    "task_type": "REORDER_CHECK_DAY_25",
+    "title": "Kiểm tra nhu cầu bổ sung chu kỳ tiếp: Nguyễn Thị Hương",
+    "reason": "Khách hàng ở ngày thứ 25 trong chu kỳ tham chiếu 30 ngày. Đề xuất xác nhận nhu cầu chuẩn bị hộp tiếp theo để vi chất không bị ngắt quãng (Lưu ý: Không khẳng định khách đã uống hết).",
+    "sku": "DION-CAL-MOM",
+    "product_name": "Canxi Hữu Cơ DION Cal-Mom Plus & D3 K2",
+    "priority": "MEDIUM",
+    "due_date": "2026-10-16",
+    "assignee": "Chuyên viên Thảo",
+    "status": "COMPLETED",
+    "created_at": "2026-10-16 18:58:37",
+    "updated_at": "2026-10-16 19:56:23",
+    "is_overdue": false,
+    "is_due_today": false,
+    "is_blocked": false,
+    "block_reason": null,
+    "logs": [
+      {
+        "timestamp": "2026-10-16 18:58:37",
+        "action": "TASK_CREATED",
+        "notes": "Sinh tự động theo chu kỳ ngày thứ 25"
+      },
+      {
+        "timestamp": "2026-10-16 18:58:43",
+        "action": "DRAFT_CREATED",
+        "channel": "Zalo OA",
+        "notes": "Hệ thống AI đã sinh bản nháp tư vấn"
+      },
+      {
+        "timestamp": "2026-10-16 18:58:43",
+        "action": "COPIED",
+        "performed_by": "Nhân viên kiểm thử",
+        "notes": "Đã sao chép nội dung tin nhắn"
+      },
+      {
+        "timestamp": "2026-10-16 18:58:43",
+        "action": "RESOLVED",
+        "performed_by": "Chuyên viên Thảo",
+        "notes": "Khách hàng xác nhận hài lòng và đồng ý đặt tiếp hộp thứ hai"
+      },
+      {
+        "timestamp": "2026-10-16 19:00:56",
+        "action": "DRAFT_CREATED",
+        "channel": "Zalo OA",
+        "notes": "Hệ thống AI đã sinh bản nháp tư vấn"
+      },
+      {
+        "timestamp": "2026-10-16 19:00:56",
+        "action": "COPIED",
+        "performed_by": "Nhân viên kiểm thử",
+        "notes": "Đã sao chép nội dung tin nhắn"
+      },
+      {
+        "timestamp": "2026-10-16 19:00:56",
+        "action": "RESOLVED",
+        "performed_by": "Chuyên viên Thảo",
+        "notes": "Khách hàng xác nhận hài lòng và đồng ý đặt tiếp hộp thứ hai"
+      },
+      {
+        "timestamp": "2026-10-16 19:54:19",
+        "action": "DRAFT_CREATED",
+        "channel": "Zalo OA",
+        "notes": "Hệ thống AI đã sinh bản nháp tư vấn"
+      },
+      {
+        "timestamp": "2026-10-16 19:54:19",
+        "action": "COPIED",
+        "performed_by": "Nhân viên kiểm thử",
+        "notes": "Đã sao chép nội dung tin nhắn"
+      },
+      {
+        "timestamp": "2026-10-16 19:54:19",
+        "action": "RESOLVED",
+        "performed_by": "Chuyên viên Thảo",
+        "notes": "Khách hàng xác nhận hài lòng và đồng ý đặt tiếp hộp thứ hai"
+      },
+      {
+        "timestamp": "2026-10-16 19:56:23",
+        "action": "DRAFT_CREATED",
+        "channel": "Zalo OA",
+        "notes": "Hệ thống AI đã sinh bản nháp tư vấn"
+      },
+      {
+        "timestamp": "2026-10-16 19:56:23",
+        "action": "COPIED",
+        "performed_by": "Nhân viên kiểm thử",
+        "notes": "Đã sao chép nội dung tin nhắn"
+      },
+      {
+        "timestamp": "2026-10-16 19:56:23",
+        "action": "RESOLVED",
+        "performed_by": "Chuyên viên Thảo",
+        "notes": "Khách hàng xác nhận hài lòng và đồng ý đặt tiếp hộp thứ hai"
+      },
+      {
+        "timestamp": "2026-10-17 01:15:53",
+        "action": "DRAFT_CREATED",
+        "channel": "Zalo OA",
+        "notes": "Hệ thống AI đã sinh bản nháp tư vấn"
+      },
+      {
+        "timestamp": "2026-10-17 01:16:34",
+        "action": "DRAFT_CREATED",
+        "channel": "Zalo OA",
+        "notes": "Hệ thống AI đã sinh bản nháp tư vấn"
+      },
+      {
+        "timestamp": "2026-10-17 01:17:28",
+        "action": "DRAFT_CREATED",
+        "channel": "Zalo OA",
+        "notes": "Hệ thống AI đã sinh bản nháp tư vấn"
+      },
+      {
+        "timestamp": "2026-10-17 01:17:30",
+        "action": "DRAFT_CREATED",
+        "channel": "Zalo OA",
+        "notes": "Hệ thống AI đã sinh bản nháp tư vấn"
+      },
+      {
+        "timestamp": "2026-10-17 16:23:52",
+        "action": "DRAFT_CREATED",
+        "channel": "Zalo OA",
+        "notes": "Hệ thống AI đã sinh bản nháp tư vấn"
+      }
+    ],
+    "is_demo": true,
+    "trigger_event_type": null,
+    "source_reference_id": null,
+    "rule_id": null,
+    "rule_version": "v1.2",
+    "acquisition_source": "Nhập thủ công",
+    "interaction_channel": "Zalo OA",
+    "purchase_channel": "Cửa hàng trực tiếp",
+    "recording_source": "Nhân viên ghi nhận",
+    "evidence_summary": "",
+    "purpose": "SUPPORT"
+  },
+  {
+    "task_id": "TASK-KH-8821-DH-2026-8821-DAY25",
+    "customer_id": "KH-8821",
+    "customer_name": "Nguyễn Thị Hương",
+    "task_type": "REORDER_CHECK_DAY_25",
+    "title": "Kiểm tra nhu cầu bổ sung chu kỳ tiếp (30 ngày): Nguyễn Thị Hương",
+    "reason": "Khách hàng ở ngày thứ 26 trong chu kỳ tham chiếu 30 ngày (Đơn #DH-2026-8821). Đề xuất xác nhận nhu cầu chuẩn bị đợt dùng tiếp theo.",
+    "sku": "DION-CAL-MOM",
+    "product_name": "Canxi Hữu Cơ DION Cal-Mom Plus & D3 K2",
+    "priority": "MEDIUM",
+    "due_date": "2026-10-17",
+    "assignee": "Chuyên viên Thảo",
+    "status": "PENDING",
+    "created_at": "2026-10-17 15:41:40",
+    "updated_at": "2026-10-17 15:41:40",
+    "is_overdue": false,
+    "is_due_today": false,
+    "is_blocked": false,
+    "block_reason": null,
+    "logs": [
+      {
+        "timestamp": "2026-10-17 15:41:40",
+        "action": "TASK_CREATED",
+        "notes": "Sinh tự động theo chu kỳ ngày thứ 25 (30 ngày - Đơn #DH-2026-8821)"
+      }
+    ],
+    "is_demo": true,
+    "trigger_event_type": "EVENT_REORDER_CYCLE_DUE",
+    "source_reference_id": "DH-2026-8821",
+    "rule_id": "RULE_REORDER_CYCLE",
+    "rule_version": "v1.2",
+    "acquisition_source": "Nhập thủ công",
+    "interaction_channel": "Zalo OA",
+    "purchase_channel": "Cửa hàng trực tiếp",
+    "recording_source": "Nhân viên ghi nhận",
+    "evidence_summary": "Đơn hàng #DH-2026-8821 (Canxi Hữu Cơ DION Cal-Mom Plus & D3 K2) giao ngày 2026-09-21, chu kỳ tham chiếu 30 ngày. Đến mốc ngày thứ 26.",
+    "purpose": "MARKETING"
+  },
+  {
+    "task_id": "TASK-KH-9042-DH-2026-9042-DAY7",
+    "customer_id": "KH-9042",
+    "customer_name": "Lê Văn Tuấn",
+    "task_type": "DELIVERY_FOLLOWUP_DAY_7",
+    "title": "Hỏi thăm cảm nhận sau 7 ngày: Lê Văn Tuấn",
+    "reason": "Đã qua 7 ngày kể từ khi đơn #DH-2026-9042 giao thành công (2026-10-09). Cần khảo sát cảm nhận dung nạp và hướng dẫn thời điểm uống tối ưu.",
+    "sku": "DION-D3-1000",
+    "product_name": "Vitamin D3 1000IU Drops",
+    "priority": "MEDIUM",
+    "due_date": "2026-10-17",
+    "assignee": "Chuyên viên Nam",
+    "status": "PENDING",
+    "created_at": "2026-10-17 15:41:40",
+    "updated_at": "2026-10-17 15:41:40",
+    "is_overdue": false,
+    "is_due_today": false,
+    "is_blocked": false,
+    "block_reason": null,
+    "logs": [
+      {
+        "timestamp": "2026-10-17 15:41:40",
+        "action": "TASK_CREATED",
+        "notes": "Sinh tự động theo chu kỳ ngày thứ 7 (Đơn #DH-2026-9042)"
+      }
+    ],
+    "is_demo": true,
+    "trigger_event_type": "EVENT_DELIVERY_CONFIRMED",
+    "source_reference_id": "DH-2026-9042",
+    "rule_id": "RULE_DAY_7_FOLLOWUP",
+    "rule_version": "v1.2",
+    "acquisition_source": "Nhập thủ công",
+    "interaction_channel": "Zalo OA",
+    "purchase_channel": "Cửa hàng trực tiếp",
+    "recording_source": "Nhân viên ghi nhận",
+    "evidence_summary": "Đơn hàng #DH-2026-9042 (Vitamin D3 1000IU Drops) giao thành công ngày 2026-10-09 qua Cửa hàng trực tiếp. Ngày thứ 8 sau giao.",
+    "purpose": "SUPPORT"
+  },
+  {
+    "task_id": "TASK-KH-6502-DH-2026-6502-DAY25",
+    "customer_id": "KH-6502",
+    "customer_name": "Phạm Hoàng Nam",
+    "task_type": "REORDER_CHECK_DAY_25",
+    "title": "Kiểm tra nhu cầu bổ sung chu kỳ tiếp (30 ngày): Phạm Hoàng Nam",
+    "reason": "Khách hàng ở ngày thứ 36 trong chu kỳ tham chiếu 30 ngày (Đơn #DH-2026-6502). Đề xuất xác nhận nhu cầu chuẩn bị đợt dùng tiếp theo.",
+    "sku": "DION-CAL-MOM",
+    "product_name": "Canxi Hữu Cơ DION Cal-Mom Plus & D3 K2",
+    "priority": "MEDIUM",
+    "due_date": "2026-10-17",
+    "assignee": "Dược sĩ Trần Mai",
+    "status": "BLOCKED",
+    "created_at": "2026-10-17 15:41:40",
+    "updated_at": "2026-10-17 15:41:40",
+    "is_overdue": false,
+    "is_due_today": false,
+    "is_blocked": true,
+    "block_reason": "Khách hàng chưa rõ consent / Đã Opt-out / Đang có khiếu nại",
+    "logs": [
+      {
+        "timestamp": "2026-10-17 15:41:40",
+        "action": "TASK_CREATED",
+        "notes": "Sinh tự động theo chu kỳ ngày thứ 25 (30 ngày - Đơn #DH-2026-6502)"
+      }
+    ],
+    "is_demo": true,
+    "trigger_event_type": "EVENT_REORDER_CYCLE_DUE",
+    "source_reference_id": "DH-2026-6502",
+    "rule_id": "RULE_REORDER_CYCLE",
+    "rule_version": "v1.2",
+    "acquisition_source": "Nhập thủ công",
+    "interaction_channel": "Zalo OA",
+    "purchase_channel": "Cửa hàng trực tiếp",
+    "recording_source": "Nhân viên ghi nhận",
+    "evidence_summary": "Đơn hàng #DH-2026-6502 (Canxi Hữu Cơ DION Cal-Mom Plus & D3 K2) giao ngày 2026-09-11, chu kỳ tham chiếu 30 ngày. Đến mốc ngày thứ 36.",
+    "purpose": "MARKETING"
+  }
+]
