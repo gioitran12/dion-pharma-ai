@@ -567,8 +567,24 @@ async def api_copilot_chat(request: ChatRequest):
             ticket_id=None,
         )
 
+    # 5b. XỬ LÝ Ý ĐỊNH ĐẶT MUA HÀNG (BUY_PRODUCT)
+    if analysis.intent == ChatIntent.BUY_PRODUCT:
+        return ChatResponse(
+            session_id=active_session_id,
+            message_id=str(uuid.uuid4()),
+            trace_id=str(uuid.uuid4()),
+            intent=ChatIntent.BUY_PRODUCT,
+            decision=analysis.decision or ChatDecision.READY_TO_SEND,
+            answer=analysis.direct_answer,
+            product_ids=analysis.product_resolution.all_matched_skus,
+            sources=[],
+            risk=SafetyResult(risk_level=RiskLevel.LOW, requires_handoff=False),
+            actions=[ChatAction(type="CONTACT_SALES", label="Liên hệ Bộ phận Kinh doanh", requires_approval=False)],
+            ticket_id=None,
+        )
+
     # 6. XỬ LÝ CÂU HỎI NGOÀI PHẠM VI (OFF_TOPIC)
-    if analysis.product_resolution.is_out_of_scope:
+    if analysis.product_resolution.is_out_of_scope or analysis.intent == ChatIntent.OFF_TOPIC:
         return ChatResponse(
             session_id=active_session_id,
             message_id=str(uuid.uuid4()),
@@ -1046,6 +1062,15 @@ async def api_customer_care_create_customer(req: CreateCustomerRequest):
 async def api_customer_care_customer_timeline(customer_id: str):
     care_svc = get_customer_care_service()
     res = care_svc.get_customer_timeline(customer_id)
+    if res.get("status") == "ERROR":
+        raise HTTPException(status_code=404, detail=res)
+    return res
+
+
+@app.get("/api/customer-care/customers/{customer_id}/state")
+async def api_customer_care_customer_state(customer_id: str):
+    care_svc = get_customer_care_service()
+    res = care_svc.analyze_customer_state(customer_id)
     if res.get("status") == "ERROR":
         raise HTTPException(status_code=404, detail=res)
     return res

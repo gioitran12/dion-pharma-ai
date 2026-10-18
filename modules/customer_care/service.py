@@ -923,6 +923,23 @@ class CustomerCareService:
                             rule_key = f"{cust.id}_{order_id}_RULE_REORDER"
                             task_id = f"TASK-{cust.id}-DAY25" if p_idx == 0 else f"TASK-{cust.id}-{order_id}-DAY25"
 
+                            # Kiểm tra tần suất liên hệ gần nhất (Frequency Capping 7 ngày - Mục 8.2)
+                            recent_contact_days = None
+                            for inter in getattr(cust, "interactions", []):
+                                ts = getattr(inter, "occurred_at", None) or getattr(inter, "timestamp", None)
+                                is_outbound_or_contact = getattr(inter, "action_type", "") in (
+                                    ActionType.CONTACTED, ActionType.COMPLETED, "CONTACTED", "COMPLETED"
+                                ) or getattr(inter, "direction", "") == "OUTBOUND"
+                                if ts and is_outbound_or_contact:
+                                    try:
+                                        d_inter = datetime.strptime(ts[:10], "%Y-%m-%d")
+                                        diff_d = (today_date - d_inter).days
+                                        if recent_contact_days is None or diff_d < recent_contact_days:
+                                            recent_contact_days = diff_d
+                                    except Exception:
+                                        pass
+                            has_freq_block = bool(recent_contact_days is not None and recent_contact_days <= 7)
+
                             if rule_key not in existing_rule_keys and task_id not in existing_task_map:
                                 task = CareTask(
                                     task_id=task_id,
@@ -936,9 +953,9 @@ class CustomerCareService:
                                     priority=TaskPriority.MEDIUM,
                                     due_date=today_str,
                                     assignee=cust.assigned_staff or "Chuyên viên CSKH",
-                                    status=TaskStatus.PENDING,
-                                    is_blocked=False,
-                                    block_reason=None,
+                                    status=TaskStatus.BLOCKED if has_freq_block else TaskStatus.PENDING,
+                                    is_blocked=has_freq_block,
+                                    block_reason=f"FREQUENCY_CAPPING: Khách hàng vừa được liên hệ {recent_contact_days} ngày trước (Quy tắc giãn cách tối thiểu 7 ngày)" if has_freq_block else None,
                                     trigger_event_type="EVENT_REORDER_CYCLE_DUE",
                                     source_reference_id=order_id,
                                     rule_id="RULE_REORDER_CYCLE",
@@ -947,12 +964,25 @@ class CustomerCareService:
                                     purchase_channel=getattr(p, "purchase_channel", "Cửa hàng trực tiếp"),
                                     recording_source=getattr(p, "verification_status", "Nhân viên ghi nhận"),
                                     purpose="MARKETING",
-                                    evidence_summary=f"Đơn hàng #{order_id} ({p.product_name}) giao ngày {p.delivery_date}, chu kỳ tham chiếu {p.cycle_days} ngày. Đến mốc ngày thứ {days_elapsed}.",
-                                    logs=[{"timestamp": _get_now_str(), "action": "TASK_CREATED", "notes": f"Sinh tự động theo chu kỳ ngày thứ {reorder_trigger_day} ({p.cycle_days} ngày - Đơn #{order_id})"}]
+                                    evidence_summary=f"Đơn hàng #{order_id} ({p.product_name}) giao ngày {p.delivery_date}, chu kỳ tham chiếu {p.cycle_days} ngày. Đến mốc ngày thứ {days_elapsed}." + (f" [Đang bị khóa tần suất: liên hệ {recent_contact_days} ngày trước]" if has_freq_block else ""),
+                                    logs=[{"timestamp": _get_now_str(), "action": "TASK_CREATED", "notes": f"Sinh tự động theo chu kỳ ngày thứ {reorder_trigger_day} ({p.cycle_days} ngày - Đơn #{order_id})" + (" [KHÓA TẦN SUẤT 7 NGÀY]" if has_freq_block else "")}]
                                 )
                                 new_tasks.append(task)
                                 existing_rule_keys.add(rule_key)
                                 existing_task_map[task_id] = task
+                            elif task_id in existing_task_map:
+                                existing_t = existing_task_map[task_id]
+                                if existing_t.status in (TaskStatus.PENDING, TaskStatus.BLOCKED):
+                                    if has_freq_block and not existing_t.is_blocked:
+                                        existing_t.is_blocked = True
+                                        existing_t.status = TaskStatus.BLOCKED
+                                        existing_t.block_reason = f"FREQUENCY_CAPPING: Khách hàng vừa được liên hệ {recent_contact_days} ngày trước (Quy tắc giãn cách tối thiểu 7 ngày)"
+                                        tasks_modified = True
+                                    elif not has_freq_block and existing_t.is_blocked and existing_t.block_reason and "FREQUENCY_CAPPING" in existing_t.block_reason:
+                                        existing_t.is_blocked = False
+                                        existing_t.status = TaskStatus.PENDING
+                                        existing_t.block_reason = None
+                                        tasks_modified = True
 
                 # --------------------------------------------------------------
                 # QUY TẮC 3: LỊCH HẸN GỌI LẠI (SCHEDULED CALLBACK)
@@ -1060,6 +1090,35 @@ class CustomerCareService:
                                 "notes": "Kích hoạt Incident Lockout: Chặn mọi hành vi tiếp thị / chào mua lại"
                             })
                             tasks_modified = True
+
+                    # 3. Khóa do Tần suất liên hệ (Frequency Capping 7 ngày - Mục 8.2)
+                    if is_marketing_task and t.status != TaskStatus.COMPLETED and not c.active_complaint and not is_opt_out:
+                        recent_contact_days = None
+                        for inter in getattr(c, "interactions", []):
+                            ts = getattr(inter, "occurred_at", None) or getattr(inter, "timestamp", None)
+                            is_outbound_or_contact = getattr(inter, "action_type", "") in (
+                                ActionType.CONTACTED, ActionType.COMPLETED, "CONTACTED", "COMPLETED"
+                            ) or getattr(inter, "direction", "") == "OUTBOUND"
+                            if ts and is_outbound_or_contact:
+                                try:
+                                    d_inter = datetime.strptime(ts[:10], "%Y-%m-%d")
+                                    diff_d = (today_date - d_inter).days
+                                    if recent_contact_days is None or diff_d < recent_contact_days:
+                                        recent_contact_days = diff_d
+                                except Exception:
+                                    pass
+                        has_freq_block = bool(recent_contact_days is not None and recent_contact_days <= 7)
+                        if has_freq_block:
+                            if t.status != TaskStatus.BLOCKED or not t.is_blocked:
+                                t.status = TaskStatus.BLOCKED
+                                t.is_blocked = True
+                                t.block_reason = f"FREQUENCY_CAPPING: Khách hàng vừa được liên hệ {recent_contact_days} ngày trước (Quy tắc giãn cách tối thiểu 7 ngày)"
+                                t.logs.append({
+                                    "timestamp": _get_now_str(),
+                                    "action": "BLOCKED_BY_POLICY",
+                                    "notes": f"Hệ thống tự động khóa nhiệm vụ tiếp thị do tần suất liên hệ ({recent_contact_days} ngày trước <= 7 ngày)"
+                                })
+                                tasks_modified = True
 
             if new_tasks or tasks_modified:
                 all_raw = [t.model_dump() for t in all_current_tasks]
@@ -1375,7 +1434,47 @@ class CustomerCareService:
                     "suggested_action": "Tôn trọng quyền riêng tư"
                 }
 
-            # 3. SOẠN KỊCH BẢN HỢP LỆ THEO NGỮ CẢNH (HỖ TRỢ / CHĂM SÓC)
+            # 3. KIỂM TRA TẦN SUẤT LIÊN HỆ (FREQUENCY CAPPING 7 NGÀY - MỤC 8.1 & 8.2)
+            if is_marketing_purpose:
+                latest_contact_days = None
+                for inter in getattr(cust, "interactions", []):
+                    ts = getattr(inter, "occurred_at", None) or getattr(inter, "timestamp", None)
+                    is_contact_action = getattr(inter, "action_type", "") in (
+                        ActionType.CONTACTED, ActionType.COMPLETED, "CONTACTED", "COMPLETED"
+                    ) or getattr(inter, "direction", "") == "OUTBOUND"
+                    if ts and is_contact_action:
+                        try:
+                            dt = datetime.strptime(ts[:10], "%Y-%m-%d")
+                            days_ago = (datetime.now() - dt).days
+                            if latest_contact_days is None or days_ago < latest_contact_days:
+                                latest_contact_days = days_ago
+                        except Exception:
+                            pass
+
+                if latest_contact_days is not None and latest_contact_days <= 7:
+                    return {
+                        "decision": "FREQUENCY_BLOCKED",
+                        "draft_source": "TEMPLATE",
+                        "warning": "FREQUENCY_CAPPING_ENFORCED",
+                        "customer_id": cust.id,
+                        "customer_name": cust.name,
+                        "is_locked": False,
+                        "is_opt_out": cust.is_opt_out_marketing,
+                        "draft": (
+                            f"⛔ CẢNH BÁO TẦN SUẤT LIÊN HỆ (FREQUENCY CAPPING 7 NGÀY): Khách hàng {cust.name} ({cust.id}) "
+                            f"vừa mới được liên hệ cách đây {latest_contact_days} ngày.\n\n"
+                            f"Theo quy tắc chống spam và bảo vệ trải nghiệm khách hàng (Mục 8.2), khoảng cách tối thiểu giữa 2 lần liên hệ tiếp thị/tái mua là 7 ngày.\n\n"
+                            f"Hệ thống tạm ngưng gửi tin nhắn chu kỳ tái mua cho khách hàng này đến khi đủ khoảng cách an toàn."
+                        ),
+                        "channel": "Không khả dụng (Bị chặn do tần suất liên hệ)",
+                        "message": (
+                            f"⛔ CẢNH BÁO TẦN SUẤT (FREQUENCY CAPPING): Khách hàng {cust.name} "
+                            f"đã được liên hệ {latest_contact_days} ngày trước (Quy chuẩn giãn cách tối thiểu 7 ngày)."
+                        ),
+                        "suggested_action": "Tạm hoãn liên hệ tiếp thị"
+                    }
+
+            # 4. SOẠN KỊCH BẢN HỢP LỆ THEO NGỮ CẢNH (HỖ TRỢ / CHĂM SÓC - MỤC 8.3: KHÔNG TỰ KHẲNG ĐỊNH TRẠNG THÁI)
             if task_type == "GENERAL_WELCOME_CARE":
                 draft_text = (
                     f"DION xin chào quý khách {cust.name}! Dược sĩ DION xin phép nhắn tin thăm hỏi sức khỏe của quý khách. "
@@ -1386,16 +1485,17 @@ class CustomerCareService:
             elif task_type in ("REORDER_CHECK_DAY_25", "REORDER_CHECK"):
                 draft_text = (
                     f"DION xin chào chị {first_name}! Liệu trình {product_name} của mình hiện đã bước sang ngày thứ 25.\n\n"
-                    f"Dược sĩ DION xin phép nhắn tin thăm hỏi: Trong tháng qua chị uống sau bữa sáng có thấy êm bụng và dễ chịu không ạ?\n\n"
-                    f"Để đảm bảo lượng vi chất được bổ sung đều đặn cho cơ thể không bị gián đoạn, DION xin gửi chị ưu đãi thành viên hỗ trợ 10% cho hộp chu kỳ tiếp theo. "
+                    f"Dược sĩ DION xin phép nhắn tin thăm hỏi: Nếu trong tháng qua chị dùng đều đặn và sản phẩm sắp hết, "
+                    f"DION xin gửi chị ưu đãi thành viên hỗ trợ 10% cho hộp chu kỳ tiếp theo để việc bổ sung vi chất không bị gián đoạn. "
                     f"Chị nhắn lại để Dược sĩ hỗ trợ chuẩn bị đơn giao tận nhà nhé ạ! Chúc chị luôn khỏe mạnh!"
                 )
                 channel = "Zalo OA"
             elif task_type == "DELIVERY_FOLLOWUP_DAY_7":
                 draft_text = (
-                    f"DION xin chao anh {first_name}! Anh da su dung {product_name} duoc 1 tuan. "
-                    f"Anh nho duy tri uong deu vao buoi sang sau an de tang cuong hap thu toi da nhe a. "
-                    f"Neu can them tu van ve lieu luong hoac cach dung, anh vui long phan hoi tai day. Chuc anh ngay moi vui ve!"
+                    f"DION xin chào anh {first_name}! Đơn hàng {product_name} của mình đã được giao thành công 7 ngày trước. "
+                    f"Dược sĩ DION xin phép nhắn tin thăm hỏi không biết anh đã mở hộp sử dụng chưa ạ? "
+                    f"Nếu anh cần Dược sĩ hỗ trợ thêm về cách uống hoặc thời điểm sử dụng sau ăn để tăng cường hấp thu tối đa, "
+                    f"anh vui lòng phản hồi tại đây nhé. Chúc anh ngày mới vui vẻ và nhiều sức khỏe!"
                 )
                 channel = "SMS Brandname"
             elif task_type == "SCHEDULED_CALLBACK":
@@ -1734,6 +1834,116 @@ class CustomerCareService:
                     "Kích hoạt Incident Lockout & Chuyển Dược sĩ phụ trách" if is_complaint
                     else ("Khóa quyền tiếp thị (Opt-out)" if is_opt_out else "Tiếp tục tư vấn")
                 )
+            }
+
+    def analyze_customer_state(self, customer_id: str) -> Dict[str, Any]:
+        """
+        Phân tích trạng thái khách hàng theo ma trận 4 chiều (Mục 8.3):
+        1. Observable Facts (Dữ liệu quan sát được từ sự kiện thực tế)
+        2. AI Inference (Dữ liệu suy diễn/ước tính của AI)
+        3. Confidence Level (Mức độ tin cậy)
+        4. Action Recommendation (Khuyến nghị hành động - Không tự khẳng định)
+        """
+        with _service_lock:
+            cust = self.get_customer(customer_id)
+            if not cust:
+                return {
+                    "status": "ERROR",
+                    "code": "CUSTOMER_NOT_FOUND",
+                    "message": f"Không tìm thấy khách hàng {customer_id}"
+                }
+
+            today = datetime.now()
+            p = cust.purchases[0] if cust.purchases else None
+
+            # 1. Observable Facts
+            days_since_delivery = None
+            if p and p.delivery_date:
+                try:
+                    deliv_dt = datetime.strptime(p.delivery_date, "%Y-%m-%d")
+                    days_since_delivery = (today - deliv_dt).days
+                except Exception:
+                    pass
+
+            latest_contact_days = None
+            latest_contact_date = None
+            for inter in getattr(cust, "interactions", []):
+                ts = getattr(inter, "occurred_at", None) or getattr(inter, "timestamp", None)
+                if ts:
+                    try:
+                        dt = datetime.strptime(ts[:10], "%Y-%m-%d")
+                        d_ago = (today - dt).days
+                        if latest_contact_days is None or d_ago < latest_contact_days:
+                            latest_contact_days = d_ago
+                            latest_contact_date = ts[:10]
+                    except Exception:
+                        pass
+
+            observable_facts = {
+                "customer_id": cust.id,
+                "customer_name": cust.name,
+                "customer_type": cust.customer_type,
+                "has_purchase": bool(p),
+                "order_id": p.order_id if p else None,
+                "sku": p.sku if p else None,
+                "product_name": p.product_name if p else None,
+                "delivery_date": p.delivery_date if p else None,
+                "days_since_delivery": days_since_delivery,
+                "order_status": getattr(p, "order_status", None) if p else None,
+                "active_complaint": cust.active_complaint,
+                "consent_status": cust.consent_status,
+                "is_opt_out_marketing": cust.is_opt_out_marketing,
+                "total_interactions": len(getattr(cust, "interactions", [])),
+                "latest_contact_date": latest_contact_date,
+                "days_since_latest_contact": latest_contact_days,
+                "has_contact_last_7_days": bool(latest_contact_days is not None and latest_contact_days <= 7),
+            }
+
+            # 2. AI Inference
+            cycle_days = p.cycle_days if p else 30
+            est_remaining_days = max(0, cycle_days - (days_since_delivery or 0)) if days_since_delivery is not None else None
+            reorder_likelihood = "LOW"
+            if days_since_delivery is not None:
+                if days_since_delivery >= cycle_days - 5:
+                    reorder_likelihood = "HIGH"
+                elif days_since_delivery >= int(cycle_days * 0.5):
+                    reorder_likelihood = "MEDIUM"
+
+            ai_inference = {
+                "cycle_days": cycle_days,
+                "estimated_remaining_days": est_remaining_days,
+                "usage_assumption": "Giả định khách hàng sử dụng đều đặn theo liều khuyến cáo (1 viên/ngày)",
+                "reorder_need_likelihood": reorder_likelihood,
+                "is_factual_usage_confirmed": False,
+                "inference_basis": (
+                    f"Ước tính dựa trên ngày giao hàng ({p.delivery_date if p else 'N/A'}) và chu kỳ sản phẩm {cycle_days} ngày. "
+                    "Hệ thống KHÔNG có cảm biến hoặc xác nhận thực tế rằng khách hàng đã mở hộp uống đều mỗi ngày."
+                )
+            }
+
+            # 3. Confidence Level
+            has_client_confirmation = any(
+                getattr(i, "direction", "") == "INBOUND" and "uống" in (getattr(i, "notes", "") or getattr(i, "summary", "")).lower()
+                for i in getattr(cust, "interactions", [])
+            )
+            confidence_level = "HIGH" if has_client_confirmation else ("MEDIUM" if days_since_delivery is not None else "LOW")
+
+            # 4. Action Recommendation
+            action_rec = (
+                "Tuân thủ nguyên tắc Mục 8.3: 'KHÔNG TỰ KHẲNG ĐỊNH TRẠNG THÁI SỬ DỤNG'. "
+                "Sử dụng câu hỏi mở để xác nhận tình trạng thực tế từ khách hàng "
+                "(ví dụ: 'Đơn hàng đã giao được X ngày, không biết anh/chị đã mở hộp dùng chưa ạ?'). "
+                "Tuyệt đối không dùng các khẳng định võ đoán như 'Anh đã dùng được 1 tuần' hoặc 'Trong tháng qua chị đã uống'."
+            )
+
+            return {
+                "status": "SUCCESS",
+                "customer_id": cust.id,
+                "customer_name": cust.name,
+                "observable_facts": observable_facts,
+                "ai_inference": ai_inference,
+                "confidence_level": confidence_level,
+                "action_recommendation": action_rec
             }
 
 

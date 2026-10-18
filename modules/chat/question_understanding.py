@@ -17,7 +17,13 @@ SENSITIVE_MEDICAL_KEYWORDS: Dict[str, str] = {
     "mang thai": "Phụ nữ mang thai",
     "thai kỳ": "Giai đoạn thai kỳ",
     "có bầu": "Phụ nữ có bầu",
+    "mang bầu": "Phụ nữ mang thai",
+    "đang bầu": "Phụ nữ mang thai",
     "bầu bí": "Phụ nữ mang thai",
+    "bầu bì": "Phụ nữ mang thai",
+    "thai phụ": "Phụ nữ mang thai",
+    "mẹ bầu": "Phụ nữ mang thai",
+    "bà bầu": "Phụ nữ mang thai",
     "cho con bú": "Phụ nữ đang cho con bú",
     "sơ sinh": "Trẻ sơ sinh",
     "trẻ sơ sinh": "Trẻ sơ sinh",
@@ -64,7 +70,9 @@ GREETING_STARTERS: List[str] = [
 # Các từ khóa so sánh sản phẩm
 COMPARISON_KEYWORDS: List[str] = [
     "so sánh", "khác nhau", "khác gì", "nên chọn", "nên uống loại nào",
-    "uống cùng lúc", "uống chung", "kết hợp", "phân biệt", "loại nào tốt hơn"
+    "uống cùng lúc", "uống chung", "kết hợp", "phân biệt", "loại nào tốt hơn",
+    "khác", "khác chỗ nào", "khác nhau chỗ nào", "khác với", "so với",
+    "sự khác biệt", "điểm khác", "khác gì nhau"
 ]
 
 # Các câu hỏi về sản phẩm nhưng không nêu tên cụ thể (Ambiguous / Cần làm rõ)
@@ -237,10 +245,15 @@ class QuestionUnderstandingEngine:
         has_cal = any(re.search(r"\b" + re.escape(kw) + r"\b", norm_query) for kw in cal_keywords)
         has_fe = any(re.search(r"\b" + re.escape(kw) + r"\b", norm_query) for kw in fe_keywords)
 
+        has_comp_word = any(cw in norm_query for cw in COMPARISON_KEYWORDS)
+
         # Xử lý trường hợp "canxi" đứng đơn lẻ:
+        # Nếu câu hỏi có từ khóa so sánh (has_comp_word), nhận diện cả hai sản phẩm
         # Nếu câu hỏi có "hấp thu canxi" hoặc "hấp thụ canxi" mà đang hỏi D3 thì không xem là Cal-Mom
         if "canxi" in norm_query and not has_cal:
-            if not ("hấp thu canxi" in norm_query or "hấp thụ canxi" in norm_query or has_d3):
+            if has_comp_word:
+                has_cal = True
+            elif not ("hấp thu canxi" in norm_query or "hấp thụ canxi" in norm_query or has_d3):
                 has_cal = True
 
         # Xử lý trường hợp "sắt" đứng đơn lẻ:
@@ -426,6 +439,25 @@ class QuestionUnderstandingEngine:
             if re.search(r"\b" + re.escape(kw) + r"\b", norm_msg):
                 matched_sensitive.append((kw, desc))
 
+        # Nhận diện các biểu thức thai kỳ đặc thù (số tháng, số tuần, hoặc từ "bầu" độc lập)
+        pregnancy_patterns = [
+            (r"\bbầu\s+([0-9]+)\s*(tháng|tuần)\b", "Phụ nữ mang thai (tuần/tháng thai kỳ)"),
+            (r"\bthai\s+([0-9]+)\s*(tháng|tuần)\b", "Giai đoạn thai kỳ (tuần/tháng thai kỳ)"),
+            (r"\bbầu\b", "Phụ nữ mang thai"),
+        ]
+        for p_regex, p_desc in pregnancy_patterns:
+            if re.search(p_regex, norm_msg):
+                if p_regex == r"\bbầu\b":
+                    is_product_alias = bool(re.search(r"\b(canxi|sắt)\s+bầu\b", norm_msg))
+                    has_pregnancy_safety_query = bool(re.search(
+                        r"\b(uống được không|dùng được không|mấy tháng|[0-9]+\s*tháng|[0-9]+\s*tuần|an toàn không|uống sao|uống thế nào|dùng thế nào|có sao không|bầu mấy tháng)\b",
+                        norm_msg
+                    ))
+                    if is_product_alias and not has_pregnancy_safety_query:
+                        continue
+                matched_sensitive.append(("mang thai", p_desc))
+                break
+
         has_pricing = any(pk in norm_msg for pk in PRICING_KEYWORDS)
         has_overview = any(ok in norm_msg for ok in OVERVIEW_KEYWORDS)
 
@@ -450,9 +482,62 @@ class QuestionUnderstandingEngine:
                 technical_code="COMPOUND_HEALTH_AND_PRODUCT_RISK" if is_compound else "SENSITIVE_MEDICAL_HANDOFF",
                 direct_answer=(
                     f"⚠️ YÊU CẦU CHUYỂN DƯỢC SĨ TƯ VẤN CHUYÊN MÔN:\n"
-                    f"Câu hỏi liên quan đến nhóm đối tượng nhạy cảm y tế ({top_kw.upper()}). "
+                    f"Câu hỏi liên quan đến nhóm đối tượng nhạy cảm y tế ({top_desc.upper()}). "
                     "Theo tiêu chuẩn an toàn y dược, trường hợp này cần được Dược sĩ hoặc Bác sĩ có chuyên môn xem xét trực tiếp.\n"
                     "Tuyệt đối KHÔNG tự ý sử dụng hoặc điều chỉnh liều lượng khi chưa có chỉ định của chuyên gia y tế."
+                )
+            )
+
+        # 3b. KIỂM TRA Ý ĐỊNH ĐẶT MUA / MUA HÀNG SỐ LƯỢNG LỚN (BUY_PRODUCT - Mục 7.3)
+        buy_patterns = [
+            r"\b(cho tôi|tôi muốn|muốn|cần|đặt)\s+(mua|lấy|đặt|order)\b",
+            r"\b(mua|lấy|đặt)\s+([0-9]+)\s*(hộp|chai|lọ|viên|combo|thùng)\b",
+            r"\b(mua sỉ|mua buôn|giá sỉ|đặt hàng|mua hàng)\b",
+            r"\bcho tôi mua\b"
+        ]
+        has_buy_intent = any(re.search(bp, norm_msg) for bp in buy_patterns)
+        if has_buy_intent:
+            prod_res = self.resolve_product(user_msg, requested_sku, context_sku)
+            return QuestionUnderstandingResult(
+                intent=ChatIntent.BUY_PRODUCT,
+                decision=ChatDecision.READY_TO_SEND,
+                risk_level=RiskLevel.LOW,
+                risk_flags=[],
+                risk_reason=None,
+                handoff_required=False,
+                product_resolution=prod_res,
+                technical_code="BUY_PRODUCT_INTENT",
+                direct_answer=(
+                    "DION Healthcare AI là trợ lý thông tin khoa học và hồ sơ công bố sản phẩm. "
+                    "Để đặt mua sản phẩm hoặc nhận chính sách bán hàng số lượng lớn (mua sỉ/lẻ), "
+                    "quý khách vui lòng liên hệ Bộ phận Kinh doanh qua Hotline Bán hàng: 1900-xxxx "
+                    "hoặc đến trực tiếp các nhà thuốc đối tác đạt chuẩn GPP phân phối chính hãng của DION."
+                )
+            )
+
+        # 3c. KIỂM TRA YÊU CẦU GIỚI THIỆU BÁC SĨ / PHÒNG KHÁM TƯ (OFF_TOPIC - Mục 7.3)
+        doctor_referral_patterns = [
+            r"\bbác sĩ\b.*?\b(giỏi|tốt|uy tín|chữa hay)\b",
+            r"\b(giới thiệu|tìm|chỉ|hỏi)\s+.*?\b(bác sĩ|phòng khám)\b",
+            r"\bphòng khám\b.*?\b(tốt|uy tín|giỏi)\b",
+            r"\bbác sĩ giỏi\b",
+            r"\bbác sĩ nào\b"
+        ]
+        if any(re.search(drp, norm_msg) for drp in doctor_referral_patterns):
+            prod_res = self.resolve_product(user_msg, requested_sku, context_sku)
+            return QuestionUnderstandingResult(
+                intent=ChatIntent.OFF_TOPIC,
+                decision=ChatDecision.INSUFFICIENT_EVIDENCE,
+                risk_level=RiskLevel.LOW,
+                risk_flags=[],
+                risk_reason=None,
+                handoff_required=False,
+                product_resolution=prod_res,
+                technical_code="DOCTOR_REFERRAL_OFF_TOPIC",
+                direct_answer=(
+                    "DION Healthcare AI không cung cấp dịch vụ đánh giá hoặc chỉ định bác sĩ, phòng khám tư nhân cụ thể "
+                    "nhằm đảm bảo tính khách quan và tuân thủ quy chế hành nghề y tế. Quý khách vui lòng đến thăm khám "
+                    "tại các cơ sở y tế hoặc bệnh viện chuyên khoa công lập tuyến tỉnh/trung ương để được chẩn đoán và tư vấn điều trị chính xác."
                 )
             )
 
