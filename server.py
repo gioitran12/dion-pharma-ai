@@ -29,6 +29,20 @@ from modules.market_intelligence import (
     get_warehouse_market_intelligence, analyze_custom_competitor
 )
 
+from modules.research_intelligence import (
+    ResearchIntelligenceService,
+    SearchStudiesRequest,
+    AIAnalyzeStudyRequest,
+    LinkClaimRequest,
+)
+
+_research_service: Optional[ResearchIntelligenceService] = None
+
+def get_research_service() -> ResearchIntelligenceService:
+    global _research_service
+    if _research_service is None:
+        _research_service = ResearchIntelligenceService()
+    return _research_service
 
 import uuid
 from modules.chat.schemas import ChatRequest, ChatResponse, IntentResult, SafetyResult, CitationInfo, ChatAction
@@ -1149,45 +1163,124 @@ async def api_customer_care_link_copilot_interaction(req: LinkCopilotInteraction
     return res
 
 # --- GIẢI PHÁP 6: AI RESEARCH INTELLIGENCE (NGHIÊN CỨU & BẰNG CHỨNG PUBMED) ---
+@app.get("/api/research/ingredients")
+async def api_research_ingredients(category: Optional[str] = None):
+    """Danh mục hoạt chất được theo dõi bằng chứng y văn lâm sàng"""
+    svc = get_research_service()
+    ingredients = svc.get_active_ingredients(category=category)
+    return {"ingredients": [ing.model_dump() for ing in ingredients], "total": len(ingredients)}
+
+
+@app.get("/api/research/studies")
+async def api_research_studies(
+    query: Optional[str] = None,
+    ingredient: Optional[str] = None,
+    study_type: Optional[str] = None,
+    evidence_grade: Optional[str] = None,
+    target_group: Optional[str] = None,
+    limit: int = 50,
+):
+    """Tìm kiếm nghiên cứu y văn lâm sàng chuẩn PubMed theo nhiều tiêu chí"""
+    svc = get_research_service()
+    req = SearchStudiesRequest(
+        query=query,
+        ingredient=ingredient,
+        study_type=study_type,
+        evidence_grade=evidence_grade,
+        target_group=target_group,
+        limit=limit,
+    )
+    studies = svc.search_studies(req)
+    return {"studies": [s.model_dump() for s in studies], "total": len(studies)}
+
+
+@app.get("/api/research/studies/{pmid}")
+async def api_research_study_detail(pmid: str):
+    """Xem chi tiết một nghiên cứu y văn lâm sàng theo mã PMID"""
+    svc = get_research_service()
+    study = svc.get_study_by_pmid(pmid)
+    if not study:
+        raise HTTPException(status_code=404, detail=f"Không tìm thấy nghiên cứu y văn với PMID '{pmid}'")
+    return study.model_dump()
+
+
+@app.get("/api/research/pharmacology/compare")
+async def api_research_pharmacology_compare(category: str = "CANXI"):
+    """Bảng so sánh chuyên sâu dược lý học giữa các dạng muối và phân tích khoảng trống khẩu phần"""
+    svc = get_research_service()
+    return svc.compare_pharmacology(category=category)
+
+
+@app.post("/api/research/ai-analyze")
+async def api_research_ai_analyze(request: AIAnalyzeStudyRequest):
+    """AI trích xuất PICO và đánh giá cấp độ y văn từ Abstract y khoa"""
+    svc = get_research_service()
+    try:
+        analysis = await svc.analyze_study_abstract(
+            abstract_text=request.abstract_text,
+            target_product_sku=request.target_product_sku,
+        )
+        return {"status": "SUCCESS", "analysis": analysis.model_dump()}
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Lỗi phân tích AI: {str(e)}")
+
+
+@app.post("/api/research/link-to-product-claim")
+async def api_research_link_claim(request: LinkClaimRequest):
+    """Gắn kết nghiên cứu đã thẩm định vào hồ sơ bằng chứng lâm sàng sản phẩm DION"""
+    svc = get_research_service()
+    try:
+        res = svc.link_study_to_product_claim(request)
+        return res
+    except ValueError as ve:
+        raise HTTPException(status_code=404, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Lỗi liên kết bằng chứng: {str(e)}")
+
+
 @app.get("/api/research-intelligence")
 async def api_research_intelligence(ingredient: str = "Lithothamnion"):
+    """
+    Endpoint tương thích ngược cho Tab Nghiên cứu PubMed cũ.
+    Trả về cấu trúc dữ liệu khoa học kết nối trực tiếp với MedicalLiteratureRepository.
+    """
+    svc = get_research_service()
+    studies = svc.search_studies(SearchStudiesRequest(ingredient=ingredient, limit=10))
+    if not studies:
+        studies = svc.search_studies(SearchStudiesRequest(query=ingredient, limit=10))
+    if not studies:
+        studies = svc.search_studies(SearchStudiesRequest(limit=5))
+
+    evidence_table = []
+    for s in studies:
+        grade_label = s.evidence_grade.value if hasattr(s.evidence_grade, "value") else str(s.evidence_grade)
+        study_type_label = s.study_type.value if hasattr(s.study_type, "value") else str(s.study_type)
+        evidence_table.append({
+            "pmid": f"PMID: {s.pmid}",
+            "study_type": study_type_label,
+            "sample_size": s.sample_size,
+            "dosage": s.dosage_used,
+            "key_findings": s.primary_outcome,
+            "adverse_events": s.adverse_events,
+            "evidence_grade": f"Hạng {grade_label[-1]} (Oxford CEBM)",
+            "title": s.title,
+            "url": s.pubmed_url,
+        })
+
+    summary = (
+        "Chiết xuất tảo đỏ vôi hóa Lithothamnion calcareum chứa 32% Canxi nguyên tố, 2.2% Magie và hơn 70 khoáng chất vi lượng, có cấu trúc xốp tổ ong giúp tăng độ hòa tan và sinh khả dụng so với canxi đá vôi."
+        if "litho" in ingredient.lower()
+        else f"Tổng hợp y văn lâm sàng và dữ liệu PubMed cập nhật cho hoạt chất {ingredient}."
+    )
+
     return {
         "ingredient": ingredient,
-        "scientific_summary": "Chiết xuất tảo đỏ vôi hóa Lithothamnion calcareum chứa 32% Canxi nguyên tố, 2.2% Magie và hơn 70 khoáng chất vi lượng, có cấu trúc xốp tổ ong giúp tăng độ hòa tan và sinh khả dụng so với canxi đá vôi.",
-        "evidence_table": [
-            {
-                "pmid": "PMID: 20213326",
-                "study_type": "Thử nghiệm lâm sàng ngẫu nhiên có đối chứng (RCT)",
-                "sample_size": "N = 120 phụ nữ tiền mãn kinh",
-                "dosage": "1.000 mg Canxi sinh học / ngày trong 12 tháng",
-                "key_findings": "Tăng mật độ khoáng xương (BMD) tại đốt sống thắt lưng thêm +2.1% so với nhóm chứng (p < 0.05).",
-                "adverse_events": "Không ghi nhận trường hợp táo bón hoặc rối loạn tiêu hóa nghiêm trọng.",
-                "evidence_grade": "Hạng A (Bằng chứng lâm sàng mạnh)"
-            },
-            {
-                "pmid": "PMID: 29487192",
-                "study_type": "Nghiên cứu đối chứng sinh khả dụng chéo (Crossover Trial)",
-                "sample_size": "N = 45 người trưởng thành khỏe mạnh",
-                "dosage": "Liều đơn 500 mg Canxi tảo đỏ vs 500 mg Canxi Carbonate",
-                "key_findings": "Khả năng ức chế hormone tuyến cận giáp (PTH) kéo dài hơn 8 giờ, cho thấy thời gian duy trì nồng độ canxi máu ổn định hơn.",
-                "adverse_events": "Tỷ lệ dung nạp đường ruột đạt 96.8%.",
-                "evidence_grade": "Hạng A (Sinh khả dụng được kiểm chứng)"
-            },
-            {
-                "pmid": "PMID: 31092144",
-                "study_type": "Đánh giá tổng quan hệ thống & Phân tích gộp (Systematic Review & Meta-analysis)",
-                "sample_size": "Tổng hợp 18 nghiên cứu, N = 2.450 đối tượng",
-                "dosage": "Bổ sung kết hợp Canxi + Vitamin D3 + Vitamin K2 (MK-7)",
-                "key_findings": "Sự kết hợp ba thành phần giúp định hướng canxi vào mô xương, giảm 38% nguy cơ vôi hóa mạch máu.",
-                "adverse_events": "An toàn khi sử dụng theo liều khuyến cáo hàng ngày.",
-                "evidence_grade": "Hạng A (Đồng thuận y khoa quốc tế)"
-            }
-        ]
+        "scientific_summary": summary,
+        "evidence_table": evidence_table,
+        "total_studies": len(evidence_table),
     }
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
 
 
 @app.delete("/api/copilot/session/{session_id}")
@@ -1357,3 +1450,8 @@ async def api_customer_care_chat(request: CustomerCareChatRequest):
         ),
         "suggested_action": "Tư vấn khách hàng"
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)

@@ -2343,43 +2343,303 @@
 </div>
 
 <!-- =================================================================== -->
-        <div id="view-research" class="solution-view hidden space-y-4">
-            
-            <div class="bg-white rounded border border-slate-200 p-4 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div class="flex items-center gap-3">
-                    <label class="text-xs font-bold text-slate-700 uppercase whitespace-nowrap">Tra cứu hoạt chất lâm sàng:</label>
-                    <select id="research-ingredient-select" onchange="fetchResearchEvidence()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-semibold text-slate-900 outline-none w-72">
-                        <option value="Lithothamnion">Tảo đỏ vôi hóa Lithothamnion (Canxi sinh học)</option>
-                        <option value="Vitamin D3">Vitamin D3 & Thụ thể VDR ruột non</option>
-                        <option value="Sắt Bisglycinate">Sắt Chelate hữu cơ Bisglycinate</option>
-                    </select>
+<!-- =================================================================== -->
+        <!-- GIẢI PHÁP 6: AI RESEARCH & CLINICAL EVIDENCE INTELLIGENCE (TAB 6)   -->
+        <!-- =================================================================== -->
+        <div id="view-research" class="solution-view hidden space-y-5">
+            <!-- Header Banner & Stats -->
+            <div class="bg-white rounded border border-slate-200 p-5 shadow-sm">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+                    <div>
+                        <div class="flex items-center gap-2.5">
+                            <span class="inline-flex items-center justify-center w-7 h-7 rounded bg-indigo-600 text-white font-bold text-xs shadow-sm">6</span>
+                            <h2 class="text-base font-bold text-slate-900 tracking-tight">AI Research & Clinical Evidence Intelligence</h2>
+                            <span class="px-2.5 py-0.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-[11px] font-semibold">NCBI / PubMed Verified</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1">Hệ thống tra cứu y văn lâm sàng, động cơ đối chiếu dược lý sinh khả dụng và khung bóc tách thực chứng PICO chuẩn Oxford CEBM</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="openPicoModal()" class="px-3 py-1.5 rounded bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            <span>Bóc tách PICO bằng AI</span>
+                        </button>
+                        <button onclick="switchPharmacologyCategory('CANXI')" class="px-3 py-1.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition flex items-center gap-1.5 border border-slate-200">
+                            <span>Đối chiếu Dược lý</span>
+                        </button>
+                    </div>
                 </div>
-                <span class="text-xs text-slate-500 font-medium">Nguồn: Cơ sở dữ liệu Thư viện Y khoa Quốc gia Hoa Kỳ (NCBI / PubMed)</span>
+
+                <!-- Filters & Search Bar -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-4">
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Tìm kiếm y văn:</label>
+                        <div class="relative">
+                            <input type="text" id="research-search-query" onkeyup="handleResearchSearchKey(event)" placeholder="BMD, PTH, Ferritin, tác giả..." class="w-full bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-indigo-500 outline-none">
+                            <button onclick="applyResearchFilters()" class="absolute right-2 top-2 text-slate-400 hover:text-indigo-600">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Hoạt chất vi chất:</label>
+                        <select id="research-ingredient-select" onchange="applyResearchFilters()" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs font-semibold text-slate-900 outline-none">
+                            <option value="">Tất cả hoạt chất (9)</option>
+                            <option value="Lithothamnion">Canxi Tảo Đỏ Lithothamnion (Aquamin F)</option>
+                            <option value="calcium-citrate">Canxi Citrate Tetrahydrate</option>
+                            <option value="calcium-carbonate">Canxi Carbonate vô cơ</option>
+                            <option value="cholecalciferol">Vitamin D3 (Cholecalciferol)</option>
+                            <option value="vitamin-k2">Vitamin K2 (MK-7 tinh khiết)</option>
+                            <option value="ferrous-bisglycinate">Sắt Chelate Bisglycinate</option>
+                            <option value="ferrous-sulfate">Sắt Sulfate vô cơ</option>
+                            <option value="quatrefolic">Quatrefolic ((6S)-5-MTHF)</option>
+                            <option value="magnesium-bisglycinate">Magie Bisglycinate</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Thiết kế nghiên cứu:</label>
+                        <select id="research-study-type-select" onchange="applyResearchFilters()" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs text-slate-900 outline-none">
+                            <option value="ALL">Tất cả thiết kế</option>
+                            <option value="RCT_DOUBLE_BLIND">RCT Mù đôi ngẫu nhiên (Double-blind)</option>
+                            <option value="META_ANALYSIS">Phân tích gộp (Meta-analysis)</option>
+                            <option value="SYSTEMATIC_REVIEW">Tổng quan hệ thống</option>
+                            <option value="CROSSOVER_TRIAL">Thử nghiệm chéo (Crossover)</option>
+                            <option value="COHORT_STUDY">Nghiên cứu thuần tập</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Phân cấp bằng chứng:</label>
+                        <select id="research-grade-select" onchange="applyResearchFilters()" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs text-slate-900 outline-none">
+                            <option value="ALL">Tất cả cấp độ</option>
+                            <option value="GRADE_A">Hạng A (Bằng chứng lâm sàng mạnh)</option>
+                            <option value="GRADE_B">Hạng B (Bằng chứng trung bình)</option>
+                            <option value="GRADE_C">Hạng C (Bằng chứng sơ bộ)</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
-            <!-- Tóm Tắt Khoa Học -->
-            <div class="p-3 bg-blue-50/70 border border-blue-200 rounded text-xs text-blue-950 font-medium" id="research-summary-text">
-                Đang tải tóm tắt tổng quan y khoa...
-            </div>
-
-            <!-- Bảng Bằng Chứng Lâm Sàng Trích Xuất (Structure Evidence Table) -->
+            <!-- Deep Dive Card: Pharmacology Engine (Đối Chiếu Dược Lý Học & Sinh Khả Dụng) -->
             <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-4 py-2.5 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase">
-                    Bảng đối chiếu bằng chứng nghiên cứu lâm sàng
+                <div class="px-4 py-3 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                        <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Động cơ Đối chiếu Dược lý học & Khoảng trống Khẩu phần (Pharmacology Engine)</h3>
+                    </div>
+                    <div class="inline-flex rounded shadow-2xs border border-slate-200 p-0.5 bg-white">
+                        <button id="btn-pharma-ca" onclick="switchPharmacologyCategory('CANXI')" class="px-3 py-1 text-xs font-bold rounded bg-indigo-600 text-white transition">Nhóm Canxi</button>
+                        <button id="btn-pharma-fe" onclick="switchPharmacologyCategory('SAT')" class="px-3 py-1 text-xs font-bold rounded text-slate-600 hover:text-slate-900 transition">Nhóm Sắt</button>
+                    </div>
                 </div>
-                <table class="w-full text-left text-xs">
-                    <thead>
-                        <tr>
-                            <th class="table-cell-header w-32">Mã nghiên cứu</th>
-                            <th class="table-cell-header w-64">Thiết kế nghiên cứu</th>
-                            <th class="table-cell-header w-44">Cỡ mẫu đối tượng (N)</th>
-                            <th class="table-cell-header w-48">Liều dùng thử nghiệm</th>
-                            <th class="table-cell-header">Kết quả chính được ghi nhận</th>
-                            <th class="table-cell-header w-40">Mức độ bằng chứng</th>
-                        </tr>
-                    </thead>
-                    <tbody id="research-evidence-tbody" class="divide-y divide-slate-100"></tbody>
-                </table>
+
+                <!-- Pharmacology Comparison Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs" id="research-pharmacology-table">
+                        <thead>
+                            <tr class="bg-slate-50/80 border-b border-slate-200">
+                                <th class="table-cell-header w-48">Hợp chất / Dạng muối</th>
+                                <th class="table-cell-header w-24 text-center">% Nguyên tố</th>
+                                <th class="table-cell-header w-56">Độ hòa tan & pH dịch vị</th>
+                                <th class="table-cell-header w-56">Cơ chế vận chuyển & Hấp thu</th>
+                                <th class="table-cell-header w-28 text-center">Nguy cơ táo bón</th>
+                                <th class="table-cell-header w-40">Liều bổ sung thực tế</th>
+                                <th class="table-cell-header">Đánh giá Dược lý & Lâm sàng</th>
+                            </tr>
+                        </thead>
+                        <tbody id="research-pharmacology-tbody" class="divide-y divide-slate-100"></tbody>
+                    </table>
+                </div>
+
+                <!-- Callout: Phân tích Khoảng trống Khẩu phần (Dietary Gap Analysis) -->
+                <div class="p-4 bg-emerald-50/70 border-t border-emerald-100 flex items-start gap-3">
+                    <div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 mt-0.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold text-emerald-950 uppercase tracking-wide" id="dietary-gap-title">Phân tích Khoảng trống Khẩu phần Thai kỳ</h4>
+                        <p class="text-xs text-emerald-900 leading-relaxed" id="dietary-gap-takeaway">
+                            Đang tải phân tích khoảng trống dinh dưỡng y khoa...
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clinical Evidence Table: Bằng Chứng Y Văn Lâm Sàng PubMed -->
+            <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
+                <div class="px-4 py-3 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+                        <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Kho Nghiên cứu Lâm sàng Thẩm định (PubMed Clinical Evidence Base)</h3>
+                    </div>
+                    <div class="text-xs text-slate-500 font-medium flex items-center gap-2">
+                        <span id="research-total-count" class="font-bold text-slate-900">0</span> nghiên cứu hiển thị
+                        <span class="text-slate-300">|</span>
+                        <span>Trích dẫn NCBI trực tiếp</span>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead>
+                            <tr class="bg-slate-50/80 border-b border-slate-200">
+                                <th class="table-cell-header w-32">PMID & Nguồn</th>
+                                <th class="table-cell-header min-w-[280px]">Tiêu đề nghiên cứu & Tạp chí</th>
+                                <th class="table-cell-header w-44">Thiết kế & Cỡ mẫu</th>
+                                <th class="table-cell-header w-44">Liều can thiệp</th>
+                                <th class="table-cell-header min-w-[260px]">Kết quả lâm sàng chính</th>
+                                <th class="table-cell-header w-28 text-center">Oxford CEBM</th>
+                                <th class="table-cell-header w-36 text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="research-evidence-tbody" class="divide-y divide-slate-100">
+                            <!-- Populated via Javascript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- MODAL 1: AI PICO ABSTRACT ANALYZER                                  -->
+        <!-- =================================================================== -->
+        <div id="research-modal-pico" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-2xs flex items-center justify-center p-4 hidden">
+            <div class="bg-white rounded-lg shadow-2xl border border-slate-200 w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden animate-fade-in">
+                <div class="px-5 py-3.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="inline-flex items-center justify-center w-6 h-6 rounded bg-indigo-600 text-white font-bold text-xs">AI</span>
+                        <h3 class="text-sm font-bold text-slate-900 uppercase">Trích xuất PICO & Đánh giá Y văn Thực chứng (Evidence-Based Medicine)</h3>
+                    </div>
+                    <button type="button" onclick="closePicoModal()" class="text-slate-400 hover:text-slate-600 font-bold text-xl leading-none">&times;</button>
+                </div>
+
+                <div class="p-5 overflow-y-auto space-y-4 text-xs">
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="font-bold text-slate-700">Đoạn tóm tắt bài báo y khoa (Abstract):</label>
+                            <span class="text-[11px] text-slate-400">Dán Abstract từ PubMed hoặc tải tự động từ nghiên cứu đã chọn</span>
+                        </div>
+                        <textarea id="pico-abstract-input" rows="5" class="w-full bg-slate-50 border border-slate-300 rounded p-3 text-xs text-slate-900 font-mono leading-relaxed outline-none focus:bg-white focus:border-indigo-500" placeholder="Paste Abstract text here..."></textarea>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <div class="flex items-center gap-2 w-full sm:w-auto">
+                            <label class="font-bold text-slate-700 whitespace-nowrap">Đối chiếu SKU sản phẩm DION:</label>
+                            <select id="pico-sku-select" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs font-semibold text-slate-900 outline-none">
+                                <option value="DION-CAL-MOM">DION-CAL-MOM (Canxi Tảo Đỏ Lithothamnion)</option>
+                                <option value="DION-FERO-MOM">DION-FERO-MOM (Sắt Chelate Bisglycinate)</option>
+                                <option value="DION-D3K2">DION-D3K2 (Vitamin D3 & K2 MK-7)</option>
+                            </select>
+                        </div>
+                        <button id="btn-run-pico" onclick="analyzeAbstractWithAI()" class="w-full sm:w-auto px-4 py-2 rounded bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-sm flex items-center justify-center gap-2 transition">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                            <span>Thực thi Bóc tách PICO bằng AI</span>
+                        </button>
+                    </div>
+
+                    <!-- PICO Result Container -->
+                    <div id="pico-result-box" class="hidden space-y-3 pt-3 border-t border-slate-200">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-slate-800 uppercase">Kết quả Bóc tách PICO & Đánh giá Cấp bằng chứng:</span>
+                            <span id="pico-grade-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">GRADE_A</span>
+                        </div>
+
+                        <!-- 4 PICO Cards Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="p-3 bg-blue-50/60 border border-blue-200 rounded">
+                                <div class="font-bold text-blue-900 text-xs mb-1 flex items-center gap-1.5">
+                                    <span class="px-1.5 py-0.5 rounded bg-blue-600 text-white font-mono text-[10px]">P</span>
+                                    <span>Dân số & Cỡ mẫu (Population)</span>
+                                </div>
+                                <p id="pico-population" class="text-slate-800 text-xs leading-relaxed font-medium">-</p>
+                            </div>
+                            <div class="p-3 bg-emerald-50/60 border border-emerald-200 rounded">
+                                <div class="font-bold text-emerald-900 text-xs mb-1 flex items-center gap-1.5">
+                                    <span class="px-1.5 py-0.5 rounded bg-emerald-600 text-white font-mono text-[10px]">I</span>
+                                    <span>Hoạt chất can thiệp & Liều (Intervention)</span>
+                                </div>
+                                <p id="pico-intervention" class="text-slate-800 text-xs leading-relaxed font-medium">-</p>
+                            </div>
+                            <div class="p-3 bg-amber-50/60 border border-amber-200 rounded">
+                                <div class="font-bold text-amber-900 text-xs mb-1 flex items-center gap-1.5">
+                                    <span class="px-1.5 py-0.5 rounded bg-amber-600 text-white font-mono text-[10px]">C</span>
+                                    <span>Nhóm đối chứng (Comparison)</span>
+                                </div>
+                                <p id="pico-comparison" class="text-slate-800 text-xs leading-relaxed font-medium">-</p>
+                            </div>
+                            <div class="p-3 bg-purple-50/60 border border-purple-200 rounded">
+                                <div class="font-bold text-purple-900 text-xs mb-1 flex items-center gap-1.5">
+                                    <span class="px-1.5 py-0.5 rounded bg-purple-600 text-white font-mono text-[10px]">O</span>
+                                    <span>Kết quả chính đo lường (Outcome)</span>
+                                </div>
+                                <p id="pico-outcome" class="text-slate-800 text-xs leading-relaxed font-medium">-</p>
+                            </div>
+                        </div>
+
+                        <!-- Takeaways & Safety -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="p-3 bg-slate-50 border border-slate-200 rounded">
+                                <div class="font-bold text-slate-800 text-xs mb-1">Kết luận Dược lý & R&D:</div>
+                                <p id="pico-takeaways" class="text-slate-700 text-xs leading-relaxed">-</p>
+                            </div>
+                            <div class="p-3 bg-slate-50 border border-slate-200 rounded">
+                                <div class="font-bold text-slate-800 text-xs mb-1">Hồ sơ Dung nạp & An toàn Tiêu hóa:</div>
+                                <p id="pico-adverse" class="text-slate-700 text-xs leading-relaxed">-</p>
+                            </div>
+                        </div>
+
+                        <!-- Dion Alignment Box -->
+                        <div class="p-3 bg-indigo-50/70 border border-indigo-200 rounded">
+                            <div class="font-bold text-indigo-950 text-xs mb-1 flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                <span>Căn cứ Bảo chứng Hồ sơ Công bố DION:</span>
+                            </div>
+                            <p id="pico-dion-alignment" class="text-indigo-900 text-xs leading-relaxed font-medium">-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- MODAL 2: GẮN KẾT NGHIÊN CỨU VÀO HỒ SƠ CLAIMS SẢN PHẨM             -->
+        <!-- =================================================================== -->
+        <div id="research-modal-link" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-2xs flex items-center justify-center p-4 hidden">
+            <div class="bg-white rounded-lg shadow-2xl border border-slate-200 w-full max-w-lg overflow-hidden animate-fade-in">
+                <div class="px-5 py-3.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-900 uppercase">Gắn Nghiên Cứu Lâm Sàng vào Hồ Sơ Claims</h3>
+                        <p class="text-[11px] text-slate-500">Bổ sung bảo chứng thực chứng chuẩn PubMed cho sản phẩm DION</p>
+                    </div>
+                    <button type="button" onclick="closeLinkStudyModal()" class="text-slate-400 hover:text-slate-600 font-bold text-xl leading-none">&times;</button>
+                </div>
+                <div class="p-5 space-y-4 text-xs">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Mã nghiên cứu (PMID):</label>
+                        <input id="link-study-pmid" readonly type="text" class="w-full bg-slate-100 border border-slate-300 rounded px-2.5 py-1.5 font-mono font-bold text-slate-900 outline-none">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Tiêu đề nghiên cứu:</label>
+                        <p id="link-study-title" class="p-2.5 bg-slate-50 rounded border border-slate-200 text-slate-800 text-xs leading-relaxed font-medium">-</p>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Chọn sản phẩm DION gắn kết (*):</label>
+                        <select id="link-study-sku" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 font-bold text-slate-900 outline-none">
+                            <option value="DION-CAL-MOM">DION-CAL-MOM — Canxi Hữu Cơ DION Cal-Mom Plus & D3 K2</option>
+                            <option value="DION-FERO-MOM">DION-FERO-MOM — Sắt Sinh Học DION Fero-Plus & Axit Folic</option>
+                            <option value="DION-D3K2">DION-D3K2 — DION Vitamin D3 Drops & MK-7</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Dược sĩ thẩm định (*):</label>
+                        <input id="link-study-assigned-by" type="text" value="DS. Chuyên môn R&D DION" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 font-medium text-slate-900 outline-none">
+                    </div>
+                    <div id="link-study-alert" class="hidden p-3 rounded text-xs font-semibold"></div>
+                    <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+                        <button type="button" onclick="closeLinkStudyModal()" class="px-3.5 py-2 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition">Hủy bỏ</button>
+                        <button type="button" onclick="submitLinkStudy()" id="btn-submit-link-study" class="px-4 py-2 rounded bg-indigo-600 hover:bg-indigo-700 text-white font-bold transition flex items-center gap-1.5">
+                            <span>Lưu vào Hồ sơ Sản phẩm</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -6106,28 +6366,412 @@
             if (text) navigator.clipboard.writeText(text);
         }
 
-        // --- 6. RESEARCH INTELLIGENCE (PUBMED) ---
-        async function fetchResearchEvidence() {
-            const ing = document.getElementById('research-ingredient-select').value;
-            const res = await fetch(`/api/research-intelligence?ingredient=${encodeURIComponent(ing)}`);
-            const data = await res.json();
+        // --- 6. AI RESEARCH & CLINICAL EVIDENCE INTELLIGENCE (PUBMED) ---
+        let currentPharmaCategory = 'CANXI';
+        let allResearchStudies = [];
 
-            document.getElementById('research-summary-text').innerText = 'Tổng quan y văn: ' + data.scientific_summary;
+        async function fetchResearchEvidence() {
+            try {
+                // Tải song song danh sách nghiên cứu và dữ liệu đối chiếu dược lý
+                const [studiesRes, pharmaRes] = await Promise.all([
+                    fetch('/api/research/studies?limit=50'),
+                    fetch(`/api/research/pharmacology/compare?category=${encodeURIComponent(currentPharmaCategory)}`)
+                ]);
+                
+                const studiesData = await studiesRes.json();
+                allResearchStudies = studiesData.studies || [];
+                renderResearchStudies(allResearchStudies);
+
+                const pharmaData = await pharmaRes.json();
+                renderPharmacologyComparison(pharmaData);
+            } catch (err) {
+                console.error('Lỗi tải dữ liệu Nghiên cứu PubMed:', err);
+            }
+        }
+
+        function renderResearchStudies(studies) {
+            const countEl = document.getElementById('research-total-count');
+            if (countEl) countEl.innerText = studies.length;
 
             const tbody = document.getElementById('research-evidence-tbody');
+            if (!tbody) return;
             tbody.innerHTML = '';
-            data.evidence_table.forEach(e => {
-                tbody.innerHTML += `
+
+            if (studies.length === 0) {
+                tbody.innerHTML = `
                     <tr>
-                        <td class="table-cell font-mono font-bold text-corp-700">${e.pmid}</td>
-                        <td class="table-cell font-semibold text-slate-900">${e.study_type}</td>
-                        <td class="table-cell text-slate-600 font-medium">${e.sample_size}</td>
-                        <td class="table-cell text-slate-700 font-mono">${e.dosage}</td>
-                        <td class="table-cell text-slate-900 font-medium">${e.key_findings}</td>
-                        <td class="table-cell font-bold text-emerald-800">${e.evidence_grade}</td>
+                        <td colspan="7" class="p-8 text-center text-slate-400">
+                            <p class="font-bold text-sm text-slate-600 mb-1">Không tìm thấy nghiên cứu y văn phù hợp</p>
+                            <p class="text-xs">Vui lòng thử lại với từ khóa hoặc bộ lọc phân loại khác.</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            studies.forEach(s => {
+                const pmidClean = (s.pmid || '').replace(/[^0-9]/g, '');
+                const pubmedUrl = s.pubmed_url || `https://pubmed.ncbi.nlm.nih.gov/${pmidClean}/`;
+                
+                // Badge kiểu nghiên cứu
+                let typeBadgeClass = 'bg-indigo-50 text-indigo-700 border-indigo-200';
+                let typeText = s.study_type || 'RCT';
+                if (typeText.includes('META') || typeText.includes('SYSTEMATIC')) {
+                    typeBadgeClass = 'bg-purple-50 text-purple-700 border-purple-200';
+                } else if (typeText.includes('CROSSOVER')) {
+                    typeBadgeClass = 'bg-blue-50 text-blue-700 border-blue-200';
+                }
+
+                // Badge Oxford CEBM
+                const grade = (s.evidence_grade || 'GRADE_A').toUpperCase();
+                let gradeBadgeClass = 'bg-emerald-50 text-emerald-800 border-emerald-300';
+                let gradeLabel = 'Hạng A';
+                if (grade.includes('B')) {
+                    gradeBadgeClass = 'bg-blue-50 text-blue-800 border-blue-300';
+                    gradeLabel = 'Hạng B';
+                } else if (grade.includes('C')) {
+                    gradeBadgeClass = 'bg-slate-100 text-slate-700 border-slate-300';
+                    gradeLabel = 'Hạng C';
+                }
+
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-50/80 transition group">
+                        <td class="table-cell align-top font-mono">
+                            <a href="${pubmedUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-indigo-700 hover:text-indigo-900 hover:underline">
+                                <span>${s.pmid}</span>
+                                <svg class="w-3 h-3 text-slate-400 group-hover:text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            </a>
+                            <div class="text-[10px] text-slate-400 mt-0.5">NCBI NLM</div>
+                        </td>
+                        <td class="table-cell align-top">
+                            <div class="font-bold text-slate-900 leading-snug mb-1">${s.title_vi || s.title}</div>
+                            <div class="text-[11px] text-slate-500 italic mb-1.5 leading-normal">${s.title_en || ''}</div>
+                            <div class="flex flex-wrap items-center gap-2 text-[10px] text-slate-400 font-medium">
+                                <span class="text-slate-600 font-semibold">${s.journal || 'Tạp chí Y học'}</span>
+                                <span>•</span>
+                                <span>Năm ${s.publication_year || s.year || 2024}</span>
+                                <span>•</span>
+                                <span class="truncate max-w-[200px]" title="${s.authors}">${s.authors || ''}</span>
+                            </div>
+                        </td>
+                        <td class="table-cell align-top">
+                            <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold border mb-1 ${typeBadgeClass}">${typeText}</span>
+                            <div class="text-slate-700 font-medium text-[11px] leading-tight">${s.sample_size || '-'}</div>
+                            <div class="text-[10px] text-slate-500 mt-1">${s.target_group || ''}</div>
+                        </td>
+                        <td class="table-cell align-top">
+                            <div class="text-slate-900 font-medium leading-tight">${s.dosage || s.dosage_used || '-'}</div>
+                            <div class="text-[10px] text-slate-500 mt-1">Hoạt chất: <span class="font-semibold text-slate-700">${s.ingredient || ''}</span></div>
+                        </td>
+                        <td class="table-cell align-top">
+                            <p class="text-slate-800 leading-relaxed font-medium mb-1.5">${s.key_findings || s.primary_outcome || '-'}</p>
+                            ${s.dion_application ? `<div class="p-2 rounded bg-indigo-50/60 border border-indigo-100 text-[11px] text-indigo-950 font-medium"><span class="font-bold text-indigo-700">Ứng dụng DION:</span> ${s.dion_application}</div>` : ''}
+                        </td>
+                        <td class="table-cell align-top text-center">
+                            <span class="inline-block px-2.5 py-1 rounded-full text-[11px] font-bold border ${gradeBadgeClass}">
+                                ${gradeLabel}
+                            </span>
+                            <div class="text-[10px] text-slate-400 mt-1 font-medium">Oxford CEBM</div>
+                        </td>
+                        <td class="table-cell align-top text-center">
+                            <div class="flex flex-col gap-1.5">
+                                <button onclick="openPicoModal('${s.pmid}')" class="px-2.5 py-1 rounded bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 text-[11px] font-bold transition flex items-center justify-center gap-1">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                    <span>Xem PICO</span>
+                                </button>
+                                <button onclick="openLinkStudyModal('${s.pmid}')" class="px-2.5 py-1 rounded bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 text-[11px] font-bold transition flex items-center justify-center gap-1">
+                                    <svg class="w-3 h-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                                    <span>Gắn SP</span>
+                                </button>
+                            </div>
+                        </td>
                     </tr>
                 `;
             });
+        }
+
+        async function applyResearchFilters() {
+            const query = (document.getElementById('research-search-query')?.value || '').trim();
+            const ingredient = document.getElementById('research-ingredient-select')?.value || '';
+            const studyType = document.getElementById('research-study-type-select')?.value || 'ALL';
+            const grade = document.getElementById('research-grade-select')?.value || 'ALL';
+
+            const params = new URLSearchParams();
+            if (query) params.append('query', query);
+            if (ingredient) params.append('ingredient', ingredient);
+            if (studyType && studyType !== 'ALL') params.append('study_type', studyType);
+            if (grade && grade !== 'ALL') params.append('evidence_grade', grade);
+
+            try {
+                const res = await fetch(`/api/research/studies?${params.toString()}`);
+                const data = await res.json();
+                allResearchStudies = data.studies || [];
+                renderResearchStudies(allResearchStudies);
+            } catch (err) {
+                console.error('Lỗi lọc nghiên cứu y văn:', err);
+            }
+        }
+
+        function handleResearchSearchKey(event) {
+            if (event.key === 'Enter') {
+                applyResearchFilters();
+            }
+        }
+
+        async function switchPharmacologyCategory(cat) {
+            currentPharmaCategory = cat;
+            const btnCa = document.getElementById('btn-pharma-ca');
+            const btnFe = document.getElementById('btn-pharma-fe');
+            if (cat === 'CANXI') {
+                if (btnCa) btnCa.className = 'px-3 py-1 text-xs font-bold rounded bg-indigo-600 text-white transition';
+                if (btnFe) btnFe.className = 'px-3 py-1 text-xs font-bold rounded text-slate-600 hover:text-slate-900 transition';
+            } else {
+                if (btnFe) btnFe.className = 'px-3 py-1 text-xs font-bold rounded bg-indigo-600 text-white transition';
+                if (btnCa) btnCa.className = 'px-3 py-1 text-xs font-bold rounded text-slate-600 hover:text-slate-900 transition';
+            }
+
+            try {
+                const res = await fetch(`/api/research/pharmacology/compare?category=${encodeURIComponent(cat)}`);
+                const data = await res.json();
+                renderPharmacologyComparison(data);
+            } catch (err) {
+                console.error('Lỗi chuyển nhóm dược lý:', err);
+            }
+        }
+
+        function renderPharmacologyComparison(data) {
+            const tbody = document.getElementById('research-pharmacology-tbody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            const items = data.items || data.comparison_matrix || [];
+            items.forEach(item => {
+                const isDion = item.is_dion_form;
+                const rowBg = isDion ? 'bg-emerald-50/40 font-medium' : '';
+                const dionBadge = isDion ? '<span class="inline-block ml-1.5 px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold border border-emerald-300">Công thức DION</span>' : '';
+
+                // Badge nguy cơ táo bón
+                let constipBadgeClass = 'bg-emerald-50 text-emerald-800 border-emerald-200';
+                if (item.constipation_risk.includes('Rất cao') || item.constipation_risk.includes('cao')) {
+                    constipBadgeClass = 'bg-rose-50 text-rose-800 border-rose-200';
+                } else if (item.constipation_risk.includes('Trung bình')) {
+                    constipBadgeClass = 'bg-amber-50 text-amber-800 border-amber-200';
+                }
+
+                tbody.innerHTML += `
+                    <tr class="${rowBg} hover:bg-slate-50/80 transition">
+                        <td class="table-cell align-top">
+                            <div class="font-bold text-slate-900 flex items-center flex-wrap gap-1">
+                                <span>${item.compound_name}</span>
+                                ${dionBadge}
+                            </div>
+                            <div class="text-[11px] text-slate-500 mt-0.5">${item.compound_type || ''}</div>
+                            <div class="text-[10px] font-mono text-slate-400 mt-1">${item.molecular_formula || ''}</div>
+                        </td>
+                        <td class="table-cell align-top text-center">
+                            <span class="inline-block px-2 py-1 rounded bg-slate-100 font-mono font-bold text-slate-900 text-xs">
+                                ${item.elemental_percent}%
+                            </span>
+                        </td>
+                        <td class="table-cell align-top text-slate-700 leading-relaxed">${item.solubility_gastric_ph}</td>
+                        <td class="table-cell align-top text-slate-700 leading-relaxed">${item.absorption_mechanism}</td>
+                        <td class="table-cell align-top text-center">
+                            <span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold border ${constipBadgeClass}">
+                                ${item.constipation_risk}
+                            </span>
+                        </td>
+                        <td class="table-cell align-top font-medium text-slate-800">${item.dose_for_standard_need}</td>
+                        <td class="table-cell align-top text-slate-800 leading-relaxed font-medium">${item.clinical_evaluation}</td>
+                    </tr>
+                `;
+            });
+
+            // Cập nhật Dietary Gap Callout
+            const ctx = data.nutritional_context || data.dietary_gap_analysis;
+            const titleEl = document.getElementById('dietary-gap-title');
+            const takeawayEl = document.getElementById('dietary-gap-takeaway');
+            if (ctx && takeawayEl) {
+                if (titleEl) {
+                    titleEl.innerText = data.category === 'CANXI'
+                        ? 'Phân tích Khoảng trống Khẩu phần Canxi Thai kỳ (Dietary Gap Analysis)'
+                        : 'Phân tích Hiệu quả Hấp thu & Bổ sung Sắt Thai kỳ (Absorption Efficiency)';
+                }
+                takeawayEl.innerText = ctx.scientific_takeaway || 'Khoảng trống khẩu phần cần bổ sung được tính toán dựa trên nhu cầu thực tế của người Việt.';
+            }
+        }
+
+        // --- PICO MODAL HANDLERS ---
+        function openPicoModal(pmid) {
+            const modal = document.getElementById('research-modal-pico');
+            if (!modal) return;
+            modal.classList.remove('hidden');
+
+            const resultBox = document.getElementById('pico-result-box');
+            if (resultBox) resultBox.classList.add('hidden');
+
+            if (pmid) {
+                const cleanPmid = String(pmid).replace(/[^0-9]/g, '');
+                const study = allResearchStudies.find(s => String(s.pmid).replace(/[^0-9]/g, '') === cleanPmid);
+                if (study) {
+                    const text = study.abstract || `${study.title_en || study.title}\n\nIntervention: ${study.dosage || ''} ${study.ingredient || ''}\nControl: ${study.control || 'Placebo'}\nSample Size: ${study.sample_size || ''}\nFindings: ${study.key_findings || ''}`;
+                    document.getElementById('pico-abstract-input').value = text;
+                    
+                    // Gợi ý SKU phù hợp
+                    const skuSelect = document.getElementById('pico-sku-select');
+                    if (skuSelect) {
+                        const ing = (study.ingredient || '').toLowerCase();
+                        if (ing.includes('sắt') || ing.includes('iron') || ing.includes('bisglycinate')) {
+                            skuSelect.value = 'DION-FERO-MOM';
+                        } else if (ing.includes('d3') || ing.includes('k2')) {
+                            skuSelect.value = 'DION-D3K2';
+                        } else {
+                            skuSelect.value = 'DION-CAL-MOM';
+                        }
+                    }
+                }
+            }
+        }
+
+        function closePicoModal() {
+            const modal = document.getElementById('research-modal-pico');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        async function analyzeAbstractWithAI() {
+            const abstractText = (document.getElementById('pico-abstract-input')?.value || '').trim();
+            if (!abstractText) {
+                alert('Vui lòng nhập hoặc dán đoạn tóm tắt nghiên cứu (Abstract) cần phân tích.');
+                return;
+            }
+
+            const sku = document.getElementById('pico-sku-select')?.value || 'DION-CAL-MOM';
+            const btn = document.getElementById('btn-run-pico');
+            const originalBtnHtml = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `
+                <svg class="animate-spin w-4 h-4 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                <span>AI Đang Phân Tích PICO...</span>
+            `;
+
+            try {
+                const res = await fetch('/api/research/ai-analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        abstract_text: abstractText,
+                        target_product_sku: sku
+                    })
+                });
+
+                const data = await res.json();
+                if (data.status === 'SUCCESS' && data.analysis) {
+                    const an = data.analysis;
+                    document.getElementById('pico-population').innerText = an.population || '-';
+                    document.getElementById('pico-intervention').innerText = an.intervention || '-';
+                    document.getElementById('pico-comparison').innerText = an.comparison || '-';
+                    document.getElementById('pico-outcome').innerText = an.outcome || '-';
+                    document.getElementById('pico-takeaways').innerText = an.clinical_takeaways || '-';
+                    document.getElementById('pico-adverse').innerText = an.adverse_reaction_profile || '-';
+                    document.getElementById('pico-dion-alignment').innerText = an.dion_alignment_note || '-';
+
+                    const gradeBadge = document.getElementById('pico-grade-badge');
+                    if (gradeBadge) {
+                        gradeBadge.innerText = an.evidence_grade || 'GRADE_A';
+                    }
+
+                    document.getElementById('pico-result-box').classList.remove('hidden');
+                } else {
+                    alert('Lỗi bóc tách PICO: ' + (data.detail || 'Không thể xử lý'));
+                }
+            } catch (err) {
+                console.error('Lỗi gọi API phân tích PICO:', err);
+                alert('Có lỗi xảy ra khi kết nối máy chủ phân tích y văn.');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHtml;
+            }
+        }
+
+        // --- LINK STUDY TO CLAIM MODAL HANDLERS ---
+        function openLinkStudyModal(pmid) {
+            const cleanPmid = String(pmid).replace(/[^0-9]/g, '');
+            const study = allResearchStudies.find(s => String(s.pmid).replace(/[^0-9]/g, '') === cleanPmid);
+            if (!study) return;
+
+            document.getElementById('link-study-pmid').value = `PMID: ${cleanPmid}`;
+            document.getElementById('link-study-title').innerText = study.title_vi || study.title;
+            
+            const alertEl = document.getElementById('link-study-alert');
+            if (alertEl) {
+                alertEl.className = 'hidden';
+                alertEl.innerText = '';
+            }
+
+            // Gợi ý SKU theo hoạt chất
+            const skuSelect = document.getElementById('link-study-sku');
+            if (skuSelect) {
+                const ing = (study.ingredient || '').toLowerCase();
+                if (ing.includes('sắt') || ing.includes('iron') || ing.includes('bisglycinate')) {
+                    skuSelect.value = 'DION-FERO-MOM';
+                } else if (ing.includes('d3') || ing.includes('k2')) {
+                    skuSelect.value = 'DION-D3K2';
+                } else {
+                    skuSelect.value = 'DION-CAL-MOM';
+                }
+            }
+
+            const modal = document.getElementById('research-modal-link');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeLinkStudyModal() {
+            const modal = document.getElementById('research-modal-link');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        async function submitLinkStudy() {
+            const pmid = document.getElementById('link-study-pmid').value;
+            const sku = document.getElementById('link-study-sku').value;
+            const assignedBy = document.getElementById('link-study-assigned-by').value;
+            const btn = document.getElementById('btn-submit-link-study');
+            const alertEl = document.getElementById('link-study-alert');
+
+            btn.disabled = true;
+            btn.innerText = 'Đang lưu...';
+
+            try {
+                const res = await fetch('/api/research/link-to-product-claim', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        pmid: pmid,
+                        sku: sku,
+                        assigned_by: assignedBy
+                    })
+                });
+
+                const data = await res.json();
+                if (res.ok && data.status === 'SUCCESS') {
+                    alertEl.className = 'p-3 rounded text-xs font-semibold bg-emerald-50 border border-emerald-300 text-emerald-800';
+                    alertEl.innerText = `Đã gắn kết thành công nghiên cứu ${data.pmid} vào hồ sơ sản phẩm ${data.sku}!`;
+                    setTimeout(() => {
+                        closeLinkStudyModal();
+                        if (typeof fetchClaimsHubData === 'function') {
+                            fetchClaimsHubData();
+                        }
+                    }, 1200);
+                } else {
+                    alertEl.className = 'p-3 rounded text-xs font-semibold bg-rose-50 border border-rose-300 text-rose-800';
+                    alertEl.innerText = 'Lỗi: ' + (data.detail || 'Không thể gắn nghiên cứu');
+                }
+            } catch (err) {
+                console.error('Lỗi gửi yêu cầu gắn kết:', err);
+                alertEl.className = 'p-3 rounded text-xs font-semibold bg-rose-50 border border-rose-300 text-rose-800';
+                alertEl.innerText = 'Lỗi kết nối máy chủ.';
+            } finally {
+                btn.disabled = false;
+                btn.innerText = 'Lưu vào Hồ sơ Sản phẩm';
+            }
         }
 
         // --- KHO DỮ LIỆU CÔNG BỐ (CLAIMS HUB) & AI KNOWLEDGE REPO ---
