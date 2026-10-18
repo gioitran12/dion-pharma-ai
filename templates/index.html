@@ -2372,18 +2372,25 @@
                 <!-- Filters & Search Bar -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-4">
                     <div>
-                        <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Tìm kiếm y văn:</label>
+                        <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Tìm kiếm y văn theo triệu chứng / từ khóa:</label>
                         <div class="relative">
-                            <input type="text" id="research-search-query" onkeyup="handleResearchSearchKey(event)" placeholder="BMD, PTH, Ferritin, tác giả..." class="w-full bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-indigo-500 outline-none">
+                            <input type="text" id="research-search-query" oninput="applyResearchFiltersDebounced()" onkeyup="handleResearchSearchKey(event)" placeholder="Gõ: táo bón, chuột rút, BMD, thiếu máu..." class="w-full bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-indigo-500 outline-none">
                             <button onclick="applyResearchFilters()" class="absolute right-2 top-2 text-slate-400 hover:text-indigo-600">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                             </button>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-1.5 mt-1.5 text-[10px] text-slate-500">
+                            <span class="font-semibold text-slate-400">Gợi ý nhanh:</span>
+                            <button type="button" onclick="quickSearchResearch('táo bón')" class="px-1.5 py-0.5 rounded bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-600 border border-slate-200">táo bón</button>
+                            <button type="button" onclick="quickSearchResearch('chuột rút')" class="px-1.5 py-0.5 rounded bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-600 border border-slate-200">chuột rút</button>
+                            <button type="button" onclick="quickSearchResearch('BMD')" class="px-1.5 py-0.5 rounded bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-600 border border-slate-200">BMD</button>
+                            <button type="button" onclick="quickSearchResearch('thiếu máu')" class="px-1.5 py-0.5 rounded bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-600 border border-slate-200">thiếu máu</button>
                         </div>
                     </div>
                     <div>
                         <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Hoạt chất vi chất:</label>
                         <select id="research-ingredient-select" onchange="applyResearchFilters()" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs font-semibold text-slate-900 outline-none">
-                            <option value="">Tất cả hoạt chất (9)</option>
+                            <option value="">Tất cả hoạt chất (9 hoạt chất)</option>
                             <option value="Lithothamnion">Canxi Tảo Đỏ Lithothamnion (Aquamin F)</option>
                             <option value="calcium-citrate">Canxi Citrate Tetrahydrate</option>
                             <option value="calcium-carbonate">Canxi Carbonate vô cơ</option>
@@ -2418,7 +2425,47 @@
                 </div>
             </div>
 
-            <!-- Deep Dive Card: Pharmacology Engine (Đối Chiếu Dược Lý Học & Sinh Khả Dụng) -->
+            <!-- 1. KHO NGHIÊN CỨU LÂM SÀNG THẨM ĐỊNH (PUBMED CLINICAL EVIDENCE BASE) - HIỂN THỊ TRỰC TIẾP DƯỚI BỘ LỌC -->
+            <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
+                <div class="px-4 py-3 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+                        <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Kho Nghiên cứu Lâm sàng Thẩm định (PubMed Clinical Evidence Base)</h3>
+                    </div>
+                    <div class="text-xs text-slate-500 font-medium flex items-center gap-2">
+                        <span id="research-total-count" class="font-bold text-slate-900">0</span> nghiên cứu hiển thị
+                        <span class="text-slate-300">|</span>
+                        <span>Trích dẫn NCBI trực tiếp</span>
+                    </div>
+                </div>
+
+                <!-- Active Filter Feedback Banner -->
+                <div id="research-filter-feedback" class="hidden px-4 py-2 bg-indigo-50/70 border-b border-indigo-100 text-xs flex items-center justify-between">
+                    <span id="research-filter-feedback-text" class="text-indigo-950 font-medium"></span>
+                    <button type="button" onclick="clearResearchFilters()" class="text-indigo-700 hover:text-indigo-900 font-bold underline text-[11px]">✕ Xóa bộ lọc / Hiện tất cả</button>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead>
+                            <tr class="bg-slate-50/80 border-b border-slate-200">
+                                <th class="table-cell-header w-32">PMID & Nguồn</th>
+                                <th class="table-cell-header min-w-[280px]">Tiêu đề nghiên cứu & Tạp chí</th>
+                                <th class="table-cell-header w-44">Thiết kế & Cỡ mẫu</th>
+                                <th class="table-cell-header w-44">Liều can thiệp</th>
+                                <th class="table-cell-header min-w-[260px]">Kết quả lâm sàng chính</th>
+                                <th class="table-cell-header w-28 text-center">Oxford CEBM</th>
+                                <th class="table-cell-header w-36 text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="research-evidence-tbody" class="divide-y divide-slate-100">
+                            <!-- Populated via Javascript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 2. ĐỘNG CƠ ĐỐI CHIẾU DƯỢC LÝ HỌC & KHOẢNG TRỐNG KHẨU PHẦN (PHARMACOLOGY ENGINE) -->
             <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
                 <div class="px-4 py-3 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div class="flex items-center gap-2">
@@ -2460,40 +2507,6 @@
                             Đang tải phân tích khoảng trống dinh dưỡng y khoa...
                         </p>
                     </div>
-                </div>
-            </div>
-
-            <!-- Clinical Evidence Table: Bằng Chứng Y Văn Lâm Sàng PubMed -->
-            <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-4 py-3 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <div class="flex items-center gap-2">
-                        <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
-                        <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Kho Nghiên cứu Lâm sàng Thẩm định (PubMed Clinical Evidence Base)</h3>
-                    </div>
-                    <div class="text-xs text-slate-500 font-medium flex items-center gap-2">
-                        <span id="research-total-count" class="font-bold text-slate-900">0</span> nghiên cứu hiển thị
-                        <span class="text-slate-300">|</span>
-                        <span>Trích dẫn NCBI trực tiếp</span>
-                    </div>
-                </div>
-
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs">
-                        <thead>
-                            <tr class="bg-slate-50/80 border-b border-slate-200">
-                                <th class="table-cell-header w-32">PMID & Nguồn</th>
-                                <th class="table-cell-header min-w-[280px]">Tiêu đề nghiên cứu & Tạp chí</th>
-                                <th class="table-cell-header w-44">Thiết kế & Cỡ mẫu</th>
-                                <th class="table-cell-header w-44">Liều can thiệp</th>
-                                <th class="table-cell-header min-w-[260px]">Kết quả lâm sàng chính</th>
-                                <th class="table-cell-header w-28 text-center">Oxford CEBM</th>
-                                <th class="table-cell-header w-36 text-center">Thao tác</th>
-                            </tr>
-                        </thead>
-                        <tbody id="research-evidence-tbody" class="divide-y divide-slate-100">
-                            <!-- Populated via Javascript -->
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
@@ -6401,8 +6414,15 @@
                 tbody.innerHTML = `
                     <tr>
                         <td colspan="7" class="p-8 text-center text-slate-400">
-                            <p class="font-bold text-sm text-slate-600 mb-1">Không tìm thấy nghiên cứu y văn phù hợp</p>
-                            <p class="text-xs">Vui lòng thử lại với từ khóa hoặc bộ lọc phân loại khác.</p>
+                            <div class="max-w-md mx-auto space-y-2">
+                                <p class="font-bold text-sm text-slate-700">Không tìm thấy nghiên cứu y văn khớp với bộ lọc hiện tại</p>
+                                <p class="text-xs text-slate-500">Gợi ý: Nếu đang tìm triệu chứng (như "táo bón"), hãy thử chọn <strong>"Tất cả hoạt chất"</strong> để xem các nghiên cứu liên quan ở cả nhóm Canxi và Sắt.</p>
+                                <div class="pt-2">
+                                    <button type="button" onclick="clearResearchFilters()" class="px-3.5 py-1.5 rounded bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs transition">
+                                        ✕ Đặt lại bộ lọc để xem toàn bộ 10 nghiên cứu
+                                    </button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 `;
@@ -6490,6 +6510,41 @@
             });
         }
 
+        let researchDebounceTimer = null;
+        function applyResearchFiltersDebounced() {
+            clearTimeout(researchDebounceTimer);
+            researchDebounceTimer = setTimeout(() => {
+                applyResearchFilters();
+            }, 250);
+        }
+
+        function quickSearchResearch(term) {
+            const input = document.getElementById('research-search-query');
+            if (input) {
+                input.value = term;
+                // Nếu tìm triệu chứng tổng quát như táo bón hoặc thiếu máu, đặt hoạt chất về tất cả để tìm diện rộng
+                const ingSelect = document.getElementById('research-ingredient-select');
+                if (ingSelect && (term === 'táo bón' || term === 'thiếu máu')) {
+                    ingSelect.value = '';
+                }
+                const typeSelect = document.getElementById('research-study-type-select');
+                if (typeSelect) typeSelect.value = 'ALL';
+                applyResearchFilters();
+            }
+        }
+
+        function clearResearchFilters() {
+            const q = document.getElementById('research-search-query');
+            const ing = document.getElementById('research-ingredient-select');
+            const st = document.getElementById('research-study-type-select');
+            const gr = document.getElementById('research-grade-select');
+            if (q) q.value = '';
+            if (ing) ing.value = '';
+            if (st) st.value = 'ALL';
+            if (gr) gr.value = 'ALL';
+            applyResearchFilters();
+        }
+
         async function applyResearchFilters() {
             const query = (document.getElementById('research-search-query')?.value || '').trim();
             const ingredient = document.getElementById('research-ingredient-select')?.value || '';
@@ -6507,6 +6562,22 @@
                 const data = await res.json();
                 allResearchStudies = data.studies || [];
                 renderResearchStudies(allResearchStudies);
+
+                // Cập nhật thanh hiển thị trạng thái bộ lọc
+                const feedbackEl = document.getElementById('research-filter-feedback');
+                const feedbackText = document.getElementById('research-filter-feedback-text');
+                const isFiltered = Boolean(query || ingredient || (studyType && studyType !== 'ALL') || (grade && grade !== 'ALL'));
+                if (isFiltered && feedbackEl && feedbackText) {
+                    const parts = [];
+                    if (query) parts.push(`Từ khóa: <strong>"${query}"</strong>`);
+                    if (ingredient) parts.push(`Hoạt chất: <strong>${ingredient}</strong>`);
+                    if (studyType && studyType !== 'ALL') parts.push(`Thiết kế: <strong>${studyType}</strong>`);
+                    if (grade && grade !== 'ALL') parts.push(`Cấp độ: <strong>${grade}</strong>`);
+                    feedbackText.innerHTML = `🔍 Đang lọc: ${parts.join(' • ')} (Tìm thấy <strong>${allResearchStudies.length}</strong> nghiên cứu y văn)`;
+                    feedbackEl.classList.remove('hidden');
+                } else if (feedbackEl) {
+                    feedbackEl.classList.add('hidden');
+                }
             } catch (err) {
                 console.error('Lỗi lọc nghiên cứu y văn:', err);
             }

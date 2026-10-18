@@ -149,7 +149,7 @@ class MedicalLiteratureRepository:
             q_terms = [t.strip().lower() for t in query.split() if t.strip()]
             filtered = []
             for s in results:
-                searchable_text = f"{s.pmid} {s.title_en} {s.title_vi} {s.authors} {s.journal} {s.key_findings} {s.dosage} {s.dion_application} {' '.join(s.tags)}".lower()
+                searchable_text = f"{s.pmid} {s.title_en} {s.title_vi} {s.authors} {s.journal} {s.key_findings} {s.dosage} {s.dion_application} {s.adverse_events} {s.abstract} {s.ingredient} {s.target_group} {s.intervention} {s.control} {' '.join(s.tags)}".lower()
                 if all(term in searchable_text for term in q_terms):
                     filtered.append(s)
             results = filtered
