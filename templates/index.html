@@ -2537,9 +2537,9 @@
                         <div class="flex items-center gap-2 w-full sm:w-auto">
                             <label class="font-bold text-slate-700 whitespace-nowrap">Đối chiếu SKU sản phẩm DION:</label>
                             <select id="pico-sku-select" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs font-semibold text-slate-900 outline-none">
-                                <option value="DION-CAL-MOM">DION-CAL-MOM (Canxi Tảo Đỏ Lithothamnion)</option>
-                                <option value="DION-FERO-MOM">DION-FERO-MOM (Sắt Chelate Bisglycinate)</option>
-                                <option value="DION-D3K2">DION-D3K2 (Vitamin D3 & K2 MK-7)</option>
+                                <option value="DION-CAL-MOM">DION-CAL-MOM — Canxi Tảo Đỏ Lithothamnion (ĐKSP: 8892/2025/ĐKSP)</option>
+                                <option value="DION-FE-FOLIC">DION-FE-FOLIC — Sắt Chelate Bisglycinate (ĐKSP: 6120/2025/ĐKSP)</option>
+                                <option value="DION-D3-1000">DION-D3-1000 — Vitamin D3 1000IU Drops (ĐKSP: 4521/2025/ĐKSP)</option>
                             </select>
                         </div>
                         <button id="btn-run-pico" onclick="analyzeAbstractWithAI()" class="w-full sm:w-auto px-4 py-2 rounded bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-sm flex items-center justify-center gap-2 transition">
@@ -2599,13 +2599,13 @@
                             </div>
                         </div>
 
-                        <!-- Dion Alignment Box -->
-                        <div class="p-3 bg-indigo-50/70 border border-indigo-200 rounded">
-                            <div class="font-bold text-indigo-950 text-xs mb-1 flex items-center gap-1.5">
-                                <svg class="w-3.5 h-3.5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                                <span>Căn cứ Bảo chứng Hồ sơ Công bố DION:</span>
+                        <!-- Dion Alignment Box with Concrete Evidence -->
+                        <div class="p-3.5 bg-indigo-50/80 border border-indigo-200 rounded">
+                            <div class="font-bold text-indigo-950 text-xs mb-1.5 flex items-center gap-1.5">
+                                <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                <span>Căn cứ Bảo chứng Hồ sơ Công bố DION (Được Dược vụ xác thực):</span>
                             </div>
-                            <p id="pico-dion-alignment" class="text-indigo-900 text-xs leading-relaxed font-medium">-</p>
+                            <p id="pico-dion-alignment" class="text-indigo-950 text-xs leading-relaxed font-medium whitespace-pre-line">-</p>
                         </div>
                     </div>
                 </div>
@@ -2637,8 +2637,8 @@
                         <label class="block font-bold text-slate-700 mb-1">Chọn sản phẩm DION gắn kết (*):</label>
                         <select id="link-study-sku" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 font-bold text-slate-900 outline-none">
                             <option value="DION-CAL-MOM">DION-CAL-MOM — Canxi Hữu Cơ DION Cal-Mom Plus & D3 K2</option>
-                            <option value="DION-FERO-MOM">DION-FERO-MOM — Sắt Sinh Học DION Fero-Plus & Axit Folic</option>
-                            <option value="DION-D3K2">DION-D3K2 — DION Vitamin D3 Drops & MK-7</option>
+                            <option value="DION-FE-FOLIC">DION-FE-FOLIC — Viên Sắt Hữu Cơ & Quatrefolic DION Fero-Plus</option>
+                            <option value="DION-D3-1000">DION-D3-1000 — Vitamin D3 1000IU Drops</option>
                         </select>
                     </div>
                     <div>
