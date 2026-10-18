@@ -96,9 +96,9 @@ class LLMGateway:
             try:
                 self.max_output_tokens = int(env_tokens.strip())
             except ValueError:
-                self.max_output_tokens = 512
+                self.max_output_tokens = 1024
         else:
-            self.max_output_tokens = 512
+            self.max_output_tokens = 1024
 
         # Nếu truyền provider instance trực tiếp (Dependency Injection trong unit test)
         if provider is not None:

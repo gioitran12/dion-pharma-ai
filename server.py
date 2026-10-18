@@ -775,7 +775,7 @@ async def api_copilot_chat(request: ChatRequest):
             prompt=prompt,
             system_instruction=system_instruction,
             temperature=0.2,
-            max_output_tokens=320,
+            max_output_tokens=1024,
         )
         generated_answer = result.content
         trace_id = result.request_id or str(uuid.uuid4())
