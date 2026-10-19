@@ -849,7 +849,7 @@
                         <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-sm p-3.5 shadow-xs text-xs leading-relaxed text-slate-800 space-y-1.5">
                             <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-1">
                                 <span class="font-bold text-corp-800 text-[11px] uppercase tracking-wide">DION AI Sales Copilot</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">✅ Sẵn sàng</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">Sẵn sàng</span>
                             </div>
                             <p class="text-slate-700 font-medium">
                                 Xin chào! Tôi là <b>DION AI Sales Copilot</b>. Tôi có thể giúp bạn tra cứu thông tin sản phẩm, kiểm tra claims, so sánh sản phẩm và hỗ trợ chuẩn bị nội dung tư vấn. Bạn muốn hỏi gì hôm nay?
@@ -1038,20 +1038,20 @@
                 <div class="bg-white rounded-xl border border-slate-200 p-3 shadow-xs flex items-center justify-between gap-3">
                     <div>
                         <div class="font-bold text-xs text-corp-700 uppercase flex items-center gap-1.5">
-                            <span>🛡️ Quyền riêng tư (Luật 91/2025/QH15 & Nghị định 356/2025)</span>
+                            <span>Quyền riêng tư (Luật 91/2025/QH15 & Nghị định 356/2025)</span>
                         </div>
                         <p class="text-[11px] text-slate-600 mt-0.5">
                             Khi khách hàng <b>Opt-out</b>, hệ thống tự động khóa vĩnh viễn quyền gửi tin tiếp thị tự động trên mọi kênh.
                         </p>
                     </div>
                     <button onclick="refreshCareTasks()" class="px-3 py-1.5 rounded-lg bg-corp-50 hover:bg-corp-100 text-corp-800 border border-corp-200 text-xs font-bold whitespace-nowrap transition flex items-center gap-1 shrink-0">
-                        <span id="care-refresh-spinner" class="hidden animate-spin">🔄</span>
-                        <span>🔄 Cập nhật công việc</span>
+                        <span id="care-refresh-spinner" class="hidden animate-spin"></span>
+                        <span> Cập nhật công việc</span>
                     </button>
                 </div>
                 <div class="bg-white rounded-xl border border-rose-200 p-3 shadow-xs">
                     <div class="font-bold text-xs text-rose-700 uppercase flex items-center gap-1.5">
-                        <span>⛔ Cơ chế khóa sự cố (Incident Lockout)</span>
+                        <span>Cơ chế khóa sự cố (Incident Lockout)</span>
                     </div>
                     <p class="text-[11px] text-slate-600 mt-0.5">
                         Khi có khiếu nại chất lượng hoặc phản ứng bất lợi, hệ thống <b>khóa lập tức toàn bộ hành vi bán thêm (upsell/cross-sell)</b> để ưu tiên giải quyết sự cố.
@@ -1142,18 +1142,18 @@
                             <span>Quy tắc: <b class="text-corp-700 font-mono" id="care-context-rule">--</b></span>
                         </div>
                         <button type="button" onclick="openEvidenceModal()" id="btn-care-evidence" class="w-full mt-1 py-1.5 px-2 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-900 border border-indigo-200 font-bold text-[11px] transition flex items-center justify-center gap-1.5 shadow-2xs">
-                            <span>🔍</span> <span>Xem căn cứ phát sinh chi tiết</span>
+                             <span>Xem căn cứ phát sinh chi tiết</span>
                         </button>
                     </div>
 
                     <!-- Cảnh báo Incident Lockout Động -->
                     <div id="care-incident-lockout-banner" class="hidden p-2.5 rounded-lg bg-rose-50 border border-rose-300 text-rose-900 text-xs leading-relaxed font-medium">
-                        ⛔ <b>CẢNH BÁO INCIDENT LOCKOUT:</b> Khách hàng đang có khiếu nại chưa giải quyết. Toàn bộ hành vi bán thêm (upsell/cross-sell) bị khóa nghiêm ngặt theo quy chuẩn an toàn dược.
+                        <b>CẢNH BÁO INCIDENT LOCKOUT:</b> Khách hàng đang có khiếu nại chưa giải quyết. Toàn bộ hành vi bán thêm (upsell/cross-sell) bị khóa nghiêm ngặt theo quy chuẩn an toàn dược.
                     </div>
 
                     <!-- Cảnh báo Opt-out Động -->
                     <div id="care-optout-banner" class="hidden p-2.5 rounded-lg bg-amber-50 border border-amber-300 text-amber-900 text-xs leading-relaxed font-medium">
-                        🔒 <b>QUYỀN RIÊNG TƯ (OPT-OUT):</b> Khách hàng đã từ chối nhận tin tiếp thị. Không được gửi tin quảng cáo hoặc chào mua.
+                        <b>QUYỀN RIÊNG TƯ (OPT-OUT):</b> Khách hàng đã từ chối nhận tin tiếp thị. Không được gửi tin quảng cáo hoặc chào mua.
                     </div>
 
                     <!-- Nút Thao Tác Thực Tế Kết Nối Backend -->
@@ -1161,16 +1161,16 @@
                         <span class="text-[10px] font-bold text-slate-400 uppercase block mb-1">Thao tác nghiệp vụ:</span>
                         <div class="grid grid-cols-2 gap-1.5">
                             <button id="btn-care-autodraft" onclick="careAutoDraft()" class="p-2 rounded-lg bg-blue-50 text-corp-900 border border-blue-200 text-[11px] font-semibold hover:bg-blue-100 transition text-left flex items-center gap-1.5 shadow-2xs">
-                                <span>📝</span> <span id="btn-care-autodraft-text">Soạn tin tự động</span>
+                                 <span id="btn-care-autodraft-text">Soạn tin tự động</span>
                             </button>
                             <button id="btn-care-reschedule" onclick="openRescheduleModal()" class="p-2 rounded-lg bg-purple-50 text-purple-900 border border-purple-200 text-[11px] font-semibold hover:bg-purple-100 transition text-left flex items-center gap-1.5 shadow-2xs">
-                                <span>📅</span> <span>Hẹn lại lịch</span>
+                                 <span>Hẹn lại lịch</span>
                             </button>
                             <button id="btn-care-assign" onclick="openAssignModal()" class="p-2 rounded-lg bg-slate-100 text-slate-800 border border-slate-300 text-[11px] font-semibold hover:bg-slate-200 transition text-left flex items-center gap-1.5 shadow-2xs">
-                                <span>🔄</span> <span>Giao xử lý</span>
+                                 <span>Giao xử lý</span>
                             </button>
                             <button id="btn-care-logaction" onclick="openLogActionModal()" class="p-2 rounded-lg bg-emerald-50 text-emerald-950 border border-emerald-300 text-[11px] font-semibold hover:bg-emerald-100 transition text-left flex items-center gap-1.5 shadow-2xs">
-                                <span>✅</span> <span>Ghi nhận kết quả</span>
+                                 <span>Ghi nhận kết quả</span>
                             </button>
                         </div>
                     </div>
@@ -1179,7 +1179,7 @@
                     <div id="care-draft-box" class="hidden bg-emerald-50/70 border border-emerald-200 rounded-lg p-3 space-y-2">
                         <div class="flex justify-between items-center border-b border-emerald-200/60 pb-1.5">
                             <span class="text-[11px] font-bold text-emerald-900 flex items-center gap-1">
-                                <span>📋</span> <span id="care-draft-title">Bản nháp tin nhắn chăm sóc</span>
+                                 <span id="care-draft-title">Bản nháp tin nhắn chăm sóc</span>
                             </span>
                             <div class="flex items-center gap-1">
                                 <span id="care-draft-source-badge" class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">MẪU HỆ THỐNG</span>
@@ -1190,14 +1190,14 @@
                         <div class="flex flex-wrap justify-between items-center gap-1.5 pt-1">
                             <div class="flex items-center gap-1">
                                 <button onclick="careDraftRewrite('shorter')" class="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded text-[10px] font-bold transition">
-                                    <span>✂️</span> <span>Ngắn hơn</span>
+                                     <span>Ngắn hơn</span>
                                 </button>
                                 <button onclick="careDraftRewrite('friendly')" class="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded text-[10px] font-bold transition">
-                                    <span>😊</span> <span>Thân thiện hơn</span>
+                                     <span>Thân thiện hơn</span>
                                 </button>
                             </div>
                             <button onclick="careCopyDraft()" class="px-2.5 py-1 bg-emerald-700 hover:bg-emerald-800 text-white rounded text-[11px] font-bold transition flex items-center gap-1 shadow-2xs">
-                                <span>📋</span> <span>Sao chép bản nháp</span>
+                                 <span>Sao chép bản nháp</span>
                             </button>
                         </div>
                     </div>
@@ -1206,14 +1206,14 @@
                     <div class="bg-slate-50 border border-slate-200 rounded-lg p-3 space-y-2">
                         <div class="flex justify-between items-center">
                             <span class="text-[11px] font-bold text-slate-700 uppercase flex items-center gap-1">
-                                <span>💬</span> <span>Dán phản hồi của khách hàng</span>
+                                 <span>Dán phản hồi của khách hàng</span>
                             </span>
                             <span class="text-[10px] text-slate-400">Tự động nhận diện khiếu nại / opt-out</span>
                         </div>
                         <textarea id="care-reply-input" rows="2" placeholder="Dán tin nhắn khách phản hồi tại đây (VD: 'Tôi uống bị xót ruột...', 'Đừng nhắn nữa...', 'Chiều mai gọi lại...')" class="w-full bg-white border border-slate-300 rounded p-2 text-xs outline-none focus:border-corp-700 resize-none font-medium"></textarea>
                         <div class="flex justify-end">
                             <button onclick="careAnalyzeReply()" class="px-3 py-1 bg-corp-700 hover:bg-corp-800 text-white rounded text-xs font-bold transition flex items-center gap-1">
-                                <span>🔍</span> <span>Phân tích phản hồi</span>
+                                 <span>Phân tích phản hồi</span>
                             </button>
                         </div>
                         <div id="care-reply-analysis-result" class="hidden text-xs p-2 rounded border leading-relaxed"></div>
@@ -1244,7 +1244,7 @@
                 <!-- Thanh tác vụ trên cùng -->
                 <div class="bg-white rounded-xl border border-slate-200 p-3 shadow-sm flex flex-wrap items-center justify-between gap-3">
                     <div class="flex items-center gap-2 flex-1 min-w-[280px]">
-                        <input type="text" id="care-history-search" oninput="renderHistoryCustomerList()" placeholder="🔍 Tìm theo tên, SĐT, mã khách hàng, người phụ trách..." class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-xs outline-none focus:border-corp-700 focus:bg-white transition font-medium">
+                        <input type="text" id="care-history-search" oninput="renderHistoryCustomerList()" placeholder="Tìm theo tên, SĐT, mã khách hàng, người phụ trách..." class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-xs outline-none focus:border-corp-700 focus:bg-white transition font-medium">
                         <select id="care-history-type-filter" onchange="renderHistoryCustomerList()" class="bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs font-semibold outline-none text-slate-700 focus:border-corp-700">
                             <option value="ALL">Tất cả loại khách</option>
                             <option value="INDIVIDUAL">Cá nhân (B2C)</option>
@@ -1254,19 +1254,19 @@
 
                     <div class="flex flex-wrap items-center gap-1.5 text-xs">
                         <button onclick="openAddCustomerModal()" class="px-3 py-1.5 rounded-lg bg-corp-700 hover:bg-corp-800 text-white font-bold transition flex items-center gap-1 shadow-2xs">
-                            <span>➕</span> <span>Thêm khách hàng</span>
+                             <span>Thêm khách hàng</span>
                         </button>
                         <button onclick="openAddInteractionModal()" class="px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200 font-bold transition flex items-center gap-1 shadow-2xs">
-                            <span>💬</span> <span>Ghi nhận tương tác</span>
+                             <span>Ghi nhận tương tác</span>
                         </button>
                         <button onclick="openAddPurchaseModal()" class="px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 font-bold transition flex items-center gap-1 shadow-2xs">
-                            <span>🛒</span> <span>Ghi nhận đơn hàng</span>
+                             <span>Ghi nhận đơn hàng</span>
                         </button>
                         <button onclick="openAddSupportModal()" class="px-3 py-1.5 rounded-lg bg-purple-50 hover:bg-purple-100 text-purple-900 border border-purple-200 font-bold transition flex items-center gap-1 shadow-2xs">
-                            <span>⚠️</span> <span>Yêu cầu / Hẹn gọi lại</span>
+                             <span>Yêu cầu / Hẹn gọi lại</span>
                         </button>
                         <button onclick="openCsvImportModal()" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 font-bold transition flex items-center gap-1 shadow-2xs">
-                            <span>📥</span> <span>Nhập file CSV</span>
+                             <span>Nhập file CSV</span>
                         </button>
                     </div>
                 </div>
@@ -1358,7 +1358,7 @@
                 <!-- Banner giải thích tính toàn vẹn dữ liệu -->
                 <div class="bg-blue-50/70 border border-blue-200 rounded-xl p-3.5 text-xs text-blue-950 space-y-1">
                     <div class="font-bold uppercase flex items-center gap-1.5 text-corp-800">
-                        <span>🛡️ NGUYÊN TẮC TOÀN VẸN DỮ LIỆU & NGUỒN GỐC</span>
+                        <span>NGUYÊN TẮC TOÀN VẸN DỮ LIỆU & NGUỒN GỐC</span>
                     </div>
                     <p class="leading-relaxed text-slate-700">
                         Hệ thống tách biệt độc lập 4 chiều thông tin: <b>(1) Nguồn khách</b> (tiếp nhận từ đâu) ≠ <b>(2) Kênh tương tác</b> (trao đổi qua đâu) ≠ <b>(3) Kênh mua</b> (nơi diễn ra giao dịch) ≠ <b>(4) Nguồn xác nhận</b> (ai hoặc hệ thống nào ghi nhận). 
@@ -1482,7 +1482,7 @@
                     <div class="flex items-center gap-2">
                         <span id="care-sources-last-eval" class="text-[11px] text-slate-500 font-mono">Chưa chạy lần này</span>
                         <button onclick="triggerReEvaluateRules()" id="btn-care-sources-reeval" class="px-3.5 py-2 rounded-lg bg-corp-700 hover:bg-corp-800 text-white font-bold text-xs transition shadow-2xs flex items-center gap-1.5">
-                            <span>🔄</span> <span>Đánh giá lại công việc</span>
+                             <span>Đánh giá lại công việc</span>
                         </button>
                     </div>
                 </div>
@@ -1495,7 +1495,7 @@
                 <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto border border-slate-200 p-5 space-y-4">
                     <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                         <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">📅</div>
+                            <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm"></div>
                             <div>
                                 <h3 class="text-sm font-bold text-slate-900">Hẹn lịch chăm sóc khách hàng</h3>
                                 <p class="text-[11px] text-slate-500">Đặt ngày giờ liên hệ lại theo yêu cầu của khách</p>
@@ -1522,7 +1522,7 @@
                     <div class="space-y-3">
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1">
-                                <span>📅 Chọn ngày hẹn liên hệ lại</span> <span class="text-rose-600">*</span>
+                                <span> Chọn ngày hẹn liên hệ lại</span> <span class="text-rose-600">*</span>
                             </label>
                             <input type="date" id="resched-date-input" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-xs font-semibold focus:border-corp-700 focus:bg-white outline-none">
                             <div class="flex flex-wrap gap-1 mt-1.5 text-[11px]">
@@ -1536,7 +1536,7 @@
 
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1">
-                                <span>⏰ Chọn khung giờ liên hệ</span>
+                                <span> Chọn khung giờ liên hệ</span>
                             </label>
                             <select id="resched-time-select" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-xs font-medium focus:border-corp-700 outline-none">
                                 <option value="08:30">08:30 (Đầu giờ sáng)</option>
@@ -1550,7 +1550,7 @@
 
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1">
-                                <span>📌 Lý do hẹn lại</span> <span class="text-rose-600">*</span>
+                                <span>• Lý do hẹn lại</span> <span class="text-rose-600">*</span>
                             </label>
                             <select id="resched-reason-select" onchange="toggleRescheduleCustomNote()" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-xs font-medium focus:border-corp-700 outline-none">
                                 <option value="Khách yêu cầu gọi lại">Khách yêu cầu gọi lại</option>
@@ -1588,7 +1588,7 @@
                 <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto border border-slate-200 p-5 space-y-4">
                     <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                         <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-lg bg-blue-100 text-corp-700 flex items-center justify-center font-bold text-sm">🔄</div>
+                            <div class="w-8 h-8 rounded-lg bg-blue-100 text-corp-700 flex items-center justify-center font-bold text-sm"></div>
                             <div>
                                 <h3 class="text-sm font-bold text-slate-900">Giao công việc cho nhân viên</h3>
                                 <p class="text-[11px] text-slate-500">Phân công người phụ trách và điều chỉnh ưu tiên</p>
@@ -1613,20 +1613,20 @@
                     </div>
 
                     <div id="assign-clinical-warning" class="hidden p-2.5 rounded-lg bg-amber-50 border border-amber-300 text-amber-900 text-xs leading-relaxed font-medium">
-                        ⚠️ <b>YÊU CẦU CHUYÊN MÔN:</b> Công việc này liên quan đến khiếu nại chất lượng / phản ứng bất lợi (ADR). Theo quy định, chỉ được phép giao cho Dược sĩ hoặc Dược vụ.
+                        <b>YÊU CẦU CHUYÊN MÔN:</b> Công việc này liên quan đến khiếu nại chất lượng / phản ứng bất lợi (ADR). Theo quy định, chỉ được phép giao cho Dược sĩ hoặc Dược vụ.
                     </div>
 
                     <div class="space-y-3">
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1">
-                                <span>👤 Chọn người tiếp nhận công việc</span> <span class="text-rose-600">*</span>
+                                <span> Chọn người tiếp nhận công việc</span> <span class="text-rose-600">*</span>
                             </label>
                             <div class="flex gap-1 mb-1.5 text-[11px]">
                                 <button type="button" id="assign-filter-btn-all" onclick="filterStaffRole('ALL')" class="px-2 py-0.5 rounded font-bold bg-corp-700 text-white transition">Tất cả</button>
                                 <button type="button" id="assign-filter-btn-clinical" onclick="filterStaffRole('CLINICAL')" class="px-2 py-0.5 rounded font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Dược sĩ / Lâm sàng</button>
                                 <button type="button" id="assign-filter-btn-cskh" onclick="filterStaffRole('CSKH')" class="px-2 py-0.5 rounded font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">CSKH / Tư vấn</button>
                             </div>
-                            <input type="text" id="assign-staff-search" oninput="renderStaffSelectionList()" placeholder="🔍 Tìm theo tên hoặc vai trò..." class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-xs focus:border-corp-700 outline-none mb-1.5">
+                            <input type="text" id="assign-staff-search" oninput="renderStaffSelectionList()" placeholder="Tìm theo tên hoặc vai trò..." class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-xs focus:border-corp-700 outline-none mb-1.5">
                             <div id="assign-staff-options-list" class="max-h-36 overflow-y-auto border border-slate-200 rounded-lg divide-y divide-slate-100 bg-white"></div>
                             <div id="assign-selected-display-card" class="mt-1.5 p-2 bg-blue-50/80 border border-blue-200 rounded-lg text-xs flex justify-between items-center text-blue-950 font-semibold">
                                 <span>Đang chọn: <b id="assign-selected-name-text">Chưa chọn</b></span>
@@ -1636,7 +1636,7 @@
 
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1">
-                                <span>⚡ Mức độ ưu tiên</span>
+                                <span> Mức độ ưu tiên</span>
                             </label>
                             <select id="assign-priority-select" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-xs font-medium focus:border-corp-700 outline-none">
                                 <option value="LOW">Bình thường (LOW)</option>
@@ -1647,7 +1647,7 @@
 
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1">
-                                <span>📝 Ghi chú bàn giao (tùy chọn)</span>
+                                <span>Ghi chú bàn giao (tùy chọn)</span>
                             </label>
                             <input type="text" id="assign-notes-input" placeholder="Nội dung lưu ý hoặc chỉ đạo thực hiện..." class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-xs focus:border-corp-700 outline-none font-medium">
                         </div>
@@ -1673,7 +1673,7 @@
                 <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-slate-200 p-5 space-y-4">
                     <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                         <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">✅</div>
+                            <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">[OK]</div>
                             <div>
                                 <h3 class="text-sm font-bold text-slate-900">Ghi nhận kết quả chăm sóc khách hàng</h3>
                                 <p class="text-[11px] text-slate-500">Cập nhật hành động thực tế, không dùng thuật ngữ kỹ thuật</p>
@@ -1702,7 +1702,7 @@
                                 <label class="flex items-start gap-2 p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-blue-50/60 cursor-pointer transition has-checked:border-corp-600 has-checked:bg-blue-50">
                                     <input type="radio" name="care-action-radio" value="CONTACTED" checked onchange="onCareActionRadioChange()" class="mt-0.5 text-corp-700">
                                     <div>
-                                        <span class="font-bold text-slate-800 block">📞 Đã liên hệ với khách</span>
+                                        <span class="font-bold text-slate-800 block">Đã liên hệ với khách</span>
                                         <span class="text-[10px] text-slate-500">Gọi điện, nhắn Zalo thành công</span>
                                     </div>
                                 </label>
@@ -1710,7 +1710,7 @@
                                 <label class="flex items-start gap-2 p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-amber-50/60 cursor-pointer transition has-checked:border-amber-600 has-checked:bg-amber-50">
                                     <input type="radio" name="care-action-radio" value="UNREACHABLE" onchange="onCareActionRadioChange()" class="mt-0.5 text-amber-600">
                                     <div>
-                                        <span class="font-bold text-slate-800 block">📵 Không liên hệ được</span>
+                                        <span class="font-bold text-slate-800 block"> Không liên hệ được</span>
                                         <span class="text-[10px] text-slate-500">Thuê bao, không bắt máy, chưa rep</span>
                                     </div>
                                 </label>
@@ -1718,7 +1718,7 @@
                                 <label class="flex items-start gap-2 p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-purple-50/60 cursor-pointer transition has-checked:border-purple-600 has-checked:bg-purple-50">
                                     <input type="radio" name="care-action-radio" value="CALLBACK_REQUESTED" onchange="onCareActionRadioChange()" class="mt-0.5 text-purple-600">
                                     <div>
-                                        <span class="font-bold text-slate-800 block">⏰ Khách hẹn gọi lại</span>
+                                        <span class="font-bold text-slate-800 block"> Khách hẹn gọi lại</span>
                                         <span class="text-[10px] text-slate-500">Khách đang bận, hẹn giờ khác</span>
                                     </div>
                                 </label>
@@ -1726,7 +1726,7 @@
                                 <label class="flex items-start gap-2 p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 cursor-pointer transition has-checked:border-slate-600 has-checked:bg-slate-100">
                                     <input type="radio" name="care-action-radio" value="TRANSFERRED" onchange="onCareActionRadioChange()" class="mt-0.5 text-slate-600">
                                     <div>
-                                        <span class="font-bold text-slate-800 block">🔄 Đã chuyển bộ phận khác</span>
+                                        <span class="font-bold text-slate-800 block"> Đã chuyển bộ phận khác</span>
                                         <span class="text-[10px] text-slate-500">Chuyển Dược sĩ, Kho, Giao vận</span>
                                     </div>
                                 </label>
@@ -1734,7 +1734,7 @@
                                 <label class="flex items-start gap-2 p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 cursor-pointer transition has-checked:border-slate-600 has-checked:bg-slate-100">
                                     <input type="radio" name="care-action-radio" value="PENDING_REVIEW" onchange="onCareActionRadioChange()" class="mt-0.5 text-slate-600">
                                     <div>
-                                        <span class="font-bold text-slate-800 block">⏳ Đang theo dõi / Xem xét</span>
+                                        <span class="font-bold text-slate-800 block"> Đang theo dõi / Xem xét</span>
                                         <span class="text-[10px] text-slate-500">Cần chờ khách phản hồi kết quả</span>
                                     </div>
                                 </label>
@@ -1742,7 +1742,7 @@
                                 <label class="flex items-start gap-2 p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50/60 cursor-pointer transition has-checked:border-emerald-600 has-checked:bg-emerald-50">
                                     <input type="radio" name="care-action-radio" value="RESOLVED" onchange="onCareActionRadioChange()" class="mt-0.5 text-emerald-600">
                                     <div>
-                                        <span class="font-bold text-slate-800 block">✅ Đã giải quyết / Hoàn tất</span>
+                                        <span class="font-bold text-slate-800 block">Đã giải quyết / Hoàn tất</span>
                                         <span class="text-[10px] text-slate-500">Yêu cầu hoàn thành thỏa đáng</span>
                                     </div>
                                 </label>
@@ -1754,11 +1754,11 @@
                                 <div>
                                     <label class="block text-[11px] font-bold text-slate-700 mb-0.5">Kênh liên hệ:</label>
                                     <select id="log-contact-channel" class="w-full bg-white border border-slate-300 rounded p-1.5 text-xs outline-none">
-                                        <option value="Gọi điện">📞 Cuộc gọi thoại</option>
-                                        <option value="Zalo OA" selected>💬 Tin nhắn Zalo OA</option>
-                                        <option value="Messenger">💬 Facebook Messenger</option>
-                                        <option value="Email">📧 Email</option>
-                                        <option value="Trực tiếp">🤝 Gặp trực tiếp</option>
+                                        <option value="Gọi điện">Cuộc gọi thoại</option>
+                                        <option value="Zalo OA" selected>Tin nhắn Zalo OA</option>
+                                        <option value="Messenger">Facebook Messenger</option>
+                                        <option value="Email">Email</option>
+                                        <option value="Trực tiếp">Gặp trực tiếp</option>
                                     </select>
                                 </div>
                                 <div>
@@ -1824,13 +1824,13 @@
                                 </select>
                             </div>
                             <div id="log-clinical-auth-warning" class="hidden p-2 rounded bg-rose-100 border border-rose-300 text-rose-900 font-bold text-[11px] leading-relaxed">
-                                ⛔ CẢNH BÁO: Đây là khiếu nại chất lượng / phản ứng bất lợi (ADR). Thao tác đóng khiếu nại bắt buộc do Dược sĩ hoặc Dược vụ thực hiện!
+                                CẢNH BÁO: Đây là khiếu nại chất lượng / phản ứng bất lợi (ADR). Thao tác đóng khiếu nại bắt buộc do Dược sĩ hoặc Dược vụ thực hiện!
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1">
-                                <span>📝 Ghi chú tóm tắt (tùy chọn)</span>
+                                <span>Ghi chú tóm tắt (tùy chọn)</span>
                             </label>
                             <textarea id="log-action-notes" rows="2" placeholder="Ghi chú thêm thông tin trao đổi với khách hàng nếu cần..." class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-xs focus:border-corp-700 outline-none resize-none font-medium"></textarea>
                         </div>
@@ -1856,7 +1856,7 @@
                 <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 p-5 space-y-4">
                     <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                         <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">🔍</div>
+                            <div class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm"></div>
                             <div>
                                 <h3 class="text-sm font-bold text-slate-900">Căn cứ nghiệp vụ & Nguồn gốc phát sinh</h3>
                                 <p class="text-[11px] text-slate-500">Truy vết nguồn khách, kênh mua, sự kiện gốc và quy tắc chăm sóc</p>
@@ -1916,7 +1916,7 @@
 
                     <div class="flex justify-between items-center pt-3 border-t border-slate-100">
                         <button type="button" onclick="goToCustomerFromEvidence()" class="px-3.5 py-1.5 rounded-lg bg-corp-50 hover:bg-corp-100 text-corp-800 border border-corp-200 text-xs font-bold transition flex items-center gap-1 shadow-2xs">
-                            <span>👥</span> <span>Mở dòng thời gian khách hàng</span>
+                             <span>Mở dòng thời gian khách hàng</span>
                         </button>
                         <button type="button" onclick="closeEvidenceModal()" class="px-4 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold transition">
                             Đóng
@@ -1932,7 +1932,7 @@
                 <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto border border-slate-200 p-5 space-y-4">
                     <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                         <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-lg bg-corp-100 text-corp-700 flex items-center justify-center font-bold text-sm">➕</div>
+                            <div class="w-8 h-8 rounded-lg bg-corp-100 text-corp-700 flex items-center justify-center font-bold text-sm">+</div>
                             <div>
                                 <h3 class="text-sm font-bold text-slate-900">Thêm hồ sơ khách hàng mới</h3>
                                 <p class="text-[11px] text-slate-500">Tạo hồ sơ tối thiểu có kiểm soát nguồn và quyền liên hệ</p>
@@ -2016,7 +2016,7 @@
                 <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto border border-slate-200 p-5 space-y-4">
                     <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                         <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">💬</div>
+                            <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm"></div>
                             <div>
                                 <h3 class="text-sm font-bold text-slate-900">Ghi nhận tương tác thực tế</h3>
                                 <p class="text-[11px] text-slate-500">Phân biệt thời điểm trao đổi thực tế và thời điểm nhập hệ thống</p>
@@ -2037,12 +2037,12 @@
                             <div>
                                 <label class="block font-bold text-slate-700 mb-1">Kênh tương tác:</label>
                                 <select id="inter-channel" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 font-medium focus:border-corp-700 outline-none">
-                                    <option value="Cuộc gọi thoại" selected>📞 Cuộc gọi thoại</option>
-                                    <option value="Tin nhắn Zalo OA">💬 Tin nhắn Zalo OA</option>
-                                    <option value="Messenger">💬 Facebook Messenger</option>
-                                    <option value="Email">📧 Email</option>
-                                    <option value="Trực tiếp">🤝 Gặp trực tiếp</option>
-                                    <option value="Ghi chú nội bộ">📝 Ghi chú nội bộ</option>
+                                    <option value="Cuộc gọi thoại" selected>Cuộc gọi thoại</option>
+                                    <option value="Tin nhắn Zalo OA">Tin nhắn Zalo OA</option>
+                                    <option value="Messenger">Facebook Messenger</option>
+                                    <option value="Email">Email</option>
+                                    <option value="Trực tiếp">Gặp trực tiếp</option>
+                                    <option value="Ghi chú nội bộ">Ghi chú nội bộ</option>
                                 </select>
                             </div>
                             <div>
@@ -2102,7 +2102,7 @@
                 <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto border border-slate-200 p-5 space-y-4">
                     <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                         <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">🛒</div>
+                            <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm"></div>
                             <div>
                                 <h3 class="text-sm font-bold text-slate-900">Ghi nhận đơn hàng tham chiếu</h3>
                                 <p class="text-[11px] text-slate-500">Chỉ lưu dữ liệu phục vụ chăm sóc, phân định kênh mua rõ ràng</p>
@@ -2204,7 +2204,7 @@
                 <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto border border-slate-200 p-5 space-y-4">
                     <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                         <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">⚠️</div>
+                            <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">[Cảnh báo]</div>
                             <div>
                                 <h3 class="text-sm font-bold text-slate-900">Yêu cầu hỗ trợ & Hẹn gọi lại</h3>
                                 <p class="text-[11px] text-slate-500">Phân biệt hỗ trợ thông thường, khiếu nại chất lượng và hẹn gọi lại</p>
@@ -2253,7 +2253,7 @@
 
                         <!-- Cảnh báo riêng cho Khiếu nại / ADR -->
                         <div id="supp-lockout-warning" class="hidden p-2.5 rounded-lg bg-rose-50 border border-rose-300 text-rose-900 text-xs leading-relaxed font-medium">
-                            ⛔ <b>LƯU Ý NGHIỆP VỤ:</b> Khiếu nại chất lượng hoặc ADR sẽ lập tức kích hoạt cơ chế khóa sự cố (Incident Lockout), chặn bán thêm và bắt buộc Dược sĩ giải quyết.
+                            <b>LƯU Ý NGHIỆP VỤ:</b> Khiếu nại chất lượng hoặc ADR sẽ lập tức kích hoạt cơ chế khóa sự cố (Incident Lockout), chặn bán thêm và bắt buộc Dược sĩ giải quyết.
                         </div>
 
                         <div>
@@ -2282,7 +2282,7 @@
                 <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 p-5 space-y-4">
                     <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                         <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center font-bold text-sm">📥</div>
+                            <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center font-bold text-sm"></div>
                             <div>
                                 <h3 class="text-sm font-bold text-slate-900">Nhập dữ liệu tệp CSV (UTF-8)</h3>
                                 <p class="text-[11px] text-slate-500">Xem trước, kiểm tra tính hợp lệ từng dòng, không tự ý cấp quyền</p>
@@ -2309,7 +2309,7 @@
                         <div class="flex justify-between items-center">
                             <span class="text-[10px] text-slate-500">Dấu phân cách: dấu phẩy (,) • Mã hóa: UTF-8</span>
                             <button type="button" onclick="previewCsvImport()" id="btn-csv-preview" class="px-3.5 py-1.5 rounded-lg bg-corp-50 hover:bg-corp-100 text-corp-800 border border-corp-200 font-bold transition flex items-center gap-1 shadow-2xs">
-                                <span>🔍</span> <span>Kiểm tra & Xem trước</span>
+                                 <span>Kiểm tra & Xem trước</span>
                             </button>
                         </div>
                     </div>
@@ -4674,7 +4674,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                         <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-sm p-3.5 shadow-xs text-xs leading-relaxed text-slate-800 space-y-1.5">
                             <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-1">
                                 <span class="font-bold text-corp-800 text-[11px] uppercase tracking-wide">DION AI Sales Copilot</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">✅ Phiên mới</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">Phiên mới</span>
                             </div>
                             <p class="text-slate-700 font-medium">
                                 Cuộc trò chuyện mới đã bắt đầu! Tôi đã làm mới ngữ cảnh phiên. Bạn muốn tra cứu sản phẩm nào tiếp theo?
@@ -4760,7 +4760,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 copilotIsLoading = false;
 
                 if (res.status === 403) {
-                    renderAiErrorBubble(container, '🔒 TÍNH NĂNG CHATBOT CHƯA ĐƯỢC KÍCH HOẠT', 'Vui lòng thiết lập ENABLE_EXPERIMENTAL_CHAT=true trong file .env để kích hoạt AI Chatbot.');
+                    renderAiErrorBubble(container, 'TÍNH NĂNG CHATBOT CHƯA ĐƯỢC KÍCH HOẠT', 'Vui lòng thiết lập ENABLE_EXPERIMENTAL_CHAT=true trong file .env để kích hoạt AI Chatbot.');
                     inputBox.value = q;
                     return;
                 }
@@ -4773,19 +4773,19 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
 
                     let errTitle = 'LỖI DỊCH VỤ (' + res.status + ')';
                     if ((res.status === 503 || res.status === 500) && (errCode === 'LLM_NOT_CONFIGURED' || (typeof errMsg === 'string' && errMsg.includes('GEMINI_API_KEY')))) {
-                        errTitle = '⚠️ CHƯA KẾT NỐI AI';
+                        errTitle = 'CHƯA KẾT NỐI AI';
                         errMsg = 'Chưa kết nối AI. Vui lòng cấu hình dịch vụ để tiếp tục.';
                         if (!adminHint) adminHint = 'Cần cấu hình GEMINI_API_KEY hợp lệ trong file .env.';
                     } else if (res.status === 503) {
-                        errTitle = '⚠️ DỊCH VỤ AI TẠM GIÁN ĐOẠN (503 CAO ĐIỂM)';
+                        errTitle = 'DỊCH VỤ AI TẠM GIÁN ĐOẠN (503 CAO ĐIỂM)';
                     } else if (res.status === 429) {
-                        errTitle = '⚠️ QUÁ TẢI LƯU LƯỢNG (429)';
+                        errTitle = 'QUÁ TẢI LƯU LƯỢNG (429)';
                     } else if (res.status === 504) {
-                        errTitle = '⚠️ HẾT THỜI GIAN CHỜ PHẢN HỒI (504)';
+                        errTitle = 'HẾT THỜI GIAN CHỜ PHẢN HỒI (504)';
                     } else if (res.status === 401) {
-                        errTitle = '🔒 LỖI XÁC THỰC API KEY (401)';
+                        errTitle = 'LỖI XÁC THỰC API KEY (401)';
                     } else if (res.status === 404 || errCode === 'LLM_MODEL_NOT_FOUND') {
-                        errTitle = '⚠️ MODEL KHÔNG TỒN TẠI HOẶC KHÔNG KHẢ DỤNG (404)';
+                        errTitle = 'MODEL KHÔNG TỒN TẠI HOẶC KHÔNG KHẢ DỤNG (404)';
                     }
 
                     renderAiErrorBubble(container, errTitle, typeof errMsg === 'object' ? JSON.stringify(errMsg) : errMsg, adminHint, q);
@@ -4812,17 +4812,17 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
         }
 
         function renderAiResponseBubble(container, data, reqDuration) {
-            let decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">✅ Đã xác thực Claims</span>';
+            let decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">Đã xác thực Claims</span>';
             if (data.decision === 'HANDOFF_REQUIRED') {
-                decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-300">⚠️ Yêu cầu Dược sĩ tư vấn</span>';
+                decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-300">Yêu cầu Dược sĩ tư vấn</span>';
             } else if (data.decision === 'BLOCKED') {
-                decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-300">⛔ Từ chối tư vấn điều trị</span>';
+                decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-300">Từ chối tư vấn điều trị</span>';
             } else if (data.decision === 'INSUFFICIENT_EVIDENCE') {
-                decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-300">ℹ️ Chưa đủ căn cứ xác minh</span>';
+                decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-300"> Chưa đủ căn cứ xác minh</span>';
             } else if (data.decision === 'CLARIFICATION_REQUIRED') {
-                decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-50 text-sky-700 border border-sky-300">🔍 Cần làm rõ sản phẩm</span>';
+                decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-50 text-sky-700 border border-sky-300">Cần làm rõ sản phẩm</span>';
             } else if (data.decision === 'DRAFT_FOR_APPROVAL') {
-                decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-corp-800 border border-blue-200">📝 Bản nháp tư vấn đề xuất</span>';
+                decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-corp-800 border border-blue-200">Bản nháp tư vấn đề xuất</span>';
             }
 
             let formattedText = (data.answer || '')
@@ -4836,7 +4836,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             let sourcesHtml = '';
             if (data.sources && data.sources.length > 0) {
                 sourcesHtml = '<div class="mt-2 pt-2 border-t border-slate-100 text-[11px] text-slate-600 bg-slate-50/70 p-2.5 rounded-lg border border-slate-200">';
-                sourcesHtml += '<div class="font-bold text-slate-800 mb-1 flex items-center gap-1"><span>📚</span> <span>Căn cứ xác thực từ Hồ sơ công bố đã duyệt:</span></div><ul class="list-disc pl-4 space-y-0.5">';
+                sourcesHtml += '<div class="font-bold text-slate-800 mb-1 flex items-center gap-1"> <span>Căn cứ xác thực từ Hồ sơ công bố đã duyệt:</span></div><ul class="list-disc pl-4 space-y-0.5">';
                 data.sources.forEach(s => {
                     sourcesHtml += `<li><b>[${s.claim_id || 'CLAIM'}]</b> ${escapeHtml(s.document_title || s.document_id || 'Hồ sơ công bố tiếp nhận')}</li>`;
                 });
@@ -4850,7 +4850,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 if (ctxLabel) ctxLabel.innerText = data.product_ids.join(', ');
             }
 
-            const speedBadge = reqDuration ? `<span class="px-1.5 py-0.2 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-600 border border-slate-200" title="Thời gian xử lý">${Number(reqDuration) < 0.25 ? '⚡ Tức thì (' + reqDuration + 's)' : '⏱️ ' + reqDuration + 's'}</span>` : '';
+            const speedBadge = reqDuration ? `<span class="px-1.5 py-0.2 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-600 border border-slate-200" title="Thời gian xử lý">${Number(reqDuration) < 0.25 ? ' Tức thì (' + reqDuration + 's)' : ' ' + reqDuration + 's'}</span>` : '';
 
             const aiBubbleHtml = `
                 <div class="flex items-start gap-2.5 max-w-[88%]">
@@ -4870,9 +4870,9 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                         <div class="flex justify-between items-center pt-1 border-t border-slate-100 text-[10px] text-slate-400">
                             ${skusBadge || '<span></span>'}
                             <div class="flex items-center gap-2">
-                                <button onclick="copilotQuickAction('SHORTER', this)" class="font-bold text-slate-500 hover:text-corp-700 hover:underline flex items-center gap-0.5"><span>✂️</span><span>Ngắn hơn</span></button>
-                                <button onclick="copilotQuickAction('REWRITE', this)" class="font-bold text-slate-500 hover:text-corp-700 hover:underline flex items-center gap-0.5"><span>🔄</span><span>Viết lại</span></button>
-                                <button onclick="copySnippetText(this)" class="font-bold text-corp-700 hover:underline flex items-center gap-0.5"><span>📋</span><span>Sao chép</span></button>
+                                <button onclick="copilotQuickAction('SHORTER', this)" class="font-bold text-slate-500 hover:text-corp-700 hover:underline flex items-center gap-0.5"><span>Ngắn hơn</span></button>
+                                <button onclick="copilotQuickAction('REWRITE', this)" class="font-bold text-slate-500 hover:text-corp-700 hover:underline flex items-center gap-0.5"><span>Viết lại</span></button>
+                                <button onclick="copySnippetText(this)" class="font-bold text-corp-700 hover:underline flex items-center gap-0.5"><span>Sao chép</span></button>
                             </div>
                         </div>
                     </div>
@@ -4909,7 +4909,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             const retryBtnHtml = queryText ? `
                 <div class="pt-2 flex items-center gap-2">
                     <button onclick="copilotRetryQuery(this)" data-query="${safeQ}" class="px-3 py-1.5 bg-rose-700 hover:bg-rose-800 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow-2xs">
-                        <span>🔄</span> <span>Thử lại</span>
+                         <span>Thử lại</span>
                     </button>
                     <span class="text-[10px] text-rose-600 italic">Câu hỏi đã được giữ nguyên trong ô nhập.</span>
                 </div>
@@ -5213,7 +5213,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             if (chatScroll) {
                 chatScroll.innerHTML = `
                     <div class="text-slate-700 bg-white border border-slate-200 p-2.5 rounded-lg text-xs leading-relaxed space-y-1">
-                        <div class="font-bold text-corp-800">👤 ĐÃ ĐỔI NGỮ CẢNH: ${curSelectedCustomer.name} (${curSelectedCustomer.id})</div>
+                        <div class="font-bold text-corp-800"> ĐÃ ĐỔI NGỮ CẢNH: ${curSelectedCustomer.name} (${curSelectedCustomer.id})</div>
                         <div>Nhiệm vụ: <b>${escapeHtml(task.title)}</b></div>
                         <div>Căn cứ: <span class="text-slate-600">${escapeHtml(task.reason)}</span></div>
                         <div class="text-[11px] text-slate-500 pt-1 border-t border-slate-100">Phụ trách: <b>${escapeHtml(task.assignee || 'CSKH')}</b> • Hạn: <b>${task.due_date}</b></div>
@@ -5249,13 +5249,13 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                     draftBox.classList.remove('hidden');
                     if (data.decision === 'BLOCKED') {
                         draftBox.className = 'bg-rose-50 border border-rose-300 rounded-lg p-3 space-y-2';
-                        draftTitle.innerText = '⛔ LỆNH CHẶN INCIDENT LOCKOUT';
+                        draftTitle.innerText = 'LỆNH CHẶN INCIDENT LOCKOUT';
                         draftChannel.innerText = 'ĐÃ KHÓA';
                         draftChannel.className = 'text-[10px] font-semibold px-2 py-0.5 rounded bg-rose-200 text-rose-900';
                         draftContent.innerText = data.message;
                     } else if (data.decision === 'PRIVACY_BLOCKED') {
                         draftBox.className = 'bg-amber-50 border border-amber-300 rounded-lg p-3 space-y-2';
-                        draftTitle.innerText = '🔒 LỆNH CHẶN QUYỀN RIÊNG TƯ (OPT-OUT)';
+                        draftTitle.innerText = 'LỆNH CHẶN QUYỀN RIÊNG TƯ (OPT-OUT)';
                         draftChannel.innerText = 'TỪ CHỐI TIẾP THỊ';
                         draftChannel.className = 'text-[10px] font-semibold px-2 py-0.5 rounded bg-amber-200 text-amber-900';
                         draftContent.innerText = data.message;
@@ -5374,7 +5374,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             }
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="animate-spin">🔄</span> <span>Đang lưu...</span>';
+            submitBtn.innerHTML = ' <span>Đang lưu...</span>';
             errEl.classList.add('hidden');
 
             try {
@@ -5392,7 +5392,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 const data = await res.json();
                 if (!res.ok || data.status === 'ERROR') {
                     const msg = (data.detail && data.detail.message) ? data.detail.message : (data.message || 'Lỗi khi cập nhật lịch hẹn');
-                    errEl.innerText = '❌ ' + msg;
+                    errEl.innerText = '' + msg;
                     errEl.classList.remove('hidden');
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<span>Xác nhận hẹn lịch</span>';
@@ -5403,7 +5403,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 showCareToast(`Đã cập nhật lịch hẹn cho ${curSelectedTask.customer_name} đến ngày ${dateVal} lúc ${timeVal}`, 'SUCCESS');
                 await fetchCustomerCare();
             } catch (err) {
-                errEl.innerText = '❌ Lỗi kết nối: ' + err.message;
+                errEl.innerText = 'Lỗi kết nối: ' + err.message;
                 errEl.classList.remove('hidden');
             } finally {
                 submitBtn.disabled = false;
@@ -5552,7 +5552,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 const staffObj = staffList.find(s => s.name === selectedStaffForAssign);
                 const isClin = staffObj ? staffObj.is_clinical : (selectedStaffForAssign.includes('Dược'));
                 if (!isClin) {
-                    errEl.innerText = '⛔ LỖI PHÂN QUYỀN: Khiếu nại chất lượng / ADR bắt buộc giao cho Dược sĩ chuyên môn hoặc Dược vụ!';
+                    errEl.innerText = 'LỖI PHÂN QUYỀN: Khiếu nại chất lượng / ADR bắt buộc giao cho Dược sĩ chuyên môn hoặc Dược vụ!';
                     errEl.classList.remove('hidden');
                     return;
                 }
@@ -5562,7 +5562,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             const notes = document.getElementById('assign-notes-input').value;
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="animate-spin">🔄</span> <span>Đang giao...</span>';
+            submitBtn.innerHTML = ' <span>Đang giao...</span>';
             errEl.classList.add('hidden');
 
             try {
@@ -5579,7 +5579,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 const data = await res.json();
                 if (!res.ok || data.status === 'ERROR') {
                     const msg = (data.detail && data.detail.message) ? data.detail.message : (data.message || 'Lỗi khi phân công');
-                    errEl.innerText = '❌ ' + msg;
+                    errEl.innerText = '' + msg;
                     errEl.classList.remove('hidden');
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<span>Xác nhận giao việc</span>';
@@ -5590,7 +5590,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 showCareToast(`Đã bàn giao công việc cho: ${selectedStaffForAssign}`, 'SUCCESS');
                 await fetchCustomerCare();
             } catch (err) {
-                errEl.innerText = '❌ Lỗi kết nối: ' + err.message;
+                errEl.innerText = 'Lỗi kết nối: ' + err.message;
                 errEl.classList.remove('hidden');
             } finally {
                 submitBtn.disabled = false;
@@ -5714,7 +5714,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             }
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="animate-spin">🔄</span> <span>Đang lưu...</span>';
+            submitBtn.innerHTML = ' <span>Đang lưu...</span>';
             errEl.classList.add('hidden');
 
             try {
@@ -5732,7 +5732,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 const data = await res.json();
                 if (!res.ok || data.status === 'ERROR') {
                     const msg = (data.detail && data.detail.message) ? data.detail.message : (data.message || 'Lỗi khi ghi nhận kết quả');
-                    errEl.innerText = '❌ ' + msg;
+                    errEl.innerText = '' + msg;
                     errEl.classList.remove('hidden');
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<span>Lưu kết quả</span>';
@@ -5741,10 +5741,10 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
 
                 closeLogActionModal();
                 const actionLabel = actionType === 'RESOLVED' ? 'Hoàn tất nhiệm vụ' : 'Đã ghi nhận kết quả';
-                showCareToast(`✅ ${actionLabel} thành công cho khách ${curSelectedTask.customer_name}`, 'SUCCESS');
+                showCareToast(`${actionLabel} thành công cho khách ${curSelectedTask.customer_name}`, 'SUCCESS');
                 await fetchCustomerCare();
             } catch (err) {
-                errEl.innerText = '❌ Lỗi kết nối: ' + err.message;
+                errEl.innerText = 'Lỗi kết nối: ' + err.message;
                 errEl.classList.remove('hidden');
             } finally {
                 submitBtn.disabled = false;
@@ -5767,7 +5767,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 showCareToast('Đã rút gọn bản nháp súc tích hơn.', 'INFO');
             } else if (style === 'friendly') {
                 if (!text.includes('DION xin chúc')) {
-                    text = 'Dạ Dion Pharma thân chào Quý khách! 🌸\\n\\n' + text.replace(/Kính gửi Quý khách,?\\n?/, '') + '\\n\\nChúc Quý khách và gia đình luôn dồi dào sức khỏe ạ! ❤️';
+                    text = 'Dạ Dion Pharma thân chào Quý khách! \\n\\n' + text.replace(/Kính gửi Quý khách,?\\n?/, '') + '\\n\\nChúc Quý khách và gia đình luôn dồi dào sức khỏe ạ! ';
                 }
                 showCareToast('Đã chuyển bản nháp sang giọng điệu thân thiện.', 'INFO');
             }
@@ -5830,17 +5830,17 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
 
                 if (resultDiv) {
                     let badgeClass = 'bg-slate-100 text-slate-800 border-slate-300';
-                    let title = '💬 Phản hồi thông thường';
+                    let title = 'Phản hồi thông thường';
 
                     if (data.detected_issues && data.detected_issues.includes('ADVERSE_EVENT_OR_COMPLAINT')) {
                         badgeClass = 'bg-rose-50 text-rose-900 border-rose-300 font-bold';
-                        title = '⛔ PHÁT HIỆN KHIẾU NẠI / TÁC DỤNG PHỤ (ĐÃ KÍCH HOẠT INCIDENT LOCKOUT)';
+                        title = 'PHÁT HIỆN KHIẾU NẠI / TÁC DỤNG PHỤ (ĐÃ KÍCH HOẠT INCIDENT LOCKOUT)';
                     } else if (data.detected_issues && data.detected_issues.includes('OPT_OUT_REQUEST')) {
                         badgeClass = 'bg-amber-50 text-amber-900 border-amber-300 font-bold';
-                        title = '🔒 KHÁCH HÀNG TỪ CHỐI NHẬN TIN (ĐÃ KHÓA TIẾP THỊ)';
+                        title = 'KHÁCH HÀNG TỪ CHỐI NHẬN TIN (ĐÃ KHÓA TIẾP THỊ)';
                     } else if (data.detected_issues && data.detected_issues.includes('CALLBACK_REQUEST')) {
                         badgeClass = 'bg-purple-50 text-purple-900 border-purple-300 font-bold';
-                        title = '📞 YÊU CẦU GỌI LẠI (ĐÃ TẠO LỊCH HẸN)';
+                        title = 'YÊU CẦU GỌI LẠI (ĐÃ TẠO LỊCH HẸN)';
                     }
 
                     resultDiv.className = `text-xs p-3 rounded-lg border ${badgeClass} space-y-1.5`;
@@ -5896,13 +5896,13 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
 
                 if (data.decision === 'BLOCKED') {
                     borderStyle = 'border-rose-300 bg-rose-50 text-rose-950 font-medium';
-                    headerBadge = '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-rose-200 text-rose-900">⛔ INCIDENT LOCKOUT</span>';
+                    headerBadge = '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-rose-200 text-rose-900">INCIDENT LOCKOUT</span>';
                 } else if (data.decision === 'PRIVACY_ENFORCED') {
                     borderStyle = 'border-amber-300 bg-amber-50 text-amber-950 font-medium';
-                    headerBadge = '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-200 text-amber-900">🔒 QUYỀN RIÊNG TƯ</span>';
+                    headerBadge = '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-200 text-amber-900">QUYỀN RIÊNG TƯ</span>';
                 } else if (data.decision === 'CARE_DRAFT') {
                     borderStyle = 'border-emerald-300 bg-emerald-50 text-emerald-950';
-                    headerBadge = '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-200 text-emerald-900">📝 KỊCH BẢN CHĂM SÓC</span>';
+                    headerBadge = '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-200 text-emerald-900">KỊCH BẢN CHĂM SÓC</span>';
                 }
 
                 chatScroll.innerHTML += `
@@ -6208,7 +6208,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             const feedEl = document.getElementById('care-timeline-feed');
             const countEl = document.getElementById('care-timeline-event-count');
             if (!feedEl) return;
-            feedEl.innerHTML = '<div class="text-center py-6 text-slate-400 text-xs"><span class="animate-spin inline-block mr-1">🔄</span> Đang tải dòng thời gian...</div>';
+            feedEl.innerHTML = '<div class="text-center py-6 text-slate-400 text-xs"> Đang tải dòng thời gian...</div>';
 
             try {
                 const res = await fetch(`/api/customer-care/customers/${customerId}/timeline`);
@@ -6220,7 +6220,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 if (timeline.length === 0) {
                     feedEl.innerHTML = `
                         <div class="text-center py-10 px-4 bg-slate-50/70 border border-dashed border-slate-200 rounded-xl space-y-2">
-                            <div class="text-2xl">📋</div>
+                            <div class="text-2xl"></div>
                             <div class="font-bold text-xs text-slate-700">Chưa có lịch sử sự kiện nào</div>
                             <p class="text-[11px] text-slate-500 max-w-sm mx-auto">
                                 Khách hàng này chưa có tương tác hay đơn hàng được ghi nhận. Sử dụng các nút bấm ở thanh trên để ghi nhận tương tác hoặc đơn hàng mới.
@@ -6232,37 +6232,37 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
 
                 feedEl.innerHTML = timeline.map(item => {
                     let cardClass = 'bg-white border-slate-200';
-                    let icon = '📌';
+                    let icon = '•';
                     let catName = item.category || 'SỰ KIỆN';
                     let badgeBg = 'bg-slate-100 text-slate-700';
 
                     if (item.category === 'INTERACTION') {
-                        icon = '💬';
+                        icon = '';
                         catName = 'TƯƠNG TÁC';
                         badgeBg = 'bg-blue-100 text-blue-900';
                         cardClass = 'bg-blue-50/40 border-blue-200';
                     } else if (item.category === 'PURCHASE') {
-                        icon = '🛒';
+                        icon = '';
                         catName = 'ĐƠN HÀNG THAM CHIẾU';
                         badgeBg = 'bg-emerald-100 text-emerald-900';
                         cardClass = 'bg-emerald-50/40 border-emerald-200';
                     } else if (item.category === 'CALLBACK') {
-                        icon = '⏰';
+                        icon = '';
                         catName = 'HẸN GỌI LẠI';
                         badgeBg = 'bg-purple-100 text-purple-900';
                         cardClass = 'bg-purple-50/40 border-purple-200';
                     } else if (item.category === 'SUPPORT') {
-                        icon = '⚠️';
+                        icon = '[Cảnh báo]';
                         catName = 'KHIẾU NẠI / HỖ TRỢ';
                         badgeBg = 'bg-rose-100 text-rose-900';
                         cardClass = 'bg-rose-50/40 border-rose-200';
                     } else if (item.category === 'CARE_TASK') {
-                        icon = '📋';
+                        icon = '';
                         catName = 'CÔNG VIỆC CHĂM SÓC';
                         badgeBg = 'bg-indigo-100 text-indigo-900';
                         cardClass = 'bg-indigo-50/30 border-indigo-200';
                     } else if (item.category === 'AUDIT') {
-                        icon = '📜';
+                        icon = '';
                         catName = 'THAY ĐỔI / AUDIT';
                         badgeBg = 'bg-slate-200 text-slate-800';
                     }
@@ -6340,13 +6340,13 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             const submitBtn = document.getElementById('btn-submit-add-customer');
 
             if (!name) {
-                errEl.innerText = '❌ Vui lòng nhập tên khách hàng.';
+                errEl.innerText = 'Vui lòng nhập tên khách hàng.';
                 errEl.classList.remove('hidden');
                 return;
             }
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="animate-spin">🔄</span> <span>Đang tạo...</span>';
+            submitBtn.innerHTML = ' <span>Đang tạo...</span>';
             errEl.classList.add('hidden');
 
             try {
@@ -6366,18 +6366,18 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 const data = await res.json();
                 if (!res.ok) {
                     const msg = (data.detail && data.detail.message) ? data.detail.message : (data.message || 'Lỗi khi tạo hồ sơ');
-                    errEl.innerText = '❌ ' + msg;
+                    errEl.innerText = '' + msg;
                     errEl.classList.remove('hidden');
                     return;
                 }
 
                 closeAddCustomerModal();
-                showCareToast(`✅ Đã tạo hồ sơ khách ${name} (${data.customer.id})`, 'SUCCESS');
+                showCareToast(`Đã tạo hồ sơ khách ${name} (${data.customer.id})`, 'SUCCESS');
                 await fetchCustomerCare();
                 setCareSubTab('history');
                 loadCustomerTimeline(data.customer.id);
             } catch (err) {
-                errEl.innerText = '❌ Lỗi kết nối: ' + err.message;
+                errEl.innerText = 'Lỗi kết nối: ' + err.message;
                 errEl.classList.remove('hidden');
             } finally {
                 submitBtn.disabled = false;
@@ -6430,18 +6430,18 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             const submitBtn = document.getElementById('btn-submit-add-interaction');
 
             if (!customerId) {
-                errEl.innerText = '❌ Vui lòng chọn khách hàng.';
+                errEl.innerText = 'Vui lòng chọn khách hàng.';
                 errEl.classList.remove('hidden');
                 return;
             }
             if (!summary) {
-                errEl.innerText = '❌ Vui lòng nhập tóm tắt nội dung tương tác.';
+                errEl.innerText = 'Vui lòng nhập tóm tắt nội dung tương tác.';
                 errEl.classList.remove('hidden');
                 return;
             }
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="animate-spin">🔄</span> <span>Đang lưu...</span>';
+            submitBtn.innerHTML = ' <span>Đang lưu...</span>';
             errEl.classList.add('hidden');
 
             try {
@@ -6462,19 +6462,19 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 const data = await res.json();
                 if (!res.ok) {
                     const msg = (data.detail && data.detail.message) ? data.detail.message : (data.message || 'Lỗi khi lưu tương tác');
-                    errEl.innerText = '❌ ' + msg;
+                    errEl.innerText = '' + msg;
                     errEl.classList.remove('hidden');
                     return;
                 }
 
                 closeAddInteractionModal();
-                showCareToast('✅ Đã ghi nhận tương tác thực tế thành công', 'SUCCESS');
+                showCareToast('Đã ghi nhận tương tác thực tế thành công', 'SUCCESS');
                 await fetchCustomerCare();
                 if (curCareSubTab === 'history' && curTimelineCustomerId === customerId) {
                     loadCustomerTimeline(customerId);
                 }
             } catch (err) {
-                errEl.innerText = '❌ Lỗi kết nối: ' + err.message;
+                errEl.innerText = 'Lỗi kết nối: ' + err.message;
                 errEl.classList.remove('hidden');
             } finally {
                 submitBtn.disabled = false;
@@ -6542,13 +6542,13 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             const submitBtn = document.getElementById('btn-submit-add-purchase');
 
             if (!customerId) {
-                errEl.innerText = '❌ Vui lòng chọn khách hàng.';
+                errEl.innerText = 'Vui lòng chọn khách hàng.';
                 errEl.classList.remove('hidden');
                 return;
             }
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="animate-spin">🔄</span> <span>Đang lưu...</span>';
+            submitBtn.innerHTML = ' <span>Đang lưu...</span>';
             errEl.classList.add('hidden');
 
             try {
@@ -6572,19 +6572,19 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 const data = await res.json();
                 if (!res.ok) {
                     const msg = (data.detail && data.detail.message) ? data.detail.message : (data.message || 'Lỗi khi lưu đơn hàng');
-                    errEl.innerText = '❌ ' + msg;
+                    errEl.innerText = '' + msg;
                     errEl.classList.remove('hidden');
                     return;
                 }
 
                 closeAddPurchaseModal();
-                showCareToast(`✅ Đã lưu đơn hàng ${data.purchase.order_id} (${orderStatus})`, 'SUCCESS');
+                showCareToast(`Đã lưu đơn hàng ${data.purchase.order_id} (${orderStatus})`, 'SUCCESS');
                 await fetchCustomerCare();
                 if (curCareSubTab === 'history' && curTimelineCustomerId === customerId) {
                     loadCustomerTimeline(customerId);
                 }
             } catch (err) {
-                errEl.innerText = '❌ Lỗi kết nối: ' + err.message;
+                errEl.innerText = 'Lỗi kết nối: ' + err.message;
                 errEl.classList.remove('hidden');
             } finally {
                 submitBtn.disabled = false;
@@ -6648,18 +6648,18 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             const submitBtn = document.getElementById('btn-submit-add-support');
 
             if (!customerId) {
-                errEl.innerText = '❌ Vui lòng chọn khách hàng.';
+                errEl.innerText = 'Vui lòng chọn khách hàng.';
                 errEl.classList.remove('hidden');
                 return;
             }
             if (!content) {
-                errEl.innerText = '❌ Vui lòng nhập nội dung chi tiết.';
+                errEl.innerText = 'Vui lòng nhập nội dung chi tiết.';
                 errEl.classList.remove('hidden');
                 return;
             }
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="animate-spin">🔄</span> <span>Đang lưu...</span>';
+            submitBtn.innerHTML = ' <span>Đang lưu...</span>';
             errEl.classList.add('hidden');
 
             try {
@@ -6693,19 +6693,19 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 const data = await res.json();
                 if (!res.ok) {
                     const msg = (data.detail && data.detail.message) ? data.detail.message : (data.message || 'Lỗi khi lưu yêu cầu');
-                    errEl.innerText = '❌ ' + msg;
+                    errEl.innerText = '' + msg;
                     errEl.classList.remove('hidden');
                     return;
                 }
 
                 closeAddSupportModal();
-                showCareToast('✅ Đã ghi nhận yêu cầu và cập nhật quy tắc chăm sóc', 'SUCCESS');
+                showCareToast('Đã ghi nhận yêu cầu và cập nhật quy tắc chăm sóc', 'SUCCESS');
                 await fetchCustomerCare();
                 if (curCareSubTab === 'history' && curTimelineCustomerId === customerId) {
                     loadCustomerTimeline(customerId);
                 }
             } catch (err) {
-                errEl.innerText = '❌ Lỗi kết nối: ' + err.message;
+                errEl.innerText = 'Lỗi kết nối: ' + err.message;
                 errEl.classList.remove('hidden');
             } finally {
                 submitBtn.disabled = false;
@@ -6771,7 +6771,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             }
 
             prevBtn.disabled = true;
-            prevBtn.innerHTML = '<span class="animate-spin">🔄</span> <span>Đang kiểm tra...</span>';
+            prevBtn.innerHTML = ' <span>Đang kiểm tra...</span>';
 
             try {
                 const res = await fetch('/api/customer-care/import/preview', {
@@ -6829,7 +6829,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 alert('Lỗi kiểm tra: ' + err.message);
             } finally {
                 prevBtn.disabled = false;
-                prevBtn.innerHTML = '<span>🔍 Kiểm tra & Xem trước</span>';
+                prevBtn.innerHTML = '<span>Kiểm tra & Xem trước</span>';
             }
         }
 
@@ -6839,7 +6839,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             const resBox = document.getElementById('csv-import-result');
 
             execBtn.disabled = true;
-            execBtn.innerHTML = '<span class="animate-spin">🔄</span> <span>Đang nạp dữ liệu...</span>';
+            execBtn.innerHTML = ' <span>Đang nạp dữ liệu...</span>';
 
             try {
                 const res = await fetch('/api/customer-care/import/execute', {
@@ -6857,8 +6857,8 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 }
 
                 resBox.classList.remove('hidden');
-                resBox.innerText = `✅ Nhập dữ liệu thành công! Mã đợt: ${data.batch_id} • Đã nạp: ${data.imported_count} • Bỏ qua/Lỗi: ${data.skipped_count}`;
-                showCareToast(`✅ Đã nạp thành công ${data.imported_count} bản ghi từ tệp CSV`, 'SUCCESS');
+                resBox.innerText = `Nhập dữ liệu thành công! Mã đợt: ${data.batch_id} • Đã nạp: ${data.imported_count} • Bỏ qua/Lỗi: ${data.skipped_count}`;
+                showCareToast(`Đã nạp thành công ${data.imported_count} bản ghi từ tệp CSV`, 'SUCCESS');
                 await fetchCustomerCare();
             } catch (err) {
                 alert('Lỗi thực thi: ' + err.message);
@@ -6876,7 +6876,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             const evalLabel = document.getElementById('care-sources-last-eval');
             if (btn) {
                 btn.disabled = true;
-                btn.innerHTML = '<span class="animate-spin">🔄</span> <span>Đang đánh giá...</span>';
+                btn.innerHTML = ' <span>Đang đánh giá...</span>';
             }
 
             try {
@@ -6884,14 +6884,14 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 const data = await res.json();
                 const nowStr = new Date().toLocaleTimeString('vi-VN');
                 if (evalLabel) evalLabel.innerText = `Lần đánh giá: ${nowStr}`;
-                showCareToast(`✅ Đã đánh giá quy tắc chăm sóc. Công việc mới: ${data.new_tasks_count ?? 0}, Cập nhật: ${data.updated_tasks_count ?? 0}`, 'SUCCESS');
+                showCareToast(`Đã đánh giá quy tắc chăm sóc. Công việc mới: ${data.new_tasks_count ?? 0}, Cập nhật: ${data.updated_tasks_count ?? 0}`, 'SUCCESS');
                 await fetchCustomerCare();
             } catch (err) {
-                showCareToast('❌ Lỗi đánh giá quy tắc: ' + err.message, 'ERROR');
+                showCareToast('Lỗi đánh giá quy tắc: ' + err.message, 'ERROR');
             } finally {
                 if (btn) {
                     btn.disabled = false;
-                    btn.innerHTML = '<span>🔄</span> <span>Đánh giá lại công việc</span>';
+                    btn.innerHTML = ' <span>Đánh giá lại công việc</span>';
                 }
             }
         }
@@ -6946,7 +6946,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             const btn = document.getElementById('btn-copilot-link-submit');
             if (btn) {
                 btn.disabled = true;
-                btn.innerHTML = '<span class="animate-spin">🔄</span> <span>Đang lưu...</span>';
+                btn.innerHTML = ' <span>Đang lưu...</span>';
             }
 
             try {
@@ -6969,7 +6969,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                     return;
                 }
 
-                showCareToast(`✅ Đã gắn phiên tư vấn vào hồ sơ khách ${data.customer_name} (${isConfirmed ? 'Đã xác nhận tương tác' : 'Bản nháp nội bộ'})`, 'SUCCESS');
+                showCareToast(`Đã gắn phiên tư vấn vào hồ sơ khách ${data.customer_name} (${isConfirmed ? 'Đã xác nhận tương tác' : 'Bản nháp nội bộ'})`, 'SUCCESS');
                 await fetchCustomerCare();
                 toggleCopilotLinkPanel();
             } catch (err) {
@@ -6977,7 +6977,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             } finally {
                 if (btn) {
                     btn.disabled = false;
-                    btn.innerHTML = '<span>💾</span> <span>Lưu vào Hồ sơ CSKH</span>';
+                    btn.innerHTML = ' <span>Lưu vào Hồ sơ CSKH</span>';
                 }
             }
         }
@@ -7190,7 +7190,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                     if (ingredient) parts.push(`Hoạt chất: <strong>${ingredient}</strong>`);
                     if (studyType && studyType !== 'ALL') parts.push(`Thiết kế: <strong>${studyType}</strong>`);
                     if (grade && grade !== 'ALL') parts.push(`Cấp độ: <strong>${grade}</strong>`);
-                    feedbackText.innerHTML = `🔍 Đang lọc: ${parts.join(' • ')} (Tìm thấy <strong>${allResearchStudies.length}</strong> nghiên cứu y văn)`;
+                    feedbackText.innerHTML = `Đang lọc: ${parts.join(' • ')} (Tìm thấy <strong>${allResearchStudies.length}</strong> nghiên cứu y văn)`;
                     feedbackEl.classList.remove('hidden');
                 } else if (feedbackEl) {
                     feedbackEl.classList.add('hidden');
