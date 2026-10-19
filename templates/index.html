@@ -188,6 +188,7 @@
                         <option value="Tất cả">Tất cả trạng thái</option>
                         <option value="NEW">Chưa tiếp cận</option>
                         <option value="IN_PROGRESS">Đang chào mẫu</option>
+                        <option value="SAMPLE_EVALUATING">Đã nhận mẫu thử (14 ngày)</option>
                         <option value="APPROVED">Đã duyệt HĐ</option>
                         <option value="ACTIVE_CLIENT">Đang nhập hàng</option>
                         <option value="FOLLOW_UP">Hẹn chăm sóc lại</option>
@@ -2969,6 +2970,132 @@
             </div>
         </div>
 
+        <!-- MODAL: GHI NHẬN VIẾNG THĂM THỰC ĐỊA (VISIT LOG) -->
+        <div id="modal-log-visit" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl border border-slate-200 w-full max-w-2xl max-h-[92vh] flex flex-col overflow-hidden">
+                <div class="px-5 py-3.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-900 uppercase">Ghi Nhận Viếng Thăm Thực Địa Quầy</h3>
+                        <p class="text-[11px] text-slate-500 font-medium" id="visit-modal-lead-title">Nhật ký tiếp xúc và khảo sát tại điểm bán</p>
+                    </div>
+                    <button type="button" onclick="closeLogVisitModal()" class="text-slate-400 hover:text-slate-600 font-bold text-lg">✕</button>
+                </div>
+
+                <form id="form-log-visit" onsubmit="handleLogVisitSubmit(event)" class="p-5 overflow-y-auto space-y-3.5 text-xs">
+                    <input type="hidden" id="visit-lead-id">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Thời gian viếng thăm:</label>
+                            <input id="visit-time" type="datetime-local" required class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-800 outline-none focus:border-corp-700 font-medium">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Trình dược viên thực hiện:</label>
+                            <input id="visit-visitor-name" type="text" required placeholder="Họ tên TDV phụ trách" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-800 outline-none focus:border-corp-700 font-medium">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Người tiếp xúc tại quầy:</label>
+                            <input id="visit-contact-person" type="text" required placeholder="VD: DS. Nguyễn Thị Lan" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-800 outline-none focus:border-corp-700 font-medium">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Vai trò người tiếp xúc:</label>
+                            <select id="visit-contact-role" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-800 outline-none focus:border-corp-700 font-medium">
+                                <option value="Dược sĩ đứng quầy chính" selected>Dược sĩ đứng quầy chính</option>
+                                <option value="Chủ nhà thuốc">Chủ nhà thuốc</option>
+                                <option value="Dược sĩ phụ trách chuyên môn (GPP)">Dược sĩ phụ trách chuyên môn (GPP)</option>
+                                <option value="Quản lý cửa hàng">Quản lý cửa hàng</option>
+                                <option value="Nhân viên bán lẻ">Nhân viên bán lẻ</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- KHẢO SÁT ĐỐI THỦ TẠI QUẦY -->
+                    <div class="p-3 bg-amber-50/70 border border-amber-200 rounded-lg space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-950 uppercase text-[11px]">Khảo sát đối thủ cạnh tranh tại quầy:</span>
+                            <span class="text-[10px] text-amber-800 font-semibold">Thực tế trưng bày & ra hàng</span>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-700 mb-1">Nhãn hàng đối thủ đang có mặt tại quầy:</label>
+                            <input id="visit-competitor-products" type="text" placeholder="VD: Cal-D Ostelin (Úc), Chela-Calcium (Ba Lan), Bio Island..." class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-900 outline-none focus:border-corp-700">
+                            <div class="flex flex-wrap gap-1 mt-1 text-[10px]">
+                                <span class="text-slate-500 font-medium">Gợi ý nhanh:</span>
+                                <button type="button" onclick="appendCompetitor('Cal-D Ostelin (Úc)')" class="px-1.5 py-0.5 rounded bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium">+ Ostelin</button>
+                                <button type="button" onclick="appendCompetitor('Chela-Calcium (Ba Lan)')" class="px-1.5 py-0.5 rounded bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium">+ Chela-Calcium</button>
+                                <button type="button" onclick="appendCompetitor('Bio Island (Úc)')" class="px-1.5 py-0.5 rounded bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium">+ Bio Island</button>
+                                <button type="button" onclick="appendCompetitor('Feroglobin B12')" class="px-1.5 py-0.5 rounded bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium">+ Feroglobin</button>
+                                <button type="button" onclick="appendCompetitor('Sắt Blackmores')" class="px-1.5 py-0.5 rounded bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium">+ Sắt Blackmores</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-700 mb-1">Mức giá bán lẻ quầy đang bán (đ/hộp):</label>
+                            <input id="visit-competitor-price" type="text" placeholder="VD: 185.000đ - 220.000đ/hộp (chiết khấu 12-14%)" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-900 outline-none focus:border-corp-700">
+                        </div>
+                    </div>
+
+                    <!-- KẾT QUẢ CUỘC GẶP & PIPELINE -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Kết quả cuộc gặp:</label>
+                            <select id="visit-meeting-result" onchange="onVisitMeetingResultChange()" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-800 outline-none focus:border-corp-700 font-bold">
+                                <option value="SAMPLE_DELIVERED" selected>Đã gửi mẫu trải nghiệm & Catalogue</option>
+                                <option value="ORDER_AGREED">Đồng ý nhập đơn đầu tiên</option>
+                                <option value="FOLLOW_UP_SCHEDULED">Cần cân nhắc thêm / Hẹn chăm sóc lại sau</option>
+                                <option value="ACTIVE_REPEAT">Đang nhập hàng định kỳ (Khách ruột)</option>
+                                <option value="REJECTED_REFUSAL">Tạm hoãn / Từ chối tiếp nhận</option>
+                                <option value="IN_PROGRESS">Đang trao đổi & chào mẫu</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Chuyển trạng thái điểm bán thành:</label>
+                            <select id="visit-new-status" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-800 outline-none focus:border-corp-700 font-semibold">
+                                <option value="SAMPLE_EVALUATING" selected>Đã nhận mẫu thử (Theo dõi 14 ngày)</option>
+                                <option value="APPROVED">Đã duyệt hợp đồng / Đơn đầu</option>
+                                <option value="IN_PROGRESS">Đang chào mẫu & báo giá</option>
+                                <option value="ACTIVE_CLIENT">Đang nhập hàng (Khách ruột)</option>
+                                <option value="FOLLOW_UP">Hẹn chăm sóc lại sau</option>
+                                <option value="REJECTED">Tạm hoãn / Từ chối</option>
+                                <option value="NEW">Chưa tiếp cận</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="visit-refusal-wrap" class="hidden">
+                        <label class="block font-bold text-rose-900 mb-1">Lý do quầy chưa chốt đơn / từ chối:</label>
+                        <select id="visit-refusal-reason" class="w-full bg-rose-50 border border-rose-300 rounded px-2.5 py-1.5 text-rose-900 outline-none focus:border-rose-500 font-medium">
+                            <option value="">-- Chọn lý do cụ thể --</option>
+                            <option value="Quầy chê giá đắt hơn hàng nội hoặc dòng thông thường">Quầy chê giá đắt hơn hàng nội hoặc dòng thông thường</option>
+                            <option value="Đang bán quen hàng cũ của đối thủ, ngại đổi nhãn">Đang bán quen hàng cũ của đối thủ, ngại đổi nhãn</option>
+                            <option value="Hàng mới chưa có khách hỏi theo đơn nên không dám ôm hàng">Hàng mới chưa có khách hỏi theo đơn nên không dám ôm hàng</option>
+                            <option value="Chưa có tủ kệ riêng hoặc chưa đủ chỗ trưng bày">Chưa có tủ kệ riêng hoặc chưa đủ chỗ trưng bày</option>
+                            <option value="Chờ chủ nhà thuốc quyết định (dược sĩ đứng quầy không có quyền)">Chờ chủ nhà thuốc quyết định (dược sĩ đứng quầy không có quyền)</option>
+                            <option value="Lý do khác (ghi rõ trong ghi chú)">Lý do khác (ghi rõ trong ghi chú)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Ghi chú chi tiết trao đổi tại quầy:</label>
+                        <textarea id="visit-notes" rows="3" required placeholder="Ghi nhận thái độ của Dược sĩ, câu hỏi thắc mắc về hoạt chất, yêu cầu về chính sách chiết khấu hoặc chương trình khuyến mại..." class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-900 outline-none focus:border-corp-700 resize-none font-medium leading-relaxed"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Ngày hẹn ghé lại / Chăm sóc tiếp theo:</label>
+                        <input id="visit-follow-up-date" type="date" class="w-full sm:w-60 bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-800 outline-none focus:border-corp-700">
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-200 flex justify-end gap-2">
+                        <button type="button" onclick="closeLogVisitModal()" class="px-4 py-2 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition">Hủy</button>
+                        <button type="submit" id="btn-submit-visit" class="px-5 py-2 rounded bg-corp-800 hover:bg-corp-900 text-white font-bold transition flex items-center gap-1.5 shadow-sm">
+                            <span>Lưu Nhật Ký Viếng Thăm</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <!-- MODAL: NHẬP DANH BẠ EXCEL / CSV THỰC ĐỊA -->
         <div id="modal-import-leads" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
             <div class="bg-white rounded-lg shadow-xl border border-slate-200 w-full max-w-3xl max-h-[92vh] flex flex-col overflow-hidden">
@@ -3130,6 +3257,8 @@
                     statusBadge = '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px] border border-emerald-300">Đang nhập hàng</span>';
                 } else if (l.status === 'IN_PROGRESS') {
                     statusBadge = '<span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-bold text-[10px] border border-amber-300">Đang chào mẫu</span>';
+                } else if (l.status === 'SAMPLE_EVALUATING') {
+                    statusBadge = '<span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-900 font-bold text-[10px] border border-indigo-300">Đã nhận mẫu</span>';
                 } else if (l.status === 'APPROVED') {
                     statusBadge = '<span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px] border border-blue-300">Đã duyệt HĐ</span>';
                 } else if (l.status === 'FOLLOW_UP') {
@@ -3195,6 +3324,68 @@
             } else if (!curLeadId || !leadsArr.some(x => x.lead_id === curLeadId)) {
                 inspectLead(leadsArr[0].lead_id);
             }
+        }
+
+        function renderVisitLogsHtml(lead) {
+            const visits = lead.visit_logs || [];
+            if (visits.length === 0) {
+                return `
+                    <div class="p-3 rounded bg-slate-50 border border-slate-200 text-center text-xs text-slate-500">
+                        Chưa có lượt viếng thăm nào được ghi nhận. Bấm <b>"+ Ghi nhận viếng thăm"</b> sau khi Trình dược viên khảo sát thực địa tại quầy.
+                    </div>
+                `;
+            }
+
+            return visits.map(v => {
+                let resultBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-300">' + (v.meeting_result_text || 'Đã viếng thăm') + '</span>';
+                if (v.meeting_result === 'SAMPLE_DELIVERED') {
+                    resultBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-900 border border-indigo-300">Đã gửi mẫu trải nghiệm</span>';
+                } else if (v.meeting_result === 'ORDER_AGREED') {
+                    resultBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">Đồng ý đơn đầu</span>';
+                } else if (v.meeting_result === 'FOLLOW_UP_SCHEDULED') {
+                    resultBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-900 border border-purple-300">Hẹn chăm sóc lại</span>';
+                } else if (v.meeting_result === 'ACTIVE_REPEAT') {
+                    resultBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">Đang nhập hàng định kỳ</span>';
+                } else if (v.meeting_result === 'REJECTED_REFUSAL') {
+                    resultBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-900 border border-rose-300">Tạm hoãn / Chưa phù hợp</span>';
+                }
+
+                return `
+                    <div class="p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 text-xs space-y-1.5 transition hover:bg-slate-50">
+                        <div class="flex flex-wrap items-center justify-between gap-1 pb-1 border-b border-slate-200/60">
+                            <div class="flex items-center gap-1.5">
+                                <span class="font-bold text-slate-900">${v.visited_at}</span>
+                                <span class="text-slate-400">·</span>
+                                <span class="font-medium text-slate-700">${v.visitor_name}</span>
+                            </div>
+                            <div>${resultBadge}</div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 text-[11px] text-slate-600">
+                            <div>Người tiếp xúc: <b class="text-slate-800">${v.contact_person}</b> (${v.contact_role})</div>
+                            ${v.next_follow_up_date ? `<div>Hẹn ghé lại: <b class="text-corp-700 font-mono">${v.next_follow_up_date}</b></div>` : ''}
+                        </div>
+
+                        ${v.competitor_products ? `
+                            <div class="text-[11px] bg-amber-50/60 p-1.5 rounded border border-amber-200 text-amber-950">
+                                Đối thủ tại quầy: <b>${v.competitor_products}</b> ${v.competitor_price ? `(${v.competitor_price})` : ''}
+                            </div>
+                        ` : ''}
+
+                        ${v.notes ? `
+                            <div class="text-[11px] text-slate-800 leading-relaxed font-sans bg-white p-2 rounded border border-slate-200">
+                                <b>Ghi chú thực địa:</b> ${v.notes}
+                            </div>
+                        ` : ''}
+
+                        ${v.refusal_reason ? `
+                            <div class="text-[11px] text-rose-900 bg-rose-50 p-1.5 rounded border border-rose-200">
+                                <b>Lý do chưa chốt:</b> ${v.refusal_reason}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
         }
 
         function inspectLead(id) {
@@ -3302,6 +3493,34 @@
                     <b>Tín hiệu thực tế:</b> ${l.intent_signals}
                 </div>
 
+                ${l.competitor_presence ? `
+                    <div class="p-2.5 rounded bg-amber-50 border border-amber-300 text-xs text-amber-950 space-y-1">
+                        <div class="flex justify-between items-center">
+                            <b class="text-amber-900 uppercase text-[11px]">Đối thủ đang có mặt tại quầy:</b>
+                            <span class="text-[10px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.2 rounded border border-amber-300">Khảo sát quầy</span>
+                        </div>
+                        <div class="font-bold text-slate-900">${l.competitor_presence}</div>
+                        ${l.competitor_price_note ? `<div class="text-[11px] text-slate-600">Mức giá quầy đang bán: <b>${l.competitor_price_note}</b></div>` : ''}
+                    </div>
+                ` : ''}
+
+                <!-- KHỐI NHẬT KÝ VIẾNG THĂM THỰC ĐỊA (VISIT LOGS) -->
+                <div class="border border-slate-200 rounded-lg p-3 bg-white space-y-2.5">
+                    <div class="flex items-center justify-between pb-2 border-b border-slate-200">
+                        <div>
+                            <span class="font-bold text-xs text-slate-900 uppercase">Nhật Ký Viếng Thăm Thực Địa</span>
+                            <span class="text-[10px] text-slate-500 block">Lịch sử tiếp xúc, gửi mẫu & phản hồi của Dược sĩ quầy</span>
+                        </div>
+                        <button onclick="openLogVisitModal('${l.lead_id}')" class="px-2.5 py-1.5 rounded bg-corp-800 hover:bg-corp-900 text-white font-bold text-xs transition flex items-center gap-1 shadow-2xs">
+                            + Ghi nhận viếng thăm
+                        </button>
+                    </div>
+                    
+                    <div id="lead-visit-logs-container" class="space-y-2 max-h-[300px] overflow-y-auto pr-1">
+                        ${renderVisitLogsHtml(l)}
+                    </div>
+                </div>
+
                 <!-- CẬP NHẬT TRẠNG THÁI THỰC ĐỊA & TRỌNG TÂM TIẾP THỊ -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
                     <div class="space-y-1">
@@ -3309,7 +3528,8 @@
                         <select onchange="approveLeadAction('${l.lead_id}', this.value)" class="w-full bg-white border border-slate-300 rounded px-2 py-1.5 text-xs outline-none font-bold text-slate-800">
                             <option value="NEW" ${l.status === 'NEW' ? 'selected' : ''}>Chưa tiếp cận (Khảo sát mới)</option>
                             <option value="IN_PROGRESS" ${l.status === 'IN_PROGRESS' ? 'selected' : ''}>Đang chào mẫu & báo giá</option>
-                            <option value="APPROVED" ${l.status === 'APPROVED' ? 'selected' : ''}>Đã duyệt hợp đồng</option>
+                            <option value="SAMPLE_EVALUATING" ${l.status === 'SAMPLE_EVALUATING' ? 'selected' : ''}>Đã nhận mẫu thử (Theo dõi 14 ngày)</option>
+                            <option value="APPROVED" ${l.status === 'APPROVED' ? 'selected' : ''}>Đã duyệt hợp đồng / Đơn đầu</option>
                             <option value="ACTIVE_CLIENT" ${l.status === 'ACTIVE_CLIENT' ? 'selected' : ''}>Đang nhập hàng (Khách ruột)</option>
                             <option value="FOLLOW_UP" ${l.status === 'FOLLOW_UP' ? 'selected' : ''}>Hẹn chăm sóc lại sau</option>
                             <option value="REJECTED" ${l.status === 'REJECTED' ? 'selected' : ''}>Tạm hoãn / Từ chối</option>
@@ -3595,6 +3815,134 @@
                 body: JSON.stringify({action: st})
             });
             fetchLeads();
+        }
+
+        // --- ĐIỀU KHIỂN NHẬT KÝ VIẾNG THĂM THỰC ĐỊA (VISIT LOGS) ---
+        function openLogVisitModal(leadId) {
+            const l = leadsArr.find(x => x.lead_id === leadId) || (curLeadId === leadId ? leadsArr.find(x => x.lead_id === curLeadId) : null);
+            if (!l) return;
+
+            document.getElementById('visit-lead-id').value = l.lead_id;
+            document.getElementById('visit-modal-lead-title').innerText = `${l.name} (${l.lead_id}) — ${l.address}`;
+
+            const now = new Date();
+            const localIso = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+            document.getElementById('visit-time').value = localIso;
+
+            document.getElementById('visit-visitor-name').value = l.assigned_to || 'Vũ Hải Đăng (Sales Lead Hà Nội)';
+
+            const contactInput = document.getElementById('visit-contact-person');
+            if (l.gpp_info && l.gpp_info.pharmacist_in_charge) {
+                contactInput.value = 'DS. ' + l.gpp_info.pharmacist_in_charge.replace(/^DS\.\s*/i, '');
+            } else {
+                contactInput.value = l.contact_person || 'Dược sĩ đứng quầy';
+            }
+
+            document.getElementById('visit-contact-role').value = 'Dược sĩ đứng quầy chính';
+            document.getElementById('visit-competitor-products').value = l.competitor_presence || '';
+            document.getElementById('visit-competitor-price').value = l.competitor_price_note || '';
+            document.getElementById('visit-meeting-result').value = 'SAMPLE_DELIVERED';
+            document.getElementById('visit-new-status').value = 'SAMPLE_EVALUATING';
+            document.getElementById('visit-refusal-reason').value = '';
+            document.getElementById('visit-refusal-wrap').classList.add('hidden');
+            document.getElementById('visit-notes').value = '';
+
+            const nextWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+            document.getElementById('visit-follow-up-date').value = nextWeek.toISOString().slice(0, 10);
+
+            document.getElementById('modal-log-visit').classList.remove('hidden');
+        }
+
+        function closeLogVisitModal() {
+            document.getElementById('modal-log-visit').classList.add('hidden');
+        }
+
+        function appendCompetitor(name) {
+            const input = document.getElementById('visit-competitor-products');
+            if (!input) return;
+            const cur = input.value.trim();
+            if (!cur) {
+                input.value = name;
+            } else if (!cur.toLowerCase().includes(name.toLowerCase())) {
+                input.value = cur + ', ' + name;
+            }
+        }
+
+        function onVisitMeetingResultChange() {
+            const res = document.getElementById('visit-meeting-result').value;
+            const statusSelect = document.getElementById('visit-new-status');
+            const refusalWrap = document.getElementById('visit-refusal-wrap');
+
+            if (res === 'SAMPLE_DELIVERED') {
+                statusSelect.value = 'SAMPLE_EVALUATING';
+                refusalWrap.classList.add('hidden');
+            } else if (res === 'ORDER_AGREED') {
+                statusSelect.value = 'APPROVED';
+                refusalWrap.classList.add('hidden');
+            } else if (res === 'FOLLOW_UP_SCHEDULED') {
+                statusSelect.value = 'FOLLOW_UP';
+                refusalWrap.classList.add('hidden');
+            } else if (res === 'ACTIVE_REPEAT') {
+                statusSelect.value = 'ACTIVE_CLIENT';
+                refusalWrap.classList.add('hidden');
+            } else if (res === 'REJECTED_REFUSAL') {
+                statusSelect.value = 'REJECTED';
+                refusalWrap.classList.remove('hidden');
+            } else {
+                statusSelect.value = 'IN_PROGRESS';
+                refusalWrap.classList.add('hidden');
+            }
+        }
+
+        async function handleLogVisitSubmit(e) {
+            e.preventDefault();
+            const leadId = document.getElementById('visit-lead-id').value;
+            if (!leadId) return;
+
+            const btn = document.getElementById('btn-submit-visit');
+            const origHtml = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerText = 'Đang lưu nhật ký...';
+
+            const timeVal = document.getElementById('visit-time').value.replace('T', ' ');
+            const meetingResult = document.getElementById('visit-meeting-result').value;
+            const meetingResultText = document.getElementById('visit-meeting-result').options[document.getElementById('visit-meeting-result').selectedIndex].text;
+
+            const payload = {
+                visited_at: timeVal,
+                visitor_name: document.getElementById('visit-visitor-name').value.trim(),
+                contact_person: document.getElementById('visit-contact-person').value.trim(),
+                contact_role: document.getElementById('visit-contact-role').value,
+                competitor_products: document.getElementById('visit-competitor-products').value.trim(),
+                competitor_price: document.getElementById('visit-competitor-price').value.trim(),
+                meeting_result: meetingResult,
+                meeting_result_text: meetingResultText,
+                new_status: document.getElementById('visit-new-status').value,
+                refusal_reason: document.getElementById('visit-refusal-reason').value,
+                notes: document.getElementById('visit-notes').value.trim(),
+                next_follow_up_date: document.getElementById('visit-follow-up-date').value
+            };
+
+            try {
+                const res = await fetch(`/api/leads/${encodeURIComponent(leadId)}/visits`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (res.ok && data.status === 'success') {
+                    closeLogVisitModal();
+                    await fetchLeads();
+                    inspectLead(leadId);
+                } else {
+                    alert('Lỗi lưu nhật ký: ' + (data.detail || 'Không thể lưu nhật ký viếng thăm'));
+                }
+            } catch (err) {
+                alert('Lỗi kết nối: ' + err.message);
+            } finally {
+                btn.innerHTML = origHtml;
+                btn.disabled = false;
+            }
         }
 
         function downloadLeadsCSV() {

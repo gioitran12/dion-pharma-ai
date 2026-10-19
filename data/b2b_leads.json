@@ -29,7 +29,7 @@
       "intent_score": 90,
       "intent_signals": "Đối diện cổng chính BV Phụ sản TW (40m), lượng khách hỏi Canxi hữu cơ không nóng không táo bón chiếm 48% doanh số vi chất mẹ bầu.",
       "source_url": "https://duocquocgia.com.vn/gpp-verified",
-      "status": "NEW",
+      "status": "SAMPLE_EVALUATING",
       "assigned_to": "Vũ Hải Đăng (Sales Lead Hà Nội)",
       "is_new_opened": false,
       "nearby_facility": "Cách Bệnh viện Phụ Sản Trung Ương 40m (40m · 1 phút đi bộ)",
@@ -66,7 +66,30 @@
         "platform": "Khảo sát thực địa trực tiếp & Xác thực GPP",
         "signal_detail": "Đối diện cổng chính BV Phụ sản TW (40m), lượng khách hỏi Canxi hữu cơ không nóng không táo bón chiếm 48% doanh số vi chất mẹ bầu.",
         "detection_date": "Tháng 02/2026"
-      }
+      },
+      "last_visit": "2026-10-18 14:30",
+      "last_visitor": "Vũ Hải Đăng (Sales Lead Hà Nội)",
+      "competitor_presence": "Cal-D Ostelin (Úc), Chela-Calcium (Ba Lan)",
+      "competitor_price_note": "195.000đ - 220.000đ/hộp (chiết khấu quầy 12-14%)",
+      "next_follow_up_date": "2026-10-28",
+      "visit_logs": [
+        {
+          "visit_id": "VISIT-LD-HN-001-001",
+          "visited_at": "2026-10-18 14:30",
+          "visitor_name": "Vũ Hải Đăng (Sales Lead Hà Nội)",
+          "contact_person": "DS. Nguyễn Thị Lan",
+          "contact_role": "Dược sĩ đứng quầy chính",
+          "competitor_products": "Cal-D Ostelin (Úc), Chela-Calcium (Ba Lan)",
+          "competitor_price": "195.000đ - 220.000đ/hộp (chiết khấu quầy 12-14%)",
+          "meeting_result": "SAMPLE_DELIVERED",
+          "meeting_result_text": "Đã gửi 5 hộp mẫu Cal-Mom (vỉ 10 viên dùng thử) + Catalogue bảng giá chiết khấu 32%",
+          "notes": "Dược sĩ Lan phản hồi lượng mẹ bầu khám tại BV Phụ Sản TW đối diện quầy hỏi canxi không nóng không táo bón rất nhiều. Đồng ý nhận mẫu gửi cho khách quen dùng thử và theo dõi phản hồi trong 10-14 ngày.",
+          "refusal_reason": "",
+          "next_follow_up_date": "2026-10-28",
+          "new_status": "SAMPLE_EVALUATING",
+          "created_at": "2026-10-18 14:45"
+        }
+      ]
     },
     {
       "lead_id": "LD-HN-002",

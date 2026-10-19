@@ -48,6 +48,100 @@ def update_lead_status(lead_id: str, new_status: str, assigned_to: Optional[str]
         return save_leads_data(leads)
     return False
 
+def log_lead_visit(lead_id: str, visit_payload: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    """
+    Ghi nhận nhật ký viếng thăm thực địa (Visit Log) cho điểm bán.
+    Tự động cập nhật tình trạng đối thủ tại quầy, trạng thái pipeline và ngày hẹn tiếp theo.
+    """
+    import datetime
+    leads = load_leads_data()
+    target_lead = None
+    for l in leads:
+        if l.get("lead_id") == lead_id:
+            target_lead = l
+            break
+            
+    if not target_lead:
+        return None
+        
+    visits = target_lead.setdefault("visit_logs", [])
+    visit_seq = len(visits) + 1
+    now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    
+    visited_at = visit_payload.get("visited_at") or now_str
+    visitor_name = visit_payload.get("visitor_name") or target_lead.get("assigned_to") or "Trình dược viên phụ trách"
+    contact_person = visit_payload.get("contact_person") or (target_lead.get("gpp_info", {}).get("pharmacist_in_charge") or "Dược sĩ đứng quầy")
+    contact_role = visit_payload.get("contact_role") or "Dược sĩ đứng quầy chính"
+    competitor_products = str(visit_payload.get("competitor_products", "")).strip()
+    competitor_price = str(visit_payload.get("competitor_price", "")).strip()
+    meeting_result = visit_payload.get("meeting_result", "IN_PROGRESS")
+    meeting_result_text = visit_payload.get("meeting_result_text", "")
+    notes = str(visit_payload.get("notes", "")).strip()
+    refusal_reason = str(visit_payload.get("refusal_reason", "")).strip()
+    next_follow_up_date = str(visit_payload.get("next_follow_up_date", "")).strip()
+    
+    # Map kết quả viếng thăm sang nhãn và trạng thái pipeline tương ứng
+    result_status_map = {
+        "SAMPLE_DELIVERED": ("Đã gửi mẫu trải nghiệm & Catalogue", "SAMPLE_EVALUATING"),
+        "ORDER_AGREED": ("Đồng ý nhập đơn đầu tiên", "APPROVED"),
+        "FOLLOW_UP_SCHEDULED": ("Hẹn chăm sóc lại sau", "FOLLOW_UP"),
+        "ACTIVE_REPEAT": ("Đang nhập hàng định kỳ (Khách ruột)", "ACTIVE_CLIENT"),
+        "REJECTED_REFUSAL": ("Tạm hoãn / Chưa phù hợp", "REJECTED"),
+        "IN_PROGRESS": ("Đang trao đổi & chào mẫu", "IN_PROGRESS"),
+    }
+    
+    default_text, default_status = result_status_map.get(meeting_result, ("Đã viếng thăm quầy", meeting_result))
+    if not meeting_result_text:
+        meeting_result_text = default_text
+        
+    new_status = visit_payload.get("new_status") or default_status
+    
+    visit_entry = {
+        "visit_id": f"VISIT-{lead_id}-{visit_seq:03d}",
+        "visited_at": visited_at,
+        "visitor_name": visitor_name,
+        "contact_person": contact_person,
+        "contact_role": contact_role,
+        "competitor_products": competitor_products,
+        "competitor_price": competitor_price,
+        "meeting_result": meeting_result,
+        "meeting_result_text": meeting_result_text,
+        "notes": notes,
+        "refusal_reason": refusal_reason,
+        "next_follow_up_date": next_follow_up_date,
+        "new_status": new_status,
+        "created_at": now_str
+    }
+    
+    visits.insert(0, visit_entry)
+    target_lead["last_visit"] = visited_at
+    target_lead["last_visitor"] = visitor_name
+    if competitor_products:
+        target_lead["competitor_presence"] = competitor_products
+    if competitor_price:
+        target_lead["competitor_price_note"] = competitor_price
+    if new_status:
+        target_lead["status"] = new_status
+    if next_follow_up_date:
+        target_lead["next_follow_up_date"] = next_follow_up_date
+        
+    save_leads_data(leads)
+    return {
+        "visit": visit_entry,
+        "total_visits": len(visits),
+        "lead_id": lead_id,
+        "lead_status": target_lead.get("status"),
+        "competitor_presence": target_lead.get("competitor_presence")
+    }
+
+def get_lead_visits(lead_id: str) -> List[Dict[str, Any]]:
+    """Lấy danh sách nhật ký viếng thăm của một điểm bán."""
+    lead = get_lead_by_id(lead_id)
+    if not lead:
+        return []
+    return lead.get("visit_logs", [])
+
+
 def load_hospitals_map() -> Dict[str, Dict[str, List[str]]]:
     if not LEADS_PATH.exists():
         return {}

@@ -18,7 +18,8 @@ from modules.claims_hub import (
 from modules.lead_discovery import (
     filter_leads, update_lead_status, get_lead_by_id, group_by_parent_chain,
     generate_b2b_outreach_pitch, generate_b2b_outreach_pitch_ai, analyze_lead_ai,
-    add_new_lead, import_leads_bulk, load_hospitals_map
+    add_new_lead, import_leads_bulk, load_hospitals_map,
+    log_lead_visit, get_lead_visits
 )
 from modules.sales_copilot import generate_copilot_response
 from modules.content_generator import (
@@ -143,6 +144,18 @@ async def api_lead_action(lead_id: str, action: str = Body(..., embed=True), ass
     if not success:
         raise HTTPException(status_code=400, detail="Không thể cập nhật trạng thái")
     return {"status": "success", "lead_id": lead_id, "new_status": action}
+
+@app.get("/api/leads/{lead_id}/visits")
+async def api_get_lead_visits(lead_id: str):
+    visits = get_lead_visits(lead_id)
+    return {"status": "success", "lead_id": lead_id, "total": len(visits), "visits": visits}
+
+@app.post("/api/leads/{lead_id}/visits")
+async def api_log_lead_visit(lead_id: str, payload: Dict[str, Any] = Body(...)):
+    res = log_lead_visit(lead_id, payload)
+    if not res:
+        raise HTTPException(status_code=404, detail="Không tìm thấy điểm bán")
+    return {"status": "success", **res}
 
 @app.post("/api/leads/{lead_id}/pitch")
 async def api_lead_pitch(lead_id: str, sku: str = Body("DION-D3-1000", embed=True)):
