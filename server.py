@@ -22,6 +22,7 @@ from modules.lead_discovery import (
     log_lead_visit, get_lead_visits
 )
 from modules.sales_copilot import generate_copilot_response
+from modules.clinical_consultant import consult_ai_expert
 from modules.content_generator import (
     generate_marketing_draft, validate_content_compliance, deep_audit_radar, auto_fix_compliance
 )
@@ -261,6 +262,21 @@ async def api_analyze_competitor(
 @app.post("/api/copilot/ask")
 async def api_copilot_ask(query: str = Body(..., embed=True), sku: str = Body("ALL", embed=True)):
     return generate_copilot_response(query, sku=sku)
+
+@app.post("/api/copilot/consult")
+async def api_copilot_consult(
+    message: str = Body(..., embed=True),
+    sku: str = Body("ALL", embed=True),
+    mode: str = Body("PHARMACIST_B2C", embed=True)
+):
+    """
+    Tư vấn AI chuyên môn y dược và kịch bản thương mại đa chế độ:
+    - PHARMACIST_B2C: Dược sĩ tư vấn tại quầy cho người mua
+    - SALES_REP_B2B: Trình dược viên trao đổi chuyên môn với Bác sĩ / Dược sĩ
+    - OBJECTION_HANDLING: Kịch bản 3 bước xử lý phản bác tại quầy
+    """
+    return consult_ai_expert(message=message, sku=sku, mode=mode)
+
 
 _question_engine: Optional[QuestionUnderstandingEngine] = None
 _claim_retriever: Optional[ClaimRelevanceRetriever] = None
@@ -539,16 +555,16 @@ async def api_copilot_chat(request: ChatRequest):
             
             compound_answer = (
                 f"DION Healthcare AI phản hồi đa mục cho câu hỏi của bạn về {prod_name}:\n\n"
-                f"1. 📋 VỀ CÔNG DỤNG SẢN PHẨM (CĂN CỨ HỒ SƠ CÔNG BỐ SỐ {reg_num}):\n"
+                f"1. [CÔNG DỤNG SẢN PHẨM] (CĂN CỨ HỒ SƠ CÔNG BỐ SỐ {reg_num}):\n"
                 f"{claims_text}\n\n"
-                f"2. 💰 VỀ THÔNG TIN GIÁ BÁN & ƯU ĐÃI (THIẾU DỮ LIỆU CHUYÊN MÔN):\n"
+                f"2. [THÔNG TIN GIÁ BÁN & ƯU ĐÃI] (THIẾU DỮ LIỆU CHUYÊN MÔN):\n"
                 f"- Giá bán, chương trình khuyến mãi và chính sách bán buôn/lẻ thuộc phạm vi quản lý của phòng Kinh doanh. "
                 f"Vui lòng tra cứu bảng giá niêm yết hiện hành hoặc liên hệ Trưởng bộ phận bán hàng.\n\n"
-                f"3. ⚠️ VỀ TƯƠNG TÁC THUỐC & AN TOÀN SỬ DỤNG (CHUYỂN DƯỢC SĨ):\n"
+                f"3. [TƯƠNG TÁC THUỐC & AN TOÀN SỬ DỤNG] (CHUYỂN DƯỢC SĨ):\n"
                 f"- Việc dùng chung sản phẩm với thuốc điều trị cần được xem xét khoảng cách thời gian uống và tương tác hấp thu. "
                 f"Hệ thống đã gắn cờ yêu cầu Dược sĩ chuyên môn tư vấn trực tiếp cho trường hợp này.\n\n"
                 f"Khuyến cáo pháp lý: {disclaimer_val}\n\n"
-                f"[📋 Bản nháp tư vấn đa mục — Yêu cầu Dược sĩ duyệt trước khi gửi khách hàng]"
+                f"[Bản nháp tư vấn đa mục — Yêu cầu Dược sĩ duyệt trước khi gửi khách hàng]"
             )
             
             citations = [
@@ -860,7 +876,7 @@ async def api_copilot_chat(request: ChatRequest):
     except Exception as e:
         _update_ai_verification_on_error("INTERNAL_ERROR", str(e))
         raise HTTPException(status_code=500, detail={"code": "INTERNAL_ERROR", "message": "L?i n?i b? khi g?i LLM Gateway."})
-    draft_disclaimer = "\n\n[📋 Bản nháp trả lời đề xuất bởi AI Copilot — Nhân viên cần duyệt lại trước khi gửi khách hàng]"
+    draft_disclaimer = "\n\n[Bản nháp trả lời đề xuất bởi AI Copilot — Nhân viên cần duyệt lại trước khi gửi khách hàng]"
     if draft_disclaimer not in generated_answer:
         generated_answer += draft_disclaimer
 
@@ -1400,7 +1416,7 @@ async def api_customer_care_chat(request: CustomerCareChatRequest):
             "decision": "BLOCKED",
             "warning": "INCIDENT_LOCKOUT_VIOLATION",
             "answer": (
-                f"⛔ CẢNH BÁO INCIDENT LOCKOUT: KHÔNG ĐƯỢC PHÉP UPSELL / BÁN THÊM!\n\n"
+                f"[CẢNH BÁO INCIDENT LOCKOUT: KHÔNG ĐƯỢC PHÉP UPSELL / BÁN THÊM]\n\n"
                 f"Khách hàng {cust.get('name')} ({cust.get('id')}) hiện đang trong trạng thái: {cust.get('status')} "
                 f"(Ghi nhận sự cố: {cust.get('complaint_status')}).\n\n"
                 f"Theo Quy chuẩn An toàn Dược DION và Nghị định 356/2025/NĐ-CP:\n"
@@ -1422,7 +1438,7 @@ async def api_customer_care_chat(request: CustomerCareChatRequest):
             "decision": "EXPLANATION",
             "warning": "INCIDENT_LOCKOUT_POLICY",
             "answer": (
-                f"📋 GIẢI THÍCH LÝ DO KHÓA BÁN HÀNG (INCIDENT LOCKOUT):\n"
+                f"GIẢI THÍCH LÝ DO KHÓA BÁN HÀNG (INCIDENT LOCKOUT):\n"
                 f"Hệ thống kích hoạt cơ chế khóa bảo vệ tự động đối với khách hàng {cust.get('name')} ({cust.get('id')}) vì:\n"
                 f"- Khiếu nại chất lượng/tác dụng phụ: {cust.get('complaint_status')} khi sử dụng {cust.get('sku_bought')} (ngày thứ {cust.get('day_in_cycle')}).\n"
                 f"- Tránh phản cảm & rủi ro pháp lý: Tiếp tục tiếp thị bán hàng khi khách đang có trải nghiệm bất lợi vi phạm nghiêm trọng tiêu chuẩn chăm sóc y dược.\n"
@@ -1442,7 +1458,7 @@ async def api_customer_care_chat(request: CustomerCareChatRequest):
             "decision": "PRIVACY_ENFORCED",
             "warning": "OPT_OUT_COMPLIANCE",
             "answer": (
-                "🔒 TUÂN THỦ LUẬT BẢO VỆ DỮ LIỆU CÁ NHÂN (Luật 91/2025/QH15 & Nghị định 356/2025/NĐ-CP):\n\n"
+                "TUÂN THỦ LUẬT BẢO VỆ DỮ LIỆU CÁ NHÂN (Luật 91/2025/QH15 & Nghị định 356/2025/NĐ-CP):\n\n"
                 "Khi khách hàng kích hoạt trạng thái TỪ CHỐI NHẬN TIN (OPT-OUT):\n"
                 "1. Hệ thống tự động khóa vĩnh viễn quyền gửi tin tiếp thị tự động trên mọi kênh Zalo OA / SMS Brandname.\n"
                 "2. Nghiêm cấm nhân viên sử dụng thông tin liên lạc của khách cho mục đích quảng cáo hoặc bán hàng.\n"
@@ -1462,7 +1478,7 @@ async def api_customer_care_chat(request: CustomerCareChatRequest):
             "decision": "CARE_DRAFT",
             "warning": None,
             "answer": (
-                f"📝 KỊCH BẢN CHĂM SÓC KHÁCH HÀNG — NGÀY THỨ 25 (NHẮC BỔ SUNG CHU KỲ TIẾP THEO)\n"
+                f"KỊCH BẢN CHĂM SÓC KHÁCH HÀNG — NGÀY THỨ 25 (NHẮC BỔ SUNG CHU KỲ TIẾP THEO)\n"
                 f"Khách hàng: {cust.get('name')} ({cust.get('id')}) | Sản phẩm: {cust.get('sku_bought')}\n\n"
                 f"[Nội dung tin nhắn đề xuất gửi qua Zalo OA]:\n"
                 f"\"DION xin chào chị {cust.get('name', '').split()[-1]}! Liệu trình Canxi Cal-Mom Plus của chị hiện đã bước sang ngày thứ 25 và sắp hoàn thành hộp đầu tiên.\n\n"
@@ -1483,7 +1499,7 @@ async def api_customer_care_chat(request: CustomerCareChatRequest):
             "decision": "CARE_DRAFT",
             "warning": None,
             "answer": (
-                f"📝 KỊCH BẢN CHĂM SÓC KHÁCH HÀNG — NGÀY THỨ 7 (KHẢO SÁT CẢM NHẬN SỬ DỤNG)\n"
+                f"KỊCH BẢN CHĂM SÓC KHÁCH HÀNG — NGÀY THỨ 7 (KHẢO SÁT CẢM NHẬN SỬ DỤNG)\n"
                 f"Khách hàng: {cust.get('name')} ({cust.get('id')}) | Sản phẩm: {cust.get('sku_bought')}\n\n"
                 f"[Nội dung tin nhắn đề xuất gửi qua SMS Brandname]:\n"
                 f"\"DION xin chao anh {cust.get('name', '').split()[-1]}! Anh da su dung Vitamin D3 DION Drops duoc 1 tuan. Anh nho uong deu vao buoi sang sau an de tang cuong hap thu canxi toi da nhe a. Neu can them tu van huong dan, anh vui long phan hoi tai day. Chuc anh ngay moi tran day nang luong!\""
@@ -1501,7 +1517,7 @@ async def api_customer_care_chat(request: CustomerCareChatRequest):
         "decision": "INFO",
         "warning": "INCIDENT_LOCKOUT_ACTIVE" if is_locked else None,
         "answer": (
-            f"👤 HỒ SƠ KHÁCH HÀNG DION: {cust.get('name')} (Mã: {cust.get('id')})\n"
+            f"HỒ SƠ KHÁCH HÀNG DION: {cust.get('name')} (Mã: {cust.get('id')})\n"
             f"- Sản phẩm: {cust.get('sku_bought')} | Ngày mua: {cust.get('purchase_date')} (Ngày chu kỳ: {cust.get('day_in_cycle')}/30)\n"
             f"- Trạng thái chăm sóc: {cust.get('status')}\n"
             f"- Chấp thuận dữ liệu: {cust.get('consent_status')} (Luật 91/2025/QH15)\n"

@@ -838,6 +838,28 @@
                 </div>
             </div>
 
+            <!-- B2. BỘ CHỌN CHẾ ĐỘ TƯ VẤN AI CHUYÊN SÂU -->
+            <div class="bg-white rounded-lg border border-slate-200 px-4 py-2.5 text-xs flex flex-wrap items-center justify-between gap-2 shadow-2xs">
+                <div class="flex items-center gap-2">
+                    <span class="font-bold text-slate-700 uppercase text-[11px] shrink-0">Chế độ tư vấn AI:</span>
+                    <div class="inline-flex rounded-lg border border-slate-300 p-0.5 bg-slate-100 text-xs font-semibold">
+                        <button id="copilot-mode-btn-b2c" onclick="setCopilotConsultMode('PHARMACIST_B2C')" class="px-3 py-1.5 rounded-md bg-corp-800 text-white font-bold transition shadow-xs">
+                            1. Dược Sĩ Quầy (B2C)
+                        </button>
+                        <button id="copilot-mode-btn-b2b" onclick="setCopilotConsultMode('SALES_REP_B2B')" class="px-3 py-1.5 rounded-md text-slate-700 hover:text-slate-900 transition">
+                            2. Trình Dược Viên & Bác Sĩ (B2B)
+                        </button>
+                        <button id="copilot-mode-btn-objection" onclick="setCopilotConsultMode('OBJECTION_HANDLING')" class="px-3 py-1.5 rounded-md text-slate-700 hover:text-slate-900 transition">
+                            3. Xử Lý Phản Bác Quầy
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-[11px] text-slate-500 font-medium" id="copilot-mode-desc">
+                    Tư vấn trực tiếp cho khách mua lẻ: an toàn thai kỳ, không sỏi thận, êm bụng không táo bón.
+                </div>
+            </div>
+
             <!-- C. Khu hội thoại chính (Chat Scroll Container) -->
             <div class="bg-white rounded-xl border border-slate-200 shadow-sm flex flex-col h-[520px] overflow-hidden">
                 <!-- Vùng cuộn tin nhắn -->
@@ -873,22 +895,31 @@
                 </div>
 
                 <!-- D. Gợi ý câu hỏi nhanh (Chips) -->
-                <div class="px-4 py-2 bg-slate-50 border-t border-slate-200 flex items-center gap-1.5 overflow-x-auto">
-                    <span class="text-[10px] font-bold text-slate-400 uppercase shrink-0">Gợi ý:</span>
-                    <button onclick="copilotQuickAsk('Vitamin D3 có công dụng gì?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-blue-50 text-corp-800 border border-slate-200 hover:border-blue-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        Công dụng Vitamin D3
+                <div class="px-4 py-2.5 bg-slate-50 border-t border-slate-200 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+                    <span class="text-[10px] font-bold text-slate-500 uppercase shrink-0">Tình huống thực tế:</span>
+                    <button onclick="copilotQuickAsk('Uống Canxi DION Cal-Mom có bị sỏi thận hoặc vôi hóa không?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-blue-50 text-corp-800 border border-slate-200 hover:border-blue-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                        Uống Canxi có sỏi thận không?
                     </button>
-                    <button onclick="copilotQuickAsk('Canxi Cal-Mom có ưu điểm gì nổi bật?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-emerald-50 text-emerald-800 border border-slate-200 hover:border-emerald-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        Thông tin Cal-Mom
+                    <button onclick="copilotQuickAsk('Uống Sắt DION Fero-Plus có bị táo bón hoặc nóng trong không?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-emerald-50 text-emerald-800 border border-slate-200 hover:border-emerald-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                        Uống Sắt có bị táo bón không?
                     </button>
-                    <button onclick="copilotQuickAsk('So sánh DION Vitamin D3 và Cal-Mom')" class="px-2.5 py-1 rounded-full bg-white hover:bg-purple-50 text-purple-800 border border-slate-200 hover:border-purple-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        So sánh D3 và Cal-Mom
+                    <button onclick="copilotQuickAsk('Canxi và Sắt có uống cùng lúc được không? Cần uống cách nhau bao lâu?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-purple-50 text-purple-800 border border-slate-200 hover:border-purple-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                        Uống Canxi chung với Sắt?
                     </button>
-                    <button onclick="copilotQuickAsk('Cal-Mom có dùng được cho phụ nữ mang thai không?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-amber-50 text-amber-900 border border-slate-200 hover:border-amber-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        Nhạy cảm thai kỳ
+                    <button onclick="copilotQuickAsk('Phụ nữ mang thai từ tháng thứ mấy thì bắt đầu uống Canxi và Sắt DION?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-amber-50 text-amber-900 border border-slate-200 hover:border-amber-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                        Bà bầu mấy tháng thì uống?
                     </button>
-                    <button onclick="copilotQuickAsk('Vitamin D3 có chữa bệnh loãng xương không?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-rose-50 text-rose-800 border border-slate-200 hover:border-rose-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        Kiểm tra từ cấm điều trị
+                    <button onclick="copilotQuickAsk('Đang uống kháng sinh hoặc thuốc huyết áp thì uống Canxi thế nào?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-indigo-50 text-indigo-900 border border-slate-200 hover:border-indigo-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                        Tương tác với kháng sinh
+                    </button>
+                    <button onclick="copilotQuickAsk('Chủ nhà thuốc từ chối: Hàng mới chưa có khách hỏi mua nên quầy không dám nhập')" class="px-2.5 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-900 border border-rose-200 hover:border-rose-300 text-[11px] font-bold whitespace-nowrap transition shadow-2xs">
+                        Phản bác: Chưa ai hỏi mua
+                    </button>
+                    <button onclick="copilotQuickAsk('Chủ quầy bảo đang bán rất chạy hàng ngoại xách tay của Úc và Pháp rồi')" class="px-2.5 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-900 border border-rose-200 hover:border-rose-300 text-[11px] font-bold whitespace-nowrap transition shadow-2xs">
+                        Phản bác: Quen bán hàng ngoại
+                    </button>
+                    <button onclick="copilotQuickAsk('Chủ quầy chê giá 320.000đ đắt hơn các dòng canxi đá vôi thông thường')" class="px-2.5 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-900 border border-rose-200 hover:border-rose-300 text-[11px] font-bold whitespace-nowrap transition shadow-2xs">
+                        Phản bác: Giá cao hơn hàng nội
                     </button>
                 </div>
 
@@ -4993,6 +5024,39 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             }
         }
 
+        let copilotConsultMode = 'PHARMACIST_B2C';
+
+        function setCopilotConsultMode(mode) {
+            copilotConsultMode = mode;
+            const btnB2c = document.getElementById('copilot-mode-btn-b2c');
+            const btnB2b = document.getElementById('copilot-mode-btn-b2b');
+            const btnObj = document.getElementById('copilot-mode-btn-objection');
+            const descEl = document.getElementById('copilot-mode-desc');
+
+            const activeCls = ['bg-corp-800', 'text-white', 'font-bold', 'shadow-xs'];
+            const inactiveCls = ['text-slate-700', 'hover:text-slate-900'];
+
+            [btnB2c, btnB2b, btnObj].forEach(b => {
+                if (!b) return;
+                b.classList.remove(...activeCls);
+                b.classList.add(...inactiveCls);
+            });
+
+            if (mode === 'PHARMACIST_B2C' && btnB2c) {
+                btnB2c.classList.remove(...inactiveCls);
+                btnB2c.classList.add(...activeCls);
+                if (descEl) descEl.innerText = 'Tư vấn trực tiếp cho khách mua lẻ: an toàn thai kỳ, không sỏi thận, êm bụng không táo bón.';
+            } else if (mode === 'SALES_REP_B2B' && btnB2b) {
+                btnB2b.classList.remove(...inactiveCls);
+                btnB2b.classList.add(...activeCls);
+                if (descEl) descEl.innerText = 'Trình dược viên & Bác sĩ: Luận điểm dược lý, sinh khả dụng, đối chiếu RCTs, biên lợi nhuận 32%.';
+            } else if (mode === 'OBJECTION_HANDLING' && btnObj) {
+                btnObj.classList.remove(...inactiveCls);
+                btnObj.classList.add(...activeCls);
+                if (descEl) descEl.innerText = 'Kịch bản 3 bước xử lý phản bác: Chưa ai hỏi mua, chê giá cao, quen bán hàng ngoại xách tay.';
+            }
+        }
+
         function handleCopilotKeyDown(e) {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
@@ -5050,12 +5114,11 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             if (!q) return;
 
             const skuSelect = document.getElementById('copilot-sku-select');
-            const sku = (skuSelect && skuSelect.value !== 'ALL') ? skuSelect.value : null;
+            const sku = (skuSelect && skuSelect.value !== 'ALL') ? skuSelect.value : 'ALL';
 
             const container = document.getElementById('copilot-messages-container');
             const typingInd = document.getElementById('copilot-typing-indicator');
             const errBanner = document.getElementById('copilot-error-banner');
-            const errText = document.getElementById('copilot-error-text');
 
             if (errBanner) errBanner.classList.add('hidden');
 
@@ -5079,12 +5142,12 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             if (typingInd) typingInd.classList.remove('hidden');
 
             const typingEl = document.getElementById('copilot-typing-text');
-            if (typingEl) typingEl.innerText = 'AI đang tra cứu Claims & đối soát quy định y dược...';
+            if (typingEl) typingEl.innerText = 'AI đang tra cứu cơ sở y dược & quy định chuyên môn...';
             let typingStep = 0;
             const typingMsgs = [
-                'AI đang tra cứu Claims & đối soát quy định y dược...',
-                'AI đang thẩm định cơ sở khoa học & hồ sơ công bố...',
-                'AI đang tổng hợp bản nháp tư vấn súc tích...'
+                'AI đang tra cứu cơ sở y dược & quy định chuyên môn...',
+                'AI đang thẩm định cơ chế phân tử & sinh khả dụng...',
+                'AI đang tổng hợp kịch bản tư vấn thực chiến...'
             ];
             const typingTimer = setInterval(() => {
                 typingStep = (typingStep + 1) % typingMsgs.length;
@@ -5093,13 +5156,13 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             const reqStartTime = performance.now();
 
             try {
-                const res = await fetch('/api/copilot/chat', {
+                const res = await fetch('/api/copilot/consult', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({
-                        session_id: copilotSessionId,
                         message: q,
-                        product_id: sku
+                        sku: sku,
+                        mode: copilotConsultMode
                     })
                 });
 
@@ -5108,66 +5171,152 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 if (typingInd) typingInd.classList.add('hidden');
                 copilotIsLoading = false;
 
-                if (res.status === 403) {
-                    renderAiErrorBubble(container, 'TÍNH NĂNG CHATBOT CHƯA ĐƯỢC KÍCH HOẠT', 'Vui lòng thiết lập ENABLE_EXPERIMENTAL_CHAT=true trong file .env để kích hoạt AI Chatbot.');
-                    inputBox.value = q;
-                    return;
-                }
-
                 if (!res.ok) {
                     const errData = await res.json().catch(() => ({}));
-                    let errCode = (errData.detail && errData.detail.code) ? errData.detail.code : (errData.code || '');
-                    let errMsg = (errData.detail && errData.detail.message) ? errData.detail.message : (errData.detail || 'Lỗi xử lý yêu cầu (' + res.status + ')');
-                    let adminHint = (errData.detail && errData.detail.admin_hint) ? errData.detail.admin_hint : '';
-
-                    let errTitle = 'LỖI DỊCH VỤ (' + res.status + ')';
-                    if ((res.status === 503 || res.status === 500) && (errCode === 'LLM_NOT_CONFIGURED' || (typeof errMsg === 'string' && errMsg.includes('GEMINI_API_KEY')))) {
-                        errTitle = 'CHƯA KẾT NỐI AI';
-                        errMsg = 'Chưa kết nối AI. Vui lòng cấu hình dịch vụ để tiếp tục.';
-                        if (!adminHint) adminHint = 'Cần cấu hình GEMINI_API_KEY hợp lệ trong file .env.';
-                    } else if (res.status === 503) {
-                        errTitle = 'DỊCH VỤ AI TẠM GIÁN ĐOẠN (503 CAO ĐIỂM)';
-                    } else if (res.status === 429) {
-                        errTitle = 'QUÁ TẢI LƯU LƯỢNG (429)';
-                    } else if (res.status === 504) {
-                        errTitle = 'HẾT THỜI GIAN CHỜ PHẢN HỒI (504)';
-                    } else if (res.status === 401) {
-                        errTitle = 'LỖI XÁC THỰC API KEY (401)';
-                    } else if (res.status === 404 || errCode === 'LLM_MODEL_NOT_FOUND') {
-                        errTitle = 'MODEL KHÔNG TỒN TẠI HOẶC KHÔNG KHẢ DỤNG (404)';
-                    }
-
-                    renderAiErrorBubble(container, errTitle, typeof errMsg === 'object' ? JSON.stringify(errMsg) : errMsg, adminHint, q);
-                    // Giữ lại text cho người dùng trong ô nhập
+                    let errMsg = errData.detail || 'Lỗi xử lý yêu cầu (' + res.status + ')';
+                    renderAiErrorBubble(container, 'LỖI DỊCH VỤ (' + res.status + ')', typeof errMsg === 'object' ? JSON.stringify(errMsg) : errMsg, '', q);
                     inputBox.value = q;
                     return;
                 }
 
                 const data = await res.json();
-                if (data.session_id) {
-                    copilotSessionId = data.session_id;
-                    const sessDisp = document.getElementById('copilot-session-display');
-                    if (sessDisp) sessDisp.innerText = 'Phiên: #' + copilotSessionId.substring(5);
-                }
-
                 renderAiResponseBubble(container, data, reqDuration);
             } catch (err) {
                 clearInterval(typingTimer);
                 if (typingInd) typingInd.classList.add('hidden');
                 copilotIsLoading = false;
-                renderAiErrorBubble(container, 'LỖI KẾT NỐI SERVER', 'Không thể kết nối đến Chat API: ' + err.message);
+                renderAiErrorBubble(container, 'LỖI KẾT NỐI SERVER', 'Không thể kết nối đến Chat API: ' + err.message, '', q);
                 inputBox.value = q;
             }
         }
 
         function renderAiResponseBubble(container, data, reqDuration) {
+            if (data.direct_answer) {
+                const modeBadgeClass = data.mode === 'SALES_REP_B2B'
+                    ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                    : (data.mode === 'OBJECTION_HANDLING' ? 'bg-purple-50 text-purple-800 border-purple-200' : 'bg-blue-50 text-corp-800 border-blue-200');
+
+                const speedBadge = reqDuration
+                    ? `<span class="px-1.5 py-0.2 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-600 border border-slate-200" title="Thời gian xử lý">${Number(reqDuration) < 0.25 ? 'Tức thì (' + reqDuration + 's)' : reqDuration + 's'}</span>`
+                    : '';
+
+                const directAnswerHtml = escapeHtml(data.direct_answer || '').replace(/\n/g, '<br>');
+                const rationaleHtml = escapeHtml(data.clinical_rationale || '').replace(/\n/g, '<br>');
+                const usageHtml = escapeHtml(data.usage_and_interactions || '').replace(/\n/g, '<br>');
+                const sampleScriptText = data.sample_script || '';
+                const sampleScriptHtml = escapeHtml(sampleScriptText).replace(/\n/g, '<br>');
+                const regBasisHtml = escapeHtml(data.regulatory_basis || '');
+
+                let citationsHtml = '';
+                if (data.citations && data.citations.length > 0) {
+                    citationsHtml = data.citations.map(c => `<span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 text-[10px] font-mono font-bold">${escapeHtml(c)}</span>`).join(' ');
+                }
+
+                const scriptId = 'copilot-script-' + Math.random().toString(36).substring(2, 9);
+
+                const aiBubbleHtml = `
+                    <div class="flex items-start gap-2.5 max-w-[92%]">
+                        <div class="w-7 h-7 rounded-full bg-corp-700 flex items-center justify-center text-white text-[11px] font-bold shrink-0 shadow-2xs">
+                            AI
+                        </div>
+                        <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-sm p-4 shadow-xs text-xs leading-relaxed text-slate-800 space-y-3 flex-1">
+                            <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-bold text-corp-800 text-[11px] uppercase tracking-wide">DION AI Chuyên Môn Y Dược</span>
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-bold border ${modeBadgeClass}">
+                                        ${escapeHtml(data.mode_title || 'Tư Vấn Chuyên Môn')}
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200">
+                                        SKU: ${escapeHtml(data.target_sku || 'ALL')}
+                                    </span>
+                                    ${speedBadge}
+                                </div>
+                            </div>
+
+                            <!-- 1. Trực diện -->
+                            <div class="space-y-1">
+                                <div class="text-[11px] font-bold text-corp-800 uppercase tracking-wide flex items-center gap-1">
+                                    <span>[TRẢ LỜI TRỰC DIỆN]</span>
+                                </div>
+                                <div class="text-slate-900 font-semibold bg-blue-50/50 p-2.5 rounded-lg border border-blue-100/80 leading-relaxed">
+                                    ${directAnswerHtml}
+                                </div>
+                            </div>
+
+                            <!-- 2. Cơ sở Dược lý & Cơ chế -->
+                            <div class="space-y-1">
+                                <div class="text-[11px] font-bold text-slate-700 uppercase tracking-wide flex items-center gap-1">
+                                    <span>[CƠ SỞ DƯỢC LÝ &amp; SINH KHẢ DỤNG]</span>
+                                </div>
+                                <div class="text-slate-700 text-[11.5px] bg-slate-50 p-2.5 rounded-lg border border-slate-200 leading-relaxed">
+                                    ${rationaleHtml}
+                                </div>
+                            </div>
+
+                            <!-- 3. Hướng dẫn & Tương tác -->
+                            <div class="space-y-1">
+                                <div class="text-[11px] font-bold text-slate-700 uppercase tracking-wide flex items-center gap-1">
+                                    <span>[HƯỚNG DẪN DÙNG &amp; CẢNH BÁO TƯƠNG TÁC]</span>
+                                </div>
+                                <div class="text-slate-700 text-[11.5px] bg-amber-50/50 p-2.5 rounded-lg border border-amber-200/70 leading-relaxed">
+                                    ${usageHtml}
+                                </div>
+                            </div>
+
+                            <!-- 4. Kịch bản thực chiến / Tin nhắn mẫu -->
+                            <div class="space-y-1.5">
+                                <div class="flex items-center justify-between">
+                                    <div class="text-[11px] font-bold text-purple-900 uppercase tracking-wide flex items-center gap-1">
+                                        <span>[KỊCH BẢN THỰC CHIẾN / TIN NHẮN MẪU]</span>
+                                    </div>
+                                    <button onclick="copySpecificScript('${scriptId}')" class="px-2.5 py-1 rounded bg-purple-700 hover:bg-purple-800 text-white font-bold text-[10px] transition shadow-2xs flex items-center gap-1">
+                                        <span>Sao chép kịch bản (Zalo/SMS)</span>
+                                    </button>
+                                </div>
+                                <div id="${scriptId}" class="text-purple-950 font-medium text-[11.5px] bg-purple-50/60 p-3 rounded-lg border border-purple-200 leading-relaxed font-sans select-all">
+                                    ${sampleScriptHtml}
+                                </div>
+                            </div>
+
+                            <!-- 5. Pháp lý & Khuyến cáo -->
+                            <div class="pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-[10px] text-slate-500">
+                                <div class="flex items-center gap-1.5 flex-wrap">
+                                    <span class="font-bold text-slate-600">Hồ sơ Cục ATTP:</span>
+                                    <span>${regBasisHtml}</span>
+                                    ${citationsHtml}
+                                </div>
+                                <div class="text-[10px] text-slate-400 italic">
+                                    ${escapeHtml(data.disclaimer || '')}
+                                </div>
+                            </div>
+
+                            <!-- 6. Footer Actions -->
+                            <div class="flex justify-between items-center pt-1 border-t border-slate-100 text-[10px] text-slate-500">
+                                <span>Chế độ: <b>${escapeHtml(data.mode_title || '')}</b></span>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="copilotQuickAction('SHORTER', this)" class="font-bold text-slate-500 hover:text-corp-700 hover:underline">Rút gọn</button>
+                                    <button onclick="copilotQuickAction('REWRITE', this)" class="font-bold text-slate-500 hover:text-corp-700 hover:underline">Viết lại</button>
+                                    <button onclick="copySnippetText(this)" class="font-bold text-corp-700 hover:underline">Sao chép toàn bộ</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', aiBubbleHtml);
+                container.scrollTop = container.scrollHeight;
+                return;
+            }
+
+            // Fallback cho luồng cũ nếu có
             let decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">Đã xác thực Claims</span>';
             if (data.decision === 'HANDOFF_REQUIRED') {
                 decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-300">Yêu cầu Dược sĩ tư vấn</span>';
             } else if (data.decision === 'BLOCKED') {
                 decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-300">Từ chối tư vấn điều trị</span>';
             } else if (data.decision === 'INSUFFICIENT_EVIDENCE') {
-                decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-300"> Chưa đủ căn cứ xác minh</span>';
+                decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-300">Chưa đủ căn cứ xác minh</span>';
             } else if (data.decision === 'CLARIFICATION_REQUIRED') {
                 decisionPill = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-50 text-sky-700 border border-sky-300">Cần làm rõ sản phẩm</span>';
             } else if (data.decision === 'DRAFT_FOR_APPROVAL') {
@@ -5185,7 +5334,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             let sourcesHtml = '';
             if (data.sources && data.sources.length > 0) {
                 sourcesHtml = '<div class="mt-2 pt-2 border-t border-slate-100 text-[11px] text-slate-600 bg-slate-50/70 p-2.5 rounded-lg border border-slate-200">';
-                sourcesHtml += '<div class="font-bold text-slate-800 mb-1 flex items-center gap-1"> <span>Căn cứ xác thực từ Hồ sơ công bố đã duyệt:</span></div><ul class="list-disc pl-4 space-y-0.5">';
+                sourcesHtml += '<div class="font-bold text-slate-800 mb-1 flex items-center gap-1"><span>Căn cứ xác thực từ Hồ sơ công bố đã duyệt:</span></div><ul class="list-disc pl-4 space-y-0.5">';
                 data.sources.forEach(s => {
                     sourcesHtml += `<li><b>[${s.claim_id || 'CLAIM'}]</b> ${escapeHtml(s.document_title || s.document_id || 'Hồ sơ công bố tiếp nhận')}</li>`;
                 });
@@ -5199,7 +5348,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 if (ctxLabel) ctxLabel.innerText = data.product_ids.join(', ');
             }
 
-            const speedBadge = reqDuration ? `<span class="px-1.5 py-0.2 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-600 border border-slate-200" title="Thời gian xử lý">${Number(reqDuration) < 0.25 ? ' Tức thì (' + reqDuration + 's)' : ' ' + reqDuration + 's'}</span>` : '';
+            const speedBadge = reqDuration ? `<span class="px-1.5 py-0.2 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-600 border border-slate-200" title="Thời gian xử lý">${Number(reqDuration) < 0.25 ? 'Tức thì (' + reqDuration + 's)' : reqDuration + 's'}</span>` : '';
 
             const aiBubbleHtml = `
                 <div class="flex items-start gap-2.5 max-w-[88%]">
@@ -5221,7 +5370,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                             <div class="flex items-center gap-2">
                                 <button onclick="copilotQuickAction('SHORTER', this)" class="font-bold text-slate-500 hover:text-corp-700 hover:underline flex items-center gap-0.5"><span>Ngắn hơn</span></button>
                                 <button onclick="copilotQuickAction('REWRITE', this)" class="font-bold text-slate-500 hover:text-corp-700 hover:underline flex items-center gap-0.5"><span>Viết lại</span></button>
-                                <button onclick="copySnippetText(this)" class="font-bold text-corp-700 hover:underline flex items-center gap-0.5"><span>Sao chép</span></button>
+                                <button onclick="copySnippetText(this)" class="font-bold text-corp-700 hover:underline flex items-center gap-0.5"><span>Sao chép toàn bộ</span></button>
                             </div>
                         </div>
                     </div>
@@ -5229,6 +5378,15 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             `;
             container.insertAdjacentHTML('beforeend', aiBubbleHtml);
             container.scrollTop = container.scrollHeight;
+        }
+
+        function copySpecificScript(elementId) {
+            const el = document.getElementById(elementId);
+            if (el) {
+                const txt = el.innerText || el.textContent;
+                navigator.clipboard.writeText(txt);
+                alert("Đã sao chép kịch bản thực chiến vào bộ nhớ tạm! Có thể dán ngay vào Zalo hoặc tin nhắn cho khách hàng.");
+            }
         }
 
         function copilotQuickAction(actionType, btn) {
