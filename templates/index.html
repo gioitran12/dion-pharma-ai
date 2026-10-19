@@ -186,12 +186,12 @@
                     
                     <select id="lead-status" onchange="fetchLeads()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs font-bold outline-none text-slate-800 focus:border-corp-700 min-w-[135px]">
                         <option value="Tất cả">Tất cả trạng thái</option>
-                        <option value="ACTIVE_CLIENT">🟢 Đang nhập hàng</option>
-                        <option value="IN_PROGRESS">🟡 Đang chào mẫu</option>
-                        <option value="APPROVED">🔵 Đã duyệt HĐ</option>
-                        <option value="NEW">⚪ Chưa tiếp cận</option>
-                        <option value="FOLLOW_UP">🟣 Hẹn chăm sóc lại</option>
-                        <option value="REJECTED">🔴 Tạm hoãn</option>
+                        <option value="NEW">Chưa tiếp cận</option>
+                        <option value="IN_PROGRESS">Đang chào mẫu</option>
+                        <option value="APPROVED">Đã duyệt HĐ</option>
+                        <option value="ACTIVE_CLIENT">Đang nhập hàng</option>
+                        <option value="FOLLOW_UP">Hẹn chăm sóc lại</option>
+                        <option value="REJECTED">Tạm hoãn</option>
                     </select>
 
                     <select id="lead-type" onchange="fetchLeads()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs font-medium outline-none">
@@ -213,10 +213,10 @@
 
                     <div class="flex items-center gap-1.5 ml-auto">
                         <button onclick="openAddLeadModal()" class="px-2.5 py-1.5 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition whitespace-nowrap flex items-center gap-1 shadow-2xs">
-                            ➕ Thêm điểm bán
+                            Thêm điểm bán
                         </button>
                         <button onclick="openImportLeadsModal()" class="px-2.5 py-1.5 rounded bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs transition whitespace-nowrap flex items-center gap-1 shadow-2xs">
-                            📥 Nhập Excel
+                            Nhập Excel
                         </button>
                         <button onclick="downloadLeadsCSV()" class="px-2.5 py-1.5 rounded bg-corp-700 text-white font-bold text-xs hover:bg-corp-800 transition whitespace-nowrap">
                             Xuất Excel
@@ -807,10 +807,10 @@
 
                 <div class="flex items-center gap-2">
                     <button onclick="copilotNewChat()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg transition flex items-center gap-1 border border-slate-200">
-                        🔄 Cuộc trò chuyện mới
+                        Cuộc trò chuyện mới
                     </button>
                     <button onclick="copilotClearChat()" class="px-3 py-1.5 bg-slate-50 hover:bg-rose-50 text-slate-600 hover:text-rose-700 text-xs font-semibold rounded-lg transition border border-slate-200">
-                        🗑️ Xóa chat
+                        Xóa chat
                     </button>
                 </div>
             </div>
@@ -821,10 +821,10 @@
                     <div class="flex items-center gap-1.5">
                         <span class="font-bold text-slate-600 uppercase text-[11px]">Sản phẩm tham chiếu:</span>
                         <select id="copilot-sku-select" onchange="onCopilotSkuChange()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1 text-xs font-bold text-corp-800 outline-none focus:border-corp-700">
-                            <option value="ALL" selected>🌐 Tất cả sản phẩm (Tự động nhận diện)</option>
-                            <option value="DION-CAL-MOM">🌿 DION Cal-Mom Plus & D3 K2 (Hero SKU)</option>
-                            <option value="DION-D3-1000">💧 DION Vitamin D3 1000IU Drops</option>
-                            <option value="DION-FE-FOLIC">🩸 DION Fero-Plus (Sắt Hữu Cơ & Quatrefolic)</option>
+                            <option value="ALL" selected>Tất cả sản phẩm (Tự động nhận diện)</option>
+                            <option value="DION-CAL-MOM">DION Cal-Mom Plus & D3 K2 (Hero SKU)</option>
+                            <option value="DION-D3-1000">DION Vitamin D3 1000IU Drops</option>
+                            <option value="DION-FE-FOLIC">DION Fero-Plus (Sắt Hữu Cơ & Quatrefolic)</option>
                         </select>
                     </div>
                     <div class="h-4 w-px bg-slate-200 hidden sm:block"></div>
@@ -875,19 +875,19 @@
                 <div class="px-4 py-2 bg-slate-50 border-t border-slate-200 flex items-center gap-1.5 overflow-x-auto">
                     <span class="text-[10px] font-bold text-slate-400 uppercase shrink-0">Gợi ý:</span>
                     <button onclick="copilotQuickAsk('Vitamin D3 có công dụng gì?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-blue-50 text-corp-800 border border-slate-200 hover:border-blue-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        💧 Công dụng Vitamin D3
+                        Công dụng Vitamin D3
                     </button>
                     <button onclick="copilotQuickAsk('Canxi Cal-Mom có ưu điểm gì nổi bật?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-emerald-50 text-emerald-800 border border-slate-200 hover:border-emerald-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        🌿 Thông tin Cal-Mom
+                        Thông tin Cal-Mom
                     </button>
                     <button onclick="copilotQuickAsk('So sánh DION Vitamin D3 và Cal-Mom')" class="px-2.5 py-1 rounded-full bg-white hover:bg-purple-50 text-purple-800 border border-slate-200 hover:border-purple-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        ⚖️ So sánh D3 và Cal-Mom
+                        So sánh D3 và Cal-Mom
                     </button>
                     <button onclick="copilotQuickAsk('Cal-Mom có dùng được cho phụ nữ mang thai không?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-amber-50 text-amber-900 border border-slate-200 hover:border-amber-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        ⚠️ Nhạy cảm thai kỳ
+                        Nhạy cảm thai kỳ
                     </button>
                     <button onclick="copilotQuickAsk('Vitamin D3 có chữa bệnh loãng xương không?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-rose-50 text-rose-800 border border-slate-200 hover:border-rose-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        ⛔ Kiểm tra từ cấm điều trị
+                        Kiểm tra từ cấm điều trị
                     </button>
                 </div>
 
@@ -911,7 +911,7 @@
                     <div class="flex items-center justify-between cursor-pointer" onclick="toggleCopilotLinkPanel()">
                         <div class="flex items-center gap-2">
                             <span class="font-bold text-slate-800 flex items-center gap-1.5">
-                                <span>🔗 Gắn phiên tư vấn vào hồ sơ khách hàng</span>
+                                <span>Gắn phiên tư vấn vào hồ sơ khách hàng</span>
                             </span>
                             <span class="text-[10px] text-corp-700 bg-corp-50 border border-corp-200 px-1.5 py-0.5 rounded font-semibold">Chuyển sang CSKH</span>
                         </div>
@@ -941,14 +941,14 @@
                                 <label class="flex items-start gap-2 p-2 rounded-lg border border-slate-200 bg-white cursor-pointer hover:bg-slate-100 transition has-checked:border-slate-500 has-checked:bg-slate-100">
                                     <input type="radio" name="copilot-link-type" value="DRAFT" checked class="mt-0.5 text-slate-600">
                                     <div>
-                                        <span class="font-bold text-slate-800 block text-[11px]">📝 Lưu bản nháp / Ghi chú nội bộ</span>
+                                        <span class="font-bold text-slate-800 block text-[11px]">Lưu bản nháp / Ghi chú nội bộ</span>
                                         <span class="text-[10px] text-slate-500">Chưa xác nhận đã gửi hoặc đã tư vấn cho khách</span>
                                     </div>
                                 </label>
                                 <label class="flex items-start gap-2 p-2 rounded-lg border border-corp-200 bg-corp-50/50 cursor-pointer hover:bg-corp-100/60 transition has-checked:border-corp-700 has-checked:bg-blue-50">
                                     <input type="radio" name="copilot-link-type" value="CONFIRMED" class="mt-0.5 text-corp-700">
                                     <div>
-                                        <span class="font-bold text-corp-900 block text-[11px]">📞 Xác nhận đã tư vấn thực tế</span>
+                                        <span class="font-bold text-corp-900 block text-[11px]">Xác nhận đã tư vấn thực tế</span>
                                         <span class="text-[10px] text-corp-700 font-medium">Ghi nhận tương tác có thật với khách hàng</span>
                                     </div>
                                 </label>
@@ -958,7 +958,7 @@
                         <div class="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-slate-100">
                             <span class="text-[10px] text-slate-500">AI tự động trích xuất nội dung từ phiên trao đổi gần nhất</span>
                             <button type="button" onclick="submitCopilotLinkToCare()" id="btn-copilot-link-submit" class="px-3 py-1.5 rounded-lg bg-corp-700 hover:bg-corp-800 text-white font-bold text-xs transition shadow-2xs flex items-center gap-1">
-                                <span>💾</span> <span>Lưu vào Hồ sơ CSKH</span>
+                                <span>Lưu vào Hồ sơ CSKH</span>
                             </button>
                         </div>
                     </div>
@@ -981,28 +981,28 @@
                         <span class="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Cần xử lý hôm nay</span>
                         <span id="care-stat-due-today" class="text-2xl font-black text-blue-700 font-mono">0</span>
                     </div>
-                    <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center text-lg">🕒</div>
+                    <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center font-bold text-xs uppercase font-mono">HÔM NAY</div>
                 </div>
                 <div class="bg-white rounded-xl border border-amber-200 p-3.5 shadow-xs flex items-center justify-between">
                     <div>
                         <span class="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Đã quá hạn</span>
                         <span id="care-stat-overdue" class="text-2xl font-black text-amber-700 font-mono">0</span>
                     </div>
-                    <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center text-lg">⚠️</div>
+                    <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center font-bold text-xs uppercase font-mono">QUÁ HẠN</div>
                 </div>
                 <div class="bg-white rounded-xl border border-rose-200 p-3.5 shadow-xs flex items-center justify-between">
                     <div>
                         <span class="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Khiếu nại chưa xử lý</span>
                         <span id="care-stat-complaints" class="text-2xl font-black text-rose-700 font-mono">0</span>
                     </div>
-                    <div class="w-10 h-10 rounded-lg bg-rose-50 text-rose-700 flex items-center justify-center text-lg">⛔</div>
+                    <div class="w-10 h-10 rounded-lg bg-rose-50 text-rose-700 flex items-center justify-center font-bold text-xs uppercase font-mono">CẢNH BÁO</div>
                 </div>
                 <div class="bg-white rounded-xl border border-emerald-200 p-3.5 shadow-xs flex items-center justify-between">
                     <div>
                         <span class="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Đã hoàn thành</span>
                         <span id="care-stat-completed" class="text-2xl font-black text-emerald-700 font-mono">0</span>
                     </div>
-                    <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center text-lg">✅</div>
+                    <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold text-xs uppercase font-mono">XONG</div>
                 </div>
             </div>
 
@@ -1010,22 +1010,21 @@
             <div class="flex flex-wrap items-center justify-between border-b border-slate-200 bg-white rounded-xl p-2 gap-2 shadow-xs">
                 <div class="flex items-center gap-2">
                     <button type="button" onclick="setCareSubTab('tasks')" id="btn-care-sub-tasks" class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-corp-700 text-white shadow-xs cursor-pointer">
-                        <span class="pointer-events-none">📋 1. CÔNG VIỆC CHĂM SÓC</span>
+                        <span class="pointer-events-none">1. CÔNG VIỆC CHĂM SÓC</span>
                         <span id="care-sub-task-count" class="px-1.5 py-0.2 rounded-full text-[10px] bg-white/20 font-mono pointer-events-none">0</span>
                     </button>
                     <button type="button" onclick="setCareSubTab('history')" id="btn-care-sub-history" class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer">
-                        <span class="pointer-events-none">👥 2. KHÁCH HÀNG & LỊCH SỬ</span>
+                        <span class="pointer-events-none">2. KHÁCH HÀNG & LỊCH SỬ</span>
                         <span id="care-sub-cust-count" class="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-200 font-mono pointer-events-none">0</span>
                     </button>
                     <button type="button" onclick="setCareSubTab('sources')" id="btn-care-sub-sources" class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer">
-                        <span class="pointer-events-none">🔌 3. NGUỒN DỮ LIỆU</span>
+                        <span class="pointer-events-none">3. NGUỒN DỮ LIỆU</span>
                         <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-emerald-100 text-emerald-800 font-mono pointer-events-none">3 Sẵn sàng</span>
                     </button>
                 </div>
                 <div class="flex items-center gap-2">
                     <button onclick="refreshCareTasks()" class="px-3 py-1.5 rounded-lg bg-corp-50 hover:bg-corp-100 text-corp-800 border border-corp-200 text-xs font-bold whitespace-nowrap transition flex items-center gap-1 shrink-0">
-                        <span id="care-refresh-spinner" class="hidden animate-spin">🔄</span>
-                        <span>🔄 Đánh giá lại công việc</span>
+                        <span>Đánh giá lại công việc</span>
                     </button>
                 </div>
             </div>
@@ -2702,7 +2701,7 @@
             <!-- Bảng Thông Tin Đăng Ký Pháp Lý & Thành Phần & Đối Tượng -->
             <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
                 <div class="px-4 py-2 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase flex items-center justify-between">
-                    <span>🏛️ Hồ sơ pháp lý & Định danh sản phẩm</span>
+                    <span>Hồ sơ pháp lý & Định danh sản phẩm</span>
                     <span id="hub-reg-badge" class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-blue-100 text-blue-900 font-bold">Số ĐKSP: Đang tải...</span>
                 </div>
                 <table class="w-full text-left text-xs">
@@ -2748,7 +2747,7 @@
             <!-- Bằng chứng Lâm sàng & Thử nghiệm RCTs (PubMed Grounding) -->
             <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
                 <div class="px-4 py-2 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase flex items-center justify-between">
-                    <span>🧪 Kho Bằng chứng Lâm sàng & Nghiên cứu Khoa học (PubMed Grounding)</span>
+                    <span>Kho Bằng chứng Lâm sàng & Nghiên cứu Khoa học (PubMed Grounding)</span>
                     <span class="text-[11px] text-slate-500 font-normal">Được lưu trữ để AI đối chiếu Content và Huấn luyện Sales</span>
                 </div>
                 <div id="hub-evidence-container" class="p-4 space-y-3 bg-slate-50/40">
@@ -2870,7 +2869,7 @@
                 <div class="px-5 py-3.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
                     <div>
                         <h3 class="text-sm font-bold text-slate-900 uppercase flex items-center gap-1.5">
-                            <span>➕ Thêm Điểm Bán Mới (Khảo Sát Thực Địa)</span>
+                            <span>Thêm Điểm Bán Mới (Khảo Sát Thực Địa)</span>
                         </h3>
                         <p class="text-[11px] text-slate-500">Nạp trực tiếp điểm bán thực địa, hệ thống tự động tính điểm phù hợp và đối chiếu cự ly bệnh viện.</p>
                     </div>
@@ -2976,7 +2975,7 @@
                 <div class="px-5 py-3.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
                     <div>
                         <h3 class="text-sm font-bold text-slate-900 uppercase flex items-center gap-1.5">
-                            <span>📥 Nhập Danh Bạ Nhà Thuốc Thực Địa (Excel / CSV / Copy-Paste)</span>
+                            <span>Nhập Danh Bạ Nhà Thuốc Thực Địa (Excel / CSV / Copy-Paste)</span>
                         </h3>
                         <p class="text-[11px] text-slate-500">Nạp hàng loạt dữ liệu khảo sát từ Trình dược viên. Tự động chuẩn hóa, loại trùng SĐT và định vị bệnh viện gần nhất.</p>
                     </div>
@@ -3008,7 +3007,7 @@
                         </div>
                         <div class="flex items-end">
                             <label class="w-full flex items-center justify-center px-4 py-2 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded cursor-pointer font-bold text-slate-700 gap-1.5 transition">
-                                <span>📁 Tải tệp .csv / .txt từ máy tính</span>
+                                <span>Tải tệp .csv / .txt từ máy tính</span>
                                 <input type="file" id="import-file-input" accept=".csv,.txt" class="hidden" onchange="handleImportFileSelect(event)">
                             </label>
                         </div>
@@ -3139,13 +3138,13 @@
                     statusBadge = '<span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold text-[10px] border border-rose-300">Tạm hoãn</span>';
                 }
 
-                let skuBadge = '<span class="px-1.5 py-0.5 rounded bg-cyan-50 text-cyan-900 border border-cyan-200 font-bold text-[10px] inline-block whitespace-nowrap">🦴 Canxi Cal-Mom</span>';
+                let skuBadge = '<span class="px-1.5 py-0.5 rounded bg-cyan-50 text-cyan-900 border border-cyan-200 font-bold text-[10px] inline-block whitespace-nowrap">Canxi Cal-Mom</span>';
                 if (l.recommended_sku === 'DION-D3-1000') {
-                    skuBadge = '<span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200 font-bold text-[10px] inline-block whitespace-nowrap">☀️ Vitamin D3</span>';
+                    skuBadge = '<span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200 font-bold text-[10px] inline-block whitespace-nowrap">Vitamin D3</span>';
                 } else if (l.recommended_sku === 'DION-FE-PLUS') {
-                    skuBadge = '<span class="px-1.5 py-0.5 rounded bg-rose-50 text-rose-900 border border-rose-200 font-bold text-[10px] inline-block whitespace-nowrap">🩸 Sắt Fero-Plus</span>';
+                    skuBadge = '<span class="px-1.5 py-0.5 rounded bg-rose-50 text-rose-900 border border-rose-200 font-bold text-[10px] inline-block whitespace-nowrap">Sắt Fero-Plus</span>';
                 } else if (l.recommended_sku === 'COMPANY_PORTFOLIO') {
-                    skuBadge = '<span class="px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-900 border border-indigo-200 font-bold text-[10px] inline-block whitespace-nowrap">📦 Gói Toàn Diện</span>';
+                    skuBadge = '<span class="px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-900 border border-indigo-200 font-bold text-[10px] inline-block whitespace-nowrap">Gói Toàn Diện</span>';
                 }
                 
                 const newBadge = l.is_new_opened ? '<span class="ml-1 px-1.5 py-0.2 rounded bg-amber-100 text-amber-900 font-extrabold text-[10px] border border-amber-300">MỚI MỞ</span>' : '';
@@ -3185,7 +3184,7 @@
                 </div>
             ` : '';
 
-            const skuIcon = l.recommended_sku === 'DION-CAL-MOM' ? '🦴' : (l.recommended_sku === 'DION-D3-1000' ? '☀️' : (l.recommended_sku === 'DION-FE-PLUS' ? '🩸' : '📦'));
+            const recSkuCode = l.recommended_sku || 'DION-CAL-MOM';
             const recSkuName = l.recommended_sku_name || (l.recommended_sku === 'DION-CAL-MOM' ? 'Canxi Tảo Đỏ Cal-Mom (Hero SKU)' : (l.recommended_sku === 'DION-D3-1000' ? 'Vitamin D3 1000IU Nhỏ Giọt' : (l.recommended_sku === 'DION-FE-PLUS' ? 'Sắt Hữu Cơ Fero-Plus' : 'Hồ sơ Năng lực Toàn diện DION')));
             const recReason = l.ai_match_reason || 'Đặc thù khu vực và lượng bệnh nhân mục tiêu phù hợp hoàn hảo với sản phẩm mũi nhọn này.';
             const fitGrade = l.fit_grade || 'Hạng A';
@@ -3209,23 +3208,25 @@
                 ${newAlert}
 
                 <!-- KHỐI AI ĐÁNH GIÁ ĐỘ PHÙ HỢP & MẶT HÀNG NÊN CHÀO -->
-                <div class="p-3 rounded-lg bg-gradient-to-r from-indigo-50/80 via-blue-50/80 to-emerald-50/70 border border-indigo-200 text-xs space-y-2">
-                    <div class="flex items-center justify-between pb-1.5 border-b border-indigo-200">
+                <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs space-y-2">
+                    <div class="flex items-center justify-between pb-1.5 border-b border-slate-200">
                         <div class="flex items-center gap-1.5">
-                            <span class="w-2.5 h-2.5 rounded-full bg-indigo-600 animate-pulse"></span>
-                            <b class="text-indigo-950 font-bold uppercase tracking-wide">AI Đánh Giá Độ Phù Hợp & Mặt Hàng Nên Chào</b>
+                            <span class="w-2 h-2 rounded-full bg-corp-700"></span>
+                            <b class="text-slate-900 font-bold uppercase tracking-wide">AI Đánh Giá Độ Phù Hợp & Mặt Hàng Nên Chào</b>
                         </div>
-                        <span class="px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-900 font-extrabold text-[11px] border border-indigo-300">
+                        <span class="px-2 py-0.5 rounded bg-blue-50 text-corp-800 font-bold text-[11px] border border-blue-200">
                             Khớp: ${l.fit_score || 85}/100 (${fitGrade})
                         </span>
                     </div>
-                    <div class="flex items-start gap-2 bg-white/90 p-2.5 rounded border border-indigo-100 shadow-2xs">
-                        <div class="text-2xl shrink-0 leading-none">${skuIcon}</div>
+                    <div class="flex items-start gap-2.5 bg-white p-2.5 rounded border border-slate-200 shadow-2xs">
+                        <div class="px-2 py-1 rounded bg-slate-100 text-slate-800 font-mono font-bold text-xs shrink-0 border border-slate-200">
+                            ${recSkuCode}
+                        </div>
                         <div class="flex-1 space-y-1">
-                            <div class="font-extrabold text-slate-900 text-xs">
-                                Mặt hàng AI đề xuất: <span class="text-corp-700 font-black">${recSkuName}</span>
+                            <div class="font-bold text-slate-900 text-xs">
+                                Mặt hàng AI đề xuất: <span class="text-corp-700 font-extrabold">${recSkuName}</span>
                             </div>
-                            <p class="text-[11px] text-slate-700 leading-relaxed font-medium">
+                            <p class="text-[11px] text-slate-700 leading-relaxed font-normal">
                                 <b>Căn cứ phân tích:</b> ${recReason}
                             </p>
                         </div>
@@ -3282,12 +3283,12 @@
                     <div class="space-y-1">
                         <label class="text-[11px] font-bold text-slate-700">Trạng thái vận hành thực tế:</label>
                         <select onchange="approveLeadAction('${l.lead_id}', this.value)" class="w-full bg-white border border-slate-300 rounded px-2 py-1.5 text-xs outline-none font-bold text-slate-800">
-                            <option value="ACTIVE_CLIENT" ${l.status === 'ACTIVE_CLIENT' ? 'selected' : ''}>🟢 Đang nhập hàng (Khách ruột)</option>
-                            <option value="IN_PROGRESS" ${l.status === 'IN_PROGRESS' ? 'selected' : ''}>🟡 Đang chào mẫu & báo giá</option>
-                            <option value="APPROVED" ${l.status === 'APPROVED' ? 'selected' : ''}>🔵 Đã duyệt hợp đồng</option>
-                            <option value="NEW" ${l.status === 'NEW' ? 'selected' : ''}>⚪ Chưa tiếp cận (Mới)</option>
-                            <option value="FOLLOW_UP" ${l.status === 'FOLLOW_UP' ? 'selected' : ''}>🟣 Hẹn chăm sóc lại sau</option>
-                            <option value="REJECTED" ${l.status === 'REJECTED' ? 'selected' : ''}>🔴 Tạm hoãn / Từ chối</option>
+                            <option value="NEW" ${l.status === 'NEW' ? 'selected' : ''}>Chưa tiếp cận (Khảo sát mới)</option>
+                            <option value="IN_PROGRESS" ${l.status === 'IN_PROGRESS' ? 'selected' : ''}>Đang chào mẫu & báo giá</option>
+                            <option value="APPROVED" ${l.status === 'APPROVED' ? 'selected' : ''}>Đã duyệt hợp đồng</option>
+                            <option value="ACTIVE_CLIENT" ${l.status === 'ACTIVE_CLIENT' ? 'selected' : ''}>Đang nhập hàng (Khách ruột)</option>
+                            <option value="FOLLOW_UP" ${l.status === 'FOLLOW_UP' ? 'selected' : ''}>Hẹn chăm sóc lại sau</option>
+                            <option value="REJECTED" ${l.status === 'REJECTED' ? 'selected' : ''}>Tạm hoãn / Từ chối</option>
                         </select>
                     </div>
 
@@ -3304,10 +3305,10 @@
 
                 <div class="flex flex-wrap gap-2 pt-1">
                     <button onclick="genPitchLetter('${l.lead_id}')" class="flex-1 min-w-[150px] py-2 bg-corp-700 hover:bg-corp-800 text-white font-bold rounded text-xs transition flex items-center justify-center gap-1 shadow-2xs">
-                        ⚡ AI Soạn Kịch Bản 3 Kênh
+                        AI Soạn Kịch Bản 3 Kênh
                     </button>
                     <button onclick="inspectLeadAiInsights('${l.lead_id}')" class="py-2 px-3 bg-purple-700 hover:bg-purple-800 text-white font-bold rounded text-xs transition flex items-center gap-1 shadow-2xs">
-                        🧠 AI Phân Tích SWOT
+                        Phân Tích SWOT Đối Tác
                     </button>
                 </div>
 
@@ -3342,10 +3343,10 @@
                 });
                 const data = await res.json();
                 const swot = data.swot || {};
-                const strengths = (swot.strengths || []).map(s => `<li class="flex items-start gap-1"><span class="text-emerald-700 font-bold shrink-0">✓</span><span>${s}</span></li>`).join('');
+                const strengths = (swot.strengths || []).map(s => `<li class="flex items-start gap-1"><span class="text-emerald-700 font-bold shrink-0">+</span><span>${s}</span></li>`).join('');
                 const weaknesses = (swot.weaknesses || []).map(s => `<li class="flex items-start gap-1"><span class="text-amber-700 font-bold shrink-0">!</span><span>${s}</span></li>`).join('');
-                const opportunities = (swot.opportunities || []).map(s => `<li class="flex items-start gap-1"><span class="text-blue-700 font-bold shrink-0">★</span><span>${s}</span></li>`).join('');
-                const threats = (swot.threats || []).map(s => `<li class="flex items-start gap-1"><span class="text-rose-700 font-bold shrink-0">✕</span><span>${s}</span></li>`).join('');
+                const opportunities = (swot.opportunities || []).map(s => `<li class="flex items-start gap-1"><span class="text-blue-700 font-bold shrink-0">+</span><span>${s}</span></li>`).join('');
+                const threats = (swot.threats || []).map(s => `<li class="flex items-start gap-1"><span class="text-rose-700 font-bold shrink-0">-</span><span>${s}</span></li>`).join('');
                 const actionPlan = (data.action_plan || []).map((step, idx) => `<div class="flex items-start gap-1.5 text-slate-700"><b>${idx+1}.</b> <span>${step}</span></div>`).join('');
 
                 area.innerHTML = `
@@ -3395,12 +3396,12 @@
                         </div>
 
                         <div class="p-2 rounded bg-white border border-purple-200">
-                            <span class="font-bold text-purple-900">🎯 Góc tiếp cận tối ưu cho Trình dược viên:</span>
+                            <span class="font-bold text-purple-900">Góc tiếp cận tối ưu cho Trình dược viên:</span>
                             <div class="text-slate-800 mt-0.5 leading-relaxed font-medium">${data.entry_angle || ''}</div>
                         </div>
 
                         <div class="p-2 rounded bg-white border border-purple-200 space-y-1">
-                            <span class="font-bold text-slate-800">📋 Kế hoạch hành động thực địa (Next Steps):</span>
+                            <span class="font-bold text-slate-800">Kế hoạch hành động thực địa (Next Steps):</span>
                             <div class="space-y-1 text-[11px]">${actionPlan}</div>
                         </div>
 
@@ -3467,13 +3468,13 @@
                         <!-- THANH CHỌN KÊNH TIẾP CẬN (3 TABS) -->
                         <div class="flex items-center gap-1 border-b border-slate-200 pb-1.5 overflow-x-auto no-scrollbar">
                             <button id="pitch-tab-btn-email" onclick="switchPitchTab('email')" class="px-3 py-1 text-xs font-bold rounded bg-slate-900 text-white shadow-xs transition shrink-0">
-                                📧 Email B2B Chào Hàng
+                                Email B2B Chào Hàng
                             </button>
                             <button id="pitch-tab-btn-zalo" onclick="switchPitchTab('zalo')" class="px-3 py-1 text-xs font-semibold rounded text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition shrink-0">
-                                💬 Tin Nhắn Zalo B2B
+                                Tin Nhắn Zalo B2B
                             </button>
                             <button id="pitch-tab-btn-call" onclick="switchPitchTab('call')" class="px-3 py-1 text-xs font-semibold rounded text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition shrink-0">
-                                📞 Kịch Bản Gọi / Gặp Quầy
+                                Kịch Bản Thoại / Gặp Quầy
                             </button>
                         </div>
 
@@ -3536,7 +3537,7 @@
                                 </button>
                                 ${targetPhone ? `
                                     <a href="tel:${targetPhone}" class="py-1.5 px-3 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs transition flex items-center gap-1">
-                                        📞 Gọi số ${targetPhone}
+                                        Gọi số ${targetPhone}
                                     </a>
                                 ` : ''}
                             </div>

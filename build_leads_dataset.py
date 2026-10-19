@@ -318,7 +318,7 @@ def format_lead(p_tuple, prov, lead_idx):
         "intent_score": 95 if is_new else (90 if status == "ACTIVE_CLIENT" else 85),
         "intent_signals": reason,
         "source_url": "https://duocquocgia.com.vn/gpp-verified",
-        "status": status,
+        "status": "NEW",
         "assigned_to": sales_rep_map.get(prov, "Trình Dược Viên Khu Vực"),
         "is_new_opened": is_new,
         "nearby_facility": f"Cách {hosp} {dist_m}m ({dist_txt})",
