@@ -3167,10 +3167,33 @@
                         <td class="table-cell font-extrabold text-corp-700 text-right">${l.fit_score}/100</td>
                         <td class="table-cell text-center">${statusBadge}</td>
                     </tr>
-                `;
             });
 
-            if (leadsArr.length > 0 && !curLeadId) inspectLead(leadsArr[0].lead_id);
+            if (leadsArr.length === 0) {
+                const kwVal = document.getElementById('lead-kw').value.trim();
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="py-12 px-4 text-center text-slate-500">
+                            <div class="font-bold text-slate-800 text-sm mb-1">Không tìm thấy điểm bán phù hợp</div>
+                            <div class="text-xs text-slate-500 max-w-md mx-auto mb-3">
+                                ${kwVal ? `Từ khóa "${kwVal}" chưa có trong 188 điểm bán trọng điểm đã số hóa sẵn.` : 'Chưa có điểm bán nào khớp với bộ lọc khu vực này.'}
+                            </div>
+                            ${kwVal ? `
+                                <button onclick="openAddLeadModalWithKw('${encodeURIComponent(kwVal)}')" class="px-3.5 py-1.5 bg-corp-700 hover:bg-corp-800 text-white font-bold text-xs rounded transition shadow-2xs">
+                                    Thêm điểm bán "${kwVal}" vào hệ thống
+                                </button>
+                            ` : ''}
+                        </td>
+                    </tr>
+                `;
+                document.getElementById('lead-detail-box').innerHTML = `
+                    <div class="text-center py-24 text-slate-400">
+                        Chưa chọn điểm bán nào.
+                    </div>
+                `;
+            } else if (!curLeadId || !leadsArr.some(x => x.lead_id === curLeadId)) {
+                inspectLead(leadsArr[0].lead_id);
+            }
         }
 
         function inspectLead(id) {
@@ -3589,6 +3612,13 @@
         // --- HÀM ĐIỀU KHIỂN MODAL THÊM ĐIỂM BÁN & NHẬP EXCEL ---
         function openAddLeadModal() {
             document.getElementById('modal-add-lead').classList.remove('hidden');
+        }
+
+        function openAddLeadModalWithKw(encodedKw) {
+            const kw = decodeURIComponent(encodedKw);
+            openAddLeadModal();
+            const nameInput = document.getElementById('add-lead-name');
+            if (nameInput) nameInput.value = kw;
         }
 
         function closeAddLeadModal() {
