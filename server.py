@@ -1611,6 +1611,102 @@ async def api_customer_care_chat(request: CustomerCareChatRequest):
     }
 
 
+# ==========================================
+# VISTAFA MULTI-CHANNEL CHAT & COMPETITOR COPILOT
+# ==========================================
+
+from modules.vistafa_chat_copilot import get_vistafa_chat_copilot
+
+class VistafaChatCopilotRequest(BaseModel):
+    customer_message: str
+    product_id: str = "calcium_complex"
+    channel: str = "facebook"
+    customer_profile: Optional[Dict[str, Any]] = None
+    situation_hint: Optional[str] = None
+
+
+@app.get("/api/vistafa/channels")
+async def api_vistafa_channels():
+    copilot = get_vistafa_chat_copilot()
+    return {
+        "success": True,
+        "channels": copilot.get_channels()
+    }
+
+
+@app.get("/api/vistafa/products")
+async def api_vistafa_products():
+    copilot = get_vistafa_chat_copilot()
+    return {
+        "success": True,
+        "products": copilot.get_products()
+    }
+
+
+@app.get("/api/vistafa/playbook")
+async def api_vistafa_playbook(
+    q: Optional[str] = Query(None),
+    product_id: Optional[str] = Query(None),
+    channel: Optional[str] = Query(None),
+    situation: Optional[str] = Query(None),
+    shortcut: Optional[str] = Query(None),
+    limit: int = Query(50)
+):
+    copilot = get_vistafa_chat_copilot()
+    entries = copilot.search_playbook(
+        query=q,
+        product_id=product_id,
+        channel=channel,
+        situation=situation,
+        shortcut=shortcut,
+        limit=limit
+    )
+    return {
+        "success": True,
+        "total": len(entries),
+        "entries": entries
+    }
+
+
+@app.get("/api/vistafa/shortcuts")
+async def api_vistafa_shortcuts(product_id: Optional[str] = Query(None)):
+    copilot = get_vistafa_chat_copilot()
+    shortcuts = copilot.get_shortcuts(product_id=product_id)
+    return {
+        "success": True,
+        "total": len(shortcuts),
+        "shortcuts": shortcuts
+    }
+
+
+@app.get("/api/vistafa/competitors")
+async def api_vistafa_competitors(product_id: Optional[str] = Query(None)):
+    copilot = get_vistafa_chat_copilot()
+    matrix = copilot.get_competitor_matrix(product_id=product_id)
+    return {
+        "success": True,
+        "total": len(matrix),
+        "matrix": matrix
+    }
+
+
+@app.post("/api/vistafa/chat-copilot")
+async def api_vistafa_chat_copilot(req: VistafaChatCopilotRequest):
+    copilot = get_vistafa_chat_copilot()
+    response = copilot.generate_response(
+        customer_message=req.customer_message,
+        product_id=req.product_id,
+        channel=req.channel,
+        customer_profile=req.customer_profile,
+        situation_hint=req.situation_hint
+    )
+    return {
+        "success": True,
+        "data": response
+    }
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
+

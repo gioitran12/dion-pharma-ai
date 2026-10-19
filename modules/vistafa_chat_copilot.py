@@ -1,0 +1,522 @@
+"""
+Vistafa Multi-Channel Chat Copilot & Clinical Competitor Engine
+Handles Facebook, Zalo, Website, TikTok messaging workflows for VitGarden products.
+Strictly adheres to:
+1. Four-step conversation rhythm: Tra loi -> Hoi 1 cau -> Sang loc an toan -> Chuyen buoc
+2. Zero emoji policy across all generated responses and logs
+3. QA Standard TL.CSKH.003
+4. Clinical competitor comparison boundaries without disparagement
+"""
+
+import json
+import os
+import re
+from typing import Dict, List, Optional, Any
+
+PLAYBOOK_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "vistafa_multichannel_chat_playbook.json")
+
+class VistafaChatCopilot:
+    _instance = None
+    _data = None
+
+    def __init__(self, data_path: Optional[str] = None):
+        self.data_path = data_path or PLAYBOOK_FILE
+        self._load_data()
+
+    def _load_data(self):
+        if not os.path.exists(self.data_path):
+            self._data = {
+                "channel_guidelines": {},
+                "rhythm_standard": {},
+                "products": {},
+                "playbook_entries": [],
+                "competitor_matrix": [],
+                "qa_standards": []
+            }
+            return
+
+        with open(self.data_path, "r", encoding="utf-8") as f:
+            self._data = json.load(f)
+
+    def reload(self):
+        self._load_data()
+
+    def get_channels(self) -> Dict[str, Any]:
+        return self._data.get("channel_guidelines", {})
+
+    def get_products(self) -> Dict[str, Any]:
+        return self._data.get("products", {})
+
+    def get_qa_standards(self) -> List[Dict[str, Any]]:
+        return self._data.get("qa_standards", [])
+
+    def get_shortcuts(self, product_id: Optional[str] = None) -> List[Dict[str, str]]:
+        shortcuts = []
+        seen = set()
+        for item in self._data.get("playbook_entries", []):
+            sc = item.get("shortcut", "").strip()
+            if sc and sc not in seen:
+                if not product_id or item.get("product_id") == product_id:
+                    seen.add(sc)
+                    shortcuts.append({
+                        "shortcut": sc,
+                        "product_id": item.get("product_id"),
+                        "product_name": item.get("product_name"),
+                        "situation": item.get("situation"),
+                        "channel": item.get("channel")
+                    })
+        return sorted(shortcuts, key=lambda x: x["shortcut"])
+
+    def get_competitor_matrix(self, product_id: Optional[str] = None) -> List[Dict[str, Any]]:
+        matrix = self._data.get("competitor_matrix", [])
+        if product_id:
+            return [c for c in matrix if c.get("product_id") == product_id]
+        return matrix
+
+    def search_playbook(
+        self,
+        query: Optional[str] = None,
+        product_id: Optional[str] = None,
+        channel: Optional[str] = None,
+        situation: Optional[str] = None,
+        shortcut: Optional[str] = None,
+        limit: int = 50
+    ) -> List[Dict[str, Any]]:
+        results = []
+        entries = self._data.get("playbook_entries", [])
+
+        q_lower = query.lower().strip() if query else None
+        sc_lower = shortcut.lower().strip() if shortcut else None
+
+        for item in entries:
+            # Shortcut filter
+            if sc_lower:
+                if item.get("shortcut", "").lower() != sc_lower:
+                    continue
+
+            # Product filter
+            if product_id and product_id != "all":
+                if item.get("product_id") != product_id:
+                    continue
+
+            # Channel filter
+            if channel and channel != "all":
+                item_ch = item.get("channel", "all")
+                if item_ch != "all" and item_ch != channel:
+                    continue
+
+            # Situation filter
+            if situation and situation != "all":
+                if situation.lower() not in item.get("situation", "").lower():
+                    continue
+
+            # Keyword query filter
+            if q_lower:
+                combined_text = (
+                    item.get("situation", "") + " " +
+                    item.get("opening_message", "") + " " +
+                    item.get("followup_question", "") + " " +
+                    item.get("handling_notes", "") + " " +
+                    item.get("shortcut", "")
+                ).lower()
+                if q_lower not in combined_text:
+                    continue
+
+            results.append(item)
+            if len(results) >= limit:
+                break
+
+        return results
+
+    def detect_red_flags(self, text: str, customer_profile: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """
+        Scans inquiry and customer health background for high-risk clinical triggers.
+        Returns red flag evaluation with pharmacist escalation requirements.
+        """
+        flags = []
+        text_lower = text.lower()
+        profile_lower = json.dumps(customer_profile or {}, ensure_ascii=False).lower()
+        combined = text_lower + " " + profile_lower
+
+        # 1. Kidney stones / Hypercalcemia (Risk for Calcium)
+        if any(w in combined for w in ["sỏi thận", "soi than", "tăng canxi máu", "tang canxi mau", "vôi hóa thận", "sỏi niệu"]):
+            flags.append("Phát hiện tiền sử sỏi thận / tăng canxi máu: Chống chỉ định tự ý bổ sung canxi liều cao. Bắt buộc chuyển Dược sĩ lâm sàng.")
+
+        # 2. Prescription Sedatives / Antidepressants (Risk for Sleep Well)
+        if any(w in combined for w in ["thuốc ngủ", "thuoc ngu", "an thần", "an than", "lexomil", "diazepam", "seduxen", "rotunda", "stilnox", "trầm cảm", "chong tram cam"]):
+            flags.append("Khách đang sử dụng thuốc ngủ / an thần kê đơn: Nguy cơ tương tác ức chế thần kinh trung ương. Bắt buộc chuyển Dược sĩ; tuyệt đối không tự ý phối hợp.")
+
+        # 3. Thalassemia / Iron Overload (Risk for Iron)
+        if any(w in combined for w in ["thalassemia", "tan máu", "tan mau", "thừa sắt", "thua sat", "ferritin cao"]):
+            flags.append("Phát hiện nguy cơ bệnh lý tan máu bẩm sinh (Thalassemia) hoặc thừa sắt: Chống chỉ định bổ sung sắt. Bắt buộc tham vấn bác sĩ điều trị.")
+
+        # 4. Anticoagulants / Blood thinners (Risk for High-Dose Omega-3)
+        if any(w in combined for w in ["kháng đông", "khang dong", "chống đông", "warfarin", "aspirin", "clopidogrel", "xarelto", "sắp phẫu thuật", "sap phau thuat"]):
+            flags.append("Khách đang dùng thuốc chống đông máu hoặc sắp phẫu thuật: Thận trọng khi bổ sung Omega-3 liều cao (>2000mg) do nguy cơ kéo dài thời gian đông máu.")
+
+        # 5. Dual Iron Risk (FerroActive + Ferro Max / Prenatal)
+        if ("ferroactive" in combined and "ferro max" in combined) or ("sắt" in combined and "uống cả 2" in combined):
+            flags.append("Cảnh báo dùng song song 2 loại chế phẩm sắt hữu cơ cùng lúc: Nguy cơ ngộ độc sắt đường tiêu hóa. Chỉ chọn duy nhất 1 chế phẩm phù hợp.")
+
+        # 6. Pregnancy / Lactation general screening
+        if any(w in combined for w in ["mang thai", "mang bau", "có bầu", "cho con bú", "sau sinh"]):
+            if any(w in combined for w in ["sleep well", "ngủ ngon", "melatonin"]):
+                flags.append("Phụ nữ mang thai / cho con bú: Chưa có đầy đủ nghiên cứu an toàn về Melatonin cho thai nhi. Khuyến cáo không sử dụng Sleep Well.")
+
+        has_flags = len(flags) > 0
+        pharmacist_required = any("Bắt buộc chuyển Dược sĩ" in f or "Chống chỉ định" in f for f in flags)
+
+        return {
+            "has_red_flag": has_flags,
+            "flags": flags,
+            "pharmacist_escalation": pharmacist_required,
+            "action_guidance": (
+                "CHUYEN DUOC SI LAM SANG: Khong tu y chot don. Giai thich ly do an toan va chuyen cuoc goi/chat sang Duoc si."
+                if pharmacist_required else
+                ("CANH BAO AN TOAN: Can kiem tra ky lieu dung va huong dan uong dung cach." if has_flags else "AN TOAN: Khong phat hien yeu to nguy co cao.")
+            )
+        }
+
+    def generate_response(
+        self,
+        customer_message: str,
+        product_id: str,
+        channel: str = "facebook",
+        customer_profile: Optional[Dict[str, Any]] = None,
+        situation_hint: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Generates a compliant 4-step response customized for the target channel.
+        Rhythm: Tra loi -> Hoi 1 cau -> Sang loc an toan -> Chuyen buoc
+        """
+        # Validate channel
+        valid_channels = ["facebook", "zalo", "website", "tiktok"]
+        channel = channel.lower() if channel.lower() in valid_channels else "facebook"
+
+        # Validate product
+        products = self.get_products()
+        if product_id not in products:
+            product_id = "calcium_complex"
+        product_info = products[product_id]
+
+        # 1. Run safety gate
+        red_flags_info = self.detect_red_flags(customer_message, customer_profile)
+
+        # 2. Detect competitor mention
+        comp_matches = self._detect_competitor_match(customer_message, product_id)
+
+        # 3. Detect situation & pick best playbook entry
+        matched_entry = self._find_matching_entry(customer_message, product_id, channel, situation_hint, comp_matches)
+
+        # 4. Build 4-step structured content
+        four_steps = self._construct_four_steps(
+            matched_entry,
+            product_info,
+            channel,
+            red_flags_info,
+            comp_matches,
+            customer_message
+        )
+
+        # 5. Format channel-tailored final message
+        full_text, split_msgs = self._format_channel_message(four_steps, channel)
+
+        # 6. Evaluate QA TL.CSKH.003 compliance
+        qa_eval = self._evaluate_qa_compliance(full_text, red_flags_info, four_steps)
+
+        # 7. Collect suggested shortcuts
+        suggested_sc = self._get_suggested_shortcuts(product_id)
+
+        return {
+            "channel": channel,
+            "channel_name": self._data.get("channel_guidelines", {}).get(channel, {}).get("name", channel.upper()),
+            "product_id": product_id,
+            "product_name": product_info.get("name", ""),
+            "detected_situation": matched_entry.get("situation", "Tư vấn tổng quát") if matched_entry else "Tư vấn thông tin",
+            "shortcut": matched_entry.get("shortcut", "") if matched_entry else "",
+            "full_text": full_text,
+            "split_messages": split_msgs,
+            "four_steps": four_steps,
+            "red_flags": red_flags_info,
+            "competitor_comparison": comp_matches,
+            "suggested_shortcuts": suggested_sc,
+            "qa_compliance": qa_eval,
+            "source": matched_entry.get("source", "Hồ sơ công bố sản phẩm VitGarden") if matched_entry else "Hồ sơ công bố sản phẩm VitGarden"
+        }
+
+    def _detect_competitor_match(self, message: str, product_id: str) -> Optional[Dict[str, Any]]:
+        msg_lower = message.lower()
+        matrix = self.get_competitor_matrix(product_id)
+
+        for comp in matrix:
+            comp_name_lower = comp.get("competitor_name", "").lower()
+            q_lower = comp.get("customer_question", "").lower()
+            
+            # Check key triggers
+            triggers = []
+            if "corbiere" in comp_name_lower: triggers.extend(["corbiere", "canxi sủi", "sủi"])
+            if "carbonate" in comp_name_lower: triggers.extend(["carbonate", "cacbonat", "hàm lượng cao hơn"])
+            if "herbalife" in comp_name_lower: triggers.extend(["herbalife", "unicity", "vital proteins", "thương hiệu"])
+            if "high_dose" in comp.get("id", ""): triggers.extend(["10000mg", "5000mg", "10.000mg", "hàm lượng cao"])
+            if "cheap" in comp.get("id", ""): triggers.extend(["rẻ hơn", "giá rẻ", "hộp to"])
+            if "1000mg" in comp.get("id", ""): triggers.extend(["1000mg", "cũng 1000mg"])
+            if "natures_bounty" in comp.get("id", ""): triggers.extend(["nature's bounty", "natures bounty", "kẹo ngủ"])
+            if "failed_melatonin" in comp.get("id", ""): triggers.extend(["không đỡ", "không hiệu quả", "từng uống melatonin"])
+            if "inorganic" in comp.get("id", ""): triggers.extend(["sắt viên", "sắt sulfate", "hiệu thuốc rẻ"])
+            if "ferro_max" in comp.get("id", ""): triggers.extend(["ferro max", "folic", "b12"])
+
+            if any(t in msg_lower for t in triggers):
+                return comp
+
+        # Generic competitor keywords
+        if any(w in msg_lower for w in ["bên kia", "loại khác", "hãng khác", "sản phẩm khác", "so với"]):
+            if matrix:
+                return matrix[0]
+        return None
+
+    def _find_matching_entry(
+        self,
+        message: str,
+        product_id: str,
+        channel: str,
+        situation_hint: Optional[str],
+        comp_matches: Optional[Dict[str, Any]]
+    ) -> Optional[Dict[str, Any]]:
+        entries = self.search_playbook(product_id=product_id, channel=channel)
+        if not entries:
+            entries = self.search_playbook(product_id=product_id)
+
+        msg_lower = message.lower()
+
+        # If situation hint provided, match situation directly
+        if situation_hint:
+            for e in entries:
+                if situation_hint.lower() in e.get("situation", "").lower():
+                    return e
+
+        # If competitor matched, look for competitor entry
+        if comp_matches:
+            for e in entries:
+                if "so sánh" in e.get("situation", "").lower() or "đối thủ" in e.get("situation", "").lower() or "/sosanh" in e.get("shortcut", ""):
+                    return e
+
+        # Match by keywords
+        keyword_situation_map = [
+            (["giá bao nhiêu", "nhiêu tiền", "bao nhiêu một hộp", "báo giá", "chi phí"], "Hỏi giá"),
+            (["công dụng", "tác dụng gì", "dùng để làm gì", "có tốt không", "uống có tác dụng gì"], "Hỏi công dụng"),
+            (["uống thế nào", "cách dùng", "ngày mấy viên", "uống lúc nào", "uống trước hay sau ăn"], "Hỏi cách dùng"),
+            (["ai dùng được", "đối tượng", "bao nhiêu tuổi", "mẹ bầu", "trẻ em"], "Hỏi ai dùng được"),
+            (["đắt thế", "giá cao", "bớt không", "giảm giá", "sao đắt vậy", "cân nhắc"], "Chê giá cao"),
+            (["đặt hàng", "mua 1 hộp", "lấy 2 hộp", "ship về", "giao cho anh", "chốt đơn"], "Chốt đơn"),
+            (["thành phần", "chứa gì", "có những chất gì", "hàm lượng"], "Hỏi thành phần"),
+            (["tác dụng phụ", "có an toàn không", "có bị nóng không", "có táo bón không", "sợ đau dạ dày"], "Sợ tác dụng phụ"),
+            (["hỏi vợ", "hỏi chồng", "hỏi mẹ", "hỏi ý kiến"], "Muốn hỏi người thân"),
+            (["đang dùng loại khác", "đang uống", "ở nhà đang có"], "Đang dùng sản phẩm khác")
+        ]
+
+        for keywords, sit_name in keyword_situation_map:
+            if any(k in msg_lower for k in keywords):
+                for e in entries:
+                    if sit_name.lower() in e.get("situation", "").lower():
+                        return e
+
+        # Return first entry as fallback
+        return entries[0] if entries else None
+
+    def _construct_four_steps(
+        self,
+        entry: Optional[Dict[str, Any]],
+        product_info: Dict[str, Any],
+        channel: str,
+        red_flags_info: Dict[str, Any],
+        comp_matches: Optional[Dict[str, Any]],
+        message: str
+    ) -> Dict[str, str]:
+        # Step 1: Trả lời trực diện
+        if red_flags_info.get("pharmacist_escalation"):
+            step1 = (
+                f"Dạ Vistafa xin ghi nhận thông tin của anh/chị về sản phẩm {product_info.get('name')}. "
+                "Tuy nhiên, qua trao đổi em nhận thấy tình trạng sức khỏe / đơn thuốc của mình có yếu tố y khoa đặc biệt cần được đánh giá chuyên môn kỹ lưỡng trước khi sử dụng ạ."
+            )
+        elif comp_matches:
+            step1 = comp_matches.get("recommended_reply", entry.get("opening_message", "") if entry else "")
+        elif entry:
+            step1 = entry.get("opening_message", f"Dạ {product_info.get('name')} là thực phẩm bảo vệ sức khỏe chính hãng bên em ạ.")
+        else:
+            step1 = f"Dạ {product_info.get('name')} hiện đang được phân phối chính hãng bởi Vistafa ạ."
+
+        # Step 2: Hỏi 1 câu khai thác
+        if comp_matches:
+            step2 = comp_matches.get("counter_question", "Anh/chị ưu tiên tiêu chí nào nhất khi so sánh ạ?")
+        elif entry and entry.get("followup_question"):
+            step2 = entry.get("followup_question", "Anh/chị đang quan tâm sử dụng cho mình hay cho người thân ạ?")
+        else:
+            step2 = "Anh/chị đang có nhu cầu sử dụng cho độ tuổi nào và có vấn đề sức khỏe cụ thể nào không ạ?"
+
+        # Step 3: Sàng lọc an toàn / Red flag
+        if red_flags_info.get("has_red_flag"):
+            flags_summary = " | ".join(red_flags_info["flags"])
+            step3 = f"[CANH BAO Y KHOA]: {flags_summary}"
+        elif entry and entry.get("red_flag"):
+            step3 = f"Lưu ý an toàn: {entry.get('red_flag')}"
+        else:
+            step3 = "Lưu ý an toàn: Kiểm tra tiền sử dị ứng, phụ nữ có thai/cho con bú và thuốc điều trị đang dùng trước khi hướng dẫn liều."
+
+        # Step 4: Chuyển bước chốt hành động
+        if red_flags_info.get("pharmacist_escalation"):
+            if channel == "zalo":
+                step4 = "Em xin phép chuyển ngay thông tin đến Dược sĩ phụ trách chuyên môn qua Zalo để xem đơn và tư vấn an toàn nhất cho mình nhé ạ."
+            elif channel == "website":
+                step4 = "Anh/chị vui lòng để lại Số điện thoại hoặc kết nối Zalo để Dược sĩ lâm sàng liên hệ tư vấn chuyên sâu ngay ạ."
+            elif channel == "tiktok":
+                step4 = "Anh/chị nhắn tin vào Inbox để Dược sĩ chuyên môn hỗ trợ trực tiếp an toàn cho mình nhé ạ!"
+            else: # facebook
+                step4 = "Anh/chị cho em xin Số điện thoại để em chuyển Dược sĩ lâm sàng bên em liên hệ tư vấn riêng an toàn nhất cho mình nhé ạ."
+        elif comp_matches:
+            if channel == "zalo":
+                step4 = "Nếu tiện, anh/chị chụp ảnh bảng thành phần sản phẩm đang so gửi qua Zalo để em đối chiếu chi tiết từng chỉ số giúp mình ạ."
+            elif channel == "tiktok":
+                step4 = "Anh/chị nhắn tin vào Inbox em gửi bảng so sánh chi tiết đối chiếu thành phần nhé ạ!"
+            else:
+                step4 = comp_matches.get("next_step", "Anh/chị gửi em ảnh nhãn để em đối chiếu cùng đơn vị liều giúp mình nhé ạ.")
+        elif entry and entry.get("transition_action"):
+            step4 = entry.get("transition_action")
+        else:
+            if channel == "zalo":
+                step4 = "Em gửi phiếu tiếp nhận công bố và ảnh nhãn qua Zalo để anh/chị xem chi tiết nhé ạ."
+            elif channel == "website":
+                step4 = "Anh/chị để lại SĐT hoặc kết nối Zalo để em gửi tài liệu hướng dẫn và ưu đãi tốt nhất ạ."
+            elif channel == "tiktok":
+                step4 = "Nhấn vào Inbox để em tư vấn kỹ hơn nhé ạ!"
+            else:
+                step4 = "Anh/chị cho em xin SĐT để em tư vấn liệu trình phù hợp nhất nhé ạ."
+
+        return {
+            "step_1_direct_answer": step1,
+            "step_2_followup_question": step2,
+            "step_3_safety_gate": step3,
+            "step_4_action_cta": step4
+        }
+
+    def _format_channel_message(self, four_steps: Dict[str, str], channel: str) -> (str, List[str]):
+        s1 = four_steps["step_1_direct_answer"]
+        s2 = four_steps["step_2_followup_question"]
+        s4 = four_steps["step_4_action_cta"]
+
+        if channel == "facebook":
+            # 2-3 short natural bubbles
+            bubble1 = s1
+            bubble2 = f"{s2}\n{s4}"
+            full_text = f"{bubble1}\n\n{bubble2}"
+            split_msgs = [bubble1, bubble2]
+
+        elif channel == "zalo":
+            # Structured, professional, official
+            full_text = f"{s1}\n\n{s2}\n\n{s4}"
+            split_msgs = [full_text]
+
+        elif channel == "website":
+            # Fast, direct, qualified
+            full_text = f"{s1} {s2}\n{s4}"
+            split_msgs = [full_text]
+
+        elif channel == "tiktok":
+            # Super concise strictly under 140 chars, no cure claims
+            cta = " Nhắn inbox em hỗ trợ nhé ạ!"
+            combined = f"{s1} {s2}{cta}"
+            if len(combined) > 135:
+                # Shorten question if needed
+                s2_clean = s2 if len(s2) <= 50 else (s2[:47] + "...")
+                avail = 135 - len(s2_clean) - len(cta)
+                if avail >= 25:
+                    s1_clean = (s1[:avail - 3] + "...") if len(s1) > avail else s1
+                else:
+                    s1_clean = s1[:20] + "..."
+                    s2_clean = s2_clean[:40] + "..."
+                full_text = f"{s1_clean} {s2_clean}{cta}"
+            else:
+                full_text = combined
+
+            if len(full_text) > 140:
+                full_text = full_text[:137] + "..."
+            split_msgs = [full_text]
+
+        else:
+            full_text = f"{s1}\n{s2}\n{s4}"
+            split_msgs = [full_text]
+
+        return full_text, split_msgs
+
+    def _evaluate_qa_compliance(
+        self,
+        full_text: str,
+        red_flags_info: Dict[str, Any],
+        four_steps: Dict[str, str]
+    ) -> Dict[str, Any]:
+        """
+        Evaluates message against Vistafa QA Standard TL.CSKH.003
+        """
+        score = 100
+        notes = []
+        text_lower = full_text.lower()
+
+        # Prohibited terms check (cure, 100%, eliminate disease)
+        forbidden = ["chữa khỏi", "chua khoi", "dứt điểm", "dut diem", "cam kết 100%", "cam ket 100%", "khỏi hẳn"]
+        for bad in forbidden:
+            if bad in text_lower:
+                score -= 30
+                notes.append(f"[VI PHAM QA TL.CSKH.003 TC 08]: Sử dụng từ cam kết y khoa cấm ('{bad}').")
+
+        # Competitor disparagement check
+        disparage = ["hàng rác", "kém chất lượng", "độc hại", "lừa đảo", "vô tác dụng"]
+        for d in disparage:
+            if d in text_lower:
+                score -= 30
+                notes.append(f"[VI PHAM QA TL.CSKH.003 TC 05/08]: Nói xấu đối thủ cạnh tranh ('{d}').")
+
+        # Greeting check
+        if not any(g in text_lower for g in ["dạ", "chào", "vistafa xin"]):
+            score -= 10
+            notes.append("[LƯU Ý QA TC 01]: Chưa có từ xưng hô / chào hỏi lễ phép ban đầu.")
+
+        # Question rhythm check (Did it ask 1 followup question?)
+        if "?" not in full_text and "ạ" not in four_steps.get("step_2_followup_question", ""):
+            score -= 15
+            notes.append("[LƯU Ý QA TC 07]: Chưa có câu hỏi làm rõ nhu cầu khách hàng theo nhịp chuẩn.")
+
+        # Pharmacist escalation check when red flags present
+        if red_flags_info.get("pharmacist_escalation") and "dược sĩ" not in text_lower:
+            score -= 40
+            notes.append("[VI PHAM NGHIÊM TRỌNG QA TC 07/08]: Có yếu tố Red flag nhưng chưa chuyển Dược sĩ lâm sàng.")
+
+        if not notes:
+            notes.append("[DAT CHUAN QA TL.CSKH.003]: Phản hồi tuân thủ đầy đủ nhịp chuẩn 4 bước và an toàn y dược.")
+
+        return {
+            "score": max(score, 0),
+            "status": "PASS" if score >= 80 else "NEEDS_REVIEW",
+            "notes": notes
+        }
+
+    def _get_suggested_shortcuts(self, product_id: str) -> List[Dict[str, str]]:
+        prefix_map = {
+            "calcium_complex": "/calci-",
+            "beauty_collagen": "/colp-",
+            "ultimate_omega3": "/omega3-",
+            "sleep_well": "/sleep-",
+            "ferro_active": "/ferro-"
+        }
+        prefix = prefix_map.get(product_id, "/calci-")
+        all_sc = self.get_shortcuts(product_id)
+        filtered = [s for s in all_sc if s["shortcut"].startswith(prefix) or "/sosanh" in s["shortcut"]]
+        return filtered[:8]
+
+
+# Global singleton helper
+_copilot_instance = None
+
+def get_vistafa_chat_copilot() -> VistafaChatCopilot:
+    global _copilot_instance
+    if _copilot_instance is None:
+        _copilot_instance = VistafaChatCopilot()
+    return _copilot_instance

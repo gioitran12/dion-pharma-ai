@@ -1,0 +1,209 @@
+import re
+import pytest
+from fastapi.testclient import TestClient
+from server import app
+from modules.vistafa_chat_copilot import get_vistafa_chat_copilot
+
+client = TestClient(app)
+copilot = get_vistafa_chat_copilot()
+
+EMOJI_PATTERN = re.compile(
+    "[\U00010000-\U0010ffff]|[\u2600-\u27bf]|[\u2300-\u23ff]|[\u2b50-\u2b55]|[\u3030\u303d\u3297\u3299]"
+)
+
+def test_playbook_data_loaded():
+    channels = copilot.get_channels()
+    assert len(channels) == 4
+    assert set(channels.keys()) == {"facebook", "zalo", "website", "tiktok"}
+
+    products = copilot.get_products()
+    assert len(products) == 5
+    assert set(products.keys()) == {
+        "calcium_complex", "beauty_collagen", "ultimate_omega3", "sleep_well", "ferro_active"
+    }
+
+    shortcuts = copilot.get_shortcuts()
+    assert len(shortcuts) >= 40
+
+    competitors = copilot.get_competitor_matrix()
+    assert len(competitors) >= 10
+
+    qa_criteria = copilot.get_qa_standards()
+    assert len(qa_criteria) == 10
+
+def test_zero_emojis_in_playbook_and_responses():
+    # Test internal data
+    for entry in copilot._data.get("playbook_entries", []):
+        for field in ["opening_message", "followup_question", "handling_notes", "transition_action"]:
+            val = entry.get(field, "")
+            assert len(EMOJI_PATTERN.findall(val)) == 0, f"Emoji found in playbook entry: {val}"
+
+    for comp in copilot.get_competitor_matrix():
+        for field in ["customer_question", "counter_question", "recommended_reply", "permissible_talking_points"]:
+            val = comp.get(field, "")
+            assert len(EMOJI_PATTERN.findall(val)) == 0, f"Emoji found in competitor matrix: {val}"
+
+    # Test generated responses
+    test_msgs = [
+        "Cho mình hỏi giá canxi",
+        "Có giao hàng không bạn",
+        "So sánh với canxi corbiere",
+        "Dầu cá uống có tác dụng gì",
+        "Tôi bị mất ngủ thì dùng loại nào"
+    ]
+    for ch in ["facebook", "zalo", "website", "tiktok"]:
+        for msg in test_msgs:
+            resp = copilot.generate_response(msg, product_id="calcium_complex", channel=ch)
+            assert len(EMOJI_PATTERN.findall(resp["full_text"])) == 0, f"Emoji in response: {resp['full_text']}"
+
+def test_channel_adaptation_rules():
+    msg = "Canxi này uống như thế nào và một ngày uống mấy viên?"
+    
+    # 1. Facebook: Split into 2 bubbles, asks for phone number
+    resp_fb = copilot.generate_response(msg, product_id="calcium_complex", channel="facebook")
+    assert resp_fb["channel"] == "facebook"
+    assert len(resp_fb["split_messages"]) >= 2
+    assert "SĐT" in resp_fb["full_text"] or "số điện thoại" in resp_fb["full_text"].lower()
+
+    # 2. Zalo: Professional, offers label / certificates
+    resp_zalo = copilot.generate_response(msg, product_id="calcium_complex", channel="zalo")
+    assert resp_zalo["channel"] == "zalo"
+    assert "Zalo" in resp_zalo["full_text"]
+
+    # 3. Website: Fast response with instant contact capture
+    resp_web = copilot.generate_response(msg, product_id="calcium_complex", channel="website")
+    assert resp_web["channel"] == "website"
+    assert "hỗ trợ ngay" in resp_web["full_text"].lower() or "sđt" in resp_web["full_text"].lower()
+
+    # 4. TikTok: Ultra concise strictly under 140 characters, directs to inbox
+    resp_tt = copilot.generate_response(msg, product_id="calcium_complex", channel="tiktok")
+    assert resp_tt["channel"] == "tiktok"
+    assert len(resp_tt["full_text"]) <= 140
+    assert "inbox" in resp_tt["full_text"].lower()
+
+def test_clinical_red_flag_detection():
+    # 1. Sỏi thận
+    res_calci = copilot.detect_red_flags("Bác tôi 65 tuổi có tiền sử sỏi thận dùng canxi này được không?")
+    assert res_calci["has_red_flag"] is True
+    assert res_calci["pharmacist_escalation"] is True
+    assert any("sỏi thận" in f for f in res_calci["flags"])
+
+    # 2. Thuốc an thần theo đơn
+    res_sleep = copilot.detect_red_flags("Tôi đang uống Seduxen và Rotunda mỗi tối, có dùng chung Sleep Well được không?")
+    assert res_sleep["has_red_flag"] is True
+    assert res_sleep["pharmacist_escalation"] is True
+    assert any("thuốc ngủ" in f or "an thần" in f for f in res_sleep["flags"])
+
+    # 3. Tan máu bẩm sinh Thalassemia
+    res_iron = copilot.detect_red_flags("Bé nhà tôi mang gen Thalassemia thiếu máu có bổ sung sắt FerroActive được không?")
+    assert res_iron["has_red_flag"] is True
+    assert any("Thalassemia" in f for f in res_iron["flags"])
+
+    # 4. Chống đông máu
+    res_omega = copilot.detect_red_flags("Bố tôi đang uống thuốc chống đông máu Warfarin sau đặt stent, uống Ultimate Omega 3 được không?")
+    assert res_omega["has_red_flag"] is True
+    assert any("chống đông máu" in f for f in res_omega["flags"])
+
+def test_competitor_comparison_engine():
+    # 1. Calcium vs Corbiere
+    resp_corbiere = copilot.generate_response(
+        "Canxi Corbiere dạng ống bên kia rẻ hơn nhiều sao bên bạn đắt vậy?",
+        product_id="calcium_complex",
+        channel="zalo"
+    )
+    assert resp_corbiere["competitor_comparison"] is not None
+    assert "Corbiere" in resp_corbiere["competitor_comparison"]["competitor_name"]
+    assert "K2" in resp_corbiere["full_text"] or "dẫn truyền" in resp_corbiere["full_text"]
+
+    # 2. Beauty Collagen vs Herbalife / Vital Proteins
+    resp_col = copilot.generate_response(
+        "Herbalife và Vital Proteins nổi tiếng thế giới, sao tôi phải mua của bạn?",
+        product_id="beauty_collagen",
+        channel="facebook"
+    )
+    assert resp_col["competitor_comparison"] is not None
+    assert "Herbalife" in resp_col["competitor_comparison"]["competitor_name"]
+    assert "Sensoril" in resp_col["competitor_comparison"]["permissible_talking_points"]
+
+    # 3. Ultimate Omega 3 vs Cheap 1000mg
+    resp_om3 = copilot.generate_response(
+        "Loại dầu cá kia cũng ghi 1000mg mà rẻ hơn một nửa",
+        product_id="ultimate_omega3",
+        channel="website"
+    )
+    assert resp_om3["competitor_comparison"] is not None
+    assert "EPA" in resp_om3["competitor_comparison"]["permissible_talking_points"]
+
+def test_shortcuts_search():
+    # Test specific shortcuts
+    sc_calci = copilot.search_playbook(shortcut="/calci-gia")
+    assert len(sc_calci) > 0
+    assert sc_calci[0]["product_id"] == "calcium_complex"
+
+    sc_colp = copilot.search_playbook(shortcut="/colp-gia")
+    assert len(sc_colp) > 0
+    assert sc_colp[0]["product_id"] == "beauty_collagen"
+
+    sc_omega = copilot.search_playbook(shortcut="/omega3-gia")
+    assert len(sc_omega) > 0
+    assert sc_omega[0]["product_id"] == "ultimate_omega3"
+
+    sc_sleep = copilot.search_playbook(shortcut="/sleep-gia")
+    assert len(sc_sleep) > 0
+
+    sc_ferro = copilot.search_playbook(shortcut="/ferro-gia")
+    assert len(sc_ferro) > 0
+
+def test_qa_tl_cskh_003_compliance():
+    # Compliant response should pass
+    resp = copilot.generate_response("Canxi này giá bao nhiêu?", product_id="calcium_complex", channel="facebook")
+    assert resp["qa_compliance"]["score"] >= 80
+    assert resp["qa_compliance"]["status"] == "PASS"
+
+    # Evaluator penalizes prohibited terms
+    eval_bad = copilot._evaluate_qa_compliance(
+        "Uống canxi này cam kết 100% chữa khỏi dứt điểm loãng xương",
+        {"has_red_flag": False},
+        {"step_1_direct_answer": "...", "step_2_followup_question": "..."}
+    )
+    assert eval_bad["score"] < 80
+    assert eval_bad["status"] == "NEEDS_REVIEW"
+    assert any("chữa khỏi" in n or "dứt điểm" in n for n in eval_bad["notes"])
+
+def test_api_endpoints():
+    # 1. GET /api/vistafa/channels
+    r = client.get("/api/vistafa/channels")
+    assert r.status_code == 200
+    assert "facebook" in r.json()["channels"]
+
+    # 2. GET /api/vistafa/products
+    r = client.get("/api/vistafa/products")
+    assert r.status_code == 200
+    assert "calcium_complex" in r.json()["products"]
+
+    # 3. GET /api/vistafa/playbook
+    r = client.get("/api/vistafa/playbook?product_id=calcium_complex&limit=5")
+    assert r.status_code == 200
+    assert len(r.json()["entries"]) <= 5
+
+    # 4. GET /api/vistafa/shortcuts
+    r = client.get("/api/vistafa/shortcuts?product_id=sleep_well")
+    assert r.status_code == 200
+    assert len(r.json()["shortcuts"]) > 0
+
+    # 5. GET /api/vistafa/competitors
+    r = client.get("/api/vistafa/competitors?product_id=beauty_collagen")
+    assert r.status_code == 200
+    assert len(r.json()["matrix"]) > 0
+
+    # 6. POST /api/vistafa/chat-copilot
+    r = client.post("/api/vistafa/chat-copilot", json={
+        "customer_message": "Cho mình hỏi giá và cách uống viên ngủ ngon",
+        "product_id": "sleep_well",
+        "channel": "zalo"
+    })
+    assert r.status_code == 200
+    res_data = r.json()["data"]
+    assert res_data["product_id"] == "sleep_well"
+    assert res_data["channel"] == "zalo"
+    assert "Sleep Well" in res_data["full_text"]
