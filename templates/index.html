@@ -106,25 +106,25 @@
             <!-- THANH ĐỐI SOÁT & NẠP 4 NGUỒN DỮ LIỆU ĐẦU VÀO -->
             <div class="bg-white rounded border border-slate-200 p-3 shadow-sm">
                 <div class="flex items-center justify-between mb-2 pb-1.5 border-b border-slate-100">
-                    <span class="text-xs font-bold text-slate-800 uppercase tracking-wide">Cơ chế nạp & Đối soát 4 nguồn dữ liệu đa tầng:</span>
-                    <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Đồng bộ tự động thời gian thực</span>
+                    <span class="text-xs font-bold text-slate-800 uppercase tracking-wide">Cơ chế nạp & Đối soát 4 nguồn dữ liệu thực chiến ngành Dược:</span>
+                    <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Đồng bộ chuẩn hóa thời gian thực</span>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 text-xs">
                     <div class="p-2 rounded bg-slate-50 border border-slate-200">
                         <div class="font-bold text-corp-700 flex items-center justify-between">
-                            <span>1. Pháp lý GPP</span>
-                            <span class="text-[10px] text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.2 rounded">KẾT NỐI</span>
+                            <span>1. Cấp phép GPP Sở Y Tế</span>
+                            <span class="text-[10px] text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.2 rounded">PHÁP LÝ CHUẨN</span>
                         </div>
-                        <div class="text-[11px] text-slate-600 mt-0.5">Cổng Dược Quốc Gia & SYT 63 tỉnh</div>
-                        <div class="text-[10px] text-slate-500 font-mono">Bắt điểm bán cấp mới GPP 2026</div>
+                        <div class="text-[11px] text-slate-600 mt-0.5">Sở Y Tế 63 tỉnh & Cổng Dược QG</div>
+                        <div class="text-[10px] text-slate-500 font-mono">Chuẩn hóa GPP & Người phụ trách</div>
                     </div>
                     <div class="p-2 rounded bg-slate-50 border border-slate-200">
                         <div class="font-bold text-corp-700 flex items-center justify-between">
-                            <span>2. Bản đồ Geocoding</span>
-                            <span class="text-[10px] text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.2 rounded">TỌA ĐỘ</span>
+                            <span>2. Google Maps Places</span>
+                            <span class="text-[10px] text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.2 rounded">TỌA ĐỘ THỰC</span>
                         </div>
-                        <div class="text-[11px] text-slate-600 mt-0.5">Google Maps Places API</div>
-                        <div class="text-[10px] text-slate-500 font-mono">Quét bán kính 5km quanh BV Sản/Nhi</div>
+                        <div class="text-[11px] text-slate-600 mt-0.5">Bản đồ Geocoding & Vị trí thực tế</div>
+                        <div class="text-[10px] text-slate-500 font-mono">Quét cự ly 500m - 1km BV trọng điểm</div>
                     </div>
                     <div class="p-2 rounded bg-slate-50 border border-slate-200">
                         <div class="font-bold text-corp-700 flex items-center justify-between">
@@ -136,11 +136,11 @@
                     </div>
                     <div class="p-2 rounded bg-slate-50 border border-slate-200">
                         <div class="font-bold text-corp-700 flex items-center justify-between">
-                            <span>4. Radar Tuyển dụng</span>
-                            <span class="text-[10px] text-amber-800 font-bold bg-amber-100 px-1.5 py-0.2 rounded">TÍN HIỆU SỚM</span>
+                            <span>4. Danh bạ Excel & Thực địa</span>
+                            <span class="text-[10px] text-indigo-700 font-bold bg-indigo-100 px-1.5 py-0.2 rounded">THỰC CHIẾN</span>
                         </div>
-                        <div class="text-[11px] text-slate-600 mt-0.5">Hội Dược sĩ & Tuyển dụng Zalo</div>
-                        <div class="text-[10px] text-slate-500 font-mono">Bắt tin tuyển Dược sĩ trước 2-3 tuần</div>
+                        <div class="text-[11px] text-slate-600 mt-0.5">Import Excel & Cắm cờ thị trường</div>
+                        <div class="text-[10px] text-slate-500 font-mono">Nạp hàng nghìn điểm & Gán tuyến Sales</div>
                     </div>
                 </div>
             </div>
@@ -202,9 +202,17 @@
                         Điểm bán: <b id="lead-total-num" class="text-corp-700">0</b>
                     </span>
 
-                    <button onclick="downloadLeadsCSV()" class="px-3 py-1.5 rounded bg-corp-700 text-white font-bold text-xs hover:bg-corp-800 transition whitespace-nowrap">
-                        Xuất Excel
-                    </button>
+                    <div class="flex items-center gap-1.5 ml-auto">
+                        <button onclick="openAddLeadModal()" class="px-2.5 py-1.5 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition whitespace-nowrap flex items-center gap-1 shadow-2xs">
+                            ➕ Thêm điểm bán
+                        </button>
+                        <button onclick="openImportLeadsModal()" class="px-2.5 py-1.5 rounded bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs transition whitespace-nowrap flex items-center gap-1 shadow-2xs">
+                            📥 Nhập Excel
+                        </button>
+                        <button onclick="downloadLeadsCSV()" class="px-2.5 py-1.5 rounded bg-corp-700 text-white font-bold text-xs hover:bg-corp-800 transition whitespace-nowrap">
+                            Xuất Excel
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -2845,6 +2853,173 @@
                 </form>
             </div>
         </div>
+
+        <!-- MODAL: THÊM ĐIỂM BÁN MỚI (FIELD SALES CHECK-IN) -->
+        <div id="modal-add-lead" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl border border-slate-200 w-full max-w-2xl max-h-[92vh] flex flex-col overflow-hidden">
+                <div class="px-5 py-3.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-900 uppercase flex items-center gap-1.5">
+                            <span>➕ Thêm Điểm Bán Mới (Khảo Sát Thực Địa)</span>
+                        </h3>
+                        <p class="text-[11px] text-slate-500">Nạp trực tiếp điểm bán thực địa, hệ thống tự động tính điểm phù hợp và đối chiếu cự ly bệnh viện.</p>
+                    </div>
+                    <button type="button" onclick="closeAddLeadModal()" class="text-slate-400 hover:text-slate-600 font-bold text-xl leading-none">&times;</button>
+                </div>
+                <form id="form-add-lead" onsubmit="event.preventDefault(); submitAddLead();" class="p-5 overflow-y-auto space-y-3.5 text-xs">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Tên nhà thuốc / cơ sở (*):</label>
+                            <input id="add-lead-name" required type="text" placeholder="VD: Nhà thuốc Phương Đông 247" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 font-bold text-slate-900 outline-none focus:border-corp-600">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Loại hình cơ sở:</label>
+                            <select id="add-lead-type" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 font-medium text-slate-900 outline-none">
+                                <option value="Nhà thuốc tư nhân">Nhà thuốc tư nhân GPP</option>
+                                <option value="Chuỗi nhà thuốc">Chuỗi nhà thuốc bán lẻ</option>
+                                <option value="Quầy thuốc">Quầy thuốc GPP</option>
+                                <option value="Phòng khám - Nhà thuốc">Phòng khám kết hợp Nhà thuốc</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Tỉnh / Thành phố (*):</label>
+                            <select id="add-lead-province" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 font-semibold text-slate-900 outline-none">
+                                <option value="Hà Nội">Hà Nội</option>
+                                <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                                <option value="Đà Nẵng">Đà Nẵng</option>
+                                <option value="Hải Phòng">Hải Phòng</option>
+                                <option value="Cần Thơ">Cần Thơ</option>
+                                <option value="Bình Dương">Bình Dương</option>
+                                <option value="Đồng Nai">Đồng Nai</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Quận / Huyện:</label>
+                            <input id="add-lead-district" type="text" placeholder="VD: Đống Đa, Cầu Giấy..." class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-900 outline-none focus:border-corp-600">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Bệnh viện mục tiêu gần nhất:</label>
+                            <input id="add-lead-hospital" type="text" placeholder="VD: BV Phụ sản TW, BV Nhi TW..." class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-900 outline-none focus:border-corp-600">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Địa chỉ chi tiết (*):</label>
+                        <input id="add-lead-address" required type="text" placeholder="VD: Số 45 Tây Sơn, Phường Quang Trung, Quận Đống Đa" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-900 outline-none focus:border-corp-600">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Số điện thoại (*):</label>
+                            <input id="add-lead-phone" required type="text" placeholder="VD: 0912345678" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 font-mono text-slate-900 outline-none focus:border-corp-600">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Email:</label>
+                            <input id="add-lead-email" type="email" placeholder="VD: contact@nhathuoc.vn" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-900 outline-none focus:border-corp-600">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Dược sĩ phụ trách chuyên môn:</label>
+                            <input id="add-lead-contact" type="text" placeholder="VD: DS. Nguyễn Văn An" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-900 outline-none focus:border-corp-600">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Mã số thuế (nếu có):</label>
+                            <input id="add-lead-tax" type="text" placeholder="VD: 0108928374 (Ngành 4772)" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 font-mono text-slate-900 outline-none focus:border-corp-600">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Số GPP / Ngày cấp:</label>
+                            <input id="add-lead-gpp" type="text" placeholder="VD: 4520/GPP-SYT HN" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-900 outline-none focus:border-corp-600">
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-amber-50 rounded border border-amber-200">
+                        <label class="flex items-center gap-2 cursor-pointer font-bold text-amber-950">
+                            <input id="add-lead-new-opened" type="checkbox" class="w-4 h-4 rounded text-amber-600 focus:ring-amber-500">
+                            <span>Đây là điểm bán MỚI KHAI TRƯƠNG / Cấp phép mới trong 30-60 ngày</span>
+                        </label>
+                        <p class="text-[11px] text-amber-800 mt-1 pl-6">Điểm bán mới sẽ được kích hoạt cảnh báo kệ trống và đẩy điểm ưu tiên tiếp cận B2B lên đầu danh sách.</p>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Ghi chú thực địa / Trạng thái quầy kệ:</label>
+                        <textarea id="add-lead-notes" rows="2" placeholder="VD: Đã ghé khảo sát 1 lần, chủ quầy quan tâm canxi hữu cơ cho mẹ bầu, kệ trước còn trống 2 tầng..." class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-800 outline-none focus:border-corp-600"></textarea>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-200 flex justify-end gap-2">
+                        <button type="button" onclick="closeAddLeadModal()" class="px-4 py-2 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition">Đóng</button>
+                        <button type="submit" id="btn-submit-lead" class="px-5 py-2 rounded bg-emerald-700 hover:bg-emerald-800 text-white font-bold transition flex items-center gap-1.5 shadow-sm">
+                            <span>Lưu Điểm Bán Mới</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- MODAL: NHẬP DANH BẠ EXCEL / CSV THỰC ĐỊA -->
+        <div id="modal-import-leads" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl border border-slate-200 w-full max-w-3xl max-h-[92vh] flex flex-col overflow-hidden">
+                <div class="px-5 py-3.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-900 uppercase flex items-center gap-1.5">
+                            <span>📥 Nhập Danh Bạ Nhà Thuốc Thực Địa (Excel / CSV / Copy-Paste)</span>
+                        </h3>
+                        <p class="text-[11px] text-slate-500">Nạp hàng loạt dữ liệu khảo sát từ Trình dược viên. Tự động chuẩn hóa, loại trùng SĐT và định vị bệnh viện gần nhất.</p>
+                    </div>
+                    <button type="button" onclick="closeImportLeadsModal()" class="text-slate-400 hover:text-slate-600 font-bold text-xl leading-none">&times;</button>
+                </div>
+                <form id="form-import-leads" onsubmit="event.preventDefault(); submitImportLeads();" class="p-5 overflow-y-auto space-y-3.5 text-xs">
+                    <div class="flex items-center justify-between bg-blue-50 border border-blue-200 rounded p-2.5 text-xs text-blue-900">
+                        <div class="space-y-0.5">
+                            <span class="font-bold">Định dạng hỗ trợ:</span> Copy-paste trực tiếp các cột từ Excel hoặc định dạng CSV (dấu phẩy hoặc Tab):
+                            <div class="font-mono text-[11px] text-slate-700 mt-1 bg-white p-1.5 rounded border border-blue-200">
+                                Tên nhà thuốc | Địa chỉ | Số điện thoại | Tỉnh/TP | Quận/Huyện | Dược sĩ phụ trách | Bệnh viện lân cận
+                            </div>
+                        </div>
+                        <button type="button" onclick="fillSampleImportData()" class="px-3 py-1.5 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded text-xs shrink-0 whitespace-nowrap shadow-2xs">
+                            Điền dữ liệu mẫu
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Tỉnh / Thành phố mặc định (nếu dòng thiếu tỉnh):</label>
+                            <select id="import-default-province" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 font-semibold text-slate-900 outline-none">
+                                <option value="Hà Nội">Hà Nội</option>
+                                <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                                <option value="Đà Nẵng">Đà Nẵng</option>
+                                <option value="Hải Phòng">Hải Phòng</option>
+                                <option value="Cần Thơ">Cần Thơ</option>
+                            </select>
+                        </div>
+                        <div class="flex items-end">
+                            <label class="w-full flex items-center justify-center px-4 py-2 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded cursor-pointer font-bold text-slate-700 gap-1.5 transition">
+                                <span>📁 Tải tệp .csv / .txt từ máy tính</span>
+                                <input type="file" id="import-file-input" accept=".csv,.txt" class="hidden" onchange="handleImportFileSelect(event)">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Dán dữ liệu bảng tính Excel vào ô dưới đây (*):</label>
+                        <textarea id="import-raw-text" rows="8" required placeholder="Dán nội dung từ file Excel (Ctrl+V) hoặc CSV tại đây..." class="w-full bg-slate-50 border border-slate-300 rounded p-2.5 font-mono text-[11px] text-slate-900 outline-none focus:border-corp-600 leading-relaxed"></textarea>
+                    </div>
+
+                    <div id="import-result-stats" class="hidden p-2.5 rounded bg-slate-100 border border-slate-300 text-xs"></div>
+
+                    <div class="pt-3 border-t border-slate-200 flex justify-end gap-2">
+                        <button type="button" onclick="closeImportLeadsModal()" class="px-4 py-2 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition">Đóng</button>
+                        <button type="submit" id="btn-submit-import" class="px-5 py-2 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold transition flex items-center gap-1.5 shadow-sm">
+                            <span>Xác Nhận Nạp Danh Bạ</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
 
     <!-- FOOTER CHUẨN MỰC -->
@@ -3015,25 +3190,25 @@
                 <!-- ĐỐI CHIẾU 4 NGUỒN DỮ LIỆU ĐẦU VÀO -->
                 <div class="border border-slate-200 rounded p-2.5 bg-slate-50 space-y-2">
                     <div class="text-[11px] font-bold text-slate-800 uppercase flex items-center justify-between pb-1 border-b border-slate-200">
-                        <span>Đối soát 4 nguồn dữ liệu:</span>
-                        <span class="text-corp-700 font-semibold text-[10px] bg-blue-50 border border-blue-200 px-1.5 py-0.5 rounded">100% Khớp hồ sơ</span>
+                        <span>Đối soát 4 nguồn dữ liệu thực tế:</span>
+                        <span class="text-corp-700 font-semibold text-[10px] bg-blue-50 border border-blue-200 px-1.5 py-0.5 rounded">100% Chuẩn hóa</span>
                     </div>
                     <div class="space-y-1.5 text-[11px]">
                         <div class="flex items-start gap-1">
-                            <span class="font-bold text-corp-800 shrink-0 w-24">1. Pháp lý GPP:</span>
-                            <span class="text-slate-700 font-medium">${l.gpp_info ? l.gpp_info.license_no + ' · Ngày cấp: ' + l.gpp_info.issue_date + ' (' + l.gpp_info.status + ')' : 'Đang thẩm định'}</span>
+                            <span class="font-bold text-corp-800 shrink-0 w-28">1. Cấp phép GPP:</span>
+                            <span class="text-slate-700 font-medium">${l.gpp_info ? l.gpp_info.license_no + ' · ' + (l.gpp_info.pharmacist_in_charge ? 'DS. ' + l.gpp_info.pharmacist_in_charge : 'Ngày cấp: ' + l.gpp_info.issue_date) : 'Đang thẩm định SYT'}</span>
                         </div>
                         <div class="flex items-start gap-1">
-                            <span class="font-bold text-corp-800 shrink-0 w-24">2. Bản đồ Geocode:</span>
-                            <span class="text-slate-700 font-medium">${l.maps_info ? l.maps_info.coordinates + ' · ' + l.maps_info.nearby_benchmark : 'Đã xác thực vị trí'}</span>
+                            <span class="font-bold text-corp-800 shrink-0 w-28">2. Google Maps:</span>
+                            <span class="text-slate-700 font-medium">${l.maps_info ? l.maps_info.coordinates + ' · ' + l.maps_info.nearby_benchmark : 'Đã xác thực tọa độ'}</span>
                         </div>
                         <div class="flex items-start gap-1">
-                            <span class="font-bold text-corp-800 shrink-0 w-24">3. ĐKKD / Thuế:</span>
+                            <span class="font-bold text-corp-800 shrink-0 w-28">3. ĐKKD / MST:</span>
                             <span class="text-slate-700 font-medium">${l.tax_info ? 'MST: ' + l.tax_info.tax_code + ' · Mã ngành: ' + l.tax_info.industry_code.split('—')[0].trim() : 'Mã ngành 4772'}</span>
                         </div>
                         <div class="flex items-start gap-1">
-                            <span class="font-bold text-corp-800 shrink-0 w-24">4. Tuyển dụng:</span>
-                            <span class="text-slate-700 font-medium">${l.recruitment_info ? l.recruitment_info.job_title + ' · ' + l.recruitment_info.platform : 'Không có tin mới'}</span>
+                            <span class="font-bold text-corp-800 shrink-0 w-28">4. Danh bạ / Tuyến:</span>
+                            <span class="text-slate-700 font-medium">${l.recruitment_info ? l.recruitment_info.job_title + ' · ' + l.recruitment_info.platform : (l.data_source || 'Khảo sát thực địa Trình dược viên')}</span>
                         </div>
                     </div>
                 </div>
@@ -3052,17 +3227,131 @@
                     </select>
                 </div>
 
-                <div class="flex gap-2 pt-1">
-                    <button onclick="genPitchLetter('${l.lead_id}')" class="flex-1 py-2 bg-corp-700 hover:bg-corp-800 text-white font-bold rounded text-xs transition">
-                        AI Soạn thư chào hàng tự động
+                <div class="flex flex-wrap gap-2 pt-1">
+                    <button onclick="genPitchLetter('${l.lead_id}')" class="flex-1 min-w-[150px] py-2 bg-corp-700 hover:bg-corp-800 text-white font-bold rounded text-xs transition flex items-center justify-center gap-1 shadow-2xs">
+                        ⚡ AI Soạn Kịch Bản 3 Kênh
                     </button>
-                    <button onclick="approveLeadAction('${l.lead_id}', 'APPROVED')" class="px-3 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs transition">
+                    <button onclick="inspectLeadAiInsights('${l.lead_id}')" class="py-2 px-3 bg-purple-700 hover:bg-purple-800 text-white font-bold rounded text-xs transition flex items-center gap-1 shadow-2xs">
+                        🧠 AI Phân Tích SWOT
+                    </button>
+                    <button onclick="approveLeadAction('${l.lead_id}', 'APPROVED')" class="px-3 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs transition shadow-2xs">
                         Duyệt
                     </button>
                 </div>
 
+                <div id="lead-ai-insights-area" class="space-y-2 pt-1"></div>
                 <div id="pitch-output-area" class="space-y-2 pt-2"></div>
             `;
+        }
+
+        async function inspectLeadAiInsights(leadId) {
+            const area = document.getElementById('lead-ai-insights-area');
+            if (!area) return;
+            area.innerHTML = `
+                <div class="p-3 bg-purple-50 border border-purple-200 rounded text-xs text-purple-900 font-semibold flex items-center justify-center gap-2">
+                    <svg class="animate-spin h-4 w-4 text-purple-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                    <span>AI Gemini đang phân tích SWOT & Chân dung đối tác (ICP)...</span>
+                </div>
+            `;
+
+            try {
+                const res = await fetch(`/api/leads/${leadId}/ai-insights`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({})
+                });
+                const data = await res.json();
+                const swot = data.swot || {};
+                const strengths = (swot.strengths || []).map(s => `<li class="flex items-start gap-1"><span class="text-emerald-700 font-bold shrink-0">✓</span><span>${s}</span></li>`).join('');
+                const weaknesses = (swot.weaknesses || []).map(s => `<li class="flex items-start gap-1"><span class="text-amber-700 font-bold shrink-0">!</span><span>${s}</span></li>`).join('');
+                const opportunities = (swot.opportunities || []).map(s => `<li class="flex items-start gap-1"><span class="text-blue-700 font-bold shrink-0">★</span><span>${s}</span></li>`).join('');
+                const threats = (swot.threats || []).map(s => `<li class="flex items-start gap-1"><span class="text-rose-700 font-bold shrink-0">✕</span><span>${s}</span></li>`).join('');
+                const actionPlan = (data.action_plan || []).map((step, idx) => `<div class="flex items-start gap-1.5 text-slate-700"><b>${idx+1}.</b> <span>${step}</span></div>`).join('');
+
+                area.innerHTML = `
+                    <div class="p-3 bg-purple-50/70 border border-purple-300 rounded-lg text-xs space-y-2.5">
+                        <div class="flex items-center justify-between pb-1.5 border-b border-purple-200">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                                <b class="text-purple-950 uppercase tracking-wide">Báo Cáo Phân Tích SWOT Đối Tác & ICP</b>
+                            </div>
+                            <span class="px-2 py-0.5 rounded bg-purple-200 text-purple-900 font-bold text-[10px]">
+                                ${data.icp_rating || 'ICP: Hạng A'}
+                            </span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
+                            <div class="p-2 bg-emerald-50 rounded border border-emerald-200">
+                                <div class="font-bold text-emerald-900 uppercase pb-1 mb-1 border-b border-emerald-200 flex items-center justify-between">
+                                    <span>Điểm mạnh (Strengths)</span>
+                                    <span class="text-[9px] bg-emerald-200 text-emerald-900 px-1 py-0.2 rounded font-mono">S</span>
+                                </div>
+                                <ul class="space-y-1 text-slate-800">${strengths || '<li>Chưa có dữ liệu</li>'}</ul>
+                            </div>
+
+                            <div class="p-2 bg-amber-50 rounded border border-amber-200">
+                                <div class="font-bold text-amber-900 uppercase pb-1 mb-1 border-b border-amber-200 flex items-center justify-between">
+                                    <span>Điểm yếu / Thách thức (Weaknesses)</span>
+                                    <span class="text-[9px] bg-amber-200 text-amber-900 px-1 py-0.2 rounded font-mono">W</span>
+                                </div>
+                                <ul class="space-y-1 text-slate-800">${weaknesses || '<li>Chưa có dữ liệu</li>'}</ul>
+                            </div>
+
+                            <div class="p-2 bg-blue-50 rounded border border-blue-200">
+                                <div class="font-bold text-blue-900 uppercase pb-1 mb-1 border-b border-blue-200 flex items-center justify-between">
+                                    <span>Cơ hội hợp tác (Opportunities)</span>
+                                    <span class="text-[9px] bg-blue-200 text-blue-900 px-1 py-0.2 rounded font-mono">O</span>
+                                </div>
+                                <ul class="space-y-1 text-slate-800">${opportunities || '<li>Chưa có dữ liệu</li>'}</ul>
+                            </div>
+
+                            <div class="p-2 bg-rose-50 rounded border border-rose-200">
+                                <div class="font-bold text-rose-900 uppercase pb-1 mb-1 border-b border-rose-200 flex items-center justify-between">
+                                    <span>Rào cản / Từ chối (Threats)</span>
+                                    <span class="text-[9px] bg-rose-200 text-rose-900 px-1 py-0.2 rounded font-mono">T</span>
+                                </div>
+                                <ul class="space-y-1 text-slate-800">${threats || '<li>Chưa có dữ liệu</li>'}</ul>
+                            </div>
+                        </div>
+
+                        <div class="p-2 rounded bg-white border border-purple-200">
+                            <span class="font-bold text-purple-900">🎯 Góc tiếp cận tối ưu cho Trình dược viên:</span>
+                            <div class="text-slate-800 mt-0.5 leading-relaxed font-medium">${data.entry_angle || ''}</div>
+                        </div>
+
+                        <div class="p-2 rounded bg-white border border-purple-200 space-y-1">
+                            <span class="font-bold text-slate-800">📋 Kế hoạch hành động thực địa (Next Steps):</span>
+                            <div class="space-y-1 text-[11px]">${actionPlan}</div>
+                        </div>
+
+                        <div class="flex justify-between items-center text-[10px] text-slate-500 pt-1 border-t border-purple-200">
+                            <span>Nguồn phân tích: <b>${data.generated_by || 'Gemini 3.8 Flash'}</b></span>
+                            <button onclick="document.getElementById('lead-ai-insights-area').innerHTML = ''" class="text-purple-700 hover:underline font-bold">Thu gọn</button>
+                        </div>
+                    </div>
+                `;
+            } catch (err) {
+                area.innerHTML = `<div class="p-2 bg-rose-50 border border-rose-200 text-rose-800 text-xs rounded">Lỗi phân tích SWOT: ${err.message}</div>`;
+            }
+        }
+
+        function switchPitchTab(tab) {
+            const tabs = ['email', 'zalo', 'call'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`pitch-tab-btn-${t}`);
+                const panel = document.getElementById(`pitch-panel-${t}`);
+                if (t === tab) {
+                    if (btn) {
+                        btn.className = 'px-3 py-1 text-xs font-bold rounded bg-slate-900 text-white shadow-xs transition';
+                    }
+                    if (panel) panel.classList.remove('hidden');
+                } else {
+                    if (btn) {
+                        btn.className = 'px-3 py-1 text-xs font-semibold rounded text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition';
+                    }
+                    if (panel) panel.classList.add('hidden');
+                }
+            });
         }
 
         async function genPitchLetter(leadId) {
@@ -3071,47 +3360,116 @@
             const sku = skuSelect ? skuSelect.value : 'DION-D3-1000';
             const l = leadsArr.find(x => x.lead_id === leadId);
             const targetEmail = l && l.email ? l.email : 'lienhe@nhathuoc.vn';
-            const targetPhone = l && l.phone ? l.phone : '';
-
-            out.innerHTML = '<div class="text-xs text-corp-700 font-bold p-2 text-center bg-slate-50 border rounded">Đang biên soạn thư chào hàng tự động...</div>';
-
-            const res = await fetch(`/api/leads/${leadId}/pitch`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({sku: sku})
-            });
-            const data = await res.json();
+            const targetPhone = l && l.phone ? l.phone.replace(/[^0-9]/g, '') : '';
 
             out.innerHTML = `
-                <div class="p-2.5 bg-slate-50 border border-slate-200 rounded text-xs space-y-2">
-                    <div><span class="font-bold text-slate-700">Chiến lược tiếp cận:</span> <div class="text-slate-800">${data.strategy}</div></div>
-                    <div><span class="font-bold text-slate-700">Đối tượng nhận thư:</span> <b class="text-corp-700">${data.target_department}</b></div>
-                    <div>
-                        <span class="font-bold text-slate-700">Tiêu đề đề xuất:</span>
-                        <input type="text" id="p-sub" value="${data.subject}" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-xs font-semibold mt-0.5">
-                    </div>
-                    <div>
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="font-bold text-slate-700">Nội dung thư:</span>
-                            <button onclick="copyPitchLetter()" class="text-corp-700 font-bold hover:underline">Sao chép</button>
-                        </div>
-                        <textarea id="p-body" rows="7" class="w-full bg-white border border-slate-300 rounded p-2 text-xs font-mono">${data.pitch_body}</textarea>
-                    </div>
-
-                    <div class="pt-1 flex flex-wrap gap-2">
-                        <button onclick="openMailClient('${targetEmail}')" class="flex-1 py-1.5 px-2 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded text-xs transition">
-                            Mở ứng dụng gửi Email (Gmail/Outlook)
-                        </button>
-                        <button onclick="copyPitchLetter()" class="flex-1 py-1.5 px-2 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs transition">
-                            Sao chép gửi Zalo
-                        </button>
-                    </div>
-
-                    <div class="text-[10px] text-slate-500 italic pt-1 border-t border-slate-200">
-                        * Kiểm soát con người (Human-in-the-loop): AI chỉ soạn thảo bản nháp. Nhân viên kinh doanh duyệt lại trước khi gửi để tránh vi phạm chính sách chống SPAM và bảo vệ danh tiếng thương hiệu.
-                    </div>
+                <div class="text-xs text-corp-700 font-bold p-3 text-center bg-slate-50 border rounded flex items-center justify-center gap-2">
+                    <svg class="animate-spin h-4 w-4 text-corp-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                    <span>AI đang phân tích dữ liệu & tạo kịch bản 3 kênh (Email / Zalo / Call)...</span>
                 </div>
             `;
+
+            try {
+                const res = await fetch(`/api/leads/${leadId}/pitch`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({sku: sku})
+                });
+                const data = await res.json();
+
+                out.innerHTML = `
+                    <div class="p-3 bg-slate-50 border border-slate-200 rounded text-xs space-y-2.5">
+                        <div class="space-y-1 pb-1.5 border-b border-slate-200">
+                            <div><span class="font-bold text-slate-700">Chiến lược tiếp cận:</span> <span class="text-slate-800">${data.strategy}</span></div>
+                            <div><span class="font-bold text-slate-700">Đối tượng nhận tin:</span> <b class="text-corp-700">${data.target_department}</b></div>
+                        </div>
+
+                        <!-- THANH CHỌN KÊNH TIẾP CẬN (3 TABS) -->
+                        <div class="flex items-center gap-1 border-b border-slate-200 pb-1.5 overflow-x-auto no-scrollbar">
+                            <button id="pitch-tab-btn-email" onclick="switchPitchTab('email')" class="px-3 py-1 text-xs font-bold rounded bg-slate-900 text-white shadow-xs transition shrink-0">
+                                📧 Email B2B Chào Hàng
+                            </button>
+                            <button id="pitch-tab-btn-zalo" onclick="switchPitchTab('zalo')" class="px-3 py-1 text-xs font-semibold rounded text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition shrink-0">
+                                💬 Tin Nhắn Zalo B2B
+                            </button>
+                            <button id="pitch-tab-btn-call" onclick="switchPitchTab('call')" class="px-3 py-1 text-xs font-semibold rounded text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition shrink-0">
+                                📞 Kịch Bản Gọi / Gặp Quầy
+                            </button>
+                        </div>
+
+                        <!-- PANEL 1: EMAIL B2B -->
+                        <div id="pitch-panel-email" class="space-y-2">
+                            <div>
+                                <span class="font-bold text-slate-700">Tiêu đề thư đề xuất:</span>
+                                <input type="text" id="p-sub" value="${data.subject}" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-xs font-semibold mt-0.5">
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="font-bold text-slate-700">Nội dung thư chính thức:</span>
+                                    <button onclick="navigator.clipboard.writeText(document.getElementById('p-body').value); alert('Đã sao chép Email!');" class="text-corp-700 font-bold hover:underline">Sao chép</button>
+                                </div>
+                                <textarea id="p-body" rows="7" class="w-full bg-white border border-slate-300 rounded p-2 text-xs font-mono">${data.pitch_body}</textarea>
+                            </div>
+                            <div class="pt-1 flex flex-wrap gap-2">
+                                <button onclick="openMailClient('${targetEmail}')" class="flex-1 py-1.5 px-2 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded text-xs transition">
+                                    Mở ứng dụng gửi Email (Gmail/Outlook)
+                                </button>
+                                <button onclick="navigator.clipboard.writeText(document.getElementById('p-body').value); alert('Đã sao chép nội dung Email!');" class="py-1.5 px-3 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs transition">
+                                    Sao chép Email
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- PANEL 2: ZALO B2B -->
+                        <div id="pitch-panel-zalo" class="hidden space-y-2">
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="font-bold text-slate-700">Nội dung tin nhắn Zalo gửi Dược sĩ:</span>
+                                    <button onclick="navigator.clipboard.writeText(document.getElementById('p-zalo').value); alert('Đã sao chép tin nhắn Zalo!');" class="text-corp-700 font-bold hover:underline">Sao chép</button>
+                                </div>
+                                <textarea id="p-zalo" rows="7" class="w-full bg-white border border-slate-300 rounded p-2 text-xs font-sans leading-relaxed">${data.zalo_message || data.pitch_body}</textarea>
+                            </div>
+                            <div class="pt-1 flex flex-wrap gap-2">
+                                <button onclick="navigator.clipboard.writeText(document.getElementById('p-zalo').value); alert('Đã sao chép tin nhắn Zalo! Bạn có thể dán vào Zalo PC hoặc Zalo Web để gửi ngay.');" class="flex-1 py-1.5 px-2 bg-sky-700 hover:bg-sky-800 text-white font-bold rounded text-xs transition">
+                                    Sao chép tin nhắn Zalo
+                                </button>
+                                ${targetPhone ? `
+                                    <a href="https://zalo.me/${targetPhone}" target="_blank" class="py-1.5 px-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded text-xs transition flex items-center gap-1">
+                                        Mở Zalo (${targetPhone}) ↗
+                                    </a>
+                                ` : ''}
+                            </div>
+                        </div>
+
+                        <!-- PANEL 3: CALL SCRIPT & OBJECTION HANDLING -->
+                        <div id="pitch-panel-call" class="hidden space-y-2">
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="font-bold text-slate-700">Kịch bản thoại thoại & Xử lý từ chối tại quầy:</span>
+                                    <button onclick="navigator.clipboard.writeText(document.getElementById('p-call').value); alert('Đã sao chép kịch bản gọi!');" class="text-corp-700 font-bold hover:underline">Sao chép</button>
+                                </div>
+                                <textarea id="p-call" rows="8" class="w-full bg-white border border-slate-300 rounded p-2 text-xs font-sans leading-relaxed">${data.call_script || data.pitch_body}</textarea>
+                            </div>
+                            <div class="pt-1 flex flex-wrap gap-2">
+                                <button onclick="navigator.clipboard.writeText(document.getElementById('p-call').value); alert('Đã sao chép kịch bản thực địa!');" class="flex-1 py-1.5 px-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs transition">
+                                    Sao chép kịch bản tư vấn thực địa
+                                </button>
+                                ${targetPhone ? `
+                                    <a href="tel:${targetPhone}" class="py-1.5 px-3 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs transition flex items-center gap-1">
+                                        📞 Gọi số ${targetPhone}
+                                    </a>
+                                ` : ''}
+                            </div>
+                        </div>
+
+                        <div class="text-[10px] text-slate-500 italic pt-1.5 border-t border-slate-200">
+                            * Kiểm soát con người (Human-in-the-loop): AI tạo bản thảo 3 kênh theo hồ sơ đối tác. Trình dược viên kiểm tra và điều chỉnh ngữ điệu phù hợp trước khi gửi.
+                        </div>
+                    </div>
+                `;
+            } catch (err) {
+                out.innerHTML = `<div class="p-2 bg-rose-50 border border-rose-200 text-rose-800 text-xs rounded">Lỗi tạo kịch bản: ${err.message}</div>`;
+            }
         }
 
         function openMailClient(email) {
@@ -3144,6 +3502,130 @@
             link.href = URL.createObjectURL(blob);
             link.download = "danh_sach_nha_thuoc_b2b.csv";
             link.click();
+        }
+
+        // --- HÀM ĐIỀU KHIỂN MODAL THÊM ĐIỂM BÁN & NHẬP EXCEL ---
+        function openAddLeadModal() {
+            document.getElementById('modal-add-lead').classList.remove('hidden');
+        }
+
+        function closeAddLeadModal() {
+            document.getElementById('modal-add-lead').classList.add('hidden');
+        }
+
+        async function submitAddLead() {
+            const btn = document.getElementById('btn-submit-lead');
+            const origText = btn.innerHTML;
+            btn.innerText = 'Đang lưu...';
+            btn.disabled = true;
+
+            const payload = {
+                name: document.getElementById('add-lead-name').value.trim(),
+                type: document.getElementById('add-lead-type').value,
+                province: document.getElementById('add-lead-province').value,
+                district: document.getElementById('add-lead-district').value.trim(),
+                target_hospital: document.getElementById('add-lead-hospital').value.trim(),
+                address: document.getElementById('add-lead-address').value.trim(),
+                phone: document.getElementById('add-lead-phone').value.trim(),
+                email: document.getElementById('add-lead-email').value.trim(),
+                contact_person: document.getElementById('add-lead-contact').value.trim(),
+                tax_code: document.getElementById('add-lead-tax').value.trim(),
+                gpp_license: document.getElementById('add-lead-gpp').value.trim(),
+                is_new_opened: document.getElementById('add-lead-new-opened').checked,
+                notes: document.getElementById('add-lead-notes').value.trim()
+            };
+
+            try {
+                const res = await fetch('/api/leads/add', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    alert(`Đã thêm thành công điểm bán: ${data.lead.name} (${data.lead.lead_id})!\nĐiểm phù hợp: ${data.lead.fit_score}/100.`);
+                    closeAddLeadModal();
+                    document.getElementById('form-add-lead').reset();
+                    await fetchLeads();
+                    inspectLead(data.lead.lead_id);
+                } else {
+                    alert('Lỗi: ' + (data.detail || 'Không thể lưu điểm bán'));
+                }
+            } catch (err) {
+                alert('Lỗi kết nối máy chủ: ' + err.message);
+            } finally {
+                btn.innerHTML = origText;
+                btn.disabled = false;
+            }
+        }
+
+        function openImportLeadsModal() {
+            document.getElementById('modal-import-leads').classList.remove('hidden');
+        }
+
+        function closeImportLeadsModal() {
+            document.getElementById('modal-import-leads').classList.add('hidden');
+        }
+
+        function fillSampleImportData() {
+            const sample = `Tên nhà thuốc\tĐịa chỉ\tĐiện thoại\tTỉnh\tQuận\tNgười liên hệ\tBệnh viện lân cận
+Nhà Thuốc Đỗ Thế - GPP\t18 Hoàng Hoa Thám\t0981123456\tHà Nội\tBa Đình\tDS. Đỗ Thế\tBV Phụ sản TW
+Nhà Thuốc Mai Anh\t102 Nguyễn Trãi\t0912987654\tHà Nội\tThanh Xuân\tDS. Mai Anh\tBV Bạch Mai
+Nhà Thuốc An Khang Bình Thạnh\t245 Xô Viết Nghệ Tĩnh\t0903887766\tTP. Hồ Chí Minh\tBình Thạnh\tDS. Thu Thảo\tBV Gia Định
+Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Giấy\tDS. Hoàng Minh\tBV Nhi TW`;
+            document.getElementById('import-raw-text').value = sample;
+        }
+
+        function handleImportFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('import-raw-text').value = e.target.result;
+            };
+            reader.readAsText(file);
+        }
+
+        async function submitImportLeads() {
+            const btn = document.getElementById('btn-submit-import');
+            const origText = btn.innerHTML;
+            btn.innerText = 'Đang xử lý nạp...';
+            btn.disabled = true;
+
+            const rawText = document.getElementById('import-raw-text').value.trim();
+            const defaultProvince = document.getElementById('import-default-province').value;
+
+            try {
+                const res = await fetch('/api/leads/import', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        raw_text: rawText,
+                        default_province: defaultProvince
+                    })
+                });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    const statsBox = document.getElementById('import-result-stats');
+                    statsBox.classList.remove('hidden');
+                    statsBox.innerHTML = `
+                        <div class="font-bold text-emerald-800">✓ Nạp thành công: ${data.imported_count} điểm bán mới!</div>
+                        <div class="text-slate-600 mt-0.5">Bỏ qua / Trùng lặp SĐT: ${data.skipped_duplicates} điểm. Tổng cơ sở dữ liệu hiện tại: <b>${data.total_leads}</b>.</div>
+                    `;
+                    alert(`Nạp thành công ${data.imported_count} nhà thuốc vào hệ thống B2B! (Trùng lặp: ${data.skipped_duplicates})`);
+                    closeImportLeadsModal();
+                    document.getElementById('form-import-leads').reset();
+                    statsBox.classList.add('hidden');
+                    await fetchLeads();
+                } else {
+                    alert('Lỗi: ' + (data.detail || 'Không thể nạp danh bạ'));
+                }
+            } catch (err) {
+                alert('Lỗi kết nối máy chủ: ' + err.message);
+            } finally {
+                btn.innerHTML = origText;
+                btn.disabled = false;
+            }
         }
 
         // --- 2. CONTENT ENGINE & AI COMPLIANCE AGENT (SKU GROUNDING & INLINE HIGHLIGHTING) ---

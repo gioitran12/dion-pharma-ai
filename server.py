@@ -6,7 +6,7 @@ load_dotenv(Path(__file__).resolve().parent / ".env")
 import os
 import json
 from pathlib import Path
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Union
 from fastapi import FastAPI, Request, Query, Body, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
@@ -16,7 +16,9 @@ from modules.claims_hub import (
     save_or_update_product, search_knowledge_hub
 )
 from modules.lead_discovery import (
-    filter_leads, update_lead_status, get_lead_by_id, group_by_parent_chain, generate_b2b_outreach_pitch, load_hospitals_map
+    filter_leads, update_lead_status, get_lead_by_id, group_by_parent_chain,
+    generate_b2b_outreach_pitch, generate_b2b_outreach_pitch_ai, analyze_lead_ai,
+    add_new_lead, import_leads_bulk, load_hospitals_map
 )
 from modules.sales_copilot import generate_copilot_response
 from modules.content_generator import (
@@ -144,8 +146,53 @@ async def api_lead_action(lead_id: str, action: str = Body(..., embed=True), ass
 
 @app.post("/api/leads/{lead_id}/pitch")
 async def api_lead_pitch(lead_id: str, sku: str = Body("DION-D3-1000", embed=True)):
-    pitch = generate_b2b_outreach_pitch(lead_id, recommended_sku=sku)
+    pitch = await generate_b2b_outreach_pitch_ai(lead_id, recommended_sku=sku)
     return pitch
+
+@app.post("/api/leads/{lead_id}/ai-insights")
+async def api_lead_ai_insights(lead_id: str):
+    insights = await analyze_lead_ai(lead_id)
+    return insights
+
+@app.post("/api/leads/add")
+async def api_lead_add(lead: Dict[str, Any] = Body(...)):
+    if not lead.get("name"):
+        raise HTTPException(status_code=400, detail="Tên điểm bán không được để trống")
+    res = add_new_lead(lead)
+    return {"status": "success", "lead": res}
+
+@app.post("/api/leads/import")
+async def api_lead_import(payload: Union[List[Dict[str, Any]], Dict[str, Any]] = Body(...)):
+    if isinstance(payload, list):
+        leads = payload
+    else:
+        raw_text = payload.get("raw_text", "")
+        default_province = payload.get("default_province", "Hà Nội")
+        if raw_text:
+            leads = []
+            lines = [l.strip() for l in raw_text.splitlines() if l.strip()]
+            for line in lines:
+                if any(h in line.lower() for h in ["tên nhà thuốc", "mã lead", "tên đơn vị"]):
+                    continue
+                parts = [p.strip() for p in (line.split("\t") if "\t" in line else line.split(","))]
+                if len(parts) >= 2:
+                    lead_dict = {
+                        "name": parts[0],
+                        "address": parts[1] if len(parts) > 1 else "",
+                        "phone": parts[2] if len(parts) > 2 else "",
+                        "province": parts[3] if len(parts) > 3 and parts[3] else default_province,
+                        "district": parts[4] if len(parts) > 4 else "",
+                        "contact_person": parts[5] if len(parts) > 5 else "",
+                        "target_hospital": parts[6] if len(parts) > 6 else ""
+                    }
+                    leads.append(lead_dict)
+        else:
+            leads = payload.get("leads", [])
+
+    if not leads:
+        raise HTTPException(status_code=400, detail="Danh sách điểm bán trống hoặc không thể phân tách dữ liệu")
+    res = import_leads_bulk(leads)
+    return res
 
 # --- GIẢI PHÁP 2: AI CONTENT ENGINE ---
 @app.post("/api/content/audit-radar")
