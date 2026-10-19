@@ -138,6 +138,60 @@ def get_lead_by_id(lead_id: str) -> Optional[Dict[str, Any]]:
             return l
     return None
 
+def compute_lead_ai_recommendation(lead_dict: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Tính toán mặt hàng nên chào (Hero SKU), lý do phù hợp và điểm số
+    dựa trên khoa phòng bệnh viện lân cận, loại hình và tệp khách hàng.
+    """
+    target_hosp = (lead_dict.get("target_hospital") or lead_dict.get("nearby_facility") or "").lower()
+    lead_type = lead_dict.get("type", "Nhà thuốc tư nhân")
+    
+    if any(k in target_hosp for k in ["phụ sản", "từ dũ", "hùng vương", "mekong", "mỹ đức", "bưu điện"]):
+        sku = "DION-CAL-MOM"
+        sku_name = "Canxi Tảo Đỏ DION Cal-Mom Plus & D3 K2 (Hero SKU)"
+        reason = f"Cự ly gần {lead_dict.get('target_hospital') or 'cơ sở y tế Sản khoa'}, tệp mẹ bầu & sau sinh cao (>50% đơn vi chất). Khách hàng tìm kiếm Canxi sinh học không nóng, không sỏi thận và Sắt hữu cơ êm bụng."
+        score = 96
+        grade = "A+"
+    elif any(k in target_hosp for k in ["nhi", "nhi đồng", "dinh dưỡng", "trẻ em"]):
+        sku = "DION-D3-1000"
+        sku_name = "Vitamin D3 1000IU Nhỏ Giọt Hấp Thu Cao (Hero SKU)"
+        reason = f"Vị trí chiến lược gần {lead_dict.get('target_hospital') or 'viện Nhi khoa'}, lượng mẹ bỉm sữa tìm vi chất tinh khiết cho trẻ sơ sinh và trẻ nhỏ rất cao. Dạng nhỏ giọt tiện lợi là mặt hàng quay vòng nhanh."
+        score = 95
+        grade = "A+"
+    elif any(k in target_hosp for k in ["huyết học"]):
+        sku = "DION-FE-PLUS"
+        sku_name = "Sắt Sinh Học Hữu Cơ DION Fero-Plus & Axit Folic (Hero SKU)"
+        reason = f"Gần {lead_dict.get('target_hospital')}, tệp bệnh nhân cần bổ máu, tăng hồng cầu; Sắt sinh học Fero-Plus không gây tanh, không táo bón là giải pháp thay thế vượt trội."
+        score = 95
+        grade = "A+"
+    elif any(k in target_hosp for k in ["bạch mai", "chợ rẫy", "lão khoa", "108", "115", "thống nhất", "quân y 103", "việt đức", "xanh pôn", "việt tiệp", "đa khoa tw"]):
+        sku = "DION-CAL-MOM"
+        sku_name = "Canxi Tảo Đỏ DION Cal-Mom Plus & D3 K2 (Hero SKU)"
+        reason = f"Gần tuyến viện đa khoa & lão khoa {lead_dict.get('target_hospital')}, lượng lớn người cao tuổi điều trị thoái hóa xương khớp, loãng xương và phục hồi thể trạng."
+        score = 94
+        grade = "A+"
+    elif lead_type == "Chuỗi nhà thuốc" or lead_dict.get("parent_chain"):
+        sku = "COMPANY_PORTFOLIO"
+        sku_name = "Gói Danh Mục Toàn Diện & Ký Gửi Tủ Kệ Doanh Nghiệp"
+        reason = f"Chuỗi nhà thuốc quy mô lớn ({lead_dict.get('parent_chain') or 'Hệ thống chuỗi'}), tiêu chuẩn quầy kệ cao; phù hợp đàm phán phân phối trọn bộ Canxi - Sắt - D3 với chính sách chiết khấu bậc thang."
+        score = 92
+        grade = "A"
+    else:
+        sku = "DION-CAL-MOM"
+        sku_name = "Canxi Tảo Đỏ DION Cal-Mom Plus & D3 K2 (Hero SKU)"
+        reason = "Sản phẩm mũi nhọn đạt chuẩn GPP dễ bán nhất tại các quầy thuốc bán lẻ, đáp ứng đối tượng rộng từ thanh thiếu niên đến phụ nữ và người lớn tuổi."
+        score = 88
+        grade = "A"
+
+    return {
+        "recommended_sku": sku,
+        "recommended_sku_name": sku_name,
+        "ai_match_reason": reason,
+        "fit_score": score,
+        "fit_grade": grade
+    }
+
+
 def add_new_lead(lead_dict: Dict[str, Any]) -> Dict[str, Any]:
     """Thêm một điểm bán mới vào cơ sở dữ liệu thực địa."""
     leads = load_leads_data()
@@ -157,8 +211,16 @@ def add_new_lead(lead_dict: Dict[str, Any]) -> Dict[str, Any]:
     new_id = lead_dict.get("lead_id") or f"LD-{prov_code}-{max_id:03d}"
     lead_dict["lead_id"] = new_id
     lead_dict["status"] = lead_dict.get("status", "NEW")
-    lead_dict["fit_score"] = int(lead_dict.get("fit_score", 88))
-    lead_dict["fit_grade"] = "A+" if lead_dict["fit_score"] >= 95 else ("A" if lead_dict["fit_score"] >= 90 else ("B" if lead_dict["fit_score"] >= 75 else "C"))
+    
+    # Tự động tính toán mặt hàng nên chào và điểm phù hợp nếu chưa có
+    rec = compute_lead_ai_recommendation(lead_dict)
+    if "recommended_sku" not in lead_dict:
+        lead_dict["recommended_sku"] = rec["recommended_sku"]
+        lead_dict["recommended_sku_name"] = rec["recommended_sku_name"]
+        lead_dict["ai_match_reason"] = rec["ai_match_reason"]
+        
+    lead_dict["fit_score"] = int(lead_dict.get("fit_score", rec["fit_score"]))
+    lead_dict["fit_grade"] = rec["fit_grade"] if "fit_grade" not in lead_dict else lead_dict["fit_grade"]
     lead_dict["trust_score"] = int(lead_dict.get("trust_score", 90))
     lead_dict["contact_score"] = int(lead_dict.get("contact_score", 85))
     lead_dict["intent_score"] = int(lead_dict.get("intent_score", 82))

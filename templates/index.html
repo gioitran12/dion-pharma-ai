@@ -154,14 +154,13 @@
                         Tuyến Bán Hàng:
                     </span>
 
-                    <select id="lead-prov" onchange="onProvinceChange()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs font-semibold outline-none text-slate-800 focus:border-corp-700 min-w-[130px]">
-                        <option value="Tất cả">Tất cả tỉnh thành</option>
-                        <option value="Hà Nội" selected>Hà Nội (Thủ đô)</option>
-                        <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
-                        <option value="Đà Nẵng">Đà Nẵng</option>
-                        <option value="Cần Thơ">Cần Thơ</option>
-                        <option value="Hải Phòng">Hải Phòng</option>
-                        <option value="Bình Dương">Bình Dương</option>
+                    <select id="lead-prov" onchange="onProvinceChange()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs font-semibold outline-none text-slate-800 focus:border-corp-700 min-w-[160px]">
+                        <option value="Tất cả">Tất cả 5 tỉnh trọng điểm</option>
+                        <option value="Hà Nội" selected>Hà Nội (Thủ đô — 123 điểm)</option>
+                        <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh (46 điểm)</option>
+                        <option value="Đà Nẵng">Đà Nẵng (7 điểm)</option>
+                        <option value="Hải Phòng">Hải Phòng (6 điểm)</option>
+                        <option value="Cần Thơ">Cần Thơ (6 điểm)</option>
                     </select>
 
                     <select id="lead-dist" onchange="onDistrictChange()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs font-semibold outline-none text-slate-800 focus:border-corp-700 min-w-[130px]">
@@ -181,25 +180,35 @@
                     </select>
                 </div>
 
-                <!-- Hàng 2: Từ khóa, Loại hình, Điểm mới mở, Tổng số & Xuất Excel -->
-                <div class="flex flex-wrap items-center gap-2.5">
-                    <input type="text" id="lead-kw" placeholder="Tìm theo tên nhà thuốc, tuyến đường hoặc số điện thoại..." oninput="fetchLeads()" class="flex-1 min-w-[200px] bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs outline-none focus:border-corp-700">
+                <!-- Hàng 2: Từ khóa, Loại hình, Trạng thái, Điểm mới mở, Tổng số & Xuất Excel -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <input type="text" id="lead-kw" placeholder="Tìm tên nhà thuốc (Long Tâm, Việt Đức, Phương Chính, An Bình...), đường phố hoặc SĐT..." oninput="fetchLeads()" class="flex-1 min-w-[220px] bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs outline-none focus:border-corp-700">
                     
-                    <select id="lead-type" onchange="fetchLeads()" class="bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs font-medium outline-none">
+                    <select id="lead-status" onchange="fetchLeads()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs font-bold outline-none text-slate-800 focus:border-corp-700 min-w-[135px]">
+                        <option value="Tất cả">Tất cả trạng thái</option>
+                        <option value="ACTIVE_CLIENT">🟢 Đang nhập hàng</option>
+                        <option value="IN_PROGRESS">🟡 Đang chào mẫu</option>
+                        <option value="APPROVED">🔵 Đã duyệt HĐ</option>
+                        <option value="NEW">⚪ Chưa tiếp cận</option>
+                        <option value="FOLLOW_UP">🟣 Hẹn chăm sóc lại</option>
+                        <option value="REJECTED">🔴 Tạm hoãn</option>
+                    </select>
+
+                    <select id="lead-type" onchange="fetchLeads()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-xs font-medium outline-none">
                         <option value="Tất cả">Tất cả loại hình</option>
+                        <option value="Nhà thuốc tư nhân">Nhà thuốc tư nhân</option>
                         <option value="Chuỗi nhà thuốc">Chuỗi nhà thuốc</option>
                         <option value="Cửa hàng Mẹ & Bé">Cửa hàng Mẹ & Bé</option>
-                        <option value="Nhà thuốc tư nhân">Nhà thuốc tư nhân</option>
                         <option value="Đại lý phân phối">Đại lý phân phối</option>
                     </select>
 
-                    <label class="flex items-center gap-1.5 bg-amber-50 border border-amber-300 px-2.5 py-1.5 rounded cursor-pointer hover:bg-amber-100 transition">
+                    <label class="flex items-center gap-1.5 bg-amber-50 border border-amber-300 px-2 py-1.5 rounded cursor-pointer hover:bg-amber-100 transition">
                         <input type="checkbox" id="lead-only-new" onchange="fetchLeads()" class="rounded text-amber-600 focus:ring-0">
-                        <span class="text-xs font-bold text-amber-900 whitespace-nowrap">Chỉ điểm MỚI MỞ (< 30 ngày)</span>
+                        <span class="text-xs font-bold text-amber-900 whitespace-nowrap">Chỉ MỚI MỞ (< 30 ngày)</span>
                     </label>
 
-                    <span class="text-xs font-bold text-slate-600 pl-2 border-l border-slate-200 whitespace-nowrap">
-                        Điểm bán: <b id="lead-total-num" class="text-corp-700">0</b>
+                    <span class="text-xs font-bold text-slate-600 pl-1.5 border-l border-slate-200 whitespace-nowrap">
+                        Điểm bán: <b id="lead-total-num" class="text-corp-700 text-sm">0</b>
                     </span>
 
                     <div class="flex items-center gap-1.5 ml-auto">
@@ -217,7 +226,7 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-                <div class="lg:col-span-7 bg-white rounded border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[520px]">
+                <div class="lg:col-span-7 bg-white rounded border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[560px]">
                     <div class="px-4 py-2 bg-slate-50 border-b border-slate-200 font-bold text-xs text-slate-700 uppercase flex justify-between items-center">
                         <span>Danh sách điểm bán khảo sát</span>
                         <span id="route-indicator-badge" class="text-[11px] font-semibold text-slate-500">Sắp xếp theo thứ tự ưu tiên thị trường</span>
@@ -226,12 +235,13 @@
                         <table class="w-full text-left text-xs">
                             <thead class="sticky top-0 bg-slate-50 z-10 border-b border-slate-200">
                                 <tr>
-                                    <th class="table-cell-header w-20">Mã</th>
-                                    <th class="table-cell-header">Tên đơn vị & Địa chỉ</th>
-                                    <th class="table-cell-header w-24">Quận/Huyện</th>
-                                    <th class="table-cell-header w-32">Cự ly Bệnh viện</th>
-                                    <th class="table-cell-header w-16 text-right">Điểm</th>
-                                    <th class="table-cell-header w-20 text-center">Trạng thái</th>
+                                    <th class="table-cell-header w-14">Mã</th>
+                                    <th class="table-cell-header">Tên nhà thuốc & Địa chỉ thực tế</th>
+                                    <th class="table-cell-header w-20">Quận</th>
+                                    <th class="table-cell-header w-28">Cự ly BV</th>
+                                    <th class="table-cell-header w-28">Mặt hàng nên chào</th>
+                                    <th class="table-cell-header w-14 text-right">Điểm</th>
+                                    <th class="table-cell-header w-24 text-center">Trạng thái</th>
                                 </tr>
                             </thead>
                             <tbody id="lead-table-body" class="divide-y divide-slate-100"></tbody>
@@ -3085,9 +3095,10 @@
             const hosp = document.getElementById('lead-hosp') ? document.getElementById('lead-hosp').value : 'Tất cả';
             const radius = document.getElementById('lead-radius') ? document.getElementById('lead-radius').value : '0';
             const type = document.getElementById('lead-type').value;
+            const status = document.getElementById('lead-status') ? document.getElementById('lead-status').value : 'Tất cả';
             const onlyNew = document.getElementById('lead-only-new').checked;
 
-            const res = await fetch(`/api/leads?province=${encodeURIComponent(prov)}&district=${encodeURIComponent(dist)}&hospital=${encodeURIComponent(hosp)}&max_distance=${radius}&lead_type=${encodeURIComponent(type)}&keyword=${encodeURIComponent(kw)}&only_new=${onlyNew}`);
+            const res = await fetch(`/api/leads?province=${encodeURIComponent(prov)}&district=${encodeURIComponent(dist)}&hospital=${encodeURIComponent(hosp)}&max_distance=${radius}&lead_type=${encodeURIComponent(type)}&status=${encodeURIComponent(status)}&keyword=${encodeURIComponent(kw)}&only_new=${onlyNew}`);
             const data = await res.json();
             leadsArr = data.leads;
             if (data.hospitals_map) {
@@ -3114,9 +3125,28 @@
             tbody.innerHTML = '';
             leadsArr.forEach((l, idx) => {
                 const isCur = l.lead_id === curLeadId;
-                const statusLabel = l.status === 'APPROVED' ? '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Đã duyệt</span>' :
-                                    (l.status === 'REJECTED' ? '<span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold">Loại</span>' :
-                                    '<span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">Chưa duyệt</span>');
+                
+                let statusBadge = '<span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-bold text-[10px] border border-slate-300">Chưa tiếp cận</span>';
+                if (l.status === 'ACTIVE_CLIENT') {
+                    statusBadge = '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px] border border-emerald-300">Đang nhập hàng</span>';
+                } else if (l.status === 'IN_PROGRESS') {
+                    statusBadge = '<span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-bold text-[10px] border border-amber-300">Đang chào mẫu</span>';
+                } else if (l.status === 'APPROVED') {
+                    statusBadge = '<span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px] border border-blue-300">Đã duyệt HĐ</span>';
+                } else if (l.status === 'FOLLOW_UP') {
+                    statusBadge = '<span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-bold text-[10px] border border-purple-300">Hẹn chăm sóc</span>';
+                } else if (l.status === 'REJECTED') {
+                    statusBadge = '<span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold text-[10px] border border-rose-300">Tạm hoãn</span>';
+                }
+
+                let skuBadge = '<span class="px-1.5 py-0.5 rounded bg-cyan-50 text-cyan-900 border border-cyan-200 font-bold text-[10px] inline-block whitespace-nowrap">🦴 Canxi Cal-Mom</span>';
+                if (l.recommended_sku === 'DION-D3-1000') {
+                    skuBadge = '<span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200 font-bold text-[10px] inline-block whitespace-nowrap">☀️ Vitamin D3</span>';
+                } else if (l.recommended_sku === 'DION-FE-PLUS') {
+                    skuBadge = '<span class="px-1.5 py-0.5 rounded bg-rose-50 text-rose-900 border border-rose-200 font-bold text-[10px] inline-block whitespace-nowrap">🩸 Sắt Fero-Plus</span>';
+                } else if (l.recommended_sku === 'COMPANY_PORTFOLIO') {
+                    skuBadge = '<span class="px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-900 border border-indigo-200 font-bold text-[10px] inline-block whitespace-nowrap">📦 Gói Toàn Diện</span>';
+                }
                 
                 const newBadge = l.is_new_opened ? '<span class="ml-1 px-1.5 py-0.2 rounded bg-amber-100 text-amber-900 font-extrabold text-[10px] border border-amber-300">MỚI MỞ</span>' : '';
                 const orderBadge = (hosp !== 'Tất cả' || dist !== 'Tất cả') ? `<span class="inline-block w-4 h-4 rounded-full bg-slate-800 text-white text-[10px] text-center font-bold mr-1 leading-4">${idx + 1}</span>` : '';
@@ -3134,8 +3164,9 @@
                         </td>
                         <td class="table-cell text-slate-600 font-medium">${l.district}</td>
                         <td class="table-cell">${distBadge}</td>
+                        <td class="table-cell">${skuBadge}</td>
                         <td class="table-cell font-extrabold text-corp-700 text-right">${l.fit_score}/100</td>
-                        <td class="table-cell text-center">${statusLabel}</td>
+                        <td class="table-cell text-center">${statusBadge}</td>
                     </tr>
                 `;
             });
@@ -3154,6 +3185,11 @@
                 </div>
             ` : '';
 
+            const skuIcon = l.recommended_sku === 'DION-CAL-MOM' ? '🦴' : (l.recommended_sku === 'DION-D3-1000' ? '☀️' : (l.recommended_sku === 'DION-FE-PLUS' ? '🩸' : '📦'));
+            const recSkuName = l.recommended_sku_name || (l.recommended_sku === 'DION-CAL-MOM' ? 'Canxi Tảo Đỏ Cal-Mom (Hero SKU)' : (l.recommended_sku === 'DION-D3-1000' ? 'Vitamin D3 1000IU Nhỏ Giọt' : (l.recommended_sku === 'DION-FE-PLUS' ? 'Sắt Hữu Cơ Fero-Plus' : 'Hồ sơ Năng lực Toàn diện DION')));
+            const recReason = l.ai_match_reason || 'Đặc thù khu vực và lượng bệnh nhân mục tiêu phù hợp hoàn hảo với sản phẩm mũi nhọn này.';
+            const fitGrade = l.fit_grade || 'Hạng A';
+
             document.getElementById('lead-detail-box').innerHTML = `
                 <div class="border-b border-slate-200 pb-2.5">
                     <div class="flex justify-between text-xs text-slate-500 mb-1">
@@ -3171,6 +3207,30 @@
                 </div>
 
                 ${newAlert}
+
+                <!-- KHỐI AI ĐÁNH GIÁ ĐỘ PHÙ HỢP & MẶT HÀNG NÊN CHÀO -->
+                <div class="p-3 rounded-lg bg-gradient-to-r from-indigo-50/80 via-blue-50/80 to-emerald-50/70 border border-indigo-200 text-xs space-y-2">
+                    <div class="flex items-center justify-between pb-1.5 border-b border-indigo-200">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-indigo-600 animate-pulse"></span>
+                            <b class="text-indigo-950 font-bold uppercase tracking-wide">AI Đánh Giá Độ Phù Hợp & Mặt Hàng Nên Chào</b>
+                        </div>
+                        <span class="px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-900 font-extrabold text-[11px] border border-indigo-300">
+                            Khớp: ${l.fit_score || 85}/100 (${fitGrade})
+                        </span>
+                    </div>
+                    <div class="flex items-start gap-2 bg-white/90 p-2.5 rounded border border-indigo-100 shadow-2xs">
+                        <div class="text-2xl shrink-0 leading-none">${skuIcon}</div>
+                        <div class="flex-1 space-y-1">
+                            <div class="font-extrabold text-slate-900 text-xs">
+                                Mặt hàng AI đề xuất: <span class="text-corp-700 font-black">${recSkuName}</span>
+                            </div>
+                            <p class="text-[11px] text-slate-700 leading-relaxed font-medium">
+                                <b>Căn cứ phân tích:</b> ${recReason}
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
                 <table class="w-full text-xs text-left border border-slate-200 rounded overflow-hidden">
                     <thead class="bg-slate-50">
@@ -3217,14 +3277,29 @@
                     <b>Tín hiệu thực tế:</b> ${l.intent_signals}
                 </div>
 
-                <div class="flex items-center gap-2 pt-1">
-                    <label class="text-[11px] font-bold text-slate-700 whitespace-nowrap">Trọng tâm tiếp thị:</label>
-                    <select id="pitch-sku-select" class="flex-1 bg-slate-50 border border-slate-300 rounded px-2 py-1 text-xs outline-none font-semibold text-slate-800">
-                        <option value="DION-CAL-MOM">Sản phẩm mũi nhọn: Canxi Tảo Đỏ Cal-Mom (Hero SKU)</option>
-                        <option value="DION-D3-1000">Sản phẩm mũi nhọn: Vitamin D3 1000IU Nhỏ Giọt</option>
-                        <option value="DION-FE-PLUS">Sản phẩm mũi nhọn: Sắt Hữu Cơ Fero-Plus</option>
-                        <option value="COMPANY_PORTFOLIO">Hồ sơ Năng lực Công ty & Toàn bộ Danh mục DION</option>
-                    </select>
+                <!-- CẬP NHẬT TRẠNG THÁI THỰC ĐỊA & TRỌNG TÂM TIẾP THỊ -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                    <div class="space-y-1">
+                        <label class="text-[11px] font-bold text-slate-700">Trạng thái vận hành thực tế:</label>
+                        <select onchange="approveLeadAction('${l.lead_id}', this.value)" class="w-full bg-white border border-slate-300 rounded px-2 py-1.5 text-xs outline-none font-bold text-slate-800">
+                            <option value="ACTIVE_CLIENT" ${l.status === 'ACTIVE_CLIENT' ? 'selected' : ''}>🟢 Đang nhập hàng (Khách ruột)</option>
+                            <option value="IN_PROGRESS" ${l.status === 'IN_PROGRESS' ? 'selected' : ''}>🟡 Đang chào mẫu & báo giá</option>
+                            <option value="APPROVED" ${l.status === 'APPROVED' ? 'selected' : ''}>🔵 Đã duyệt hợp đồng</option>
+                            <option value="NEW" ${l.status === 'NEW' ? 'selected' : ''}>⚪ Chưa tiếp cận (Mới)</option>
+                            <option value="FOLLOW_UP" ${l.status === 'FOLLOW_UP' ? 'selected' : ''}>🟣 Hẹn chăm sóc lại sau</option>
+                            <option value="REJECTED" ${l.status === 'REJECTED' ? 'selected' : ''}>🔴 Tạm hoãn / Từ chối</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[11px] font-bold text-slate-700">Mặt hàng chào bán (Hero SKU):</label>
+                        <select id="pitch-sku-select" class="w-full bg-white border border-slate-300 rounded px-2 py-1.5 text-xs outline-none font-semibold text-slate-800">
+                            <option value="DION-CAL-MOM">Sản phẩm: Canxi Tảo Đỏ Cal-Mom (Hero SKU)</option>
+                            <option value="DION-D3-1000">Sản phẩm: Vitamin D3 1000IU Nhỏ Giọt</option>
+                            <option value="DION-FE-PLUS">Sản phẩm: Sắt Hữu Cơ Fero-Plus</option>
+                            <option value="COMPANY_PORTFOLIO">Hồ sơ Năng lực Toàn bộ Danh mục DION</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="flex flex-wrap gap-2 pt-1">
@@ -3234,15 +3309,20 @@
                     <button onclick="inspectLeadAiInsights('${l.lead_id}')" class="py-2 px-3 bg-purple-700 hover:bg-purple-800 text-white font-bold rounded text-xs transition flex items-center gap-1 shadow-2xs">
                         🧠 AI Phân Tích SWOT
                     </button>
-                    <button onclick="approveLeadAction('${l.lead_id}', 'APPROVED')" class="px-3 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs transition shadow-2xs">
-                        Duyệt
-                    </button>
                 </div>
 
                 <div id="lead-ai-insights-area" class="space-y-2 pt-1"></div>
                 <div id="pitch-output-area" class="space-y-2 pt-2"></div>
             `;
+
+            setTimeout(() => {
+                const pitchSkuSelect = document.getElementById('pitch-sku-select');
+                if (pitchSkuSelect && l.recommended_sku) {
+                    pitchSkuSelect.value = l.recommended_sku;
+                }
+            }, 0);
         }
+
 
         async function inspectLeadAiInsights(leadId) {
             const area = document.getElementById('lead-ai-insights-area');
@@ -3493,9 +3573,10 @@
         }
 
         function downloadLeadsCSV() {
-            let csv = "Mã,Tên đơn vị,Địa chỉ,Điện thoại,Điểm phù hợp,Trạng thái\n";
+            let csv = "Mã,Tên đơn vị,Địa chỉ,Điện thoại,Mặt hàng nên chào,Điểm phù hợp,Trạng thái\n";
             leadsArr.forEach(l => {
-                csv += `"${l.lead_id}","${l.name}","${l.address}","${l.phone}","${l.fit_score}","${l.status}"\n`;
+                const skuName = l.recommended_sku_name || l.recommended_sku || '';
+                csv += `"${l.lead_id}","${l.name}","${l.address}","${l.phone}","${skuName}","${l.fit_score}","${l.status}"\n`;
             });
             const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
