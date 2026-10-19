@@ -304,7 +304,7 @@ def auto_fix_compliance(text: str, sku: str = "DION-CAL-MOM") -> Dict[str, Any]:
     for old_w, new_w in replacements_chain:
         if re.search(re.escape(old_w), fixed_text, flags=re.IGNORECASE):
             fixed_text = re.sub(re.escape(old_w), new_w, fixed_text, flags=re.IGNORECASE)
-            changes_made.append(f"Chuẩn hóa '{old_w}' ➔ '{new_w}'")
+            changes_made.append(f"Chuẩn hóa '{old_w}' -> '{new_w}'")
 
     # Kiểm tra đối tượng phụ nữ mang thai đối với sản phẩm dòng MOM
     is_mom = product and ("mom" in product.get("sku", "").lower() or "mom" in product.get("name", "").lower())
@@ -338,10 +338,38 @@ def generate_marketing_draft(sku: str, channel: str = "Facebook Post", tone: str
     if not claims:
         return {"error": "Sản phẩm hiện không có Claim thương mại nào còn hiệu lực"}
         
-    bullets = "\n".join([f"• {c['claim_text']}" for c in claims])
-    disclaimer = product.get("mandatory_disclaimer", "")
+    bullets = "\n".join([f"- {c['claim_text']}" for c in claims])
+    disclaimer = product.get("mandatory_disclaimer", "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.")
     
-    draft = f"""GIẢI PHÁP BỔ SUNG VI CHẤT TỪ {product['name'].upper()}
+    # KỊCH BẢN VIDEO NGẮN TIKTOK (Yêu cầu khảo sát Vistafa: 1-2 video/ngày)
+    if "tiktok" in channel.lower():
+        p_name = product['name']
+        draft = f"""KỊCH BẢN VIDEO NGẮN TIKTOK (THỜI LƯỢNG 45-60 GIÂY)
+SẢN PHẨM: {p_name.upper()}
+ĐỊNH DẠNG: Video ngắn dọc 9:16 • MỤC TIÊU: Giáo dục kiến thức vi chất & Chuyển đổi quầy thuốc
+
+[00:00 - 00:03] HOOK (MỞ MÀN GIẬT TÍT 3 GIÂY ĐẦU)
+- Lời thoại: "Dừng lại 3 giây nếu bạn đang uống vi chất bổ sung nhưng cơ thể vẫn mệt mỏi và nóng trong!"
+- Góc quay & Hành động: Cận cảnh Dược sĩ cầm hộp sản phẩm, nét mặt nghiêm túc, chữ to giật tít trên màn hình: '3 SAI LẦM KHIẾN VI CHẤT KHÔNG HẤP THU'.
+
+[00:04 - 00:15] VẤN ĐỀ & ĐIỂM ĐAU CỦA NGƯỜI XEM
+- Lời thoại: "Rất nhiều người chọn sản phẩm chỉ nhìn vào hàm lượng mà quên mất độ tan và sinh khả dụng. Hậu quả là vừa tốn tiền vừa bị táo bón, cồn cào dạ dày hoặc lắng cặn."
+- Góc quay: Quay b-roll minh họa cốc nước đục, biểu đồ hấp thu kém của khoáng vô cơ.
+
+[00:16 - 00:45] GIẢI PHÁP & CƠ CHẾ KHOA HỌC CHUẨN CỤC ATTP
+- Lời thoại: "Giải pháp khoa học nằm ở công thức sinh học chuẩn hóa của {p_name}:
+{bullets}
+Nhờ đó cơ thể hấp thu êm dịu, không gây gánh nặng lên thận và đường ruột."
+- Góc quay: Cận cảnh viên nang/bột hòa tan, đồ họa 3D mô phỏng phân tử vi bao thẩm thấu nhanh qua niêm mạc ruột. Chèn text số ĐKSP: {product.get('registration_number', 'Đã cấp phép')}.
+
+[00:46 - 00:60] LỜI KÊU GỌI HÀNH ĐỘNG (CTA) & KHUYẾN CÁO PHÁP LÝ
+- Lời thoại: "Hãy kiểm tra lại nhãn sản phẩm của bạn ngay hôm nay. Bình luận tình trạng của bạn bên dưới hoặc ghé nhà thuốc gần nhất để được Dược sĩ tư vấn đúng phác đồ nhé!"
+- Khuyến cáo hiển thị chân trang (bắt buộc theo NĐ 15/2018):
+---
+KHUYẾN CÁO BẮT BUỘC: {disclaimer}
+"""
+    else:
+        draft = f"""GIẢI PHÁP BỔ SUNG VI CHẤT TỪ {product['name'].upper()}
 
 Bổ sung vi chất đúng cách là chìa khóa giúp duy trì thể trạng dẻo dai và nâng cao chất lượng cuộc sống.
 
@@ -355,7 +383,7 @@ KHUYẾN NGHỊ: Tham khảo tư vấn từ cán bộ y tế trước khi bổ s
 ---
 KHUYẾN CÁO BẮT BUỘC: {disclaimer}
 """
-    audit = deep_audit_radar(draft)
+    audit = deep_audit_radar(draft, sku=sku)
     
     return {
         "sku": sku,

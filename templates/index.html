@@ -278,6 +278,9 @@
                                 <option value="DION-CAL-MOM" selected>DION Cal-Mom Plus & D3 K2 (Canxi Tảo Đỏ)</option>
                                 <option value="DION-D3-1000">DION Vitamin D3 1000IU Drops (Nhỏ Giọt)</option>
                                 <option value="DION-FE-FOLIC">DION Fero-Plus (Sắt Hữu Cơ & Quatrefolic)</option>
+                                <option value="VISTAFA-COLLAGEN">VISTAFA Collagen Peptides 5000mg NMN & Glutathione</option>
+                                <option value="VISTAFA-CALCI">VISTAFA Canxi Hữu Cơ Tảo Biển Aquamin F & D3 K2</option>
+                                <option value="VISTAFA-SLEEP">VISTAFA Good Night Melatonin & L-Theanine</option>
                             </select>
                         </div>
 
@@ -343,6 +346,25 @@
                     <button onclick="pickAdPreset(4)" class="px-3 py-1.5 rounded bg-amber-50 text-amber-900 border border-amber-200 text-xs font-bold hover:bg-amber-100 transition shadow-2xs">
                         Ca 4: Trị dứt điểm loãng xương sau 2 tuần
                     </button>
+                    <button onclick="pickAdPreset(5)" class="px-3 py-1.5 rounded bg-blue-50 text-blue-900 border border-blue-200 text-xs font-bold hover:bg-blue-100 transition shadow-2xs">
+                        Ca 5: [Vistafa] Kịch bản Video TikTok 45-60s
+                    </button>
+                </div>
+
+                <!-- Hàng 4: Bộ sinh bản nháp truyền thông đa kênh AI (TikTok 1-2 video/ngày, Fanpage, Zalo OA) -->
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 bg-slate-50/70 p-2.5 rounded-lg">
+                    <div class="flex items-center gap-2 flex-wrap text-xs">
+                        <span class="font-bold text-slate-800 uppercase tracking-wide">AI Tạo Bản Thảo Truyền Thông (Vistafa):</span>
+                        <select id="ad-content-channel" class="bg-white border border-slate-300 rounded-md px-2.5 py-1.5 text-xs font-semibold text-slate-800 outline-none focus:border-corp-800">
+                            <option value="TikTok Video (1-2 video/ngày)" selected>TikTok Short Video (45-60s: Hook, Điểm đau, Cơ chế vi chất, CTA)</option>
+                            <option value="Facebook Post">Facebook Post (Fanpage Vistafa - Chuẩn XNQC ATTP)</option>
+                            <option value="Zalo OA">Zalo OA (Bài viết tư vấn chuyên môn Dược sĩ)</option>
+                        </select>
+                        <button type="button" id="btn-generate-ai-draft" onclick="generateAiMarketingDraft()" class="px-3.5 py-1.5 rounded-md bg-corp-800 hover:bg-corp-900 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-2xs cursor-pointer">
+                            <span>AI Sinh Bản Thảo & Kịch Bản</span>
+                        </button>
+                    </div>
+                    <span class="text-[11px] text-slate-500 font-medium">Tự động gắn Claims ATTP, cảnh báo NĐ 342 và khung kịch bản video</span>
                 </div>
 
                 <!-- Modal Cấu hình API Key (Ẩn mặc định) -->
@@ -1038,19 +1060,23 @@
                 </div>
             </div>
 
-            <!-- THANH ĐIỀU HƯỚNG 3 PHÂN HỆ NỘI BỘ TAB 5 -->
+            <!-- THANH ĐIỀU HƯỚNG 4 PHÂN HỆ NỘI BỘ TAB 5 (BAO GỒM POC VISTAFA) -->
             <div class="flex flex-wrap items-center justify-between border-b border-slate-200 bg-white rounded-xl p-2 gap-2 shadow-xs">
-                <div class="flex items-center gap-2">
-                    <button type="button" onclick="setCareSubTab('tasks')" id="btn-care-sub-tasks" class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-corp-700 text-white shadow-xs cursor-pointer">
-                        <span class="pointer-events-none">1. CÔNG VIỆC CHĂM SÓC</span>
-                        <span id="care-sub-task-count" class="px-1.5 py-0.2 rounded-full text-[10px] bg-white/20 font-mono pointer-events-none">0</span>
+                <div class="flex items-center gap-2 flex-wrap">
+                    <button type="button" onclick="setCareSubTab('caresoft')" id="btn-care-sub-caresoft" class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-corp-800 text-white shadow-xs cursor-pointer">
+                        <span class="pointer-events-none">[POC VISTAFA] 1. TIẾP NHẬN LEAD CARESOFT</span>
+                        <span id="cs-sub-lead-count" class="px-1.5 py-0.2 rounded-full text-[10px] bg-white/20 font-mono pointer-events-none">0</span>
+                    </button>
+                    <button type="button" onclick="setCareSubTab('tasks')" id="btn-care-sub-tasks" class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer">
+                        <span class="pointer-events-none">2. CÔNG VIỆC CHĂM SÓC (30 NGÀY)</span>
+                        <span id="care-sub-task-count" class="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-200 font-mono pointer-events-none">0</span>
                     </button>
                     <button type="button" onclick="setCareSubTab('history')" id="btn-care-sub-history" class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer">
-                        <span class="pointer-events-none">2. KHÁCH HÀNG & LỊCH SỬ</span>
+                        <span class="pointer-events-none">3. KHÁCH HÀNG & LỊCH SỬ</span>
                         <span id="care-sub-cust-count" class="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-200 font-mono pointer-events-none">0</span>
                     </button>
                     <button type="button" onclick="setCareSubTab('sources')" id="btn-care-sub-sources" class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer">
-                        <span class="pointer-events-none">3. NGUỒN DỮ LIỆU</span>
+                        <span class="pointer-events-none">4. NGUỒN DỮ LIỆU</span>
                         <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-emerald-100 text-emerald-800 font-mono pointer-events-none">3 Sẵn sàng</span>
                     </button>
                 </div>
@@ -1062,9 +1088,150 @@
             </div>
 
             <!-- ============================================================ -->
-            <!-- PHÂN HỆ 1: CÔNG VIỆC CHĂM SÓC -->
+            <!-- PHÂN HỆ 0: TIẾP NHẬN ĐẦU VÀO & PHÂN LOẠI LEAD CARESOFT (VISTAFA POC) -->
             <!-- ============================================================ -->
-            <div id="care-subview-tasks" class="space-y-4">
+            <div id="care-subview-caresoft" class="space-y-4">
+                <!-- A. BANNER CHỈ SỐ KPI CHUYỂN ĐỔI CARESOFT -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <div class="bg-white rounded-xl border border-blue-200 p-3.5 shadow-xs flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Tổng Lead tiếp nhận</span>
+                            <span id="cs-stat-total" class="text-2xl font-black text-blue-700 font-mono">0</span>
+                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center font-bold text-xs uppercase font-mono">ĐA KÊNH</div>
+                    </div>
+                    <div class="bg-white rounded-xl border border-emerald-200 p-3.5 shadow-xs flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Tỉ lệ lấy được SĐT</span>
+                            <span id="cs-stat-phone-rate" class="text-2xl font-black text-emerald-700 font-mono">0%</span>
+                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold text-xs uppercase font-mono">SĐT</div>
+                    </div>
+                    <div class="bg-white rounded-xl border border-rose-200 p-3.5 shadow-xs flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Lead Nóng (HOT Leads)</span>
+                            <span id="cs-stat-hot" class="text-2xl font-black text-rose-700 font-mono">0</span>
+                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-rose-50 text-rose-700 flex items-center justify-center font-bold text-xs uppercase font-mono">HOT</div>
+                    </div>
+                    <div class="bg-white rounded-xl border border-purple-200 p-3.5 shadow-xs flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] font-bold text-slate-500 uppercase block tracking-wider">Đã chốt đơn CareSoft</span>
+                            <span id="cs-stat-converted" class="text-2xl font-black text-purple-700 font-mono">0</span>
+                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-700 flex items-center justify-center font-bold text-xs uppercase font-mono">ĐÃ CHỐT</div>
+                    </div>
+                </div>
+
+                <!-- B. VÙNG THỬ NGHIỆM MÔ PHỎNG TIẾP NHẬN HỘI THOẠI (SIMULATION & TRIAGE) -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4 space-y-3">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2.5">
+                        <div>
+                            <h3 class="font-bold text-xs text-slate-900 uppercase tracking-wide">Mô Phỏng Tiếp Nhận Hội Thoại Khách Hàng (First-Touch Chat Triage)</h3>
+                            <p class="text-[11px] text-slate-500">AI tự động bóc tách SĐT, xác định sản phẩm, phân loại nhu cầu và tạo thẻ tóm tắt 5s cho CareSoft</p>
+                        </div>
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="text-[10px] font-bold text-slate-500 uppercase">Tình huống Vistafa:</span>
+                            <button type="button" onclick="loadCareSoftScenario(1)" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold transition">1. Calci Complex (Bầu + SĐT)</button>
+                            <button type="button" onclick="loadCareSoftScenario(2)" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold transition">2. Collagen (Sợ tăng cân + SĐT)</button>
+                            <button type="button" onclick="loadCareSoftScenario(3)" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold transition">3. Sleep Well (Mất ngủ 2 năm + SĐT)</button>
+                            <button type="button" onclick="loadCareSoftScenario(4)" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold transition">4. Chỉ hỏi giá (Chưa SĐT)</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
+                        <!-- Cột nhập đoạn chat (7 cột) -->
+                        <div class="lg:col-span-7 space-y-2.5">
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <div>
+                                    <label class="block font-bold text-slate-700 mb-1">Kênh tiếp nhận:</label>
+                                    <select id="cs-triage-channel" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 font-medium focus:border-corp-700 outline-none text-xs">
+                                        <option value="FACEBOOK" selected>Facebook Fanpage Vistafa</option>
+                                        <option value="ZALO_OA">Zalo Official Account</option>
+                                        <option value="WEBSITE_CHAT">Website Chatbot (Vistafa.vn)</option>
+                                        <option value="HOTLINE">Tổng đài Hotline CareSoft</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-slate-700 mb-1">Tên khách hàng (hoặc profile name):</label>
+                                    <input type="text" id="cs-triage-name" placeholder="VD: Nguyễn Thị Thu Trang (để trống nếu chưa rõ)" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 font-medium focus:border-corp-700 outline-none text-xs">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-1 text-xs">Nội dung tin nhắn khách hàng gửi đến:</label>
+                                <textarea id="cs-triage-text" rows="4" placeholder="Dán nội dung tin nhắn hoặc chat của khách hàng tại đây..." class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-xs font-medium focus:border-corp-700 outline-none resize-none leading-relaxed"></textarea>
+                            </div>
+
+                            <div class="flex justify-between items-center pt-1">
+                                <span class="text-[10px] text-slate-500">Thuật toán: Regex + NLP phân tích thực thể y dược</span>
+                                <button type="button" id="btn-run-cs-triage" onclick="submitCareSoftTriage()" class="px-4 py-2 rounded-lg bg-corp-800 hover:bg-corp-900 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-2xs cursor-pointer">
+                                    <span>AI Phân Tích & Bóc Tách Lead Ngay</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Cột hiển thị kết quả phân tích Triage (5 cột) -->
+                        <div class="lg:col-span-5 bg-slate-50 rounded-xl border border-slate-200 p-3.5 space-y-2.5 min-h-[200px]" id="cs-triage-result-card">
+                            <div class="text-center py-8 text-slate-400 text-xs">
+                                Chọn một mẫu tình huống bên trên hoặc dán tin nhắn rồi nhấn <b>'AI Phân Tích & Bóc Tách Lead Ngay'</b> để xem kết quả.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C. BẢNG DANH SÁCH LEAD CARESOFT ĐÃ SẴN SÀNG CHỐT ĐƠN -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+                    <div class="px-4 py-3 bg-slate-50 border-b border-slate-200 flex flex-wrap justify-between items-center gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-xs text-slate-800 uppercase tracking-wide">Danh Sách Lead Tương Thích Phần Mềm Bán Hàng CareSoft</span>
+                            <span id="cs-table-badge-count" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-800 font-mono">0 Leads</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <select id="cs-filter-score" onchange="loadCareSoftLeadsTable()" class="bg-white border border-slate-300 text-slate-700 text-xs font-bold rounded-lg px-2.5 py-1.5 outline-none">
+                                <option value="ALL" selected>Tất cả độ nóng</option>
+                                <option value="HOT">Lead Nóng (HOT)</option>
+                                <option value="WARM">Lead Ấm (WARM)</option>
+                                <option value="COLD">Lead Lạnh (COLD)</option>
+                            </select>
+                            <button type="button" onclick="downloadCareSoftCsvExport()" class="px-3.5 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-2xs cursor-pointer">
+                                <span>Xuất File CareSoft (CSV/Excel)</span>
+                            </button>
+                            <button type="button" onclick="loadCareSoftLeadsTable()" class="px-2.5 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-600 hover:text-slate-900 font-bold text-xs transition" title="Làm mới bảng">
+                                Làm mới
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-slate-100/80 border-b border-slate-200 text-slate-600 font-bold text-[11px] uppercase tracking-wider">
+                                    <th class="py-2.5 px-3">Mã Lead</th>
+                                    <th class="py-2.5 px-3">Khách Hàng & SĐT</th>
+                                    <th class="py-2.5 px-3">Kênh</th>
+                                    <th class="py-2.5 px-3">Sản Phẩm Quan Tâm</th>
+                                    <th class="py-2.5 px-3">Phân Loại Nhu Cầu</th>
+                                    <th class="py-2.5 px-3 text-center">Độ Nóng (Score)</th>
+                                    <th class="py-2.5 px-3">Tóm Tắt 5s CareSoft</th>
+                                    <th class="py-2.5 px-3 text-center">Trạng Thái</th>
+                                    <th class="py-2.5 px-3 text-right">Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cs-leads-table-body" class="divide-y divide-slate-100 font-medium text-slate-700">
+                                <tr>
+                                    <td colspan="9" class="text-center py-6 text-slate-400">Đang tải dữ liệu CareSoft Leads...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- PHÂN HỆ 2: CÔNG VIỆC CHĂM SÓC -->
+            <!-- ============================================================ -->
+            <div id="care-subview-tasks" class="space-y-4 hidden" style="display: none;">
                 <!-- 2. QUY ĐỊNH TUÂN THỦ PHÁP LÝ & CƠ CHẾ KHÓA -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div class="bg-white rounded-xl border border-slate-200 p-3 shadow-xs flex items-center justify-between gap-3">
@@ -2385,6 +2552,93 @@
                 </div>
             </div>
 
+            <!-- ============================================================ -->
+            <!-- MODAL 10: CHI TIẾT TICKET LEAD CARESOFT & KỊCH BẢN GỌI TELESALE -->
+            <!-- ============================================================ -->
+            <div id="care-modal-cs-ticket" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-2xs flex items-center justify-center p-4 hidden">
+                <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-slate-200 p-5 space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-xs">CARE</div>
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-900">Thẻ Ticket Lead — CareSoft Contact Center</h3>
+                                <p class="text-[11px] text-slate-500 font-mono" id="cs-modal-lead-id">LEAD-CS-XXXXXX</p>
+                            </div>
+                        </div>
+                        <button onclick="closeCareSoftTicketModal()" class="text-slate-400 hover:text-slate-600 font-bold text-lg p-1 cursor-pointer">✕</button>
+                    </div>
+
+                    <div class="space-y-3 text-xs">
+                        <div class="grid grid-cols-2 gap-2 p-3 bg-slate-50 border border-slate-200 rounded-xl">
+                            <div>
+                                <span class="text-[10px] font-bold text-slate-400 uppercase block">Khách hàng:</span>
+                                <span id="cs-modal-name" class="font-bold text-slate-900 text-xs"></span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-bold text-slate-400 uppercase block">Số điện thoại:</span>
+                                <span id="cs-modal-phone" class="font-bold text-emerald-700 text-xs font-mono"></span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-bold text-slate-400 uppercase block">Kênh tiếp nhận:</span>
+                                <span id="cs-modal-channel" class="font-semibold text-slate-700"></span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-bold text-slate-400 uppercase block">Độ nóng / Score:</span>
+                                <span id="cs-modal-score" class="font-bold"></span>
+                            </div>
+                            <div class="col-span-2">
+                                <span class="text-[10px] font-bold text-slate-400 uppercase block">Sản phẩm quan tâm:</span>
+                                <span id="cs-modal-product" class="font-bold text-corp-800"></span>
+                            </div>
+                        </div>
+
+                        <!-- Đoạn chat gốc -->
+                        <div>
+                            <span class="font-bold text-slate-700 mb-1 block">Tin nhắn khách gửi:</span>
+                            <div id="cs-modal-chat" class="p-2.5 rounded-lg bg-slate-100 text-slate-700 text-[11.5px] italic leading-relaxed border border-slate-200"></div>
+                        </div>
+
+                        <!-- Thẻ tóm tắt 5s CareSoft -->
+                        <div class="p-3 rounded-xl bg-blue-50/70 border border-blue-200 space-y-2">
+                            <div class="font-bold text-blue-900 text-[11px] uppercase tracking-wide">Tóm tắt 5s cho nhân viên trước khi gọi:</div>
+                            <div id="cs-modal-summary" class="text-slate-800 font-medium text-xs leading-relaxed"></div>
+                            <div class="text-[11px] text-slate-600 pt-1 border-t border-blue-100">
+                                <b>Nỗi lo / Rào cản chính:</b> <span id="cs-modal-painpoint"></span>
+                            </div>
+                        </div>
+
+                        <!-- Kịch bản Telesale đề xuất -->
+                        <div class="p-3 rounded-xl bg-purple-50/80 border border-purple-200 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-purple-900 text-[11px] uppercase tracking-wide">Kịch bản Telesale gợi ý khi bốc máy:</span>
+                                <button onclick="copyModalTelesaleScript()" class="px-2 py-0.5 rounded bg-purple-700 hover:bg-purple-800 text-white font-bold text-[10px] transition cursor-pointer">Sao chép</button>
+                            </div>
+                            <div id="cs-modal-script" class="text-purple-950 font-medium text-xs leading-relaxed select-all"></div>
+                        </div>
+
+                        <!-- Cập nhật trạng thái CareSoft -->
+                        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 items-center">
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-0.5 text-[11px]">Trạng thái xử lý:</label>
+                                <select id="cs-modal-status-select" class="w-full bg-slate-50 border border-slate-300 rounded p-1.5 text-xs font-semibold outline-none">
+                                    <option value="NEW">MỚI (Chưa xử lý)</option>
+                                    <option value="ASSIGNED">ĐÃ PHÂN BỔ TELESALE</option>
+                                    <option value="CONVERTED">ĐÃ CHỐT ĐƠN THÀNH CÔNG</option>
+                                    <option value="LOST">THẤT BẠI / TỪ CHỐI</option>
+                                </select>
+                            </div>
+                            <div class="pt-4 text-right">
+                                <button type="button" onclick="saveCareSoftLeadStatusFromModal()" class="px-4 py-1.5 rounded-lg bg-corp-800 hover:bg-corp-900 text-white font-bold text-xs transition cursor-pointer">Lưu trạng thái</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end pt-2 border-t border-slate-100">
+                        <button type="button" onclick="closeCareSoftTicketModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-bold transition cursor-pointer">Đóng</button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Toast Notification Container -->
             <div id="care-toast-container" class="fixed top-20 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
@@ -3204,7 +3458,10 @@
             document.getElementById('btn-' + tabId).classList.add('tab-btn-active');
 
             if (tabId === 'market') fetchMarketIntelligence();
-            if (tabId === 'care') fetchCustomerCare();
+            if (tabId === 'care') {
+                fetchCustomerCare();
+                if (typeof loadCareSoftLeadsTable === 'function') loadCareSoftLeadsTable();
+            }
             if (tabId === 'research') fetchResearchEvidence();
             if (tabId === 'copilot') checkCopilotStatusBadge();
         }
@@ -4141,7 +4398,8 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                     1: "Được Cục An toàn thực phẩm chứng nhận: Canxi Tảo Đỏ Cal-Mom đánh tan sỏi thận và điều trị thoái hóa cột sống chỉ sau 7 ngày!\n\nTối ưu hóa khả năng hấp thu gấp 10.000 lần canxi thông thường, không tác dụng phụ, không đỡ hoàn tiền 100%. Nhắn tin ngay để được bác sĩ viện quân y tư vấn phác đồ điều trị dứt điểm!\n\n---\nThực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
                     2: "Chia tay nỗi lo thoái hóa khớp cùng Canxi Cal-Mom từ lương y 3 đời!\n\nBác sĩ đầu ngành Viện Quân Y cũng phải ngạc nhiên trước khả năng hồi sinh sụn khớp của sản phẩm này. Chú Ba (62 tuổi, Đống Đa) từng suýt liệt giường vì đau nhức, nay sau 2 tuần uống đã leo cầu thang thoăn thoắt. Đừng để biến chứng teo cơ, tàn phế gõ cửa rồi mới lo chữa! Uống là thấy khác, không đỡ xin hoàn tiền 100%!",
                     3: "GIẢI PHÁP CHĂM SÓC SỨC KHỎE XƯƠNG RĂNG & VI CHẤT DINH DƯỠNG TỪ TPBVSK DION CAL-MOM PLUS & D3 K2\n\nBổ sung vi chất đúng cách là chìa khóa duy trì thể trạng dẻo dai và nâng cao chất lượng cuộc sống cho cả gia đình.\n\nCÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO (XNQC):\n• Hỗ trợ bổ sung Canxi sinh học từ tảo biển đỏ Lithothamnion và Vitamin D3 K2 MK-7 chất lượng cao.\n• Hỗ trợ tăng cường sức khỏe xương răng, hỗ trợ giảm nguy cơ loãng xương ở người lớn và hỗ trợ đáp ứng nhu cầu Canxi tăng cao cho phụ nữ mang thai.\n• Hỗ trợ tăng cường khả năng hấp thu Canxi và khoáng chất, an toàn và lành tính cho dạ dày khi sử dụng đều đặn.\n\nTIÊU CHUẨN SẢN XUẤT ĐẠT CHUẨN GMP QUỐC TẾ:\nSản phẩm ứng dụng công nghệ vi bao hiện đại, được kiểm soát chất lượng nghiêm ngặt theo tiêu chuẩn ISO 22000.\n\nĐỐI TƯỢNG SỬ DỤNG:\nPhụ nữ chuẩn bị mang thai, đang mang thai và cho con bú; người lớn tuổi, người có nguy cơ loãng xương theo khuyến nghị.\n\nLiên hệ đội ngũ Dược sĩ tư vấn chuyên môn để được hướng dẫn sử dụng khoa học!\n---\nKhuyến cáo: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
-                    4: "Sản phẩm Vitamin D3 1000IU cam kết chữa bệnh loãng xương và khỏi hẳn đau nhức khớp sau 2 tuần sử dụng! Hiệu quả 100% không tái phát.\nNhắn tin ngay để được bác sĩ tư vấn liều dùng điều trị dứt điểm!"
+                    4: "Sản phẩm Vitamin D3 1000IU cam kết chữa bệnh loãng xương và khỏi hẳn đau nhức khớp sau 2 tuần sử dụng! Hiệu quả 100% không tái phát.\nNhắn tin ngay để được bác sĩ tư vấn liều dùng điều trị dứt điểm!",
+                    5: "KỊCH BẢN VIDEO NGẮN TIKTOK (THỜI LƯỢNG 45-60 GIÂY)\nSẢN PHẨM: DION CAL-MOM PLUS & D3 K2 (CANXI TẢO ĐỎ)\nĐỊNH DẠNG: Video ngắn dọc 9:16 • MỤC TIÊU: Giáo dục vi chất thai kỳ & Chuyển đổi quầy thuốc\n\n[00:00 - 00:03] HOOK (MỞ MÀN GIẬT TÍT 3 GIÂY ĐẦU)\n- Lời thoại: \"Dừng lại 3 giây nếu bạn đang mang thai mà đêm nào cũng bị chuột rút và đau lưng!\"\n- Góc quay: Cận cảnh Dược sĩ cầm hộp Cal-Mom, chữ to: '3 SAI LẦM KHI BỔ SUNG CANXI THAI KỲ'.\n\n[00:04 - 00:15] VẤN ĐỀ & ĐIỂM ĐAU CỦA NGƯỜI XEM\n- Lời thoại: \"Uống canxi vô cơ khó tan vừa gây cồn cào dạ dày, vừa gây táo bón và lắng cặn sỏi thận. Thai nhi thì vẫn thiếu canxi để phát triển khung xương.\"\n- Góc quay: B-roll minh họa cốc nước canxi vô cơ đục ngầu lắng cặn dưới đáy.\n\n[00:16 - 00:45] GIẢI PHÁP & CƠ CHẾ KHOA HỌC CHUẨN CỤC ATTP\n- Lời thoại: \"Giải pháp là Canxi sinh học từ tảo biển đỏ Lithothamnion:\n- Hỗ trợ bổ sung Canxi sinh học hữu cơ và Vitamin D3 K2 MK-7 chất lượng cao.\n- Hỗ trợ tăng cường sức khỏe xương răng và đáp ứng nhu cầu Canxi cho mẹ mang thai.\n- Sinh khả dụng cao gấp 2.4 lần, êm dịu dạ dày, giảm 94% táo bón thai kỳ.\"\n- Góc quay: Cận cảnh viên nang mềm, đồ họa 3D mô phỏng phân tử canxi gắn D3 K2 vận chuyển thẳng vào xương.\n\n[00:46 - 00:60] CTA & KHUYẾN CÁO PHÁP LÝ\n- Lời thoại: \"Bình luận tuần thai của bạn bên dưới hoặc ghé nhà thuốc gần nhất để được Dược sĩ hướng dẫn bổ sung chuẩn liều nhé!\"\n---\nKHUYẾN CÁO BẮT BUỘC: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
                 }
             },
             "DION-D3-1000": {
@@ -4157,7 +4415,8 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                     1: "Thực phẩm này cam kết chữa khỏi bệnh loãng xương và bách bệnh chỉ sau 7 ngày!\nBác sĩ viện quân y khuyên dùng thay thế hoàn toàn thuốc tây.\n---\nThực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
                     2: "Chia tay nỗi lo thoái hóa khớp cùng Vitamin D3 nhỏ giọt từ lương y gia truyền!\nKhông đỡ xin hoàn tiền 100%!",
                     3: "Thực Phẩm Bảo Vệ Sức Khỏe Vitamin D3 1000IU hỗ trợ tăng cường hấp thu Canxi và Photpho, hỗ trợ duy trì xương răng chắc khỏe mỗi ngày.\nThích hợp cho người lớn có nhu cầu bổ sung vi chất dinh dưỡng.\n---\nThực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
-                    4: "Sản phẩm Vitamin D3 1000IU cam kết chữa bệnh loãng xương và khỏi hẳn đau nhức khớp sau 2 tuần sử dụng! Hiệu quả 100% không tái phát.\nNhắn tin ngay để được bác sĩ tư vấn liều dùng điều trị dứt điểm!"
+                    4: "Sản phẩm Vitamin D3 1000IU cam kết chữa bệnh loãng xương và khỏi hẳn đau nhức khớp sau 2 tuần sử dụng! Hiệu quả 100% không tái phát.\nNhắn tin ngay để được bác sĩ tư vấn liều dùng điều trị dứt điểm!",
+                    5: "KỊCH BẢN VIDEO NGẮN TIKTOK (THỜI LƯỢNG 45-60 GIÂY)\nSẢN PHẨM: VITAMIN D3 1000IU DROPS\nĐỊNH DẠNG: Video ngắn dọc 9:16 • MỤC TIÊU: Giáo dục hấp thu Canxi\n\n[00:00 - 00:03] HOOK:\n\"Uống canxi cả năm mà xương vẫn loãng? Đây là lý do bạn đang thiếu D3!\"\n\n[00:04 - 00:15] VẤN ĐỀ:\n\"Nếu không có Vitamin D3 dẫn đường, chỉ có 10% lượng Canxi bạn uống được hấp thu vào máu, phần còn lại bị đào thải lãng phí.\"\n\n[00:16 - 00:45] GIẢI PHÁP:\n\"Vitamin D3 1000IU dạng nhỏ giọt chuẩn liều hỗ trợ tăng cường hấp thu Canxi và Photpho, hỗ trợ duy trì xương răng chắc khỏe.\"\n\n[00:46 - 00:60] CTA:\n\"Hỏi ý kiến Dược sĩ tại quầy thuốc gần nhất để kiểm tra nồng độ vi chất của bạn ngay hôm nay!\"\n---\nKHUYẾN CÁO BẮT BUỘC: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
                 }
             },
             "DION-FE-FOLIC": {
@@ -4173,7 +4432,59 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                     1: "Được Cục An toàn thực phẩm chứng nhận: Sắt Fero-Plus xóa sổ vĩnh viễn bệnh thiếu máu chỉ sau 3 ngày! Cam kết 100% không táo bón, không đỡ hoàn tiền ngay!",
                     2: "Chị Lan (32 tuổi, mang thai tháng thứ 5) từng hoa mắt suýt ngất xỉu, uống Fero-Plus là khỏi hẳn! Bác sĩ trưởng khoa huyết học chỉ định dùng.",
                     3: "TPBVSK DION FERO-PLUS: HỖ TRỢ TẠO MÁU VÀ GIẢM NGUY CƠ THIẾU MÁU DO THIẾU SẮT\n\nCÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO (XNQC):\n• Bổ sung Sắt hữu cơ Bisglycinate và Acid Folic (Quatrefolic) hỗ trợ quá trình tạo máu, hỗ trợ giảm nguy cơ thiếu máu do thiếu sắt.\n• Dạng sắt hữu cơ êm dịu dạ dày, hỗ trợ giảm nguy cơ táo bón và nóng trong khi sử dụng.\n\nĐỐI TƯỢNG SỬ DỤNG:\nPhụ nữ chuẩn bị mang thai, đang mang thai và cho con bú; người thiếu máu do thiếu sắt theo chỉ định.\n---\nKhuyến cáo: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
-                    4: "Sắt Fero-Plus cam kết chữa khỏi hẳn bệnh thiếu máu cho người lớn tuổi, không cần dùng thuốc tây."
+                    4: "Sắt Fero-Plus cam kết chữa khỏi hẳn bệnh thiếu máu cho người lớn tuổi, không cần dùng thuốc tây.",
+                    5: "KỊCH BẢN VIDEO NGẮN TIKTOK (THỜI LƯỢNG 45-60 GIÂY)\nSẢN PHẨM: VIÊN SẮT HỮU CƠ & QUATREFOLIC DION FERO-PLUS\nĐỊNH DẠNG: Video ngắn dọc 9:16 • MỤC TIÊU: Phòng chống thiếu máu thai kỳ\n\n[00:00 - 00:03] HOOK:\n\"Mẹ bầu hay hoa mắt, chóng mặt và sợ uống sắt vì sợ tanh nồng, táo bón?\"\n\n[00:04 - 00:15] VẤN ĐỀ:\n\"Sắt vô cơ sulphate thông thường gây kích ứng niêm mạc dạ dày, đi ngoài phân đen và buồn nôn kéo dài.\"\n\n[00:16 - 00:45] GIẢI PHÁP:\n\"Sắt hữu cơ Bisglycinate kết hợp Quatrefolic thế hệ mới hỗ trợ quá trình tạo máu, hỗ trợ giảm nguy cơ thiếu máu do thiếu sắt, êm dịu dạ dày và giảm 89% táo bón.\"\n\n[00:46 - 00:60] CTA:\n\"Nhắn tin hoặc ghé quầy thuốc gần nhất để được tư vấn phác đồ bổ sung sắt êm dịu nhé!\"\n---\nKHUYẾN CÁO BẮT BUỘC: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
+                }
+            },
+            "VISTAFA-COLLAGEN": {
+                name: "TPBVSK Vistafa Collagen Peptides 5000mg & NMN 300mg",
+                category: "Chống lão hóa & Trẻ hóa làn da",
+                regulatory_class: "Thực phẩm bảo vệ sức khỏe (TPBVSK)",
+                registration_number: "7789/2026/ĐKSP - Cục An toàn thực phẩm",
+                ad_permit_number: "2104/2026/XNQC-ATTP",
+                ingredients: "Collagen Peptides cá tuyết thủy phân 5000mg, NMN 300mg, L-Glutathione 250mg, Vitamin C 100mg",
+                target_users: "Người trưởng thành, người có dấu hiệu lão hóa da, da khô, nám sạm",
+                rct: "PMID: 35129988 (RCT n=160, tăng 38% độ đàn hồi da, giảm 26% nếp nhăn sau 8 tuần)",
+                presets: {
+                    1: "Được Cục An toàn thực phẩm chứng nhận: Collagen NMN Vistafa xóa sạch vĩnh viễn nám chân sâu và nếp nhăn chỉ sau 7 ngày!\n\nTrẻ hóa tế bào gấp 100 lần, cam kết dứt điểm lão hóa, không hiệu quả hoàn tiền 100%. Nhắn tin để được bác sĩ viện da liễu tư vấn!",
+                    2: "Chị Lan 40 tuổi da nhăn nheo như bà già 60, uống Collagen NMN Vistafa sau 1 tuần da căng bóng như gái 18! Bác sĩ bệnh viện da liễu khuyên dùng thay thế mọi loại kem bôi và thuốc điều trị nám.",
+                    3: "GIẢI PHÁP HỖ TRỢ TRẺ HÓA LÀN DA VÀ TĂNG ĐỘ ĐÀN HỒI TỪ VISTAFA COLLAGEN PEPTIDES & NMN\n\nCÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO (XNQC):\n• Hỗ trợ bổ sung Collagen Peptides thủy phân và NMN chất lượng cao cho cơ thể.\n• Hỗ trợ tăng cường độ ẩm, hỗ trợ tăng độ đàn hồi cho da và hỗ trợ giảm các biểu hiện lão hóa da.\n• Hỗ trợ chống oxy hóa, hỗ trợ làm sáng da và duy trì nét tươi trẻ.\n\nĐỐI TƯỢNG SỬ DỤNG:\nNgười trưởng thành có nhu cầu chăm sóc và làm đẹp da, người có biểu hiện da khô, nhăn nheo, sạm nám.\n---\nKhuyến cáo: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+                    4: "Collagen Peptides Vistafa cam kết điều trị dứt điểm nám nội tiết và tàn nhang sau 2 tuần, hiệu quả vĩnh viễn không tái phát.",
+                    5: "KỊCH BẢN VIDEO NGẮN TIKTOK (THỜI LƯỢNG 45-60 GIÂY)\nSẢN PHẨM: TPBVSK VISTAFA COLLAGEN PEPTIDES & NMN\nĐỊNH DẠNG: Video ngắn dọc 9:16 • MỤC TIÊU: Giáo dục cấu trúc da & Chuyển đổi quầy thuốc\n\n[00:00 - 00:03] HOOK (MỞ MÀN GIẬT TÍT 3 GIÂY ĐẦU)\n- Lời thoại: \"Dừng lại 3 giây nếu bạn đang uống collagen mỗi ngày nhưng da vẫn khô ráp và nổi mụn!\"\n- Góc quay: Cận cảnh Dược sĩ cầm hộp Vistafa Collagen, chữ to: 'SAI LẦM KHIẾN COLLAGEN KHÔNG HẤP THU'.\n\n[00:04 - 00:15] VẤN ĐỀ & ĐIỂM ĐAU CỦA NGƯỜI XEM\n- Lời thoại: \"Uống collagen phân tử lớn cơ thể không hấp thu được, lại nhiều phụ gia đường ngọt khiến nóng trong và tăng cân.\"\n- Góc quay: B-roll minh họa phân tử collagen thô bị đào thải.\n\n[00:16 - 00:45] GIẢI PHÁP & CƠ CHẾ KHOA HỌC CHUẨN CỤC ATTP\n- Lời thoại: \"Vistafa Collagen ứng dụng công nghệ thủy phân phân tử siêu nhỏ 5000mg kết hợp NMN và Glutathione:\n- Hỗ trợ bổ sung Collagen Peptides và NMN chất lượng cao.\n- Hỗ trợ tăng cường độ ẩm, độ đàn hồi cho da và hỗ trợ giảm biểu hiện lão hóa da.\n- Hỗ trợ chống oxy hóa và giúp da sáng khỏe tự nhiên.\"\n- Góc quay: Cận cảnh gói bột hòa tan trong suốt, đồ họa 3D thẩm thấu vào lớp trung bì da.\n\n[00:46 - 00:60] CTA & KHUYẾN CÁO PHÁP LÝ\n- Lời thoại: \"Bình luận độ tuổi của bạn bên dưới hoặc ghé quầy thuốc gần nhất để nhận cẩm nang trẻ hóa làn da nhé!\"\n---\nKHUYẾN CÁO BẮT BUỘC: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
+                }
+            },
+            "VISTAFA-CALCI": {
+                name: "TPBVSK Canxi Hữu Cơ Tảo Biển Vistafa Aquamin F",
+                category: "Khoáng chất xương khớp & Mẹ bầu",
+                regulatory_class: "Thực phẩm bảo vệ sức khỏe (TPBVSK)",
+                registration_number: "8190/2026/ĐKSP - Cục An toàn thực phẩm",
+                ad_permit_number: "2215/2026/XNQC-ATTP",
+                ingredients: "Canxi Aquamin F (tảo đỏ tự nhiên 800mg), Vitamin D3 400IU, Vitamin K2 MK-7 50mcg, Magie sinh học 60mg",
+                target_users: "Phụ nữ mang thai, cho con bú, người lớn tuổi có nguy cơ loãng xương, trẻ em trong độ tuổi phát triển chiều cao",
+                rct: "PMID: 34187654 (RCT n=200, hấp thu vượt trội x2.6 lần, không gây táo bón và nóng trong)",
+                presets: {
+                    1: "Được Cục An toàn thực phẩm chứng nhận: Canxi Aquamin F Vistafa chữa dứt điểm loãng xương và vôi hóa cột sống chỉ sau 5 ngày!\n\nCam kết không nóng, không táo bón, hoàn tiền 100% nếu không khỏi.",
+                    2: "Bác sĩ trưởng khoa chấn thương chỉnh hình khẳng định Canxi Vistafa giúp hồi phục xương gãy nhanh gấp 10 lần, bệnh nhân không cần dùng thêm thuốc nào khác.",
+                    3: "TPBVSK VISTAFA AQUAMIN F: BỔ SUNG CANXI HỮU CƠ TẢO BIỂN & VITAMIN D3 K2\n\nCÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO (XNQC):\n• Hỗ trợ bổ sung Canxi sinh học từ nguồn gốc tảo biển đỏ tự nhiên Aquamin F và Vitamin D3 K2.\n• Hỗ trợ tăng cường sức khỏe xương và răng, hỗ trợ giảm nguy cơ loãng xương ở người cao tuổi.\n• Hỗ trợ đáp ứng nhu cầu Canxi tăng cao cho phụ nữ chuẩn bị mang thai, đang mang thai và cho con bú.\n\nĐỐI TƯỢNG SỬ DỤNG:\nPhụ nữ mang thai, cho con bú; người lớn tuổi có nguy cơ loãng xương; thanh thiếu niên giai đoạn phát triển chiều cao.\n---\nKhuyến cáo: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+                    4: "Canxi Aquamin F Vistafa cam kết trị dứt điểm chuột rút ban đêm cho bà bầu sau 2 ngày sử dụng.",
+                    5: "KỊCH BẢN VIDEO NGẮN TIKTOK (THỜI LƯỢNG 45-60 GIÂY)\nSẢN PHẨM: TPBVSK CANXI HỮU CƠ TẢO BIỂN VISTAFA AQUAMIN F\nĐỊNH DẠNG: Video ngắn dọc 9:16 • MỤC TIÊU: Chuyển đổi mẹ bầu & Quầy thuốc\n\n[00:00 - 00:03] HOOK (MỞ MÀN GIẬT TÍT 3 GIÂY ĐẦU)\n- Lời thoại: \"Đang bầu mà đêm nào cũng giật mình vì chuột rút và đau hông dữ dội?\"\n- Góc quay: Cận cảnh mẹ bầu nhăn mặt xoa bắp chân, sau đó Dược sĩ bước vào khung hình cầm hộp Aquamin F.\n\n[00:04 - 00:15] VẤN ĐỀ & ĐIỂM ĐAU CỦA NGƯỜI XEM\n- Lời thoại: \"Rất nhiều mẹ uống canxi bị táo bón nặng, nóng trong và nổi mụn vì canxi vô cơ khó hấp thu.\"\n- Góc quay: Minh họa viên sủi / viên vô cơ khó tan.\n\n[00:16 - 00:45] GIẢI PHÁP & CƠ CHẾ KHOA HỌC CHUẨN CỤC ATTP\n- Lời thoại: \"Aquamin F từ tảo biển đỏ Ireland có cấu trúc tổ ong xốp xơ giúp cơ thể hấp thu êm ái x2.6 lần:\n- Hỗ trợ bổ sung Canxi sinh học hữu cơ và Vitamin D3 K2.\n- Hỗ trợ giảm nguy cơ loãng xương và hỗ trợ đáp ứng nhu cầu Canxi cho mẹ bầu.\n- Hoàn toàn không gây táo bón và nóng trong khi bổ sung lâu dài.\"\n- Góc quay: Đồ họa mô phỏng cấu trúc xốp tảo đỏ và vi chất hấp thu vào máu mẹ truyền sang thai nhi.\n\n[00:46 - 00:60] CTA & KHUYẾN CÁO PHÁP LÝ\n- Lời thoại: \"Để lại tuần thai của bạn để nhận phác đồ bổ sung chuẩn từ Dược sĩ Vistafa nhé!\"\n---\nKHUYẾN CÁO BẮT BUỘC: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
+                }
+            },
+            "VISTAFA-SLEEP": {
+                name: "TPBVSK Vistafa Good Night Melatonin & L-Theanine",
+                category: "Hỗ trợ giấc ngủ tự nhiên",
+                regulatory_class: "Thực phẩm bảo vệ sức khỏe (TPBVSK)",
+                registration_number: "9021/2026/ĐKSP - Cục An toàn thực phẩm",
+                ad_permit_number: "2450/2026/XNQC-ATTP",
+                ingredients: "Melatonin sinh học 3mg, L-Theanine 100mg, Cao Lạc Tiên 150mg, Cao Tâm Sen 100mg, Magie Glycinate 50mg",
+                target_users: "Người lớn bị khó ngủ, mất ngủ, ngủ không sâu giấc, người bị rối loạn nhịp sinh học do thay đổi múi giờ hoặc làm ca đêm",
+                rct: "PMID: 33890123 (RCT n=140, rút ngắn thời gian vào giấc ngủ 42 phút, không gây phụ thuộc sau khi ngừng)",
+                presets: {
+                    1: "Được Cục An toàn thực phẩm chứng nhận: Viên ngủ ngon Vistafa chữa dứt điểm bệnh mất ngủ mãn tính 10 năm chỉ sau 1 đêm!\n\nCam kết ngủ sâu 8 tiếng, thay thế vĩnh viễn thuốc an thần của bác sĩ.",
+                    2: "Lương y gia truyền tiết lộ bài thuốc chữa mất ngủ gia truyền kết hợp Melatonin, uống vào là ngủ say như chết không tác dụng phụ, không đỡ xin hoàn tiền 100%.",
+                    3: "TPBVSK VISTAFA GOOD NIGHT: HỖ TRỢ DỄ NGỦ VÀ NGỦ SÂU GIẤC TỰ NHIÊN\n\nCÔNG DỤNG ĐÃ ĐƯỢC XÁC NHẬN NỘI DUNG QUẢNG CÁO (XNQC):\n• Hỗ trợ bổ sung Melatonin và dưỡng chất hỗ trợ làm dịu căng thẳng thần kinh.\n• Hỗ trợ giúp dễ đi vào giấc ngủ, hỗ trợ cải thiện chất lượng giấc ngủ và giúp ngủ sâu giấc.\n• Hỗ trợ giảm cảm giác mệt mỏi sau khi thức dậy vào buổi sáng.\n\nĐỐI TƯỢNG SỬ DỤNG:\nNgười lớn bị mất ngủ, khó ngủ, ngủ chập chờn; người bị rối loạn nhịp sinh học do thay đổi múi giờ.\n---\nKhuyến cáo: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+                    4: "Vistafa Good Night cam kết trị dứt điểm chứng rối loạn lo âu và mất ngủ kinh niên sau 3 ngày.",
+                    5: "KỊCH BẢN VIDEO NGẮN TIKTOK (THỜI LƯỢNG 45-60 GIÂY)\nSẢN PHẨM: TPBVSK VISTAFA GOOD NIGHT MELATONIN & L-THEANINE\nĐỊNH DẠNG: Video ngắn dọc 9:16 • MỤC TIÊU: Giải pháp giấc ngủ an toàn & Chuyển đổi quầy thuốc\n\n[00:00 - 00:03] HOOK (MỞ MÀN GIẬT TÍT 3 GIÂY ĐẦU)\n- Lời thoại: \"Đêm nào cũng trằn trọc 2-3 tiếng mới ngủ được, sáng dậy đầu nặng trĩu và uể oải?\"\n- Góc quay: Cận cảnh người nhìn đồng hồ 2:30 sáng trằn trọc, nét mặt mệt mỏi.\n\n[00:04 - 00:15] VẤN ĐỀ & ĐIỂM ĐAU CỦA NGƯỜI XEM\n- Lời thoại: \"Lạm dụng thuốc an thần hóa học dễ gây phụ thuộc thuốc và mụ mị đầu óc vào ngày hôm sau.\"\n- Góc quay: Cận cảnh vỉ thuốc an thần cảnh báo tác dụng phụ.\n\n[00:16 - 00:45] GIẢI PHÁP & CƠ CHẾ KHOA HỌC CHUẨN CỤC ATTP\n- Lời thoại: \"Vistafa Good Night điều hòa nhịp sinh học tự nhiên theo cơ chế sinh học:\n- Hỗ trợ làm dịu căng thẳng thần kinh nhờ L-Theanine và thảo mộc tự nhiên.\n- Hỗ trợ giúp dễ đi vào giấc ngủ và ngủ sâu giấc hơn.\n- Thức dậy tỉnh táo, sảng khoái và hoàn toàn không gây phụ thuộc sau khi dừng.\"\n- Góc quay: Đồ họa nhịp sinh học êm dịu, người ngủ ngon thức dậy với nụ cười sảng khoái.\n\n[00:46 - 00:60] CTA & KHUYẾN CÁO PHÁP LÝ\n- Lời thoại: \"Bình luận tình trạng mất ngủ của bạn bên dưới hoặc ghé nhà thuốc gần nhất để được Dược sĩ tư vấn nhé!\"\n---\nKHUYẾN CÁO BẮT BUỘC: Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
                 }
             }
         };
@@ -4336,7 +4647,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
         function pickAdPreset(idx) {
             const sku = document.getElementById('ad-sku-select').value;
             const p = PRODUCTS_DOSSIER[sku] || PRODUCTS_DOSSIER["DION-CAL-MOM"];
-            const text = p.presets[idx] || PRESETS[idx] || "";
+            const text = (p.presets && p.presets[idx]) ? p.presets[idx] : (PRESETS[idx] || "");
             document.getElementById('ad-content-box').value = text;
             onAdContentInput();
             closeHighlightFixCard();
@@ -4345,6 +4656,57 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             switchEditorMode('EDIT');
             document.getElementById('editor-mode-hint').innerText = 'Đã tải mẫu Ca ' + idx + '. Bạn có thể tự gõ sửa thêm, rồi bấm Thẩm định bên dưới.';
         }
+
+        async function generateAiMarketingDraft() {
+            const skuSelect = document.getElementById('ad-sku-select');
+            const chanSelect = document.getElementById('ad-content-channel');
+            const box = document.getElementById('ad-content-box');
+            const btn = document.getElementById('btn-generate-ai-draft');
+            
+            const sku = skuSelect ? skuSelect.value : 'VISTAFA-COLLAGEN';
+            const channel = chanSelect ? chanSelect.value : 'TikTok Video (1-2 video/ngày)';
+            
+            if (btn) {
+                btn.disabled = true;
+                btn.innerText = 'Đang AI sinh nội dung...';
+            }
+            
+            try {
+                const resp = await fetch('/api/content/generate-draft', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sku: sku,
+                        channel: channel,
+                        tone: 'Khoa học & Chuyên môn'
+                    })
+                });
+                const data = await resp.json();
+                if (data.draft_text) {
+                    if (box) box.value = data.draft_text;
+                    onAdContentInput();
+                    closeHighlightFixCard();
+                    switchEditorMode('EDIT');
+                    const hintEl = document.getElementById('editor-mode-hint');
+                    if (hintEl) hintEl.innerText = 'Đã tạo bản thảo ' + channel + ' cho SKU: ' + sku + '. Tự động đối chiếu radar...';
+                    if (typeof runAdAudit === 'function') {
+                        runAdAudit();
+                    }
+                } else if (data.error) {
+                    alert('Lỗi: ' + data.error);
+                }
+            } catch (err) {
+                console.error('Lỗi khi sinh bản thảo AI:', err);
+                alert('Không thể kết nối máy chủ tạo nội dung.');
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerText = 'AI Sinh Bản Thảo & Kịch Bản';
+                }
+            }
+        }
+        window.generateAiMarketingDraft = generateAiMarketingDraft;
+
 
         function onAdContentInput() {
             const text = document.getElementById('ad-content-box').value;
@@ -6432,17 +6794,20 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
         }
 
         // ============================================================
-        // 5.B. ĐIỀU HƯỚNG PHÂN HỆ NỘI BỘ TAB 5 & DROPDOWNS
+        // 5.B. ĐIỀU HƯỚNG PHÂN HỆ NỘI BỘ TAB 5 & CARESOFT FIRST-TOUCH TRIAGE
         // ============================================================
-        let curCareSubTab = 'tasks';
+        let curCareSubTab = 'caresoft';
+        let caresoftLeadsCache = [];
+        let curCareSoftLeadId = null;
+
         async function setCareSubTab(tabName) {
             curCareSubTab = tabName;
-            ['tasks', 'history', 'sources'].forEach(t => {
+            ['caresoft', 'tasks', 'history', 'sources'].forEach(t => {
                 const btn = document.getElementById(`btn-care-sub-${t}`);
                 const view = document.getElementById(`care-subview-${t}`);
                 if (t === tabName) {
                     if (btn) {
-                        btn.className = 'px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-corp-700 text-white shadow-xs cursor-pointer';
+                        btn.className = 'px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-corp-800 text-white shadow-xs cursor-pointer';
                     }
                     if (view) {
                         view.classList.remove('hidden');
@@ -6458,7 +6823,9 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                     }
                 }
             });
-            if (tabName === 'history') {
+            if (tabName === 'caresoft') {
+                loadCareSoftLeadsTable();
+            } else if (tabName === 'history') {
                 if (!careCustomersList || careCustomersList.length === 0) {
                     await fetchCustomerCare();
                 }
@@ -6476,7 +6843,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
         window.setCareSubTab = setCareSubTab;
 
         function bindCareSubTabButtons() {
-            ['tasks', 'history', 'sources'].forEach(t => {
+            ['caresoft', 'tasks', 'history', 'sources'].forEach(t => {
                 const btn = document.getElementById(`btn-care-sub-${t}`);
                 if (btn && typeof btn.addEventListener === 'function') {
                     btn.addEventListener('click', (e) => {
@@ -6493,6 +6860,384 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 bindCareSubTabButtons();
             }
         }
+
+        // --- CÁC HÀM XỬ LÝ TRIAGE & CARESOFT CONTACT CENTER ---
+        function loadCareSoftScenario(id) {
+            const scenarios = {
+                1: {
+                    channel: 'FACEBOOK',
+                    name: 'Nguyễn Thị Thu Trang',
+                    text: 'Chào shop, mình đang bầu tháng thứ 5, đợt này hay bị chuột rút ban đêm với đau lưng quá. Mình muốn hỏi dòng Canxi Hữu Cơ Vistafa Aquamin F uống có bị nóng hay táo bón không? Giá một hộp bao nhiêu và giao về Cầu Giấy Hà Nội thế nào? SĐT mình 0982 123 456, tư vấn sớm giúp mình nhé.'
+                },
+                2: {
+                    channel: 'ZALO_OA',
+                    name: 'Hoàng Mai Anh',
+                    text: 'Dược sĩ cho mình hỏi Collagen Peptides NMN của Vistafa giá bao nhiêu một liệu trình? Mình 32 tuổi, da bắt đầu có nám nhẹ và khô. Uống loại này có bị tăng cân hay nổi mụn không? Mình ở Đống Đa, gọi tư vấn cho mình số 0912 345 678 vào giờ hành chính nhé.'
+                },
+                3: {
+                    channel: 'WEBSITE_CHAT',
+                    name: 'Lê Văn Hùng',
+                    text: 'Tôi bị mất ngủ mãn tính 2 năm nay, nửa đêm hay giật mình thức giấc rồi trằn trọc đến sáng, ban ngày rất mệt mỏi. Uống viên Good Night Melatonin của công ty có bị phụ thuộc không? Tư vấn giúp tôi theo số 0903 888 999 nhé, tôi muốn đặt thử 2 hộp dùng trước.'
+                },
+                4: {
+                    channel: 'FACEBOOK',
+                    name: 'Trần Minh Tuấn',
+                    text: 'Sản phẩm canxi bên mình bán giá thế nào vậy shop? Có chương trình khuyến mãi mua 2 tặng 1 không?'
+                }
+            };
+            const s = scenarios[id];
+            if (!s) return;
+            const txtEl = document.getElementById('cs-triage-text');
+            const chEl = document.getElementById('cs-triage-channel');
+            const nmEl = document.getElementById('cs-triage-name');
+            if (txtEl) txtEl.value = s.text;
+            if (chEl) chEl.value = s.channel;
+            if (nmEl) nmEl.value = s.name;
+        }
+        window.loadCareSoftScenario = loadCareSoftScenario;
+
+        async function submitCareSoftTriage() {
+            const textEl = document.getElementById('cs-triage-text');
+            const chanEl = document.getElementById('cs-triage-channel');
+            const nameEl = document.getElementById('cs-triage-name');
+            const btn = document.getElementById('btn-run-cs-triage');
+
+            const chatText = (textEl ? textEl.value : '').trim();
+            if (!chatText) {
+                alert('Vui lòng nhập hoặc dán nội dung tin nhắn của khách hàng trước khi phân tích.');
+                return;
+            }
+
+            const channel = chanEl ? chanEl.value : 'FACEBOOK';
+            const customerName = nameEl ? nameEl.value.trim() : '';
+
+            if (btn) {
+                btn.disabled = true;
+                btn.innerText = 'Đang phân tích NLP & Bóc tách...';
+            }
+
+            try {
+                const resp = await fetch('/api/caresoft/triage', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_text: chatText,
+                        channel: channel,
+                        customer_name: customerName
+                    })
+                });
+                const data = await resp.json();
+                if (data.status !== 'success') {
+                    alert('Lỗi phân tích triage: ' + (data.message || 'Không xác định'));
+                    return;
+                }
+
+                const lead = data.lead;
+                renderCareSoftTriageCard(lead);
+                await loadCareSoftLeadsTable();
+            } catch (err) {
+                console.error('Lỗi khi phân tích triage:', err);
+                alert('Không thể kết nối máy chủ phân tích triage.');
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerText = 'AI Phân Tích & Bóc Tách Lead Ngay';
+                }
+            }
+        }
+        window.submitCareSoftTriage = submitCareSoftTriage;
+
+        function renderCareSoftTriageCard(lead) {
+            const card = document.getElementById('cs-triage-result-card');
+            if (!card) return;
+
+            const phone = lead.phone || '';
+            const phoneBadge = phone
+                ? `<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold font-mono text-[11px]">ĐÃ BÓC TÁCH SĐT: ${escapeHtml(phone)}</span>`
+                : `<span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-bold text-[11px]">CHƯA CÓ SĐT (CẦN XIN SĐT)</span>`;
+
+            const leadScore = lead.lead_score || lead.score || 'COLD';
+            const scorePoints = lead.score_points || 0;
+            const probPct = lead.conversion_probability_pct || 50;
+
+            let scoreBadge = '';
+            if (leadScore === 'HOT') {
+                scoreBadge = `<span class="px-2.5 py-1 rounded bg-rose-100 text-rose-800 font-black text-xs">HOT LEAD (${scorePoints}đ - Xác suất chốt: ${probPct}%)</span>`;
+            } else if (leadScore === 'WARM') {
+                scoreBadge = `<span class="px-2.5 py-1 rounded bg-amber-100 text-amber-800 font-bold text-xs">WARM LEAD (${scorePoints}đ - Xác suất chốt: ${probPct}%)</span>`;
+            } else {
+                scoreBadge = `<span class="px-2.5 py-1 rounded bg-slate-200 text-slate-700 font-bold text-xs">COLD LEAD (${scorePoints}đ - Xác suất chốt: ${probPct}%)</span>`;
+            }
+
+            const telesaleScript = lead.suggested_telesale_script || (lead.caresoft_summary ? lead.caresoft_summary.telesale_opening_script : '') || '';
+            const summaryText = lead.summary || (lead.caresoft_summary ? lead.caresoft_summary.five_second_summary : '') || '';
+            const painPoint = lead.pain_point || (lead.caresoft_summary ? lead.caresoft_summary.core_pain_point : '') || 'Không có';
+            const prodInterest = lead.product_interest || lead.product_name || 'Chưa rõ SKU';
+
+            card.innerHTML = `
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between pb-2 border-b border-slate-200">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="font-bold text-slate-800 text-xs uppercase">Kết Quả Phân Tích Lead:</span>
+                            ${phoneBadge}
+                        </div>
+                        ${scoreBadge}
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div>
+                            <span class="text-[10px] font-bold text-slate-500 uppercase block">Khách hàng:</span>
+                            <span class="font-bold text-slate-900">${escapeHtml(lead.customer_name || 'Khách vãng lai')}</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-slate-500 uppercase block">Phân loại nhu cầu:</span>
+                            <span class="font-bold text-blue-700">${escapeHtml(lead.inquiry_label || lead.inquiry_type || '')}</span>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="text-[10px] font-bold text-slate-500 uppercase block">Sản phẩm nhận diện:</span>
+                            <span class="font-bold text-corp-800">${escapeHtml(prodInterest)}</span>
+                        </div>
+                    </div>
+
+                    <div class="p-2.5 rounded-lg bg-blue-50/80 border border-blue-200 space-y-1 text-xs">
+                        <span class="font-bold text-blue-900 text-[10.5px] uppercase tracking-wide block">Thẻ Tóm Tắt 5s CareSoft:</span>
+                        <p class="text-slate-800 font-medium leading-relaxed">${escapeHtml(summaryText)}</p>
+                        <div class="pt-1 text-[11px] text-slate-600">
+                            <b>Rào cản / Nỗi lo:</b> ${escapeHtml(painPoint)}
+                        </div>
+                    </div>
+
+                    <div class="p-2.5 rounded-lg bg-purple-50 border border-purple-200 space-y-1.5 text-xs">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-purple-900 text-[10.5px] uppercase tracking-wide">Kịch bản Telesale gợi ý:</span>
+                            <button onclick="copyTriageTelesaleScript()" class="px-2 py-0.5 rounded bg-purple-700 hover:bg-purple-800 text-white font-bold text-[10px] transition cursor-pointer">
+                                Sao chép kịch bản
+                            </button>
+                        </div>
+                        <div id="cs-triage-script-text" class="text-purple-950 font-medium text-[11.5px] leading-relaxed italic bg-white/70 p-2 rounded border border-purple-100 select-all">
+                            ${escapeHtml(telesaleScript)}
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center pt-1 border-t border-slate-200 text-xs">
+                        <span class="text-[10.5px] text-slate-500 font-mono">${escapeHtml(lead.lead_id)}</span>
+                        <button onclick="openCareSoftTicketModal('${escapeHtml(lead.lead_id)}')" class="px-3 py-1.5 rounded-lg bg-corp-800 hover:bg-corp-900 text-white font-bold text-xs transition cursor-pointer">
+                            Mở Thẻ Ticket Đầy Đủ
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function loadCareSoftLeadsTable() {
+            try {
+                const resp = await fetch('/api/caresoft/leads');
+                const data = await resp.json();
+                if (data.status !== 'success') return;
+
+                caresoftLeadsCache = data.leads || [];
+                const metrics = data.metrics || {};
+
+                const elTotal = document.getElementById('cs-stat-total');
+                const elPhoneRate = document.getElementById('cs-stat-phone-rate');
+                const elHot = document.getElementById('cs-stat-hot');
+                const elConverted = document.getElementById('cs-stat-converted');
+                const elSubCount = document.getElementById('cs-sub-lead-count');
+                const elBadgeCount = document.getElementById('cs-table-badge-count');
+
+                if (elTotal) elTotal.innerText = metrics.total_leads || caresoftLeadsCache.length;
+                if (elPhoneRate) elPhoneRate.innerText = `${metrics.phone_conversion_rate || metrics.phone_capture_rate_pct || 0}%`;
+                if (elHot) elHot.innerText = metrics.hot_leads_count || metrics.hot_leads || 0;
+                if (elConverted) elConverted.innerText = metrics.converted_leads_count || metrics.converted_leads || 0;
+                if (elSubCount) elSubCount.innerText = caresoftLeadsCache.length;
+                if (elBadgeCount) elBadgeCount.innerText = `${caresoftLeadsCache.length} Leads`;
+
+                const filterEl = document.getElementById('cs-filter-score');
+                const filterVal = filterEl ? filterEl.value : 'ALL';
+
+                let filtered = caresoftLeadsCache;
+                if (filterVal !== 'ALL') {
+                    filtered = filtered.filter(l => (l.lead_score || l.score) === filterVal);
+                }
+
+                const tbody = document.getElementById('cs-leads-table-body');
+                if (!tbody) return;
+
+                if (filtered.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="9" class="text-center py-6 text-slate-400">Không có lead nào khớp với điều kiện lọc.</td></tr>`;
+                    return;
+                }
+
+                tbody.innerHTML = filtered.map(lead => {
+                    const phone = lead.phone || '';
+                    const phoneBadge = phone
+                        ? `<span class="text-emerald-700 font-bold font-mono">${escapeHtml(phone)}</span>`
+                        : `<span class="text-amber-700 text-[11px] italic">[Chưa có SĐT]</span>`;
+
+                    const leadScore = lead.lead_score || lead.score || 'COLD';
+                    const scorePoints = lead.score_points || 0;
+
+                    let scoreBadge = '';
+                    if (leadScore === 'HOT') {
+                        scoreBadge = `<span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-rose-100 text-rose-800">HOT (${scorePoints}đ)</span>`;
+                    } else if (leadScore === 'WARM') {
+                        scoreBadge = `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">WARM (${scorePoints}đ)</span>`;
+                    } else {
+                        scoreBadge = `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 text-slate-700">COLD (${scorePoints}đ)</span>`;
+                    }
+
+                    const st = lead.status || 'NEW';
+                    let statusBadge = '';
+                    if (st === 'CONVERTED') {
+                        statusBadge = `<span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-bold text-[10px]">ĐÃ CHỐT</span>`;
+                    } else if (st === 'ASSIGNED') {
+                        statusBadge = `<span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px]">ĐÃ GIAO</span>`;
+                    } else if (st === 'LOST') {
+                        statusBadge = `<span class="px-2 py-0.5 rounded bg-slate-200 text-slate-600 font-medium text-[10px]">THẤT BẠI</span>`;
+                    } else {
+                        statusBadge = `<span class="px-2 py-0.5 rounded bg-rose-50 text-rose-700 font-bold text-[10px] border border-rose-200">MỚI</span>`;
+                    }
+
+                    const summary5s = lead.summary || (lead.caresoft_summary ? lead.caresoft_summary.five_second_summary : '') || (lead.chat_text || '').substring(0, 70) + '...';
+                    const prodName = lead.product_interest || lead.product_name || 'Chưa rõ SKU';
+
+                    return `
+                        <tr class="hover:bg-slate-50/80 transition border-b border-slate-100">
+                            <td class="py-2.5 px-3 font-mono text-[11px] font-bold text-slate-600">${escapeHtml(lead.lead_id)}</td>
+                            <td class="py-2.5 px-3">
+                                <div class="font-bold text-slate-900">${escapeHtml(lead.customer_name || 'Khách vãng lai')}</div>
+                                <div>${phoneBadge}</div>
+                            </td>
+                            <td class="py-2.5 px-3">
+                                <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px] font-semibold">${escapeHtml(lead.channel || 'FB')}</span>
+                            </td>
+                            <td class="py-2.5 px-3">
+                                <div class="font-semibold text-corp-800">${escapeHtml(prodName)}</div>
+                                <div class="text-[10px] text-slate-400 font-mono">${escapeHtml(lead.product_sku || '')}</div>
+                            </td>
+                            <td class="py-2.5 px-3">
+                                <span class="px-2 py-0.5 rounded bg-blue-50 text-blue-700 text-[10px] font-medium">${escapeHtml(lead.inquiry_label || lead.inquiry_type || '')}</span>
+                            </td>
+                            <td class="py-2.5 px-3 text-center">${scoreBadge}</td>
+                            <td class="py-2.5 px-3 max-w-[240px]">
+                                <p class="text-[11px] text-slate-600 line-clamp-2 leading-relaxed" title="${escapeHtml(summary5s)}">${escapeHtml(summary5s)}</p>
+                            </td>
+                            <td class="py-2.5 px-3 text-center">${statusBadge}</td>
+                            <td class="py-2.5 px-3 text-right whitespace-nowrap">
+                                <button onclick="openCareSoftTicketModal('${escapeHtml(lead.lead_id)}')" class="px-2.5 py-1 rounded bg-corp-800 hover:bg-corp-900 text-white font-bold text-[11px] transition cursor-pointer">
+                                    Chi tiết & Gọi
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            } catch (err) {
+                console.error('Lỗi khi tải bảng CareSoft Leads:', err);
+            }
+        }
+        window.loadCareSoftLeadsTable = loadCareSoftLeadsTable;
+
+        function downloadCareSoftCsvExport() {
+            window.location.href = '/api/caresoft/export';
+        }
+        window.downloadCareSoftCsvExport = downloadCareSoftCsvExport;
+
+        function openCareSoftTicketModal(leadId) {
+            const lead = caresoftLeadsCache.find(l => l.lead_id === leadId);
+            if (!lead) return;
+            curCareSoftLeadId = leadId;
+
+            const modal = document.getElementById('care-modal-cs-ticket');
+            if (!modal) return;
+
+            const setVal = (id, val) => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = val;
+            };
+
+            setVal('cs-modal-lead-id', lead.lead_id);
+            setVal('cs-modal-name', lead.customer_name || 'Khách vãng lai');
+            setVal('cs-modal-phone', lead.phone || 'Chưa thu thập được SĐT');
+            setVal('cs-modal-channel', lead.channel || 'FACEBOOK');
+            setVal('cs-modal-product', `${lead.product_interest || lead.product_name} (${lead.product_sku || ''})`);
+            setVal('cs-modal-chat', lead.chat_text || '');
+
+            const summary = lead.summary || (lead.caresoft_summary ? lead.caresoft_summary.five_second_summary : '') || 'Chưa có tóm tắt';
+            const painPoint = lead.pain_point || (lead.caresoft_summary ? lead.caresoft_summary.core_pain_point : '') || 'Không có';
+            const telesaleScript = lead.suggested_telesale_script || (lead.caresoft_summary ? lead.caresoft_summary.telesale_opening_script : '') || 'Chào anh/chị, em gọi hỗ trợ từ bộ phận Dược sĩ chuyên môn...';
+
+            setVal('cs-modal-summary', summary);
+            setVal('cs-modal-painpoint', painPoint);
+            setVal('cs-modal-script', telesaleScript);
+
+            const scoreEl = document.getElementById('cs-modal-score');
+            const leadScore = lead.lead_score || lead.score || 'COLD';
+            const scorePoints = lead.score_points || 0;
+            const probPct = lead.conversion_probability_pct || 50;
+
+            if (scoreEl) {
+                scoreEl.innerText = `${leadScore} (${scorePoints} điểm - Khả năng chốt: ${probPct}%)`;
+                scoreEl.className = leadScore === 'HOT' ? 'font-bold text-rose-700' : (leadScore === 'WARM' ? 'font-bold text-amber-700' : 'font-bold text-slate-700');
+            }
+
+            const statusSelect = document.getElementById('cs-modal-status-select');
+            if (statusSelect) {
+                statusSelect.value = lead.status || 'NEW';
+            }
+
+            modal.classList.remove('hidden');
+        }
+        window.openCareSoftTicketModal = openCareSoftTicketModal;
+
+        function closeCareSoftTicketModal() {
+            const modal = document.getElementById('care-modal-cs-ticket');
+            if (modal) modal.classList.add('hidden');
+            curCareSoftLeadId = null;
+        }
+        window.closeCareSoftTicketModal = closeCareSoftTicketModal;
+
+        async function saveCareSoftLeadStatusFromModal() {
+            if (!curCareSoftLeadId) return;
+            const statusSelect = document.getElementById('cs-modal-status-select');
+            if (!statusSelect) return;
+            const newStatus = statusSelect.value;
+
+            try {
+                const resp = await fetch(`/api/caresoft/leads/${curCareSoftLeadId}/status`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus })
+                });
+                const data = await resp.json();
+                if (data.status === 'success') {
+                    closeCareSoftTicketModal();
+                    await loadCareSoftLeadsTable();
+                } else {
+                    alert('Lỗi cập nhật trạng thái: ' + (data.message || 'Không thành công'));
+                }
+            } catch (err) {
+                console.error('Lỗi khi cập nhật trạng thái CareSoft Lead:', err);
+                alert('Không thể kết nối máy chủ.');
+            }
+        }
+        window.saveCareSoftLeadStatusFromModal = saveCareSoftLeadStatusFromModal;
+
+        function copyModalTelesaleScript() {
+            const scriptEl = document.getElementById('cs-modal-script');
+            if (!scriptEl) return;
+            navigator.clipboard.writeText(scriptEl.innerText);
+            alert('Đã sao chép kịch bản gọi Telesale vào bộ nhớ đệm!');
+        }
+        window.copyModalTelesaleScript = copyModalTelesaleScript;
+
+        function copyTriageTelesaleScript() {
+            const el = document.getElementById('cs-triage-script-text');
+            if (!el) return;
+            navigator.clipboard.writeText(el.innerText);
+            alert('Đã sao chép kịch bản gọi Telesale vào bộ nhớ đệm!');
+        }
+        window.copyTriageTelesaleScript = copyTriageTelesaleScript;
+
 
         function updateSourcesViewDisplay() {
             if (!careCustomersList) return;

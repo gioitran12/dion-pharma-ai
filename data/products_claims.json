@@ -216,6 +216,159 @@
           "evidence_source": "Hồ sơ công bố số 6120/2025/ĐKSP"
         }
       ]
+    },
+    {
+      "sku": "VISTAFA-COLLAGEN",
+      "name": "Bột Uống Collagen Thủy Phân Vistafa Collagen Powder",
+      "category": "Chăm sóc sắc đẹp & Trẻ hóa làn da",
+      "regulatory_class": "Thực phẩm bảo vệ sức khỏe (TPBVSK)",
+      "registration_number": "4512/2026/ĐKSP - Cục An toàn thực phẩm",
+      "ad_permit_number": "982/2026/XNQC-ATTP",
+      "active_ingredients": [
+        {
+          "name": "Collagen Peptide thủy phân từ cá tuyết",
+          "amount": "3000mg"
+        },
+        {
+          "name": "Vitamin C (Ascorbic Acid)",
+          "amount": "100mg"
+        },
+        {
+          "name": "Hyaluronic Acid (HA)",
+          "amount": "20mg"
+        }
+      ],
+      "target_users": [
+        "Người trưởng thành có nhu cầu làm đẹp da",
+        "Người có dấu hiệu lão hóa da, nếp nhăn, khô sạm"
+      ],
+      "contraindications": "Người mẫn cảm với bất kỳ thành phần nào của sản phẩm.",
+      "mandatory_disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+      "claims": [
+        {
+          "claim_id": "CLM-VIS-COL-01",
+          "claim_text": "Bổ sung Collagen Peptide phân tử siêu nhỏ và Vitamin C hỗ trợ tăng độ đàn hồi cho da, hỗ trợ giảm nguy cơ lão hóa da.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2028-10-15",
+          "approved_by": "DS. Nguyễn Văn An (Trưởng ban Dược vụ)",
+          "evidence_source": "Hồ sơ công bố số 4512/2026/ĐKSP"
+        },
+        {
+          "claim_id": "CLM-VIS-COL-02",
+          "claim_text": "Công thức tinh khiết không chứa chất béo bão hòa, hỗ trợ dưỡng ẩm da mà không gây tăng cân hoặc nổi mụn.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2028-10-15",
+          "approved_by": "DS. Nguyễn Văn An (Trưởng ban Dược vụ)",
+          "evidence_source": "Hồ sơ công bố số 4512/2026/ĐKSP"
+        }
+      ]
+    },
+    {
+      "sku": "VISTAFA-CALCI",
+      "name": "Viên Uống Canxi Hữu Cơ Sinh Học Vistafa Calci Complex",
+      "category": "Khoáng chất xương khớp & Thai kỳ",
+      "regulatory_class": "Thực phẩm bảo vệ sức khỏe (TPBVSK)",
+      "registration_number": "4820/2026/ĐKSP - Cục An toàn thực phẩm",
+      "ad_permit_number": "1055/2026/XNQC-ATTP",
+      "active_ingredients": [
+        {
+          "name": "Canxi Tảo Biển Đỏ Lithothamnion",
+          "amount": "600mg"
+        },
+        {
+          "name": "Vitamin D3 (Cholecalciferol)",
+          "amount": "400 IU"
+        },
+        {
+          "name": "Vitamin K2 (MK-7 99% trans)",
+          "amount": "30mcg"
+        },
+        {
+          "name": "Magie Oxyd",
+          "amount": "60mg"
+        }
+      ],
+      "target_users": [
+        "Phụ nữ có thai và cho con bú",
+        "Người cao tuổi có nguy cơ loãng xương",
+        "Thanh thiếu niên trong giai đoạn phát triển chiều cao"
+      ],
+      "contraindications": "Người mẫn cảm với bất kỳ thành phần nào của sản phẩm, người tăng canxi huyết hoặc sỏi thận nặng.",
+      "mandatory_disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+      "claims": [
+        {
+          "claim_id": "CLM-VIS-CAL-01",
+          "claim_text": "Bổ sung canxi hữu cơ sinh học từ tảo biển đỏ và Vitamin D3 K2 hỗ trợ phát triển khung xương và răng chắc khỏe.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2028-10-15",
+          "approved_by": "DS. Nguyễn Văn An (Trưởng ban Dược vụ)",
+          "evidence_source": "Hồ sơ công bố số 4820/2026/ĐKSP"
+        },
+        {
+          "claim_id": "CLM-VIS-CAL-02",
+          "claim_text": "Cấu trúc xốp tổ ong hòa tan nhanh, hỗ trợ hấp thu êm dịu, không gây lắng cặn tạo sỏi thận hoặc nóng trong.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2028-10-15",
+          "approved_by": "DS. Nguyễn Văn An (Trưởng ban Dược vụ)",
+          "evidence_source": "Hồ sơ công bố số 4820/2026/ĐKSP"
+        }
+      ]
+    },
+    {
+      "sku": "VISTAFA-SLEEP",
+      "name": "Viên Uống Hỗ Trợ Ngủ Ngon Vistafa Sleep Well",
+      "category": "Hỗ trợ giấc ngủ & Thần kinh",
+      "regulatory_class": "Thực phẩm bảo vệ sức khỏe (TPBVSK)",
+      "registration_number": "5128/2026/ĐKSP - Cục An toàn thực phẩm",
+      "ad_permit_number": "1180/2026/XNQC-ATTP",
+      "active_ingredients": [
+        {
+          "name": "Chiết xuất Lạc Tiên chuẩn hóa",
+          "amount": "200mg"
+        },
+        {
+          "name": "Chiết xuất Tâm Sen",
+          "amount": "150mg"
+        },
+        {
+          "name": "GABA (Gamma-Aminobutyric Acid)",
+          "amount": "50mg"
+        },
+        {
+          "name": "Melatonin tự nhiên",
+          "amount": "1.5mg"
+        }
+      ],
+      "target_users": [
+        "Người trưởng thành bị mất ngủ, khó ngủ, ngủ không sâu giấc",
+        "Người thường xuyên căng thẳng lo âu, mệt mỏi"
+      ],
+      "contraindications": "Người mẫn cảm với bất kỳ thành phần nào của sản phẩm, phụ nữ mang thai hoặc đang lái xe vận hành máy móc.",
+      "mandatory_disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+      "claims": [
+        {
+          "claim_id": "CLM-VIS-SLP-01",
+          "claim_text": "Hỗ trợ dưỡng tâm, an thần, hỗ trợ dễ đi vào giấc ngủ và cải thiện chất lượng giấc ngủ sâu tự nhiên.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2028-10-15",
+          "approved_by": "DS. Nguyễn Văn An (Trưởng ban Dược vụ)",
+          "evidence_source": "Hồ sơ công bố số 5128/2026/ĐKSP"
+        },
+        {
+          "claim_id": "CLM-VIS-SLP-02",
+          "claim_text": "Chiết xuất thảo mộc an toàn, hỗ trợ giảm căng thẳng thần kinh mà không gây phụ thuộc hoặc mệt mỏi vào ban ngày.",
+          "status": "APPROVED",
+          "zone": "COMMERCIAL_APPROVED",
+          "effective_until": "2028-10-15",
+          "approved_by": "DS. Nguyễn Văn An (Trưởng ban Dược vụ)",
+          "evidence_source": "Hồ sơ công bố số 5128/2026/ĐKSP"
+        }
+      ]
     }
   ]
 }

@@ -7,7 +7,7 @@ import os
 import json
 from pathlib import Path
 from typing import Optional, List, Dict, Any, Union
-from fastapi import FastAPI, Request, Query, Body, HTTPException
+from fastapi import FastAPI, Request, Query, Body, HTTPException, Response
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 
@@ -23,6 +23,13 @@ from modules.lead_discovery import (
 )
 from modules.sales_copilot import generate_copilot_response
 from modules.clinical_consultant import consult_ai_expert
+from modules.caresoft_triage import (
+    process_first_touch_chat,
+    load_caresoft_leads,
+    update_lead_status as update_caresoft_lead_status,
+    export_caresoft_leads_csv,
+    get_caresoft_metrics
+)
 from modules.content_generator import (
     generate_marketing_draft, validate_content_compliance, deep_audit_radar, auto_fix_compliance
 )
@@ -225,6 +232,15 @@ async def api_content_ai_agent_audit(
     provider: str = Body("auto", embed=True)
 ):
     return run_ai_compliance_audit(text=text, sku=sku, api_key=api_key, provider=provider)
+
+@app.post("/api/content/generate-draft")
+async def api_content_generate_draft(
+    sku: str = Body("DION-CAL-MOM", embed=True),
+    channel: str = Body("Facebook Post", embed=True),
+    tone: str = Body("Khoa học & Chuyên môn", embed=True)
+):
+    return generate_marketing_draft(sku=sku, channel=channel, tone=tone)
+
 
 @app.post("/api/products/add-or-update")
 async def api_product_add_or_update(product: Dict[str, Any] = Body(...)):
@@ -1365,6 +1381,73 @@ async def api_copilot_clear_session(session_id: str):
     mgr = get_session_manager()
     success = mgr.clear_session(session_id)
     return {"status": "success", "session_id": session_id, "cleared": success}
+
+
+# ============================================================================
+# --- CARESOFT FIRST-TOUCH TRIAGE & LEAD QUALIFICATION (VISTAFA POC) ---
+# ============================================================================
+
+@app.post("/api/caresoft/triage")
+async def api_caresoft_triage(
+    chat_text: str = Body(..., embed=True),
+    channel: str = Body("FACEBOOK", embed=True),
+    customer_name: Optional[str] = Body(None, embed=True)
+):
+    """
+    Tiếp nhận hội thoại ban đầu từ Facebook/Zalo/Web,
+    tự động bóc tách SĐT, phân loại nhu cầu, tính Lead Score và sinh tóm tắt 5s CareSoft.
+    """
+    lead = process_first_touch_chat(
+        chat_text=chat_text,
+        channel=channel,
+        customer_name=customer_name
+    )
+    return {"status": "success", "lead": lead}
+
+
+@app.get("/api/caresoft/leads")
+async def api_get_caresoft_leads(
+    score: Optional[str] = None,
+    channel: Optional[str] = None,
+    status: Optional[str] = None
+):
+    """Lấy danh sách Lead CareSoft kèm các chỉ số KPI chuyển đổi."""
+    leads = load_caresoft_leads()
+    if score and score != "ALL":
+        leads = [l for l in leads if l.get("lead_score") == score]
+    if channel and channel != "ALL":
+        leads = [l for l in leads if l.get("channel") == channel]
+    if status and status != "ALL":
+        leads = [l for l in leads if l.get("status") == status]
+    metrics = get_caresoft_metrics()
+    return {"status": "success", "leads": leads, "metrics": metrics}
+
+
+@app.post("/api/caresoft/leads/{lead_id}/status")
+async def api_update_caresoft_lead_status_endpoint(
+    lead_id: str,
+    status: str = Body(..., embed=True),
+    agent_name: Optional[str] = Body(None, embed=True)
+):
+    """Cập nhật trạng thái xử lý Lead (NEW, ASSIGNED, CONVERTED, LOST)."""
+    updated = update_caresoft_lead_status(lead_id, status, agent_name)
+    if not updated:
+        raise HTTPException(status_code=404, detail="Không tìm thấy Lead")
+    return {"status": "success", "lead": updated}
+
+
+@app.get("/api/caresoft/export")
+async def api_export_caresoft_leads():
+    """Xuất file CSV chuẩn UTF-8 có BOM tương thích 1-click import vào CareSoft Contact Center."""
+    csv_content = export_caresoft_leads_csv()
+    return Response(
+        content=csv_content,
+        media_type="text/csv",
+        headers={
+            "Content-Disposition": "attachment; filename=caresoft_leads_export.csv",
+            "Content-Type": "text/csv; charset=utf-8"
+        }
+    )
 
 
 class CustomerCareChatRequest(BaseModel):
