@@ -511,6 +511,170 @@ class VistafaChatCopilot:
         filtered = [s for s in all_sc if s["shortcut"].startswith(prefix) or "/sosanh" in s["shortcut"]]
         return filtered[:8]
 
+    def get_conversation_manager(self):
+        if not hasattr(self, "_conv_manager") or self._conv_manager is None:
+            self._conv_manager = LiveConversationManager(self)
+        return self._conv_manager
+
+
+class LiveConversationManager:
+    """
+    Manages active multi-turn conversations across Facebook, Zalo, Website, TikTok.
+    Provides multi-turn context memory, live thread messaging, and pharmacist handoffs.
+    """
+    def __init__(self, copilot_ref):
+        self.copilot = copilot_ref
+        self._conversations = {}
+        self._init_default_conversations()
+
+    def _init_default_conversations(self):
+        from datetime import datetime
+        self._conversations = {
+            "CONV-FB-01": {
+                "id": "CONV-FB-01",
+                "customer_name": "Mai Lan",
+                "channel": "facebook",
+                "channel_label": "[FB] Facebook Messenger",
+                "phone": "0912345678",
+                "product_id": "beauty_collagen",
+                "product_name": "Beauty Collagen Powder",
+                "status": "ACTIVE",
+                "lead_priority": "HOT",
+                "intent": "Hỏi giá & Khảo sát sạm nám do thức khuya",
+                "clinical_profile": {"age": 29, "notes": "Thức khuya làm việc văn phòng, da sạm nám khô ráp"},
+                "messages": [
+                    {"sender": "customer", "text": "Chào shop, mình hay thức khuya làm việc da dạo này sạm nám và khô ráp quá. Sản phẩm Beauty Collagen này giá bao nhiêu một hộp vậy?", "time": "09:15"},
+                    {"sender": "agent", "text": "Dạ chào chị Lan ạ! Beauty Collagen Powder bên em hiện có giá niêm yết 240.000đ/hộp 14 gói tiện lợi ạ. Hiện tại chị muốn tập trung cải thiện độ ẩm căng bóng hay giảm nếp nhăn sạm nám trước ạ?\nChị cho em xin SĐT để em tư vấn liệu trình phù hợp nhất nhé ạ.", "time": "09:16"},
+                    {"sender": "customer", "text": "Mình muốn mờ thâm sạm và sáng da trước. SĐT mình 0912345678, uống bao lâu thì thấy hiệu quả vậy em?", "time": "09:18"}
+                ],
+                "updated_at": "2026-10-20 09:18"
+            },
+            "CONV-ZA-02": {
+                "id": "CONV-ZA-02",
+                "customer_name": "Phương Thảo",
+                "channel": "zalo",
+                "channel_label": "[ZALO] Zalo OA",
+                "phone": "0988776655",
+                "product_id": "calcium_complex",
+                "product_name": "VitGarden Calcium Complex",
+                "status": "ACTIVE",
+                "lead_priority": "HOT",
+                "intent": "Tư vấn thai kỳ & So sánh Canxi Corbiere",
+                "clinical_profile": {"pregnancy_week": 20, "notes": "Bầu tuần 20, sợ táo bón, đang uống canxi sủi/ống ngọt sợ tiểu đường thai kỳ"},
+                "messages": [
+                    {"sender": "customer", "text": "Em ơi cho chị hỏi, chị đang bầu 5 tháng (tuần 20) uống Canxi Complex bên em có bị táo bón nóng trong không? Chị đang uống loại canxi ống ngọt quá chị sợ tiểu đường thai kỳ.", "time": "08:45"}
+                ],
+                "updated_at": "2026-10-20 08:45"
+            },
+            "CONV-WEB-03": {
+                "id": "CONV-WEB-03",
+                "customer_name": "Hoàng Nam",
+                "channel": "website",
+                "channel_label": "[WEB] Website Live Chat",
+                "phone": "0903112233",
+                "product_id": "ultimate_omega3",
+                "product_name": "VitGarden Ultimate Omega 3",
+                "status": "ACTIVE",
+                "lead_priority": "WARM",
+                "intent": "Đối chiếu hàm lượng EPA/DHA vs Dầu cá 1000mg rẻ",
+                "clinical_profile": {"age": 45, "notes": "Mỡ máu triglycerid cao, tìm dầu cá nồng độ cao"},
+                "messages": [
+                    {"sender": "customer", "text": "Tôi thấy ngoài hiệu thuốc hộp dầu cá 1000mg của Mỹ to đùng bán có 300k, sao lọ Ultimate Omega 3 bên bạn đắt thế? Khác nhau cái gì?", "time": "09:30"}
+                ],
+                "updated_at": "2026-10-20 09:30"
+            },
+            "CONV-TT-04": {
+                "id": "CONV-TT-04",
+                "customer_name": "Thu Trang",
+                "channel": "tiktok",
+                "channel_label": "[TIKTOK] TikTok Shop",
+                "phone": "",
+                "product_id": "sleep_well",
+                "product_name": "VitGarden Sleep Well",
+                "status": "ACTIVE",
+                "lead_priority": "WARM",
+                "intent": "Hỏi cam kết chữa dứt điểm mất ngủ",
+                "clinical_profile": {"notes": "Khó ngủ, thức khuya lướt live lúc 23h"},
+                "messages": [
+                    {"sender": "customer", "text": "Thuốc ngủ Sleep Well này uống 1 hộp có trị dứt điểm mất ngủ kinh niên không shop?", "time": "09:32"}
+                ],
+                "updated_at": "2026-10-20 09:32"
+            },
+            "CONV-ESC-05": {
+                "id": "CONV-ESC-05",
+                "customer_name": "Bác Nguyễn Văn Đức",
+                "channel": "zalo",
+                "channel_label": "[ZALO] Zalo OA",
+                "phone": "0977889900",
+                "product_id": "sleep_well",
+                "product_name": "VitGarden Sleep Well",
+                "status": "REQUIRES_PHARMACIST",
+                "lead_priority": "URGENT",
+                "intent": "RED FLAG: Đang dùng thuốc an thần Seduxen kê đơn",
+                "clinical_profile": {"age": 68, "notes": "Mất ngủ 5 năm, đang uống Seduxen 5mg và Rotunda mỗi tối theo đơn"},
+                "messages": [
+                    {"sender": "customer", "text": "Bác năm nay 68 tuổi, bị mất ngủ mấy năm nay đang uống viên Seduxen 5mg và Rotunda mỗi tối theo đơn của bác sĩ Bạch Mai. Bác thấy quảng cáo viên Sleep Well thảo dược, bác uống chung hai loại với nhau được không cháu?", "time": "09:35"}
+                ],
+                "updated_at": "2026-10-20 09:35"
+            }
+        }
+
+    def get_all(self) -> List[Dict[str, Any]]:
+        return list(self._conversations.values())
+
+    def get_by_id(self, conv_id: str) -> Optional[Dict[str, Any]]:
+        return self._conversations.get(conv_id)
+
+    def add_message(self, conv_id: str, sender: str, text: str) -> Optional[Dict[str, Any]]:
+        from datetime import datetime
+        conv = self._conversations.get(conv_id)
+        if not conv:
+            return None
+        now_str = datetime.now().strftime("%H:%M")
+        msg_obj = {"sender": sender, "text": text, "time": now_str}
+        conv["messages"].append(msg_obj)
+        conv["updated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+        return msg_obj
+
+    def escalate_pharmacist(self, conv_id: str, reason: str, notes: str, pharmacist_name: str = "DS. Lâm Sàng Trực Ban") -> Optional[Dict[str, Any]]:
+        from datetime import datetime
+        conv = self._conversations.get(conv_id)
+        if not conv:
+            return None
+        conv["status"] = "ESCALATED_PHARMACIST"
+        conv["lead_priority"] = "URGENT"
+        ticket = {
+            "ticket_id": f"TICKET-DS-{conv_id}",
+            "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "customer_name": conv.get("customer_name"),
+            "phone": conv.get("phone"),
+            "channel": conv.get("channel"),
+            "product_id": conv.get("product_id"),
+            "reason": reason,
+            "clinical_notes": notes,
+            "assigned_pharmacist": pharmacist_name,
+            "patient_context": conv.get("clinical_profile", {})
+        }
+        conv["pharmacist_ticket"] = ticket
+        return ticket
+
+    def convert_order(self, conv_id: str, sku: str, quantity: int, delivery_address: str, total_price: str) -> Optional[Dict[str, Any]]:
+        from datetime import datetime
+        conv = self._conversations.get(conv_id)
+        if not conv:
+            return None
+        conv["status"] = "CONVERTED_ORDER"
+        order_info = {
+            "order_id": f"ORD-VIT-{conv_id}",
+            "sku": sku,
+            "quantity": quantity,
+            "delivery_address": delivery_address,
+            "total_price": total_price,
+            "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+        conv["order_info"] = order_info
+        return order_info
+
 
 # Global singleton helper
 _copilot_instance = None
@@ -520,3 +684,4 @@ def get_vistafa_chat_copilot() -> VistafaChatCopilot:
     if _copilot_instance is None:
         _copilot_instance = VistafaChatCopilot()
     return _copilot_instance
+

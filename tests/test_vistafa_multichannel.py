@@ -207,3 +207,47 @@ def test_api_endpoints():
     assert res_data["product_id"] == "sleep_well"
     assert res_data["channel"] == "zalo"
     assert "Sleep Well" in res_data["full_text"]
+
+def test_live_conversation_and_escalation_workflow():
+    # 1. Get all live inbound conversations
+    r = client.get("/api/vistafa/conversations")
+    assert r.status_code == 200
+    convs = r.json()["conversations"]
+    assert len(convs) >= 5
+    assert any(c["id"] == "CONV-FB-01" for c in convs)
+
+    # 2. Get specific thread with real-time AI recommendation
+    r2 = client.get("/api/vistafa/conversations/CONV-FB-01")
+    assert r2.status_code == 200
+    d2 = r2.json()
+    assert d2["conversation"]["customer_name"] == "Mai Lan"
+    assert d2["ai_recommendation"] is not None
+    assert d2["ai_recommendation"]["product_id"] == "beauty_collagen"
+
+    # 3. Add message to thread
+    r3 = client.post("/api/vistafa/conversations/CONV-FB-01/messages", json={
+        "sender": "agent",
+        "text": "Dạ thông thường sau 2-4 tuần uống đều đặn mỗi sáng da sẽ sáng và đủ ẩm hơn nhiều chị nhé."
+    })
+    assert r3.status_code == 200
+    assert len(r3.json()["conversation"]["messages"]) >= 4
+
+    # 4. Pharmacist handoff
+    r4 = client.post("/api/vistafa/conversations/CONV-ESC-05/escalate", json={
+        "reason": "Phát hiện dùng thuốc ngủ Seduxen theo đơn",
+        "notes": "Bác 68 tuổi mất ngủ lâu năm",
+        "pharmacist_name": "DS. Lâm Sàng Trực Ban"
+    })
+    assert r4.status_code == 200
+    assert r4.json()["ticket"]["assigned_pharmacist"] == "DS. Lâm Sàng Trực Ban"
+
+    # 5. Convert order
+    r5 = client.post("/api/vistafa/conversations/CONV-FB-01/convert", json={
+        "sku": "beauty_collagen",
+        "quantity": 2,
+        "delivery_address": "Số 25 Nguyễn Trãi, Hà Nội",
+        "total_price": "480.000đ"
+    })
+    assert r5.status_code == 200
+    assert r5.json()["order"]["sku"] == "beauty_collagen"
+

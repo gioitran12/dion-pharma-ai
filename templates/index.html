@@ -1236,318 +1236,256 @@
 <!-- ============================================================ -->
 <!-- PHÂN HỆ 2: TRỢ LÝ CHAT ĐA KÊNH & SO SÁNH ĐỐI THỦ (VISTAFA) -->
 <!-- ============================================================ -->
-<div id="care-subview-multichannel" class="space-y-4 hidden" style="display: none;">
+<!-- ============================================================ -->
+<!-- PHÂN HỆ 2: KHÔNG GIAN HỢP NHẤT CSKH ĐA KÊNH & TƯ VẤN AI LÂM SÀNG -->
+<!-- ============================================================ -->
+<div id="care-subview-multichannel" class="space-y-3 hidden" style="display: none;">
     <!-- BANNER NGUYÊN TẮC VẬN HÀNH & NHỊP CHUẨN 4 BƯỚC -->
-    <div class="bg-gradient-to-r from-blue-900 via-corp-800 to-indigo-900 rounded-xl p-4 text-white shadow-sm border border-blue-700/50">
+    <div class="bg-gradient-to-r from-blue-900 via-corp-800 to-indigo-900 rounded-xl p-3.5 text-white shadow-sm border border-blue-700/50">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
             <div>
                 <div class="flex items-center gap-2 flex-wrap mb-1">
-                    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-500/30 text-blue-200 border border-blue-400/30 uppercase tracking-wider">[POC VISTAFA] CHAT ĐA KÊNH</span>
-                    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-500/30 text-emerald-200 border border-emerald-400/30 uppercase tracking-wider">NHỊP CHUẨN 4 BƯỚC</span>
-                    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-500/30 text-purple-200 border border-purple-400/30 uppercase tracking-wider">CHUẨN QA TL.CSKH.003</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/30 text-blue-200 border border-blue-400/30 uppercase tracking-wider">[POC VISTAFA] WORKSPACE HỢP NHẤT</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/30 text-emerald-200 border border-emerald-400/30 uppercase tracking-wider">LIVE CHAT & AI COPILOT</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/30 text-purple-200 border border-purple-400/30 uppercase tracking-wider">TL.CSKH.003 & HANDOFF</span>
                 </div>
-                <h3 class="text-base font-black tracking-tight text-white">TRỢ LÝ KỊCH BẢN CHAT ĐA KÊNH & SO SÁNH ĐỐI THỦ CHUẨN LÂM SÀNG</h3>
+                <h3 class="text-sm md:text-base font-black tracking-tight text-white">KHÔNG GIAN LÀM VIỆC HỢP NHẤT: CSKH ĐA KÊNH & TRỢ LÝ AI LÂM SÀNG</h3>
                 <p class="text-xs text-blue-100/90 mt-0.5 max-w-3xl">
-                    Hỗ trợ Sales/CSKH trả lời đúng hồ sơ công bố đã duyệt trên 4 nền tảng (Facebook, Zalo, Website, TikTok), tự động sàng lọc Red Flag y dược và đối chiếu đối thủ không vi phạm pháp lý & đạo đức ngành dược.
+                    Hợp nhất hàng đợi tiếp nhận Lead đa kênh (FB/Zalo/Web/TikTok), luồng hội thoại nhiều lượt thời gian thực, và Trợ lý AI Lâm sàng đồng hành tự động sàng lọc Red Flag y tế kèm bàn giao Dược sĩ 1 chạm.
                 </p>
             </div>
             <div class="flex items-center gap-2 shrink-0">
-                <button type="button" onclick="toggleCompetitorDrawer()" class="px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-bold border border-white/20 transition flex items-center gap-1.5 cursor-pointer">
+                <button type="button" onclick="toggleCompetitorDrawer()" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-bold border border-white/20 transition cursor-pointer">
                     <span>[MA TRẬN ĐỐI THỦ (10 KỊCH BẢN)]</span>
                 </button>
             </div>
         </div>
-
-        <!-- 4 BƯỚC ĐÀM THOẠI STRIP -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-3 pt-3 border-t border-white/10 text-xs">
-            <div class="bg-black/20 rounded-lg p-2 border border-white/10">
-                <span class="font-bold text-blue-300 block text-[10px] uppercase">Bước 1: Trả lời trực diện</span>
-                <span class="text-white/90 text-[11px]">Đúng claim duyệt, không hứa hẹn quá mức</span>
-            </div>
-            <div class="bg-black/20 rounded-lg p-2 border border-white/10">
-                <span class="font-bold text-amber-300 block text-[10px] uppercase">Bước 2: Hỏi 1 câu khai thác</span>
-                <span class="text-white/90 text-[11px]">Làm rõ đối tượng, độ tuổi, nhu cầu thực</span>
-            </div>
-            <div class="bg-black/20 rounded-lg p-2 border border-white/10">
-                <span class="font-bold text-rose-300 block text-[10px] uppercase">Bước 3: Sàng lọc Red Flag</span>
-                <span class="text-white/90 text-[11px]">Bệnh nền, đơn thuốc, thai kỳ -> Chuyển DS</span>
-            </div>
-            <div class="bg-black/20 rounded-lg p-2 border border-white/10">
-                <span class="font-bold text-emerald-300 block text-[10px] uppercase">Bước 4: Chuyển bước chốt</span>
-                <span class="text-white/90 text-[11px]">Xin SĐT (FB/Web), gửi ảnh nhãn (Zalo), Inbox (TikTok)</span>
-            </div>
-        </div>
     </div>
 
-    <!-- KHU VỰC THIẾT LẬP KÊNH & BỘ LỌC TƯƠNG TÁC -->
-    <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-xs space-y-3">
-        <!-- 1. BỘ CHỌN KÊNH CHAT (CHANNEL PICKER) -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-100">
-            <div class="flex items-center gap-1.5">
-                <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Kênh tiếp nhận:</span>
-                <span id="mc-active-channel-badge" class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800 border border-blue-200">[FB] Facebook Messenger</span>
-            </div>
-            <!-- CHANNEL BUTTONS -->
-            <div class="flex items-center gap-1.5 flex-wrap">
-                <button type="button" onclick="selectMultichannelChannel('facebook')" id="btn-mc-chan-facebook" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 bg-corp-800 text-white shadow-xs cursor-pointer">
-                    <span>[FB] FACEBOOK</span>
-                </button>
-                <button type="button" onclick="selectMultichannelChannel('zalo')" id="btn-mc-chan-zalo" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer">
-                    <span>[ZALO] ZALO OA</span>
-                </button>
-                <button type="button" onclick="selectMultichannelChannel('website')" id="btn-mc-chan-website" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer">
-                    <span>[WEB] WEBSITE CHAT</span>
-                </button>
-                <button type="button" onclick="selectMultichannelChannel('tiktok')" id="btn-mc-chan-tiktok" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer">
-                    <span>[TIKTOK] TIKTOK SHOP</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- 2. BỘ CHỌN SẢN PHẨM & TÌNH HUỐNG -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div>
-                <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Sản phẩm VitGarden:</label>
-                <select id="mc-select-product" onchange="onMultichannelProductChange()" class="w-full text-xs font-semibold rounded-lg border-slate-300 focus:border-corp-500 focus:ring-corp-500 bg-slate-50 p-2">
-                    <option value="calcium_complex">VitGarden Calcium Complex (Canxi sinh học Nano + Citrat)</option>
-                    <option value="beauty_collagen">Beauty Collagen Powder (Nano Collagen 1500mg, Sensoril)</option>
-                    <option value="ultimate_omega3">VitGarden Ultimate Omega 3 (Omega-3 TG 1000mg, IFOS)</option>
-                    <option value="sleep_well">VitGarden Sleep Well (Melatonin, GABA, L-Theanine, Magie)</option>
-                    <option value="ferro_active">VitGarden FerroActive (Sắt vi nang Lipofer 30mg)</option>
-                </select>
-            </div>
-            <div>
-                <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Tình huống chuẩn hóa:</label>
-                <select id="mc-select-situation" onchange="onMultichannelSituationChange()" class="w-full text-xs font-semibold rounded-lg border-slate-300 focus:border-corp-500 focus:ring-corp-500 bg-slate-50 p-2">
-                    <option value="all">-- Tự động nhận diện từ tin nhắn --</option>
-                    <option value="Hỏi giá">Hỏi giá sản phẩm</option>
-                    <option value="Hỏi công dụng">Hỏi công dụng / lợi ích</option>
-                    <option value="Hỏi cách dùng">Hỏi cách dùng / thời điểm uống</option>
-                    <option value="Hỏi ai dùng được">Hỏi ai dùng được / đối tượng</option>
-                    <option value="Chê giá cao">Chê giá cao / do dự chần chừ</option>
-                    <option value="Chốt đơn">Chốt đơn / đặt hàng</option>
-                    <option value="Hỏi thành phần">Hỏi thành phần / hàm lượng</option>
-                    <option value="Sợ tác dụng phụ">Sợ tác dụng phụ / lo lắng an toàn</option>
-                    <option value="Đang dùng sản phẩm khác">Đang dùng sản phẩm khác</option>
-                    <option value="So sánh đối thủ">So sánh đối thủ cạnh tranh</option>
-                    <option value="Muốn hỏi người thân">Muốn hỏi người thân</option>
-                    <option value="Hướng dẫn sau khi nhận hàng">Hướng dẫn sau nhận hàng (D+1)</option>
-                    <option value="Nhắc tái mua">Nhắc tái mua chu kỳ tiếp</option>
-                </select>
-            </div>
-            <div>
-                <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Phím tắt Shortcut (Slash Commands):</label>
-                <div class="relative">
-                    <input type="text" id="mc-input-shortcut" placeholder="Gõ /calci, /colp, /omega3, /sosanh..." onkeyup="onMultichannelShortcutSearch(this.value)" class="w-full text-xs font-mono rounded-lg border-slate-300 focus:border-corp-500 focus:ring-corp-500 bg-slate-50 p-2 pr-8" />
-                    <button type="button" onclick="document.getElementById('mc-input-shortcut').value=''; onMultichannelShortcutSearch('')" class="absolute right-2 top-2 text-slate-400 hover:text-slate-600 text-xs font-bold">[X]</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 3. SHORTCUT CHIPS STRIP -->
-        <div class="flex items-center gap-1.5 flex-wrap pt-1" id="mc-shortcut-chips-container">
-            <span class="text-[11px] font-bold text-slate-500 uppercase mr-1">Gợi ý phím tắt:</span>
-            <!-- Populated dynamically -->
-        </div>
-
-        <!-- 4. DEMO PRESET BUTTONS -->
-        <div class="flex items-center gap-1.5 flex-wrap pt-1 border-t border-slate-100">
-            <span class="text-[11px] font-bold text-slate-500 uppercase mr-1">Tình huống thực tế mẫu:</span>
-            <button type="button" onclick="fillMultichannelSample('calci_stone')" class="px-2.5 py-1 rounded text-[11px] font-semibold bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 transition">
-                <span>[RED FLAG] Canxi + Tiền sử sỏi thận</span>
-            </button>
-            <button type="button" onclick="fillMultichannelSample('calci_corbiere')" class="px-2.5 py-1 rounded text-[11px] font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 transition">
-                <span>[ĐỐI THỦ] Canxi Corbiere giá rẻ</span>
-            </button>
-            <button type="button" onclick="fillMultichannelSample('collagen_herbalife')" class="px-2.5 py-1 rounded text-[11px] font-semibold bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200 transition">
-                <span>[ĐỐI THỦ] Herbalife / Collagen 10.000mg</span>
-            </button>
-            <button type="button" onclick="fillMultichannelSample('omega3_cheap')" class="px-2.5 py-1 rounded text-[11px] font-semibold bg-amber-50 text-amber-700 hover:bg-amber-100 border border-amber-200 transition">
-                <span>[ĐỐI THỦ] Dầu cá 1000mg giá rẻ</span>
-            </button>
-            <button type="button" onclick="fillMultichannelSample('sleep_sedative')" class="px-2.5 py-1 rounded text-[11px] font-semibold bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200 transition">
-                <span>[RED FLAG] Mất ngủ + Uống thuốc an thần</span>
-            </button>
-            <button type="button" onclick="fillMultichannelSample('ferro_inorganic')" class="px-2.5 py-1 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 transition">
-                <span>[ĐỐI THỦ] Sắt sulfate táo bón</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- LAYOUT CHÍNH: CỘT TRÁI (INPUT & PROFILE) & CỘT PHẢI (SIMULATOR & NHỊP 4 BƯỚC) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
-        <!-- CỘT TRÁI: 5 CỘT (INPUT MESSAGE & HEALTH PROFILE SCREENING) -->
-        <div class="lg:col-span-5 space-y-3">
-            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-xs space-y-3">
+    <!-- BỐ CỤC 3 CỘT HỢP NHẤT (UNIFIED 3-COLUMN WORKSPACE) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
+        <!-- CỘT 1: HÀNG ĐỢI HỘI THOẠI ĐA KÊNH (3 CỘT) -->
+        <div class="lg:col-span-3 bg-white rounded-xl border border-slate-200 shadow-xs flex flex-col h-[740px] overflow-hidden">
+            <div class="p-3 border-b border-slate-100 space-y-2 shrink-0 bg-slate-50">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Tin nhắn của khách hàng:</span>
-                    <span class="text-[11px] text-slate-400 font-mono" id="mc-char-counter">0 ký tự</span>
+                    <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Hàng đợi hội thoại:</span>
+                    <span id="mc-queue-count-badge" class="px-2 py-0.2 rounded text-[10px] font-mono font-bold bg-blue-100 text-blue-800">5 cuộc</span>
                 </div>
-                <textarea id="mc-input-message" rows="4" oninput="document.getElementById('mc-char-counter').innerText = this.value.length + ' ký tự'" placeholder="Nhập câu hỏi của khách hàng (hoặc click nút tình huống mẫu phía trên)..." class="w-full text-xs rounded-lg border-slate-300 focus:border-corp-500 focus:ring-corp-500 p-2.5 bg-slate-50 leading-relaxed"></textarea>
-
-                <!-- BỐI CẢNH SỨC KHỎE KHÁCH HÀNG (CRM PROFILE SCREENING) -->
-                <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200 space-y-2">
-                    <span class="text-[11px] font-bold text-slate-600 uppercase block tracking-wider">Sàng lọc tiền sử sức khỏe (CRM Profile):</span>
-                    <div class="grid grid-cols-1 gap-1.5 text-xs text-slate-700">
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="mc-chk-stone" class="rounded text-rose-600 focus:ring-rose-500 h-3.5 w-3.5" />
-                            <span class="text-[11px]">Tiền sử sỏi thận / sỏi tiết niệu / tăng canxi máu</span>
-                        </label>
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="mc-chk-sedative" class="rounded text-rose-600 focus:ring-rose-500 h-3.5 w-3.5" />
-                            <span class="text-[11px]">Đang dùng thuốc ngủ / an thần / chống trầm cảm theo đơn</span>
-                        </label>
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="mc-chk-pregnancy" class="rounded text-amber-600 focus:ring-amber-500 h-3.5 w-3.5" />
-                            <span class="text-[11px]">Đang mang thai / cho con bú</span>
-                        </label>
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="mc-chk-anticoagulant" class="rounded text-amber-600 focus:ring-amber-500 h-3.5 w-3.5" />
-                            <span class="text-[11px]">Đang dùng thuốc chống đông máu (Aspirin, Warfarin)</span>
-                        </label>
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="mc-chk-dual-iron" class="rounded text-rose-600 focus:ring-rose-500 h-3.5 w-3.5" />
-                            <span class="text-[11px]">Đang dùng vitamin bầu có sẵn sắt / định uống 2 loại sắt</span>
-                        </label>
-                    </div>
+                <!-- BỘ LỌC KÊNH NHANH TRONG HÀNG ĐỢI -->
+                <div class="grid grid-cols-4 gap-1 text-[10px] font-bold">
+                    <button type="button" onclick="filterQueueByChannel('all')" id="btn-qfilter-all" class="py-1 rounded bg-corp-800 text-white text-center cursor-pointer">ALL</button>
+                    <button type="button" onclick="filterQueueByChannel('facebook')" id="btn-qfilter-facebook" class="py-1 rounded bg-slate-200 text-slate-700 hover:bg-slate-300 text-center cursor-pointer">FB</button>
+                    <button type="button" onclick="filterQueueByChannel('zalo')" id="btn-qfilter-zalo" class="py-1 rounded bg-slate-200 text-slate-700 hover:bg-slate-300 text-center cursor-pointer">ZALO</button>
+                    <button type="button" onclick="filterQueueByChannel('tiktok')" id="btn-qfilter-tiktok" class="py-1 rounded bg-slate-200 text-slate-700 hover:bg-slate-300 text-center cursor-pointer">TIKTOK</button>
                 </div>
-
-                <!-- SUBMIT BUTTON -->
-                <button type="button" onclick="executeMultichannelCopilot()" id="btn-mc-submit" class="w-full py-2.5 px-4 rounded-lg bg-corp-800 hover:bg-corp-900 text-white text-xs font-bold shadow-xs transition flex items-center justify-center gap-2 cursor-pointer">
-                    <span>TỰ ĐỘNG SINH KỊCH BẢN CHUẨN KÊNH & SÀNG LỌC RED FLAG</span>
-                </button>
             </div>
 
-            <!-- QUY TẮC ĐẶC THÙ KÊNH ĐANG CHỌN (CHANNEL RULES CARD) -->
-            <div class="bg-blue-50/70 rounded-xl border border-blue-200 p-3.5 text-xs text-blue-900 space-y-1.5" id="mc-channel-rules-card">
-                <span class="font-bold text-[11px] uppercase tracking-wider text-blue-800 block" id="mc-rule-title">Quy chuẩn kênh: Facebook Messenger</span>
-                <p class="text-blue-800 text-[11px] leading-relaxed" id="mc-rule-desc">
-                    Tự nhiên, chia tin ngắn, thân thiện, điều hướng xin SĐT hoặc gửi tin nhắn kế tiếp. Tách thành 2-3 bong bóng chat ngắn, tránh khối văn bản dài gây ngợp.
-                </p>
-                <div class="pt-1 border-t border-blue-200/60 flex items-center justify-between text-[11px]">
-                    <span class="font-bold text-blue-900">Mẫu CTA:</span>
-                    <span class="text-blue-700 italic" id="mc-rule-cta">Xin SĐT để gửi ưu đãi/tư vấn liều phù hợp.</span>
-                </div>
+            <!-- DANH SÁCH CUỘC HỘI THOẠI CUỘN ĐƯỢC -->
+            <div class="flex-1 overflow-y-auto divide-y divide-slate-100 p-2 space-y-1.5" id="mc-inbound-queue-list">
+                <!-- Populated dynamically via JS -->
             </div>
         </div>
 
-        <!-- CỘT PHẢI: 7 CỘT (LIVE SIMULATOR & 4-STEP ACCORDION) -->
-        <div class="lg:col-span-7 space-y-3">
-            <!-- CẢNH BÁO RED FLAG (NẾU CÓ) -->
-            <div id="mc-redflag-alert-box" class="hidden bg-rose-50 border-2 border-rose-400 rounded-xl p-3.5 text-rose-900 shadow-xs">
-                <div class="flex items-start gap-2.5">
-                    <div class="w-8 h-8 rounded-lg bg-rose-600 text-white flex items-center justify-center font-bold text-xs shrink-0">!</div>
-                    <div class="space-y-1">
-                        <div class="flex items-center gap-2">
-                            <span class="font-black text-xs uppercase tracking-wider text-rose-800">CẢNH BÁO Y TẾ — PHÁT HIỆN RED FLAG DƯỢC PHẨM</span>
-                            <span id="mc-redflag-badge" class="px-2 py-0.2 rounded text-[10px] font-bold bg-rose-200 text-rose-900 uppercase">CHUYỂN DƯỢC SĨ</span>
+        <!-- CỘT 2: KHUNG HỘI THOẠI ĐA LƯỢT THỜI GIAN THỰC (5 CỘT) -->
+        <div class="lg:col-span-5 bg-white rounded-xl border border-slate-200 shadow-xs flex flex-col h-[740px] overflow-hidden">
+            <!-- HEADER CUỘC HỘI THOẠI ĐANG CHỌN -->
+            <div class="p-3 border-b border-slate-200 bg-slate-50 shrink-0 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div id="mc-active-avatar" class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0">ML</div>
+                    <div>
+                        <div class="flex items-center gap-1.5">
+                            <span id="mc-active-cust-name" class="font-bold text-xs text-slate-900">Mai Lan</span>
+                            <span id="mc-active-channel-pill" class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-blue-100 text-blue-800">[FB] Messenger</span>
+                            <span id="mc-active-status-pill" class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">ĐANG CHAT</span>
                         </div>
-                        <ul id="mc-redflag-list" class="list-disc list-inside text-xs font-medium space-y-0.5 text-rose-800">
-                            <!-- Items inserted dynamically -->
-                        </ul>
-                        <p class="text-[11px] font-bold text-rose-900 pt-1" id="mc-redflag-guidance">
-                            Chỉ thị an toàn: Khóa tư vấn chốt đơn tự động. Chuyển thông tin cho Dược sĩ lâm sàng phụ trách để xem xét bối cảnh dùng thuốc.
-                        </p>
+                        <div class="text-[11px] text-slate-500 font-mono" id="mc-active-meta">SĐT: 0912345678 | Quan tâm: Beauty Collagen Powder</div>
                     </div>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <button type="button" onclick="openConvertOrderModal()" class="px-2 py-1 rounded bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold transition cursor-pointer">
+                        [Chốt đơn]
+                    </button>
                 </div>
             </div>
 
-            <!-- BẢNG SO SÁNH ĐỐI THỦ PHÁT HIỆN ĐƯỢC (NẾU CÓ) -->
-            <div id="mc-competitor-matched-box" class="hidden bg-indigo-50 border border-indigo-200 rounded-xl p-3 text-indigo-950 shadow-xs space-y-2">
-                <div class="flex items-center justify-between border-b border-indigo-200/60 pb-1.5">
-                    <div class="flex items-center gap-1.5">
-                        <span class="text-[11px] font-black uppercase text-indigo-900">ĐỐI CHIẾU ĐỐI THỦ:</span>
-                        <span id="mc-comp-name" class="font-bold text-xs text-indigo-700">Canxi Corbiere / Canxi sủi vô cơ</span>
-                    </div>
-                    <span class="px-2 py-0.2 rounded text-[10px] font-bold bg-indigo-200 text-indigo-900 uppercase">[KHOA HỌC - KHÔNG NÓI XẤU]</span>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-[11px]">
-                    <div class="bg-white/80 rounded-lg p-2 border border-indigo-100">
-                        <span class="font-bold text-slate-600 block uppercase text-[10px]">Tiêu chí so sánh:</span>
-                        <span id="mc-comp-criteria" class="text-slate-800 leading-tight">So hàm lượng nguyên tố thực tế, D3/K2 đi kèm, nguy cơ lắng đọng</span>
-                    </div>
-                    <div class="bg-white/80 rounded-lg p-2 border border-indigo-100">
-                        <span class="font-bold text-slate-600 block uppercase text-[10px]">Câu hỏi ngược lại khách:</span>
-                        <span id="mc-comp-counter" class="text-slate-800 italic leading-tight">"Anh/chị đang so lượng calci nguyên tố hay khối lượng muối canxi ạ?"</span>
-                    </div>
-                </div>
-                <div class="bg-rose-50/70 rounded-lg p-2 border border-rose-200/60 text-[11px]">
-                    <span class="font-bold text-rose-800 uppercase text-[10px]">Điều cấm tuyệt đối (Không nên nói):</span>
-                    <span id="mc-comp-prohibited" class="text-rose-900 block font-medium">Không nói canxi khác là độc hại, không tuyên bố dạng nano chắc chắn tốt hơn 100%.</span>
-                </div>
+            <!-- KHUNG STREAM TIN NHẮN (MESSAGE THREAD CANVAS) -->
+            <div class="flex-1 overflow-y-auto p-3 space-y-3 bg-slate-50/60" id="mc-thread-stream">
+                <!-- Messages populated dynamically -->
             </div>
 
-            <!-- GIAO DIỆN MÔ PHỎNG NỀN TẢNG (CHANNEL SIMULATOR) -->
-            <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
-                <!-- SIMULATOR HEADER BAR -->
-                <div class="bg-slate-100 px-4 py-2.5 border-b border-slate-200 flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                        <span class="text-xs font-bold text-slate-700 uppercase" id="mc-sim-header-title">MÔ PHỎNG: FACEBOOK MESSENGER</span>
-                        <span id="mc-sim-situation-tag" class="px-2 py-0.2 rounded text-[10px] font-bold bg-slate-200 text-slate-700 font-mono">Hỏi giá</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-[11px] font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200" id="mc-sim-qa-score">QA: 100/100 PASS</span>
-                        <button type="button" onclick="copyMultichannelFullReply()" class="px-2.5 py-1 rounded bg-slate-200 hover:bg-slate-300 text-slate-800 text-[11px] font-bold transition cursor-pointer">
-                            [Sao chép toàn bộ]
+            <!-- THANH PHÍM TẮT NHANH (SHORTCUT BAR TRỰC CHIẾN) -->
+            <div class="p-2 border-t border-slate-200 bg-white shrink-0">
+                <div class="flex items-center gap-1 overflow-x-auto pb-1" id="mc-thread-shortcut-chips">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase shrink-0">Phím tắt:</span>
+                    <!-- Chips inserted dynamically -->
+                </div>
+                <!-- KHUNG SOẠN TIN NHẮN & NÚT GỬI -->
+                <div class="flex items-end gap-2 pt-1.5">
+                    <textarea id="mc-thread-input" rows="2" placeholder="Gõ câu trả lời của nhân viên (hoặc nhấn 'Nạp câu trả lời của AI' ở cột phải)..." class="flex-1 text-xs rounded-lg border-slate-300 focus:border-corp-500 focus:ring-corp-500 p-2 bg-slate-50 leading-relaxed"></textarea>
+                    <div class="flex flex-col gap-1 shrink-0">
+                        <button type="button" onclick="sendAgentMessageFromInput()" class="px-3 py-2 rounded-lg bg-corp-800 hover:bg-corp-900 text-white text-xs font-bold transition cursor-pointer">
+                            [Gửi]
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- SIMULATOR CONTENT CANVAS -->
-                <div class="p-4 bg-slate-50 min-h-[220px] flex flex-col justify-between" id="mc-sim-canvas">
-                    <!-- CHAT BUBBLES CONTAINER -->
-                    <div class="space-y-3" id="mc-sim-bubbles-container">
-                        <div class="p-4 text-center text-slate-400 text-xs italic">
-                            Chưa có dữ liệu hội thoại. Hãy nhập tin nhắn hoặc chọn tình huống mẫu để tạo phản hồi chuẩn kênh.
-                        </div>
-                    </div>
-
-                    <!-- CHANNEL SPECIFIC ATTACHMENT ACTION BAR (FOR ZALO / TIKTOK / WEB) -->
-                    <div id="mc-sim-channel-action-bar" class="mt-3 pt-3 border-t border-slate-200 hidden">
-                        <!-- Populated based on channel -->
-                    </div>
+        <!-- CỘT 3: TRỢ LÝ AI LÂM SÀNG & BÀN GIAO DƯỢC SĨ (4 CỘT) -->
+        <div class="lg:col-span-4 space-y-3 h-[740px] overflow-y-auto pr-0.5">
+            <!-- 1. BỐI CẢNH Y KHOA KHÁCH HÀNG (DETECTED CLINICAL PROFILE) -->
+            <div class="bg-white rounded-xl border border-slate-200 p-3 shadow-xs space-y-2">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-1.5">
+                    <span class="text-xs font-black text-slate-700 uppercase tracking-wider">Bối cảnh y tế đã nhận diện:</span>
+                    <span id="mc-profile-risk-tag" class="px-2 py-0.2 rounded text-[10px] font-bold bg-slate-100 text-slate-700">TIỀM NĂNG</span>
+                </div>
+                <div class="text-[11px] text-slate-700 space-y-1" id="mc-profile-details">
+                    <div>- Độ tuổi / Tình trạng: <b id="mc-p-age" class="text-slate-900">29 tuổi</b></div>
+                    <div>- Mục tiêu / Nỗi đau: <span id="mc-p-pain" class="text-slate-800 italic">Thức khuya làm việc, da sạm nám khô ráp</span></div>
+                    <div>- Ghi chú lâm sàng: <span id="mc-p-notes" class="text-slate-800">Chưa từng uống collagen, quan tâm độ an toàn</span></div>
                 </div>
             </div>
 
-            <!-- PHÂN TÍCH NHỊP CHUẨN 4 BƯỚC ĐÀM THOẠI (4-STEP BREAKDOWN) -->
-            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-xs space-y-2.5">
-                <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-                    <span class="text-xs font-black text-slate-700 uppercase tracking-wider">PHÂN TÍCH NHỊP CHUẨN 4 BƯỚC ĐÀM THOẠI:</span>
-                    <span class="text-[10px] font-mono text-slate-400">TL.CSKH.003</span>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
-                    <div class="p-2.5 rounded-lg bg-blue-50/50 border border-blue-100 space-y-1">
-                        <span class="font-bold text-blue-800 uppercase text-[10px] block">1. Trả lời trực diện (Claim đã duyệt)</span>
-                        <p class="text-slate-700 text-[11px] leading-relaxed" id="mc-step-1">Đang chờ tạo kịch bản...</p>
-                    </div>
-                    <div class="p-2.5 rounded-lg bg-amber-50/50 border border-amber-100 space-y-1">
-                        <span class="font-bold text-amber-800 uppercase text-[10px] block">2. Câu hỏi khai thác (Nhịp chuẩn)</span>
-                        <p class="text-slate-700 text-[11px] leading-relaxed italic" id="mc-step-2">Đang chờ tạo kịch bản...</p>
-                    </div>
-                    <div class="p-2.5 rounded-lg bg-rose-50/50 border border-rose-100 space-y-1">
-                        <span class="font-bold text-rose-800 uppercase text-[10px] block">3. Sàng lọc an toàn / Red Flag</span>
-                        <p class="text-slate-700 text-[11px] leading-relaxed" id="mc-step-3">Đang chờ tạo kịch bản...</p>
-                    </div>
-                    <div class="p-2.5 rounded-lg bg-emerald-50/50 border border-emerald-100 space-y-1">
-                        <span class="font-bold text-emerald-800 uppercase text-[10px] block">4. Chuyển bước chốt hành động</span>
-                        <p class="text-slate-700 text-[11px] leading-relaxed font-semibold text-emerald-900" id="mc-step-4">Đang chờ tạo kịch bản...</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- BẢNG ĐÁNH GIÁ CHẤT LƯỢNG QA TL.CSKH.003 -->
-            <div class="bg-white rounded-xl border border-slate-200 p-3 shadow-xs text-xs space-y-1.5" id="mc-qa-checklist-card">
+            <!-- 2. CẢNH BÁO RED FLAG & BÀN GIAO DƯỢC SĨ 1 CHẠM -->
+            <div id="mc-panel-redflag" class="hidden bg-rose-50 border-2 border-rose-400 rounded-xl p-3 shadow-xs text-rose-950 space-y-2">
                 <div class="flex items-center justify-between">
-                    <span class="font-bold text-[11px] text-slate-700 uppercase tracking-wider">Kiểm soát tiêu chuẩn chất lượng (QA TL.CSKH.003):</span>
-                    <span id="mc-qa-status-pill" class="px-2 py-0.2 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">ĐẠT 100/100</span>
+                    <span class="text-xs font-black uppercase text-rose-800">[CANH BAO] PHÁT HIỆN RED FLAG Y TẾ</span>
+                    <span class="px-2 py-0.2 rounded text-[10px] font-bold bg-rose-200 text-rose-900 uppercase">NGUY CƠ CAO</span>
                 </div>
-                <div id="mc-qa-notes-list" class="space-y-1 text-[11px] text-slate-600">
-                    <div class="flex items-center gap-1.5 text-emerald-700">
-                        <span>[X]</span>
-                        <span>Phản hồi tuân thủ đầy đủ nhịp chuẩn 4 bước và an toàn y dược.</span>
+                <p class="text-xs font-medium text-rose-900 leading-tight" id="mc-redflag-text">
+                    Khách hàng đang sử dụng thuốc ngủ kê đơn (Seduxen/Rotunda). Nguy cơ tương tác ức chế thần kinh trung ương.
+                </p>
+                <div class="pt-1 border-t border-rose-200 flex items-center justify-between gap-2">
+                    <span class="text-[10px] text-rose-700 font-bold">Khóa tự ý bán hàng</span>
+                    <button type="button" onclick="openHandoffModal()" class="px-2.5 py-1 rounded bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold transition shadow-xs cursor-pointer">
+                        [BÀN GIAO DƯỢC SĨ 1 CHẠM]
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3. GỢI Ý CÂU TRẢ LỜI CỦA AI COPILOT THEO NHỊP 4 BƯỚC -->
+            <div class="bg-white rounded-xl border border-blue-200 p-3 shadow-xs space-y-2.5">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-1.5">
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+                        <span class="text-xs font-black text-blue-900 uppercase tracking-wider">AI COPILOT ĐỒNG HÀNH:</span>
+                    </div>
+                    <span id="mc-ai-qa-badge" class="px-2 py-0.2 rounded text-[10px] font-mono font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">QA: 100 PASS</span>
+                </div>
+
+                <!-- BẢNG 4 BƯỚC THU GỌN -->
+                <div class="space-y-1.5 text-xs">
+                    <div class="p-2 rounded-lg bg-blue-50/70 border border-blue-100 text-[11px] leading-relaxed">
+                        <span class="font-bold text-blue-900 block uppercase text-[10px]">1. Trả lời trực diện (Claim duyệt):</span>
+                        <span id="mc-panel-step1" class="text-slate-800">Đang phân tích tin nhắn...</span>
+                    </div>
+                    <div class="p-2 rounded-lg bg-amber-50/70 border border-amber-100 text-[11px] leading-relaxed">
+                        <span class="font-bold text-amber-900 block uppercase text-[10px]">2. Hỏi 1 câu khai thác nhu cầu:</span>
+                        <span id="mc-panel-step2" class="text-slate-800 italic">Đang phân tích tin nhắn...</span>
+                    </div>
+                    <div class="p-2 rounded-lg bg-emerald-50/70 border border-emerald-100 text-[11px] leading-relaxed">
+                        <span class="font-bold text-emerald-900 block uppercase text-[10px]">3 & 4. Sàng lọc & Chuyển bước chốt:</span>
+                        <span id="mc-panel-step4" class="text-slate-800 font-semibold">Đang phân tích tin nhắn...</span>
                     </div>
                 </div>
+
+                <!-- NÚT HÀNH ĐỘNG GỬI HOẶC NẠP -->
+                <div class="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
+                    <button type="button" onclick="insertAiReplyIntoInput()" class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition flex-1 text-center cursor-pointer">
+                        [Nạp vào ô soạn thảo]
+                    </button>
+                    <button type="button" onclick="sendAiReplyDirectly()" class="px-3 py-1.5 rounded-lg bg-corp-800 hover:bg-corp-900 text-white text-xs font-bold transition flex-1 text-center shadow-xs cursor-pointer">
+                        [Gửi ngay vào chat]
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4. HỘP SO SÁNH ĐỐI THỦ (NẾU PHÁT HIỆN ĐỐI THỦ TRONG LUỒNG) -->
+            <div id="mc-panel-comp" class="hidden bg-indigo-50 border border-indigo-200 rounded-xl p-3 shadow-xs space-y-1.5 text-xs text-indigo-950">
+                <div class="flex items-center justify-between">
+                    <span class="font-black text-[11px] uppercase text-indigo-900">ĐỐI CHIẾU ĐỐI THỦ:</span>
+                    <span id="mc-panel-comp-title" class="font-bold text-indigo-700">Canxi Corbiere</span>
+                </div>
+                <p id="mc-panel-comp-points" class="text-[11px] text-slate-700 leading-tight">
+                    So canxi nguyên tố thực tế và D3/K2 đi kèm giúp đưa canxi vào xương.
+                </p>
+                <div class="text-[10px] text-rose-800 font-bold bg-rose-50 p-1.5 rounded border border-rose-200" id="mc-panel-comp-prohibited">
+                    Không bôi nhọ, không tuyên bố vượt trội không bằng chứng.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL BÀN GIAO DƯỢC SĨ LÂM SÀNG -->
+    <div id="modal-handoff-pharmacist" class="hidden fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-4 shadow-xl space-y-3 border border-slate-200">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-rose-600"></span>
+                    <span class="font-black text-xs text-slate-900 uppercase">PHIẾU BÀN GIAO DƯỢC SĨ LÂM SÀNG</span>
+                </div>
+                <button type="button" onclick="closeHandoffModal()" class="text-slate-400 hover:text-slate-600 font-bold text-xs">[X]</button>
+            </div>
+            <div class="text-xs text-slate-700 space-y-2">
+                <div>Khách hàng: <b id="mc-handoff-cust-name" class="text-slate-900">Bác Nguyễn Văn Đức</b></div>
+                <div>Lý do bàn giao:</div>
+                <input type="text" id="mc-handoff-reason" class="w-full text-xs rounded-lg border-slate-300 p-2 bg-slate-50 font-semibold" value="Khách 68 tuổi dùng thuốc an thần Seduxen kê đơn" />
+                <div>Ghi chú chuyên môn gửi Dược sĩ trực:</div>
+                <textarea id="mc-handoff-notes" rows="3" class="w-full text-xs rounded-lg border-slate-300 p-2 bg-slate-50" placeholder="Mô tả chi tiết triệu chứng, tiền sử dị ứng hoặc đơn thuốc..."></textarea>
+                <div>Dược sĩ tiếp nhận ca:</div>
+                <select id="mc-handoff-pharmacist-select" class="w-full text-xs rounded-lg border-slate-300 p-2 bg-slate-50 font-bold text-corp-800">
+                    <option value="DS. Lâm Sàng Trực Ban">DS. Lâm Sàng Trực Ban (Tổng Đài CSKH)</option>
+                    <option value="DS. Nguyễn Thị Minh">DS. Nguyễn Thị Minh (Chuyên khoa Tim mạch & Thần kinh)</option>
+                    <option value="DS. Trần Hoàng Hải">DS. Trần Hoàng Hải (Chuyên khoa Mẹ & Bé)</option>
+                </select>
+            </div>
+            <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+                <button type="button" onclick="closeHandoffModal()" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 text-xs font-bold cursor-pointer">[Hủy]</button>
+                <button type="button" onclick="submitHandoffToPharmacist()" class="px-3.5 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold cursor-pointer shadow-xs">
+                    [XÁC NHẬN CHUYỂN GIAO]
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CHỐT ĐƠN HÀNG NHANH -->
+    <div id="modal-convert-order-quick" class="hidden fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-4 shadow-xl space-y-3 border border-slate-200">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
+                    <span class="font-black text-xs text-slate-900 uppercase">CHỐT ĐƠN HÀNG & ĐỒNG BỘ CRM</span>
+                </div>
+                <button type="button" onclick="closeConvertOrderModal()" class="text-slate-400 hover:text-slate-600 font-bold text-xs">[X]</button>
+            </div>
+            <div class="text-xs text-slate-700 space-y-2">
+                <div>Khách hàng: <b id="mc-order-cust-name" class="text-slate-900">Mai Lan</b> (<span id="mc-order-phone">0912345678</span>)</div>
+                <div>Sản phẩm chốt:</div>
+                <select id="mc-order-sku" class="w-full text-xs rounded-lg border-slate-300 p-2 bg-slate-50 font-bold">
+                    <option value="beauty_collagen">Beauty Collagen Powder (240.000đ/hộp 14 gói)</option>
+                    <option value="calcium_complex">VitGarden Calcium Complex (320.000đ/hộp 60 viên)</option>
+                    <option value="ultimate_omega3">VitGarden Ultimate Omega 3 (450.000đ/hộp 60 viên)</option>
+                    <option value="sleep_well">VitGarden Sleep Well (280.000đ/hộp 30 viên)</option>
+                    <option value="ferro_active">VitGarden FerroActive (290.000đ/hộp 20 gói)</option>
+                </select>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-500 uppercase">Số lượng:</label>
+                        <input type="number" id="mc-order-qty" value="1" min="1" max="10" class="w-full text-xs rounded-lg border-slate-300 p-2 bg-slate-50 font-bold" />
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-500 uppercase">Tổng tiền dự kiến:</label>
+                        <input type="text" id="mc-order-price" value="240.000đ" class="w-full text-xs rounded-lg border-slate-300 p-2 bg-slate-50 font-bold text-emerald-800" />
+                    </div>
+                </div>
+                <div>Địa chỉ nhận hàng:</div>
+                <textarea id="mc-order-address" rows="2" class="w-full text-xs rounded-lg border-slate-300 p-2 bg-slate-50" placeholder="Nhập địa chỉ nhận hàng của khách..."></textarea>
+            </div>
+            <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+                <button type="button" onclick="closeConvertOrderModal()" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 text-xs font-bold cursor-pointer">[Hủy]</button>
+                <button type="button" onclick="submitConvertOrderQuick()" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold cursor-pointer shadow-xs">
+                    [TẠO ĐƠN & GỬI CRM]
+                </button>
             </div>
         </div>
     </div>
@@ -1582,8 +1520,6 @@
     </div>
 </div>
 
-
-            <!-- ============================================================ -->
             <!-- PHÂN HỆ 2: CÔNG VIỆC CHĂM SÓC -->
             <!-- ============================================================ -->
             <div id="care-subview-tasks" class="space-y-4 hidden" style="display: none;">
@@ -7181,7 +7117,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             if (tabName === 'caresoft') {
                 loadCareSoftLeadsTable();
             } else if (tabName === 'multichannel') {
-                loadMultichannelShortcutsForProduct(curMultichannelProduct);
+                initUnifiedWorkspace();
             } else if (tabName === 'history') {
                 if (!careCustomersList || careCustomersList.length === 0) {
                     await fetchCustomerCare();
@@ -7391,572 +7327,477 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
         // VISTAFA MULTI-CHANNEL CHAT & COMPETITOR COPILOT JAVASCRIPT
         // ============================================================
 
-        let curMultichannelChannel = 'facebook';
-        let curMultichannelProduct = 'calcium_complex';
-        let curMultichannelLastResponse = null;
-        let cachedMultichannelShortcuts = [];
-        let cachedMultichannelCompetitors = [];
+        // ============================================================
+        // VISTAFA UNIFIED CSKH & CLINICAL AI COPILOT WORKSPACE JS
+        // ============================================================
 
-        const multichannelRules = {
-            'facebook': {
-                'title': 'Quy chuẩn kênh: Facebook Messenger',
-                'desc': 'Tự nhiên, chia tin ngắn, thân thiện, điều hướng xin SĐT hoặc gửi tin nhắn kế tiếp. Tách thành 2-3 bong bóng chat ngắn, tránh đoạn văn dài gây ngợp.',
-                'cta': 'Xin SĐT để gửi ưu đãi hoặc chuyển Dược sĩ tư vấn liều dùng.',
-                'badge': '[FB] Facebook Messenger'
-            },
-            'zalo': {
-                'title': 'Quy chuẩn kênh: Zalo OA / Cá Nhân',
-                'desc': 'Rõ ràng, chuyên nghiệp, hỗ trợ gửi ảnh nhãn, phiếu công bố, COA kiểm nghiệm và mời khách chụp nhãn sản phẩm đối thủ gửi qua Zalo để đối chiếu.',
-                'cta': 'Mời gửi ảnh nhãn qua Zalo để Dược sĩ đối chiếu trực tiếp.',
-                'badge': '[ZALO] Zalo OA / Cá Nhân'
-            },
-            'website': {
-                'title': 'Quy chuẩn kênh: Website Live Chat',
-                'desc': 'Nhanh chóng, tức thì, giải quyết thắc mắc trong 1-2 câu, chủ động xin SĐT hoặc kết nối Zalo khi khách đồng ý.',
-                'cta': 'Em có thể hỗ trợ ngay tại đây, hoặc anh/chị để lại SĐT/Zalo em gửi tài liệu chi tiết.',
-                'badge': '[WEB] Website Live Chat'
-            },
-            'tiktok': {
-                'title': 'Quy chuẩn kênh: TikTok Shop / Live Chat',
-                'desc': 'Ngắn gọn (dưới 140 ký tự), đúng claim duyệt, tuyệt đối không dùng từ điều trị/chữa bệnh, điều hướng vào Inbox hoặc Bio.',
-                'cta': 'Nhắn tin vào hộp thư (inbox) để em hỗ trợ kỹ hơn nhé ạ!',
-                'badge': '[TIKTOK] TikTok Shop / Live'
-            }
-        };
+        let curActiveConvId = 'CONV-FB-01';
+        let curInboundFilter = 'all';
+        let cachedInboundConversations = [];
+        let curActiveConvData = null;
 
-        function selectMultichannelChannel(ch) {
-            curMultichannelChannel = ch;
-            ['facebook', 'zalo', 'website', 'tiktok'].forEach(c => {
-                const btn = document.getElementById(`btn-mc-chan-${c}`);
+        async function initUnifiedWorkspace() {
+            await loadInboundConversations('all');
+            await loadMultichannelCompetitorsTable();
+        }
+
+        async function loadInboundConversations(filterCh = 'all') {
+            curInboundFilter = filterCh;
+            ['all', 'facebook', 'zalo', 'tiktok'].forEach(c => {
+                const btn = document.getElementById(`btn-qfilter-${c}`);
                 if (btn) {
-                    if (c === ch) {
-                        btn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 bg-corp-800 text-white shadow-xs cursor-pointer';
+                    if (c === filterCh) {
+                        btn.className = 'py-1 rounded bg-corp-800 text-white text-center cursor-pointer font-bold';
                     } else {
-                        btn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer';
+                        btn.className = 'py-1 rounded bg-slate-200 text-slate-700 hover:bg-slate-300 text-center cursor-pointer font-bold';
                     }
                 }
             });
 
-            const rule = multichannelRules[ch] || multichannelRules['facebook'];
-            const badgeEl = document.getElementById('mc-active-channel-badge');
-            if (badgeEl) badgeEl.innerText = rule.badge;
-            const titleEl = document.getElementById('mc-rule-title');
-            if (titleEl) titleEl.innerText = rule.title;
-            const descEl = document.getElementById('mc-rule-desc');
-            if (descEl) descEl.innerText = rule.desc;
-            const ctaEl = document.getElementById('mc-rule-cta');
-            if (ctaEl) ctaEl.innerText = rule.cta;
+            try {
+                const res = await fetch('/api/vistafa/conversations');
+                const data = await res.json();
+                cachedInboundConversations = data.conversations || [];
 
-            const headerTitle = document.getElementById('mc-sim-header-title');
-            if (headerTitle) headerTitle.innerText = `MÔ PHỎNG: ${rule.badge.toUpperCase()}`;
+                let filtered = cachedInboundConversations;
+                if (filterCh !== 'all') {
+                    filtered = cachedInboundConversations.filter(c => c.channel === filterCh);
+                }
 
-            // Re-run if last response exists and message is filled
-            const msgInput = document.getElementById('mc-input-message');
-            if (msgInput && msgInput.value.trim().length > 0) {
-                executeMultichannelCopilot();
+                const badge = document.getElementById('mc-queue-count-badge');
+                if (badge) badge.innerText = `${filtered.length} cuộc`;
+
+                renderInboundQueueList(filtered);
+
+                // Auto-select active conversation if available
+                if (filtered.length > 0) {
+                    const match = filtered.find(c => c.id === curActiveConvId) || filtered[0];
+                    selectConversation(match.id);
+                }
+            } catch (e) {
+                console.error('Error loading inbound queue:', e);
             }
         }
 
-        async function onMultichannelProductChange() {
-            const selectEl = document.getElementById('mc-select-product');
-            if (!selectEl) return;
-            curMultichannelProduct = selectEl.value;
-            await loadMultichannelShortcutsForProduct(curMultichannelProduct);
+        function filterQueueByChannel(ch) {
+            loadInboundConversations(ch);
         }
 
-        async function loadMultichannelShortcutsForProduct(prodId) {
-            const container = document.getElementById('mc-shortcut-chips-container');
+        function renderInboundQueueList(conversations) {
+            const container = document.getElementById('mc-inbound-queue-list');
+            if (!container) return;
+
+            if (!conversations || conversations.length === 0) {
+                container.innerHTML = '<div class="p-4 text-center text-slate-400 text-xs italic">Không có cuộc hội thoại nào</div>';
+                return;
+            }
+
+            container.innerHTML = conversations.map(c => {
+                const isSelected = c.id === curActiveConvId;
+                const lastMsg = (c.messages && c.messages.length > 0) ? c.messages[c.messages.length - 1].text : '';
+                const shortMsg = lastMsg.length > 48 ? (lastMsg.substring(0, 48) + '...') : lastMsg;
+                
+                let priorityClass = 'bg-slate-100 text-slate-700';
+                if (c.lead_priority === 'HOT') priorityClass = 'bg-rose-100 text-rose-800 font-bold';
+                else if (c.lead_priority === 'URGENT') priorityClass = 'bg-rose-600 text-white font-bold animate-pulse';
+                else if (c.lead_priority === 'WARM') priorityClass = 'bg-amber-100 text-amber-800 font-bold';
+
+                let statusBadge = '';
+                if (c.status === 'ESCALATED_PHARMACIST') {
+                    statusBadge = '<span class="px-1.5 py-0.2 rounded text-[9px] font-bold bg-purple-100 text-purple-800">ĐÃ CHUYỂN DS</span>';
+                } else if (c.status === 'CONVERTED_ORDER') {
+                    statusBadge = '<span class="px-1.5 py-0.2 rounded text-[9px] font-bold bg-emerald-100 text-emerald-800">ĐÃ CHỐT ĐƠN</span>';
+                }
+
+                return `
+                    <div onclick="selectConversation('${c.id}')" class="p-2.5 rounded-lg border transition cursor-pointer ${
+                        isSelected ? 'bg-blue-50/80 border-blue-400 shadow-xs' : 'bg-white border-slate-200 hover:border-slate-300'
+                    }">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-bold text-xs text-slate-900">${c.customer_name}</span>
+                            <div class="flex items-center gap-1">
+                                <span class="px-1.5 py-0.2 rounded text-[9px] font-mono ${priorityClass}">${c.lead_priority}</span>
+                                ${statusBadge}
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-[10px] text-slate-500 mb-1">
+                            <span class="font-bold text-corp-800">${c.channel_label}</span>
+                            <span>${c.updated_at.split(' ')[1] || ''}</span>
+                        </div>
+                        <div class="text-[11px] text-slate-600 line-clamp-2 leading-tight">
+                            ${shortMsg}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function selectConversation(convId) {
+            curActiveConvId = convId;
+
+            // Re-render list to highlight selected
+            if (cachedInboundConversations.length > 0) {
+                let filtered = cachedInboundConversations;
+                if (curInboundFilter !== 'all') {
+                    filtered = cachedInboundConversations.filter(c => c.channel === curInboundFilter);
+                }
+                renderInboundQueueList(filtered);
+            }
+
+            try {
+                const res = await fetch(`/api/vistafa/conversations/${convId}`);
+                const data = await res.json();
+                if (!data.success || !data.conversation) return;
+
+                curActiveConvData = data;
+                const conv = data.conversation;
+                const aiRec = data.ai_recommendation;
+
+                // 1. Update Header
+                const avatar = document.getElementById('mc-active-avatar');
+                if (avatar) avatar.innerText = conv.customer_name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                const custName = document.getElementById('mc-active-cust-name');
+                if (custName) custName.innerText = conv.customer_name;
+                const chanPill = document.getElementById('mc-active-channel-pill');
+                if (chanPill) chanPill.innerText = conv.channel_label;
+                const statusPill = document.getElementById('mc-active-status-pill');
+                if (statusPill) {
+                    if (conv.status === 'ESCALATED_PHARMACIST') {
+                        statusPill.innerText = 'ĐÃ CHUYỂN DƯỢC SĨ';
+                        statusPill.className = 'px-1.5 py-0.2 rounded text-[10px] font-bold bg-purple-100 text-purple-800';
+                    } else if (conv.status === 'CONVERTED_ORDER') {
+                        statusPill.innerText = 'ĐÃ CHỐT ĐƠN';
+                        statusPill.className = 'px-1.5 py-0.2 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800';
+                    } else {
+                        statusPill.innerText = 'ĐANG TƯ VẤN';
+                        statusPill.className = 'px-1.5 py-0.2 rounded text-[10px] font-bold bg-blue-100 text-blue-800';
+                    }
+                }
+                const meta = document.getElementById('mc-active-meta');
+                if (meta) meta.innerText = `SĐT: ${conv.phone || 'Chưa cung cấp'} | SP: ${conv.product_name}`;
+
+                // 2. Render Thread Messages
+                renderThreadMessages(conv.messages, conv.channel, conv.pharmacist_ticket, conv.order_info);
+
+                // 3. Update Clinical Profile & Red flags
+                updateClinicalProfileAndCopilot(conv, aiRec);
+
+                // 4. Load Shortcuts for thread
+                loadThreadShortcuts(conv.product_id);
+
+            } catch (e) {
+                console.error('Error fetching conversation:', e);
+            }
+        }
+
+        function renderThreadMessages(messages, channel, ticket, orderInfo) {
+            const stream = document.getElementById('mc-thread-stream');
+            if (!stream) return;
+
+            let html = '';
+            (messages || []).forEach(m => {
+                const isCust = m.sender === 'customer';
+                if (isCust) {
+                    html += `
+                        <div class="flex items-start gap-2 max-w-[85%]">
+                            <div class="w-6 h-6 rounded-full bg-slate-300 text-slate-700 font-bold text-[10px] flex items-center justify-center shrink-0">KH</div>
+                            <div class="space-y-0.5">
+                                <div class="p-2.5 rounded-2xl bg-white border border-slate-200 text-slate-800 text-xs shadow-xs leading-relaxed whitespace-pre-line">
+                                    ${m.text}
+                                </div>
+                                <span class="text-[9px] text-slate-400 block px-1">${m.time || ''}</span>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    html += `
+                        <div class="flex items-start gap-2 max-w-[85%] ml-auto justify-end">
+                            <div class="space-y-0.5 text-right">
+                                <div class="p-2.5 rounded-2xl bg-blue-700 text-white text-xs shadow-xs leading-relaxed text-left whitespace-pre-line">
+                                    ${m.text}
+                                </div>
+                                <span class="text-[9px] text-slate-400 block px-1">${m.time || ''} • Tư vấn viên</span>
+                            </div>
+                            <div class="w-6 h-6 rounded-full bg-blue-900 text-white font-bold text-[10px] flex items-center justify-center shrink-0">NV</div>
+                        </div>
+                    `;
+                }
+            });
+
+            // If ticket present
+            if (ticket) {
+                html += `
+                    <div class="p-2.5 rounded-xl bg-purple-50 border border-purple-200 text-purple-900 text-xs shadow-xs space-y-1">
+                        <div class="flex items-center justify-between font-bold text-[11px]">
+                            <span>[PHIEU BAN GIAO DUOC SI]: ${ticket.ticket_id}</span>
+                            <span>${ticket.created_at.split(' ')[1] || ''}</span>
+                        </div>
+                        <div>Lý do: <b>${ticket.reason}</b></div>
+                        <div>Phụ trách: <b>${ticket.assigned_pharmacist}</b></div>
+                        <div class="text-[10px] text-purple-700 italic">Đã khóa tính năng bán thêm tự động. Chờ Dược sĩ liên hệ.</div>
+                    </div>
+                `;
+            }
+
+            // If order present
+            if (orderInfo) {
+                html += `
+                    <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 text-xs shadow-xs space-y-1">
+                        <div class="flex items-center justify-between font-bold text-[11px]">
+                            <span>[XAC NHAN DON HANG]: ${orderInfo.order_id}</span>
+                            <span class="text-emerald-800 font-mono">${orderInfo.total_price}</span>
+                        </div>
+                        <div>Sản phẩm: <b>${orderInfo.sku}</b> (Số lượng: ${orderInfo.quantity})</div>
+                        <div>Giao về: <b>${orderInfo.delivery_address || 'Địa chỉ khách hàng'}</b></div>
+                        <div class="text-[10px] text-emerald-700">Đã đồng bộ đơn hàng sang hệ thống ERP/CRM thành công.</div>
+                    </div>
+                `;
+            }
+
+            stream.innerHTML = html;
+            stream.scrollTop = stream.scrollHeight;
+        }
+
+        function updateClinicalProfileAndCopilot(conv, aiRec) {
+            // 1. Profile
+            const profile = conv.clinical_profile || {};
+            const ageEl = document.getElementById('mc-p-age');
+            if (ageEl) ageEl.innerText = profile.age ? `${profile.age} tuổi` : (profile.pregnancy_week ? `Mẹ bầu tuần thứ ${profile.pregnancy_week}` : 'Người trưởng thành');
+            const painEl = document.getElementById('mc-p-pain');
+            if (painEl) painEl.innerText = conv.intent || profile.notes || 'Tư vấn thông tin sản phẩm';
+            const notesEl = document.getElementById('mc-p-notes');
+            if (notesEl) notesEl.innerText = profile.notes || 'Chưa ghi nhận tiền sử bệnh lý đặc biệt';
+
+            // 2. Red Flags
+            const rfPanel = document.getElementById('mc-panel-redflag');
+            const rfText = document.getElementById('mc-redflag-text');
+            const riskTag = document.getElementById('mc-profile-risk-tag');
+
+            if (aiRec && aiRec.red_flags && aiRec.red_flags.has_red_flag) {
+                if (rfPanel) rfPanel.classList.remove('hidden');
+                if (rfText) rfText.innerText = aiRec.red_flags.flags.join(' | ');
+                if (riskTag) {
+                    riskTag.innerText = 'NGUY CƠ Y TẾ';
+                    riskTag.className = 'px-2 py-0.2 rounded text-[10px] font-bold bg-rose-100 text-rose-800';
+                }
+            } else {
+                if (rfPanel) rfPanel.classList.add('hidden');
+                if (riskTag) {
+                    riskTag.innerText = 'AN TOÀN';
+                    riskTag.className = 'px-2 py-0.2 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800';
+                }
+            }
+
+            // 3. 4-Step Suggestions
+            if (aiRec && aiRec.four_steps) {
+                const s1 = document.getElementById('mc-panel-step1');
+                if (s1) s1.innerText = aiRec.four_steps.step_1_direct_answer || '';
+                const s2 = document.getElementById('mc-panel-step2');
+                if (s2) s2.innerText = aiRec.four_steps.step_2_followup_question || '';
+                const s4 = document.getElementById('mc-panel-step4');
+                if (s4) s4.innerText = `${aiRec.four_steps.step_3_safety_gate}
+${aiRec.four_steps.step_4_action_cta}`;
+
+                const qaBadge = document.getElementById('mc-ai-qa-badge');
+                if (qaBadge && aiRec.qa_compliance) {
+                    qaBadge.innerText = `QA: ${aiRec.qa_compliance.score} ${aiRec.qa_compliance.status}`;
+                }
+            }
+
+            // 4. Competitor Box
+            const compBox = document.getElementById('mc-panel-comp');
+            if (aiRec && aiRec.competitor_comparison) {
+                if (compBox) compBox.classList.remove('hidden');
+                const t = document.getElementById('mc-panel-comp-title');
+                if (t) t.innerText = aiRec.competitor_comparison.competitor_name;
+                const p = document.getElementById('mc-panel-comp-points');
+                if (p) p.innerText = aiRec.competitor_comparison.permissible_talking_points;
+                const pr = document.getElementById('mc-panel-comp-prohibited');
+                if (pr) pr.innerText = 'Cấm: ' + aiRec.competitor_comparison.prohibited_claims;
+            } else {
+                if (compBox) compBox.classList.add('hidden');
+            }
+        }
+
+        async function loadThreadShortcuts(productId) {
+            const container = document.getElementById('mc-thread-shortcut-chips');
             if (!container) return;
 
             try {
-                const res = await fetch(`/api/vistafa/shortcuts?product_id=${encodeURIComponent(prodId)}`);
+                const res = await fetch(`/api/vistafa/shortcuts?product_id=${encodeURIComponent(productId)}`);
                 const data = await res.json();
-                cachedMultichannelShortcuts = data.shortcuts || [];
+                const shortcuts = (data.shortcuts || []).slice(0, 6);
 
-                renderMultichannelShortcutChips(cachedMultichannelShortcuts.slice(0, 8));
+                container.innerHTML = '<span class="text-[10px] font-bold text-slate-400 uppercase shrink-0">Phím tắt:</span>' +
+                    shortcuts.map(s => `
+                        <button type="button" onclick="applyThreadShortcut('${s.shortcut}')" class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 transition shrink-0 cursor-pointer">
+                            ${s.shortcut}
+                        </button>
+                    `).join('');
             } catch (e) {
-                console.error('Error loading shortcuts:', e);
+                console.error('Error loading thread shortcuts:', e);
             }
         }
 
-        function renderMultichannelShortcutChips(shortcuts) {
-            const container = document.getElementById('mc-shortcut-chips-container');
-            if (!container) return;
-
-            if (!shortcuts || shortcuts.length === 0) {
-                container.innerHTML = '<span class="text-[11px] text-slate-400 italic">Không có phím tắt cho mục này</span>';
-                return;
-            }
-
-            container.innerHTML = '<span class="text-[11px] font-bold text-slate-500 uppercase mr-1">Phím tắt:</span>' +
-                shortcuts.map(s => `
-                    <button type="button" onclick="applyMultichannelShortcut('${s.shortcut}')" class="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 transition cursor-pointer">
-                        ${s.shortcut}
-                    </button>
-                `).join('');
-        }
-
-        function onMultichannelShortcutSearch(query) {
-            const q = (query || '').toLowerCase().trim();
-            if (!q) {
-                renderMultichannelShortcutChips(cachedMultichannelShortcuts.slice(0, 8));
-                return;
-            }
-            const filtered = cachedMultichannelShortcuts.filter(s =>
-                s.shortcut.toLowerCase().includes(q) ||
-                (s.situation || '').toLowerCase().includes(q)
-            );
-            renderMultichannelShortcutChips(filtered.slice(0, 10));
-        }
-
-        async function applyMultichannelShortcut(sc) {
-            const inputShortcut = document.getElementById('mc-input-shortcut');
-            if (inputShortcut) inputShortcut.value = sc;
-
+        async function applyThreadShortcut(sc) {
             try {
                 const res = await fetch(`/api/vistafa/playbook?shortcut=${encodeURIComponent(sc)}`);
                 const data = await res.json();
                 if (data.entries && data.entries.length > 0) {
                     const entry = data.entries[0];
-                    const msgInput = document.getElementById('mc-input-message');
-                    if (msgInput) {
-                        msgInput.value = entry.situation || entry.opening_message || sc;
-                        const counter = document.getElementById('mc-char-counter');
-                        if (counter) counter.innerText = msgInput.value.length + ' ký tự';
+                    const input = document.getElementById('mc-thread-input');
+                    if (input) {
+                        input.value = `${entry.opening_message}
+${entry.followup_question || ''}
+${entry.transition_action || ''}`;
                     }
-                    const sitSelect = document.getElementById('mc-select-situation');
-                    if (sitSelect && entry.situation) {
-                        sitSelect.value = entry.situation;
-                    }
-                    if (entry.product_id) {
-                        const prodSelect = document.getElementById('mc-select-product');
-                        if (prodSelect) prodSelect.value = entry.product_id;
-                        curMultichannelProduct = entry.product_id;
-                    }
-                    executeMultichannelCopilot();
                 }
             } catch (e) {
-                console.error('Error applying shortcut:', e);
+                console.error('Error applying shortcut in thread:', e);
             }
         }
 
-        function onMultichannelSituationChange() {
-            const sitSelect = document.getElementById('mc-select-situation');
-            if (!sitSelect || sitSelect.value === 'all') return;
-            const sit = sitSelect.value;
-            const msgInput = document.getElementById('mc-input-message');
-            if (msgInput) {
-                if (sit === 'Hỏi giá') msgInput.value = 'Sản phẩm này hiện giá bao nhiêu một hộp? Có khuyến mãi gì không?';
-                else if (sit === 'Hỏi công dụng') msgInput.value = 'Sản phẩm này có tác dụng gì chính? Uống có thực sự hiệu quả không?';
-                else if (sit === 'Hỏi cách dùng') msgInput.value = 'Một ngày uống mấy viên/gói và uống vào thời điểm nào tốt nhất?';
-                else if (sit === 'Hỏi ai dùng được') msgInput.value = 'Những đối tượng nào nên dùng sản phẩm này? Người cao tuổi uống được không?';
-                else if (sit === 'Chê giá cao') msgInput.value = 'Giá bên em cao hơn so với các dòng khác trên thị trường, có giảm bớt được không?';
-                else if (sit === 'Chốt đơn') msgInput.value = 'Giao cho anh 2 hộp về địa chỉ này nhé, tổng tiền bao nhiêu?';
-                else if (sit === 'Sợ tác dụng phụ') msgInput.value = 'Uống lâu dài có an toàn không, có bị tác dụng phụ hay nóng trong không?';
-                else if (sit === 'Đang dùng sản phẩm khác') msgInput.value = 'Anh đang uống sản phẩm khác ở nhà, có chuyển sang dùng loại này được không?';
-                else if (sit === 'So sánh đối thủ') msgInput.value = 'Sản phẩm bên em khác gì so với các thương hiệu đối thủ ngoài tiệm thuốc?';
-                
-                const counter = document.getElementById('mc-char-counter');
-                if (counter) counter.innerText = msgInput.value.length + ' ký tự';
-            }
-        }
-
-        function fillMultichannelSample(presetKey) {
-            // Reset all health checkboxes
-            ['stone', 'sedative', 'pregnancy', 'anticoagulant', 'dual-iron'].forEach(k => {
-                const el = document.getElementById(`mc-chk-${k}`);
-                if (el) el.checked = false;
-            });
-
-            const prodSelect = document.getElementById('mc-select-product');
-            const msgInput = document.getElementById('mc-input-message');
-
-            if (presetKey === 'calci_stone') {
-                if (prodSelect) prodSelect.value = 'calcium_complex';
-                curMultichannelProduct = 'calcium_complex';
-                if (msgInput) msgInput.value = 'Bác tôi năm nay 65 tuổi có tiền sử sỏi thận và tăng canxi máu thì có dùng được Canxi Calcium Complex không?';
-                const chk = document.getElementById('mc-chk-stone');
-                if (chk) chk.checked = true;
-            } else if (presetKey === 'calci_corbiere') {
-                if (prodSelect) prodSelect.value = 'calcium_complex';
-                curMultichannelProduct = 'calcium_complex';
-                if (msgInput) msgInput.value = 'Canxi Corbiere dạng ống bên kia rẻ hơn nhiều, cũng có D3, sao bên bạn bán đắt vậy?';
-            } else if (presetKey === 'collagen_herbalife') {
-                if (prodSelect) prodSelect.value = 'beauty_collagen';
-                curMultichannelProduct = 'beauty_collagen';
-                if (msgInput) msgInput.value = 'Herbalife và Vital Proteins nổi tiếng thế giới, lại ghi tận 10.000mg, sao tôi phải chọn Beauty Collagen Powder của bạn?';
-            } else if (presetKey === 'omega3_cheap') {
-                if (prodSelect) prodSelect.value = 'ultimate_omega3';
-                curMultichannelProduct = 'ultimate_omega3';
-                if (msgInput) msgInput.value = 'Dầu cá loại kia cũng ghi 1000mg mà hộp to đùng rẻ hơn một nửa, bên bạn có gì khác?';
-            } else if (presetKey === 'sleep_sedative') {
-                if (prodSelect) prodSelect.value = 'sleep_well';
-                curMultichannelProduct = 'sleep_well';
-                if (msgInput) msgInput.value = 'Tôi bị mất ngủ kinh niên đang uống thuốc an thần Seduxen và Rotunda mỗi tối, có dùng chung Sleep Well được không?';
-                const chk = document.getElementById('mc-chk-sedative');
-                if (chk) chk.checked = true;
-            } else if (presetKey === 'ferro_inorganic') {
-                if (prodSelect) prodSelect.value = 'ferro_active';
-                curMultichannelProduct = 'ferro_active';
-                if (msgInput) msgInput.value = 'Sắt viên ở hiệu thuốc chỉ mấy chục nghìn, sao FerroActive dạng gói đắt hơn? Uống có bị táo bón nóng không?';
-            }
-
-            const counter = document.getElementById('mc-char-counter');
-            if (counter && msgInput) counter.innerText = msgInput.value.length + ' ký tự';
-
-            loadMultichannelShortcutsForProduct(curMultichannelProduct);
-            executeMultichannelCopilot();
-        }
-
-        async function executeMultichannelCopilot() {
-            const msgInput = document.getElementById('mc-input-message');
-            const message = msgInput ? msgInput.value.trim() : '';
-            if (!message) {
-                alert('Vui lòng nhập tin nhắn của khách hàng hoặc chọn một tình huống mẫu.');
-                return;
-            }
-
-            const prodSelect = document.getElementById('mc-select-product');
-            const productId = prodSelect ? prodSelect.value : curMultichannelProduct;
-
-            const sitSelect = document.getElementById('mc-select-situation');
-            const situationHint = sitSelect && sitSelect.value !== 'all' ? sitSelect.value : null;
-
-            // Health profile
-            const profile = {
-                'kidney_stones': document.getElementById('mc-chk-stone')?.checked || false,
-                'sedatives': document.getElementById('mc-chk-sedative')?.checked || false,
-                'pregnancy': document.getElementById('mc-chk-pregnancy')?.checked || false,
-                'anticoagulant': document.getElementById('mc-chk-anticoagulant')?.checked || false,
-                'dual_iron': document.getElementById('mc-chk-dual-iron')?.checked || false
-            };
-
-            const submitBtn = document.getElementById('btn-mc-submit');
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.innerText = 'Đang phân tích dữ liệu & sinh kịch bản...';
-            }
+        async function sendAgentMessageFromInput() {
+            const input = document.getElementById('mc-thread-input');
+            const text = input ? input.value.trim() : '';
+            if (!text) return;
 
             try {
-                const res = await fetch('/api/vistafa/chat-copilot', {
+                const res = await fetch(`/api/vistafa/conversations/${curActiveConvId}/messages`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sender: 'agent', text: text })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    if (input) input.value = '';
+                    selectConversation(curActiveConvId);
+                }
+            } catch (e) {
+                console.error('Error sending message:', e);
+            }
+        }
+
+        function insertAiReplyIntoInput() {
+            if (!curActiveConvData || !curActiveConvData.ai_recommendation) {
+                alert('Chưa có phản hồi AI nào được tạo.');
+                return;
+            }
+            const aiRec = curActiveConvData.ai_recommendation;
+            const input = document.getElementById('mc-thread-input');
+            if (input) {
+                input.value = aiRec.full_text;
+                input.focus();
+            }
+        }
+
+        async function sendAiReplyDirectly() {
+            if (!curActiveConvData || !curActiveConvData.ai_recommendation) {
+                alert('Chưa có phản hồi AI nào được tạo.');
+                return;
+            }
+            const aiRec = curActiveConvData.ai_recommendation;
+            try {
+                const res = await fetch(`/api/vistafa/conversations/${curActiveConvId}/messages`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sender: 'agent', text: aiRec.full_text })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    selectConversation(curActiveConvId);
+                }
+            } catch (e) {
+                console.error('Error sending AI reply directly:', e);
+            }
+        }
+
+        function openHandoffModal() {
+            if (!curActiveConvData || !curActiveConvData.conversation) return;
+            const conv = curActiveConvData.conversation;
+            const nameEl = document.getElementById('mc-handoff-cust-name');
+            if (nameEl) nameEl.innerText = conv.customer_name;
+            const modal = document.getElementById('modal-handoff-pharmacist');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeHandoffModal() {
+            const modal = document.getElementById('modal-handoff-pharmacist');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        async function submitHandoffToPharmacist() {
+            const reason = document.getElementById('mc-handoff-reason')?.value || 'Phát hiện Red Flag y tế';
+            const notes = document.getElementById('mc-handoff-notes')?.value || '';
+            const pharmacist = document.getElementById('mc-handoff-pharmacist-select')?.value || 'DS. Lâm Sàng Trực Ban';
+
+            try {
+                const res = await fetch(`/api/vistafa/conversations/${curActiveConvId}/escalate`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        customer_message: message,
-                        product_id: productId,
-                        channel: curMultichannelChannel,
-                        customer_profile: profile,
-                        situation_hint: situationHint
+                        reason: reason,
+                        notes: notes,
+                        pharmacist_name: pharmacist
                     })
                 });
-
-                const json = await res.json();
-                if (!json.success || !json.data) {
-                    alert('Lỗi phản hồi từ máy chủ Copilot.');
-                    return;
+                const data = await res.json();
+                if (data.success) {
+                    closeHandoffModal();
+                    alert(`Đã bàn giao ca cho ${pharmacist} thành công! Mã phiếu: ${data.ticket.ticket_id}`);
+                    selectConversation(curActiveConvId);
                 }
-
-                curMultichannelLastResponse = json.data;
-                renderMultichannelCopilotResult(json.data);
             } catch (e) {
-                console.error('Error executing copilot:', e);
-                alert('Có lỗi khi kết nối hệ thống Copilot.');
-            } finally {
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.innerText = 'TỰ ĐỘNG SINH KỊCH BẢN CHUẨN KÊNH & SÀNG LỌC RED FLAG';
-                }
+                console.error('Error escalating to pharmacist:', e);
             }
         }
 
-        function renderMultichannelCopilotResult(data) {
-            // 1. Red Flag Alert Box
-            const rfBox = document.getElementById('mc-redflag-alert-box');
-            const rfList = document.getElementById('mc-redflag-list');
-            const rfGuidance = document.getElementById('mc-redflag-guidance');
-            const rfBadge = document.getElementById('mc-redflag-badge');
+        function openConvertOrderModal() {
+            if (!curActiveConvData || !curActiveConvData.conversation) return;
+            const conv = curActiveConvData.conversation;
+            const nameEl = document.getElementById('mc-order-cust-name');
+            if (nameEl) nameEl.innerText = conv.customer_name;
+            const phoneEl = document.getElementById('mc-order-phone');
+            if (phoneEl) phoneEl.innerText = conv.phone || 'Chưa có SĐT';
+            const skuSelect = document.getElementById('mc-order-sku');
+            if (skuSelect) skuSelect.value = conv.product_id;
 
-            if (data.red_flags && data.red_flags.has_red_flag) {
-                if (rfBox) rfBox.classList.remove('hidden');
-                if (rfList) {
-                    rfList.innerHTML = data.red_flags.flags.map(f => `<li>${f}</li>`).join('');
-                }
-                if (rfGuidance) {
-                    rfGuidance.innerText = 'Chỉ thị an toàn: ' + data.red_flags.action_guidance;
-                }
-                if (rfBadge) {
-                    rfBadge.innerText = data.red_flags.pharmacist_escalation ? 'BẮT BUỘC CHUYỂN DƯỢC SĨ' : 'CẢNH BÁO AN TOÀN';
-                }
-            } else {
-                if (rfBox) rfBox.classList.add('hidden');
-            }
-
-            // 2. Competitor Box
-            const compBox = document.getElementById('mc-competitor-matched-box');
-            if (data.competitor_comparison) {
-                if (compBox) compBox.classList.remove('hidden');
-                const compName = document.getElementById('mc-comp-name');
-                if (compName) compName.innerText = data.competitor_comparison.competitor_name || '';
-                const compCriteria = document.getElementById('mc-comp-criteria');
-                if (compCriteria) compCriteria.innerText = data.competitor_comparison.comparison_criteria || '';
-                const compCounter = document.getElementById('mc-comp-counter');
-                if (compCounter) compCounter.innerText = `"${data.competitor_comparison.counter_question || ''}"`;
-                const compProhibited = document.getElementById('mc-comp-prohibited');
-                if (compProhibited) compProhibited.innerText = data.competitor_comparison.prohibited_claims || '';
-            } else {
-                if (compBox) compBox.classList.add('hidden');
-            }
-
-            // 3. Situation Tag & QA Score
-            const sitTag = document.getElementById('mc-sim-situation-tag');
-            if (sitTag) sitTag.innerText = data.shortcut || data.detected_situation;
-            const qaScore = document.getElementById('mc-sim-qa-score');
-            if (qaScore && data.qa_compliance) {
-                qaScore.innerText = `QA: ${data.qa_compliance.score}/100 ${data.qa_compliance.status}`;
-                qaScore.className = `text-[11px] font-mono font-bold px-2 py-0.5 rounded border ${
-                    data.qa_compliance.score >= 80 ? 'text-emerald-700 bg-emerald-50 border-emerald-200' : 'text-amber-700 bg-amber-50 border-amber-200'
-                }`;
-            }
-
-            // 4. Simulator Bubbles Canvas
-            const canvas = document.getElementById('mc-sim-bubbles-container');
-            const actionBar = document.getElementById('mc-sim-channel-action-bar');
-            if (canvas) {
-                const ch = data.channel;
-                if (ch === 'facebook') {
-                    // Render 2-3 chat bubbles
-                    canvas.innerHTML = data.split_messages.map((msg, idx) => `
-                        <div class="flex items-start gap-2 justify-start max-w-[85%]">
-                            <div class="w-7 h-7 rounded-full bg-blue-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">FB</div>
-                            <div class="space-y-1">
-                                <div class="p-3 rounded-2xl bg-white border border-slate-200 text-slate-800 text-xs shadow-xs leading-relaxed whitespace-pre-line">
-                                    ${msg}
-                                </div>
-                                <div class="flex items-center gap-2 px-1">
-                                    <span class="text-[10px] text-slate-400">Bong bóng tin nhắn ${idx + 1}</span>
-                                    <button type="button" onclick="copyBubbleText(${idx})" class="text-[10px] font-bold text-blue-600 hover:text-blue-800">[Sao chép tin này]</button>
-                                </div>
-                            </div>
-                        </div>
-                    `).join('');
-                    if (actionBar) {
-                        actionBar.classList.remove('hidden');
-                        actionBar.innerHTML = `
-                            <div class="flex items-center justify-between text-xs text-slate-600">
-                                <span>Kênh Facebook Messenger: Tin nhắn đã được tách ngắn theo nhịp tương tác tự nhiên.</span>
-                                <span class="font-bold text-corp-800">CTA: Xin SĐT tư vấn</span>
-                            </div>
-                        `;
-                    }
-                } else if (ch === 'zalo') {
-                    // Structured card with official certificate actions
-                    canvas.innerHTML = `
-                        <div class="max-w-[90%] bg-white rounded-xl border border-blue-200 p-3.5 shadow-xs space-y-3">
-                            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-                                <div class="flex items-center gap-1.5">
-                                    <span class="w-6 h-6 rounded-full bg-blue-500 text-white font-black text-[9px] flex items-center justify-center">ZA</span>
-                                    <span class="font-bold text-xs text-blue-900">Vistafa Official Account</span>
-                                </div>
-                                <span class="text-[10px] text-slate-400">Tin nhắn chuẩn Zalo</span>
-                            </div>
-                            <div class="text-xs text-slate-800 leading-relaxed whitespace-pre-line">
-                                ${data.full_text}
-                            </div>
-                            <div class="pt-2 border-t border-slate-100 flex items-center justify-between gap-2 flex-wrap">
-                                <div class="flex items-center gap-1.5">
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-800 border border-blue-200">[Đính kèm ảnh nhãn COA]</span>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">[Mời khách gửi ảnh nhãn Zalo]</span>
-                                </div>
-                                <button type="button" onclick="copyMultichannelFullReply()" class="text-xs font-bold text-blue-700 hover:underline">[Sao chép]</button>
-                            </div>
-                        </div>
-                    `;
-                    if (actionBar) {
-                        actionBar.classList.remove('hidden');
-                        actionBar.innerHTML = `
-                            <div class="flex items-center justify-between text-xs text-slate-600">
-                                <span>Kênh Zalo: Đã cấu hình lời mời gửi ảnh nhãn và đề xuất gửi phiếu tiếp nhận công bố chính thức.</span>
-                                <span class="font-bold text-emerald-700">Độ tin cậy: Tối đa</span>
-                            </div>
-                        `;
-                    }
-                } else if (ch === 'website') {
-                    canvas.innerHTML = `
-                        <div class="max-w-[88%] bg-white rounded-xl border border-slate-300 p-3 shadow-xs space-y-2">
-                            <div class="flex items-center justify-between text-[11px] text-slate-500 border-b border-slate-100 pb-1">
-                                <span class="font-bold text-slate-700">Trợ Lý Dược Trực Tuyến (Website Live Chat)</span>
-                                <span class="text-emerald-600 font-bold">Online</span>
-                            </div>
-                            <div class="text-xs text-slate-800 leading-relaxed whitespace-pre-line">
-                                ${data.full_text}
-                            </div>
-                            <div class="bg-slate-50 p-2 rounded-lg border border-slate-200 flex items-center justify-between text-[11px]">
-                                <span class="text-slate-600">Biểu mẫu xin thông tin liên hệ:</span>
-                                <span class="font-bold text-corp-800">[Lấy SĐT / Zalo Lead]</span>
-                            </div>
-                        </div>
-                    `;
-                    if (actionBar) {
-                        actionBar.classList.remove('hidden');
-                        actionBar.innerHTML = `
-                            <div class="flex items-center justify-between text-xs text-slate-600">
-                                <span>Kênh Website: Phản hồi siêu tốc trong 2 câu, chuyển bước thu thập SĐT/Zalo khách hàng.</span>
-                                <span class="font-bold text-blue-700">Tốc độ: Tức thì</span>
-                            </div>
-                        `;
-                    }
-                } else if (ch === 'tiktok') {
-                    const charCount = data.full_text.length;
-                    canvas.innerHTML = `
-                        <div class="max-w-[85%] bg-slate-900 text-white rounded-2xl p-3.5 shadow-sm space-y-2 border border-slate-800">
-                            <div class="flex items-center justify-between text-[10px] text-slate-400 border-b border-slate-800 pb-1">
-                                <span class="font-bold text-white tracking-wide">TikTok Shop / Live Chat Rep</span>
-                                <span class="font-mono ${charCount <= 140 ? 'text-emerald-400' : 'text-rose-400'}">${charCount} / 140 ký tự</span>
-                            </div>
-                            <div class="text-xs text-slate-100 leading-relaxed">
-                                ${data.full_text}
-                            </div>
-                            <div class="flex items-center justify-between pt-1 text-[10px]">
-                                <span class="text-emerald-400 font-bold">[CHÍNH SÁCH QUẢNG CÁO: ĐẠT]</span>
-                                <button type="button" onclick="copyMultichannelFullReply()" class="text-white hover:text-blue-300 font-bold">[Sao chép]</button>
-                            </div>
-                        </div>
-                    `;
-                    if (actionBar) {
-                        actionBar.classList.remove('hidden');
-                        actionBar.innerHTML = `
-                            <div class="flex items-center justify-between text-xs text-slate-600">
-                                <span>Kênh TikTok: Đảm bảo độ dài dưới 140 ký tự, tuyệt đối không dùng từ điều trị/chữa bệnh, hướng dẫn vào Inbox.</span>
-                                <span class="font-bold text-purple-700">TikTok Policy: Tuân thủ</span>
-                            </div>
-                        `;
-                    }
-                }
-            }
-
-            // 5. 4-Step Breakdown Grid
-            if (data.four_steps) {
-                const s1 = document.getElementById('mc-step-1');
-                if (s1) s1.innerText = data.four_steps.step_1_direct_answer || '';
-                const s2 = document.getElementById('mc-step-2');
-                if (s2) s2.innerText = data.four_steps.step_2_followup_question || '';
-                const s3 = document.getElementById('mc-step-3');
-                if (s3) s3.innerText = data.four_steps.step_3_safety_gate || '';
-                const s4 = document.getElementById('mc-step-4');
-                if (s4) s4.innerText = data.four_steps.step_4_action_cta || '';
-            }
-
-            // 6. QA Checklist Notes
-            const qaPill = document.getElementById('mc-qa-status-pill');
-            const qaList = document.getElementById('mc-qa-notes-list');
-            if (data.qa_compliance) {
-                if (qaPill) {
-                    qaPill.innerText = `ĐẠT ${data.qa_compliance.score}/100`;
-                    qaPill.className = `px-2 py-0.2 rounded text-[10px] font-bold ${
-                        data.qa_compliance.score >= 80 ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'
-                    }`;
-                }
-                if (qaList && data.qa_compliance.notes) {
-                    qaList.innerHTML = data.qa_compliance.notes.map(n => `
-                        <div class="flex items-start gap-1.5 ${n.includes('VI PHAM') ? 'text-rose-700 font-bold' : (n.includes('LƯU Ý') ? 'text-amber-700' : 'text-emerald-700')}">
-                            <span>[${n.includes('VI PHAM') ? '!' : (n.includes('LƯU Ý') ? '?' : 'X')}]</span>
-                            <span>${n}</span>
-                        </div>
-                    `).join('');
-                }
-            }
+            const modal = document.getElementById('modal-convert-order-quick');
+            if (modal) modal.classList.remove('hidden');
         }
 
-        function copyBubbleText(idx) {
-            if (!curMultichannelLastResponse || !curMultichannelLastResponse.split_messages) return;
-            const text = curMultichannelLastResponse.split_messages[idx] || '';
-            navigator.clipboard.writeText(text).then(() => {
-                alert(`Đã sao chép tin nhắn ${idx + 1} vào clipboard!`);
-            });
+        function closeConvertOrderModal() {
+            const modal = document.getElementById('modal-convert-order-quick');
+            if (modal) modal.classList.add('hidden');
         }
 
-        function copyMultichannelFullReply() {
-            if (!curMultichannelLastResponse || !curMultichannelLastResponse.full_text) {
-                alert('Chưa có nội dung để sao chép.');
-                return;
-            }
-            navigator.clipboard.writeText(curMultichannelLastResponse.full_text).then(() => {
-                alert('Đã sao chép toàn bộ nội dung phản hồi vào clipboard!');
-            });
-        }
+        async function submitConvertOrderQuick() {
+            const sku = document.getElementById('mc-order-sku')?.value || 'calcium_complex';
+            const qty = parseInt(document.getElementById('mc-order-qty')?.value || '1', 10);
+            const price = document.getElementById('mc-order-price')?.value || '320.000đ';
+            const address = document.getElementById('mc-order-address')?.value || 'Địa chỉ khách hàng';
 
-        async function toggleCompetitorDrawer() {
-            const drawer = document.getElementById('mc-competitor-drawer');
-            if (!drawer) return;
-            const isHidden = drawer.classList.contains('hidden');
-            if (isHidden) {
-                drawer.classList.remove('hidden');
-                await loadMultichannelCompetitorsTable();
-            } else {
-                drawer.classList.add('hidden');
-            }
-        }
-
-        async function loadMultichannelCompetitorsTable() {
-            const tbody = document.getElementById('mc-competitors-table-body');
-            if (!tbody) return;
-
-            if (cachedMultichannelCompetitors.length === 0) {
-                try {
-                    const res = await fetch('/api/vistafa/competitors');
-                    const data = await res.json();
-                    cachedMultichannelCompetitors = data.matrix || [];
-                } catch (e) {
-                    console.error('Error fetching competitors:', e);
+            try {
+                const res = await fetch(`/api/vistafa/conversations/${curActiveConvId}/convert`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sku: sku,
+                        quantity: qty,
+                        total_price: price,
+                        delivery_address: address
+                    })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    closeConvertOrderModal();
+                    alert(`Đã chốt đơn hàng ${data.order.order_id} và đồng bộ CRM thành công!`);
+                    selectConversation(curActiveConvId);
                 }
+            } catch (e) {
+                console.error('Error converting order:', e);
             }
-
-            if (cachedMultichannelCompetitors.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" class="p-3 text-center text-slate-400">Không có dữ liệu đối thủ</td></tr>';
-                return;
-            }
-
-            tbody.innerHTML = cachedMultichannelCompetitors.map(c => `
-                <tr class="hover:bg-slate-50 transition">
-                    <td class="p-2 font-bold text-slate-800 text-[11px]">${c.product_name || c.product_id}</td>
-                    <td class="p-2 font-semibold text-indigo-700 text-[11px]">${c.competitor_name || ''}</td>
-                    <td class="p-2 text-slate-700 italic text-[11px]">"${c.customer_question || ''}"</td>
-                    <td class="p-2 text-slate-600 text-[10px] max-w-[200px] leading-tight">${c.comparison_criteria || ''}</td>
-                    <td class="p-2 text-emerald-800 text-[10px] max-w-[200px] leading-tight">${c.permissible_talking_points || ''}</td>
-                    <td class="p-2 text-rose-800 text-[10px] max-w-[180px] leading-tight font-medium">${c.prohibited_claims || ''}</td>
-                    <td class="p-2 text-right">
-                        <button type="button" onclick="applyCompetitorScenario('${c.id}')" class="px-2 py-1 rounded bg-corp-50 hover:bg-corp-100 text-corp-800 border border-corp-200 text-[11px] font-bold transition cursor-pointer">
-                            [Áp dụng]
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
         }
-
-        function applyCompetitorScenario(scenarioId) {
-            const item = cachedMultichannelCompetitors.find(c => c.id === scenarioId);
-            if (!item) return;
-
-            const prodSelect = document.getElementById('mc-select-product');
-            if (prodSelect) prodSelect.value = item.product_id;
-            curMultichannelProduct = item.product_id;
-
-            const msgInput = document.getElementById('mc-input-message');
-            if (msgInput) {
-                msgInput.value = item.customer_question;
-                const counter = document.getElementById('mc-char-counter');
-                if (counter) counter.innerText = msgInput.value.length + ' ký tự';
-            }
-
-            const sitSelect = document.getElementById('mc-select-situation');
-            if (sitSelect) sitSelect.value = 'So sánh đối thủ';
-
-            // Scroll up to simulator
-            document.getElementById('mc-input-message')?.scrollIntoView({ behavior: 'smooth' });
-
-            executeMultichannelCopilot();
-        }
-
 
         async function loadCareSoftLeadsTable() {
             try {

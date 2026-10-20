@@ -1706,6 +1706,126 @@ async def api_vistafa_chat_copilot(req: VistafaChatCopilotRequest):
     }
 
 
+# ==========================================
+# UNIFIED LIVE CONVERSATION & PHARMACIST HANDOFF
+# ==========================================
+
+class VistafaConversationMessageRequest(BaseModel):
+    sender: str = "agent"  # "agent" or "customer"
+    text: str
+
+class VistafaEscalateRequest(BaseModel):
+    reason: str = "Phát hiện yếu tố nguy cơ y tế / Red Flag"
+    notes: Optional[str] = ""
+    pharmacist_name: str = "DS. Lâm Sàng Trực Ban"
+
+class VistafaConvertOrderRequest(BaseModel):
+    sku: str
+    quantity: int = 1
+    delivery_address: str = ""
+    total_price: str = ""
+
+
+@app.get("/api/vistafa/conversations")
+async def api_vistafa_get_conversations():
+    copilot = get_vistafa_chat_copilot()
+    cm = copilot.get_conversation_manager()
+    return {
+        "success": True,
+        "conversations": cm.get_all()
+    }
+
+
+@app.get("/api/vistafa/conversations/{conv_id}")
+async def api_vistafa_get_conversation(conv_id: str):
+    copilot = get_vistafa_chat_copilot()
+    cm = copilot.get_conversation_manager()
+    conv = cm.get_by_id(conv_id)
+    if not conv:
+        raise HTTPException(status_code=404, detail="Không tìm thấy hội thoại")
+
+    latest_customer_msg = ""
+    for m in reversed(conv.get("messages", [])):
+        if m.get("sender") == "customer":
+            latest_customer_msg = m.get("text", "")
+            break
+
+    ai_recommendation = None
+    if latest_customer_msg:
+        ai_recommendation = copilot.generate_response(
+            customer_message=latest_customer_msg,
+            product_id=conv.get("product_id", "calcium_complex"),
+            channel=conv.get("channel", "facebook"),
+            customer_profile=conv.get("clinical_profile", {})
+        )
+
+    return {
+        "success": True,
+        "conversation": conv,
+        "ai_recommendation": ai_recommendation
+    }
+
+
+@app.post("/api/vistafa/conversations/{conv_id}/messages")
+async def api_vistafa_add_conversation_message(conv_id: str, req: VistafaConversationMessageRequest):
+    copilot = get_vistafa_chat_copilot()
+    cm = copilot.get_conversation_manager()
+    msg = cm.add_message(conv_id, req.sender, req.text)
+    if not msg:
+        raise HTTPException(status_code=404, detail="Không tìm thấy hội thoại")
+
+    conv = cm.get_by_id(conv_id)
+    latest_customer_msg = ""
+    for m in reversed(conv.get("messages", [])):
+        if m.get("sender") == "customer":
+            latest_customer_msg = m.get("text", "")
+            break
+
+    ai_recommendation = None
+    if latest_customer_msg:
+        ai_recommendation = copilot.generate_response(
+            customer_message=latest_customer_msg,
+            product_id=conv.get("product_id", "calcium_complex"),
+            channel=conv.get("channel", "facebook"),
+            customer_profile=conv.get("clinical_profile", {})
+        )
+
+    return {
+        "success": True,
+        "message": msg,
+        "conversation": conv,
+        "ai_recommendation": ai_recommendation
+    }
+
+
+@app.post("/api/vistafa/conversations/{conv_id}/escalate")
+async def api_vistafa_escalate_conversation(conv_id: str, req: VistafaEscalateRequest):
+    copilot = get_vistafa_chat_copilot()
+    cm = copilot.get_conversation_manager()
+    ticket = cm.escalate_pharmacist(conv_id, req.reason, req.notes, req.pharmacist_name)
+    if not ticket:
+        raise HTTPException(status_code=404, detail="Không tìm thấy hội thoại để chuyển Dược sĩ")
+    return {
+        "success": True,
+        "ticket": ticket,
+        "message": "Đã chuyển giao hồ sơ sang Dược sĩ lâm sàng phụ trách thành công"
+    }
+
+
+@app.post("/api/vistafa/conversations/{conv_id}/convert")
+async def api_vistafa_convert_order(conv_id: str, req: VistafaConvertOrderRequest):
+    copilot = get_vistafa_chat_copilot()
+    cm = copilot.get_conversation_manager()
+    order = cm.convert_order(conv_id, req.sku, req.quantity, req.delivery_address, req.total_price)
+    if not order:
+        raise HTTPException(status_code=404, detail="Không tìm thấy hội thoại để chốt đơn")
+    return {
+        "success": True,
+        "order": order,
+        "message": "Đã chốt đơn hàng và đồng bộ thành công vào CRM DION"
+    }
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
