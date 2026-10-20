@@ -1830,6 +1830,27 @@ async def api_vistafa_convert_order(conv_id: str, req: VistafaConvertOrderReques
     }
 
 
+@app.get("/api/pancake/status")
+async def api_pancake_status():
+    from modules.pancake_client import get_pancake_client
+    client = get_pancake_client()
+    return client.test_connection()
+
+
+@app.get("/api/pancake/shops")
+async def api_pancake_shops():
+    from modules.pancake_client import get_pancake_client
+    client = get_pancake_client()
+    return client.get_shops()
+
+
+@app.get("/api/pancake/warehouses")
+async def api_pancake_warehouses():
+    from modules.pancake_client import get_pancake_client
+    client = get_pancake_client()
+    return client.get_warehouses()
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)

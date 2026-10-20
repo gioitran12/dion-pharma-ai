@@ -282,4 +282,17 @@ def test_dynamic_customer_simulation_and_triage():
     # 3. Zero emojis in new response
     assert len(EMOJI_PATTERN.findall(ai_rec["full_text"])) == 0
 
+def test_pancake_api_integration():
+    from modules.pancake_client import get_pancake_client
+    client_pc = get_pancake_client()
+    assert client_pc.api_key == "57d1deca6acd500213ef572b272d2852"
+    assert client_pc.shop_id == 1943149040
+
+    r = client.get("/api/pancake/status")
+    assert r.status_code == 200
+    data = r.json()
+    assert "connected" in data
+    assert "api_key_valid" in data
+
+
 

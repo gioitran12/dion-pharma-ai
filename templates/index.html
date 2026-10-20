@@ -2066,19 +2066,23 @@
                         </div>
                     </div>
 
-                    <!-- 6. Kênh Bán Hàng / Shopee / POS / ERP -->
-                    <div class="bg-white rounded-xl border border-slate-200 p-3.5 shadow-xs flex flex-col justify-between space-y-2 opacity-85">
+                    <!-- 6. Kênh Bán Hàng / Pancake POS & Omni-channel Gateway -->
+                    <div class="bg-white rounded-xl border border-emerald-300 p-3.5 shadow-xs flex flex-col justify-between space-y-2">
                         <div>
                             <div class="flex items-center justify-between">
-                                <span class="font-bold text-xs text-slate-800">6. Bán hàng TMĐT / POS / ERP</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200">CHƯA KẾT NỐI</span>
+                                <span class="font-bold text-xs text-slate-900">6. Pancake POS & Omni-channel API</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">HOẠT ĐỘNG (LIVE)</span>
                             </div>
-                            <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
-                                Kênh đồng bộ đơn hàng bán lẻ tự động. Hiện tại đơn hàng được ghi nhận thủ công hoặc qua tệp CSV tham chiếu.
+                            <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                                Cổng Open API kết nối trực tiếp với tài khoản Pancake (Shop: <b>Trần Giỏi</b> - ID: <span class="font-mono text-emerald-800 font-bold">1943149040</span>). Đồng bộ đơn hàng, kho và hội thoại đa kênh.
                             </p>
                         </div>
-                        <div class="text-[10px] text-slate-400 pt-2 border-t border-slate-100 font-mono">
-                            Trạng thái: Chưa có connector thật
+                        <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px]">
+                            <div class="flex items-center gap-1.5 font-mono text-slate-600">
+                                <span>Key: 57d1deca...</span>
+                                <span class="text-emerald-700 font-bold bg-emerald-50 px-1 rounded border border-emerald-200">1 Page (igo_tdgioi_31)</span>
+                            </div>
+                            <button type="button" onclick="testPancakeLiveConnection()" class="px-2 py-0.5 rounded bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold transition cursor-pointer">Kiểm tra Live</button>
                         </div>
                     </div>
                 </div>
@@ -8051,6 +8055,21 @@ ${entry.transition_action || ''}`;
 
         async function sendAgentMessageFromInput() {
             return sendThreadMessageWithRole();
+        }
+
+        async function testPancakeLiveConnection() {
+            try {
+                const res = await fetch('/api/pancake/status');
+                const data = await res.json();
+                if (data.connected) {
+                    const pagesStr = (data.pages || []).map(p => `${p.name} (${p.platform})`).join(', ');
+                    alert(`[OK] KẾT NỐI PANCAKE THÀNH CÔNG 100%!\n\n- Shop: ${data.shop_name} (ID: ${data.shop_id})\n- Đơn vị tiền tệ: ${data.currency}\n- Kênh liên kết: ${pagesStr || 'Chưa liên kết trang'}\n- Trạng thái: ${data.message}\n- API Key: Hợp lệ`);
+                } else {
+                    alert(`[LỖI] Không thể kết nối Pancake: ${data.message || 'Lỗi kết nối'}`);
+                }
+            } catch (e) {
+                alert('[LỖI] Lỗi kết nối Pancake API: ' + e.message);
+            }
         }
 
         function insertAiReplyIntoInput() {
