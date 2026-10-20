@@ -296,15 +296,17 @@ def test_pancake_api_integration():
 
 
 def test_pancake_instagram_conversation_and_adaptation():
-    # 1. Verify CONV-PC-IG-06 exists in live conversations
+    # 1. Verify PANCAKE-289596-563141 exists in live conversations (and no fake duplicates exist)
     r = client.get("/api/vistafa/conversations")
     assert r.status_code == 200
     convs = r.json()["conversations"]
-    pc_conv = next((c for c in convs if c["id"] == "CONV-PC-IG-06"), None)
+    pc_conv = next((c for c in convs if c["id"] == "PANCAKE-289596-563141"), None)
     assert pc_conv is not None
     assert pc_conv["channel"] == "instagram"
     assert pc_conv["customer_name"] == "fptu_muayclub"
     assert pc_conv["pancake_metadata"]["shop_id"] == 1943149040
+    # Ensure obsolete mock IDs are purged
+    assert not any(c["id"] in ["CONV-PC-IG-06", "CONV-PC-IG-07"] for c in convs)
 
     # 2. Verify AI Copilot adaptation for Instagram channel
     resp = copilot.generate_response(
@@ -336,14 +338,15 @@ def test_pancake_pages_and_webhook_endpoints():
 
 
 def test_pancake_dicao_and_chat_token_flow():
-    # 1. Verify dicao.vn exists in live conversations
+    # 1. Verify dicao.vn exists in live conversations with real synced ID
     r = client.get("/api/vistafa/conversations")
     assert r.status_code == 200
     convs = r.json()["conversations"]
-    dicao = next((c for c in convs if c["id"] == "CONV-PC-IG-07"), None)
+    dicao = next((c for c in convs if c["id"] == "PANCAKE-289596-645747"), None)
     assert dicao is not None
     assert dicao["customer_name"] == "dicao.vn"
     assert dicao["channel"] == "instagram"
+    assert dicao["phone"] == "0334896162"
 
     # 2. Test chat token setting
     r_token = client.post("/api/pancake/chat-token", json={

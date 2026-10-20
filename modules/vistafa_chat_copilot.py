@@ -747,83 +747,72 @@ class LiveConversationManager:
                 ],
                 "updated_at": "2026-10-20 09:35"
             },
-            "CONV-PC-IG-06": {
-                "id": "CONV-PC-IG-06",
+            "PANCAKE-289596-563141": {
+                "id": "PANCAKE-289596-563141",
+                "pancake_conv_id": "igo_17841436773289596_2369736243563141",
                 "customer_name": "fptu_muayclub",
                 "channel": "instagram",
-                "channel_label": "[IG] Instagram (Pancake Sync)",
-                "phone": "0981234567",
+                "channel_label": "[IG] Instagram (Pancake Live)",
+                "phone": "",
                 "product_id": "calcium_complex",
                 "product_name": "VitGarden Calcium Complex",
                 "status": "ACTIVE",
-                "lead_priority": "HOT",
-                "intent": "Hỏi canxi hữu cơ & khoáng chất phục hồi xương khớp sau tập Muay Thái",
-                "clinical_profile": {
-                    "activity": "Võ thuật / Thể thao đối kháng (CLB Muay FPTU)",
-                    "notes": "Tập luyện cường độ cao, hay bị đau mỏi khớp gối và căng cơ sau buổi tập"
-                },
+                "lead_priority": "WARM",
+                "intent": "Hỏi canxi và khoáng chất phục hồi sau tập Muay Thái (fptu_muayclub)",
+                "clinical_profile": {"notes": "Đồng bộ trực tiếp qua Pancake Open API từ [IG] Instagram (Pancake Live)"},
                 "messages": [
-                    {
-                        "sender": "customer",
-                        "text": "Chào shop, mình bên CLB Muay FPTU, tập luyện nặng hay bị mỏi khớp gối với căng cơ sau tập. Bên mình có loại canxi hay collagen nào phục hồi sụn khớp tốt cho dân tập võ không shop?",
-                        "time": "10:15"
-                    },
-                    {
-                        "sender": "agent",
-                        "text": "Dạ chào bạn fptu_muayclub từ Instagram Pancake ạ! Với cường độ tập võ đối kháng, cơ xương khớp chịu lực va đập rất lớn. VitGarden Calcium Complex bên em bổ sung Canxi hữu cơ kèm Aquamin F và Vitamin K2-MK7 giúp hấp thu thẳng vào xương mà không lắng cặn sỏi thận. Ngoài ra bên em có dòng Ultimate Omega 3 giúp chống viêm khớp rất hiệu quả ạ.\nBạn cho mình xin thêm thông tin tuần bạn tập mấy buổi để tư vấn liều dùng chuẩn nhất nhé?",
-                        "time": "10:16"
-                    }
+                    {"sender": "customer", "text": "Chào shop, mình bên CLB Muay FPTU, bên mình có dòng canxi hữu cơ hay khoáng chất nào phục hồi cơ khớp sau tập không?", "time": "08:30"}
                 ],
-                "updated_at": "2026-10-20 10:16",
+                "updated_at": "2026-10-16 08:30",
                 "pancake_metadata": {
                     "shop_id": 1943149040,
                     "shop_name": "Trần Giỏi",
                     "page_id": "igo_17841436773289596",
-                    "page_name": "igo_tdgioi_31"
+                    "conversation_id": "igo_17841436773289596_2369736243563141",
+                    "snippet": ""
                 }
             },
-            "CONV-PC-IG-07": {
-                "id": "CONV-PC-IG-07",
+            "PANCAKE-289596-645747": {
+                "id": "PANCAKE-289596-645747",
+                "pancake_conv_id": "igo_17841436773289596_1064261806645747",
                 "customer_name": "dicao.vn",
                 "channel": "instagram",
-                "channel_label": "[IG] Instagram Pancake (Shop: Trần Giỏi)",
-                "phone": "0934567890",
+                "channel_label": "[IG] Instagram (Pancake Live)",
+                "phone": "0334896162",
                 "product_id": "beauty_collagen",
                 "product_name": "Beauty Collagen Powder",
                 "status": "ACTIVE",
                 "lead_priority": "HOT",
-                "intent": "Khách quen nhắn tin mới trên Instagram (Shop: Trần Giỏi)",
-                "clinical_profile": {
-                    "notes": "Khách hàng thân thiết trên Pancake, từng đặt hàng GHTK và đánh giá chất lượng tốt"
-                },
+                "intent": "Khách hàng liên hệ từ Instagram Pancake (dicao.vn)",
+                "clinical_profile": {"notes": "Đồng bộ trực tiếp qua Pancake Open API từ [IG] Instagram (Pancake Live)"},
                 "messages": [
-                    {
-                        "sender": "agent",
-                        "text": "Shop gửi dịch vụ chuyển phát nhanh của (Giao Hàng Tiết Kiệm). Đây là phiếu đơn hàng chính thức của bạn, bạn kiểm tra lại giúp shop ạ.",
-                        "time": "06/12"
-                    },
-                    {
-                        "sender": "customer",
-                        "text": "E nhận dc hàng rồi a. Chất đẹp lắm luôn ý.",
-                        "time": "09/12"
-                    },
-                    {
-                        "sender": "agent",
-                        "text": "Rảnh cho mình xin ảnh feedback bạn nha, cảm ơn bạn đã tin tưởng và ủng hộ shop ạ.",
-                        "time": "09/12"
-                    },
-                    {
-                        "sender": "customer",
-                        "text": ".",
-                        "time": "14:05"
-                    }
+                    {"sender": "agent", "text": "Mình cao 1m72 , 70kg", "time": "13:26"},
+                    {"sender": "customer", "text": "Dạ bạn vừa XXL đó ạ", "time": "13:29"},
+                    {"sender": "agent", "text": "Có màu xám ko ạ", "time": "13:31"},
+                    {"sender": "customer", "text": "Dạ có trắng ,đen, xanh ,hồng thôi ạ", "time": "13:36"},
+                    {"sender": "agent", "text": "Hàng ship về đc xem trước khi nhận đúng ko shop", "time": "13:39"},
+                    {"sender": "customer", "text": "Dạ không ạ. Shop sẽ gửi đúng mẫu ạ.", "time": "13:40"},
+                    {"sender": "agent", "text": "Thế lấy cho e áo size xxl màu đen nha", "time": "13:43"},
+                    {"sender": "customer", "text": "Dạ bạn ơi mẫu bạn đặt phải đợi order 3-5 ngày có hàng mới ship được nha, bạn ráng chờ được không ạ", "time": "13:45"},
+                    {"sender": "agent", "text": "Thế phải cần 7-9 ngày mới ship về được ạ", "time": "13:46"},
+                    {"sender": "customer", "text": "Dạ đúng rồi ạ", "time": "13:47"},
+                    {"sender": "agent", "text": "Đợi được ạ", "time": "13:48"},
+                    {"sender": "customer", "text": "Bạn cho shop xin thông tin cụ thể bao gồm : Họ Tên + Số Điện Thoại + Địa chỉ cụ thể nha", "time": "13:48"},
+                    {"sender": "agent", "text": "Trần Giỏi Tổ 6, kon Dơng, Mang Yang, Gia Lai 0969649841", "time": "13:49"},
+                    {"sender": "customer", "text": "Vâng khi nào hàng về mình ib bạn", "time": "13:50"},
+                    {"sender": "agent", "text": "Shop đổi số điện thoại của em thành 0334896162 nha", "time": "14:06"},
+                    {"sender": "customer", "text": "Shop gửi dịch vụ chuyển phát nhanh GHTK. Đây là phiếu đơn hàng chính thức của bạn, bạn kiểm tra lại giúp shop ạ.", "time": "04:16"},
+                    {"sender": "agent", "text": "Em nhận được hàng rồi ạ. Chất đẹp lắm luôn ý.", "time": "14:22"},
+                    {"sender": "customer", "text": "Rảnh cho mình xin ảnh feedback bạn nha, cảm ơn bạn đã tin tưởng và ủng hộ shop ạ.", "time": "15:35"},
+                    {"sender": "agent", "text": ".", "time": "07:06"}
                 ],
-                "updated_at": "2026-10-20 14:05",
+                "updated_at": "2026-10-20 07:06",
                 "pancake_metadata": {
                     "shop_id": 1943149040,
                     "shop_name": "Trần Giỏi",
                     "page_id": "igo_17841436773289596",
-                    "page_name": "igo_tdgioi_31"
+                    "conversation_id": "igo_17841436773289596_1064261806645747",
+                    "snippet": "."
                 }
             }
         }

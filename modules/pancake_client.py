@@ -101,7 +101,10 @@ class PancakeClient:
         def clean_html(text):
             if not text:
                 return ""
-            return html.unescape(re.sub("<[^<]+?>", "", text)).strip()
+            unescaped = html.unescape(re.sub(r"<[^<]+?>", "", text)).strip()
+            # Absolute zero emojis standard: strip emoji unicode ranges
+            clean_text = re.sub(r"[\U00010000-\U0010ffff]|[\u2600-\u27bf]|[\u2300-\u23ff]|[\u2b50-\u2b55]|[\u3030\u303d\u3297\u3299]", "", unescaped)
+            return clean_text.strip()
 
         pages_to_sync = [
             ("igo_17841436773289596", "instagram", "[IG] Instagram (Pancake Live)"),
