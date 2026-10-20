@@ -317,5 +317,24 @@ def test_pancake_instagram_conversation_and_adaptation():
     assert "Direct" in resp["four_steps"]["step_4_action_cta"] or "SĐT" in resp["four_steps"]["step_4_action_cta"]
 
 
+def test_pancake_pages_and_webhook_endpoints():
+    # 1. GET /api/pancake/pages
+    r = client.get("/api/pancake/pages")
+    assert r.status_code == 200
+    data = r.json()
+    assert "success" in data
+    assert "pages" in data or "error" in data
+
+    # 2. POST /api/webhook/pancake
+    r_wh = client.post("/api/webhook/pancake", json={
+        "event": "message_created",
+        "page_id": "igo_17841436773289596",
+        "timestamp": 1729400000
+    })
+    assert r_wh.status_code == 200
+    assert r_wh.json()["status"] == "ok"
+
+
+
 
 

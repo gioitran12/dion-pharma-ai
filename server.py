@@ -1851,6 +1851,21 @@ async def api_pancake_warehouses():
     return client.get_warehouses()
 
 
+@app.get("/api/pancake/pages")
+async def api_pancake_pages():
+    from modules.pancake_client import get_pancake_client
+    client = get_pancake_client()
+    return client.get_pages()
+
+
+@app.post("/api/webhook/pancake")
+async def api_pancake_webhook(payload: Dict[str, Any]):
+    from modules.pancake_client import get_pancake_client
+    client = get_pancake_client()
+    result = client.handle_webhook_event(payload)
+    return {"status": "ok", "result": result}
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)

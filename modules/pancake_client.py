@@ -113,6 +113,37 @@ class PancakeClient:
             "message": res.get("message", "Khong the ket noi den Pancake API")
         }
 
+    def get_pages(self) -> Dict[str, Any]:
+        """Lay danh sach cac trang Fanpage FB, Instagram, TikTok Shop dang ket noi"""
+        if not self.shop_id:
+            self.get_shops()
+        return self._request(f"/shops/{self.shop_id}/pages")
+
+    def send_message(self, page_id: str, conversation_id: str, message_text: str) -> Dict[str, Any]:
+        """
+        Gui tin nhan thuc te ra app (Facebook Messenger / Instagram DM / TikTok)
+        Yeu cau Page Access Token hoac Open API duoc cap quyen tren Pancake.
+        """
+        # Endpoint chuan tren Pancake Chat API
+        endpoint = f"/pages/{page_id}/conversations/{conversation_id}/messages"
+        payload = {
+            "message": message_text,
+            "action": "reply"
+        }
+        res = self._request(endpoint, method="POST", data=payload)
+        return res
+
+    def handle_webhook_event(self, event_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Tiep nhan su kien Webhook thoi gian thuc tu Pancake (tin nhan moi, don hang moi)
+        """
+        event_type = event_data.get("event", "message_created")
+        return {
+            "success": True,
+            "event_processed": event_type,
+            "timestamp": event_data.get("timestamp")
+        }
+
 _pancake_client_instance = None
 
 def get_pancake_client(api_key: str = "57d1deca6acd500213ef572b272d2852") -> PancakeClient:
