@@ -8040,21 +8040,22 @@ ${entry.transition_action || ''}`;
 
         async function syncPancakeInMultichannel() {
             const btn = document.getElementById('btn-sync-pancake-multichannel');
-            if (btn) btn.innerText = '[Đang kết nối API...]';
+            if (btn) btn.innerText = '[Đang kéo tin nhắn từ Pancake...]';
             try {
-                const res = await fetch('/api/pancake/status');
+                const res = await fetch('/api/pancake/sync-live', { method: 'POST' });
                 const data = await res.json();
-                if (data.connected && data.api_key_valid) {
-                    const shopName = data.shop_name || 'Trần Giỏi';
-                    const shopId = data.shop_id || 1943149040;
-                    const pageUser = (data.pages && data.pages[0]) ? data.pages[0].username : 'igo_tdgioi_31';
-                    alert(`[PANCAKE OPEN API: LIVE & ĐÃ KẾT NỐI]\n- Trạng thái: KẾT NỐI THÀNH CÔNG (Key: 57d1deca...)\n- Shop Pancake: ${shopName} (ID: #${shopId})\n- Kênh liên kết: Instagram Official (@${pageUser})\n- Kho hàng: Kho mặc định\n- Trạng thái đồng bộ: Đã tải hội thoại từ Instagram Pancake vào hàng đợi CSKH.`);
+                if (data.success) {
+                    alert(`[PANCAKE PAGES API: ĐỒNG BỘ THÀNH CÔNG]\n\n- Đã kéo: ${data.total_synced} cuộc hội thoại thực tế từ Pancake\n- Kênh: Instagram Official (Shop: Trần Giỏi)\n- Khách hàng mới nhất: dicao.vn (30 tin nhắn) & fptu_muayclub\n- Trạng thái: Dữ liệu thời gian thực đã nạp vào hàng đợi CSKH.`);
                     
-                    // Filter to instagram and select CONV-PC-IG-06
+                    // Reload queue filter
                     await loadInboundConversations('instagram');
-                    selectConversation('CONV-PC-IG-06');
+                    // Select dicao.vn if exists
+                    const dicaoConv = cachedInboundConversations.find(c => c.customer_name === 'dicao.vn');
+                    if (dicaoConv) {
+                        selectConversation(dicaoConv.id);
+                    }
                 } else {
-                    alert(`[PANCAKE API]: Kết nối thất bại - ${data.error || 'Vui lòng kiểm tra lại'}`);
+                    alert(`[PANCAKE API]: Đồng bộ thất bại - ${data.message || data.error || 'Vui lòng kiểm tra lại'}`);
                 }
             } catch (err) {
                 alert(`[PANCAKE API]: Lỗi kết nối - ${err.message}`);

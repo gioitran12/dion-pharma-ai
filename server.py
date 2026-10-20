@@ -1884,6 +1884,15 @@ async def api_pancake_set_chat_token(req: PancakeChatTokenRequest):
     }
 
 
+@app.post("/api/pancake/sync-live")
+async def api_pancake_sync_live():
+    from modules.pancake_client import get_pancake_client
+    copilot = get_vistafa_chat_copilot()
+    cm = copilot.get_conversation_manager()
+    client = get_pancake_client()
+    return client.sync_live_to_conversation_manager(cm)
+
+
 @app.post("/api/webhook/pancake")
 async def api_pancake_webhook(payload: Dict[str, Any]):
     from modules.pancake_client import get_pancake_client
