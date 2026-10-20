@@ -335,6 +335,30 @@ def test_pancake_pages_and_webhook_endpoints():
     assert r_wh.json()["status"] == "ok"
 
 
+def test_pancake_dicao_and_chat_token_flow():
+    # 1. Verify dicao.vn exists in live conversations
+    r = client.get("/api/vistafa/conversations")
+    assert r.status_code == 200
+    convs = r.json()["conversations"]
+    dicao = next((c for c in convs if c["id"] == "CONV-PC-IG-07"), None)
+    assert dicao is not None
+    assert dicao["customer_name"] == "dicao.vn"
+    assert dicao["channel"] == "instagram"
+
+    # 2. Test chat token setting
+    r_token = client.post("/api/pancake/chat-token", json={
+        "token": "test_user_token_sample_123",
+        "token_type": "user_access_token"
+    })
+    assert r_token.status_code == 200
+    assert r_token.json()["success"] is True
+
+    # 3. Test get conversations endpoint
+    r_conv = client.get("/api/pancake/conversations")
+    assert r_conv.status_code == 200
+
+
+
 
 
 

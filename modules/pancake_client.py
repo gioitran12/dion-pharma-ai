@@ -133,6 +133,37 @@ class PancakeClient:
         res = self._request(endpoint, method="POST", data=payload)
         return res
 
+    def set_chat_tokens(self, access_token: Optional[str] = None, page_access_token: Optional[str] = None):
+        """Luu tru token chat cua Pancake Pages"""
+        if access_token:
+            self.user_access_token = access_token.strip()
+        if page_access_token:
+            self.page_access_token = page_access_token.strip()
+
+    def get_conversations(self, page_id: str = "igo_17841436773289596", page_number: int = 1) -> Dict[str, Any]:
+        """
+        Lay danh sach cuoc hoi thoai tu Pancake Pages Chat API (public_api/v1)
+        Yeu cau page_access_token hoac access_token (User Token tu pages.fm)
+        """
+        token = getattr(self, "page_access_token", None) or getattr(self, "user_access_token", None)
+        if not token:
+            return {
+                "success": False,
+                "needs_token": True,
+                "message": "Can ma Pancake Chat Token (API Access Token tu pages.fm -> Cai dat ca nhan) de dong bo tin nhan truc tiep."
+            }
+
+        param_key = "page_access_token" if getattr(self, "page_access_token", None) else "access_token"
+        base = "https://pages.fm/api/public_api/v1" if getattr(self, "page_access_token", None) else "https://pages.fm/api/v1"
+        url = f"{base}/pages/{page_id}/conversations?{param_key}={token}&page_number={page_number}"
+        headers = {"User-Agent": "Vistafa-OmniClient/1.0", "Accept": "application/json"}
+        req = urllib.request.Request(url, headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=12, context=self._ctx) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+
     def handle_webhook_event(self, event_data: Dict[str, Any]) -> Dict[str, Any]:
         """
         Tiep nhan su kien Webhook thoi gian thuc tu Pancake (tin nhan moi, don hang moi)

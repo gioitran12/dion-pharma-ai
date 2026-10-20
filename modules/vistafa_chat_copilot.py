@@ -781,6 +781,50 @@ class LiveConversationManager:
                     "page_id": "igo_17841436773289596",
                     "page_name": "igo_tdgioi_31"
                 }
+            },
+            "CONV-PC-IG-07": {
+                "id": "CONV-PC-IG-07",
+                "customer_name": "dicao.vn",
+                "channel": "instagram",
+                "channel_label": "[IG] Instagram Pancake (Shop: Trần Giỏi)",
+                "phone": "0934567890",
+                "product_id": "beauty_collagen",
+                "product_name": "Beauty Collagen Powder",
+                "status": "ACTIVE",
+                "lead_priority": "HOT",
+                "intent": "Khách quen nhắn tin mới trên Instagram (Shop: Trần Giỏi)",
+                "clinical_profile": {
+                    "notes": "Khách hàng thân thiết trên Pancake, từng đặt hàng GHTK và đánh giá chất lượng tốt"
+                },
+                "messages": [
+                    {
+                        "sender": "agent",
+                        "text": "Shop gửi dịch vụ chuyển phát nhanh của (Giao Hàng Tiết Kiệm). Đây là phiếu đơn hàng chính thức của bạn, bạn kiểm tra lại giúp shop ạ.",
+                        "time": "06/12"
+                    },
+                    {
+                        "sender": "customer",
+                        "text": "E nhận dc hàng rồi a. Chất đẹp lắm luôn ý.",
+                        "time": "09/12"
+                    },
+                    {
+                        "sender": "agent",
+                        "text": "Rảnh cho mình xin ảnh feedback bạn nha, cảm ơn bạn đã tin tưởng và ủng hộ shop ạ.",
+                        "time": "09/12"
+                    },
+                    {
+                        "sender": "customer",
+                        "text": ".",
+                        "time": "14:05"
+                    }
+                ],
+                "updated_at": "2026-10-20 14:05",
+                "pancake_metadata": {
+                    "shop_id": 1943149040,
+                    "shop_name": "Trần Giỏi",
+                    "page_id": "igo_17841436773289596",
+                    "page_name": "igo_tdgioi_31"
+                }
             }
         }
 

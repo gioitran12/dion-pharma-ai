@@ -1858,6 +1858,32 @@ async def api_pancake_pages():
     return client.get_pages()
 
 
+@app.get("/api/pancake/conversations")
+async def api_pancake_conversations(page_id: str = "igo_17841436773289596"):
+    from modules.pancake_client import get_pancake_client
+    client = get_pancake_client()
+    return client.get_conversations(page_id=page_id)
+
+
+class PancakeChatTokenRequest(BaseModel):
+    token: str
+    token_type: str = "user_access_token" # "user_access_token" or "page_access_token"
+
+
+@app.post("/api/pancake/chat-token")
+async def api_pancake_set_chat_token(req: PancakeChatTokenRequest):
+    from modules.pancake_client import get_pancake_client
+    client = get_pancake_client()
+    if req.token_type == "page_access_token":
+        client.set_chat_tokens(page_access_token=req.token)
+    else:
+        client.set_chat_tokens(access_token=req.token)
+    return {
+        "success": True,
+        "message": "Đã lưu mã Pancake Chat Access Token thành công."
+    }
+
+
 @app.post("/api/webhook/pancake")
 async def api_pancake_webhook(payload: Dict[str, Any]):
     from modules.pancake_client import get_pancake_client
