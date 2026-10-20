@@ -251,3 +251,35 @@ def test_live_conversation_and_escalation_workflow():
     assert r5.status_code == 200
     assert r5.json()["order"]["sku"] == "beauty_collagen"
 
+def test_dynamic_customer_simulation_and_triage():
+    # Simulate customer sending a high-risk clinical inquiry
+    r = client.post("/api/vistafa/conversations/CONV-FB-01/messages", json={
+        "sender": "customer",
+        "text": "Bác năm nay 72 tuổi đang uống thuốc huyết áp Amlodipine và bị sỏi thận 12mm thì uống canxi này được không?"
+    })
+    assert r.status_code == 200
+    data = r.json()
+    assert data["success"] is True
+
+    conv = data["conversation"]
+    # 1. Verify dynamic extraction
+    assert conv["clinical_profile"]["age"] == 72
+    assert "sỏi thận" in conv["clinical_profile"]["notes"].lower()
+    assert "amlodipine" in conv["clinical_profile"]["notes"].lower()
+    assert conv["product_id"] == "calcium_complex"
+    assert conv["status"] == "REQUIRES_PHARMACIST"
+    assert conv["lead_priority"] == "URGENT"
+
+    # 2. Verify AI Copilot recommendation
+    ai_rec = data["ai_recommendation"]
+    assert ai_rec is not None
+    assert ai_rec["red_flags"]["has_red_flag"] is True
+    assert ai_rec["red_flags"]["pharmacist_escalation"] is True
+    assert any("sỏi thận" in f or "12mm" in f for f in ai_rec["red_flags"]["flags"])
+    assert "sỏi" in ai_rec["four_steps"]["step_1_direct_answer"].lower()
+    assert "Dược sĩ" in ai_rec["four_steps"]["step_4_action_cta"]
+
+    # 3. Zero emojis in new response
+    assert len(EMOJI_PATTERN.findall(ai_rec["full_text"])) == 0
+
+

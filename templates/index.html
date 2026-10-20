@@ -1409,17 +1409,44 @@
             </div>
 
             <!-- THANH PHÍM TẮT NHANH (SHORTCUT BAR TRỰC CHIẾN) -->
-            <div class="p-2 border-t border-slate-200 bg-white shrink-0">
-                <div class="flex items-center gap-1 overflow-x-auto pb-1" id="mc-thread-shortcut-chips">
-                    <span class="text-[10px] font-bold text-slate-400 uppercase shrink-0">Phím tắt:</span>
-                    <!-- Chips inserted dynamically -->
+            <div class="p-2 border-t border-slate-200 bg-white shrink-0 space-y-1.5">
+                <div class="flex items-center justify-between gap-1 overflow-x-auto pb-0.5">
+                    <div class="flex items-center gap-1 shrink-0" id="mc-thread-shortcut-chips">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase shrink-0">Phím tắt:</span>
+                        <!-- Chips inserted dynamically -->
+                    </div>
                 </div>
+
+                <!-- THANH CHỌN VAI TRÒ GỬI & TEST CASE MÔ PHỎNG LÂM SÀNG -->
+                <div class="flex items-center justify-between gap-2 pt-0.5 border-t border-slate-100 text-[11px]">
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase shrink-0">Vai trò gửi:</span>
+                        <label class="flex items-center gap-1 cursor-pointer">
+                            <input type="radio" name="mc-role-select" id="mc-role-cust-radio" value="customer" onchange="onThreadRoleChange('customer')" class="text-corp-800 focus:ring-corp-500">
+                            <span class="font-bold text-amber-900 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200 text-[10px]">[KH] Khách hỏi (Mô phỏng AI)</span>
+                        </label>
+                        <label class="flex items-center gap-1 cursor-pointer">
+                            <input type="radio" name="mc-role-select" id="mc-role-agent-radio" value="agent" checked onchange="onThreadRoleChange('agent')" class="text-corp-800 focus:ring-corp-500">
+                            <span class="font-bold text-corp-800 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200 text-[10px]">[NV] Tư vấn viên trả lời</span>
+                        </label>
+                    </div>
+                    <div class="flex items-center gap-1 overflow-x-auto">
+                        <span class="text-[10px] text-slate-400 shrink-0">Test ca khó:</span>
+                        <button type="button" onclick="quickFillCustomerScenario('kidney_stone')" class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-800 border border-rose-200 hover:bg-rose-100 shrink-0 cursor-pointer" title="Cụ 72 tuổi, dùng Amlodipine, sỏi thận 12mm hỏi canxi">[Cụ 72t sỏi 12mm]</button>
+                        <button type="button" onclick="quickFillCustomerScenario('seduxen')" class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-800 border border-purple-200 hover:bg-purple-100 shrink-0 cursor-pointer" title="Khách đang uống Seduxen 5mg theo đơn hỏi Sleep Well">[Seduxen mất ngủ]</button>
+                        <button type="button" onclick="quickFillCustomerScenario('corbiere')" class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100 shrink-0 cursor-pointer" title="So sánh với Canxi Corbiere dạng ống">[So Corbiere]</button>
+                    </div>
+                </div>
+
                 <!-- KHUNG SOẠN TIN NHẮN & NÚT GỬI -->
-                <div class="flex items-end gap-2 pt-1.5">
-                    <textarea id="mc-thread-input" rows="2" placeholder="Gõ câu trả lời của nhân viên (hoặc nhấn 'Nạp câu trả lời của AI' ở cột phải)..." class="flex-1 text-xs rounded-lg border-slate-300 focus:border-corp-500 focus:ring-corp-500 p-2 bg-slate-50 leading-relaxed"></textarea>
+                <div class="flex items-end gap-2">
+                    <textarea id="mc-thread-input" rows="2" placeholder="Gõ câu trả lời của nhân viên (hoặc chọn '[KH] Khách hỏi' để mô phỏng tin nhắn đến)..." class="flex-1 text-xs rounded-lg border-slate-300 focus:border-corp-500 focus:ring-corp-500 p-2 bg-slate-50 leading-relaxed"></textarea>
                     <div class="flex flex-col gap-1 shrink-0">
-                        <button type="button" onclick="sendAgentMessageFromInput()" class="px-3 py-2 rounded-lg bg-corp-800 hover:bg-corp-900 text-white text-xs font-bold transition cursor-pointer">
-                            [Gửi]
+                        <button type="button" id="mc-btn-send-main" onclick="sendThreadMessageWithRole()" class="px-3 py-1.5 rounded-lg bg-corp-800 hover:bg-corp-900 text-white text-xs font-bold transition cursor-pointer shadow-xs">
+                            [NV] Gửi trả lời
+                        </button>
+                        <button type="button" onclick="sendQuickCustomerMessage()" class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 transition cursor-pointer" title="Gửi nhanh dưới vai trò Khách hàng để kích hoạt AI nhận diện bối cảnh và Red Flag">
+                            [KH] Khách gửi
                         </button>
                     </div>
                 </div>
@@ -7930,7 +7957,51 @@ ${entry.transition_action || ''}`;
             }
         }
 
-        async function sendAgentMessageFromInput() {
+        let currentThreadSenderRole = 'agent';
+
+        function onThreadRoleChange(role) {
+            currentThreadSenderRole = role;
+            const btn = document.getElementById('mc-btn-send-main');
+            const input = document.getElementById('mc-thread-input');
+            if (role === 'customer') {
+                if (btn) {
+                    btn.innerText = '[KH] Gửi câu hỏi khách (Mô phỏng AI)';
+                    btn.className = 'px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold transition cursor-pointer shadow-xs';
+                }
+                if (input) {
+                    input.placeholder = 'Gõ câu hỏi / tình huống từ khách hàng để AI phân tích Red Flag, bệnh nền và gợi ý kịch bản trực tiếp...';
+                }
+            } else {
+                if (btn) {
+                    btn.innerText = '[NV] Gửi trả lời';
+                    btn.className = 'px-3 py-1.5 rounded-lg bg-corp-800 hover:bg-corp-900 text-white text-xs font-bold transition cursor-pointer shadow-xs';
+                }
+                if (input) {
+                    input.placeholder = "Gõ câu trả lời của nhân viên (hoặc chọn '[KH] Khách hỏi' để mô phỏng tin nhắn đến)...";
+                }
+            }
+        }
+
+        function quickFillCustomerScenario(type) {
+            const roleCustRadio = document.getElementById('mc-role-cust-radio');
+            if (roleCustRadio) {
+                roleCustRadio.checked = true;
+                onThreadRoleChange('customer');
+            }
+            const input = document.getElementById('mc-thread-input');
+            if (!input) return;
+
+            if (type === 'kidney_stone') {
+                input.value = 'Bác năm nay 72 tuổi đang uống thuốc huyết áp Amlodipine và bị sỏi thận 12mm thì uống canxi này được không?';
+            } else if (type === 'seduxen') {
+                input.value = 'Bác năm nay 68 tuổi, bị mất ngủ mấy năm nay đang uống viên Seduxen 5mg và Rotunda mỗi tối theo đơn của bác sĩ Bạch Mai. Bác thấy quảng cáo viên Sleep Well thảo dược, bác uống chung hai loại với nhau được không cháu?';
+            } else if (type === 'corbiere') {
+                input.value = 'Canxi Corbiere dạng ống bên hiệu thuốc rẻ hơn nhiều sao bên bạn bán đắt vậy?';
+            }
+            input.focus();
+        }
+
+        async function sendThreadMessageWithRole() {
             const input = document.getElementById('mc-thread-input');
             const text = input ? input.value.trim() : '';
             if (!text) return;
@@ -7939,16 +8010,47 @@ ${entry.transition_action || ''}`;
                 const res = await fetch(`/api/vistafa/conversations/${curActiveConvId}/messages`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ sender: 'agent', text: text })
+                    body: JSON.stringify({ sender: currentThreadSenderRole, text: text })
                 });
                 const data = await res.json();
                 if (data.success) {
                     if (input) input.value = '';
+                    if (currentThreadSenderRole === 'customer') {
+                        loadInboundConversations(curInboundFilter);
+                    }
                     selectConversation(curActiveConvId);
                 }
             } catch (e) {
                 console.error('Error sending message:', e);
             }
+        }
+
+        async function sendQuickCustomerMessage() {
+            const input = document.getElementById('mc-thread-input');
+            let text = input ? input.value.trim() : '';
+            if (!text) {
+                text = 'Bác năm nay 72 tuổi đang uống thuốc huyết áp Amlodipine và bị sỏi thận 12mm thì uống canxi này được không?';
+            }
+
+            try {
+                const res = await fetch(`/api/vistafa/conversations/${curActiveConvId}/messages`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sender: 'customer', text: text })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    if (input) input.value = '';
+                    loadInboundConversations(curInboundFilter);
+                    selectConversation(curActiveConvId);
+                }
+            } catch (e) {
+                console.error('Error sending quick customer message:', e);
+            }
+        }
+
+        async function sendAgentMessageFromInput() {
+            return sendThreadMessageWithRole();
         }
 
         function insertAiReplyIntoInput() {

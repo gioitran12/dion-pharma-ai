@@ -140,7 +140,14 @@ class VistafaChatCopilot:
 
         # 1. Kidney stones / Hypercalcemia (Risk for Calcium)
         if any(w in combined for w in ["sỏi thận", "soi than", "tăng canxi máu", "tang canxi mau", "vôi hóa thận", "sỏi niệu"]):
-            flags.append("Phát hiện tiền sử sỏi thận / tăng canxi máu: Chống chỉ định tự ý bổ sung canxi liều cao. Bắt buộc chuyển Dược sĩ lâm sàng.")
+            if any(w in combined for w in ["12mm", "10mm", "15mm", "kích thước lớn", "sỏi to", "sỏi đài thận", "sỏi san hô"]):
+                flags.append("Phát hiện tiền sử sỏi thận kích thước lớn (12mm) / nguy cơ tắc nghẽn: Chống chỉ định tuyệt đối tự ý bổ sung canxi. Bắt buộc chuyển Dược sĩ lâm sàng tham vấn bác sĩ điều trị.")
+            else:
+                flags.append("Phát hiện tiền sử sỏi thận / tăng canxi máu: Chống chỉ định tự ý bổ sung canxi liều cao. Bắt buộc chuyển Dược sĩ lâm sàng.")
+
+        # 1b. Calcium Channel Blockers / Antihypertensive drugs (Amlodipine, Nifedipine)
+        if any(w in combined for w in ["amlodipine", "nifedipine", "thuốc huyết áp", "thuoc huyet ap", "chẹn kênh canxi", "chen kenh canxi", "huyết áp cao"]):
+            flags.append("Khách đang dùng thuốc huyết áp (Amlodipine / chẹn kênh canxi): Cần uống cách thời điểm dùng thuốc ít nhất 1-2 giờ và kiểm soát chức năng thận.")
 
         # 2. Prescription Sedatives / Antidepressants (Risk for Sleep Well)
         if any(w in combined for w in ["thuốc ngủ", "thuoc ngu", "an thần", "an than", "lexomil", "diazepam", "seduxen", "rotunda", "stilnox", "trầm cảm", "chong tram cam"]):
@@ -175,6 +182,87 @@ class VistafaChatCopilot:
                 if pharmacist_required else
                 ("CANH BAO AN TOAN: Can kiem tra ky lieu dung va huong dan uong dung cach." if has_flags else "AN TOAN: Khong phat hien yeu to nguy co cao.")
             )
+        }
+
+    def extract_clinical_profile(self, text: str, current_profile: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """
+        Tu dong phan tich va trich xuat do tuoi, benh nen, thuoc dieu tri va san pham quan tam tu tin nhan khach hang.
+        """
+        import re
+        profile = dict(current_profile or {})
+        text_lower = text.lower()
+
+        # 1. Trich xuat do tuoi
+        age_match = re.search(r'(?:nam nay|năm nay|bac|bác|em|chau|cháu|chi|chị|anh|toi|tôi|cu|cụ)?\s*(\d{1,2})\s*(?:tuoi|tuổi|t\b)', text_lower)
+        if not age_match:
+            age_match = re.search(r'\b(\d{1,2})\s*(?:tuoi|tuổi)\b', text_lower)
+        if age_match:
+            try:
+                extracted_age = int(age_match.group(1))
+                if 1 <= extracted_age <= 120:
+                    profile["age"] = extracted_age
+            except Exception:
+                pass
+
+        # 2. Trich xuat benh nen & thuoc dieu tri
+        conditions = []
+        if "sỏi" in text_lower or "soi" in text_lower:
+            size_match = re.search(r'(?:sỏi|soi)\s*(?:thận|than)?\s*(\d+\s*mm)?', text_lower)
+            if size_match and size_match.group(1):
+                conditions.append(f"Sỏi thận {size_match.group(1).strip()}")
+            else:
+                conditions.append("Sỏi thận")
+
+        if "amlodipine" in text_lower:
+            conditions.append("Thuốc huyết áp Amlodipine")
+        elif "huyết áp" in text_lower or "huyet ap" in text_lower:
+            conditions.append("Thuốc điều trị huyết áp")
+
+        if "seduxen" in text_lower or "rotunda" in text_lower or "thuốc ngủ" in text_lower or "thuoc ngu" in text_lower:
+            conditions.append("Thuốc ngủ / an thần kê đơn")
+
+        if "tiểu đường" in text_lower or "tieu duong" in text_lower:
+            conditions.append("Tiểu đường")
+
+        if "triglycerid" in text_lower or "mỡ máu" in text_lower or "mo mau" in text_lower:
+            conditions.append("Mỡ máu cao")
+
+        if "kháng đông" in text_lower or "khang dong" in text_lower or "chống đông" in text_lower or "warfarin" in text_lower or "aspirin" in text_lower:
+            conditions.append("Thuốc chống đông máu")
+
+        if conditions:
+            profile["notes"] = ", ".join(conditions)
+            profile["conditions"] = conditions
+
+        # 3. Nhan dien san pham quan tam
+        detected_product = None
+        if any(w in text_lower for w in ["canxi", "calcium", "cal-mom", "calmom"]):
+            detected_product = "calcium_complex"
+        elif any(w in text_lower for w in ["collagen", "nám", "nam", "sạm da", "da sạm", "da sam"]):
+            detected_product = "beauty_collagen"
+        elif any(w in text_lower for w in ["dầu cá", "dau ca", "omega", "omega3", "mỡ máu"]):
+            detected_product = "ultimate_omega3"
+        elif any(w in text_lower for w in ["mất ngủ", "mat ngu", "ngủ ngon", "ngu ngon", "sleep", "khó ngủ", "kho ngu", "seduxen"]):
+            detected_product = "sleep_well"
+        elif any(w in text_lower for w in ["sắt", "sat", "ferro", "thiếu máu", "thieu mau", "thalassemia"]):
+            detected_product = "ferro_active"
+
+        # 4. Tom tat Intent
+        intent_parts = []
+        if detected_product:
+            p_name = self.get_products().get(detected_product, {}).get("name", "")
+            intent_parts.append(f"Hỏi tư vấn {p_name}")
+        if conditions:
+            intent_parts.append(f"có {', '.join(conditions)}")
+        if profile.get("age"):
+            intent_parts.append(f"({profile['age']} tuổi)")
+
+        intent_summary = " ".join(intent_parts) if intent_parts else text[:80]
+
+        return {
+            "profile": profile,
+            "detected_product": detected_product,
+            "intent": intent_summary
         }
 
     def generate_response(
@@ -334,10 +422,26 @@ class VistafaChatCopilot:
     ) -> Dict[str, str]:
         # Step 1: Trả lời trực diện
         if red_flags_info.get("pharmacist_escalation"):
-            step1 = (
-                f"Dạ Vistafa xin ghi nhận thông tin của anh/chị về sản phẩm {product_info.get('name')}. "
-                "Tuy nhiên, qua trao đổi em nhận thấy tình trạng sức khỏe / đơn thuốc của mình có yếu tố y khoa đặc biệt cần được đánh giá chuyên môn kỹ lưỡng trước khi sử dụng ạ."
-            )
+            if "sỏi" in message.lower() or "soi" in message.lower():
+                size_txt = " (12mm)" if "12mm" in message.lower() else ""
+                step1 = (
+                    f"Dạ Vistafa xin kính chào bác ạ! Về băn khoăn bổ sung canxi khi bác có sỏi thận{size_txt} và đang uống thuốc huyết áp Amlodipine: "
+                    "Vistafa xin phép KHÔNG hướng dẫn tự ý mua dùng canxi ngay lúc này vì sỏi thận kích thước lớn là trường hợp chống chỉ định tự ý bổ sung canxi khi chưa có chỉ định của bác sĩ chuyên khoa Thận - Tiết niệu ạ."
+                )
+            elif any(w in message.lower() for w in ["thuốc ngủ", "seduxen", "rotunda", "an thần"]):
+                step1 = (
+                    "Dạ Vistafa xin ghi nhận thông tin của bác ạ! Khi bác đang sử dụng thuốc an thần/thuốc ngủ kê đơn (như Seduxen, Rotunda), "
+                    "Vistafa tuyệt đối không hướng dẫn tự ý phối hợp thêm viên uống thảo dược để tránh nguy cơ ức chế quá mức thần kinh trung ương ạ."
+                )
+            elif comp_matches:
+                step1 = comp_matches.get("recommended_reply", entry.get("opening_message", "") if entry else "")
+            elif entry:
+                step1 = entry.get("opening_message", f"Dạ {product_info.get('name')} là thực phẩm bảo vệ sức khỏe chính hãng bên em ạ.")
+            else:
+                step1 = (
+                    f"Dạ Vistafa xin ghi nhận thông tin của anh/chị về sản phẩm {product_info.get('name')}. "
+                    "Tuy nhiên, qua trao đổi em nhận thấy tình trạng sức khỏe / đơn thuốc của mình có yếu tố y khoa đặc biệt cần được đánh giá chuyên môn kỹ lưỡng trước khi sử dụng ạ."
+                )
         elif comp_matches:
             step1 = comp_matches.get("recommended_reply", entry.get("opening_message", "") if entry else "")
         elif entry:
@@ -346,7 +450,18 @@ class VistafaChatCopilot:
             step1 = f"Dạ {product_info.get('name')} hiện đang được phân phối chính hãng bởi Vistafa ạ."
 
         # Step 2: Hỏi 1 câu khai thác
-        if comp_matches:
+        if red_flags_info.get("pharmacist_escalation"):
+            if "sỏi" in message.lower() or "soi" in message.lower():
+                step2 = "Bác cho cháu hỏi thêm bác đã siêu âm kiểm tra kích thước sỏi thận gần đây nhất là khi nào, và bác sĩ điều trị huyết áp có lưu ý xét nghiệm canxi niệu hoặc canxi máu không ạ?"
+            elif any(w in message.lower() for w in ["thuốc ngủ", "seduxen", "rotunda", "an thần"]):
+                step2 = "Bác cho cháu hỏi thêm đơn thuốc Seduxen bác đang uống được bác sĩ kê từ bao giờ và hiện tại liều dùng mỗi tối như thế nào ạ?"
+            elif comp_matches:
+                step2 = comp_matches.get("counter_question", "Anh/chị ưu tiên tiêu chí nào nhất khi so sánh ạ?")
+            elif entry and entry.get("followup_question"):
+                step2 = entry.get("followup_question", "Anh/chị đang quan tâm sử dụng cho mình hay cho người thân ạ?")
+            else:
+                step2 = "Anh/chị đang có nhu cầu sử dụng cho độ tuổi nào và có vấn đề sức khỏe cụ thể nào không ạ?"
+        elif comp_matches:
             step2 = comp_matches.get("counter_question", "Anh/chị ưu tiên tiêu chí nào nhất khi so sánh ạ?")
         elif entry and entry.get("followup_question"):
             step2 = entry.get("followup_question", "Anh/chị đang quan tâm sử dụng cho mình hay cho người thân ạ?")
@@ -364,7 +479,9 @@ class VistafaChatCopilot:
 
         # Step 4: Chuyển bước chốt hành động
         if red_flags_info.get("pharmacist_escalation"):
-            if channel == "zalo":
+            if "bác" in message.lower() or "bac" in message.lower():
+                step4 = "Cháu xin phép ghi nhận thông tin và chuyển ngay hồ sơ của bác sang Dược sĩ lâm sàng phụ trách để gọi điện tư vấn phác đồ an toàn nhất cho bác ạ."
+            elif channel == "zalo":
                 step4 = "Em xin phép chuyển ngay thông tin đến Dược sĩ phụ trách chuyên môn qua Zalo để xem đơn và tư vấn an toàn nhất cho mình nhé ạ."
             elif channel == "website":
                 step4 = "Anh/chị vui lòng để lại Số điện thoại hoặc kết nối Zalo để Dược sĩ lâm sàng liên hệ tư vấn chuyên sâu ngay ạ."
@@ -625,7 +742,7 @@ class LiveConversationManager:
     def get_by_id(self, conv_id: str) -> Optional[Dict[str, Any]]:
         return self._conversations.get(conv_id)
 
-    def add_message(self, conv_id: str, sender: str, text: str) -> Optional[Dict[str, Any]]:
+    def add_message(self, conv_id: str, sender: str, text: str, copilot: Optional[Any] = None) -> Optional[Dict[str, Any]]:
         from datetime import datetime
         conv = self._conversations.get(conv_id)
         if not conv:
@@ -634,6 +751,22 @@ class LiveConversationManager:
         msg_obj = {"sender": sender, "text": text, "time": now_str}
         conv["messages"].append(msg_obj)
         conv["updated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+        if sender == "customer" and copilot:
+            extracted = copilot.extract_clinical_profile(text, conv.get("clinical_profile", {}))
+            conv["clinical_profile"] = extracted["profile"]
+            if extracted.get("detected_product"):
+                conv["product_id"] = extracted["detected_product"]
+                p_info = copilot.get_products().get(extracted["detected_product"], {})
+                conv["product_name"] = p_info.get("name", conv.get("product_name", ""))
+            if extracted.get("intent"):
+                conv["intent"] = extracted["intent"]
+
+            rf = copilot.detect_red_flags(text, conv.get("clinical_profile", {}))
+            if rf.get("pharmacist_escalation"):
+                conv["status"] = "REQUIRES_PHARMACIST"
+                conv["lead_priority"] = "URGENT"
+
         return msg_obj
 
     def escalate_pharmacist(self, conv_id: str, reason: str, notes: str, pharmacist_name: str = "DS. Lâm Sàng Trực Ban") -> Optional[Dict[str, Any]]:

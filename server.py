@@ -1774,7 +1774,7 @@ async def api_vistafa_get_conversation(conv_id: str):
 async def api_vistafa_add_conversation_message(conv_id: str, req: VistafaConversationMessageRequest):
     copilot = get_vistafa_chat_copilot()
     cm = copilot.get_conversation_manager()
-    msg = cm.add_message(conv_id, req.sender, req.text)
+    msg = cm.add_message(conv_id, req.sender, req.text, copilot=copilot)
     if not msg:
         raise HTTPException(status_code=404, detail="Không tìm thấy hội thoại")
 
