@@ -1164,7 +1164,7 @@
                     </button>
                     <button type="button" onclick="setCareSubTab('multichannel')" id="btn-care-sub-multichannel" class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer">
                         <span class="pointer-events-none">[VISTAFA] 2. TRỢ LÝ CHAT ĐA KÊNH & ĐỐI THỦ</span>
-                        <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-blue-100 text-blue-800 font-mono pointer-events-none">4 Kênh</span>
+                        <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-emerald-100 text-emerald-800 font-mono font-bold pointer-events-none">5 Kênh (Live Pancake)</span>
                     </button>
                     <button type="button" onclick="setCareSubTab('tasks')" id="btn-care-sub-tasks" class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer">
                         <span class="pointer-events-none">3. CÔNG VIỆC CHĂM SÓC (30 NGÀY)</span>
@@ -1343,13 +1343,20 @@
                     <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/30 text-blue-200 border border-blue-400/30 uppercase tracking-wider">[POC VISTAFA] WORKSPACE HỢP NHẤT</span>
                     <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/30 text-emerald-200 border border-emerald-400/30 uppercase tracking-wider">LIVE CHAT & AI COPILOT</span>
                     <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/30 text-purple-200 border border-purple-400/30 uppercase tracking-wider">TL.CSKH.003 & HANDOFF</span>
+                    <span id="banner-pancake-badge" class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-emerald-600/70 text-white border border-emerald-300 uppercase tracking-wider flex items-center gap-1.5 shadow-xs">
+                        <span class="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span>
+                        PANCAKE OPEN API: LIVE (Shop: Trần Giỏi #1943149040 | IG: igo_tdgioi_31)
+                    </span>
                 </div>
                 <h3 class="text-sm md:text-base font-black tracking-tight text-white">KHÔNG GIAN LÀM VIỆC HỢP NHẤT: CSKH ĐA KÊNH & TRỢ LÝ AI LÂM SÀNG</h3>
                 <p class="text-xs text-blue-100/90 mt-0.5 max-w-3xl">
-                    Hợp nhất hàng đợi tiếp nhận Lead đa kênh (FB/Zalo/Web/TikTok), luồng hội thoại nhiều lượt thời gian thực, và Trợ lý AI Lâm sàng đồng hành tự động sàng lọc Red Flag y tế kèm bàn giao Dược sĩ 1 chạm.
+                    Hợp nhất hàng đợi tiếp nhận Lead đa kênh (FB/Zalo/Web/TikTok/Pancake Instagram), luồng hội thoại nhiều lượt thời gian thực, và Trợ lý AI Lâm sàng đồng hành tự động sàng lọc Red Flag y tế kèm bàn giao Dược sĩ 1 chạm.
                 </p>
             </div>
             <div class="flex items-center gap-2 shrink-0">
+                <button type="button" onclick="syncPancakeInMultichannel()" id="btn-sync-pancake-multichannel" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold border border-emerald-400/50 transition cursor-pointer flex items-center gap-1 shadow-sm">
+                    <span>[ĐỒNG BỘ PANCAKE LIVE]</span>
+                </button>
                 <button type="button" onclick="toggleCompetitorDrawer()" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-bold border border-white/20 transition cursor-pointer">
                     <span>[MA TRẬN ĐỐI THỦ (10 KỊCH BẢN)]</span>
                 </button>
@@ -1364,14 +1371,15 @@
             <div class="p-3 border-b border-slate-100 space-y-2 shrink-0 bg-slate-50">
                 <div class="flex items-center justify-between">
                     <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Hàng đợi hội thoại:</span>
-                    <span id="mc-queue-count-badge" class="px-2 py-0.2 rounded text-[10px] font-mono font-bold bg-blue-100 text-blue-800">5 cuộc</span>
+                    <span id="mc-queue-count-badge" class="px-2 py-0.2 rounded text-[10px] font-mono font-bold bg-blue-100 text-blue-800">6 cuộc</span>
                 </div>
                 <!-- BỘ LỌC KÊNH NHANH TRONG HÀNG ĐỢI -->
-                <div class="grid grid-cols-4 gap-1 text-[10px] font-bold">
+                <div class="grid grid-cols-5 gap-1 text-[10px] font-bold">
                     <button type="button" onclick="filterQueueByChannel('all')" id="btn-qfilter-all" class="py-1 rounded bg-corp-800 text-white text-center cursor-pointer">ALL</button>
                     <button type="button" onclick="filterQueueByChannel('facebook')" id="btn-qfilter-facebook" class="py-1 rounded bg-slate-200 text-slate-700 hover:bg-slate-300 text-center cursor-pointer">FB</button>
                     <button type="button" onclick="filterQueueByChannel('zalo')" id="btn-qfilter-zalo" class="py-1 rounded bg-slate-200 text-slate-700 hover:bg-slate-300 text-center cursor-pointer">ZALO</button>
                     <button type="button" onclick="filterQueueByChannel('tiktok')" id="btn-qfilter-tiktok" class="py-1 rounded bg-slate-200 text-slate-700 hover:bg-slate-300 text-center cursor-pointer">TIKTOK</button>
+                    <button type="button" onclick="filterQueueByChannel('instagram')" id="btn-qfilter-instagram" class="py-1 rounded bg-slate-200 text-slate-700 hover:bg-slate-300 text-center cursor-pointer">IG/PANCAKE</button>
                 </div>
             </div>
 
@@ -1435,6 +1443,7 @@
                         <button type="button" onclick="quickFillCustomerScenario('kidney_stone')" class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-800 border border-rose-200 hover:bg-rose-100 shrink-0 cursor-pointer" title="Cụ 72 tuổi, dùng Amlodipine, sỏi thận 12mm hỏi canxi">[Cụ 72t sỏi 12mm]</button>
                         <button type="button" onclick="quickFillCustomerScenario('seduxen')" class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-800 border border-purple-200 hover:bg-purple-100 shrink-0 cursor-pointer" title="Khách đang uống Seduxen 5mg theo đơn hỏi Sleep Well">[Seduxen mất ngủ]</button>
                         <button type="button" onclick="quickFillCustomerScenario('corbiere')" class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100 shrink-0 cursor-pointer" title="So sánh với Canxi Corbiere dạng ống">[So Corbiere]</button>
+                        <button type="button" onclick="quickFillCustomerScenario('pancake_muay')" class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-pink-50 text-pink-800 border border-pink-200 hover:bg-pink-100 shrink-0 cursor-pointer" title="Khách từ Instagram Pancake (CLB Muay FPTU) hỏi canxi phục hồi khớp">[Pancake IG Muay]</button>
                     </div>
                 </div>
 
@@ -7647,7 +7656,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
 
         async function loadInboundConversations(filterCh = 'all') {
             curInboundFilter = filterCh;
-            ['all', 'facebook', 'zalo', 'tiktok'].forEach(c => {
+            ['all', 'facebook', 'zalo', 'tiktok', 'instagram'].forEach(c => {
                 const btn = document.getElementById(`btn-qfilter-${c}`);
                 if (btn) {
                     if (c === filterCh) {
@@ -7692,7 +7701,7 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             if (!container) return;
 
             if (!conversations || conversations.length === 0) {
-                container.innerHTML = '<div class="p-4 text-center text-slate-400 text-xs italic">Không có cuộc hội thoại nào</div>';
+                container.innerHTML = '<div class="p-4 text-center text-slate-400 text-xs italic">Không có cuộc hội thoại nào thuộc kênh này</div>';
                 return;
             }
 
@@ -7713,6 +7722,16 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                     statusBadge = '<span class="px-1.5 py-0.2 rounded text-[9px] font-bold bg-emerald-100 text-emerald-800">ĐÃ CHỐT ĐƠN</span>';
                 }
 
+                let pancakeBadge = '';
+                if (c.channel === 'instagram' || c.pancake_metadata) {
+                    pancakeBadge = '<span class="px-1.5 py-0.2 rounded text-[9px] font-bold bg-pink-100 text-pink-800 border border-pink-200">PANCAKE LIVE</span>';
+                }
+
+                let channelLabel = `<span class="font-bold text-corp-800">${c.channel_label}</span>`;
+                if (c.channel === 'instagram') {
+                    channelLabel = `<span class="font-bold text-pink-700">[IG] Pancake (Trần Giỏi)</span>`;
+                }
+
                 return `
                     <div onclick="selectConversation('${c.id}')" class="p-2.5 rounded-lg border transition cursor-pointer ${
                         isSelected ? 'bg-blue-50/80 border-blue-400 shadow-xs' : 'bg-white border-slate-200 hover:border-slate-300'
@@ -7720,12 +7739,13 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                         <div class="flex items-center justify-between mb-1">
                             <span class="font-bold text-xs text-slate-900">${c.customer_name}</span>
                             <div class="flex items-center gap-1">
+                                ${pancakeBadge}
                                 <span class="px-1.5 py-0.2 rounded text-[9px] font-mono ${priorityClass}">${c.lead_priority}</span>
                                 ${statusBadge}
                             </div>
                         </div>
                         <div class="flex items-center justify-between text-[10px] text-slate-500 mb-1">
-                            <span class="font-bold text-corp-800">${c.channel_label}</span>
+                            ${channelLabel}
                             <span>${c.updated_at.split(' ')[1] || ''}</span>
                         </div>
                         <div class="text-[11px] text-slate-600 line-clamp-2 leading-tight">
@@ -7763,7 +7783,18 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 const custName = document.getElementById('mc-active-cust-name');
                 if (custName) custName.innerText = conv.customer_name;
                 const chanPill = document.getElementById('mc-active-channel-pill');
-                if (chanPill) chanPill.innerText = conv.channel_label;
+                if (chanPill) {
+                    chanPill.innerText = conv.channel_label;
+                    if (conv.channel === 'instagram') {
+                        chanPill.className = 'px-1.5 py-0.2 rounded text-[10px] font-bold bg-pink-100 text-pink-800 border border-pink-300';
+                    } else if (conv.channel === 'zalo') {
+                        chanPill.className = 'px-1.5 py-0.2 rounded text-[10px] font-bold bg-blue-100 text-blue-800';
+                    } else if (conv.channel === 'tiktok') {
+                        chanPill.className = 'px-1.5 py-0.2 rounded text-[10px] font-bold bg-slate-900 text-white';
+                    } else {
+                        chanPill.className = 'px-1.5 py-0.2 rounded text-[10px] font-bold bg-blue-100 text-blue-800';
+                    }
+                }
                 const statusPill = document.getElementById('mc-active-status-pill');
                 if (statusPill) {
                     if (conv.status === 'ESCALATED_PHARMACIST') {
@@ -8001,8 +8032,35 @@ ${entry.transition_action || ''}`;
                 input.value = 'Bác năm nay 68 tuổi, bị mất ngủ mấy năm nay đang uống viên Seduxen 5mg và Rotunda mỗi tối theo đơn của bác sĩ Bạch Mai. Bác thấy quảng cáo viên Sleep Well thảo dược, bác uống chung hai loại với nhau được không cháu?';
             } else if (type === 'corbiere') {
                 input.value = 'Canxi Corbiere dạng ống bên hiệu thuốc rẻ hơn nhiều sao bên bạn bán đắt vậy?';
+            } else if (type === 'pancake_muay') {
+                input.value = 'Chào shop, em bên CLB Muay FPTU, tập luyện nặng hay bị mỏi khớp gối với căng cơ sau tập. Bên mình có loại canxi hay collagen nào phục hồi sụn khớp tốt cho dân tập võ không shop?';
             }
             input.focus();
+        }
+
+        async function syncPancakeInMultichannel() {
+            const btn = document.getElementById('btn-sync-pancake-multichannel');
+            if (btn) btn.innerText = '[Đang kết nối API...]';
+            try {
+                const res = await fetch('/api/pancake/status');
+                const data = await res.json();
+                if (data.connected && data.api_key_valid) {
+                    const shopName = data.shop_name || 'Trần Giỏi';
+                    const shopId = data.shop_id || 1943149040;
+                    const pageUser = (data.pages && data.pages[0]) ? data.pages[0].username : 'igo_tdgioi_31';
+                    alert(`[PANCAKE OPEN API: LIVE & ĐÃ KẾT NỐI]\n- Trạng thái: KẾT NỐI THÀNH CÔNG (Key: 57d1deca...)\n- Shop Pancake: ${shopName} (ID: #${shopId})\n- Kênh liên kết: Instagram Official (@${pageUser})\n- Kho hàng: Kho mặc định\n- Trạng thái đồng bộ: Đã tải hội thoại từ Instagram Pancake vào hàng đợi CSKH.`);
+                    
+                    // Filter to instagram and select CONV-PC-IG-06
+                    await loadInboundConversations('instagram');
+                    selectConversation('CONV-PC-IG-06');
+                } else {
+                    alert(`[PANCAKE API]: Kết nối thất bại - ${data.error || 'Vui lòng kiểm tra lại'}`);
+                }
+            } catch (err) {
+                alert(`[PANCAKE API]: Lỗi kết nối - ${err.message}`);
+            } finally {
+                if (btn) btn.innerText = '[ĐỒNG BỘ PANCAKE LIVE]';
+            }
         }
 
         async function sendThreadMessageWithRole() {

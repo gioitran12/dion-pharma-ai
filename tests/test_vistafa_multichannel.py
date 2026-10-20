@@ -295,4 +295,27 @@ def test_pancake_api_integration():
     assert "api_key_valid" in data
 
 
+def test_pancake_instagram_conversation_and_adaptation():
+    # 1. Verify CONV-PC-IG-06 exists in live conversations
+    r = client.get("/api/vistafa/conversations")
+    assert r.status_code == 200
+    convs = r.json()["conversations"]
+    pc_conv = next((c for c in convs if c["id"] == "CONV-PC-IG-06"), None)
+    assert pc_conv is not None
+    assert pc_conv["channel"] == "instagram"
+    assert pc_conv["customer_name"] == "fptu_muayclub"
+    assert pc_conv["pancake_metadata"]["shop_id"] == 1943149040
+
+    # 2. Verify AI Copilot adaptation for Instagram channel
+    resp = copilot.generate_response(
+        "Bên mình có canxi nào phục hồi cơ khớp sau tập võ không?",
+        product_id="calcium_complex",
+        channel="instagram"
+    )
+    assert resp["channel"] == "instagram"
+    assert len(EMOJI_PATTERN.findall(resp["full_text"])) == 0
+    assert "Direct" in resp["four_steps"]["step_4_action_cta"] or "SĐT" in resp["four_steps"]["step_4_action_cta"]
+
+
+
 

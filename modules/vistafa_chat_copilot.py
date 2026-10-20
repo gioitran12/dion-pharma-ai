@@ -278,7 +278,7 @@ class VistafaChatCopilot:
         Rhythm: Tra loi -> Hoi 1 cau -> Sang loc an toan -> Chuyen buoc
         """
         # Validate channel
-        valid_channels = ["facebook", "zalo", "website", "tiktok"]
+        valid_channels = ["facebook", "zalo", "website", "tiktok", "instagram"]
         channel = channel.lower() if channel.lower() in valid_channels else "facebook"
 
         # Validate product
@@ -487,6 +487,8 @@ class VistafaChatCopilot:
                 step4 = "Anh/chị vui lòng để lại Số điện thoại hoặc kết nối Zalo để Dược sĩ lâm sàng liên hệ tư vấn chuyên sâu ngay ạ."
             elif channel == "tiktok":
                 step4 = "Anh/chị nhắn tin vào Inbox để Dược sĩ chuyên môn hỗ trợ trực tiếp an toàn cho mình nhé ạ!"
+            elif channel == "instagram":
+                step4 = "Bạn cho mình xin SĐT hoặc nhắn qua Zalo/Direct để Dược sĩ lâm sàng liên hệ tư vấn chuyên sâu an toàn nhất nhé ạ."
             else: # facebook
                 step4 = "Anh/chị cho em xin Số điện thoại để em chuyển Dược sĩ lâm sàng bên em liên hệ tư vấn riêng an toàn nhất cho mình nhé ạ."
         elif comp_matches:
@@ -494,6 +496,8 @@ class VistafaChatCopilot:
                 step4 = "Nếu tiện, anh/chị chụp ảnh bảng thành phần sản phẩm đang so gửi qua Zalo để em đối chiếu chi tiết từng chỉ số giúp mình ạ."
             elif channel == "tiktok":
                 step4 = "Anh/chị nhắn tin vào Inbox em gửi bảng so sánh chi tiết đối chiếu thành phần nhé ạ!"
+            elif channel == "instagram":
+                step4 = "Bạn nhắn qua Direct Message (DM) hoặc để lại SĐT em gửi bảng phân tích thành phần đối chiếu chi tiết nhé ạ."
             else:
                 step4 = comp_matches.get("next_step", "Anh/chị gửi em ảnh nhãn để em đối chiếu cùng đơn vị liều giúp mình nhé ạ.")
         elif entry and entry.get("transition_action"):
@@ -505,6 +509,8 @@ class VistafaChatCopilot:
                 step4 = "Anh/chị để lại SĐT hoặc kết nối Zalo để em gửi tài liệu hướng dẫn và ưu đãi tốt nhất ạ."
             elif channel == "tiktok":
                 step4 = "Nhấn vào Inbox để em tư vấn kỹ hơn nhé ạ!"
+            elif channel == "instagram":
+                step4 = "Bạn nhắn tin qua Direct Message (DM) hoặc để lại SĐT để em tư vấn liệu trình phù hợp nhất nhé ạ."
             else:
                 step4 = "Anh/chị cho em xin SĐT để em tư vấn liệu trình phù hợp nhất nhé ạ."
 
@@ -536,6 +542,13 @@ class VistafaChatCopilot:
             # Fast, direct, qualified
             full_text = f"{s1} {s2}\n{s4}"
             split_msgs = [full_text]
+
+        elif channel == "instagram":
+            # Instagram Direct Message (Pancake Omni-channel sync)
+            bubble1 = s1
+            bubble2 = f"{s2}\n{s4}"
+            full_text = f"{bubble1}\n\n{bubble2}"
+            split_msgs = [bubble1, bubble2]
 
         elif channel == "tiktok":
             # Super concise strictly under 140 chars, no cure claims
@@ -733,6 +746,41 @@ class LiveConversationManager:
                     {"sender": "customer", "text": "Bác năm nay 68 tuổi, bị mất ngủ mấy năm nay đang uống viên Seduxen 5mg và Rotunda mỗi tối theo đơn của bác sĩ Bạch Mai. Bác thấy quảng cáo viên Sleep Well thảo dược, bác uống chung hai loại với nhau được không cháu?", "time": "09:35"}
                 ],
                 "updated_at": "2026-10-20 09:35"
+            },
+            "CONV-PC-IG-06": {
+                "id": "CONV-PC-IG-06",
+                "customer_name": "fptu_muayclub",
+                "channel": "instagram",
+                "channel_label": "[IG] Instagram (Pancake Sync)",
+                "phone": "0981234567",
+                "product_id": "calcium_complex",
+                "product_name": "VitGarden Calcium Complex",
+                "status": "ACTIVE",
+                "lead_priority": "HOT",
+                "intent": "Hỏi canxi hữu cơ & khoáng chất phục hồi xương khớp sau tập Muay Thái",
+                "clinical_profile": {
+                    "activity": "Võ thuật / Thể thao đối kháng (CLB Muay FPTU)",
+                    "notes": "Tập luyện cường độ cao, hay bị đau mỏi khớp gối và căng cơ sau buổi tập"
+                },
+                "messages": [
+                    {
+                        "sender": "customer",
+                        "text": "Chào shop, mình bên CLB Muay FPTU, tập luyện nặng hay bị mỏi khớp gối với căng cơ sau tập. Bên mình có loại canxi hay collagen nào phục hồi sụn khớp tốt cho dân tập võ không shop?",
+                        "time": "10:15"
+                    },
+                    {
+                        "sender": "agent",
+                        "text": "Dạ chào bạn fptu_muayclub từ Instagram Pancake ạ! Với cường độ tập võ đối kháng, cơ xương khớp chịu lực va đập rất lớn. VitGarden Calcium Complex bên em bổ sung Canxi hữu cơ kèm Aquamin F và Vitamin K2-MK7 giúp hấp thu thẳng vào xương mà không lắng cặn sỏi thận. Ngoài ra bên em có dòng Ultimate Omega 3 giúp chống viêm khớp rất hiệu quả ạ.\nBạn cho mình xin thêm thông tin tuần bạn tập mấy buổi để tư vấn liều dùng chuẩn nhất nhé?",
+                        "time": "10:16"
+                    }
+                ],
+                "updated_at": "2026-10-20 10:16",
+                "pancake_metadata": {
+                    "shop_id": 1943149040,
+                    "shop_name": "Trần Giỏi",
+                    "page_id": "igo_17841436773289596",
+                    "page_name": "igo_tdgioi_31"
+                }
             }
         }
 
