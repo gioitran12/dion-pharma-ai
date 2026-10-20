@@ -1901,6 +1901,20 @@ async def api_pancake_webhook(payload: Dict[str, Any]):
     return {"status": "ok", "result": result}
 
 
+@app.get("/api/download/so9-excel")
+@app.get("/download/so9-excel")
+async def api_download_so9_excel():
+    from fastapi.responses import FileResponse
+    excel_path = os.path.join(os.path.dirname(__file__), "bao_cao_tinh_nang_so9_vistafa.xlsx")
+    if not os.path.exists(excel_path):
+        raise HTTPException(status_code=404, detail="File Excel không tồn tại")
+    return FileResponse(
+        path=excel_path,
+        filename="bao_cao_tinh_nang_so9_vistafa.xlsx",
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
