@@ -283,15 +283,19 @@ async def api_copilot_ask(query: str = Body(..., embed=True), sku: str = Body("A
 async def api_copilot_consult(
     message: str = Body(..., embed=True),
     sku: str = Body("ALL", embed=True),
-    mode: str = Body("PHARMACIST_B2C", embed=True)
+    mode: str = Body("PHARMACIST_B2C", embed=True),
+    channel: str = Body("all", embed=True),
+    situation_hint: Optional[str] = Body(None, embed=True)
 ):
     """
     Tư vấn AI chuyên môn y dược và kịch bản thương mại đa chế độ:
     - PHARMACIST_B2C: Dược sĩ tư vấn tại quầy cho người mua
     - SALES_REP_B2B: Trình dược viên trao đổi chuyên môn với Bác sĩ / Dược sĩ
     - OBJECTION_HANDLING: Kịch bản 3 bước xử lý phản bác tại quầy
+    - CLINICAL_SAFETY: Sàng lọc an toàn & Red Flag lâm sàng
+    Hỗ trợ 5 sản phẩm Vistafa VitGarden + 3 sản phẩm DION Healthcare trên 4 kênh (Facebook, Zalo, Website, TikTok).
     """
-    return consult_ai_expert(message=message, sku=sku, mode=mode)
+    return consult_ai_expert(message=message, sku=sku, mode=mode, channel=channel, situation_hint=situation_hint)
 
 
 _question_engine: Optional[QuestionUnderstandingEngine] = None

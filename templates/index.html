@@ -81,7 +81,7 @@
                 3. THỊ TRƯỜNG & ĐỐI THỦ
             </button>
             <button onclick="setTab('copilot')" id="btn-copilot" class="tab-item py-2.5 px-3 text-xs font-semibold text-slate-600 border-b-2 border-transparent hover:text-corp-700 whitespace-nowrap">
-                4. TRỢ LÝ BÁN HÀNG
+                4. TƯ VẤN AI & BÁN HÀNG
             </button>
             <button onclick="setTab('care')" id="btn-care" class="tab-item py-2.5 px-3 text-xs font-semibold text-slate-600 border-b-2 border-transparent hover:text-corp-700 whitespace-nowrap">
                 5. CHĂM SÓC KHÁCH HÀNG
@@ -818,17 +818,26 @@
                         AI
                     </div>
                     <div>
-                        <h3 class="text-sm font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-                            <span>DION AI Sales Copilot</span>
-                            <span id="copilot-connection-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200 flex items-center gap-1.5" title="Đang kiểm tra kết nối AI...">
-                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Chưa kết nối AI
+                        <h3 class="text-sm font-extrabold text-slate-900 tracking-tight flex items-center gap-2 flex-wrap">
+                            <span>DION &amp; VISTAFA AI CONSULTING COPILOT</span>
+                            <span id="copilot-connection-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1.5" title="Đã kết nối AI Consultant">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Đã kết nối AI Consultant
+                            </span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200">
+                                8 SKU Dược Phẩm
+                            </span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200">
+                                4 Nền Tảng Chat
                             </span>
                         </h3>
-                        <p class="text-xs text-slate-500 mt-0.5">Trợ lý AI tra cứu sản phẩm, kiểm tra claims và hỗ trợ tư vấn an toàn</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Động cơ tư vấn AI chuyên môn y dược &amp; bán hàng đa kênh (Facebook, Zalo, Website, TikTok) - Chuẩn nhịp 4 bước TL.CSKH.003</p>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-2">
+                    <button onclick="setTab('care')" class="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-bold rounded-lg transition border border-blue-200 flex items-center gap-1">
+                        <span>Sang CSKH Tab 5</span>
+                    </button>
                     <button onclick="copilotNewChat()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg transition flex items-center gap-1 border border-slate-200">
                         Cuộc trò chuyện mới
                     </button>
@@ -838,23 +847,43 @@
                 </div>
             </div>
 
-            <!-- B. Thanh thông tin ngữ cảnh -->
-            <div class="bg-white rounded-lg border border-slate-200 px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-3 shadow-2xs">
+            <!-- B1. BỘ CHỌN SẢN PHẨM & NỀN TẢNG ĐA KÊNH -->
+            <div class="bg-white rounded-lg border border-slate-200 px-4 py-2.5 text-xs flex flex-wrap items-center justify-between gap-3 shadow-2xs">
                 <div class="flex items-center gap-3 flex-wrap">
                     <div class="flex items-center gap-1.5">
                         <span class="font-bold text-slate-600 uppercase text-[11px]">Sản phẩm tham chiếu:</span>
                         <select id="copilot-sku-select" onchange="onCopilotSkuChange()" class="bg-slate-50 border border-slate-300 rounded px-2.5 py-1 text-xs font-bold text-corp-800 outline-none focus:border-corp-700">
-                            <option value="ALL" selected>Tất cả sản phẩm (Tự động nhận diện)</option>
-                            <option value="DION-CAL-MOM">DION Cal-Mom Plus & D3 K2 (Hero SKU)</option>
-                            <option value="DION-D3-1000">DION Vitamin D3 1000IU Drops</option>
-                            <option value="DION-FE-FOLIC">DION Fero-Plus (Sắt Hữu Cơ & Quatrefolic)</option>
+                            <option value="ALL" selected>Tất cả sản phẩm (AI tự động nhận diện)</option>
+                            <optgroup label="--- NHÓM VISTAFA VITGARDEN (5 SẢN PHẨM ƯU TIÊN) ---">
+                                <option value="VIST-CALCIUM">VitGarden Calcium Complex (Canxi sinh học nano - 390.000đ)</option>
+                                <option value="VIST-COLLAGEN">VitGarden Beauty Collagen Peptide (Hấp thu nhanh, không tăng cân - 450.000đ)</option>
+                                <option value="VIST-OMEGA3">VitGarden Ultimate Omega 3 (Dầu cá đậm đặc, không ợ tanh - 380.000đ)</option>
+                                <option value="VIST-SLEEP">VitGarden Sleep Well (Melatonin + Thảo dược thư giãn - 320.000đ)</option>
+                                <option value="VIST-FERRO">VitGarden FerroActive (Sắt hữu cơ không táo bón - 290.000đ)</option>
+                            </optgroup>
+                            <optgroup label="--- NHÓM DION HEALTHCARE ---">
+                                <option value="DION-CAL-MOM">DION Cal-Mom Plus &amp; D3 K2 (Hero SKU - 320.000đ)</option>
+                                <option value="DION-FE-FOLIC">DION Fero-Plus (Sắt Hữu Cơ &amp; Quatrefolic - 280.000đ)</option>
+                                <option value="DION-D3-1000">DION Vitamin D3 1000IU Drops (180.000đ)</option>
+                            </optgroup>
                         </select>
                     </div>
+
                     <div class="h-4 w-px bg-slate-200 hidden sm:block"></div>
-                    <div id="copilot-context-sku-tag" class="text-slate-500 font-medium text-[11px]">
-                        Ngữ cảnh: <span class="font-bold text-slate-700" id="copilot-active-sku-label">Toàn bộ CSDL</span>
+
+                    <!-- Channel selector -->
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-bold text-slate-600 uppercase text-[11px]">Kênh tương tác:</span>
+                        <div class="inline-flex rounded-lg border border-slate-300 p-0.5 bg-slate-100 text-xs font-semibold">
+                            <button type="button" id="copilot-ch-btn-all" onclick="setCopilotChannel('all')" class="px-2.5 py-1 rounded bg-corp-800 text-white font-bold text-[11px] transition shadow-xs">Toàn kênh</button>
+                            <button type="button" id="copilot-ch-btn-facebook" onclick="setCopilotChannel('facebook')" class="px-2.5 py-1 rounded text-slate-700 hover:text-slate-900 text-[11px] transition">Facebook</button>
+                            <button type="button" id="copilot-ch-btn-zalo" onclick="setCopilotChannel('zalo')" class="px-2.5 py-1 rounded text-slate-700 hover:text-slate-900 text-[11px] transition">Zalo</button>
+                            <button type="button" id="copilot-ch-btn-website" onclick="setCopilotChannel('website')" class="px-2.5 py-1 rounded text-slate-700 hover:text-slate-900 text-[11px] transition">Website</button>
+                            <button type="button" id="copilot-ch-btn-tiktok" onclick="setCopilotChannel('tiktok')" class="px-2.5 py-1 rounded text-slate-700 hover:text-slate-900 text-[11px] transition">TikTok</button>
+                        </div>
                     </div>
                 </div>
+
                 <div class="text-[11px] font-mono text-slate-400" id="copilot-session-display">
                     Phiên: #khởi-tạo
                 </div>
@@ -862,23 +891,75 @@
 
             <!-- B2. BỘ CHỌN CHẾ ĐỘ TƯ VẤN AI CHUYÊN SÂU -->
             <div class="bg-white rounded-lg border border-slate-200 px-4 py-2.5 text-xs flex flex-wrap items-center justify-between gap-2 shadow-2xs">
-                <div class="flex items-center gap-2">
-                    <span class="font-bold text-slate-700 uppercase text-[11px] shrink-0">Chế độ tư vấn AI:</span>
-                    <div class="inline-flex rounded-lg border border-slate-300 p-0.5 bg-slate-100 text-xs font-semibold">
-                        <button id="copilot-mode-btn-b2c" onclick="setCopilotConsultMode('PHARMACIST_B2C')" class="px-3 py-1.5 rounded-md bg-corp-800 text-white font-bold transition shadow-xs">
+                <div class="flex items-center gap-2 flex-wrap">
+                    <span class="font-bold text-slate-700 uppercase text-[11px] shrink-0">Chế độ tư vấn:</span>
+                    <div class="inline-flex rounded-lg border border-slate-300 p-0.5 bg-slate-100 text-xs font-semibold flex-wrap">
+                        <button id="copilot-mode-btn-b2c" onclick="setCopilotConsultMode('PHARMACIST_B2C')" class="px-3 py-1.5 rounded-md bg-corp-800 text-white font-bold transition shadow-xs text-xs">
                             1. Dược Sĩ Quầy (B2C)
                         </button>
-                        <button id="copilot-mode-btn-b2b" onclick="setCopilotConsultMode('SALES_REP_B2B')" class="px-3 py-1.5 rounded-md text-slate-700 hover:text-slate-900 transition">
-                            2. Trình Dược Viên & Bác Sĩ (B2B)
+                        <button id="copilot-mode-btn-b2b" onclick="setCopilotConsultMode('SALES_REP_B2B')" class="px-3 py-1.5 rounded-md text-slate-700 hover:text-slate-900 transition text-xs">
+                            2. Trình Dược Viên &amp; Bác Sĩ (B2B)
                         </button>
-                        <button id="copilot-mode-btn-objection" onclick="setCopilotConsultMode('OBJECTION_HANDLING')" class="px-3 py-1.5 rounded-md text-slate-700 hover:text-slate-900 transition">
-                            3. Xử Lý Phản Bác Quầy
+                        <button id="copilot-mode-btn-objection" onclick="setCopilotConsultMode('OBJECTION_HANDLING')" class="px-3 py-1.5 rounded-md text-slate-700 hover:text-slate-900 transition text-xs">
+                            3. Xử Lý Phản Bác Quầy &amp; Đối Thủ
+                        </button>
+                        <button id="copilot-mode-btn-safety" onclick="setCopilotConsultMode('CLINICAL_SAFETY')" class="px-3 py-1.5 rounded-md text-slate-700 hover:text-slate-900 transition text-xs">
+                            4. Sàng Lọc Red Flag &amp; Chống Chỉ Định
                         </button>
                     </div>
                 </div>
 
                 <div class="text-[11px] text-slate-500 font-medium" id="copilot-mode-desc">
                     Tư vấn trực tiếp cho khách mua lẻ: an toàn thai kỳ, không sỏi thận, êm bụng không táo bón.
+                </div>
+            </div>
+
+            <!-- B3. BỘ ĐỐI CHUẨN ĐỐI THỦ CẠNH TRANH (1-CLICK PHẢN BÁC) -->
+            <div class="bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 rounded-lg border border-purple-200 px-4 py-2 text-xs flex items-center gap-2 overflow-x-auto no-scrollbar shadow-2xs">
+                <span class="font-extrabold text-purple-900 uppercase text-[10px] shrink-0 whitespace-nowrap">ĐỐI CHUẨN ĐỐI THỦ:</span>
+                <button type="button" onclick="copilotAskCompetitor('corbiere')" class="px-2.5 py-1 rounded-full bg-white hover:bg-purple-100 text-purple-900 border border-purple-200 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                    Canxi Sủi Corbiere
+                </button>
+                <button type="button" onclick="copilotAskCompetitor('carbonate')" class="px-2.5 py-1 rounded-full bg-white hover:bg-purple-100 text-purple-900 border border-purple-200 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                    Canxi Carbonate Đá Vôi
+                </button>
+                <button type="button" onclick="copilotAskCompetitor('collagen_high_dose')" class="px-2.5 py-1 rounded-full bg-white hover:bg-purple-100 text-purple-900 border border-purple-200 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                    Collagen 10.000mg
+                </button>
+                <button type="button" onclick="copilotAskCompetitor('herbalife')" class="px-2.5 py-1 rounded-full bg-white hover:bg-purple-100 text-purple-900 border border-purple-200 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                    Collagen Ngoại Herbalife
+                </button>
+                <button type="button" onclick="copilotAskCompetitor('omega_cheap')" class="px-2.5 py-1 rounded-full bg-white hover:bg-purple-100 text-purple-900 border border-purple-200 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                    Dầu Cá Giá Rẻ 1000mg
+                </button>
+                <button type="button" onclick="copilotAskCompetitor('diazepam')" class="px-2.5 py-1 rounded-full bg-white hover:bg-purple-100 text-purple-900 border border-purple-200 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                    Thuốc Ngủ Diazepam
+                </button>
+                <button type="button" onclick="copilotAskCompetitor('natures_bounty')" class="px-2.5 py-1 rounded-full bg-white hover:bg-purple-100 text-purple-900 border border-purple-200 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                    Kẹo Ngủ Nature's Bounty
+                </button>
+                <button type="button" onclick="copilotAskCompetitor('iron_sulfate')" class="px-2.5 py-1 rounded-full bg-white hover:bg-purple-100 text-purple-900 border border-purple-200 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                    Sắt Viên Sulfate Táo Bón
+                </button>
+                <button type="button" onclick="copilotAskCompetitor('ostelin')" class="px-2.5 py-1 rounded-full bg-white hover:bg-purple-100 text-purple-900 border border-purple-200 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                    Hàng Ngoại Úc/Pháp Xách Tay
+                </button>
+            </div>
+
+            <!-- B4. BANNER NHỊP CHUẨN 4 BƯỚC TL.CSKH.003 -->
+            <div class="bg-slate-900 text-white rounded-lg px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-2 shadow-xs">
+                <div class="flex items-center gap-2 flex-wrap">
+                    <span class="font-extrabold text-emerald-400 text-[11px] uppercase">[QUY CHUẨN NHỊP 4 BƯỚC]</span>
+                    <span class="text-slate-300 text-[11px]">B1: Trả lời trực diện</span>
+                    <span class="text-slate-500 font-bold">-&gt;</span>
+                    <span class="text-slate-300 text-[11px]">B2: Hỏi 1 câu chiến lược</span>
+                    <span class="text-slate-500 font-bold">-&gt;</span>
+                    <span class="text-slate-300 text-[11px]">B3: Sàng lọc an toàn &amp; Red Flag</span>
+                    <span class="text-slate-500 font-bold">-&gt;</span>
+                    <span class="text-slate-300 text-[11px]">B4: Chuyển bước (SĐT / Nhãn / Đơn)</span>
+                </div>
+                <div class="text-[10px] text-slate-400 font-mono">
+                    QA Standard: TL.CSKH.003 (Không Icon / Không Phóng Đại)
                 </div>
             </div>
 
@@ -891,13 +972,24 @@
                         <div class="w-7 h-7 rounded-full bg-corp-700 flex items-center justify-center text-white text-[11px] font-bold shrink-0 shadow-2xs">
                             AI
                         </div>
-                        <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-sm p-3.5 shadow-xs text-xs leading-relaxed text-slate-800 space-y-1.5">
-                            <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-1">
-                                <span class="font-bold text-corp-800 text-[11px] uppercase tracking-wide">DION AI Sales Copilot</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">Sẵn sàng</span>
+                        <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-sm p-3.5 shadow-xs text-xs leading-relaxed text-slate-800 space-y-2">
+                            <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-1.5">
+                                <span class="font-bold text-corp-800 text-[11px] uppercase tracking-wide">DION &amp; VISTAFA AI CONSULTING COPILOT</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">Sẵn sàng (8 SKU)</span>
                             </div>
                             <p class="text-slate-700 font-medium">
-                                Xin chào! Tôi là <b>DION AI Sales Copilot</b>. Tôi có thể giúp bạn tra cứu thông tin sản phẩm, kiểm tra claims, so sánh sản phẩm và hỗ trợ chuẩn bị nội dung tư vấn. Bạn muốn hỏi gì hôm nay?
+                                Xin chào! Tôi là <b>Trợ lý AI Tư Vấn Lâm Sàng &amp; Bán Hàng Đa Kênh</b> của DION &amp; Vistafa. Tôi được trang bị đầy đủ cơ sở dữ liệu y dược cho cả 5 sản phẩm Vistafa VitGarden và 3 sản phẩm DION Healthcare:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-1.5 text-[11px] text-slate-600 pt-1">
+                                <div class="bg-slate-50 p-2 rounded border border-slate-200">
+                                    <b>VitGarden (5 SP ưu tiên):</b> Calci Complex, Beauty Collagen Peptide, Ultimate Omega 3, Sleep Well, FerroActive.
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded border border-slate-200">
+                                    <b>DION Healthcare:</b> Cal-Mom Plus &amp; D3 K2, Fero-Plus Sắt Chelate, Vitamin D3 1000IU Drops.
+                                </div>
+                            </div>
+                            <p class="text-slate-500 text-[11px]">
+                                Hệ thống tự động áp dụng <b>Nhịp chuẩn 4 bước</b>, kiểm soát <b>Red Flag lâm sàng</b> và đối chiếu trực tiếp với các dòng đối thủ trên thị trường. Hãy chọn sản phẩm hoặc đặt câu hỏi bên dưới.
                             </p>
                         </div>
                     </div>
@@ -912,27 +1004,30 @@
                         <span class="w-1.5 h-1.5 bg-corp-600 rounded-full animate-bounce"></span>
                         <span class="w-1.5 h-1.5 bg-corp-600 rounded-full animate-bounce [animation-delay:0.2s]"></span>
                         <span class="w-1.5 h-1.5 bg-corp-600 rounded-full animate-bounce [animation-delay:0.4s]"></span>
-                        <span id="copilot-typing-text" class="ml-1 text-[11px] font-medium text-slate-600">AI đang tra cứu Claims & đối soát quy định y dược...</span>
+                        <span id="copilot-typing-text" class="ml-1 text-[11px] font-medium text-slate-600">AI đang tra cứu Claims &amp; đối soát quy định y dược...</span>
                     </div>
                 </div>
 
                 <!-- D. Gợi ý câu hỏi nhanh (Chips) -->
-                <div class="px-4 py-2.5 bg-slate-50 border-t border-slate-200 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+                <div class="px-4 py-2 bg-slate-50 border-t border-slate-200 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
                     <span class="text-[10px] font-bold text-slate-500 uppercase shrink-0">Tình huống thực tế:</span>
-                    <button onclick="copilotQuickAsk('Uống Canxi DION Cal-Mom có bị sỏi thận hoặc vôi hóa không?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-blue-50 text-corp-800 border border-slate-200 hover:border-blue-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        Uống Canxi có sỏi thận không?
+                    <button onclick="copilotQuickAsk('Uống Canxi Calci Complex có bị sỏi thận hoặc vôi hóa không?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-blue-50 text-corp-800 border border-slate-200 hover:border-blue-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                        Calci Complex: Sỏi thận không?
                     </button>
-                    <button onclick="copilotQuickAsk('Uống Sắt DION Fero-Plus có bị táo bón hoặc nóng trong không?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-emerald-50 text-emerald-800 border border-slate-200 hover:border-emerald-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        Uống Sắt có bị táo bón không?
+                    <button onclick="copilotQuickAsk('Uống Beauty Collagen có sợ tăng cân hay nổi mụn không?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-pink-50 text-pink-800 border border-slate-200 hover:border-pink-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                        Collagen: Tăng cân / nổi mụn?
+                    </button>
+                    <button onclick="copilotQuickAsk('Uống Ultimate Omega 3 có bị ợ tanh không?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-cyan-50 text-cyan-800 border border-slate-200 hover:border-cyan-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                        Omega 3: Có ợ tanh không?
+                    </button>
+                    <button onclick="copilotQuickAsk('Mất ngủ 2 năm uống Sleep Well có đỡ không? Có bị nghiện như thuốc ngủ không?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-indigo-50 text-indigo-900 border border-slate-200 hover:border-indigo-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                        Sleep Well: Sợ nghiện thuốc ngủ
+                    </button>
+                    <button onclick="copilotQuickAsk('Sắt FerroActive có bị táo bón hoặc nóng trong không?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-emerald-50 text-emerald-800 border border-slate-200 hover:border-emerald-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
+                        FerroActive: Táo bón không?
                     </button>
                     <button onclick="copilotQuickAsk('Canxi và Sắt có uống cùng lúc được không? Cần uống cách nhau bao lâu?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-purple-50 text-purple-800 border border-slate-200 hover:border-purple-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        Uống Canxi chung với Sắt?
-                    </button>
-                    <button onclick="copilotQuickAsk('Phụ nữ mang thai từ tháng thứ mấy thì bắt đầu uống Canxi và Sắt DION?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-amber-50 text-amber-900 border border-slate-200 hover:border-amber-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        Bà bầu mấy tháng thì uống?
-                    </button>
-                    <button onclick="copilotQuickAsk('Đang uống kháng sinh hoặc thuốc huyết áp thì uống Canxi thế nào?')" class="px-2.5 py-1 rounded-full bg-white hover:bg-indigo-50 text-indigo-900 border border-slate-200 hover:border-indigo-300 text-[11px] font-semibold whitespace-nowrap transition shadow-2xs">
-                        Tương tác với kháng sinh
+                        Canxi &amp; Sắt uống cách nhau 2h
                     </button>
                     <button onclick="copilotQuickAsk('Chủ nhà thuốc từ chối: Hàng mới chưa có khách hỏi mua nên quầy không dám nhập')" class="px-2.5 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-900 border border-rose-200 hover:border-rose-300 text-[11px] font-bold whitespace-nowrap transition shadow-2xs">
                         Phản bác: Chưa ai hỏi mua
@@ -940,8 +1035,8 @@
                     <button onclick="copilotQuickAsk('Chủ quầy bảo đang bán rất chạy hàng ngoại xách tay của Úc và Pháp rồi')" class="px-2.5 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-900 border border-rose-200 hover:border-rose-300 text-[11px] font-bold whitespace-nowrap transition shadow-2xs">
                         Phản bác: Quen bán hàng ngoại
                     </button>
-                    <button onclick="copilotQuickAsk('Chủ quầy chê giá 320.000đ đắt hơn các dòng canxi đá vôi thông thường')" class="px-2.5 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-900 border border-rose-200 hover:border-rose-300 text-[11px] font-bold whitespace-nowrap transition shadow-2xs">
-                        Phản bác: Giá cao hơn hàng nội
+                    <button onclick="copilotQuickAsk('Chủ quầy chê giá đắt hơn các dòng thông thường')" class="px-2.5 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-900 border border-rose-200 hover:border-rose-300 text-[11px] font-bold whitespace-nowrap transition shadow-2xs">
+                        Phản bác: Giá cao hơn hàng thường
                     </button>
                 </div>
 
@@ -952,7 +1047,7 @@
                         <button onclick="document.getElementById('copilot-error-banner').classList.add('hidden')" class="text-amber-700 font-bold ml-2">[X]</button>
                     </div>
                     <div class="flex gap-2 items-end">
-                        <textarea id="copilot-input-box" rows="2" onkeydown="handleCopilotKeyDown(event)" placeholder="Nhập câu hỏi để AI tra cứu Claims và hỗ trợ kịch bản tư vấn... (Enter để gửi, Shift+Enter xuống dòng)" class="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs outline-none focus:border-corp-700 font-medium resize-none leading-relaxed"></textarea>
+                        <textarea id="copilot-input-box" rows="2" onkeydown="handleCopilotKeyDown(event)" placeholder="Nhập câu hỏi để AI tư vấn theo nhịp 4 bước, kiểm tra claims và đối chuẩn đối thủ... (Enter để gửi, Shift+Enter xuống dòng)" class="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs outline-none focus:border-corp-700 font-medium resize-none leading-relaxed"></textarea>
                         <button id="copilot-send-btn" onclick="execCopilot()" class="px-4 py-2.5 bg-corp-700 hover:bg-corp-800 text-white font-bold rounded-lg text-xs transition shadow-xs flex items-center gap-1.5 shrink-0 h-[42px]">
                             <span>Gửi</span>
                             <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
@@ -5678,18 +5773,41 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
         }
 
         let copilotConsultMode = 'PHARMACIST_B2C';
+        let copilotChannel = 'all';
+
+        function setCopilotChannel(ch) {
+            copilotChannel = ch;
+            const channels = ['all', 'facebook', 'zalo', 'website', 'tiktok'];
+            const activeCls = ['bg-corp-800', 'text-white', 'font-bold', 'shadow-xs'];
+            const inactiveCls = ['text-slate-700', 'hover:text-slate-900'];
+
+            channels.forEach(c => {
+                const btn = document.getElementById('copilot-ch-btn-' + c);
+                if (btn) {
+                    btn.classList.remove(...activeCls);
+                    btn.classList.add(...inactiveCls);
+                }
+            });
+
+            const activeBtn = document.getElementById('copilot-ch-btn-' + ch);
+            if (activeBtn) {
+                activeBtn.classList.remove(...inactiveCls);
+                activeBtn.classList.add(...activeCls);
+            }
+        }
 
         function setCopilotConsultMode(mode) {
             copilotConsultMode = mode;
             const btnB2c = document.getElementById('copilot-mode-btn-b2c');
             const btnB2b = document.getElementById('copilot-mode-btn-b2b');
             const btnObj = document.getElementById('copilot-mode-btn-objection');
+            const btnSafe = document.getElementById('copilot-mode-btn-safety');
             const descEl = document.getElementById('copilot-mode-desc');
 
             const activeCls = ['bg-corp-800', 'text-white', 'font-bold', 'shadow-xs'];
             const inactiveCls = ['text-slate-700', 'hover:text-slate-900'];
 
-            [btnB2c, btnB2b, btnObj].forEach(b => {
+            [btnB2c, btnB2b, btnObj, btnSafe].forEach(b => {
                 if (!b) return;
                 b.classList.remove(...activeCls);
                 b.classList.add(...inactiveCls);
@@ -5707,6 +5825,34 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                 btnObj.classList.remove(...inactiveCls);
                 btnObj.classList.add(...activeCls);
                 if (descEl) descEl.innerText = 'Kịch bản 3 bước xử lý phản bác: Chưa ai hỏi mua, chê giá cao, quen bán hàng ngoại xách tay.';
+            } else if (mode === 'CLINICAL_SAFETY' && btnSafe) {
+                btnSafe.classList.remove(...inactiveCls);
+                btnSafe.classList.add(...activeCls);
+                if (descEl) descEl.innerText = 'Sàng lọc lâm sàng Red Flag: Tiền sử sỏi thận >10mm, tương tác thuốc ngủ/an thần, Thalassemia, thuốc chống đông.';
+            }
+        }
+
+        function copilotAskCompetitor(compKey) {
+            const compMap = {
+                'corbiere': { q: 'Canxi Corbiere dạng sủi rẻ hơn nhiều, có cả D3, sao phải dùng bên bạn?', sku: 'VIST-CALCIUM' },
+                'carbonate': { q: 'Canxi Carbonate vô cơ bên kia hàm lượng ghi cao hơn nhiều, tại sao bên bạn lại thấp hơn?', sku: 'VIST-CALCIUM' },
+                'collagen_high_dose': { q: 'Collagen bên kia ghi tận 5.000mg đến 10.000mg, bên bạn có 1.500mg sao đủ tác dụng?', sku: 'VIST-COLLAGEN' },
+                'herbalife': { q: 'Collagen Herbalife hay Unicity nổi tiếng hơn nhiều, sao tôi phải chọn Beauty Collagen của bạn?', sku: 'VIST-COLLAGEN' },
+                'omega_cheap': { q: 'Dầu cá bên kia rẻ hơn nhiều, hộp to đùng uống cả năm, bên bạn đắt thế?', sku: 'VIST-OMEGA3' },
+                'diazepam': { q: 'Tôi đang uống thuốc ngủ Diazepam/Seduxen kinh niên, có chuyển sang Sleep Well được không?', sku: 'VIST-SLEEP' },
+                'natures_bounty': { q: 'Nature’s Bounty Melatonin rẻ hơn nhiều, sao phải dùng Sleep Well bên bạn?', sku: 'VIST-SLEEP' },
+                'iron_sulfate': { q: 'Sắt viên Sulfate bên hiệu thuốc rẻ hơn nhiều, sao phải dùng dạng gói FerroActive?', sku: 'VIST-FERRO' },
+                'ostelin': { q: 'Chủ quầy bảo đang bán rất chạy hàng ngoại xách tay của Úc và Pháp như Ostelin rồi', sku: 'DION-CAL-MOM' }
+            };
+            const item = compMap[compKey];
+            if (item) {
+                const skuSelect = document.getElementById('copilot-sku-select');
+                if (skuSelect) {
+                    skuSelect.value = item.sku;
+                    onCopilotSkuChange();
+                }
+                setCopilotConsultMode('OBJECTION_HANDLING');
+                copilotQuickAsk(item.q);
             }
         }
 
@@ -5739,11 +5885,11 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                         </div>
                         <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-sm p-3.5 shadow-xs text-xs leading-relaxed text-slate-800 space-y-1.5">
                             <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-1">
-                                <span class="font-bold text-corp-800 text-[11px] uppercase tracking-wide">DION AI Sales Copilot</span>
+                                <span class="font-bold text-corp-800 text-[11px] uppercase tracking-wide">DION &amp; VISTAFA AI CONSULTING COPILOT</span>
                                 <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">Phiên mới</span>
                             </div>
                             <p class="text-slate-700 font-medium">
-                                Cuộc trò chuyện mới đã bắt đầu! Tôi đã làm mới ngữ cảnh phiên. Bạn muốn tra cứu sản phẩm nào tiếp theo?
+                                Cuộc trò chuyện mới đã bắt đầu! Ngữ cảnh phiên đã được làm mới. Bạn muốn tra cứu sản phẩm nào trong 8 SKU hôm nay?
                             </p>
                         </div>
                     </div>
@@ -5758,6 +5904,21 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             const container = document.getElementById('copilot-messages-container');
             if (container) container.innerHTML = '';
             copilotNewChat();
+        }
+
+        function copilotEscalatePharmacist(sku) {
+            alert('[HỆ THỐNG GHI NHẬN] Đã tạo ticket chuyển cuộc hội thoại cho Dược sĩ lâm sàng phụ trách chuyên môn với SKU: ' + (sku || 'TỔNG QUÁT') + '. Khách hàng sẽ được Dược sĩ liên hệ trong vòng 5 phút.');
+        }
+
+        function copySpecificScript(elementId) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            const text = el.innerText || el.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('[ĐÃ SAO CHÉP] Nội dung tin nhắn đã được lưu vào khay nhớ tạm (Clipboard), sẵn sàng dán vào Zalo/Messenger.');
+            }).catch(() => {
+                alert('[THÔNG BÁO] Vui lòng bôi đen và sao chép thủ công.');
+            });
         }
 
         async function execCopilot(isRetry = false) {
@@ -5789,7 +5950,6 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             if (!isRetry) { container.insertAdjacentHTML('beforeend', userMsgHtml); }
             container.scrollTop = container.scrollHeight;
 
-            // Xóa ô nhập tạm thời
             inputBox.value = '';
             copilotIsLoading = true;
             if (typingInd) typingInd.classList.remove('hidden');
@@ -5799,8 +5959,8 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             let typingStep = 0;
             const typingMsgs = [
                 'AI đang tra cứu cơ sở y dược & quy định chuyên môn...',
-                'AI đang thẩm định cơ chế phân tử & sinh khả dụng...',
-                'AI đang tổng hợp kịch bản tư vấn thực chiến...'
+                'AI đang sàng lọc Red Flag lâm sàng & đối chuẩn đối thủ...',
+                'AI đang tổng hợp kịch bản tư vấn theo nhịp 4 bước...'
             ];
             const typingTimer = setInterval(() => {
                 typingStep = (typingStep + 1) % typingMsgs.length;
@@ -5815,7 +5975,8 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                     body: JSON.stringify({
                         message: q,
                         sku: sku,
-                        mode: copilotConsultMode
+                        mode: copilotConsultMode,
+                        channel: copilotChannel
                     })
                 });
 
@@ -5847,7 +6008,13 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
             if (data.direct_answer) {
                 const modeBadgeClass = data.mode === 'SALES_REP_B2B'
                     ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                    : (data.mode === 'OBJECTION_HANDLING' ? 'bg-purple-50 text-purple-800 border-purple-200' : 'bg-blue-50 text-corp-800 border-blue-200');
+                    : (data.mode === 'OBJECTION_HANDLING'
+                        ? 'bg-purple-50 text-purple-800 border-purple-200'
+                        : (data.mode === 'CLINICAL_SAFETY' ? 'bg-rose-50 text-rose-800 border-rose-200' : 'bg-blue-50 text-corp-800 border-blue-200'));
+
+                const channelBadge = data.channel && data.channel !== 'all'
+                    ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200 uppercase">${escapeHtml(data.channel)}</span>`
+                    : '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200">TOÀN KÊNH</span>';
 
                 const speedBadge = reqDuration
                     ? `<span class="px-1.5 py-0.2 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-600 border border-slate-200" title="Thời gian xử lý">${Number(reqDuration) < 0.25 ? 'Tức thì (' + reqDuration + 's)' : reqDuration + 's'}</span>`
@@ -5865,20 +6032,137 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                     citationsHtml = data.citations.map(c => `<span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 text-[10px] font-mono font-bold">${escapeHtml(c)}</span>`).join(' ');
                 }
 
+                // Cảnh báo Red Flag lâm sàng nếu phát hiện
+                let redFlagHtml = '';
+                if (data.red_flags && data.red_flags.has_red_flag) {
+                    const flagsList = (data.red_flags.flags || []).map(f => `<li>${escapeHtml(f)}</li>`).join('');
+                    redFlagHtml = `
+                        <div class="p-3 rounded-xl bg-rose-50 border border-rose-300 text-rose-950 text-xs space-y-2 shadow-2xs">
+                            <div class="flex items-center justify-between font-extrabold uppercase text-rose-800 text-[11px]">
+                                <span class="flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                                    <span>[CẢNH BÁO LÂM SÀNG - RED FLAG NGUY CƠ CAO]</span>
+                                </span>
+                                <span class="px-2 py-0.5 rounded bg-rose-600 text-white text-[10px]">BẮT BUỘC DƯỢC SĨ</span>
+                            </div>
+                            <ul class="list-disc list-inside space-y-1 font-semibold text-rose-900 text-xs">
+                                ${flagsList}
+                            </ul>
+                            <div class="p-2 rounded bg-white/90 border border-rose-200 text-xs text-rose-800 leading-relaxed">
+                                <b>Chỉ đạo chuyên môn:</b> ${escapeHtml(data.red_flags.action_guidance || '')}
+                            </div>
+                            <div class="flex justify-end pt-1">
+                                <button type="button" onclick="copilotEscalatePharmacist('${escapeHtml(data.target_sku || '')}')" class="px-3 py-1.5 rounded-lg bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs transition shadow-2xs">
+                                    [Chuyển Dược Sĩ Lâm Sàng Ngay]
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Thẻ đối chuẩn đối thủ cạnh tranh nếu phát hiện
+                let compHtml = '';
+                if (data.competitor_comparison) {
+                    const comp = data.competitor_comparison;
+                    compHtml = `
+                        <div class="p-3 rounded-xl bg-purple-50 border border-purple-200 text-xs space-y-1.5 text-purple-950 shadow-2xs">
+                            <div class="flex items-center justify-between font-bold uppercase text-purple-900 text-[11px]">
+                                <span>[ĐỐI CHUẨN ĐỐI THỦ: ${escapeHtml(comp.competitor_name || '')}]</span>
+                                <span class="px-2 py-0.5 rounded bg-purple-200 text-purple-900 text-[10px] font-bold">1-Click Phản Bác</span>
+                            </div>
+                            <div class="text-[11.5px] text-purple-900">
+                                <b>Tiêu chí đối chiếu:</b> ${escapeHtml(comp.comparison_criteria || '')}
+                            </div>
+                            <div class="text-xs bg-white/90 p-2.5 rounded-lg border border-purple-200 text-purple-950 leading-relaxed">
+                                <b>Luận điểm phản bác chuẩn y khoa:</b> ${escapeHtml(comp.permissible_talking_points || comp.counter_points || '')}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Nhịp 4 bước chuẩn TL.CSKH.003
+                let fourStepsHtml = '';
+                if (data.four_steps) {
+                    const fs = data.four_steps;
+                    fourStepsHtml = `
+                        <div class="space-y-2 border-t border-b border-slate-100 py-2.5">
+                            <div class="text-[11px] font-extrabold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-corp-700"></span>
+                                <span>KỊCH BẢN TƯ VẤN CHUẨN NHỊP 4 BƯỚC (TL.CSKH.003)</span>
+                            </div>
+
+                            <div class="grid grid-cols-1 gap-2">
+                                <!-- Bước 1 -->
+                                <div class="p-2.5 rounded-lg bg-blue-50/70 border border-blue-200 text-xs text-slate-900 space-y-1">
+                                    <div class="font-extrabold text-blue-900 text-[11px] uppercase">[BƯỚC 1: TRẢ LỜI TRỰC DIỆN]</div>
+                                    <div class="font-semibold text-slate-900 leading-relaxed">${escapeHtml(fs.step1_direct_answer || data.direct_answer || '')}</div>
+                                </div>
+
+                                <!-- Bước 2 -->
+                                <div class="p-2.5 rounded-lg bg-emerald-50/70 border border-emerald-200 text-xs text-slate-900 space-y-1">
+                                    <div class="font-extrabold text-emerald-900 text-[11px] uppercase">[BƯỚC 2: HỎI 1 CÂU CHIẾN LƯỢC]</div>
+                                    <div class="font-medium text-emerald-950 leading-relaxed">${escapeHtml(fs.step2_ask_question || '')}</div>
+                                </div>
+
+                                <!-- Bước 3 -->
+                                <div class="p-2.5 rounded-lg bg-amber-50/70 border border-amber-200 text-xs text-slate-900 space-y-1">
+                                    <div class="font-extrabold text-amber-900 text-[11px] uppercase">[BƯỚC 3: SÀNG LỌC AN TOÀN &amp; HƯỚNG DẪN DÙNG]</div>
+                                    <div class="font-medium text-amber-950 leading-relaxed">${escapeHtml(fs.step3_safety_screen || '')}</div>
+                                </div>
+
+                                <!-- Bước 4 -->
+                                <div class="p-2.5 rounded-lg bg-indigo-50/70 border border-indigo-200 text-xs text-slate-900 space-y-1">
+                                    <div class="font-extrabold text-indigo-900 text-[11px] uppercase">[BƯỚC 4: BƯỚC TIẾP THEO / KÊU GỌI HÀNH ĐỘNG]</div>
+                                    <div class="font-medium text-indigo-950 leading-relaxed">${escapeHtml(fs.step4_next_step || '')}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Chia tin nhắn theo kênh (Split Messages) nếu có
+                let splitMsgsHtml = '';
+                if (data.split_messages && data.split_messages.length > 1) {
+                    const bubbles = data.split_messages.map((m, idx) => {
+                        const sId = 'split-msg-' + Math.random().toString(36).substring(2, 9);
+                        return `
+                            <div class="bg-white border border-slate-200 p-2 rounded-lg text-xs flex items-start justify-between gap-2 shadow-2xs">
+                                <div id="${sId}" class="flex-1 text-slate-800 leading-relaxed font-sans select-all">${escapeHtml(m)}</div>
+                                <button type="button" onclick="copySpecificScript('${sId}')" class="px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded text-[10px] shrink-0 border border-slate-200">
+                                    Sao chép tin ${idx + 1}
+                                </button>
+                            </div>
+                        `;
+                    }).join('');
+                    splitMsgsHtml = `
+                        <div class="space-y-1.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                            <div class="text-[10px] font-bold text-slate-600 uppercase flex items-center justify-between">
+                                <span>TIN NHẮN CHIA NHỎ THEO KÊNH (${escapeHtml((data.channel || 'facebook').toUpperCase())})</span>
+                                <span class="text-[10px] text-slate-500 font-mono">${data.split_messages.length} tin</span>
+                            </div>
+                            <div class="space-y-1.5">
+                                ${bubbles}
+                            </div>
+                        </div>
+                    `;
+                }
+
                 const scriptId = 'copilot-script-' + Math.random().toString(36).substring(2, 9);
 
                 const aiBubbleHtml = `
-                    <div class="flex items-start gap-2.5 max-w-[92%]">
+                    <div class="flex items-start gap-2.5 max-w-[95%]">
                         <div class="w-7 h-7 rounded-full bg-corp-700 flex items-center justify-center text-white text-[11px] font-bold shrink-0 shadow-2xs">
                             AI
                         </div>
                         <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-sm p-4 shadow-xs text-xs leading-relaxed text-slate-800 space-y-3 flex-1">
-                            <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-2">
-                                <div class="flex items-center gap-2">
-                                    <span class="font-bold text-corp-800 text-[11px] uppercase tracking-wide">DION AI Chuyên Môn Y Dược</span>
+                            <!-- Header thông tin -->
+                            <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-2 flex-wrap">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="font-bold text-corp-800 text-[11px] uppercase tracking-wide">AI CHUYÊN MÔN Y DƯỢC &amp; CSKH</span>
                                     <span class="px-2 py-0.5 rounded text-[10px] font-bold border ${modeBadgeClass}">
                                         ${escapeHtml(data.mode_title || 'Tư Vấn Chuyên Môn')}
                                     </span>
+                                    ${channelBadge}
                                 </div>
                                 <div class="flex items-center gap-1.5">
                                     <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200">
@@ -5888,44 +6172,26 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                                 </div>
                             </div>
 
-                            <!-- 1. Trực diện -->
-                            <div class="space-y-1">
-                                <div class="text-[11px] font-bold text-corp-800 uppercase tracking-wide flex items-center gap-1">
-                                    <span>[TRẢ LỜI TRỰC DIỆN]</span>
-                                </div>
-                                <div class="text-slate-900 font-semibold bg-blue-50/50 p-2.5 rounded-lg border border-blue-100/80 leading-relaxed">
-                                    ${directAnswerHtml}
-                                </div>
-                            </div>
+                            <!-- Khối Red Flag (nếu có) -->
+                            ${redFlagHtml}
 
-                            <!-- 2. Cơ sở Dược lý & Cơ chế -->
-                            <div class="space-y-1">
-                                <div class="text-[11px] font-bold text-slate-700 uppercase tracking-wide flex items-center gap-1">
-                                    <span>[CƠ SỞ DƯỢC LÝ &amp; SINH KHẢ DỤNG]</span>
-                                </div>
-                                <div class="text-slate-700 text-[11.5px] bg-slate-50 p-2.5 rounded-lg border border-slate-200 leading-relaxed">
-                                    ${rationaleHtml}
-                                </div>
-                            </div>
+                            <!-- Khối Đối thủ cạnh tranh (nếu có) -->
+                            ${compHtml}
 
-                            <!-- 3. Hướng dẫn & Tương tác -->
-                            <div class="space-y-1">
-                                <div class="text-[11px] font-bold text-slate-700 uppercase tracking-wide flex items-center gap-1">
-                                    <span>[HƯỚNG DẪN DÙNG &amp; CẢNH BÁO TƯƠNG TÁC]</span>
-                                </div>
-                                <div class="text-slate-700 text-[11.5px] bg-amber-50/50 p-2.5 rounded-lg border border-amber-200/70 leading-relaxed">
-                                    ${usageHtml}
-                                </div>
-                            </div>
+                            <!-- Khối Nhịp 4 bước chuẩn -->
+                            ${fourStepsHtml}
 
-                            <!-- 4. Kịch bản thực chiến / Tin nhắn mẫu -->
+                            <!-- Khối Tin nhắn chia nhỏ theo kênh -->
+                            ${splitMsgsHtml}
+
+                            <!-- Khối Toàn văn kịch bản thực chiến -->
                             <div class="space-y-1.5">
                                 <div class="flex items-center justify-between">
                                     <div class="text-[11px] font-bold text-purple-900 uppercase tracking-wide flex items-center gap-1">
-                                        <span>[KỊCH BẢN THỰC CHIẾN / TIN NHẮN MẪU]</span>
+                                        <span>[TOÀN VĂN KỊCH BẢN TƯ VẤN]</span>
                                     </div>
-                                    <button onclick="copySpecificScript('${scriptId}')" class="px-2.5 py-1 rounded bg-purple-700 hover:bg-purple-800 text-white font-bold text-[10px] transition shadow-2xs flex items-center gap-1">
-                                        <span>Sao chép kịch bản (Zalo/SMS)</span>
+                                    <button type="button" onclick="copySpecificScript('${scriptId}')" class="px-2.5 py-1 rounded bg-purple-700 hover:bg-purple-800 text-white font-bold text-[10px] transition shadow-2xs flex items-center gap-1">
+                                        <span>Sao chép toàn bộ tin nhắn</span>
                                     </button>
                                 </div>
                                 <div id="${scriptId}" class="text-purple-950 font-medium text-[11.5px] bg-purple-50/60 p-3 rounded-lg border border-purple-200 leading-relaxed font-sans select-all">
@@ -5933,25 +6199,32 @@ Quầy Thuốc Gia Đình 365\t78 Cầu Giấy\t0977665544\tHà Nội\tCầu Gi�
                                 </div>
                             </div>
 
-                            <!-- 5. Pháp lý & Khuyến cáo -->
-                            <div class="pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-[10px] text-slate-500">
-                                <div class="flex items-center gap-1.5 flex-wrap">
-                                    <span class="font-bold text-slate-600">Hồ sơ Cục ATTP:</span>
-                                    <span>${regBasisHtml}</span>
-                                    ${citationsHtml}
+                            <!-- Khối Cơ sở Dược lý & Pháp lý (Thu gọn/mở rộng) -->
+                            <details class="text-[11px] bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer">
+                                <summary class="font-bold text-slate-700 uppercase">[XEM CƠ CHẾ DƯỢC LÝ &amp; HỒ SƠ PHÁP LÝ CHI TIẾT]</summary>
+                                <div class="mt-2 space-y-2 pt-2 border-t border-slate-200 text-slate-700 leading-relaxed">
+                                    <div><b>Cơ sở dược lý &amp; sinh khả dụng:</b> ${rationaleHtml}</div>
+                                    <div><b>Hướng dẫn dùng &amp; cảnh báo:</b> ${usageHtml}</div>
+                                    <div class="flex items-center gap-1.5 flex-wrap pt-1 text-[10px]">
+                                        <span class="font-bold text-slate-600">Hồ sơ Cục ATTP:</span>
+                                        <span>${regBasisHtml}</span>
+                                        ${citationsHtml}
+                                    </div>
                                 </div>
-                                <div class="text-[10px] text-slate-400 italic">
-                                    ${escapeHtml(data.disclaimer || '')}
-                                </div>
+                            </details>
+
+                            <!-- Khuyến cáo bắt buộc -->
+                            <div class="text-[10px] text-slate-400 italic pt-1 border-t border-slate-100">
+                                ${escapeHtml(data.disclaimer || '')}
                             </div>
 
-                            <!-- 6. Footer Actions -->
-                            <div class="flex justify-between items-center pt-1 border-t border-slate-100 text-[10px] text-slate-500">
-                                <span>Chế độ: <b>${escapeHtml(data.mode_title || '')}</b></span>
+                            <!-- Footer Actions -->
+                            <div class="flex justify-between items-center pt-1 border-t border-slate-100 text-[10px] text-slate-500 flex-wrap gap-2">
+                                <span>Sản phẩm: <b>${escapeHtml(data.product_name || data.target_sku || '')}</b></span>
                                 <div class="flex items-center gap-2">
-                                    <button onclick="copilotQuickAction('SHORTER', this)" class="font-bold text-slate-500 hover:text-corp-700 hover:underline">Rút gọn</button>
-                                    <button onclick="copilotQuickAction('REWRITE', this)" class="font-bold text-slate-500 hover:text-corp-700 hover:underline">Viết lại</button>
-                                    <button onclick="copySnippetText(this)" class="font-bold text-corp-700 hover:underline">Sao chép toàn bộ</button>
+                                    <button type="button" onclick="copilotEscalatePharmacist('${escapeHtml(data.target_sku || '')}')" class="font-bold text-rose-600 hover:underline">Chuyển Dược sĩ</button>
+                                    <button type="button" onclick="setTab('care')" class="font-bold text-blue-600 hover:underline">Mở CSKH Tab 5</button>
+                                    <button type="button" onclick="copySpecificScript('${scriptId}')" class="font-bold text-corp-700 hover:underline">Sao chép tin nhắn</button>
                                 </div>
                             </div>
                         </div>

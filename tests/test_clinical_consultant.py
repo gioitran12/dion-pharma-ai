@@ -128,3 +128,69 @@ def test_zero_emojis_in_clinical_consultation_output():
         for mode, script in topic_data["sample_scripts"].items():
             emojis = [c for c in script if ord(c) > 0x1F000]
             assert len(emojis) == 0, f"Found emoji in {topic_key} script {mode}: {emojis}"
+
+
+def test_vistafa_five_products_consultation():
+    # 1. Calci Complex
+    res_cal = client.post("/api/copilot/consult", json={"message": "Uống Canxi này có sợ sỏi thận không?", "sku": "VIST-CALCIUM"}).json()
+    assert res_cal["status"] == "success"
+    assert "four_steps" in res_cal
+    assert "step1_direct_answer" in res_cal["four_steps"]
+    assert "red_flags" in res_cal
+
+    # 2. Beauty Collagen
+    res_col = client.post("/api/copilot/consult", json={"message": "Uống Collagen có sợ tăng cân hay nổi mụn không?", "sku": "VIST-COLLAGEN"}).json()
+    assert res_col["status"] == "success"
+    assert "Collagen" in res_col["direct_answer"] or "Peptide" in res_col["clinical_rationale"] or "hộp" in res_col["direct_answer"]
+
+    # 3. Ultimate Omega 3
+    res_omg = client.post("/api/copilot/consult", json={"message": "Uống Omega 3 có bị ợ tanh không?", "sku": "VIST-OMEGA3"}).json()
+    assert res_omg["status"] == "success"
+    assert "Omega" in res_omg["product_name"]
+
+    # 4. Sleep Well
+    res_slp = client.post("/api/copilot/consult", json={"message": "Mất ngủ 2 năm uống Sleep Well có đỡ không?", "sku": "VIST-SLEEP"}).json()
+    assert res_slp["status"] == "success"
+    assert "Sleep Well" in res_slp["product_name"]
+
+    # 5. FerroActive
+    res_fe = client.post("/api/copilot/consult", json={"message": "Sắt FerroActive có gây táo bón không?", "sku": "VIST-FERRO"}).json()
+    assert res_fe["status"] == "success"
+    assert "FerroActive" in res_fe["product_name"]
+
+
+def test_vistafa_multichannel_adaptation():
+    channels = ["facebook", "zalo", "website", "tiktok"]
+    for ch in channels:
+        res = client.post("/api/copilot/consult", json={
+            "message": "Collagen giá bao nhiêu?",
+            "sku": "VIST-COLLAGEN",
+            "channel": ch
+        }).json()
+        assert res["status"] == "success"
+        assert res["channel"] == ch
+        assert len(res["split_messages"]) > 0
+
+
+def test_vistafa_clinical_red_flag_gating():
+    # Sỏi thận nặng và uống diazepam
+    res = client.post("/api/copilot/consult", json={
+        "message": "Khách bị sỏi thận 12mm và đang uống diazepam thuốc ngủ thì dùng thế nào?",
+        "sku": "VIST-CALCIUM"
+    }).json()
+    assert res["status"] == "success"
+    assert res["red_flags"]["has_red_flag"] is True
+    assert res["red_flags"]["pharmacist_escalation"] is True
+    assert len(res["red_flags"]["flags"]) >= 1
+
+
+def test_vistafa_competitor_comparison():
+    # Corbiere vs Calci Complex
+    res = client.post("/api/copilot/consult", json={
+        "message": "Sao Canxi Corbiere dạng sủi rẻ hơn nhiều?",
+        "sku": "VIST-CALCIUM"
+    }).json()
+    assert res["status"] == "success"
+    assert res["competitor_comparison"] is not None
+    assert "Corbiere" in res["competitor_comparison"]["competitor_name"]
+

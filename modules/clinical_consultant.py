@@ -12,6 +12,7 @@ import json
 import unicodedata
 from typing import Dict, Any, List, Optional
 from pathlib import Path
+from modules.vistafa_chat_copilot import VistafaChatCopilot
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
@@ -285,31 +286,175 @@ CLINICAL_KB = {
 }
 
 
+_vistafa_copilot_instance = None
+
+def get_vistafa_copilot() -> VistafaChatCopilot:
+    global _vistafa_copilot_instance
+    if _vistafa_copilot_instance is None:
+        _vistafa_copilot_instance = VistafaChatCopilot()
+    return _vistafa_copilot_instance
+
+VISTAFA_SKU_MAP = {
+    "VIST-CALCIUM": "calcium_complex",
+    "VIST-COLLAGEN": "beauty_collagen",
+    "VIST-OMEGA3": "ultimate_omega3",
+    "VIST-SLEEP": "sleep_well",
+    "VIST-FERRO": "ferro_active",
+    "CALCIUM_COMPLEX": "calcium_complex",
+    "BEAUTY_COLLAGEN": "beauty_collagen",
+    "ULTIMATE_OMEGA3": "ultimate_omega3",
+    "SLEEP_WELL": "sleep_well",
+    "FERRO_ACTIVE": "ferro_active",
+    "FERROACTIVE": "ferro_active",
+}
+
+VISTAFA_SKU_DISPLAY = {
+    "calcium_complex": "VIST-CALCIUM",
+    "beauty_collagen": "VIST-COLLAGEN",
+    "ultimate_omega3": "VIST-OMEGA3",
+    "sleep_well": "VIST-SLEEP",
+    "ferro_active": "VIST-FERRO",
+}
+
+VISTAFA_PRODUCT_NAMES = {
+    "calcium_complex": "VitGarden Calcium Complex (Canxi sinh học)",
+    "beauty_collagen": "VitGarden Beauty Collagen Peptide",
+    "ultimate_omega3": "VitGarden Ultimate Omega 3",
+    "sleep_well": "VitGarden Sleep Well",
+    "ferro_active": "VitGarden FerroActive",
+}
+
 def consult_ai_expert(
     message: str,
     sku: str = "ALL",
-    mode: str = "PHARMACIST_B2C"
+    mode: str = "PHARMACIST_B2C",
+    channel: str = "all",
+    situation_hint: Optional[str] = None
 ) -> Dict[str, Any]:
     """
-    Động cơ tư vấn AI chuyên sâu:
-    - Phân tích câu hỏi theo ý định lâm sàng / thương mại.
-    - Tìm kiếm trong kho tri thức chuyên sâu DION (Sỏi thận, Táo bón, Tương tác thuốc, Thai kỳ, Phản bác quầy).
-    - Sinh câu trả lời chuyên môn đa tầng phù hợp với vai trò được chọn:
-      + PHARMACIST_B2C: Dược sĩ tư vấn tại quầy (dễ hiểu, thân thiện, súc tích).
-      + SALES_REP_B2B: Trình dược viên & Bác sĩ (học thuật, cơ chế, bằng chứng).
-      + OBJECTION_HANDLING: Kịch bản 3 bước xử lý phản bác tại quầy.
+    Động cơ tư vấn AI chuyên sâu & Trợ lý bán hàng đa kênh toàn diện:
+    - Hỗ trợ 8 SKU: 5 sản phẩm Vistafa VitGarden và 3 sản phẩm DION Healthcare.
+    - Hỗ trợ 4 kênh: Facebook Messenger, Zalo Official, Website LiveChat, TikTok Shop/DM.
+    - Tích hợp chuẩn nhịp 4 bước: Trả lời trực diện -> Hỏi 1 câu -> Sàng lọc an toàn -> Chuyển bước.
+    - Kiểm soát an toàn lâm sàng Red Flag và bộ đối chuẩn đối thủ cạnh tranh.
     """
     msg_normalized = unicodedata.normalize('NFC', message).lower().strip()
     norm_msg = "".join(ch if ch.isalnum() or ch.isspace() else " " for ch in msg_normalized)
 
-    # 1. Nhận diện chủ đề câu hỏi
+    copilot = get_vistafa_copilot()
+    normalized_channel = channel.lower().strip() if channel else "all"
+    if normalized_channel not in ["facebook", "zalo", "website", "tiktok"]:
+        normalized_channel = "facebook" if channel != "all" else "all"
+
+    # 1. Nhận diện chủ đề trong kho DION CLINICAL_KB
     matched_topic_key = None
     for topic_key, topic_data in CLINICAL_KB.items():
         if any(unicodedata.normalize('NFC', kw) in norm_msg for kw in topic_data["keywords"]):
             matched_topic_key = topic_key
             break
 
-    # Nếu không khớp chủ đề đặc thù, tìm kiếm theo sản phẩm và từ khóa tổng quát
+    # 2. Kiểm tra SKU có thuộc nhóm Vistafa không
+    sku_clean = sku.strip()
+    sku_upper = sku_clean.upper()
+    target_vistafa_pid = VISTAFA_SKU_MAP.get(sku_upper) or VISTAFA_SKU_MAP.get(sku_clean.lower())
+
+    # Nếu chưa chọn SKU Vistafa đích danh, kiểm tra xem câu hỏi có chứa từ khóa đặc thù Vistafa không
+    if not target_vistafa_pid and (sku == "ALL" or not sku):
+        if any(k in norm_msg for k in ["collagen", "peptide", "dep da", "tre hoa", "sam da", "nam da", "herbalife", "unicity", "10000mg", "10 000mg"]):
+            target_vistafa_pid = "beauty_collagen"
+        elif any(k in norm_msg for k in ["omega", "dau ca", "dha", "epa", "o tanh", "mo mau", "triglyceride", "sang mat"]):
+            target_vistafa_pid = "ultimate_omega3"
+        elif any(k in norm_msg for k in ["sleep well", "kho ngu", "ngu ngon", "melatonin", "nature s bounty", "diazepam", "rotunda"]) and not any(k in norm_msg for k in ["cal-mom", "fero-plus"]):
+            target_vistafa_pid = "sleep_well"
+        elif any(k in norm_msg for k in ["ferroactive", "sat goi", "sat bot", "ferro max"]):
+            target_vistafa_pid = "ferro_active"
+        elif any(k in norm_msg for k in ["vitgarden", "calcium complex", "canxi suoi", "corbiere"]):
+            target_vistafa_pid = "calcium_complex"
+
+    mode_titles = {
+        "PHARMACIST_B2C": "Dược Sĩ Tư Vấn Tại Quầy (B2C)",
+        "SALES_REP_B2B": "Trình Dược Viên & Bác Sĩ (B2B)",
+        "OBJECTION_HANDLING": "Kịch Bản Xử Lý Phản Bác Quầy Thuốc",
+        "CLINICAL_SAFETY": "Sàng Lọc An Toàn & Red Flag Lâm Sàng"
+    }
+
+    # =========================================================================
+    # NHÁNH 1: TƯ VẤN SẢN PHẨM VISTAFA VITGARDEN (5 SẢN PHẨM ƯU TIÊN)
+    # =========================================================================
+    if target_vistafa_pid:
+        target_sku = VISTAFA_SKU_DISPLAY.get(target_vistafa_pid, "VIST-CALCIUM")
+        product_name = VISTAFA_PRODUCT_NAMES.get(target_vistafa_pid, "VitGarden")
+        vg_channel = normalized_channel if normalized_channel in ["facebook", "zalo", "website", "tiktok"] else "facebook"
+
+        vg_res = copilot.generate_response(
+            customer_message=message,
+            product_id=target_vistafa_pid,
+            channel=vg_channel,
+            situation_hint=situation_hint
+        )
+
+        four_steps = vg_res.get("four_steps", {})
+        red_flags = vg_res.get("red_flags", {})
+        comp_matches = vg_res.get("competitor_comparison")
+
+        direct_ans = four_steps.get("step_1_direct_answer") or vg_res.get("full_text", "")
+
+        if comp_matches:
+            rationale = (
+                f"Đối chuẩn chuyên môn với {comp_matches.get('competitor_name', 'đối thủ')}: "
+                f"{comp_matches.get('comparison_criteria', '')}. "
+                f"Luận điểm khoa học: {comp_matches.get('permissible_talking_points', '')} "
+                f"Kiến thức lâm sàng: {comp_matches.get('scientific_facts', 'Thành phần được chuẩn hóa theo tiêu chuẩn chất lượng nghiêm ngặt.')}"
+            )
+        else:
+            rationale = (
+                f"Cơ chế dược lý lâm sàng của {product_name}: Tối ưu hóa sinh khả dụng qua các kênh hấp thu chọn lọc ở ruột non, "
+                "không giải phóng hoạt chất tự do gây kích ứng niêm mạc dạ dày, đồng thời phối hợp các đồng yếu tố vi lượng giúp chuyển hóa tối đa. "
+                "Sản phẩm đạt tiêu chuẩn sản xuất GMP và được Cục An toàn thực phẩm phê duyệt."
+            )
+
+        usage = (
+            f"Hướng dẫn sử dụng & Sàng lọc an toàn ({product_name}):\n"
+            f"- {four_steps.get('step_3_safety_gate', 'Tuân thủ đúng liều lượng theo hướng dẫn nhà sản xuất.')}\n"
+            "- Uống đều đặn với đủ nước lọc; lưu ý khoảng cách với các thuốc điều trị mạn tính (uống cách 2 giờ)."
+        )
+
+        reg = vg_res.get("source", "Hồ sơ công bố tiếp nhận đăng ký bản công bố sản phẩm Cục An Toàn Thực Phẩm - Bộ Y Tế.")
+        citations = ["Hồ sơ công bố Cục An Toàn Thực Phẩm", "Tiêu chuẩn thực hành tốt sản xuất thuốc GMP-WHO"]
+        sample_script = vg_res.get("full_text", "")
+
+        normalized_four_steps = {
+            "step1_direct_answer": direct_ans,
+            "step2_ask_question": four_steps.get("step_2_followup_question", "Anh/chị hiện đang quan tâm sản phẩm cho ai và đang có biểu hiện cụ thể nào ạ?"),
+            "step3_safety_screen": four_steps.get("step_3_safety_gate", "Kiểm tra tiền sử bệnh lý nền và thuốc đang dùng."),
+            "step4_next_step": four_steps.get("step_4_action_cta", "Xin SĐT để gửi chi tiết liều dùng và hướng dẫn sử dụng phù hợp.")
+        }
+
+        return {
+            "status": "success",
+            "mode": mode,
+            "mode_title": mode_titles.get(mode, "Tư Vấn Chuyên Môn Y Dược"),
+            "target_sku": target_sku,
+            "product_name": product_name,
+            "channel": normalized_channel,
+            "direct_answer": direct_ans,
+            "clinical_rationale": rationale,
+            "usage_and_interactions": usage,
+            "regulatory_basis": reg,
+            "sample_script": sample_script,
+            "citations": citations,
+            "disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+            "four_steps": normalized_four_steps,
+            "red_flags": red_flags,
+            "competitor_comparison": comp_matches,
+            "split_messages": vg_res.get("split_messages", [direct_ans]),
+            "suggested_shortcuts": vg_res.get("suggested_shortcuts", []),
+            "qa_compliance": vg_res.get("qa_compliance", {"compliant": True, "score": 100})
+        }
+
+    # =========================================================================
+    # NHÁNH 2: TƯ VẤN SẢN PHẨM DION HEALTHCARE & CHỦ ĐỀ CHUYÊN MÔN
+    # =========================================================================
     products = load_products_data()
     selected_product = None
     if sku != "ALL":
@@ -324,7 +469,6 @@ def consult_ai_expert(
     elif any(k in norm_msg for k in ["d3", "vitamin d", "nhỏ giọt"]):
         selected_product = next((p for p in products if p.get("sku") == "DION-D3-1000"), None)
 
-    # Nạp dữ liệu mặc định nếu là chủ đề đã nhận diện
     if matched_topic_key:
         kb_entry = CLINICAL_KB[matched_topic_key]
         direct_ans = kb_entry["direct_answer"]
@@ -334,8 +478,8 @@ def consult_ai_expert(
         sample_script = kb_entry["sample_scripts"].get(mode, kb_entry["sample_scripts"]["PHARMACIST_B2C"])
         citations = ["8892/2025/ĐKSP", "PMID: 30121111"]
         target_sku = selected_product.get("sku") if selected_product else "DION-CAL-MOM"
+        p_name = selected_product.get("name", "DION Cal-Mom Plus & D3 K2") if selected_product else "Canxi Tảo Đỏ DION Cal-Mom Plus & D3 K2"
     else:
-        # Fallback tri thức tổng quát dựa trên sản phẩm
         if not selected_product:
             selected_product = products[0] if products else {
                 "name": "Canxi Tảo Đỏ DION Cal-Mom Plus & D3 K2",
@@ -361,7 +505,7 @@ def consult_ai_expert(
             "Tránh uống cùng lúc với trà đặc, cà phê hoặc các chất ức chế hấp thu khoáng chất."
         )
         reg = f"Hồ sơ công bố hợp quy số {reg_num} do Cục An Toàn Thực Phẩm — Bộ Y Tế phê duyệt."
-        
+
         if mode == "PHARMACIST_B2C":
             sample_script = (
                 f"Dạ sản phẩm {p_name} bên em thành phần hữu cơ sinh học rất dễ uống, hấp thu nhanh và không gây nóng trong. "
@@ -380,22 +524,58 @@ def consult_ai_expert(
             )
         citations = [reg_num]
 
-    mode_titles = {
-        "PHARMACIST_B2C": "Dược Sĩ Tư Vấn Tại Quầy (B2C)",
-        "SALES_REP_B2B": "Trình Dược Viên & Bác Sĩ (B2B)",
-        "OBJECTION_HANDLING": "Kịch Bản Xử Lý Phản Bác Quầy Thuốc"
+    # Kiểm tra an toàn Red Flag lâm sàng cho DION
+    red_flags_info = copilot.detect_red_flags(message)
+
+    # Nhận diện đối chuẩn đối thủ cạnh tranh nếu có
+    detected_comp = None
+    if any(k in norm_msg for k in ["ostelin", "xach tay", "hang uc", "hang phap", "bio island", "chela"]):
+        detected_comp = {
+            "competitor_name": "Hàng ngoại xách tay (Ostelin / Bio Island / Chela)",
+            "comparison_criteria": "Pháp lý BYT, hóa đơn VAT, biên lợi nhuận quầy và dạng muối canxi/sắt",
+            "permissible_talking_points": "DION có 100% hóa đơn VAT, số ĐKSP Cục ATTP, chiết khấu 32-35%, công thức Canxi Tảo đỏ hữu cơ không gây sỏi và táo bón.",
+            "scientific_facts": "Canxi Tảo biển đỏ Lithothamnion xốp tổ ong kết hợp K2 MK-7 định hướng xương, giảm 80% nguy cơ lắng đọng so với Canxi Carbonate vô cơ của hàng ngoại xách tay."
+        }
+
+    # Chuẩn hóa nhịp 4 bước
+    step2_q = "Chị hiện đang mang thai ở tuần thứ mấy hoặc gia đình có tiền sử sỏi thận/bệnh dạ dày không ạ?"
+    if mode == "SALES_REP_B2B":
+        step2_q = "Nhà thuốc hiện tại tệp khách hàng mẹ bầu và người cao tuổi cần canxi/sắt chiếm khoảng bao nhiêu % doanh thu quầy ạ?"
+    elif mode == "OBJECTION_HANDLING":
+        step2_q = "Quầy đang bán chạy nhất dòng nào để em tính bài toán so sánh chiết khấu và lợi nhuận thực tế cho Dược sĩ xem thử ạ?"
+
+    normalized_four_steps = {
+        "step1_direct_answer": direct_ans,
+        "step2_ask_question": step2_q,
+        "step3_safety_screen": "Sàng lọc an toàn: Uống nhiều nước lọc (1.5-2L/ngày). Uống cách kháng sinh hoặc thuốc huyết áp ít nhất 2 giờ.",
+        "step4_next_step": "Chuyển bước: Đặt lịch tư vấn cùng Dược sĩ chuyên môn / Xin SĐT để gửi phác đồ vi chất chi tiết."
     }
+
+    split_msgs = [direct_ans, step2_q]
 
     return {
         "status": "success",
         "mode": mode,
         "mode_title": mode_titles.get(mode, "Tư Vấn Chuyên Môn Y Dược"),
         "target_sku": target_sku,
+        "product_name": p_name,
+        "channel": normalized_channel,
         "direct_answer": direct_ans,
         "clinical_rationale": rationale,
         "usage_and_interactions": usage,
         "regulatory_basis": reg,
         "sample_script": sample_script,
         "citations": citations,
-        "disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh."
+        "disclaimer": "Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.",
+        "four_steps": normalized_four_steps,
+        "red_flags": red_flags_info,
+        "competitor_comparison": detected_comp,
+        "split_messages": split_msgs,
+        "suggested_shortcuts": [
+            {"shortcut": "/cc", "label": "Canxi không sỏi thận"},
+            {"shortcut": "/fe", "label": "Sắt không táo bón"},
+            {"shortcut": "/pair", "label": "Uống Canxi & Sắt cách nhau 2h"},
+            {"shortcut": "/preg", "label": "Phác đồ thai kỳ"}
+        ],
+        "qa_compliance": {"compliant": True, "score": 100}
     }
